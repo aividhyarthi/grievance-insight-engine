@@ -22,8 +22,9 @@ export function ReportDashboard({ report }: Props) {
   const crawlabilityCategory = report.categories.find((c) => c.id === 'crawlability');
   const ecommerceCategory = report.categories.find((c) => c.id === 'ecommerce');
   const publisherCategory = report.categories.find((c) => c.id === 'publisher');
+  const industryCategory = report.categories.find((c) => c.id === 'industry');
   const otherCategories = report.categories.filter(
-    (c) => c.id !== 'bot-access' && c.id !== 'crawlability' && c.id !== 'ecommerce' && c.id !== 'publisher'
+    (c) => c.id !== 'bot-access' && c.id !== 'crawlability' && c.id !== 'ecommerce' && c.id !== 'publisher' && c.id !== 'industry'
   );
 
   return (
@@ -158,6 +159,33 @@ export function ReportDashboard({ report }: Props) {
             </div>
           </div>
           <CategoryDetail category={publisherCategory} />
+        </div>
+      )}
+
+      {/* Industry AEO Section (auto-detected vertical) */}
+      {industryCategory && (
+        <div className="bg-white rounded-xl border border-indigo-200 shadow-sm overflow-hidden">
+          <div className="p-6 border-b border-indigo-100 bg-indigo-50/30">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">{industryCategory.icon}</span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {industryCategory.name}
+                  </h3>
+                  <p className="text-sm text-indigo-600 font-medium">
+                    Industry vertical detected - running specialized AEO checks
+                  </p>
+                </div>
+              </div>
+              <ScoreGauge
+                score={industryCategory.score}
+                grade=""
+                size="sm"
+              />
+            </div>
+          </div>
+          <CategoryDetail category={industryCategory} />
         </div>
       )}
 

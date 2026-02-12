@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio';
 import type { AuditReport, CategoryResult, Finding, PageMetadata, CategoryId } from '../../shared/types.js';
-import { CATEGORY_WEIGHTS, NON_ECOMMERCE_WEIGHTS, PUBLISHER_WEIGHTS, CATEGORY_INFO } from '../../shared/constants.js';
+import { CATEGORY_WEIGHTS, NON_ECOMMERCE_WEIGHTS, PUBLISHER_WEIGHTS, INDUSTRY_WEIGHTS, CATEGORY_INFO } from '../../shared/constants.js';
 import { fetchPage, fetchRobotsTxt } from './fetcher.js';
 import { analyzeRobots } from '../analyzers/robots.js';
 import { analyzeSchema } from '../analyzers/schema.js';
@@ -13,6 +13,7 @@ import { analyzeLinks } from '../analyzers/links.js';
 import { analyzeCrawlability } from '../analyzers/crawlability.js';
 import { analyzeEcommerce, detectEcommerce } from '../analyzers/ecommerce.js';
 import { analyzePublisher, detectPublisher } from '../analyzers/publisher.js';
+import { analyzeIndustry, detectIndustry } from '../analyzers/industry.js';
 
 export interface AnalysisContext {
   url: string;
@@ -39,6 +40,7 @@ const analyzers: Record<string, AnalyzerFn> = {
   'crawlability': analyzeCrawlability,
   'ecommerce': analyzeEcommerce,
   'publisher': analyzePublisher,
+  'industry': analyzeIndustry,
 };
 
 function computeScore(findings: Finding[]): number {
@@ -86,19 +88,28 @@ export async function runAudit(url: string): Promise<AuditReport> {
   // Detect site type
   const ecomDetection = detectEcommerce(ctx);
   const publisherDetection = detectPublisher(ctx);
+  const industryDetection = detectIndustry(ctx);
   const isEcommerce = ecomDetection.isEcommerce;
   const isPublisher = publisherDetection.isPublisher;
+  const isIndustry = industryDetection.industry !== null;
 
   // Choose weights based on site type
-  // Priority: if both ecommerce + publisher detected, use full weights
-  // Otherwise, use the appropriate specialized weights
+  // Start from base weights, then layer on specialized weights
   let weights: Record<CategoryId, number>;
-  if (isEcommerce && isPublisher) {
-    weights = CATEGORY_WEIGHTS;
+  if (isEcommerce && isPublisher && isIndustry) {
+    weights = { ...CATEGORY_WEIGHTS, industry: 0.07 };
+  } else if (isEcommerce && isIndustry) {
+    weights = { ...CATEGORY_WEIGHTS, publisher: 0, industry: 0.07 };
+  } else if (isPublisher && isIndustry) {
+    weights = { ...PUBLISHER_WEIGHTS, industry: 0.10 };
+  } else if (isEcommerce && isPublisher) {
+    weights = { ...CATEGORY_WEIGHTS, industry: 0 };
   } else if (isEcommerce) {
-    weights = { ...CATEGORY_WEIGHTS, publisher: 0 };
+    weights = { ...CATEGORY_WEIGHTS, publisher: 0, industry: 0 };
   } else if (isPublisher) {
-    weights = PUBLISHER_WEIGHTS;
+    weights = { ...PUBLISHER_WEIGHTS, industry: 0 };
+  } else if (isIndustry) {
+    weights = INDUSTRY_WEIGHTS;
   } else {
     weights = NON_ECOMMERCE_WEIGHTS;
   }
@@ -112,6 +123,7 @@ export async function runAudit(url: string): Promise<AuditReport> {
     // Skip conditional categories when not detected
     if (id === 'ecommerce' && !isEcommerce) continue;
     if (id === 'publisher' && !isPublisher) continue;
+    if (id === 'industry' && !isIndustry) continue;
 
     let findings: Finding[] = [];
 
@@ -131,14 +143,29 @@ export async function runAudit(url: string): Promise<AuditReport> {
     }
 
     // Skip categories with no findings
-    if (findings.length === 0 && (id === 'ecommerce' || id === 'publisher')) {
+    if (findings.length === 0 && (id === 'ecommerce' || id === 'publisher' || id === 'industry')) {
       continue;
+    }
+
+    // For industry category, override the display name with the detected industry
+    let categoryName = CATEGORY_INFO[id].name;
+    let categoryIcon = CATEGORY_INFO[id].icon;
+    if (id === 'industry' && industryDetection.industry) {
+      const iconMap: Record<string, string> = {
+        'real-estate': '🏠',
+        'medical': '🏥',
+        'edtech': '🎓',
+        'auto': '🚗',
+        'reviews': '⭐',
+      };
+      categoryName = `${industryDetection.label} AEO`;
+      categoryIcon = iconMap[industryDetection.industry] || '🏢';
     }
 
     categories.push({
       id,
-      name: CATEGORY_INFO[id].name,
-      icon: CATEGORY_INFO[id].icon,
+      name: categoryName,
+      icon: categoryIcon,
       score: computeScore(findings),
       weight: weights[id],
       findings,

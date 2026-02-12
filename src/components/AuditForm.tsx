@@ -79,6 +79,11 @@ export function AuditForm({ onSubmit, loading }: Props) {
           'Schema Markup',
           'E-Commerce AEO',
           'Publisher AEO',
+          'Real Estate',
+          'Medical YMYL',
+          'EdTech',
+          'Automotive',
+          'Reviews',
           'AI Content Check',
           'E-E-A-T Signals',
         ].map((tag) => (

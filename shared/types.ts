@@ -13,7 +13,8 @@ export type CategoryId =
   | 'links'
   | 'crawlability'
   | 'ecommerce'
-  | 'publisher';
+  | 'publisher'
+  | 'industry';
 
 export interface Finding {
   id: string;

@@ -90,6 +90,7 @@ export const CATEGORY_WEIGHTS: Record<CategoryId, number> = {
   'crawlability': 0.13,
   'ecommerce': 0.07,
   'publisher': 0.08,
+  'industry': 0.07,
 };
 
 // Weights when site is NOT e-commerce and NOT publisher (base weights)
@@ -105,6 +106,7 @@ export const NON_ECOMMERCE_WEIGHTS: Record<CategoryId, number> = {
   'crawlability': 0.15,
   'ecommerce': 0,
   'publisher': 0,
+  'industry': 0,
 };
 
 // Weights when site is publisher (no ecommerce)
@@ -120,6 +122,23 @@ export const PUBLISHER_WEIGHTS: Record<CategoryId, number> = {
   'crawlability': 0.13,
   'ecommerce': 0,
   'publisher': 0.13,
+  'industry': 0,
+};
+
+// Weights when industry vertical is detected
+export const INDUSTRY_WEIGHTS: Record<CategoryId, number> = {
+  'bot-access': 0.12,
+  'content': 0.11,
+  'schema': 0.10,
+  'technical': 0.08,
+  'meta-tags': 0.07,
+  'branding': 0.07,
+  'headings': 0.04,
+  'links': 0.04,
+  'crawlability': 0.12,
+  'ecommerce': 0,
+  'publisher': 0,
+  'industry': 0.13,
 };
 
 // ===== Category Display Info =====
@@ -178,6 +197,11 @@ export const CATEGORY_INFO: Record<CategoryId, { name: string; icon: string; des
     name: 'Publisher AEO',
     icon: '📰',
     description: 'Content originality, citations, author E-E-A-T, and AI content quality signals',
+  },
+  'industry': {
+    name: 'Industry AEO',
+    icon: '🏢',
+    description: 'Industry-specific AEO checks for Real Estate, Medical, EdTech, Auto, and Reviews sites',
   },
 };
 
