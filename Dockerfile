@@ -2,15 +2,17 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Copy package files and install ALL dependencies (need devDeps for build)
-COPY package.json package-lock.json ./
-RUN npm ci
+# Copy package files first for better caching
+COPY package.json package-lock.json* ./
+
+# Install ALL dependencies (need devDeps for vite build)
+RUN npm install
 
 # Copy source code
 COPY . .
 
 # Build the frontend
-RUN npm run build
+RUN npx vite build
 
 # Prune dev dependencies after build
 RUN npm prune --production
@@ -21,4 +23,4 @@ ENV PORT=3001
 ENV NODE_ENV=production
 
 # Start the server
-CMD ["npm", "start"]
+CMD ["npx", "tsx", "server/index.ts"]
