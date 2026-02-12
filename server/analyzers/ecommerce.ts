@@ -26,6 +26,20 @@ const ECOMMERCE_SIGNALS = {
     { name: 'OpenCart', patterns: [/opencart/i] },
     { name: 'Squarespace Commerce', patterns: [/squarespace.*commerce/i, /sqsp/i] },
     { name: 'Wix Stores', patterns: [/wix.*stores/i, /wixstores/i] },
+    // Indian e-commerce platforms
+    { name: 'Nykaa', patterns: [/nykaa\.com/i, /nykaaman/i, /nykaadesignstudio/i] },
+    { name: 'Flipkart', patterns: [/flipkart\.com/i, /fkapi/i] },
+    { name: 'Myntra', patterns: [/myntra\.com/i] },
+    { name: 'Amazon India', patterns: [/amazon\.in/i] },
+    { name: 'Meesho', patterns: [/meesho\.com/i] },
+    { name: 'AJIO', patterns: [/ajio\.com/i] },
+    { name: 'Tata CLiQ', patterns: [/tatacliq\.com/i] },
+    // Other international platforms
+    { name: 'Etsy', patterns: [/etsy\.com/i] },
+    { name: 'eBay', patterns: [/ebay\.com/i] },
+    { name: 'Amazon', patterns: [/amazon\.(com|co\.uk|de|fr|es|it|ca|com\.au)/i] },
+    { name: 'Walmart', patterns: [/walmart\.com/i] },
+    { name: 'Target', patterns: [/target\.com/i] },
   ],
   pricePatterns: [
     /\$\d+[\.,]?\d*/,
@@ -45,10 +59,28 @@ interface EcommerceDetection {
 }
 
 export function detectEcommerce(ctx: AnalysisContext): EcommerceDetection {
-  const { $, html } = ctx;
+  const { $, html, url } = ctx;
   const signals: string[] = [];
   let score = 0;
   let platform: string | null = null;
+
+  // URL-based detection (very strong signal)
+  const urlPatterns = [
+    { pattern: /\/p\/\d+/i, signal: 'Product URL pattern (/p/ID)' },
+    { pattern: /\/product[s]?\//i, signal: 'Product URL pattern (/product/)' },
+    { pattern: /\/dp\/[A-Z0-9]+/i, signal: 'Amazon-style product URL (/dp/)' },
+    { pattern: /productId=/i, signal: 'Product ID in URL' },
+    { pattern: /\/shop\//i, signal: 'Shop URL pattern' },
+    { pattern: /\/collection[s]?\//i, signal: 'Collection URL pattern' },
+    { pattern: /\/category\//i, signal: 'Category URL pattern' },
+  ];
+
+  for (const { pattern, signal } of urlPatterns) {
+    if (pattern.test(url)) {
+      score += 2;
+      signals.push(signal);
+    }
+  }
 
   // Check for Product schema
   const jsonLdBlocks: string[] = [];

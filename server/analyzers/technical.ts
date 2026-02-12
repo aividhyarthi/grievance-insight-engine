@@ -121,34 +121,53 @@ export function analyzeTechnical(ctx: AnalysisContext): Finding[] {
     .trim();
 
   const hasAppRoot =
-    ($('#root').length > 0 || $('#app').length > 0 || $('#__next').length > 0) &&
-    bodyText.length < 200;
+    $('#root').length > 0 || $('#app').length > 0 || $('#__next').length > 0 ||
+    $('#__nuxt').length > 0 || $('#___gatsby').length > 0;
 
   const hasSPAFramework =
     html.includes('__NEXT_DATA__') ||
     html.includes('__NUXT__') ||
     html.includes('ng-app') ||
-    html.includes('data-reactroot');
+    html.includes('ng-version') ||
+    html.includes('data-reactroot') ||
+    html.includes('data-react-helmet') ||
+    /_next\/static/i.test(html) ||
+    /__INITIAL_STATE__/i.test(html) ||
+    /window\.__data/i.test(html);
 
-  if (hasAppRoot) {
+  // CSR = app root + very little readable text (less than 500 chars)
+  if (hasAppRoot && bodyText.length < 500) {
     findings.push({
       id: 'tech-csr-detected',
       title: 'Client-side rendered (CSR) page detected',
       description:
-        'The page appears to rely on client-side JavaScript rendering (SPA). Most AI bots (GPTBot, ClaudeBot, PerplexityBot) do NOT execute JavaScript, meaning they may see a blank page.',
+        `The page uses client-side JavaScript rendering. Only ${bodyText.length} characters of text are in the raw HTML. Most AI bots (GPTBot, ClaudeBot, PerplexityBot) do NOT execute JavaScript, meaning they see almost no content.`,
       severity: 'fail',
       category: 'technical',
       recommendation:
         'Implement Server-Side Rendering (SSR) or Static Site Generation (SSG) so content is visible in the raw HTML. Consider Next.js, Nuxt, or pre-rendering.',
+      details: { bodyTextLength: bodyText.length, hasAppRoot, hasSPAFramework },
     });
-  } else if (hasSPAFramework && bodyText.length > 200) {
+  } else if (hasAppRoot && bodyText.length < 1500 && hasSPAFramework) {
+    findings.push({
+      id: 'tech-partial-csr',
+      title: 'Partially client-side rendered page',
+      description:
+        `A JS framework is detected with limited text content in raw HTML (${bodyText.length} chars). Some content may not be visible to AI bots that don't execute JavaScript.`,
+      severity: 'warning',
+      category: 'technical',
+      recommendation: 'Ensure key content (product info, descriptions, headings) is server-side rendered.',
+      details: { bodyTextLength: bodyText.length },
+    });
+  } else if (hasSPAFramework && bodyText.length > 1500) {
     findings.push({
       id: 'tech-ssr-detected',
       title: 'Server-side rendered framework detected',
       description:
-        'A JavaScript framework with SSR is detected (Next.js, Nuxt, etc.) and content is present in the HTML. AI bots can see your content.',
+        `A JavaScript framework with SSR is detected and ${bodyText.length} characters of content are present in the HTML. AI bots can see your content.`,
       severity: 'pass',
       category: 'technical',
+      details: { bodyTextLength: bodyText.length },
     });
   }
 

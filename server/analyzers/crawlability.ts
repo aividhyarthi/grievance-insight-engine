@@ -15,10 +15,68 @@ const GOOGLE_LIMITS = {
   },
 };
 
+// JS framework markers that indicate the page relies on client-side rendering
+const CSR_FRAMEWORK_MARKERS = [
+  // React
+  { pattern: /data-reactroot/i, name: 'React' },
+  { pattern: /data-react-helmet/i, name: 'React Helmet' },
+  { pattern: /__NEXT_DATA__/i, name: 'Next.js' },
+  { pattern: /_next\/static/i, name: 'Next.js' },
+  // Vue / Nuxt
+  { pattern: /__NUXT__/i, name: 'Nuxt.js' },
+  { pattern: /data-v-[a-f0-9]+/i, name: 'Vue.js' },
+  { pattern: /id="__nuxt"/i, name: 'Nuxt.js' },
+  // Angular
+  { pattern: /ng-app/i, name: 'Angular' },
+  { pattern: /ng-version/i, name: 'Angular' },
+  { pattern: /_nghost/i, name: 'Angular' },
+  // Svelte / SvelteKit
+  { pattern: /__sveltekit/i, name: 'SvelteKit' },
+  // Gatsby
+  { pattern: /___gatsby/i, name: 'Gatsby' },
+  // Generic SPA
+  { pattern: /__INITIAL_STATE__/i, name: 'SPA (State Hydration)' },
+  { pattern: /window\.__data/i, name: 'SPA (Client Data)' },
+  { pattern: /window\.__PRELOADED_STATE__/i, name: 'SPA (Preloaded State)' },
+  { pattern: /window\.__APP_DATA__/i, name: 'SPA (App Data)' },
+];
+
 function formatSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+// Count scripts using regex as fallback (handles cases where cheerio parsing may miss scripts)
+function countScriptsViaRegex(html: string): { external: number; inline: number; totalSrcUrls: string[] } {
+  const scriptTagRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gi;
+  const srcRegex = /\bsrc\s*=\s*["']([^"']+)["']/i;
+  const jsonTypeRegex = /\btype\s*=\s*["'](application\/(?:ld\+)?json)["']/i;
+
+  let external = 0;
+  let inline = 0;
+  const totalSrcUrls: string[] = [];
+  let match;
+
+  while ((match = scriptTagRegex.exec(html)) !== null) {
+    const tag = match[0];
+    // Skip JSON scripts (ld+json, application/json)
+    if (jsonTypeRegex.test(tag)) continue;
+
+    const srcMatch = srcRegex.exec(tag);
+    if (srcMatch) {
+      external++;
+      totalSrcUrls.push(srcMatch[1]);
+    } else {
+      // Check if there's actual JS content (not just whitespace)
+      const content = match[1]?.trim();
+      if (content && content.length > 0) {
+        inline++;
+      }
+    }
+  }
+
+  return { external, inline, totalSrcUrls };
 }
 
 export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
@@ -78,47 +136,130 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
 
   // ===== JAVASCRIPT ANALYSIS FOR AI BOTS =====
 
-  const externalScripts: Array<{ src: string; type: string }> = [];
-  const inlineScripts: Array<{ length: number; type: string }> = [];
+  // Use both cheerio and regex to count scripts (regex catches cases cheerio misses)
+  const cheerioExternalScripts: Array<{ src: string; type: string }> = [];
+  const cheerioInlineScripts: Array<{ length: number; type: string }> = [];
   let totalInlineJsSize = 0;
   let renderBlockingScripts = 0;
 
   $('script').each((_, el) => {
     const src = $(el).attr('src');
     const type = $(el).attr('type') || 'text/javascript';
-    const async = $(el).attr('async') !== undefined;
-    const defer = $(el).attr('defer') !== undefined;
+    const hasAsync = $(el).attr('async') !== undefined;
+    const hasDefer = $(el).attr('defer') !== undefined;
 
     if (type === 'application/ld+json' || type === 'application/json') return;
 
     if (src) {
-      externalScripts.push({ src, type });
+      cheerioExternalScripts.push({ src, type });
       // Scripts without async/defer in <head> are render-blocking
-      if (!async && !defer) {
+      if (!hasAsync && !hasDefer) {
         const isInHead = $(el).parents('head').length > 0;
         if (isInHead) renderBlockingScripts++;
       }
     } else {
       const content = $(el).html() || '';
-      const size = new TextEncoder().encode(content).byteLength;
-      inlineScripts.push({ length: size, type });
-      totalInlineJsSize += size;
+      if (content.trim().length > 0) {
+        const size = new TextEncoder().encode(content).byteLength;
+        cheerioInlineScripts.push({ length: size, type });
+        totalInlineJsSize += size;
+      }
     }
   });
 
-  // JS-to-HTML content ratio
+  // Regex-based counting as fallback/verification
+  const regexCounts = countScriptsViaRegex(html);
+
+  // Use the higher count between cheerio and regex (catches edge cases)
+  const externalScriptCount = Math.max(cheerioExternalScripts.length, regexCounts.external);
+  const inlineScriptCount = Math.max(cheerioInlineScripts.length, regexCounts.inline);
+  const totalScriptCount = externalScriptCount + inlineScriptCount;
+
+  // Detect JS frameworks in the HTML
+  const detectedFrameworks: string[] = [];
+  for (const marker of CSR_FRAMEWORK_MARKERS) {
+    if (marker.pattern.test(html)) {
+      if (!detectedFrameworks.includes(marker.name)) {
+        detectedFrameworks.push(marker.name);
+      }
+    }
+  }
+
+  // ===== CSR / SSR DETECTION =====
+  // Extract body text (what AI bots actually see)
   const bodyText = $('body').clone().find('script, style, noscript, svg').remove().end().text().replace(/\s+/g, ' ').trim();
   const contentBytes = new TextEncoder().encode(bodyText).byteLength;
-  const totalJsScriptTags = externalScripts.length + inlineScripts.length;
+  const bodyTextLength = bodyText.length;
 
+  // Check for SPA root containers
+  const hasAppRoot = $('#root').length > 0 || $('#app').length > 0 || $('#__next').length > 0 ||
+    $('#__nuxt').length > 0 || $('[id*="app"]').first().children().length <= 2 ||
+    $('#___gatsby').length > 0;
+
+  // Detect CSR: has framework + app root + low content relative to page size
+  const isLikelyCSR = hasAppRoot && detectedFrameworks.length > 0 && bodyTextLength < 1000;
+  const isHeavyCSR = hasAppRoot && detectedFrameworks.length > 0 && bodyTextLength < 500;
+
+  // Detect if the page content is mostly JS-dependent
+  const jsContentRatio = htmlSizeBytes > 0 ? (totalInlineJsSize / htmlSizeBytes) : 0;
+  const hasMinimalContent = bodyTextLength < 200;
+
+  if (isHeavyCSR || (hasMinimalContent && totalScriptCount > 3)) {
+    findings.push({
+      id: 'crawl-csr-critical',
+      title: `Client-side rendered (CSR) page - AI bots see almost no content`,
+      description: `This page relies heavily on JavaScript for rendering. The raw HTML contains only ${bodyTextLength} characters of readable text${detectedFrameworks.length > 0 ? ` (framework: ${detectedFrameworks.join(', ')})` : ''}. AI bots like GPTBot, ClaudeBot, and PerplexityBot do NOT execute JavaScript - they see a nearly blank page.`,
+      severity: 'fail',
+      category: 'crawlability',
+      recommendation: 'Switch to Server-Side Rendering (SSR) or Static Site Generation (SSG). Use Next.js, Nuxt, or implement pre-rendering so product/content data is in the raw HTML that AI bots receive.',
+      details: { bodyTextLength, detectedFrameworks, totalScripts: totalScriptCount },
+    });
+  } else if (isLikelyCSR) {
+    findings.push({
+      id: 'crawl-csr-warning',
+      title: `Partially client-side rendered - limited content for AI bots`,
+      description: `The page uses ${detectedFrameworks.join(', ')} and has limited text content in the raw HTML (${bodyTextLength} chars). Some content may not be visible to AI bots that don't execute JavaScript.`,
+      severity: 'warning',
+      category: 'crawlability',
+      recommendation: 'Ensure critical content (product info, descriptions, prices) is server-side rendered. AI bots should see your key content without executing JS.',
+      details: { bodyTextLength, detectedFrameworks },
+    });
+  } else if (detectedFrameworks.length > 0 && bodyTextLength > 1000) {
+    findings.push({
+      id: 'crawl-ssr-good',
+      title: `Server-side rendered: ${detectedFrameworks.join(', ')} with ${bodyTextLength} chars of content`,
+      description: `The page uses ${detectedFrameworks.join(', ')} but renders content server-side. AI bots can see ${bodyTextLength} characters of readable text in the raw HTML.`,
+      severity: 'pass',
+      category: 'crawlability',
+      details: { bodyTextLength, detectedFrameworks },
+    });
+  }
+
+  // ===== SCRIPT SUMMARY =====
   // AI bots skip JavaScript - report what they see vs what they miss
+  const scriptSummaryParts: string[] = [];
+  scriptSummaryParts.push(`${externalScriptCount} external + ${inlineScriptCount} inline JS`);
+  if (detectedFrameworks.length > 0) {
+    scriptSummaryParts.push(`Framework: ${detectedFrameworks.join(', ')}`);
+  }
+
   findings.push({
     id: 'crawl-js-summary',
-    title: `${externalScripts.length} external + ${inlineScripts.length} inline JS files`,
-    description: `The page loads ${externalScripts.length} external JavaScript files and ${inlineScripts.length} inline scripts. Most AI bots (GPTBot, ClaudeBot, PerplexityBot) do NOT execute JavaScript - they only see raw HTML content.`,
-    severity: 'info',
+    title: scriptSummaryParts.join(' | '),
+    description: `The page loads ${externalScriptCount} external JavaScript files and ${inlineScriptCount} inline scripts${detectedFrameworks.length > 0 ? ` (${detectedFrameworks.join(', ')})` : ''}. Most AI bots (GPTBot, ClaudeBot, PerplexityBot) do NOT execute JavaScript - they only see raw HTML content. Only Googlebot's Web Rendering Service (WRS) executes JS.`,
+    severity: totalScriptCount > 30 ? 'warning' : 'info',
     category: 'crawlability',
-    details: { externalScripts: externalScripts.length, inlineScripts: inlineScripts.length, totalInlineJsSize: formatSize(totalInlineJsSize) },
+    details: {
+      externalScripts: externalScriptCount,
+      inlineScripts: inlineScriptCount,
+      cheerioExternal: cheerioExternalScripts.length,
+      cheerioInline: cheerioInlineScripts.length,
+      regexExternal: regexCounts.external,
+      regexInline: regexCounts.inline,
+      totalInlineJsSize: formatSize(totalInlineJsSize),
+      detectedFrameworks,
+      sampleScriptSrcs: regexCounts.totalSrcUrls.slice(0, 5),
+    },
   });
 
   // Render-blocking scripts
@@ -132,7 +273,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       recommendation: 'Add async or defer attributes to scripts in <head>, or move them to end of <body>.',
       details: { renderBlockingScripts },
     });
-  } else if (externalScripts.length > 0) {
+  } else if (externalScriptCount > 0) {
     findings.push({
       id: 'crawl-no-render-blocking',
       title: 'No render-blocking scripts detected',
@@ -157,7 +298,6 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
 
   // ===== CSS ANALYSIS =====
   const externalCSS = $('link[rel="stylesheet"]').length;
-  const inlineStyles = $('style').length;
   let totalInlineCssSize = 0;
 
   $('style').each((_, el) => {
@@ -178,7 +318,6 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
   }
 
   // ===== CONTENT-TO-CODE RATIO =====
-  const codeSize = totalInlineJsSize + totalInlineCssSize;
   const totalSize = htmlSizeBytes;
   const contentRatio = totalSize > 0 ? Math.round((contentBytes / totalSize) * 100) : 0;
 
@@ -186,10 +325,10 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
     findings.push({
       id: 'crawl-low-content-ratio',
       title: `Very low content-to-code ratio: ${contentRatio}%`,
-      description: `Only ${contentRatio}% of your HTML is actual readable content. The rest is code (JS, CSS, markup). AI bots see mostly code instead of content.`,
+      description: `Only ${contentRatio}% of your HTML is actual readable content (${formatSize(contentBytes)} of ${formatSize(totalSize)}). The rest is code (JS, CSS, markup). AI bots see mostly code instead of content.`,
       severity: 'fail',
       category: 'crawlability',
-      recommendation: 'Increase the proportion of actual content in your HTML. Move inline JS/CSS to external files and reduce unnecessary markup.',
+      recommendation: 'Increase the proportion of actual content in your HTML. Move inline JS/CSS to external files and reduce unnecessary markup. For CSR apps, switch to SSR.',
       details: { contentRatio, contentBytes, totalHtmlBytes: totalSize },
     });
   } else if (contentRatio < 25) {
@@ -210,6 +349,40 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       severity: 'pass',
       category: 'crawlability',
       details: { contentRatio },
+    });
+  }
+
+  // ===== AI BOT "WHAT THEY SEE" SUMMARY =====
+  // This is the key insight - how much real content do AI bots get?
+  const wordCount = bodyText.split(/\s+/).filter(w => w.length > 0).length;
+  if (wordCount < 50) {
+    findings.push({
+      id: 'crawl-ai-sees-nothing',
+      title: `AI bots see only ${wordCount} words on this page`,
+      description: `Without executing JavaScript, AI bots (GPTBot, ClaudeBot, PerplexityBot) can only read ${wordCount} words from the raw HTML. This is extremely low and means your content is essentially invisible to AI answer engines. The page likely uses client-side rendering (CSR).`,
+      severity: 'fail',
+      category: 'crawlability',
+      recommendation: 'Implement Server-Side Rendering (SSR) so product names, descriptions, prices, and key content are in the initial HTML response.',
+      details: { wordCount, bodyTextLength },
+    });
+  } else if (wordCount < 200) {
+    findings.push({
+      id: 'crawl-ai-sees-little',
+      title: `AI bots see only ${wordCount} words (limited content)`,
+      description: `AI bots can read ${wordCount} words from the raw HTML. This is relatively low - much of your content may be loaded via JavaScript and invisible to AI bots.`,
+      severity: 'warning',
+      category: 'crawlability',
+      recommendation: 'Ensure critical content is server-side rendered. Check if product details, descriptions, and key information appear in the HTML source (View Source, not Inspect Element).',
+      details: { wordCount, bodyTextLength },
+    });
+  } else {
+    findings.push({
+      id: 'crawl-ai-sees-content',
+      title: `AI bots can read ${wordCount} words from raw HTML`,
+      description: `AI bots can extract ${wordCount} words from the raw HTML without JavaScript. This is a good amount of readable content.`,
+      severity: 'pass',
+      category: 'crawlability',
+      details: { wordCount, bodyTextLength },
     });
   }
 
