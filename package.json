@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "description": "AEO/GEO Audit Tool - Audit websites for AI Answer Engine Optimization",
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
