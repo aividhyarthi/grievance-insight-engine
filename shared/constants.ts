@@ -79,8 +79,23 @@ export const AI_BOTS: BotInfo[] = [
 // ===== Scoring Weights =====
 // E-commerce weight is dynamically applied only when site is detected as e-commerce
 export const CATEGORY_WEIGHTS: Record<CategoryId, number> = {
-  'bot-access': 0.15,
-  'content': 0.15,
+  'bot-access': 0.13,
+  'content': 0.12,
+  'schema': 0.10,
+  'technical': 0.08,
+  'meta-tags': 0.07,
+  'branding': 0.07,
+  'headings': 0.04,
+  'links': 0.04,
+  'crawlability': 0.13,
+  'ecommerce': 0.07,
+  'publisher': 0.08,
+};
+
+// Weights when site is NOT e-commerce and NOT publisher (base weights)
+export const NON_ECOMMERCE_WEIGHTS: Record<CategoryId, number> = {
+  'bot-access': 0.16,
+  'content': 0.16,
   'schema': 0.12,
   'technical': 0.10,
   'meta-tags': 0.08,
@@ -88,21 +103,23 @@ export const CATEGORY_WEIGHTS: Record<CategoryId, number> = {
   'headings': 0.05,
   'links': 0.05,
   'crawlability': 0.15,
-  'ecommerce': 0.07,
+  'ecommerce': 0,
+  'publisher': 0,
 };
 
-// Weights when site is NOT e-commerce (redistribute ecommerce weight)
-export const NON_ECOMMERCE_WEIGHTS: Record<CategoryId, number> = {
-  'bot-access': 0.18,
-  'content': 0.18,
-  'schema': 0.14,
-  'technical': 0.12,
-  'meta-tags': 0.09,
-  'branding': 0.09,
+// Weights when site is publisher (no ecommerce)
+export const PUBLISHER_WEIGHTS: Record<CategoryId, number> = {
+  'bot-access': 0.12,
+  'content': 0.12,
+  'schema': 0.10,
+  'technical': 0.08,
+  'meta-tags': 0.07,
+  'branding': 0.08,
   'headings': 0.05,
   'links': 0.05,
-  'crawlability': 0.17,
+  'crawlability': 0.13,
   'ecommerce': 0,
+  'publisher': 0.13,
 };
 
 // ===== Category Display Info =====
@@ -156,6 +173,11 @@ export const CATEGORY_INFO: Record<CategoryId, { name: string; icon: string; des
     name: 'E-Commerce AEO',
     icon: '🛒',
     description: 'Product schema, pricing, reviews, and e-commerce-specific AI optimization',
+  },
+  'publisher': {
+    name: 'Publisher AEO',
+    icon: '📰',
+    description: 'Content originality, citations, author E-E-A-T, and AI content quality signals',
   },
 };
 

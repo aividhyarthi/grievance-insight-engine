@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio';
 import type { AuditReport, CategoryResult, Finding, PageMetadata, CategoryId } from '../../shared/types.js';
-import { CATEGORY_WEIGHTS, NON_ECOMMERCE_WEIGHTS, CATEGORY_INFO } from '../../shared/constants.js';
+import { CATEGORY_WEIGHTS, NON_ECOMMERCE_WEIGHTS, PUBLISHER_WEIGHTS, CATEGORY_INFO } from '../../shared/constants.js';
 import { fetchPage, fetchRobotsTxt } from './fetcher.js';
 import { analyzeRobots } from '../analyzers/robots.js';
 import { analyzeSchema } from '../analyzers/schema.js';
@@ -12,6 +12,7 @@ import { analyzeTechnical } from '../analyzers/technical.js';
 import { analyzeLinks } from '../analyzers/links.js';
 import { analyzeCrawlability } from '../analyzers/crawlability.js';
 import { analyzeEcommerce, detectEcommerce } from '../analyzers/ecommerce.js';
+import { analyzePublisher, detectPublisher } from '../analyzers/publisher.js';
 
 export interface AnalysisContext {
   url: string;
@@ -37,6 +38,7 @@ const analyzers: Record<string, AnalyzerFn> = {
   'links': analyzeLinks,
   'crawlability': analyzeCrawlability,
   'ecommerce': analyzeEcommerce,
+  'publisher': analyzePublisher,
 };
 
 function computeScore(findings: Finding[]): number {
@@ -81,12 +83,25 @@ export async function runAudit(url: string): Promise<AuditReport> {
     contentLength: pageResult.contentLength,
   };
 
-  // Detect if this is an e-commerce site first
+  // Detect site type
   const ecomDetection = detectEcommerce(ctx);
+  const publisherDetection = detectPublisher(ctx);
   const isEcommerce = ecomDetection.isEcommerce;
+  const isPublisher = publisherDetection.isPublisher;
 
-  // Choose weights based on whether site is e-commerce
-  const weights = isEcommerce ? CATEGORY_WEIGHTS : NON_ECOMMERCE_WEIGHTS;
+  // Choose weights based on site type
+  // Priority: if both ecommerce + publisher detected, use full weights
+  // Otherwise, use the appropriate specialized weights
+  let weights: Record<CategoryId, number>;
+  if (isEcommerce && isPublisher) {
+    weights = CATEGORY_WEIGHTS;
+  } else if (isEcommerce) {
+    weights = { ...CATEGORY_WEIGHTS, publisher: 0 };
+  } else if (isPublisher) {
+    weights = PUBLISHER_WEIGHTS;
+  } else {
+    weights = NON_ECOMMERCE_WEIGHTS;
+  }
 
   // Run all analyzers
   const categories: CategoryResult[] = [];
@@ -94,10 +109,9 @@ export async function runAudit(url: string): Promise<AuditReport> {
   for (const [categoryId, analyzerFn] of Object.entries(analyzers)) {
     const id = categoryId as CategoryId;
 
-    // Skip e-commerce analyzer entirely for non-ecommerce sites
-    if (id === 'ecommerce' && !isEcommerce) {
-      continue;
-    }
+    // Skip conditional categories when not detected
+    if (id === 'ecommerce' && !isEcommerce) continue;
+    if (id === 'publisher' && !isPublisher) continue;
 
     let findings: Finding[] = [];
 
@@ -117,7 +131,7 @@ export async function runAudit(url: string): Promise<AuditReport> {
     }
 
     // Skip categories with no findings
-    if (findings.length === 0 && id === 'ecommerce') {
+    if (findings.length === 0 && (id === 'ecommerce' || id === 'publisher')) {
       continue;
     }
 

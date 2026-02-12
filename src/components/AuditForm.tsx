@@ -78,7 +78,8 @@ export function AuditForm({ onSubmit, loading }: Props) {
           'Content Quality',
           'Schema Markup',
           'E-Commerce AEO',
-          'Technical SEO',
+          'Publisher AEO',
+          'AI Content Check',
           'E-E-A-T Signals',
         ].map((tag) => (
           <span

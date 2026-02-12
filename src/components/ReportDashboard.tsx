@@ -21,8 +21,9 @@ export function ReportDashboard({ report }: Props) {
   const botAccessCategory = report.categories.find((c) => c.id === 'bot-access');
   const crawlabilityCategory = report.categories.find((c) => c.id === 'crawlability');
   const ecommerceCategory = report.categories.find((c) => c.id === 'ecommerce');
+  const publisherCategory = report.categories.find((c) => c.id === 'publisher');
   const otherCategories = report.categories.filter(
-    (c) => c.id !== 'bot-access' && c.id !== 'crawlability' && c.id !== 'ecommerce'
+    (c) => c.id !== 'bot-access' && c.id !== 'crawlability' && c.id !== 'ecommerce' && c.id !== 'publisher'
   );
 
   return (
@@ -130,6 +131,33 @@ export function ReportDashboard({ report }: Props) {
             </div>
           </div>
           <CategoryDetail category={ecommerceCategory} />
+        </div>
+      )}
+
+      {/* Publisher AEO Section (only shown for content/publisher sites) */}
+      {publisherCategory && (
+        <div className="bg-white rounded-xl border border-teal-200 shadow-sm overflow-hidden">
+          <div className="p-6 border-b border-teal-100 bg-teal-50/30">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">{publisherCategory.icon}</span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {publisherCategory.name}
+                  </h3>
+                  <p className="text-sm text-teal-600 font-medium">
+                    Publisher/content site detected - checking originality, citations, E-E-A-T & AI content signals
+                  </p>
+                </div>
+              </div>
+              <ScoreGauge
+                score={publisherCategory.score}
+                grade=""
+                size="sm"
+              />
+            </div>
+          </div>
+          <CategoryDetail category={publisherCategory} />
         </div>
       )}
 
