@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio';
-import type { AuditReport, CategoryResult, Finding, PageMetadata } from '../../shared/types.js';
-import { CATEGORY_WEIGHTS, CATEGORY_INFO } from '../../shared/constants.js';
+import type { AuditReport, CategoryResult, Finding, PageMetadata, CategoryId } from '../../shared/types.js';
+import { CATEGORY_WEIGHTS, NON_ECOMMERCE_WEIGHTS, CATEGORY_INFO } from '../../shared/constants.js';
 import { fetchPage, fetchRobotsTxt } from './fetcher.js';
 import { analyzeRobots } from '../analyzers/robots.js';
 import { analyzeSchema } from '../analyzers/schema.js';
@@ -10,6 +10,8 @@ import { analyzeMetaTags } from '../analyzers/meta-tags.js';
 import { analyzeBranding } from '../analyzers/branding.js';
 import { analyzeTechnical } from '../analyzers/technical.js';
 import { analyzeLinks } from '../analyzers/links.js';
+import { analyzeCrawlability } from '../analyzers/crawlability.js';
+import { analyzeEcommerce, detectEcommerce } from '../analyzers/ecommerce.js';
 
 export interface AnalysisContext {
   url: string;
@@ -33,6 +35,8 @@ const analyzers: Record<string, AnalyzerFn> = {
   'branding': analyzeBranding,
   'technical': analyzeTechnical,
   'links': analyzeLinks,
+  'crawlability': analyzeCrawlability,
+  'ecommerce': analyzeEcommerce,
 };
 
 function computeScore(findings: Finding[]): number {
@@ -77,11 +81,24 @@ export async function runAudit(url: string): Promise<AuditReport> {
     contentLength: pageResult.contentLength,
   };
 
+  // Detect if this is an e-commerce site first
+  const ecomDetection = detectEcommerce(ctx);
+  const isEcommerce = ecomDetection.isEcommerce;
+
+  // Choose weights based on whether site is e-commerce
+  const weights = isEcommerce ? CATEGORY_WEIGHTS : NON_ECOMMERCE_WEIGHTS;
+
   // Run all analyzers
   const categories: CategoryResult[] = [];
 
   for (const [categoryId, analyzerFn] of Object.entries(analyzers)) {
-    const id = categoryId as keyof typeof CATEGORY_INFO;
+    const id = categoryId as CategoryId;
+
+    // Skip e-commerce analyzer entirely for non-ecommerce sites
+    if (id === 'ecommerce' && !isEcommerce) {
+      continue;
+    }
+
     let findings: Finding[] = [];
 
     try {
@@ -99,20 +116,29 @@ export async function runAudit(url: string): Promise<AuditReport> {
       ];
     }
 
+    // Skip categories with no findings
+    if (findings.length === 0 && id === 'ecommerce') {
+      continue;
+    }
+
     categories.push({
       id,
       name: CATEGORY_INFO[id].name,
       icon: CATEGORY_INFO[id].icon,
       score: computeScore(findings),
-      weight: CATEGORY_WEIGHTS[id],
+      weight: weights[id],
       findings,
     });
   }
 
-  // Compute overall score
-  const overallScore = Math.round(
-    categories.reduce((sum, cat) => sum + cat.score * cat.weight, 0)
-  );
+  // Compute overall score (only from categories with weight > 0)
+  const scoredCategories = categories.filter((cat) => cat.weight > 0);
+  const totalWeight = scoredCategories.reduce((sum, cat) => sum + cat.weight, 0);
+  const overallScore = totalWeight > 0
+    ? Math.round(
+        scoredCategories.reduce((sum, cat) => sum + cat.score * (cat.weight / totalWeight), 0)
+      )
+    : 0;
 
   // Compute summary
   const allFindings = categories.flatMap((c) => c.findings);

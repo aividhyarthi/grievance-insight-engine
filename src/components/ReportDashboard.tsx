@@ -17,9 +17,13 @@ export function ReportDashboard({ report }: Props) {
     setExpandedCategory(expandedCategory === id ? null : id);
   };
 
-  // Separate bot-access for special rendering
+  // Separate special categories for unique rendering
   const botAccessCategory = report.categories.find((c) => c.id === 'bot-access');
-  const otherCategories = report.categories.filter((c) => c.id !== 'bot-access');
+  const crawlabilityCategory = report.categories.find((c) => c.id === 'crawlability');
+  const ecommerceCategory = report.categories.find((c) => c.id === 'ecommerce');
+  const otherCategories = report.categories.filter(
+    (c) => c.id !== 'bot-access' && c.id !== 'crawlability' && c.id !== 'ecommerce'
+  );
 
   return (
     <div className="mt-10 space-y-8">
@@ -72,6 +76,60 @@ export function ReportDashboard({ report }: Props) {
             category={botAccessCategory}
             excludeBotFindings
           />
+        </div>
+      )}
+
+      {/* Crawlability & Speed Section (featured) */}
+      {crawlabilityCategory && (
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+          <div className="p-6 border-b border-gray-100">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">{crawlabilityCategory.icon}</span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {crawlabilityCategory.name}
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    Google crawl limits, page speed, JS rendering, and content-to-code ratio
+                  </p>
+                </div>
+              </div>
+              <ScoreGauge
+                score={crawlabilityCategory.score}
+                grade=""
+                size="sm"
+              />
+            </div>
+          </div>
+          <CategoryDetail category={crawlabilityCategory} />
+        </div>
+      )}
+
+      {/* E-Commerce Section (only shown for e-commerce sites) */}
+      {ecommerceCategory && (
+        <div className="bg-white rounded-xl border border-purple-200 shadow-sm overflow-hidden">
+          <div className="p-6 border-b border-purple-100 bg-purple-50/30">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">{ecommerceCategory.icon}</span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {ecommerceCategory.name}
+                  </h3>
+                  <p className="text-sm text-purple-600 font-medium">
+                    E-commerce site detected - showing product-specific AEO checks
+                  </p>
+                </div>
+              </div>
+              <ScoreGauge
+                score={ecommerceCategory.score}
+                grade=""
+                size="sm"
+              />
+            </div>
+          </div>
+          <CategoryDetail category={ecommerceCategory} />
         </div>
       )}
 

@@ -10,7 +10,9 @@ export type CategoryId =
   | 'meta-tags'
   | 'branding'
   | 'headings'
-  | 'links';
+  | 'links'
+  | 'crawlability'
+  | 'ecommerce';
 
 export interface Finding {
   id: string;

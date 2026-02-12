@@ -77,15 +77,32 @@ export const AI_BOTS: BotInfo[] = [
 ];
 
 // ===== Scoring Weights =====
+// E-commerce weight is dynamically applied only when site is detected as e-commerce
 export const CATEGORY_WEIGHTS: Record<CategoryId, number> = {
-  'bot-access': 0.20,
-  'content': 0.20,
-  'schema': 0.15,
-  'technical': 0.15,
-  'meta-tags': 0.10,
-  'branding': 0.10,
+  'bot-access': 0.15,
+  'content': 0.15,
+  'schema': 0.12,
+  'technical': 0.10,
+  'meta-tags': 0.08,
+  'branding': 0.08,
   'headings': 0.05,
   'links': 0.05,
+  'crawlability': 0.15,
+  'ecommerce': 0.07,
+};
+
+// Weights when site is NOT e-commerce (redistribute ecommerce weight)
+export const NON_ECOMMERCE_WEIGHTS: Record<CategoryId, number> = {
+  'bot-access': 0.18,
+  'content': 0.18,
+  'schema': 0.14,
+  'technical': 0.12,
+  'meta-tags': 0.09,
+  'branding': 0.09,
+  'headings': 0.05,
+  'links': 0.05,
+  'crawlability': 0.17,
+  'ecommerce': 0,
 };
 
 // ===== Category Display Info =====
@@ -129,6 +146,16 @@ export const CATEGORY_INFO: Record<CategoryId, { name: string; icon: string; des
     name: 'Link Profile',
     icon: '🔗',
     description: 'Internal/external links and navigation structure',
+  },
+  'crawlability': {
+    name: 'Crawlability & Speed',
+    icon: '🕷️',
+    description: 'Google crawl size limits, AI bot speed, JS rendering, and content-to-code ratio',
+  },
+  'ecommerce': {
+    name: 'E-Commerce AEO',
+    icon: '🛒',
+    description: 'Product schema, pricing, reviews, and e-commerce-specific AI optimization',
   },
 };
 
