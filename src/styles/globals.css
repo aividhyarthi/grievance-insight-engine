@@ -50,3 +50,71 @@
     @apply shadow-md border-brand-300;
   }
 }
+
+/* Print Styles for PDF Export */
+@media print {
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide interactive elements */
+  .print\:hidden,
+  button,
+  input,
+  form,
+  nav {
+    display: none !important;
+  }
+
+  /* Show all content without scroll */
+  * {
+    overflow: visible !important;
+  }
+
+  /* Remove shadows for clean print */
+  .shadow-sm,
+  .shadow-md,
+  .shadow-xl {
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  /* Ensure page breaks work well */
+  .finding-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .category-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Clean grid for print - 2 columns */
+  .grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Expand all categories for print */
+  .category-card {
+    cursor: default !important;
+  }
+
+  /* Ensure colors print */
+  .bg-green-50, .bg-yellow-50, .bg-red-50, .bg-blue-50,
+  .bg-green-100, .bg-yellow-100, .bg-red-100, .bg-blue-100,
+  .bg-purple-50, .bg-teal-50, .bg-indigo-50 {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Page header/footer */
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+}

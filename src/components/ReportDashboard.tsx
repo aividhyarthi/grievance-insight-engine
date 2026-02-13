@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import type { AuditReport, CategoryResult } from '../../shared/types';
 import { ScoreGauge } from './ScoreGauge';
 import { CategoryCard } from './CategoryCard';
@@ -12,24 +12,98 @@ interface Props {
 
 export function ReportDashboard({ report }: Props) {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [emailAddress, setEmailAddress] = useState('');
+  const [emailSending, setEmailSending] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const reportRef = useRef<HTMLDivElement>(null);
 
   const handleCategoryClick = (id: string) => {
     setExpandedCategory(expandedCategory === id ? null : id);
   };
 
-  // Separate special categories for unique rendering
+  // All categories in display order
+  const allCategories = report.categories;
+
+  // Find special category for bot-access table rendering
   const botAccessCategory = report.categories.find((c) => c.id === 'bot-access');
-  const crawlabilityCategory = report.categories.find((c) => c.id === 'crawlability');
-  const ecommerceCategory = report.categories.find((c) => c.id === 'ecommerce');
-  const publisherCategory = report.categories.find((c) => c.id === 'publisher');
-  const industryCategory = report.categories.find((c) => c.id === 'industry');
-  const otherCategories = report.categories.filter(
-    (c) => c.id !== 'bot-access' && c.id !== 'crawlability' && c.id !== 'ecommerce' && c.id !== 'publisher' && c.id !== 'industry'
-  );
+
+  // PDF Export via print
+  const handleExportPDF = useCallback(() => {
+    window.print();
+  }, []);
+
+  // Email report
+  const handleSendEmail = useCallback(async () => {
+    if (!emailAddress.trim()) return;
+    setEmailSending(true);
+    try {
+      const res = await fetch('/api/report/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailAddress, report }),
+      });
+      if (res.ok) {
+        setEmailSent(true);
+        setTimeout(() => { setShowEmailModal(false); setEmailSent(false); }, 2000);
+      } else {
+        // Fallback to mailto
+        openMailto();
+      }
+    } catch {
+      // Fallback to mailto
+      openMailto();
+    } finally {
+      setEmailSending(false);
+    }
+  }, [emailAddress, report]);
+
+  const openMailto = useCallback(() => {
+    const subject = encodeURIComponent(`AEO Audit Report - ${report.url} (Score: ${report.overallScore}/100, Grade: ${report.grade})`);
+
+    const failures = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'fail');
+    const warnings = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'warning');
+    const passes = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'pass');
+
+    let body = `AEO AUDIT REPORT\n`;
+    body += `${'='.repeat(50)}\n\n`;
+    body += `URL: ${report.metadata.finalUrl || report.url}\n`;
+    body += `Date: ${new Date(report.fetchedAt).toLocaleString()}\n`;
+    body += `Overall Score: ${report.overallScore}/100 (${report.grade})\n\n`;
+
+    body += `SUMMARY\n${'-'.repeat(30)}\n`;
+    body += `Passed: ${report.summary.passes} | Warnings: ${report.summary.warnings} | Failed: ${report.summary.failures} | Info: ${report.summary.infos}\n\n`;
+
+    body += `CATEGORY SCORES\n${'-'.repeat(30)}\n`;
+    report.categories.forEach((c) => {
+      body += `${c.icon} ${c.name}: ${c.score}/100\n`;
+    });
+
+    if (failures.length > 0) {
+      body += `\nCRITICAL ISSUES (${failures.length})\n${'-'.repeat(30)}\n`;
+      failures.forEach((f) => {
+        body += `- ${f.title}\n  ${f.recommendation || f.description}\n\n`;
+      });
+    }
+    if (warnings.length > 0) {
+      body += `\nWARNINGS (${warnings.length})\n${'-'.repeat(30)}\n`;
+      warnings.slice(0, 10).forEach((f) => {
+        body += `- ${f.title}\n  ${f.recommendation || f.description}\n\n`;
+      });
+    }
+
+    const encodedBody = encodeURIComponent(body);
+    const mailto = emailAddress
+      ? `mailto:${emailAddress}?subject=${subject}&body=${encodedBody}`
+      : `mailto:?subject=${subject}&body=${encodedBody}`;
+
+    window.open(mailto, '_blank');
+    setShowEmailModal(false);
+  }, [emailAddress, report]);
 
   return (
-    <div className="mt-10 space-y-8">
-      {/* Header with URL and timestamp */}
+    <div className="mt-10 space-y-8" ref={reportRef}>
+      {/* Header with URL, timestamp, and export buttons */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
@@ -43,155 +117,96 @@ export function ReportDashboard({ report }: Props) {
               {report.metadata.responseTime}ms response
             </p>
           </div>
-          <ScoreGauge score={report.overallScore} grade={report.grade} size="lg" />
+          <div className="flex flex-col items-center gap-3">
+            <ScoreGauge score={report.overallScore} grade={report.grade} size="lg" />
+            {/* Export Buttons */}
+            <div className="flex items-center gap-2 print:hidden">
+              <button
+                onClick={handleExportPDF}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+                title="Export to PDF (Print)"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Export PDF
+              </button>
+              <button
+                onClick={() => setShowEmailModal(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-brand-300 text-brand-700 bg-brand-50 hover:bg-brand-100 transition-colors"
+                title="Email Report"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Email Report
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Email Modal */}
+      {showEmailModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 print:hidden">
+          <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md mx-4">
+            <h3 className="text-lg font-bold text-gray-900 mb-4">Email Report</h3>
+            {emailSent ? (
+              <div className="text-center py-4">
+                <svg className="w-12 h-12 text-green-500 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <p className="text-green-700 font-medium">Report sent!</p>
+              </div>
+            ) : (
+              <>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email address
+                  </label>
+                  <input
+                    type="email"
+                    value={emailAddress}
+                    onChange={(e) => setEmailAddress(e.target.value)}
+                    placeholder="team@company.com"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
+                    onKeyDown={(e) => e.key === 'Enter' && handleSendEmail()}
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setShowEmailModal(false)}
+                    className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSendEmail}
+                    disabled={emailSending || !emailAddress.trim()}
+                    className="flex-1 px-4 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 rounded-lg disabled:opacity-50"
+                  >
+                    {emailSending ? 'Sending...' : 'Send Email'}
+                  </button>
+                  <button
+                    onClick={openMailto}
+                    className="px-4 py-2 text-sm font-medium text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-lg"
+                    title="Open in email client"
+                  >
+                    Open in Mail
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Summary Bar */}
       <SummaryBar summary={report.summary} />
 
-      {/* AI Bot Access Section (special) */}
-      {botAccessCategory && (
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-gray-100">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">{botAccessCategory.icon}</span>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {botAccessCategory.name}
-                  </h3>
-                  <p className="text-sm text-gray-500">
-                    Can AI bots crawl and index your content?
-                  </p>
-                </div>
-              </div>
-              <ScoreGauge
-                score={botAccessCategory.score}
-                grade=""
-                size="sm"
-              />
-            </div>
-          </div>
-          <BotAccessTable findings={botAccessCategory.findings} />
-          <CategoryDetail
-            category={botAccessCategory}
-            excludeBotFindings
-          />
-        </div>
-      )}
-
-      {/* Crawlability & Speed Section (featured) */}
-      {crawlabilityCategory && (
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-gray-100">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">{crawlabilityCategory.icon}</span>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {crawlabilityCategory.name}
-                  </h3>
-                  <p className="text-sm text-gray-500">
-                    Google crawl limits, page speed, JS rendering, and content-to-code ratio
-                  </p>
-                </div>
-              </div>
-              <ScoreGauge
-                score={crawlabilityCategory.score}
-                grade=""
-                size="sm"
-              />
-            </div>
-          </div>
-          <CategoryDetail category={crawlabilityCategory} />
-        </div>
-      )}
-
-      {/* E-Commerce Section (only shown for e-commerce sites) */}
-      {ecommerceCategory && (
-        <div className="bg-white rounded-xl border border-purple-200 shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-purple-100 bg-purple-50/30">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">{ecommerceCategory.icon}</span>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {ecommerceCategory.name}
-                  </h3>
-                  <p className="text-sm text-purple-600 font-medium">
-                    E-commerce site detected - showing product-specific AEO checks
-                  </p>
-                </div>
-              </div>
-              <ScoreGauge
-                score={ecommerceCategory.score}
-                grade=""
-                size="sm"
-              />
-            </div>
-          </div>
-          <CategoryDetail category={ecommerceCategory} />
-        </div>
-      )}
-
-      {/* Publisher AEO Section (only shown for content/publisher sites) */}
-      {publisherCategory && (
-        <div className="bg-white rounded-xl border border-teal-200 shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-teal-100 bg-teal-50/30">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">{publisherCategory.icon}</span>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {publisherCategory.name}
-                  </h3>
-                  <p className="text-sm text-teal-600 font-medium">
-                    Publisher/content site detected - checking originality, citations, E-E-A-T & AI content signals
-                  </p>
-                </div>
-              </div>
-              <ScoreGauge
-                score={publisherCategory.score}
-                grade=""
-                size="sm"
-              />
-            </div>
-          </div>
-          <CategoryDetail category={publisherCategory} />
-        </div>
-      )}
-
-      {/* Industry AEO Section (auto-detected vertical) */}
-      {industryCategory && (
-        <div className="bg-white rounded-xl border border-indigo-200 shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-indigo-100 bg-indigo-50/30">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">{industryCategory.icon}</span>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {industryCategory.name}
-                  </h3>
-                  <p className="text-sm text-indigo-600 font-medium">
-                    Industry vertical detected - running specialized AEO checks
-                  </p>
-                </div>
-              </div>
-              <ScoreGauge
-                score={industryCategory.score}
-                grade=""
-                size="sm"
-              />
-            </div>
-          </div>
-          <CategoryDetail category={industryCategory} />
-        </div>
-      )}
-
-      {/* Other Category Cards Grid */}
+      {/* ALL Category Cards in One Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {otherCategories.map((cat) => (
+        {allCategories.map((cat) => (
           <CategoryCard
             key={cat.id}
             category={cat}
@@ -201,10 +216,11 @@ export function ReportDashboard({ report }: Props) {
         ))}
       </div>
 
-      {/* Expanded Category Detail */}
+      {/* Expanded Category Detail Panel (appears below grid) */}
       {expandedCategory && (
-        <CategoryDetailPanel
-          category={otherCategories.find((c) => c.id === expandedCategory)!}
+        <ExpandedCategoryPanel
+          category={allCategories.find((c) => c.id === expandedCategory)!}
+          botAccessFindings={expandedCategory === 'bot-access' ? botAccessCategory : undefined}
           onClose={() => setExpandedCategory(null)}
         />
       )}
@@ -215,30 +231,51 @@ export function ReportDashboard({ report }: Props) {
   );
 }
 
-function CategoryDetailPanel({
+function ExpandedCategoryPanel({
   category,
+  botAccessFindings,
   onClose,
 }: {
   category: CategoryResult;
+  botAccessFindings?: CategoryResult;
   onClose: () => void;
 }) {
+  if (!category) return null;
+
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+      <div className="p-6 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <span className="text-2xl">{category.icon}</span>
-          <h3 className="text-lg font-bold text-gray-900">{category.name}</h3>
+          <div>
+            <h3 className="text-lg font-bold text-gray-900">{category.name}</h3>
+            <p className="text-sm text-gray-500">
+              {category.findings.length} checks | Score: {category.score}/100
+            </p>
+          </div>
         </div>
-        <button
-          onClick={onClose}
-          className="text-gray-400 hover:text-gray-600 p-1"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        <div className="flex items-center gap-3">
+          <ScoreGauge score={category.score} grade="" size="sm" />
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 p-1 print:hidden"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
-      <CategoryDetail category={category} />
+
+      {/* Bot access table (special rendering for bot-access category) */}
+      {botAccessFindings && (
+        <BotAccessTable findings={botAccessFindings.findings} />
+      )}
+
+      <CategoryDetail
+        category={category}
+        excludeBotFindings={!!botAccessFindings}
+      />
     </div>
   );
 }
