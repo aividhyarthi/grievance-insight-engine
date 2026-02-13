@@ -1,71 +1,117 @@
-# Grievance Insight Engine  
-**AI Vidhyarthi Submission – BigQuery AI Hackathon**
+# AEO Audit Tool
 
-## 🔍 Project Overview
-India’s universities and local bodies receive thousands of unstructured complaints (text tickets, PDFs, voice notes, images) that often go unread and unresolved.  
-The **Grievance Insight Engine** uses **BigQuery AI multimodal analysis** to transform this data into structured insights for faster resolution, accountability, and trust.
+**AI Answer Engine Optimization Auditor** by AI Vidhyarthi
 
-- **Text/PDFs** → Extract issue type, urgency, applicant details
-- **Audio (multi-language)** → Transcribe & categorize
-- **Images** → Caption & classify problems (e.g., broken infrastructure)
-- **Vector search** → Retrieve similar past cases and recommended solutions
-- **Dashboards** → Track trends, sentiment, and bottlenecks
+Audit any website to see how AI bots (Google AI Overviews, ChatGPT, Claude, Perplexity) read your content. Get a scored report with actionable fixes for content, branding, and technical issues.
 
 ---
 
-## 🚀 Why BigQuery AI
-- **ObjectRef** → Register multimodal data (text, PDF, audio, image)
-- **AI.GENERATE_TABLE** → Convert unstructured inputs into structured SQL tables
-- **Vector Search** → Find similar complaints and resolutions
-- **SQL-first workflow** → Minimal engineering overhead, accessible for students
+## One-Click Deploy
+
+### Option 1: Railway (Recommended)
+
+1. Go to [railway.app](https://railway.app) and sign up (free tier available)
+2. Click **"New Project"** > **"Deploy from GitHub Repo"**
+3. Connect your GitHub and select this repo (`aividhyarthi/grievance-insight-engine`)
+4. Select branch: `claude/aeo-audit-tool-pwvzo`
+5. Railway auto-detects the config. Click **Deploy**
+6. Once deployed, click the generated URL to open your tool
+
+### Option 2: Render
+
+1. Go to [render.com](https://render.com) and sign up (free tier available)
+2. Click **"New +"** > **"Web Service"**
+3. Connect your GitHub and select this repo
+4. Settings will auto-fill from `render.yaml`
+5. Click **"Create Web Service"**
+6. Wait for build to finish, then click the live URL
+
+### Option 3: Vercel (Alternative)
+
+1. Go to [vercel.com](https://vercel.com) and sign up with GitHub
+2. Click **"Add New Project"** > Import this repo
+3. In **Build Settings** set:
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist/client`
+4. Add a **Serverless Function** (see Vercel docs for Express adapter)
+
+> **Note:** Railway and Render are easiest since this app has a backend server. Vercel requires extra config for the API.
 
 ---
 
-## 🛠️ Repo Contents
-- `notebooks/` – Demo notebook (Kaggle export)
-- `data/` – Small sample dataset (dummy tickets, PDFs, audio, images)
-- `diagrams/` – Architecture flow diagram
-- `docs/` – Executive summary proposal PDF
-- `requirements.txt` – (Optional) Dependencies
+## What It Checks
+
+| Category | What it audits |
+|----------|---------------|
+| **AI Bot Access** | robots.txt rules for 12 AI bots (GPTBot, ClaudeBot, Google-Extended, PerplexityBot, Amazonbot, etc.) |
+| **Content Quality** | Word count, question headings, answer-ready paragraphs, lists/tables, readability, freshness |
+| **Structured Data** | JSON-LD schema markup, GEO-relevant types (FAQPage, Article, Organization, HowTo) |
+| **Meta Tags & OG** | Title/description, OpenGraph, Twitter Cards, canonical URL, language tag |
+| **Technical SEO** | HTTPS, response time, page size, JS payload, CSR vs SSR detection, image alt text |
+| **Branding & E-E-A-T** | Brand mentions, About/Contact pages, author attribution, social profiles, trust signals |
+| **Heading Structure** | H1 presence, heading hierarchy, section organization |
+| **Link Profile** | Internal/external links, breadcrumbs, navigation structure |
 
 ---
 
-## 📊 Architecture
-![Architecture Diagram](diagrams/architecture_flow.png)
+## How to Use
 
-**Pipeline:**  
-Data sources → Cloud Storage → BigQuery (ObjectRef) → AI.GENERATE_TABLE → Vector Search → Looker Studio Dashboard
-
----
-
-## 📈 Expected Impact
-- 30% faster grievance resolution in pilot campuses  
-- 85%+ categorization accuracy (labeled sample)  
-- Cost < ₹150 per 1,000 records processed  
-- Scalable across education, health, and governance
+1. Open the app in your browser
+2. Type a website URL (e.g. `example.com`)
+3. Click **"Audit Website"**
+4. Wait 2-5 seconds
+5. Read the report:
+   - **Overall Score** (0-100, graded A+ to F)
+   - **AI Bot Access Table** (which bots can/can't crawl)
+   - **Category Breakdowns** (click each card for details)
+   - **Recommendations** (prioritized fixes)
 
 ---
 
-## 📚 How to Run
-1. Open `notebooks/grievance_insight_engine_demo.ipynb` in Kaggle or Colab.  
-2. Run all cells to see:  
-   - Data ingestion examples  
-   - BigQuery AI calls (`AI.GENERATE_TABLE`)  
-   - Vector search queries  
-   - Output structured tables  
-3. (Optional) Connect BigQuery tables to Looker Studio to view dashboard.
+## Run Locally (for developers)
+
+```bash
+# Clone the repo
+git clone https://github.com/aividhyarthi/grievance-insight-engine.git
+cd grievance-insight-engine
+git checkout claude/aeo-audit-tool-pwvzo
+
+# Install dependencies
+npm install
+
+# Start dev mode (frontend + backend)
+npm run dev
+
+# Open http://localhost:5173
+```
+
+### Production build
+
+```bash
+npm run build    # Builds frontend
+npm start        # Starts server on port 3001 (serves frontend + API)
+```
+
+### Docker
+
+```bash
+docker build -t aeo-audit-tool .
+docker run -p 3001:3001 aeo-audit-tool
+# Open http://localhost:3001
+```
 
 ---
 
-## 👥 Team
-**AI Vidhyarthi** – India’s first student-led AI literacy initiative  
-Founded by **Rudra Prasad Kasturi**, Chief Strategy & Growth Leader (ex-Google partner, Times Internet, Cars24).
+## Tech Stack
+
+- **Frontend:** React 18 + Vite + Tailwind CSS
+- **Backend:** Express.js + TypeScript
+- **Analysis:** Cheerio (HTML parsing) + robots-parser
+- **No database needed** - audits run on-the-fly
 
 ---
 
-## 🔗 Project Links
-- Kaggle Notebook: [link]  
-- Looker Studio Dashboard: [link]  
-- Executive Summary (PDF): [docs/executive_summary.pdf](docs/executive_summary.pdf)  
+## Team
 
----
+**AI Vidhyarthi** -- India's first student-led AI literacy initiative
+Founded by **Rudra Prasad Kasturi**, Chief Strategy & Growth Leader.

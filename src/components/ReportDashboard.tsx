@@ -1,0 +1,374 @@
+import { useState, useRef, useCallback } from 'react';
+import type { AuditReport, CategoryResult } from '../../shared/types';
+import { ScoreGauge } from './ScoreGauge';
+import { CategoryCard } from './CategoryCard';
+import { CategoryDetail } from './CategoryDetail';
+import { BotAccessTable } from './BotAccessTable';
+import { SummaryBar } from './SummaryBar';
+
+interface Props {
+  report: AuditReport;
+}
+
+export function ReportDashboard({ report }: Props) {
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [emailAddress, setEmailAddress] = useState('');
+  const [emailSending, setEmailSending] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const reportRef = useRef<HTMLDivElement>(null);
+
+  const handleCategoryClick = (id: string) => {
+    setExpandedCategory(expandedCategory === id ? null : id);
+  };
+
+  // All categories in display order
+  const allCategories = report.categories;
+
+  // Find special category for bot-access table rendering
+  const botAccessCategory = report.categories.find((c) => c.id === 'bot-access');
+
+  // PDF Export via print
+  const handleExportPDF = useCallback(() => {
+    window.print();
+  }, []);
+
+  // Email report
+  const handleSendEmail = useCallback(async () => {
+    if (!emailAddress.trim()) return;
+    setEmailSending(true);
+    try {
+      const res = await fetch('/api/report/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailAddress, report }),
+      });
+      if (res.ok) {
+        setEmailSent(true);
+        setTimeout(() => { setShowEmailModal(false); setEmailSent(false); }, 2000);
+      } else {
+        // Fallback to mailto
+        openMailto();
+      }
+    } catch {
+      // Fallback to mailto
+      openMailto();
+    } finally {
+      setEmailSending(false);
+    }
+  }, [emailAddress, report]);
+
+  const openMailto = useCallback(() => {
+    const subject = encodeURIComponent(`AEO Audit Report - ${report.url} (Score: ${report.overallScore}/100, Grade: ${report.grade})`);
+
+    const failures = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'fail');
+    const warnings = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'warning');
+    const passes = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'pass');
+
+    let body = `AEO AUDIT REPORT\n`;
+    body += `${'='.repeat(50)}\n\n`;
+    body += `URL: ${report.metadata.finalUrl || report.url}\n`;
+    body += `Date: ${new Date(report.fetchedAt).toLocaleString()}\n`;
+    body += `Overall Score: ${report.overallScore}/100 (${report.grade})\n\n`;
+
+    body += `SUMMARY\n${'-'.repeat(30)}\n`;
+    body += `Passed: ${report.summary.passes} | Warnings: ${report.summary.warnings} | Failed: ${report.summary.failures} | Info: ${report.summary.infos}\n\n`;
+
+    body += `CATEGORY SCORES\n${'-'.repeat(30)}\n`;
+    report.categories.forEach((c) => {
+      body += `${c.icon} ${c.name}: ${c.score}/100\n`;
+    });
+
+    if (failures.length > 0) {
+      body += `\nCRITICAL ISSUES (${failures.length})\n${'-'.repeat(30)}\n`;
+      failures.forEach((f) => {
+        body += `- ${f.title}\n  ${f.recommendation || f.description}\n\n`;
+      });
+    }
+    if (warnings.length > 0) {
+      body += `\nWARNINGS (${warnings.length})\n${'-'.repeat(30)}\n`;
+      warnings.slice(0, 10).forEach((f) => {
+        body += `- ${f.title}\n  ${f.recommendation || f.description}\n\n`;
+      });
+    }
+
+    const encodedBody = encodeURIComponent(body);
+    const mailto = emailAddress
+      ? `mailto:${emailAddress}?subject=${subject}&body=${encodedBody}`
+      : `mailto:?subject=${subject}&body=${encodedBody}`;
+
+    window.open(mailto, '_blank');
+    setShowEmailModal(false);
+  }, [emailAddress, report]);
+
+  return (
+    <div className="mt-10 space-y-8" ref={reportRef}>
+      {/* Header with URL, timestamp, and export buttons */}
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <p className="text-sm text-gray-500">Audit Report for</p>
+            <h2 className="text-xl font-bold text-gray-900 break-all">
+              {report.metadata.finalUrl || report.url}
+            </h2>
+            <p className="text-sm text-gray-400 mt-1">
+              {new Date(report.fetchedAt).toLocaleString()} | HTTP{' '}
+              {report.metadata.statusCode} |{' '}
+              {report.metadata.responseTime}ms response
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-3">
+            <ScoreGauge score={report.overallScore} grade={report.grade} size="lg" />
+            {/* Export Buttons */}
+            <div className="flex items-center gap-2 print:hidden">
+              <button
+                onClick={handleExportPDF}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+                title="Export to PDF (Print)"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Export PDF
+              </button>
+              <button
+                onClick={() => setShowEmailModal(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-brand-300 text-brand-700 bg-brand-50 hover:bg-brand-100 transition-colors"
+                title="Email Report"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Email Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Email Modal */}
+      {showEmailModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 print:hidden">
+          <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md mx-4">
+            <h3 className="text-lg font-bold text-gray-900 mb-4">Email Report</h3>
+            {emailSent ? (
+              <div className="text-center py-4">
+                <svg className="w-12 h-12 text-green-500 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <p className="text-green-700 font-medium">Report sent!</p>
+              </div>
+            ) : (
+              <>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email address
+                  </label>
+                  <input
+                    type="email"
+                    value={emailAddress}
+                    onChange={(e) => setEmailAddress(e.target.value)}
+                    placeholder="team@company.com"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
+                    onKeyDown={(e) => e.key === 'Enter' && handleSendEmail()}
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setShowEmailModal(false)}
+                    className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSendEmail}
+                    disabled={emailSending || !emailAddress.trim()}
+                    className="flex-1 px-4 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 rounded-lg disabled:opacity-50"
+                  >
+                    {emailSending ? 'Sending...' : 'Send Email'}
+                  </button>
+                  <button
+                    onClick={openMailto}
+                    className="px-4 py-2 text-sm font-medium text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-lg"
+                    title="Open in email client"
+                  >
+                    Open in Mail
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Summary Bar */}
+      <SummaryBar summary={report.summary} />
+
+      {/* ALL Category Cards in One Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {allCategories.map((cat) => (
+          <CategoryCard
+            key={cat.id}
+            category={cat}
+            expanded={expandedCategory === cat.id}
+            onClick={() => handleCategoryClick(cat.id)}
+          />
+        ))}
+      </div>
+
+      {/* Expanded Category Detail Panel (appears below grid) */}
+      {expandedCategory && (
+        <ExpandedCategoryPanel
+          category={allCategories.find((c) => c.id === expandedCategory)!}
+          botAccessFindings={expandedCategory === 'bot-access' ? botAccessCategory : undefined}
+          onClose={() => setExpandedCategory(null)}
+        />
+      )}
+
+      {/* Recommendations */}
+      <RecommendationsPanel categories={report.categories} />
+    </div>
+  );
+}
+
+function ExpandedCategoryPanel({
+  category,
+  botAccessFindings,
+  onClose,
+}: {
+  category: CategoryResult;
+  botAccessFindings?: CategoryResult;
+  onClose: () => void;
+}) {
+  if (!category) return null;
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+      <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <span className="text-2xl">{category.icon}</span>
+          <div>
+            <h3 className="text-lg font-bold text-gray-900">{category.name}</h3>
+            <p className="text-sm text-gray-500">
+              {category.findings.length} checks | Score: {category.score}/100
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <ScoreGauge score={category.score} grade="" size="sm" />
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 p-1 print:hidden"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Bot access table (special rendering for bot-access category) */}
+      {botAccessFindings && (
+        <BotAccessTable findings={botAccessFindings.findings} />
+      )}
+
+      <CategoryDetail
+        category={category}
+        excludeBotFindings={!!botAccessFindings}
+      />
+    </div>
+  );
+}
+
+function RecommendationsPanel({
+  categories,
+}: {
+  categories: CategoryResult[];
+}) {
+  const allFindings = categories.flatMap((c) => c.findings);
+  const failures = allFindings.filter(
+    (f) => f.severity === 'fail' && f.recommendation
+  );
+  const warnings = allFindings.filter(
+    (f) => f.severity === 'warning' && f.recommendation
+  );
+
+  if (failures.length === 0 && warnings.length === 0) return null;
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+      <h3 className="text-lg font-bold text-gray-900 mb-4">
+        Recommendations
+      </h3>
+
+      {failures.length > 0 && (
+        <div className="mb-6">
+          <h4 className="text-sm font-semibold text-red-700 uppercase tracking-wider mb-3">
+            Critical Issues ({failures.length})
+          </h4>
+          <div className="space-y-3">
+            {failures.map((f) => (
+              <div
+                key={f.id}
+                className="flex items-start space-x-3 p-3 bg-red-50 rounded-lg border border-red-100"
+              >
+                <span className="text-red-500 mt-0.5 flex-shrink-0">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p className="font-medium text-red-800">{f.title}</p>
+                  <p className="text-sm text-red-700 mt-1">
+                    {f.recommendation}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {warnings.length > 0 && (
+        <div>
+          <h4 className="text-sm font-semibold text-yellow-700 uppercase tracking-wider mb-3">
+            Improvements ({warnings.length})
+          </h4>
+          <div className="space-y-3">
+            {warnings.slice(0, 10).map((f) => (
+              <div
+                key={f.id}
+                className="flex items-start space-x-3 p-3 bg-yellow-50 rounded-lg border border-yellow-100"
+              >
+                <span className="text-yellow-500 mt-0.5 flex-shrink-0">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p className="font-medium text-yellow-800">{f.title}</p>
+                  <p className="text-sm text-yellow-700 mt-1">
+                    {f.recommendation}
+                  </p>
+                </div>
+              </div>
+            ))}
+            {warnings.length > 10 && (
+              <p className="text-sm text-gray-500 italic">
+                +{warnings.length - 10} more improvements...
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
