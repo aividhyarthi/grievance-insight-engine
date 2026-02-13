@@ -42,7 +42,7 @@ export function detectPublisher(ctx: AnalysisContext): PublisherDetection {
   // Check for Article schema
   const jsonLdBlocks: string[] = [];
   $('script[type="application/ld+json"]').each((_, el) => {
-    const text = $(el).html();
+    const text = $(el).text(); // .text() avoids HTML entity encoding unlike .html()
     if (text) jsonLdBlocks.push(text);
   });
   const jsonLdText = jsonLdBlocks.join(' ');
@@ -147,17 +147,24 @@ export function analyzePublisher(ctx: AnalysisContext): Finding[] {
     details: { contentType: detection.contentType, confidence: detection.confidence, signals: detection.signals },
   });
 
-  // Parse JSON-LD for article data
-  const jsonLdBlocks: unknown[] = [];
+  // Parse JSON-LD for article data (.text() avoids HTML entity encoding)
+  const parsedJsonLdBlocks: unknown[] = [];
   $('script[type="application/ld+json"]').each((_, el) => {
-    const text = $(el).html();
+    const text = $(el).text();
     if (text) {
       try {
-        jsonLdBlocks.push(JSON.parse(text));
-      } catch { /* skip */ }
+        parsedJsonLdBlocks.push(JSON.parse(text));
+      } catch {
+        // Try with entity decode
+        try {
+          const decoded = text.replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+          parsedJsonLdBlocks.push(JSON.parse(decoded));
+        } catch { /* skip */ }
+      }
     }
   });
-  const allJsonLdText = JSON.stringify(jsonLdBlocks);
+  const allJsonLdText = JSON.stringify(parsedJsonLdBlocks);
   const bodyText = $('body').clone().find('script, style, noscript, svg').remove().end().text();
 
   // ===== ARTICLE SCHEMA COMPLETENESS =====

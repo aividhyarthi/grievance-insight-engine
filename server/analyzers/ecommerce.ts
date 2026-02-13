@@ -1,55 +1,98 @@
 import type { Finding } from '../../shared/types.js';
 import type { AnalysisContext } from '../services/orchestrator.js';
 
+// Helper: safely get JSON-LD text from script blocks (avoids cheerio HTML entity encoding)
+function getJsonLdRawText($: import('cheerio').CheerioAPI): string {
+  const blocks: string[] = [];
+  $('script[type="application/ld+json"]').each((_, el) => {
+    const text = $(el).text(); // .text() avoids HTML entity encoding unlike .html()
+    if (text) blocks.push(text);
+  });
+  return blocks.join(' ');
+}
+
+function safeParseJsonLd($: import('cheerio').CheerioAPI): unknown[] {
+  const results: unknown[] = [];
+  $('script[type="application/ld+json"]').each((_, el) => {
+    const text = $(el).text();
+    if (text) {
+      try { results.push(JSON.parse(text)); } catch {
+        // Try with entity decode
+        try {
+          const decoded = text.replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+          results.push(JSON.parse(decoded));
+        } catch { /* skip */ }
+      }
+    }
+  });
+  return results;
+}
+
 // Signals that indicate an e-commerce website
+// IMPORTANT: Only include strong e-commerce signals - avoid generic patterns
+// that match news sites, blogs, or other non-ecommerce pages
 const ECOMMERCE_SIGNALS = {
-  schemaTypes: ['Product', 'Offer', 'AggregateOffer', 'ItemList', 'BreadcrumbList', 'Review', 'AggregateRating'],
+  // Only STRONG e-commerce schema types (not BreadcrumbList, Review, AggregateRating - those are generic)
+  schemaTypes: ['Product', 'Offer', 'AggregateOffer', 'ItemList'],
   metaPatterns: [
     /og:type.*product/i,
     /product:price/i,
     /product:availability/i,
   ],
-  htmlPatterns: [
+  // These must be in BUTTON/LINK context, not just anywhere in body text
+  actionPatterns: [
     /add[\s-]?to[\s-]?cart/i,
-    /buy[\s-]?now/i,
     /add[\s-]?to[\s-]?bag/i,
     /add[\s-]?to[\s-]?basket/i,
-    /checkout/i,
-    /shopping[\s-]?cart/i,
+  ],
+  // Checked only in href attributes, not body text
+  cartLinkPatterns: [
+    /\/cart\b/i,
+    /\/basket\b/i,
+    /\/checkout\b/i,
+    /[?&]action=add/i,
   ],
   platforms: [
-    { name: 'Shopify', patterns: [/shopify/i, /cdn\.shopify\.com/i, /myshopify\.com/i] },
+    { name: 'Shopify', patterns: [/cdn\.shopify\.com/i, /myshopify\.com/i] },
     { name: 'WooCommerce', patterns: [/woocommerce/i, /wc-block/i, /wp-content.*woo/i] },
-    { name: 'Magento', patterns: [/magento/i, /mage/i, /varien/i] },
+    { name: 'Magento', patterns: [/magento/i, /varien/i] },
     { name: 'BigCommerce', patterns: [/bigcommerce/i] },
     { name: 'PrestaShop', patterns: [/prestashop/i] },
     { name: 'OpenCart', patterns: [/opencart/i] },
-    { name: 'Squarespace Commerce', patterns: [/squarespace.*commerce/i, /sqsp/i] },
-    { name: 'Wix Stores', patterns: [/wix.*stores/i, /wixstores/i] },
+    { name: 'Squarespace Commerce', patterns: [/squarespace.*commerce/i] },
+    { name: 'Wix Stores', patterns: [/wixstores/i] },
     // Indian e-commerce platforms
-    { name: 'Nykaa', patterns: [/nykaa\.com/i, /nykaaman/i, /nykaadesignstudio/i] },
+    { name: 'Nykaa', patterns: [/nykaa\.com/i] },
     { name: 'Flipkart', patterns: [/flipkart\.com/i, /fkapi/i] },
     { name: 'Myntra', patterns: [/myntra\.com/i] },
     { name: 'Amazon India', patterns: [/amazon\.in/i] },
     { name: 'Meesho', patterns: [/meesho\.com/i] },
     { name: 'AJIO', patterns: [/ajio\.com/i] },
     { name: 'Tata CLiQ', patterns: [/tatacliq\.com/i] },
-    // Other international platforms
+    // International platforms
     { name: 'Etsy', patterns: [/etsy\.com/i] },
     { name: 'eBay', patterns: [/ebay\.com/i] },
     { name: 'Amazon', patterns: [/amazon\.(com|co\.uk|de|fr|es|it|ca|com\.au)/i] },
     { name: 'Walmart', patterns: [/walmart\.com/i] },
     { name: 'Target', patterns: [/target\.com/i] },
   ],
-  pricePatterns: [
-    /\$\d+[\.,]?\d*/,
-    /€\d+[\.,]?\d*/,
-    /£\d+[\.,]?\d*/,
-    /₹\d+[\.,]?\d*/,
-    /price/i,
-    /data-price/i,
-  ],
 };
+
+// Sites that should NEVER be classified as e-commerce
+const NON_ECOMMERCE_DOMAINS = [
+  /timesofindia\./i, /indiatimes\.com/i, /ndtv\.com/i, /thehindu\.com/i,
+  /hindustantimes\.com/i, /indianexpress\.com/i, /news18\.com/i,
+  /bbc\.(com|co\.uk)/i, /cnn\.com/i, /reuters\.com/i, /theguardian\.com/i,
+  /nytimes\.com/i, /washingtonpost\.com/i, /forbes\.com/i, /bloomberg\.com/i,
+  /medium\.com/i, /substack\.com/i, /wikipedia\.org/i,
+  /webmd\.com/i, /healthline\.com/i, /mayoclinic\.org/i, /practo\.com/i,
+  /premom\.(in|com)/i, /1mg\.com/i, /lybrate\.com/i,
+  /coursera\.org/i, /udemy\.com/i, /edx\.org/i, /khanacademy\.org/i,
+  /byjus\.com/i, /unacademy\.com/i, /upgrad\.com/i,
+  /toireviews\.com/i, /cnet\.com/i, /theverge\.com/i, /techradar\.com/i,
+  /gsmarena\.com/i, /pcmag\.com/i, /91mobiles\.com/i,
+];
 
 interface EcommerceDetection {
   isEcommerce: boolean;
@@ -64,7 +107,22 @@ export function detectEcommerce(ctx: AnalysisContext): EcommerceDetection {
   let score = 0;
   let platform: string | null = null;
 
-  // URL-based detection (very strong signal)
+  // NEGATIVE: Known non-ecommerce domains — bail early
+  for (const pattern of NON_ECOMMERCE_DOMAINS) {
+    if (pattern.test(url)) {
+      return { isEcommerce: false, confidence: 0, signals: ['Non-ecommerce domain excluded'], platform: null };
+    }
+  }
+
+  // NEGATIVE: If page has NewsArticle or Article schema, it's likely NOT ecommerce
+  const jsonLdText = getJsonLdRawText($);
+  const hasNewsSchema = /"@type"\s*:\s*"(NewsArticle|Article|BlogPosting)"/i.test(jsonLdText);
+  if (hasNewsSchema) {
+    score -= 4; // Strong negative signal
+    signals.push('NewsArticle/Article schema (negative signal)');
+  }
+
+  // URL-based detection (strong signal)
   const urlPatterns = [
     { pattern: /\/p\/\d+/i, signal: 'Product URL pattern (/p/ID)' },
     { pattern: /\/product[s]?\//i, signal: 'Product URL pattern (/product/)' },
@@ -72,7 +130,6 @@ export function detectEcommerce(ctx: AnalysisContext): EcommerceDetection {
     { pattern: /productId=/i, signal: 'Product ID in URL' },
     { pattern: /\/shop\//i, signal: 'Shop URL pattern' },
     { pattern: /\/collection[s]?\//i, signal: 'Collection URL pattern' },
-    { pattern: /\/category\//i, signal: 'Category URL pattern' },
   ];
 
   for (const { pattern, signal } of urlPatterns) {
@@ -82,17 +139,10 @@ export function detectEcommerce(ctx: AnalysisContext): EcommerceDetection {
     }
   }
 
-  // Check for Product schema
-  const jsonLdBlocks: string[] = [];
-  $('script[type="application/ld+json"]').each((_, el) => {
-    const text = $(el).html();
-    if (text) jsonLdBlocks.push(text);
-  });
-  const jsonLdText = jsonLdBlocks.join(' ');
-
+  // Check for Product/Offer schema (strong signal — only PRODUCT-specific types)
   for (const schemaType of ECOMMERCE_SIGNALS.schemaTypes) {
     if (jsonLdText.includes(`"${schemaType}"`) || jsonLdText.includes(`"@type":"${schemaType}"`) || jsonLdText.includes(`"@type": "${schemaType}"`)) {
-      if (schemaType === 'Product' || schemaType === 'Offer') {
+      if (schemaType === 'Product' || schemaType === 'Offer' || schemaType === 'AggregateOffer') {
         score += 3;
         signals.push(`${schemaType} schema detected`);
       } else {
@@ -102,7 +152,7 @@ export function detectEcommerce(ctx: AnalysisContext): EcommerceDetection {
     }
   }
 
-  // Check microdata for Product
+  // Check microdata for Product specifically
   if ($('[itemtype*="schema.org/Product"]').length > 0 || $('[itemtype*="schema.org/Offer"]').length > 0) {
     score += 3;
     signals.push('Product/Offer microdata detected');
@@ -118,14 +168,21 @@ export function detectEcommerce(ctx: AnalysisContext): EcommerceDetection {
     }
   }
 
-  // Check for e-commerce action patterns (add to cart, buy now, etc.)
-  const bodyText = $('body').text();
-  const bodyHtml = $('body').html() || '';
-  for (const pattern of ECOMMERCE_SIGNALS.htmlPatterns) {
-    if (pattern.test(bodyText) || pattern.test(bodyHtml)) {
-      score += 2;
-      signals.push(`E-commerce action found: ${pattern.source}`);
+  // Check for add-to-cart type buttons (check in buttons/links, not raw body text)
+  const buttonAndLinkText = $('button, a, [role="button"], input[type="submit"]')
+    .map((_, el) => $(el).text()).get().join(' ');
+
+  for (const pattern of ECOMMERCE_SIGNALS.actionPatterns) {
+    if (pattern.test(buttonAndLinkText)) {
+      score += 3; // Strong signal — actual cart buttons
+      signals.push(`E-commerce button: ${pattern.source}`);
     }
+  }
+
+  // Check for "buy now" specifically in buttons/links (not body text where "buy" is common)
+  if (/buy[\s-]?now/i.test(buttonAndLinkText)) {
+    score += 2;
+    signals.push('Buy Now button detected');
   }
 
   // Check for e-commerce platform
@@ -133,7 +190,7 @@ export function detectEcommerce(ctx: AnalysisContext): EcommerceDetection {
     for (const pattern of plat.patterns) {
       if (pattern.test(html)) {
         platform = plat.name;
-        score += 3;
+        score += 4;
         signals.push(`Platform detected: ${plat.name}`);
         break;
       }
@@ -141,36 +198,40 @@ export function detectEcommerce(ctx: AnalysisContext): EcommerceDetection {
     if (platform) break;
   }
 
-  // Check for price patterns in HTML attributes
-  if ($('[class*="price"], [data-price], [itemprop="price"]').length > 0) {
-    score += 2;
-    signals.push('Price elements detected');
-  }
-
-  // Check for cart/checkout links
-  let hasCartLink = false;
+  // Check for cart/checkout in href attributes only (not body text)
+  let cartLinks = 0;
   $('a[href]').each((_, el) => {
     const href = $(el).attr('href') || '';
-    if (/cart|basket|checkout/i.test(href)) {
-      hasCartLink = true;
+    for (const pattern of ECOMMERCE_SIGNALS.cartLinkPatterns) {
+      if (pattern.test(href)) {
+        cartLinks++;
+        break;
+      }
     }
   });
-  if (hasCartLink) {
+  if (cartLinks > 0) {
     score += 2;
-    signals.push('Cart/checkout links detected');
+    signals.push(`${cartLinks} cart/checkout link(s)`);
   }
 
-  // Check for product listing patterns
-  if ($('[class*="product"], [data-product], [class*="item-card"], [class*="product-card"]').length >= 2) {
+  // Check for product listing elements (multiple product cards)
+  const productCardCount = $('[class*="product-card"], [class*="product-item"], [data-product-id], [class*="product-list"]').length;
+  if (productCardCount >= 2) {
     score += 2;
-    signals.push('Product listing elements detected');
+    signals.push(`${productCardCount} product card elements`);
   }
 
-  // Confidence: 0-100 based on score (threshold at 5 for "is ecommerce")
-  const confidence = Math.min(100, Math.round((score / 15) * 100));
+  // Check for price with itemprop only (structured price, not random price text)
+  if ($('[itemprop="price"], [data-price]').length > 0) {
+    score += 2;
+    signals.push('Structured price elements (itemprop/data-price)');
+  }
+
+  // Confidence: higher threshold now (7 instead of 5)
+  const confidence = Math.min(100, Math.round((Math.max(0, score) / 15) * 100));
 
   return {
-    isEcommerce: score >= 5,
+    isEcommerce: score >= 7,
     confidence,
     signals,
     platform,
@@ -186,7 +247,7 @@ export function analyzeEcommerce(ctx: AnalysisContext): Finding[] {
   }
 
   const findings: Finding[] = [];
-  const { $, html } = ctx;
+  const { $ } = ctx;
 
   // Report detection
   findings.push({
@@ -199,16 +260,7 @@ export function analyzeEcommerce(ctx: AnalysisContext): Finding[] {
   });
 
   // ===== Product Schema =====
-  const jsonLdBlocks: unknown[] = [];
-  $('script[type="application/ld+json"]').each((_, el) => {
-    const text = $(el).html();
-    if (text) {
-      try {
-        jsonLdBlocks.push(JSON.parse(text));
-      } catch { /* skip invalid */ }
-    }
-  });
-
+  const jsonLdBlocks = safeParseJsonLd($);
   const allJsonLdText = JSON.stringify(jsonLdBlocks);
   const hasProductSchema = allJsonLdText.includes('"Product"') || $('[itemtype*="schema.org/Product"]').length > 0;
   const hasOfferSchema = allJsonLdText.includes('"Offer"') || allJsonLdText.includes('"AggregateOffer"');
@@ -278,7 +330,6 @@ export function analyzeEcommerce(ctx: AnalysisContext): Finding[] {
       category: 'ecommerce',
     });
 
-    // Check for availability
     if (allJsonLdText.includes('"availability"')) {
       findings.push({
         id: 'ecom-availability',
