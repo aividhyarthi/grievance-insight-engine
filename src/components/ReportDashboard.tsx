@@ -5,7 +5,7 @@ import { CategoryCard } from './CategoryCard';
 import { CategoryDetail } from './CategoryDetail';
 import { BotAccessTable } from './BotAccessTable';
 import { SummaryBar } from './SummaryBar';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth, isPro as checkPro } from '../contexts/AuthContext';
 
 interface Props {
   report: AuditReport;
@@ -14,7 +14,7 @@ interface Props {
 
 export function ReportDashboard({ report, onUpgradeNeeded }: Props) {
   const { user } = useAuth();
-  const isPro = user?.plan === 'pro';
+  const isPro = checkPro(user);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [emailAddress, setEmailAddress] = useState('');
   const [emailSending, setEmailSending] = useState(false);

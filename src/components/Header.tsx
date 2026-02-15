@@ -1,4 +1,4 @@
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth, isPro } from '../contexts/AuthContext';
 
 interface Props {
   onLoginClick?: () => void;
@@ -56,7 +56,7 @@ export function Header({ onLoginClick, onDashboardClick, onLogoClick }: Props) {
                   <div className="hidden sm:block">
                     <p className="text-sm font-medium text-gray-900 leading-tight">{user.name}</p>
                     <p className="text-xs text-gray-500 leading-tight">
-                      {user.plan === 'pro' ? 'Pro' : 'Free'}
+                      {isPro(user) ? (user.plan === 'admin' ? 'Admin' : 'Pro') : 'Free'}
                     </p>
                   </div>
                 </div>

@@ -53,10 +53,20 @@ db.exec(`
 `);
 
 // Prepared statements for performance
+// Admin emails get unlimited access (comma-separated in env)
+export const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '')
+  .split(',')
+  .map((e) => e.trim().toLowerCase())
+  .filter(Boolean);
+
+export function isAdmin(email: string): boolean {
+  return ADMIN_EMAILS.includes(email.toLowerCase());
+}
+
 export const queries = {
   // Users
   createUser: db.prepare(
-    `INSERT INTO users (id, email, password_hash, name) VALUES (?, ?, ?, ?)`
+    `INSERT INTO users (id, email, password_hash, name, plan) VALUES (?, ?, ?, ?, ?)`
   ),
   getUserByEmail: db.prepare(
     `SELECT * FROM users WHERE email = ?`

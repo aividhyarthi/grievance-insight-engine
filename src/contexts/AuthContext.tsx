@@ -4,7 +4,12 @@ export interface User {
   id: string;
   email: string;
   name: string;
-  plan: 'free' | 'pro';
+  plan: 'free' | 'pro' | 'admin';
+}
+
+/** Returns true if the user has Pro-level access (pro or admin) */
+export function isPro(user: User | null): boolean {
+  return user?.plan === 'pro' || user?.plan === 'admin';
 }
 
 interface AuthContextType {

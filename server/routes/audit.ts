@@ -42,7 +42,7 @@ auditRouter.post('/audit', optionalAuth, async (req: AuthRequest, res: Response)
       const user = queries.getUserById.get(userId) as Record<string, unknown> | undefined;
       const plan = (user?.plan as string) || 'free';
 
-      if (plan === 'free') {
+      if (plan !== 'pro' && plan !== 'admin') {
         const usage = queries.getUsageToday.get(userId, today) as { count: number } | undefined;
         const usedToday = usage?.count || 0;
 
@@ -84,11 +84,11 @@ auditRouter.post('/audit', optionalAuth, async (req: AuthRequest, res: Response)
       res.json({
         ...report,
         _auditId: auditId,
-        _usage: plan === 'free' ? {
+        _usage: (plan === 'pro' || plan === 'admin') ? { plan } : {
           used: usage?.count || 0,
           limit: FREE_DAILY_LIMIT,
           plan,
-        } : { plan },
+        },
       });
       return;
     }

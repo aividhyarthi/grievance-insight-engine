@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth, isPro as checkPro } from '../contexts/AuthContext';
 import type { AuditReport } from '../../shared/types';
 
 interface AuditSummary {
@@ -107,13 +107,13 @@ export function DashboardPage({ onViewReport, onBack }: Props) {
         </div>
         <div className="flex items-center gap-3">
           <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-            user?.plan === 'pro'
+            checkPro(user)
               ? 'bg-brand-100 text-brand-700 border border-brand-200'
               : 'bg-gray-100 text-gray-600 border border-gray-200'
           }`}>
-            {user?.plan === 'pro' ? 'Pro Plan' : 'Free Plan'}
+            {checkPro(user) ? (user?.plan === 'admin' ? 'Admin' : 'Pro Plan') : 'Free Plan'}
           </span>
-          {user?.plan !== 'pro' && (
+          {!checkPro(user) && (
             <button
               onClick={handleUpgrade}
               className="px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg transition-colors"
@@ -125,7 +125,7 @@ export function DashboardPage({ onViewReport, onBack }: Props) {
       </div>
 
       {/* Pro upsell for free users */}
-      {user?.plan !== 'pro' && (
+      {!checkPro(user) && (
         <div className="bg-gradient-to-r from-brand-50 to-indigo-50 border border-brand-200 rounded-xl p-5">
           <div className="flex items-center justify-between">
             <div>

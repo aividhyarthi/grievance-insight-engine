@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { AuditReport } from '../shared/types';
-import { useAuth } from './contexts/AuthContext';
+import { useAuth, isPro } from './contexts/AuthContext';
 import { Header } from './components/Header';
 import { AuditForm } from './components/AuditForm';
 import { ReportDashboard } from './components/ReportDashboard';
@@ -87,7 +87,7 @@ export default function App() {
           <>
             <AuditForm onSubmit={handleAudit} loading={loading} />
 
-            {user && user.plan === 'free' && (
+            {user && !isPro(user) && (
               <div className="mt-4 text-center">
                 <span className="text-xs text-gray-400">
                   Free plan: 3 audits/day

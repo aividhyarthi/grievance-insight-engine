@@ -1,5 +1,6 @@
 import { Router, type Request, type Response } from 'express';
 import { z } from 'zod';
+import nodemailer from 'nodemailer';
 import type { AuditReport } from '../../shared/types.js';
 
 export const reportRouter = Router();
@@ -199,13 +200,10 @@ reportRouter.post('/report/email', async (req: Request, res: Response) => {
       return;
     }
 
-    // Try to send via nodemailer if available and SMTP is configured
+    // Send via nodemailer with SMTP
     try {
-      // Dynamic import to avoid hard dependency (nodemailer is optional)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const nodemailer: any = await (Function('return import("nodemailer")')());
       const smtpPort = parseInt(process.env.SMTP_PORT || '587', 10);
-      const fromEmail = process.env.SMTP_FROM || 'noreply@aeo-audit.com';
+      const fromEmail = process.env.SMTP_FROM || smtpUser;
 
       const transporter = nodemailer.createTransport({
         host: smtpHost,
@@ -222,12 +220,12 @@ reportRouter.post('/report/email', async (req: Request, res: Response) => {
       });
 
       res.json({ sent: true, message: 'Report sent successfully' });
-    } catch {
-      // nodemailer not installed or SMTP failed - return HTML for mailto fallback
+    } catch (smtpErr) {
+      console.error('SMTP send error:', smtpErr);
       res.status(200).json({
         sent: false,
         html,
-        message: 'Email sending failed. Use the "Open in Mail" option.',
+        message: 'Email sending failed. Check SMTP credentials. Use the "Open in Mail" option instead.',
       });
     }
   } catch (err: unknown) {

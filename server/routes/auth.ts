@@ -2,7 +2,7 @@ import { Router, type Response } from 'express';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { v4 as uuid } from 'uuid';
-import { queries } from '../db.js';
+import { queries, isAdmin } from '../db.js';
 import { signToken, requireAuth, type AuthRequest } from '../auth.js';
 
 export const authRouter = Router();
@@ -36,10 +36,11 @@ authRouter.post('/auth/signup', async (req: AuthRequest, res: Response) => {
       return;
     }
 
-    // Hash password and create user
+    // Hash password and create user (admins auto-get 'admin' plan)
     const hash = await bcrypt.hash(password, 12);
     const id = uuid();
-    queries.createUser.run(id, email.toLowerCase(), hash, name);
+    const plan = isAdmin(email) ? 'admin' : 'free';
+    queries.createUser.run(id, email.toLowerCase(), hash, name, plan);
 
     // Return token
     const token = signToken({ userId: id, email: email.toLowerCase() });
