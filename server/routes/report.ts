@@ -23,17 +23,24 @@ const EmailSchema = z.object({
   }),
 });
 
-// Generate clean HTML email from report data
+// Severity styling for HTML email
+const severityStyles: Record<string, { bg: string; border: string; color: string; label: string; icon: string }> = {
+  pass: { bg: '#f0fdf4', border: '#bbf7d0', color: '#166534', label: 'PASS', icon: '&#10003;' },
+  warning: { bg: '#fefce8', border: '#fde68a', color: '#92400e', label: 'WARNING', icon: '&#9888;' },
+  fail: { bg: '#fef2f2', border: '#fecaca', color: '#991b1b', label: 'FAIL', icon: '&#10007;' },
+  info: { bg: '#eff6ff', border: '#bfdbfe', color: '#1e40af', label: 'INFO', icon: '&#8505;' },
+};
+
+const severityOrder: Record<string, number> = { fail: 0, warning: 1, info: 2, pass: 3 };
+
+// Generate clean HTML email from report data with FULL details
 function generateReportHTML(report: AuditReport): string {
   const scoreColor = report.overallScore >= 80 ? '#22c55e' :
     report.overallScore >= 60 ? '#eab308' :
     report.overallScore >= 40 ? '#f97316' : '#ef4444';
 
-  const failures = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'fail');
-  const warnings = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'warning');
-  const passes = report.categories.flatMap((c) => c.findings).filter((f) => f.severity === 'pass');
-
-  let categoriesHtml = report.categories.map((cat) => {
+  // Category score overview table
+  const categoriesHtml = report.categories.map((cat) => {
     const catColor = cat.score >= 80 ? '#22c55e' : cat.score >= 60 ? '#eab308' : cat.score >= 40 ? '#f97316' : '#ef4444';
     return `
       <tr>
@@ -53,48 +60,53 @@ function generateReportHTML(report: AuditReport): string {
     `;
   }).join('');
 
-  let issuesHtml = '';
-  if (failures.length > 0) {
-    issuesHtml += `
-      <h3 style="color: #dc2626; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 12px;">
-        Critical Issues (${failures.length})
-      </h3>
-    `;
-    failures.forEach((f) => {
-      issuesHtml += `
-        <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 12px 16px; margin-bottom: 8px;">
-          <strong style="color: #991b1b;">${f.title}</strong>
-          ${f.recommendation ? `<p style="color: #b91c1c; font-size: 13px; margin: 6px 0 0;">${f.recommendation}</p>` : ''}
-        </div>
-      `;
-    });
-  }
+  // Full detailed findings for EACH category
+  const categoryDetailsHtml = report.categories.map((cat) => {
+    const catColor = cat.score >= 80 ? '#22c55e' : cat.score >= 60 ? '#eab308' : cat.score >= 40 ? '#f97316' : '#ef4444';
+    const sortedFindings = [...cat.findings].sort((a, b) => (severityOrder[a.severity] ?? 3) - (severityOrder[b.severity] ?? 3));
 
-  if (warnings.length > 0) {
-    issuesHtml += `
-      <h3 style="color: #ca8a04; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 12px;">
-        Warnings (${warnings.length})
-      </h3>
-    `;
-    warnings.slice(0, 10).forEach((f) => {
-      issuesHtml += `
-        <div style="background: #fefce8; border: 1px solid #fde68a; border-radius: 8px; padding: 12px 16px; margin-bottom: 8px;">
-          <strong style="color: #92400e;">${f.title}</strong>
-          ${f.recommendation ? `<p style="color: #a16207; font-size: 13px; margin: 6px 0 0;">${f.recommendation}</p>` : ''}
+    const findingsHtml = sortedFindings.map((f) => {
+      const style = severityStyles[f.severity] || severityStyles.info;
+      return `
+        <div style="background: ${style.bg}; border: 1px solid ${style.border}; border-radius: 8px; padding: 12px 16px; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="color: ${style.color}; font-size: 14px;">${style.icon}</span>
+            <strong style="color: #111827; font-size: 14px;">${f.title}</strong>
+            <span style="display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; color: ${style.color}; background: ${style.border};">
+              ${style.label}
+            </span>
+          </div>
+          <p style="color: #4b5563; font-size: 13px; margin: 4px 0 0; padding-left: 22px;">${f.description}</p>
+          ${f.recommendation ? `<p style="color: ${style.color}; font-size: 13px; margin: 6px 0 0; padding-left: 22px;"><strong>&#8594;</strong> ${f.recommendation}</p>` : ''}
         </div>
       `;
-    });
-    if (warnings.length > 10) {
-      issuesHtml += `<p style="color: #6b7280; font-size: 13px; font-style: italic;">+${warnings.length - 10} more warnings...</p>`;
-    }
-  }
+    }).join('');
+
+    return `
+    <div style="background: white; border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 20px; overflow: hidden;">
+      <div style="padding: 16px 20px; border-bottom: 1px solid #f3f4f6; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <span style="font-size: 22px; vertical-align: middle;">${cat.icon}</span>
+          <strong style="font-size: 16px; color: #111827; margin-left: 8px; vertical-align: middle;">${cat.name}</strong>
+          <span style="font-size: 13px; color: #6b7280; margin-left: 8px;">${cat.findings.length} checks</span>
+        </div>
+        <span style="display: inline-block; padding: 4px 14px; border-radius: 20px; font-weight: 700; color: white; background: ${catColor}; font-size: 15px;">
+          ${cat.score}/100
+        </span>
+      </div>
+      <div style="padding: 16px 20px;">
+        ${findingsHtml}
+      </div>
+    </div>
+    `;
+  }).join('');
 
   return `
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
 <body style="margin: 0; padding: 0; background: #f9fafb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <div style="max-width: 640px; margin: 0 auto; padding: 24px;">
+  <div style="max-width: 720px; margin: 0 auto; padding: 24px;">
 
     <!-- Header -->
     <div style="background: white; border-radius: 12px; border: 1px solid #e5e7eb; padding: 32px; text-align: center; margin-bottom: 20px;">
@@ -135,21 +147,19 @@ function generateReportHTML(report: AuditReport): string {
       </div>
     </div>
 
-    <!-- Category Scores -->
+    <!-- Category Scores Overview -->
     <div style="background: white; border-radius: 12px; border: 1px solid #e5e7eb; padding: 20px; margin-bottom: 20px;">
-      <h2 style="margin: 0 0 16px; font-size: 16px; color: #111827;">Category Scores</h2>
+      <h2 style="margin: 0 0 16px; font-size: 16px; color: #111827;">Category Scores Overview</h2>
       <table style="width: 100%; border-collapse: collapse;">
         ${categoriesHtml}
       </table>
     </div>
 
-    <!-- Issues & Recommendations -->
-    ${issuesHtml ? `
-    <div style="background: white; border-radius: 12px; border: 1px solid #e5e7eb; padding: 20px; margin-bottom: 20px;">
-      <h2 style="margin: 0 0 8px; font-size: 16px; color: #111827;">Issues & Recommendations</h2>
-      ${issuesHtml}
-    </div>
-    ` : ''}
+    <!-- Detailed Findings Per Category -->
+    <h2 style="font-size: 18px; color: #111827; margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #e5e7eb;">
+      Detailed Findings
+    </h2>
+    ${categoryDetailsHtml}
 
     <!-- Footer -->
     <div style="text-align: center; padding: 20px; color: #9ca3af; font-size: 12px;">

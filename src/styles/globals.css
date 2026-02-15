@@ -92,16 +92,25 @@
     page-break-inside: avoid;
   }
 
-  /* Clean grid for print - 2 columns */
+  /* Clean grid for print - 3 columns for score cards */
   .grid {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Each expanded category section: break before for clean page layout */
+  .bg-white.rounded-xl.border.border-gray-200.shadow-sm.overflow-hidden {
+    break-before: auto;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 16px !important;
   }
 
   /* Expand all categories for print */
   .category-card {
     cursor: default !important;
+    padding: 12px !important;
   }
 
   /* Ensure colors print */
