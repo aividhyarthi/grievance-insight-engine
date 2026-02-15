@@ -63,6 +63,17 @@ export function isAdmin(email: string): boolean {
   return ADMIN_EMAILS.includes(email.toLowerCase());
 }
 
+// Auto-promote existing users with admin emails on startup
+if (ADMIN_EMAILS.length > 0) {
+  const promoteAdmin = db.prepare(`UPDATE users SET plan = 'admin', updated_at = datetime('now') WHERE email = ? AND plan != 'admin'`);
+  for (const email of ADMIN_EMAILS) {
+    const result = promoteAdmin.run(email);
+    if (result.changes > 0) {
+      console.log(`Promoted ${email} to admin`);
+    }
+  }
+}
+
 export const queries = {
   // Users
   createUser: db.prepare(
