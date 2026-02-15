@@ -5,12 +5,16 @@ import { CategoryCard } from './CategoryCard';
 import { CategoryDetail } from './CategoryDetail';
 import { BotAccessTable } from './BotAccessTable';
 import { SummaryBar } from './SummaryBar';
+import { useAuth } from '../contexts/AuthContext';
 
 interface Props {
   report: AuditReport;
+  onUpgradeNeeded?: (reason: 'export') => void;
 }
 
-export function ReportDashboard({ report }: Props) {
+export function ReportDashboard({ report, onUpgradeNeeded }: Props) {
+  const { user } = useAuth();
+  const isPro = user?.plan === 'pro';
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [emailAddress, setEmailAddress] = useState('');
   const [emailSending, setEmailSending] = useState(false);
@@ -137,24 +141,24 @@ export function ReportDashboard({ report }: Props) {
             {/* Export Buttons */}
             <div className="flex items-center gap-2 print:hidden">
               <button
-                onClick={handleExportPDF}
+                onClick={isPro ? handleExportPDF : () => onUpgradeNeeded?.('export')}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors"
-                title="Export to PDF (Print)"
+                title={isPro ? 'Export to PDF (Print)' : 'Pro feature - Upgrade to export'}
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                Export PDF
+                Export PDF{!isPro ? ' (Pro)' : ''}
               </button>
               <button
-                onClick={() => setShowEmailModal(true)}
+                onClick={isPro ? () => setShowEmailModal(true) : () => onUpgradeNeeded?.('export')}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-brand-300 text-brand-700 bg-brand-50 hover:bg-brand-100 transition-colors"
-                title="Email Report"
+                title={isPro ? 'Email Report' : 'Pro feature - Upgrade to email'}
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                Email Report
+                Email{!isPro ? ' (Pro)' : ' Report'}
               </button>
             </div>
           </div>

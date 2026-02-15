@@ -5,8 +5,14 @@ import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+
+// Import DB first (creates tables on startup)
+import './db.js';
+
 import { auditRouter } from './routes/audit.js';
 import { reportRouter } from './routes/report.js';
+import { authRouter } from './routes/auth.js';
+import { stripeRouter } from './routes/stripe.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -15,19 +21,34 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
+
+// Stripe webhook needs raw body for signature verification - must come before json parser
+app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
+
+// JSON parser for everything else
 app.use(express.json({ limit: '5mb' }));
 
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 60 * 1000,
-  max: 10,
-  message: { error: 'Too many audit requests, please try again in a minute.' },
+  max: 30,
+  message: { error: 'Too many requests, please try again in a minute.' },
 });
 app.use('/api/', limiter);
 
+// Stricter rate limit on auth endpoints
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  message: { error: 'Too many login attempts. Please try again later.' },
+});
+app.use('/api/auth/', authLimiter);
+
 // API routes
+app.use('/api', authRouter);
 app.use('/api', auditRouter);
 app.use('/api', reportRouter);
+app.use('/api', stripeRouter);
 
 // Health check
 app.get('/api/health', (_req, res) => {
