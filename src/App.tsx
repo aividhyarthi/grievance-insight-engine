@@ -1,38 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { AuditReport } from '../shared/types';
-import { useAuth, isPro } from './contexts/AuthContext';
+import { useAuth } from './contexts/AuthContext';
 import { Header } from './components/Header';
 import { AuditForm } from './components/AuditForm';
 import { ReportDashboard } from './components/ReportDashboard';
+import { ComparisonView } from './components/ComparisonView';
 import { Footer } from './components/Footer';
 import { AuthPage } from './components/AuthPage';
 import { DashboardPage } from './components/DashboardPage';
-import { UpgradePrompt } from './components/UpgradePrompt';
 
 type Page = 'audit' | 'dashboard';
 
 export default function App() {
-  const { user, token, refreshUser } = useAuth();
+  const { user, token } = useAuth();
   const [page, setPage] = useState<Page>('audit');
   const [report, setReport] = useState<AuditReport | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showAuth, setShowAuth] = useState(false);
-  const [upgradeReason, setUpgradeReason] = useState<'limit' | 'export' | null>(null);
 
-  // Check for Stripe redirect params
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('upgraded') === 'true') {
-      window.history.replaceState({}, '', '/');
-      refreshUser();
-    }
-    if (params.get('cancelled') === 'true') {
-      window.history.replaceState({}, '', '/');
-    }
-  }, [refreshUser]);
-
-  const handleAudit = async (url: string) => {
+  const handleAudit = async (url: string, competitors: string[]) => {
     setLoading(true);
     setError(null);
     setReport(null);
@@ -41,19 +28,18 @@ export default function App() {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (token) headers.Authorization = `Bearer ${token}`;
 
+      const body: Record<string, unknown> = { url };
+      if (competitors.length > 0) body.competitors = competitors;
+
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers,
-        body: JSON.stringify({ url }),
+        body: JSON.stringify(body),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        if (data.limitReached) {
-          setUpgradeReason('limit');
-          return;
-        }
         throw new Error(data.details || data.error || 'Audit failed');
       }
 
@@ -69,6 +55,8 @@ export default function App() {
     setReport(historyReport);
     setPage('audit');
   };
+
+  const hasCompetitors = report?.competitors && report.competitors.length > 0;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -87,14 +75,6 @@ export default function App() {
           <>
             <AuditForm onSubmit={handleAudit} loading={loading} />
 
-            {user && !isPro(user) && (
-              <div className="mt-4 text-center">
-                <span className="text-xs text-gray-400">
-                  Free plan: 3 audits/day
-                </span>
-              </div>
-            )}
-
             {error && (
               <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
                 <div className="flex items-start">
@@ -110,7 +90,7 @@ export default function App() {
             {loading && (
               <div className="mt-12 flex flex-col items-center">
                 <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-200 border-t-brand-600"></div>
-                <p className="mt-4 text-gray-600 text-lg">Analyzing website...</p>
+                <p className="mt-4 text-gray-600 text-lg">Analyzing website{hasCompetitors ? 's' : ''}...</p>
                 <p className="mt-1 text-gray-400 text-sm">
                   Checking AI bot access, content quality, structured data, and more
                 </p>
@@ -118,16 +98,12 @@ export default function App() {
             )}
 
             {report && !loading && (
-              <ReportDashboard
-                report={report}
-                onUpgradeNeeded={(reason) => {
-                  if (!user) {
-                    setShowAuth(true);
-                  } else {
-                    setUpgradeReason(reason);
-                  }
-                }}
-              />
+              <>
+                {hasCompetitors && (
+                  <ComparisonView report={report} />
+                )}
+                <ReportDashboard report={report} />
+              </>
             )}
           </>
         )}
@@ -135,14 +111,6 @@ export default function App() {
       <Footer />
 
       {showAuth && <AuthPage onClose={() => setShowAuth(false)} />}
-
-      {upgradeReason && (
-        <UpgradePrompt
-          reason={upgradeReason}
-          onClose={() => setUpgradeReason(null)}
-          onLogin={() => { setUpgradeReason(null); setShowAuth(true); }}
-        />
-      )}
     </div>
   );
 }

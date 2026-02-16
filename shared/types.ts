@@ -60,6 +60,7 @@ export interface AuditReport {
     failures: number;
     infos: number;
   };
+  competitors?: AuditReport[];
 }
 
 export interface BotInfo {

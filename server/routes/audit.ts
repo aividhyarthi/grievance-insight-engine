@@ -7,16 +7,17 @@ import { queries } from '../db.js';
 
 export const auditRouter = Router();
 
-const FREE_DAILY_LIMIT = 3;
+const urlSchema = z
+  .string()
+  .url('Please enter a valid URL')
+  .refine(
+    (url) => url.startsWith('http://') || url.startsWith('https://'),
+    'URL must start with http:// or https://'
+  );
 
 const AuditSchema = z.object({
-  url: z
-    .string()
-    .url('Please enter a valid URL')
-    .refine(
-      (url) => url.startsWith('http://') || url.startsWith('https://'),
-      'URL must start with http:// or https://'
-    ),
+  url: urlSchema,
+  competitors: z.array(urlSchema).max(2).optional(),
 });
 
 function getTodayDate(): string {
@@ -37,30 +38,13 @@ auditRouter.post('/audit', optionalAuth, async (req: AuthRequest, res: Response)
     const userId = req.user?.userId;
     const today = getTodayDate();
 
-    // Check usage limits for logged-in users
-    if (userId) {
-      const user = queries.getUserById.get(userId) as Record<string, unknown> | undefined;
-      const plan = (user?.plan as string) || 'free';
+    // Run audits: main site + competitors (in parallel)
+    const competitorUrls = (parsed.data.competitors || []).filter(Boolean);
+    const allUrls = [parsed.data.url, ...competitorUrls];
 
-      if (plan !== 'pro' && plan !== 'admin') {
-        const usage = queries.getUsageToday.get(userId, today) as { count: number } | undefined;
-        const usedToday = usage?.count || 0;
-
-        if (usedToday >= FREE_DAILY_LIMIT) {
-          res.status(429).json({
-            error: 'Daily limit reached',
-            details: `Free plan allows ${FREE_DAILY_LIMIT} audits per day. Upgrade to Pro for unlimited audits.`,
-            limitReached: true,
-            used: usedToday,
-            limit: FREE_DAILY_LIMIT,
-          });
-          return;
-        }
-      }
-    }
-
-    // Run the audit
-    const report = await runAudit(parsed.data.url);
+    const reports = await Promise.all(allUrls.map((u) => runAudit(u)));
+    const mainReport = reports[0];
+    const competitorReports = reports.slice(1);
 
     // Track usage and save audit for logged-in users
     if (userId) {
@@ -71,30 +55,24 @@ auditRouter.post('/audit', optionalAuth, async (req: AuthRequest, res: Response)
         auditId,
         userId,
         parsed.data.url,
-        report.overallScore,
-        report.grade,
-        JSON.stringify(report)
+        mainReport.overallScore,
+        mainReport.grade,
+        JSON.stringify({ ...mainReport, competitors: competitorReports })
       );
 
-      // Attach audit ID and usage info to response
-      const user = queries.getUserById.get(userId) as Record<string, unknown> | undefined;
-      const plan = (user?.plan as string) || 'free';
-      const usage = queries.getUsageToday.get(userId, today) as { count: number } | undefined;
-
       res.json({
-        ...report,
+        ...mainReport,
+        competitors: competitorReports,
         _auditId: auditId,
-        _usage: (plan === 'pro' || plan === 'admin') ? { plan } : {
-          used: usage?.count || 0,
-          limit: FREE_DAILY_LIMIT,
-          plan,
-        },
       });
       return;
     }
 
-    // Anonymous user - just return the report (no saving)
-    res.json(report);
+    // Anonymous user - just return the reports
+    res.json({
+      ...mainReport,
+      competitors: competitorReports,
+    });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Audit failed';
     console.error('Audit error:', message);
