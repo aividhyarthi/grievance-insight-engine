@@ -29,7 +29,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'Your brand name appears in the title tag. This strengthens brand association in AI citations.',
       severity: 'pass',
-      category: 'html',
+      category: 'branding',
     });
   } else {
     findings.push({
@@ -38,7 +38,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'Your brand name does not appear in the page title. AI engines use the title for attribution.',
       severity: 'warning',
-      category: 'html',
+      category: 'branding',
       recommendation: 'Include your brand name in the page title for stronger AI attribution.',
     });
   }
@@ -64,7 +64,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'A link to an "About" page was found. About pages are key E-E-A-T signals for AI engines to verify your authority.',
       severity: 'pass',
-      category: 'html',
+      category: 'branding',
     });
   } else {
     findings.push({
@@ -73,7 +73,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'No link to an About/About Us page found. About pages establish brand authority and E-E-A-T trust signals.',
       severity: 'warning',
-      category: 'html',
+      category: 'branding',
       recommendation: 'Add a visible link to your About Us page.',
     });
   }
@@ -101,7 +101,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'Contact page link, email, or phone number found. This signals legitimacy and trustworthiness to AI engines.',
       severity: 'pass',
-      category: 'html',
+      category: 'branding',
     });
   } else {
     findings.push({
@@ -110,7 +110,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'No contact page link, email, or phone number found. Contact info is an E-E-A-T trust signal.',
       severity: 'warning',
-      category: 'html',
+      category: 'branding',
       recommendation: 'Add visible contact information or a link to a Contact page.',
     });
   }
@@ -127,7 +127,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       title: 'Author attribution found',
       description: `Author information detected${authorMeta ? `: "${authorMeta}"` : ''}. Author attribution strengthens E-E-A-T and helps AI engines credit content sources.`,
       severity: 'pass',
-      category: 'html',
+      category: 'branding',
     });
   } else {
     findings.push({
@@ -136,7 +136,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'No author meta tag, byline, or Person schema found. Author attribution is a strong E-E-A-T signal for content authority.',
       severity: 'warning',
-      category: 'html',
+      category: 'branding',
       recommendation:
         'Add author attribution via meta tag, visible byline, and/or Person schema.',
     });
@@ -168,7 +168,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       title: `${foundSocials.length} social profiles linked`,
       description: `Social media profiles found: ${foundSocials.join(', ')}. Multiple social profiles strengthen brand identity in AI knowledge graphs.`,
       severity: 'pass',
-      category: 'html',
+      category: 'branding',
       details: { profiles: foundSocials },
     });
   } else if (foundSocials.length === 1) {
@@ -178,7 +178,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'Only one social media profile is linked. Multiple profiles help AI engines build a comprehensive brand entity.',
       severity: 'info',
-      category: 'html',
+      category: 'branding',
       recommendation: 'Link to more social media profiles (LinkedIn, Twitter, YouTube, etc.).',
     });
   } else {
@@ -188,7 +188,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'No social media profile links found. Social profiles help AI engines verify brand identity and build your entity graph.',
       severity: 'warning',
-      category: 'html',
+      category: 'branding',
       recommendation: 'Add links to your official social media profiles.',
     });
   }
@@ -213,7 +213,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'Multiple trust and authority signals found in the content. These strengthen E-E-A-T for AI engines.',
       severity: 'pass',
-      category: 'html',
+      category: 'branding',
       details: { count: trustSignals.length },
     });
   } else if (trustSignals.length === 1) {
@@ -223,7 +223,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       description:
         'Some trust/authority signals found, but more would strengthen your E-E-A-T profile.',
       severity: 'info',
-      category: 'html',
+      category: 'branding',
     });
   }
 
@@ -243,7 +243,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       title: 'Privacy & Terms pages linked',
       description: 'Links to Privacy Policy and Terms pages found. These are trust signals for AI engines.',
       severity: 'pass',
-      category: 'html',
+      category: 'branding',
     });
   } else if (hasPrivacy || hasTerms) {
     findings.push({
@@ -251,7 +251,7 @@ export function analyzeBranding(ctx: AnalysisContext): Finding[] {
       title: `Missing ${!hasPrivacy ? 'Privacy Policy' : 'Terms of Service'}`,
       description: 'One of the key legal pages is missing. Both Privacy Policy and Terms are expected trust signals.',
       severity: 'info',
-      category: 'html',
+      category: 'branding',
       recommendation: `Add a link to your ${!hasPrivacy ? 'Privacy Policy' : 'Terms of Service'} page.`,
     });
   }

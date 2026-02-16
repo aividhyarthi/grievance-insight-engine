@@ -245,11 +245,11 @@ export function analyzeContent(ctx: AnalysisContext): Finding[] {
 
   if (boilerplatePct <= 30) {
     findings.push({
-      id: 'content-boilerplate-low',
+      id: 'boilerplate-low',
       title: `Low boilerplate: ${boilerplatePct}% of page is chrome`,
       description: `Only ${boilerplatePct}% of the page text is boilerplate (navigation, headers, footers, sidebars). ${100 - boilerplatePct}% is unique content. AI bots get mostly useful content.`,
       severity: 'pass',
-      category: 'content',
+      category: 'boilerplate',
       details: {
         boilerplatePercent: boilerplatePct,
         uniqueContentPercent: 100 - boilerplatePct,
@@ -260,11 +260,11 @@ export function analyzeContent(ctx: AnalysisContext): Finding[] {
     });
   } else if (boilerplatePct <= 60) {
     findings.push({
-      id: 'content-boilerplate-moderate',
+      id: 'boilerplate-moderate',
       title: `Moderate boilerplate: ${boilerplatePct}% of page is chrome`,
       description: `${boilerplatePct}% of visible text is boilerplate content (nav, footer, sidebar, etc.). Only ${100 - boilerplatePct}% is unique content. AI bots may extract repetitive elements instead of your key content.`,
       severity: 'warning',
-      category: 'content',
+      category: 'boilerplate',
       details: {
         boilerplatePercent: boilerplatePct,
         uniqueContentPercent: 100 - boilerplatePct,
@@ -275,11 +275,11 @@ export function analyzeContent(ctx: AnalysisContext): Finding[] {
     });
   } else {
     findings.push({
-      id: 'content-boilerplate-high',
+      id: 'boilerplate-high',
       title: `High boilerplate: ${boilerplatePct}% of page is chrome`,
       description: `${boilerplatePct}% of the page text is boilerplate (navigation, footers, sidebars, cookie banners). Only ${100 - boilerplatePct}% is actual unique content. AI bots see mostly repeated page chrome instead of useful content.`,
       severity: 'fail',
-      category: 'content',
+      category: 'boilerplate',
       details: {
         boilerplatePercent: boilerplatePct,
         uniqueContentPercent: 100 - boilerplatePct,
@@ -296,11 +296,11 @@ export function analyzeContent(ctx: AnalysisContext): Finding[] {
 
     if (aiSignals.score >= 70) {
       findings.push({
-        id: 'content-likely-ai',
+        id: 'ai-content-likely-ai',
         title: `Content appears AI-generated (${aiSignals.score}% confidence)`,
         description: `Multiple heuristic signals suggest this content may be AI-generated: ${aiSignals.signals.join(', ')}. AI engines may deprioritize content they detect as AI-written, preferring original human expertise.`,
         severity: 'warning',
-        category: 'content',
+        category: 'ai-content',
         details: {
           aiScore: aiSignals.score,
           signals: aiSignals.signals,
@@ -310,11 +310,11 @@ export function analyzeContent(ctx: AnalysisContext): Finding[] {
       });
     } else if (aiSignals.score >= 40) {
       findings.push({
-        id: 'content-mixed-ai',
+        id: 'ai-content-mixed',
         title: `Content has some AI-like patterns (${aiSignals.score}% confidence)`,
         description: `Some patterns common in AI-generated content were detected: ${aiSignals.signals.join(', ')}. This could be AI-assisted or just formal writing style.`,
         severity: 'info',
-        category: 'content',
+        category: 'ai-content',
         details: {
           aiScore: aiSignals.score,
           signals: aiSignals.signals,
@@ -322,11 +322,11 @@ export function analyzeContent(ctx: AnalysisContext): Finding[] {
       });
     } else {
       findings.push({
-        id: 'content-likely-human',
+        id: 'ai-content-likely-human',
         title: `Content appears human-written (${100 - aiSignals.score}% confidence)`,
         description: 'The content does not exhibit strong patterns typically associated with AI-generated text. This is positive for E-E-A-T signals.',
         severity: 'pass',
-        category: 'content',
+        category: 'ai-content',
         details: {
           aiScore: aiSignals.score,
           humanScore: 100 - aiSignals.score,

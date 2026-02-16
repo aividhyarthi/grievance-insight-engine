@@ -85,7 +85,7 @@ function SeverityIcon({ severity }: { severity: Severity }) {
 export function CategoryDetail({ category, excludeBotFindings }: Props) {
   let findings = category.findings;
 
-  // For HTML category, exclude individual bot findings (shown in bot access table)
+  // For bot-access category, exclude individual bot findings (shown in table)
   if (excludeBotFindings) {
     findings = findings.filter(
       (f) => !f.id.startsWith('bot-') || f.id === 'robots-all-blocked' || f.id === 'robots-partial-block'

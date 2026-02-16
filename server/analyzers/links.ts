@@ -40,7 +40,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'Good internal linking helps AI bots discover and understand the relationships between your pages.',
       severity: 'pass',
-      category: 'html',
+      category: 'links',
       details: { count: internalLinks.length },
     });
   } else if (internalLinks.length > 0) {
@@ -50,7 +50,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'Limited internal linking. More internal links help AI bots crawl your site and understand topic clusters.',
       severity: 'warning',
-      category: 'html',
+      category: 'links',
       recommendation:
         'Add more internal links to related pages to improve discoverability.',
     });
@@ -61,7 +61,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'No internal links found. This is an isolated page that AI bots cannot use to discover other content on your site.',
       severity: 'fail',
-      category: 'html',
+      category: 'links',
       recommendation: 'Add internal links to your important pages.',
     });
   }
@@ -74,7 +74,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'External links serve as citations and references, signaling content authority to AI engines. Linking to authoritative sources strengthens E-E-A-T.',
       severity: 'pass',
-      category: 'html',
+      category: 'links',
       details: { count: externalLinks.length },
     });
   } else {
@@ -84,7 +84,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'No external links/citations found. Linking to authoritative external sources demonstrates expertise and improves E-E-A-T.',
       severity: 'info',
-      category: 'html',
+      category: 'links',
       recommendation:
         'Consider citing authoritative sources with external links to strengthen your content credibility.',
     });
@@ -103,7 +103,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'Breadcrumb navigation helps AI bots understand page hierarchy and site structure.',
       severity: 'pass',
-      category: 'html',
+      category: 'links',
     });
   } else {
     findings.push({
@@ -112,7 +112,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'No breadcrumb navigation detected. Breadcrumbs help AI engines understand page position within your site.',
       severity: 'info',
-      category: 'html',
+      category: 'links',
       recommendation:
         'Add breadcrumb navigation with BreadcrumbList schema markup.',
     });
@@ -129,7 +129,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'Semantic <nav> element detected. This helps AI bots understand site structure and primary navigation.',
       severity: 'pass',
-      category: 'html',
+      category: 'links',
     });
   } else {
     findings.push({
@@ -138,7 +138,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'No <nav> element or role="navigation" found. Semantic navigation helps AI bots understand your site structure.',
       severity: 'warning',
-      category: 'html',
+      category: 'links',
       recommendation: 'Wrap your main navigation in a <nav> element.',
     });
   }
@@ -159,7 +159,7 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
       description:
         'Multiple links use placeholder patterns (href="#", javascript:void). These provide no value to AI bots crawling your site.',
       severity: 'warning',
-      category: 'html',
+      category: 'links',
       recommendation:
         'Replace placeholder links with actual URLs or convert them to buttons.',
     });

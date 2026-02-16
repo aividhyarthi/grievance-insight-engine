@@ -95,7 +95,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `HTML exceeds Googlebot 2MB limit (${formatSize(htmlSizeBytes)})`,
       description: `Your page HTML is ${formatSize(htmlSizeBytes)}, exceeding Googlebot's 2MB crawl limit for Search by ${formatSize(overBy)}. Googlebot will TRUNCATE your page - content beyond 2MB will be silently dropped and NOT indexed. This can cause missing content in Google AI Overviews.`,
       severity: 'fail',
-      category: 'speed',
+      category: 'crawlability',
       recommendation: 'Reduce HTML size below 2MB. Remove inline CSS/JS, minimize DOM nodes, lazy-load below-fold content, and move data to API calls instead of embedding in HTML.',
       details: { htmlSizeBytes, limitBytes: GOOGLE_LIMITS.googlebot.html, overByBytes: overBy },
     });
@@ -107,7 +107,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `HTML approaching Googlebot 2MB limit (${formatSize(htmlSizeBytes)} - ${percentUsed}% used)`,
       description: `Your page HTML is ${formatSize(htmlSizeBytes)}, approaching Googlebot's 2MB crawl limit. If the page grows further, content may be truncated.`,
       severity: 'warning',
-      category: 'speed',
+      category: 'crawlability',
       recommendation: 'Monitor page size growth. Consider optimizing HTML to stay well under 2MB.',
       details: { htmlSizeBytes, percentUsed },
     });
@@ -117,7 +117,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `HTML size: ${formatSize(htmlSizeBytes)} (within 2MB Googlebot limit)`,
       description: `Page HTML is ${formatSize(htmlSizeBytes)}, well within Googlebot's 2MB crawl limit and the general 15MB crawler limit. AI bots can fully read your page.`,
       severity: 'pass',
-      category: 'speed',
+      category: 'crawlability',
       details: { htmlSizeBytes, googlebotLimit: GOOGLE_LIMITS.googlebot.html, generalLimit: GOOGLE_LIMITS.general.default },
     });
   }
@@ -129,7 +129,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `HTML exceeds general 15MB crawler limit`,
       description: `Your page exceeds even the general 15MB limit used by Google's broader crawling infrastructure (Gemini, Shopping, etc.). Content will be heavily truncated across all Google products.`,
       severity: 'fail',
-      category: 'speed',
+      category: 'crawlability',
       recommendation: 'Urgently reduce page size. This level of HTML bloat affects ALL crawlers.',
     });
   }
@@ -209,7 +209,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Client-side rendered (CSR) page - AI bots see almost no content`,
       description: `This page relies heavily on JavaScript for rendering. The raw HTML contains only ${bodyTextLength} characters of readable text${detectedFrameworks.length > 0 ? ` (framework: ${detectedFrameworks.join(', ')})` : ''}. AI bots like GPTBot, ClaudeBot, and PerplexityBot do NOT execute JavaScript - they see a nearly blank page.`,
       severity: 'fail',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'Switch to Server-Side Rendering (SSR) or Static Site Generation (SSG). Use Next.js, Nuxt, or implement pre-rendering so product/content data is in the raw HTML that AI bots receive.',
       details: { bodyTextLength, detectedFrameworks, totalScripts: totalScriptCount },
     });
@@ -219,7 +219,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Partially client-side rendered - limited content for AI bots`,
       description: `The page uses ${detectedFrameworks.join(', ')} and has limited text content in the raw HTML (${bodyTextLength} chars). Some content may not be visible to AI bots that don't execute JavaScript.`,
       severity: 'warning',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'Ensure critical content (product info, descriptions, prices) is server-side rendered. AI bots should see your key content without executing JS.',
       details: { bodyTextLength, detectedFrameworks },
     });
@@ -229,7 +229,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Server-side rendered: ${detectedFrameworks.join(', ')} with ${bodyTextLength} chars of content`,
       description: `The page uses ${detectedFrameworks.join(', ')} but renders content server-side. AI bots can see ${bodyTextLength} characters of readable text in the raw HTML.`,
       severity: 'pass',
-      category: 'js',
+      category: 'crawlability',
       details: { bodyTextLength, detectedFrameworks },
     });
   }
@@ -246,7 +246,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
     title: scriptSummaryParts.join(' | '),
     description: `The page loads ${externalScriptCount} external JavaScript files and ${inlineScriptCount} inline scripts${detectedFrameworks.length > 0 ? ` (${detectedFrameworks.join(', ')})` : ''}. Most AI bots (GPTBot, ClaudeBot, PerplexityBot) do NOT execute JavaScript - they only see raw HTML content. Only Googlebot's Web Rendering Service (WRS) executes JS.`,
     severity: totalScriptCount > 30 ? 'warning' : 'info',
-    category: 'js',
+    category: 'crawlability',
     details: {
       externalScripts: externalScriptCount,
       inlineScripts: inlineScriptCount,
@@ -267,7 +267,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `${renderBlockingScripts} render-blocking script(s) in <head>`,
       description: `${renderBlockingScripts} JavaScript file(s) in <head> without async/defer attributes block page rendering. Even Googlebot's Web Rendering Service must wait for these before seeing content.`,
       severity: 'warning',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'Add async or defer attributes to scripts in <head>, or move them to end of <body>.',
       details: { renderBlockingScripts },
     });
@@ -277,7 +277,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: 'No render-blocking scripts detected',
       description: 'All external scripts use async/defer or are placed in <body>. This is optimal for AI bot crawling speed.',
       severity: 'pass',
-      category: 'js',
+      category: 'crawlability',
     });
   }
 
@@ -288,7 +288,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Large inline JavaScript: ${formatSize(totalInlineJsSize)}`,
       description: `${formatSize(totalInlineJsSize)} of inline JavaScript is embedded in the HTML. This eats into your 2MB Googlebot crawl budget without adding readable content for AI bots.`,
       severity: 'warning',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'Move inline JavaScript to external files so it doesn\'t count against the HTML size limit.',
       details: { inlineJsSize: totalInlineJsSize },
     });
@@ -309,7 +309,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Large inline CSS: ${formatSize(totalInlineCssSize)}`,
       description: `${formatSize(totalInlineCssSize)} of inline CSS is embedded in the HTML, consuming your crawl size budget. Move styles to external CSS files.`,
       severity: 'warning',
-      category: 'speed',
+      category: 'crawlability',
       recommendation: 'Extract inline CSS to external stylesheet files.',
       details: { inlineCssSize: totalInlineCssSize },
     });
@@ -325,7 +325,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Very low content-to-code ratio: ${contentRatio}%`,
       description: `Only ${contentRatio}% of your HTML is actual readable content (${formatSize(contentBytes)} of ${formatSize(totalSize)}). The rest is code (JS, CSS, markup). AI bots see mostly code instead of content.`,
       severity: 'fail',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'Increase the proportion of actual content in your HTML. Move inline JS/CSS to external files and reduce unnecessary markup. For CSR apps, switch to SSR.',
       details: { contentRatio, contentBytes, totalHtmlBytes: totalSize },
     });
@@ -335,7 +335,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Low content-to-code ratio: ${contentRatio}%`,
       description: `${contentRatio}% of your HTML is readable content. A higher ratio means AI bots get more useful content per crawl.`,
       severity: 'warning',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'Optimize HTML by moving inline scripts/styles to external files.',
       details: { contentRatio },
     });
@@ -345,7 +345,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Good content-to-code ratio: ${contentRatio}%`,
       description: `${contentRatio}% of your HTML is readable content, giving AI bots efficient access to your content.`,
       severity: 'pass',
-      category: 'js',
+      category: 'crawlability',
       details: { contentRatio },
     });
   }
@@ -358,7 +358,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `AI bots see only ${wordCount} words on this page`,
       description: `Without executing JavaScript, AI bots (GPTBot, ClaudeBot, PerplexityBot) can only read ${wordCount} words from the raw HTML. This is extremely low and means your content is essentially invisible to AI answer engines. The page likely uses client-side rendering (CSR).`,
       severity: 'fail',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'Implement Server-Side Rendering (SSR) so product names, descriptions, prices, and key content are in the initial HTML response.',
       details: { wordCount, bodyTextLength },
     });
@@ -368,7 +368,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `AI bots see only ${wordCount} words (limited content)`,
       description: `AI bots can read ${wordCount} words from the raw HTML. This is relatively low - much of your content may be loaded via JavaScript and invisible to AI bots.`,
       severity: 'warning',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'Ensure critical content is server-side rendered. Check if product details, descriptions, and key information appear in the HTML source (View Source, not Inspect Element).',
       details: { wordCount, bodyTextLength },
     });
@@ -378,7 +378,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `AI bots can read ${wordCount} words from raw HTML`,
       description: `AI bots can extract ${wordCount} words from the raw HTML without JavaScript. This is a good amount of readable content.`,
       severity: 'pass',
-      category: 'js',
+      category: 'crawlability',
       details: { wordCount, bodyTextLength },
     });
   }
@@ -392,7 +392,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Excellent bot response time: ${responseTime}ms`,
       description: `Server responds in ${responseTime}ms. AI bots like GPTBot and ClaudeBot have strict timeout limits (typically 5-10 seconds). Your fast response ensures complete crawling.`,
       severity: 'pass',
-      category: 'speed',
+      category: 'crawlability',
       details: { responseTime },
     });
   } else if (responseTime <= 2000) {
@@ -401,7 +401,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Acceptable bot response time: ${responseTime}ms`,
       description: `Server responds in ${responseTime}ms. While within limits, faster responses improve crawl efficiency and allow AI bots to crawl more of your pages.`,
       severity: 'pass',
-      category: 'speed',
+      category: 'crawlability',
       details: { responseTime },
     });
   } else if (responseTime <= 5000) {
@@ -410,7 +410,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Slow response for AI bots: ${responseTime}ms`,
       description: `Server takes ${responseTime}ms to respond. AI bots may reduce crawl frequency for slow sites, meaning less of your content gets indexed.`,
       severity: 'warning',
-      category: 'speed',
+      category: 'crawlability',
       recommendation: 'Optimize server response time. Use caching, CDN, database optimization, or server-side rendering pre-caching.',
       details: { responseTime },
     });
@@ -420,7 +420,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Critical: Very slow response (${responseTime}ms)`,
       description: `Server takes ${(responseTime / 1000).toFixed(1)} seconds to respond. AI bots are likely timing out or abandoning crawls of your pages entirely.`,
       severity: 'fail',
-      category: 'speed',
+      category: 'crawlability',
       recommendation: 'Urgently improve server response time. AI bots typically timeout after 5-10 seconds. Consider CDN, caching, server upgrades, or pre-rendering.',
       details: { responseTime },
     });
@@ -434,7 +434,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `Compression enabled: ${contentEncoding}`,
       description: `Response is compressed using ${contentEncoding}. This reduces transfer time for AI bots crawling your page. Note: Google's size limits apply to UNCOMPRESSED data.`,
       severity: 'pass',
-      category: 'speed',
+      category: 'crawlability',
       details: { encoding: contentEncoding },
     });
   } else {
@@ -443,7 +443,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: 'No response compression detected',
       description: 'The server response does not appear to use gzip or Brotli compression. Compression reduces download time for AI bots without affecting content.',
       severity: 'warning',
-      category: 'speed',
+      category: 'crawlability',
       recommendation: 'Enable gzip or Brotli compression on your server to speed up AI bot crawling.',
     });
   }
@@ -461,7 +461,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
         title: 'Cache headers configured',
         description: 'Proper caching headers are set. This allows AI bots to use conditional requests (If-Modified-Since, ETag) to avoid re-downloading unchanged pages.',
         severity: 'pass',
-        category: 'speed',
+        category: 'crawlability',
       });
     } else {
       findings.push({
@@ -469,7 +469,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
         title: 'Partial caching headers',
         description: 'Some caching headers exist but without meaningful max-age. Proper caching reduces AI bot crawl overhead.',
         severity: 'info',
-        category: 'speed',
+        category: 'crawlability',
       });
     }
   } else {
@@ -478,7 +478,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: 'No caching headers',
       description: 'No Cache-Control, ETag, or Last-Modified headers detected. AI bots must re-download the full page on every crawl.',
       severity: 'info',
-      category: 'speed',
+      category: 'crawlability',
       recommendation: 'Add appropriate Cache-Control and ETag headers to optimize AI bot crawl efficiency.',
     });
   }
@@ -496,7 +496,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `${totalHints} resource hint(s) found`,
       description: `Page uses ${preconnects} preconnect, ${preloads} preload, ${prefetches} prefetch, ${dnsPrefetches} dns-prefetch hints. While AI bots don't use these, they indicate performance-conscious development.`,
       severity: 'info',
-      category: 'speed',
+      category: 'crawlability',
       details: { preconnects, prefetches, preloads, dnsPrefetches },
     });
   }
@@ -513,7 +513,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
         title: `${lazyImages} of ${totalImages} images use lazy loading`,
         description: `${lazyImages} images use native lazy loading. This reduces initial HTML payload size, helping stay within crawl size limits. AI bots typically see the img tags but may not load the actual images.`,
         severity: 'pass',
-        category: 'speed',
+        category: 'crawlability',
         details: { lazyImages, totalImages, eagerImages },
       });
     }
@@ -527,7 +527,7 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
       title: `${iframes} iframe(s) detected`,
       description: `Page contains ${iframes} iframe(s). Content inside iframes is NOT visible to most AI bots - they cannot crawl across iframe boundaries.`,
       severity: 'warning',
-      category: 'js',
+      category: 'crawlability',
       recommendation: 'If important content is in iframes, consider embedding it directly in the page HTML instead.',
       details: { iframes },
     });

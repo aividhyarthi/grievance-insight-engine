@@ -27,7 +27,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
     title: `${headings.length} heading(s) found`,
     description: `The page contains ${headings.length} heading element(s).`,
     severity: 'info',
-    category: 'html',
+    category: 'headings',
     details: { headings },
   });
 
@@ -38,7 +38,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
       description:
         'The page has no heading elements (H1-H6). Headings are essential for AI bots to understand content structure and hierarchy.',
       severity: 'fail',
-      category: 'html',
+      category: 'headings',
       recommendation:
         'Add a clear heading structure with H1 for the main topic, H2 for sections, and H3 for sub-sections.',
     });
@@ -54,7 +54,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
       description:
         'The page is missing an H1 heading. The H1 is the primary signal for AI bots to understand the main topic of the page.',
       severity: 'fail',
-      category: 'html',
+      category: 'headings',
       recommendation: 'Add exactly one H1 heading that clearly describes the page topic.',
     });
   } else if (h1s.length === 1) {
@@ -63,7 +63,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
       title: `H1: "${h1s[0].text.substring(0, 60)}"`,
       description: 'Single H1 heading found, which is the correct structure.',
       severity: 'pass',
-      category: 'html',
+      category: 'headings',
     });
 
     // Check H1 length
@@ -73,7 +73,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
         title: 'H1 is very short',
         description: `The H1 heading "${h1s[0].text}" is very short. A descriptive H1 helps AI engines understand your page topic.`,
         severity: 'warning',
-        category: 'html',
+        category: 'headings',
         recommendation: 'Use a more descriptive H1 heading that summarizes the page content.',
       });
     } else if (h1s[0].text.length > 100) {
@@ -82,7 +82,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
         title: 'H1 is very long',
         description: `The H1 heading is ${h1s[0].text.length} characters. Keep H1s concise for clarity.`,
         severity: 'warning',
-        category: 'html',
+        category: 'headings',
         recommendation: 'Shorten the H1 to under 70 characters for maximum clarity.',
       });
     }
@@ -92,7 +92,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
       title: `${h1s.length} H1 headings found`,
       description: `Multiple H1 headings detected. This can confuse AI bots about the primary topic: "${h1s.map((h) => h.text.substring(0, 40)).join('", "')}"`,
       severity: 'warning',
-      category: 'html',
+      category: 'headings',
       recommendation: 'Use only one H1 per page and convert others to H2s.',
     });
   }
@@ -109,7 +109,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
         title: `Heading level skipped: H${prev} → H${curr}`,
         description: `"${headings[i - 1].text.substring(0, 40)}" (H${prev}) is followed by "${headings[i].text.substring(0, 40)}" (H${curr}). Heading levels should not skip (e.g., H2 should come before H3).`,
         severity: 'warning',
-        category: 'html',
+        category: 'headings',
       });
       break; // Only report first skip
     }
@@ -122,7 +122,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
       description:
         'Headings follow a proper hierarchical structure without skipping levels. AI bots can clearly understand the content organization.',
       severity: 'pass',
-      category: 'html',
+      category: 'headings',
     });
   }
 
@@ -135,7 +135,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
       description:
         'No H2 headings found. H2s are important for defining major content sections that AI bots can parse.',
       severity: 'warning',
-      category: 'html',
+      category: 'headings',
       recommendation: 'Add H2 headings to divide content into clear sections.',
     });
   } else if (h2s.length >= 2) {
@@ -144,7 +144,7 @@ export function analyzeHeadings(ctx: AnalysisContext): Finding[] {
       title: `${h2s.length} content sections (H2s)`,
       description: `The page has ${h2s.length} H2 section headings, providing good content organization for AI parsing.`,
       severity: 'pass',
-      category: 'html',
+      category: 'headings',
     });
   }
 

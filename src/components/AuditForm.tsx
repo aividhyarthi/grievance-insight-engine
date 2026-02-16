@@ -144,21 +144,20 @@ export function AuditForm({ onSubmit, loading }: Props) {
 
       <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-gray-500">
         {[
+          'AI Bot Access',
           'Content Quality',
-          'Boilerplate Detection',
-          'AI vs Human Content',
-          'HTML Markup',
-          'Bot Access',
           'Schema Markup',
-          'JavaScript Rendering',
-          'Speed & Performance',
+          'Technical SEO',
+          'Meta Tags & OG',
+          'E-E-A-T Signals',
+          'Heading Structure',
+          'Link Profile',
+          'Crawlability',
+          'Boilerplate Detection',
+          'AI Content Check',
           'E-Commerce AEO',
           'Publisher AEO',
-          'Real Estate',
-          'Medical YMYL',
-          'EdTech',
-          'Automotive',
-          'Reviews',
+          'Industry Verticals',
         ].map((tag) => (
           <span
             key={tag}

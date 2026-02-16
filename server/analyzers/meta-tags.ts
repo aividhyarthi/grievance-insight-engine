@@ -14,7 +14,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'The page has no <title> tag. Title is one of the most important signals for AI engines to understand page topic.',
       severity: 'fail',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Add a descriptive <title> tag of 50-60 characters.',
     });
   } else if (title.length < 20) {
@@ -23,7 +23,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: `Title too short (${title.length} chars)`,
       description: `Title "${title}" is very short. A descriptive title helps AI engines understand and cite your page.`,
       severity: 'warning',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Expand the title to 50-60 characters with descriptive keywords.',
     });
   } else if (title.length > 70) {
@@ -32,7 +32,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: `Title too long (${title.length} chars)`,
       description: `Title is ${title.length} characters. It may be truncated in search results and AI citations.`,
       severity: 'warning',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Shorten the title to 50-60 characters.',
     });
   } else {
@@ -41,7 +41,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: `Title tag: "${title.substring(0, 50)}${title.length > 50 ? '...' : ''}"`,
       description: `Title length (${title.length} chars) is within the optimal range.`,
       severity: 'pass',
-      category: 'html',
+      category: 'meta-tags',
     });
   }
 
@@ -54,7 +54,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'No meta description found. AI engines use meta descriptions to understand page content and may display it as a snippet.',
       severity: 'fail',
-      category: 'html',
+      category: 'meta-tags',
       recommendation:
         'Add a meta description of 150-160 characters that summarizes the page content.',
     });
@@ -65,7 +65,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'Meta description is shorter than recommended. It may not fully convey the page purpose to AI engines.',
       severity: 'warning',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Expand the meta description to 150-160 characters.',
     });
   } else if (desc.length > 170) {
@@ -74,7 +74,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: `Meta description too long (${desc.length} chars)`,
       description: 'Meta description may be truncated by search engines and AI interfaces.',
       severity: 'warning',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Shorten the meta description to 150-160 characters.',
     });
   } else {
@@ -83,7 +83,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: 'Meta description is well-formatted',
       description: `Description length (${desc.length} chars) is optimal.`,
       severity: 'pass',
-      category: 'html',
+      category: 'meta-tags',
     });
   }
 
@@ -95,7 +95,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: 'Canonical URL set',
       description: `Canonical URL points to: ${canonical}`,
       severity: 'pass',
-      category: 'html',
+      category: 'meta-tags',
     });
   } else {
     findings.push({
@@ -104,7 +104,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'No canonical URL is set. This can cause duplicate content issues that confuse AI engines.',
       severity: 'warning',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Add a <link rel="canonical"> tag to specify the preferred URL.',
     });
   }
@@ -123,7 +123,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: 'OpenGraph tags are complete',
       description: `Found ${ogPresent.length}/5 essential OG tags. These help AI engines and social platforms understand your content for citations.`,
       severity: 'pass',
-      category: 'html',
+      category: 'meta-tags',
       details: { ogTitle, ogDesc, ogImage: ogImage ? 'present' : null, ogType, ogUrl },
     });
   } else if (ogPresent.length > 0) {
@@ -139,7 +139,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: `Incomplete OpenGraph (${ogPresent.length}/5)`,
       description: `Missing OG tags: ${missing.join(', ')}. Complete OG tags improve how AI engines cite and display your content.`,
       severity: 'warning',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: `Add the missing OpenGraph tags: ${missing.join(', ')}`,
       details: { missing },
     });
@@ -150,7 +150,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'No OpenGraph meta tags found. OG tags help AI engines and social platforms understand and display your content correctly.',
       severity: 'fail',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Add og:title, og:description, og:image, og:type, and og:url tags.',
     });
   }
@@ -164,7 +164,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: `Twitter Card: ${twitterCard}`,
       description: 'Twitter Card meta tags are present for social sharing.',
       severity: 'pass',
-      category: 'html',
+      category: 'meta-tags',
     });
   } else {
     findings.push({
@@ -173,7 +173,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'No Twitter Card tags found. These improve content presentation when shared on X/Twitter and may be used by AI engines.',
       severity: 'info',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Add twitter:card and twitter:title meta tags.',
     });
   }
@@ -186,7 +186,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       title: `Language: ${lang}`,
       description: `The page declares language as "${lang}", helping AI engines process content in the correct language context.`,
       severity: 'pass',
-      category: 'html',
+      category: 'meta-tags',
     });
   } else {
     findings.push({
@@ -195,7 +195,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'The <html> tag is missing a lang attribute. AI bots use this to understand the content language.',
       severity: 'warning',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Add a lang attribute to the <html> tag (e.g., lang="en").',
     });
   }
@@ -209,7 +209,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'The page has a "noindex" meta robots directive. This tells search engines AND AI bots not to index this page.',
       severity: 'fail',
-      category: 'html',
+      category: 'meta-tags',
       recommendation:
         'Remove "noindex" if you want this page to appear in search results and AI answers.',
     });
@@ -224,7 +224,7 @@ export function analyzeMetaTags(ctx: AnalysisContext): Finding[] {
       description:
         'Missing viewport meta tag. This may affect mobile usability, which is a ranking factor considered by AI engines.',
       severity: 'warning',
-      category: 'html',
+      category: 'meta-tags',
       recommendation: 'Add <meta name="viewport" content="width=device-width, initial-scale=1">',
     });
   }

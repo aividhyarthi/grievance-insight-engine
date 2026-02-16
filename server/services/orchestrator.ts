@@ -171,7 +171,11 @@ export async function runAudit(url: string): Promise<AuditReport> {
 
   // ===== Build category results =====
   // Define the display order for categories
-  const categoryOrder: CategoryId[] = ['content', 'html', 'js', 'speed', 'ecommerce', 'publisher', 'industry'];
+  const categoryOrder: CategoryId[] = [
+    'bot-access', 'content', 'schema', 'technical', 'meta-tags', 'branding',
+    'headings', 'links', 'crawlability', 'boilerplate', 'ai-content',
+    'ecommerce', 'publisher', 'industry',
+  ];
 
   const categories: CategoryResult[] = [];
 
