@@ -142,7 +142,14 @@ export default function App() {
                   </div>
                 )}
 
-                <ReportDashboard report={selectedReport!} />
+                <ReportDashboard
+                  report={selectedReport!}
+                  isComparisonMode={hasCompetitors || false}
+                  siteLabel={hasCompetitors
+                    ? (activeTab === 0 ? 'Your Site' : `Competitor: ${getHostname(allReports[activeTab]?.url || '')}`)
+                    : undefined
+                  }
+                />
               </>
             )}
           </>

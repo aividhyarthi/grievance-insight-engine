@@ -25,10 +25,10 @@ const severityConfig: Record<Severity, { bg: string; border: string; icon: strin
     label: 'Fail',
   },
   info: {
-    bg: 'bg-blue-50',
-    border: 'border-blue-200',
-    icon: 'text-blue-500',
-    label: 'Info',
+    bg: 'bg-gray-50',
+    border: 'border-gray-200',
+    icon: 'text-gray-400',
+    label: 'Tip',
   },
 };
 
@@ -105,8 +105,39 @@ export function CategoryDetail({ category, excludeBotFindings }: Props) {
 
   if (sorted.length === 0) return null;
 
+  const scoreableCount = sorted.filter((f) => f.severity !== 'info').length;
+  const infoCount = sorted.filter((f) => f.severity === 'info').length;
+  const failCount = sorted.filter((f) => f.severity === 'fail').length;
+  const warnCount = sorted.filter((f) => f.severity === 'warning').length;
+  const passCount = sorted.filter((f) => f.severity === 'pass').length;
+
   return (
     <div className="p-4 space-y-3">
+      {/* Score breakdown summary */}
+      <div className="flex flex-wrap items-center gap-3 text-xs pb-3 border-b border-gray-100">
+        <span className="font-semibold text-gray-500 uppercase tracking-wider">Score based on:</span>
+        {passCount > 0 && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-green-50 text-green-700 rounded-full font-medium">
+            {passCount} passed
+          </span>
+        )}
+        {warnCount > 0 && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-yellow-50 text-yellow-700 rounded-full font-medium">
+            {warnCount} warning{warnCount > 1 ? 's' : ''}
+          </span>
+        )}
+        {failCount > 0 && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-red-50 text-red-700 rounded-full font-medium">
+            {failCount} failed
+          </span>
+        )}
+        {infoCount > 0 && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full font-medium">
+            {infoCount} tip{infoCount > 1 ? 's' : ''} (not scored)
+          </span>
+        )}
+      </div>
+
       {sorted.map((finding) => (
         <FindingRow key={finding.id} finding={finding} />
       ))}
@@ -136,7 +167,7 @@ function FindingRow({ finding }: { finding: Finding }) {
                     ? 'bg-yellow-100 text-yellow-700'
                     : finding.severity === 'fail'
                       ? 'bg-red-100 text-red-700'
-                      : 'bg-blue-100 text-blue-700'
+                      : 'bg-gray-100 text-gray-500'
               }`}
             >
               {config.label}

@@ -8,9 +8,12 @@ import { SummaryBar } from './SummaryBar';
 
 interface Props {
   report: AuditReport;
+  /** When in comparison mode, label like "Your Site" or "Competitor" */
+  siteLabel?: string;
+  isComparisonMode?: boolean;
 }
 
-export function ReportDashboard({ report }: Props) {
+export function ReportDashboard({ report, siteLabel, isComparisonMode }: Props) {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [emailAddress, setEmailAddress] = useState('');
   const [emailSending, setEmailSending] = useState(false);
@@ -119,7 +122,18 @@ export function ReportDashboard({ report }: Props) {
   return (
     <div className="mt-10 space-y-8" ref={reportRef}>
       {/* Header with URL, timestamp, and export buttons */}
-      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+      <div className={`bg-white rounded-xl border shadow-sm p-6 ${isComparisonMode ? 'border-brand-200' : 'border-gray-200'}`}>
+        {isComparisonMode && siteLabel && (
+          <div className="mb-3 -mt-1">
+            <span className={`inline-block text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
+              siteLabel === 'Your Site'
+                ? 'bg-brand-100 text-brand-700'
+                : 'bg-gray-100 text-gray-600'
+            }`}>
+              Detailed Report — {siteLabel}
+            </span>
+          </div>
+        )}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <p className="text-sm text-gray-500">Audit Report for</p>
