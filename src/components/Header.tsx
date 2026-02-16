@@ -31,10 +31,10 @@ export function Header({ onLoginClick, onDashboardClick, onLogoClick }: Props) {
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">
-                AEO Audit Tool
+                Rudra Kasturi Inc
               </h1>
               <p className="text-xs text-gray-500">
-                Answer Engine Optimization Auditor
+                Your AEO Auditor & Insights
               </p>
             </div>
           </div>
