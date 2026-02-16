@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ai-content-compliance
+    runtime: node
+    buildCommand: npm ci && npm run build
+    startCommand: node dist/server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /data/compliance.db
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
