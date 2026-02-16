@@ -247,13 +247,92 @@ export function analyzeEcommerce(ctx: AnalysisContext): Finding[] {
   }
 
   const findings: Finding[] = [];
-  const { $ } = ctx;
+  const { $, html } = ctx;
+
+  // ===== CSR Detection for E-commerce Pages =====
+  // This is critical: schemas may be in raw HTML but actual content (descriptions,
+  // ingredients, images) may be JS-rendered and invisible to AI bots.
+  const $bodyClone = $('body').clone();
+  $bodyClone.find('script, style, noscript, svg, iframe').remove();
+  const visibleBodyText = $bodyClone.text().replace(/\s+/g, ' ').trim();
+  const visibleWordCount = visibleBodyText.split(/\s+/).filter((w: string) => w.length > 1).length;
+
+  // Detect if page uses a JS framework
+  const csrFrameworks: string[] = [];
+  if (html.includes('__NEXT_DATA__') || /_next\/static/i.test(html)) csrFrameworks.push('Next.js');
+  if (html.includes('__NUXT__') || /id="__nuxt"/i.test(html)) csrFrameworks.push('Nuxt.js');
+  if (/data-reactroot/i.test(html) || /data-react-helmet/i.test(html)) csrFrameworks.push('React');
+  if (/ng-app/i.test(html) || /ng-version/i.test(html) || /_nghost/i.test(html)) csrFrameworks.push('Angular');
+  if (/data-v-[a-f0-9]+/i.test(html)) csrFrameworks.push('Vue.js');
+  if (/__sveltekit/i.test(html)) csrFrameworks.push('SvelteKit');
+
+  const hasAppRoot = $('#root').length > 0 || $('#app').length > 0 ||
+    $('#__next').length > 0 || $('#__nuxt').length > 0 || $('#___gatsby').length > 0;
+
+  const isLikelyCSR = (hasAppRoot || csrFrameworks.length > 0) && visibleWordCount < 200;
+  const isPartialCSR = (hasAppRoot || csrFrameworks.length > 0) && visibleWordCount >= 200 && visibleWordCount < 500;
+
+  // Count product images in raw HTML
+  const rawImgCount = $('img').length;
+  const rawProductImgCount = $('img[class*="product"], img[data-product], img[itemprop="image"], [class*="product"] img').length;
+
+  // Check if key product content sections exist in raw HTML
+  const lowerBody = visibleBodyText.toLowerCase();
+  const hasDescriptionInHtml = lowerBody.length > 100 && (
+    /description/i.test(lowerBody) ||
+    $('[class*="description"], [id*="description"], [itemprop="description"]').text().trim().length > 50
+  );
+  const hasIngredientsInHtml = $('[class*="ingredient"], [id*="ingredient"]').text().trim().length > 20;
+  const hasHowToUseInHtml = $('[class*="how-to"], [class*="howto"], [class*="usage"], [id*="how-to"], [id*="howto"]').text().trim().length > 20;
+
+  if (isLikelyCSR) {
+    const frameworkNote = csrFrameworks.length > 0 ? ` (${csrFrameworks.join(', ')} detected)` : '';
+    findings.push({
+      id: 'ecom-csr-critical',
+      title: `Product page is client-side rendered — AI bots see almost no content`,
+      description: `This page only has ${visibleWordCount} words in the raw HTML${frameworkNote}. Product descriptions, images, ingredients, and other content are loaded via JavaScript. AI bots (GPTBot, ClaudeBot, PerplexityBot, GoogleBot) do NOT execute JavaScript — they only read the raw HTML. Your schemas may pass, but the actual product content is invisible to AI.`,
+      severity: 'fail',
+      category: 'ecommerce',
+      recommendation: 'Implement Server-Side Rendering (SSR) for product pages so that product descriptions, images, ingredients, and key content are in the initial HTML. Schemas alone are not enough — AI bots need readable content in the HTML.',
+      details: { visibleWordCount, csrFrameworks, rawImgCount },
+    });
+  } else if (isPartialCSR) {
+    // Partial CSR — some content in HTML but probably not all product details
+    const missingSections: string[] = [];
+    if (!hasDescriptionInHtml) missingSections.push('product description');
+    if (!hasIngredientsInHtml) missingSections.push('ingredients');
+    if (!hasHowToUseInHtml) missingSections.push('how-to-use/usage');
+
+    if (missingSections.length > 0) {
+      findings.push({
+        id: 'ecom-csr-partial',
+        title: `Some product content appears to be JavaScript-rendered`,
+        description: `The raw HTML has ${visibleWordCount} words but key product sections may be missing: ${missingSections.join(', ')}. Content loaded via JavaScript is invisible to AI bots. Users see this content, but AI bots do not.`,
+        severity: 'warning',
+        category: 'ecommerce',
+        recommendation: `Ensure these product sections are server-side rendered (present in raw HTML): ${missingSections.join(', ')}. AI bots cannot execute JavaScript to load this content.`,
+        details: { visibleWordCount, missingSections, csrFrameworks },
+      });
+    }
+  }
+
+  // Check product images vs raw HTML images
+  if ((isLikelyCSR || isPartialCSR) && rawImgCount < 3) {
+    findings.push({
+      id: 'ecom-images-js-rendered',
+      title: `Product images may be JavaScript-rendered (only ${rawImgCount} <img> tag${rawImgCount !== 1 ? 's' : ''} in HTML)`,
+      description: `Only ${rawImgCount} image tag${rawImgCount !== 1 ? 's' : ''} found in the raw HTML. Product images are likely loaded via JavaScript and invisible to AI bots. Users see the images, but AI crawlers do not.`,
+      severity: rawImgCount === 0 ? 'fail' : 'warning',
+      category: 'ecommerce',
+      recommendation: 'Ensure product images are in the initial HTML with proper <img> tags, src attributes, and descriptive alt text. AI bots cannot see images injected via JavaScript.',
+    });
+  }
 
   // Report detection
   findings.push({
     id: 'ecom-detected',
     title: `E-commerce site detected${detection.platform ? ` (${detection.platform})` : ''} (${detection.confidence}% confidence)`,
-    description: `This page was identified as an e-commerce site. The following e-commerce-specific AEO checks were performed.`,
+    description: `This page was identified as an e-commerce site. Analysis is based on the raw HTML only — the same view AI bots get. Content loaded via JavaScript is not visible to AI crawlers.`,
     severity: 'info',
     category: 'ecommerce',
     details: { platform: detection.platform, confidence: detection.confidence, signals: detection.signals },
@@ -267,10 +346,11 @@ export function analyzeEcommerce(ctx: AnalysisContext): Finding[] {
   const hasReviewSchema = allJsonLdText.includes('"Review"') || allJsonLdText.includes('"AggregateRating"');
 
   if (hasProductSchema) {
+    const csrCaveat = isLikelyCSR ? ' However, the page content itself is JS-rendered — schemas alone won\'t help if AI bots can\'t read the actual product content.' : '';
     findings.push({
       id: 'ecom-product-schema',
       title: 'Product schema markup found',
-      description: 'Product structured data is present. AI engines like Google AI Overviews, ChatGPT, and Perplexity use this to display rich product information in answers.',
+      description: `Product structured data is present. AI engines like Google AI Overviews, ChatGPT, and Perplexity use this to display rich product information in answers.${csrCaveat}`,
       severity: 'pass',
       category: 'ecommerce',
     });
@@ -391,7 +471,9 @@ export function analyzeEcommerce(ctx: AnalysisContext): Finding[] {
     }
   });
 
-  if (totalProductImages > 0 && productImagesNoAlt > 0) {
+  if (totalProductImages === 0 && (isLikelyCSR || isPartialCSR)) {
+    // Don't add a separate finding — already covered by ecom-images-js-rendered above
+  } else if (totalProductImages > 0 && productImagesNoAlt > 0) {
     findings.push({
       id: 'ecom-product-img-alt',
       title: `${productImagesNoAlt} product image(s) missing alt text`,
@@ -407,6 +489,16 @@ export function analyzeEcommerce(ctx: AnalysisContext): Finding[] {
       description: 'Product images have descriptive alt text, helping AI bots understand your product visuals.',
       severity: 'pass',
       category: 'ecommerce',
+    });
+  } else {
+    // No product images at all and not CSR — still flag it
+    findings.push({
+      id: 'ecom-no-product-img',
+      title: 'No product images found in HTML',
+      description: 'No product images were found in the raw HTML. If images are loaded via JavaScript, AI bots will not see them.',
+      severity: 'warning',
+      category: 'ecommerce',
+      recommendation: 'Ensure product images are present in the initial HTML with descriptive alt text.',
     });
   }
 

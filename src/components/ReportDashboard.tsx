@@ -145,6 +145,9 @@ export function ReportDashboard({ report, siteLabel, isComparisonMode }: Props) 
               {report.metadata.statusCode} |{' '}
               {report.metadata.responseTime}ms response
             </p>
+            <p className="text-xs text-gray-400 mt-0.5 italic">
+              Analysis based on raw HTML only — the same view AI bots get. JS-rendered content is not included.
+            </p>
           </div>
           <div className="flex flex-col items-center gap-3">
             <ScoreGauge score={report.overallScore} grade={report.grade} size="lg" />
