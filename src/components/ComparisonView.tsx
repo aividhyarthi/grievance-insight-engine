@@ -3,6 +3,8 @@ import { ScoreGauge } from './ScoreGauge';
 
 interface Props {
   report: AuditReport;
+  onSelectSite?: (index: number) => void;
+  activeTab?: number;
 }
 
 function getHostname(url: string): string {
@@ -35,12 +37,11 @@ function diffBadge(main: number, comp: number) {
   return <span className="text-xs font-semibold text-red-600">{diff}</span>;
 }
 
-export function ComparisonView({ report }: Props) {
+export function ComparisonView({ report, onSelectSite, activeTab = 0 }: Props) {
   const competitors = report.competitors || [];
   if (competitors.length === 0) return null;
 
   const allSites = [report, ...competitors];
-  const mainHost = getHostname(report.url);
 
   // Gather all unique category IDs across all reports
   const categoryMap = new Map<string, { name: string; icon: string }>();
@@ -60,21 +61,25 @@ export function ComparisonView({ report }: Props) {
           Competitor Comparison
         </h3>
         <p className="text-sm text-gray-500 mb-6">
-          Side-by-side AEO scores — see how you stack up
+          Side-by-side AEO scores — click any site to see its full report below
         </p>
 
-        {/* Overall scores row */}
+        {/* Overall scores row — clickable */}
         <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${allSites.length}, minmax(0, 1fr))` }}>
           {allSites.map((site, i) => {
             const host = getHostname(site.url);
             const isMain = i === 0;
+            const isActive = i === activeTab;
             return (
-              <div
+              <button
                 key={site.url}
-                className={`flex flex-col items-center p-4 rounded-xl border-2 ${
-                  isMain
-                    ? 'border-brand-400 bg-white shadow-sm'
-                    : 'border-gray-200 bg-white/70'
+                onClick={() => onSelectSite?.(i)}
+                className={`flex flex-col items-center p-4 rounded-xl border-2 transition-all text-left ${
+                  isActive
+                    ? 'border-brand-500 bg-white shadow-md ring-2 ring-brand-200'
+                    : isMain
+                      ? 'border-brand-300 bg-white shadow-sm hover:shadow-md hover:border-brand-400'
+                      : 'border-gray-200 bg-white/70 hover:shadow-md hover:border-gray-300'
                 }`}
               >
                 {isMain && (
@@ -89,7 +94,12 @@ export function ComparisonView({ report }: Props) {
                 <p className="text-xs text-gray-400 mt-0.5">
                   {site.summary.passes} passed, {site.summary.failures} failed
                 </p>
-              </div>
+                {isActive && (
+                  <span className="mt-2 text-[10px] font-medium text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full">
+                    Viewing details
+                  </span>
+                )}
+              </button>
             );
           })}
         </div>
@@ -106,11 +116,20 @@ export function ComparisonView({ report }: Props) {
               <tr className="bg-gray-50 border-b border-gray-100">
                 <th className="text-left px-6 py-3 font-semibold text-gray-700">Category</th>
                 {allSites.map((site, i) => (
-                  <th key={site.url} className="text-center px-4 py-3 font-semibold text-gray-700">
+                  <th
+                    key={site.url}
+                    className={`text-center px-4 py-3 font-semibold cursor-pointer hover:bg-gray-100 transition-colors ${
+                      i === activeTab ? 'bg-brand-50/50 text-brand-700' : 'text-gray-700'
+                    }`}
+                    onClick={() => onSelectSite?.(i)}
+                  >
                     {i === 0 ? (
                       <span className="text-brand-600">{getHostname(site.url)}</span>
                     ) : (
                       getHostname(site.url)
+                    )}
+                    {i === activeTab && (
+                      <div className="w-1 h-1 bg-brand-500 rounded-full mx-auto mt-1" />
                     )}
                   </th>
                 ))}
@@ -124,7 +143,13 @@ export function ComparisonView({ report }: Props) {
               <tr className="border-b border-gray-100 bg-gray-50/50 font-semibold">
                 <td className="px-6 py-3 text-gray-900">Overall Score</td>
                 {allSites.map((site, i) => (
-                  <td key={site.url} className={`text-center px-4 py-3 ${scoreColor(site.overallScore)}`}>
+                  <td
+                    key={site.url}
+                    className={`text-center px-4 py-3 cursor-pointer ${scoreColor(site.overallScore)} ${
+                      i === activeTab ? 'bg-brand-50/30' : ''
+                    }`}
+                    onClick={() => onSelectSite?.(i)}
+                  >
                     {site.overallScore}
                     <span className="text-gray-400 font-normal text-xs ml-1">({site.grade})</span>
                   </td>
@@ -150,7 +175,13 @@ export function ComparisonView({ report }: Props) {
                       {info.name}
                     </td>
                     {scores.map((score, i) => (
-                      <td key={i} className="text-center px-4 py-3">
+                      <td
+                        key={i}
+                        className={`text-center px-4 py-3 cursor-pointer ${
+                          i === activeTab ? 'bg-brand-50/30' : ''
+                        }`}
+                        onClick={() => onSelectSite?.(i)}
+                      >
                         {score !== null ? (
                           <span className={`inline-block px-2 py-0.5 rounded-md text-xs font-semibold ${scoreBg(score)} ${scoreColor(score)}`}>
                             {score}
@@ -174,13 +205,6 @@ export function ComparisonView({ report }: Props) {
             </tbody>
           </table>
         </div>
-      </div>
-
-      {/* Your site's full report follows below */}
-      <div className="border-t-2 border-brand-200 pt-2">
-        <p className="text-xs font-semibold text-brand-600 uppercase tracking-wider">
-          Detailed report for {mainHost}
-        </p>
       </div>
     </div>
   );

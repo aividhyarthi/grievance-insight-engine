@@ -11,6 +11,11 @@ import { DashboardPage } from './components/DashboardPage';
 
 type Page = 'audit' | 'dashboard';
 
+function getHostname(url: string): string {
+  try { return new URL(url).hostname.replace(/^www\./, ''); }
+  catch { return url; }
+}
+
 export default function App() {
   const { user, token } = useAuth();
   const [page, setPage] = useState<Page>('audit');
@@ -18,11 +23,13 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showAuth, setShowAuth] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
   const handleAudit = async (url: string, competitors: string[]) => {
     setLoading(true);
     setError(null);
     setReport(null);
+    setActiveTab(0);
 
     try {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
@@ -53,10 +60,13 @@ export default function App() {
 
   const handleViewHistoryReport = (historyReport: AuditReport) => {
     setReport(historyReport);
+    setActiveTab(0);
     setPage('audit');
   };
 
   const hasCompetitors = report?.competitors && report.competitors.length > 0;
+  const allReports = report ? [report, ...(report.competitors || [])] : [];
+  const selectedReport = allReports[activeTab] || report;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -100,9 +110,39 @@ export default function App() {
             {report && !loading && (
               <>
                 {hasCompetitors && (
-                  <ComparisonView report={report} />
+                  <ComparisonView report={report} onSelectSite={setActiveTab} activeTab={activeTab} />
                 )}
-                <ReportDashboard report={report} />
+
+                {/* Site selector tabs when competitors present */}
+                {hasCompetitors && (
+                  <div className="mt-6 flex items-center gap-2 border-b border-gray-200">
+                    {allReports.map((r, i) => (
+                      <button
+                        key={r.url}
+                        onClick={() => setActiveTab(i)}
+                        className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
+                          activeTab === i
+                            ? 'border-brand-600 text-brand-700 bg-brand-50/50'
+                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        }`}
+                      >
+                        {i === 0 && (
+                          <span className="inline-block mr-1.5 text-[10px] font-bold uppercase bg-brand-100 text-brand-600 px-1.5 py-0.5 rounded">
+                            You
+                          </span>
+                        )}
+                        {getHostname(r.url)}
+                        <span className={`ml-2 text-xs font-semibold ${
+                          r.overallScore >= 70 ? 'text-green-600' : r.overallScore >= 50 ? 'text-yellow-600' : 'text-red-600'
+                        }`}>
+                          {r.overallScore}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                <ReportDashboard report={selectedReport!} />
               </>
             )}
           </>
