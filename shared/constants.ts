@@ -77,33 +77,24 @@ export const AI_BOTS: BotInfo[] = [
 ];
 
 // ===== Scoring Weights =====
+// 4 core buckets: Content, HTML, JS, Speed + conditional: ecommerce, publisher, industry
 // E-commerce weight is dynamically applied only when site is detected as e-commerce
 export const CATEGORY_WEIGHTS: Record<CategoryId, number> = {
-  'bot-access': 0.13,
-  'content': 0.12,
-  'schema': 0.10,
-  'technical': 0.08,
-  'meta-tags': 0.07,
-  'branding': 0.07,
-  'headings': 0.04,
-  'links': 0.04,
-  'crawlability': 0.13,
-  'ecommerce': 0.07,
+  'content': 0.20,
+  'html': 0.25,
+  'js': 0.15,
+  'speed': 0.15,
+  'ecommerce': 0.10,
   'publisher': 0.08,
   'industry': 0.07,
 };
 
 // Weights when site is NOT e-commerce and NOT publisher (base weights)
 export const NON_ECOMMERCE_WEIGHTS: Record<CategoryId, number> = {
-  'bot-access': 0.16,
-  'content': 0.16,
-  'schema': 0.12,
-  'technical': 0.10,
-  'meta-tags': 0.08,
-  'branding': 0.08,
-  'headings': 0.05,
-  'links': 0.05,
-  'crawlability': 0.15,
+  'content': 0.25,
+  'html': 0.30,
+  'js': 0.20,
+  'speed': 0.25,
   'ecommerce': 0,
   'publisher': 0,
   'industry': 0,
@@ -111,82 +102,47 @@ export const NON_ECOMMERCE_WEIGHTS: Record<CategoryId, number> = {
 
 // Weights when site is publisher (no ecommerce)
 export const PUBLISHER_WEIGHTS: Record<CategoryId, number> = {
-  'bot-access': 0.12,
-  'content': 0.12,
-  'schema': 0.10,
-  'technical': 0.08,
-  'meta-tags': 0.07,
-  'branding': 0.08,
-  'headings': 0.05,
-  'links': 0.05,
-  'crawlability': 0.13,
+  'content': 0.22,
+  'html': 0.25,
+  'js': 0.15,
+  'speed': 0.18,
   'ecommerce': 0,
-  'publisher': 0.13,
+  'publisher': 0.15,
   'industry': 0,
 };
 
 // Weights when industry vertical is detected
 export const INDUSTRY_WEIGHTS: Record<CategoryId, number> = {
-  'bot-access': 0.12,
-  'content': 0.11,
-  'schema': 0.10,
-  'technical': 0.08,
-  'meta-tags': 0.07,
-  'branding': 0.07,
-  'headings': 0.04,
-  'links': 0.04,
-  'crawlability': 0.12,
+  'content': 0.22,
+  'html': 0.25,
+  'js': 0.15,
+  'speed': 0.18,
   'ecommerce': 0,
   'publisher': 0,
-  'industry': 0.13,
+  'industry': 0.15,
 };
 
 // ===== Category Display Info =====
 export const CATEGORY_INFO: Record<CategoryId, { name: string; icon: string; description: string }> = {
-  'bot-access': {
-    name: 'AI Bot Access',
-    icon: '🤖',
-    description: 'Whether AI bots can crawl and index your content',
-  },
   'content': {
-    name: 'Content Quality',
+    name: 'Content',
     icon: '📝',
-    description: 'How well your content is structured for AI consumption',
+    description: 'Content quality, readability, boilerplate ratio, freshness, and AI content detection',
   },
-  'schema': {
-    name: 'Structured Data',
+  'html': {
+    name: 'HTML',
     icon: '🏗️',
-    description: 'Schema.org markup for machine-readable content',
+    description: 'Bot access, structured data, meta tags, headings, links, and markup visible to all crawlers',
   },
-  'technical': {
-    name: 'Technical SEO',
-    icon: '⚙️',
-    description: 'Technical HTML/JS factors affecting AI bot access',
+  'js': {
+    name: 'JavaScript',
+    icon: '⚡',
+    description: 'Client-side rendering, framework detection, script analysis, and what AI bots miss without JS',
   },
-  'meta-tags': {
-    name: 'Meta Tags & OG',
-    icon: '🏷️',
-    description: 'Title, description, OpenGraph, and social meta tags',
-  },
-  'branding': {
-    name: 'Branding & E-E-A-T',
-    icon: '🏆',
-    description: 'Brand authority, trust signals, and expertise indicators',
-  },
-  'headings': {
-    name: 'Heading Structure',
-    icon: '📑',
-    description: 'Heading hierarchy and content organization',
-  },
-  'links': {
-    name: 'Link Profile',
-    icon: '🔗',
-    description: 'Internal/external links and navigation structure',
-  },
-  'crawlability': {
-    name: 'Crawlability & Speed',
-    icon: '🕷️',
-    description: 'Google crawl size limits, AI bot speed, JS rendering, and content-to-code ratio',
+  'speed': {
+    name: 'Speed',
+    icon: '🚀',
+    description: 'Response time, page size, crawl limits, compression, caching, and delivery performance',
   },
   'ecommerce': {
     name: 'E-Commerce AEO',

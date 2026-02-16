@@ -173,7 +173,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
       title: 'Invalid JSON-LD markup',
       description: `A <script type="application/ld+json"> block contains invalid JSON. AI bots cannot parse this structured data. Preview: "${jsonLdParseErrors[i]}..."`,
       severity: 'fail',
-      category: 'schema',
+      category: 'html',
       recommendation: 'Fix the JSON syntax in your JSON-LD block. Use Google\'s Rich Results Test to validate.',
     });
   }
@@ -214,7 +214,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
       title: 'No structured data found',
       description: 'The page has no JSON-LD, Microdata, or RDFa markup. Structured data helps AI bots understand your content context, entity relationships, and answer-worthiness.',
       severity: 'fail',
-      category: 'schema',
+      category: 'html',
       recommendation: 'Add JSON-LD structured data. Start with Organization, WebPage, and content-specific types like Article, FAQPage, Product, or HowTo.',
     });
   } else {
@@ -225,7 +225,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
         title: `${jsonLdBlocks.length} JSON-LD block(s) found`,
         description: `The page has ${jsonLdBlocks.length} valid JSON-LD structured data block(s). JSON-LD is the preferred format for AI engines.`,
         severity: 'pass',
-        category: 'schema',
+        category: 'html',
         details: { count: jsonLdBlocks.length },
       });
     }
@@ -238,7 +238,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
         title: `Microdata markup detected: ${[...microdataTypes].join(', ')}`,
         description: `The page uses Microdata (itemscope/itemtype) for: ${[...microdataTypes].join(', ')}. ${hasJsonLdToo ? 'JSON-LD is also present, which is good.' : 'JSON-LD is preferred by Google and AI bots for easier parsing.'}`,
         severity: hasJsonLdToo ? 'pass' : 'warning',
-        category: 'schema',
+        category: 'html',
         details: { types: [...microdataTypes] },
         recommendation: hasJsonLdToo ? undefined : 'Consider also adding JSON-LD format, which is recommended by Google and easier for AI bots to parse.',
       });
@@ -250,7 +250,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
         title: `RDFa markup detected: ${[...rdfaTypes].join(', ')}`,
         description: `The page uses RDFa (typeof/property) for: ${[...rdfaTypes].join(', ')}.`,
         severity: 'pass',
-        category: 'schema',
+        category: 'html',
         details: { types: [...rdfaTypes] },
       });
     }
@@ -263,7 +263,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
       title: `Schema types: ${[...allTypes].join(', ')}`,
       description: `Detected ${allTypes.size} schema type(s) on this page across ${formats.join(' + ') || 'HTML attributes'}.`,
       severity: 'info',
-      category: 'schema',
+      category: 'html',
       details: { types: [...allTypes], formats },
     });
 
@@ -276,7 +276,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
         title: `${geoTypes.length} GEO-relevant schema type(s)`,
         description: `Found high-value schema types for AI/GEO: ${geoTypes.join(', ')}. These help AI engines understand and cite your content.`,
         severity: 'pass',
-        category: 'schema',
+        category: 'html',
         details: { geoTypes },
       });
     }
@@ -288,7 +288,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
         title: 'No Organization schema',
         description: 'No Organization or LocalBusiness schema found. This schema helps AI engines identify your brand and connect your content to your entity.',
         severity: 'warning',
-        category: 'schema',
+        category: 'html',
         recommendation: 'Add Organization schema with name, logo, url, and sameAs (social profiles).',
       });
     }
@@ -303,7 +303,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
         title: 'No page content schema type',
         description: 'No Article, BlogPosting, or WebPage schema found. These schemas help AI understand the nature and structure of your page content.',
         severity: 'warning',
-        category: 'schema',
+        category: 'html',
         recommendation: 'Add Article or WebPage schema with headline, datePublished, author, and description.',
       });
     }
@@ -315,7 +315,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
         title: 'FAQPage schema detected',
         description: 'FAQPage schema is present, which is highly valuable for AEO. AI engines can directly extract Q&A pairs from this markup.',
         severity: 'pass',
-        category: 'schema',
+        category: 'html',
       });
     }
 
@@ -326,7 +326,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
         title: 'No BreadcrumbList schema',
         description: 'BreadcrumbList schema helps AI bots understand page hierarchy and site structure.',
         severity: 'info',
-        category: 'schema',
+        category: 'html',
         recommendation: 'Add BreadcrumbList schema to clarify page position within your site.',
       });
     }
@@ -353,7 +353,7 @@ export function analyzeSchema(ctx: AnalysisContext): Finding[] {
           title: `${industry} schema: ${found.join(', ')}`,
           description: `Industry-specific ${industry} schema type(s) detected. These help AI engines provide rich, vertical-specific answers about your content.`,
           severity: 'pass',
-          category: 'schema',
+          category: 'html',
           details: { industry, types: found },
         });
       }
@@ -392,7 +392,7 @@ function validateSchemaProperties(obj: unknown, findings: Finding[]): void {
         title: `${typeName} schema missing "author"`,
         description: `The ${typeName} schema is missing the "author" property. Author attribution is critical for E-E-A-T and AI trust signals.`,
         severity: 'warning',
-        category: 'schema',
+        category: 'html',
         recommendation: `Add an "author" property (as a Person or Organization) to your ${typeName} schema.`,
       });
     }
@@ -402,7 +402,7 @@ function validateSchemaProperties(obj: unknown, findings: Finding[]): void {
         title: `${typeName} schema missing "datePublished"`,
         description: `The ${typeName} schema is missing "datePublished". AI engines use publication dates to assess content freshness.`,
         severity: 'warning',
-        category: 'schema',
+        category: 'html',
         recommendation: `Add "datePublished" (and "dateModified") to your ${typeName} schema.`,
       });
     }
@@ -421,7 +421,7 @@ function validateSchemaProperties(obj: unknown, findings: Finding[]): void {
         title: `Product schema missing: ${missingProductFields.join(', ')}`,
         description: `The Product schema is missing key fields. Complete Product schema helps AI engines present rich product information.`,
         severity: 'warning',
-        category: 'schema',
+        category: 'html',
         recommendation: `Add these to your Product schema: ${missingProductFields.join(', ')}.`,
       });
     }
@@ -435,7 +435,7 @@ function validateSchemaProperties(obj: unknown, findings: Finding[]): void {
         title: 'Organization schema missing "logo"',
         description: 'Your Organization schema is missing a logo. Logos help AI engines visually identify your brand.',
         severity: 'warning',
-        category: 'schema',
+        category: 'html',
         recommendation: 'Add a "logo" property with a URL to your brand logo.',
       });
     }
@@ -445,7 +445,7 @@ function validateSchemaProperties(obj: unknown, findings: Finding[]): void {
         title: 'Organization schema missing "sameAs"',
         description: 'No "sameAs" property found. This property links to your social media profiles, helping AI engines build your brand knowledge graph.',
         severity: 'info',
-        category: 'schema',
+        category: 'html',
         recommendation: 'Add "sameAs" with links to your LinkedIn, Twitter, Facebook, and other official profiles.',
       });
     }

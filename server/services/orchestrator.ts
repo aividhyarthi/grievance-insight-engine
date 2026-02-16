@@ -28,19 +28,24 @@ export interface AnalysisContext {
 
 type AnalyzerFn = (ctx: AnalysisContext) => Finding[];
 
-const analyzers: Record<string, AnalyzerFn> = {
-  'bot-access': analyzeRobots,
-  'schema': analyzeSchema,
-  'content': analyzeContent,
-  'headings': analyzeHeadings,
-  'meta-tags': analyzeMetaTags,
-  'branding': analyzeBranding,
-  'technical': analyzeTechnical,
-  'links': analyzeLinks,
-  'crawlability': analyzeCrawlability,
-  'ecommerce': analyzeEcommerce,
-  'publisher': analyzePublisher,
-  'industry': analyzeIndustry,
+// Core analyzers always run (findings go to content/html/js/speed based on finding.category)
+const coreAnalyzers: Array<{ name: string; fn: AnalyzerFn }> = [
+  { name: 'robots', fn: analyzeRobots },
+  { name: 'schema', fn: analyzeSchema },
+  { name: 'content', fn: analyzeContent },
+  { name: 'headings', fn: analyzeHeadings },
+  { name: 'meta-tags', fn: analyzeMetaTags },
+  { name: 'branding', fn: analyzeBranding },
+  { name: 'technical', fn: analyzeTechnical },
+  { name: 'links', fn: analyzeLinks },
+  { name: 'crawlability', fn: analyzeCrawlability },
+];
+
+// Conditional analyzers run only when site type is detected
+const conditionalAnalyzers: Record<string, { detect: string; fn: AnalyzerFn }> = {
+  ecommerce: { detect: 'ecommerce', fn: analyzeEcommerce },
+  publisher: { detect: 'publisher', fn: analyzePublisher },
+  industry: { detect: 'industry', fn: analyzeIndustry },
 };
 
 function computeScore(findings: Finding[]): number {
@@ -94,7 +99,6 @@ export async function runAudit(url: string): Promise<AuditReport> {
   const isIndustry = industryDetection.industry !== null;
 
   // Choose weights based on site type
-  // Start from base weights, then layer on specialized weights
   let weights: Record<CategoryId, number>;
   if (isEcommerce && isPublisher && isIndustry) {
     weights = { ...CATEGORY_WEIGHTS, industry: 0.07 };
@@ -114,43 +118,79 @@ export async function runAudit(url: string): Promise<AuditReport> {
     weights = NON_ECOMMERCE_WEIGHTS;
   }
 
-  // Run all analyzers
+  // ===== Run all core analyzers and collect findings =====
+  const allFindings: Finding[] = [];
+
+  for (const analyzer of coreAnalyzers) {
+    try {
+      const findings = analyzer.fn(ctx);
+      allFindings.push(...findings);
+    } catch (err) {
+      console.error(`Analyzer ${analyzer.name} failed:`, err);
+      // Don't add error findings for core analyzers - they'd go into unknown categories
+    }
+  }
+
+  // ===== Run conditional analyzers =====
+  if (isEcommerce) {
+    try {
+      const findings = analyzeEcommerce(ctx);
+      if (findings.length > 0) allFindings.push(...findings);
+    } catch (err) {
+      console.error('Analyzer ecommerce failed:', err);
+    }
+  }
+
+  if (isPublisher) {
+    try {
+      const findings = analyzePublisher(ctx);
+      if (findings.length > 0) allFindings.push(...findings);
+    } catch (err) {
+      console.error('Analyzer publisher failed:', err);
+    }
+  }
+
+  if (isIndustry) {
+    try {
+      const findings = analyzeIndustry(ctx);
+      if (findings.length > 0) allFindings.push(...findings);
+    } catch (err) {
+      console.error('Analyzer industry failed:', err);
+    }
+  }
+
+  // ===== Group findings by category =====
+  const findingsByCategory = new Map<CategoryId, Finding[]>();
+  for (const finding of allFindings) {
+    const catId = finding.category as CategoryId;
+    if (!findingsByCategory.has(catId)) {
+      findingsByCategory.set(catId, []);
+    }
+    findingsByCategory.get(catId)!.push(finding);
+  }
+
+  // ===== Build category results =====
+  // Define the display order for categories
+  const categoryOrder: CategoryId[] = ['content', 'html', 'js', 'speed', 'ecommerce', 'publisher', 'industry'];
+
   const categories: CategoryResult[] = [];
 
-  for (const [categoryId, analyzerFn] of Object.entries(analyzers)) {
-    const id = categoryId as CategoryId;
+  for (const catId of categoryOrder) {
+    const findings = findingsByCategory.get(catId);
+    if (!findings || findings.length === 0) continue;
 
-    // Skip conditional categories when not detected
-    if (id === 'ecommerce' && !isEcommerce) continue;
-    if (id === 'publisher' && !isPublisher) continue;
-    if (id === 'industry' && !isIndustry) continue;
+    // Skip conditional categories that weren't detected
+    if (catId === 'ecommerce' && !isEcommerce) continue;
+    if (catId === 'publisher' && !isPublisher) continue;
+    if (catId === 'industry' && !isIndustry) continue;
 
-    let findings: Finding[] = [];
-
-    try {
-      findings = analyzerFn(ctx);
-    } catch (err) {
-      console.error(`Analyzer ${categoryId} failed:`, err);
-      findings = [
-        {
-          id: `${categoryId}-error`,
-          title: `${CATEGORY_INFO[id].name} analysis failed`,
-          description: 'An error occurred during analysis.',
-          severity: 'info',
-          category: id,
-        },
-      ];
-    }
-
-    // Skip categories with no findings
-    if (findings.length === 0 && (id === 'ecommerce' || id === 'publisher' || id === 'industry')) {
-      continue;
-    }
+    const info = CATEGORY_INFO[catId];
+    if (!info) continue;
 
     // For industry category, override the display name with the detected industry
-    let categoryName = CATEGORY_INFO[id].name;
-    let categoryIcon = CATEGORY_INFO[id].icon;
-    if (id === 'industry' && industryDetection.industry) {
+    let categoryName = info.name;
+    let categoryIcon = info.icon;
+    if (catId === 'industry' && industryDetection.industry) {
       const iconMap: Record<string, string> = {
         'real-estate': '🏠',
         'medical': '🏥',
@@ -163,11 +203,11 @@ export async function runAudit(url: string): Promise<AuditReport> {
     }
 
     categories.push({
-      id,
+      id: catId,
       name: categoryName,
       icon: categoryIcon,
       score: computeScore(findings),
-      weight: weights[id],
+      weight: weights[catId],
       findings,
     });
   }
@@ -182,7 +222,6 @@ export async function runAudit(url: string): Promise<AuditReport> {
     : 0;
 
   // Compute summary
-  const allFindings = categories.flatMap((c) => c.findings);
   const summary = {
     totalFindings: allFindings.length,
     passes: allFindings.filter((f) => f.severity === 'pass').length,

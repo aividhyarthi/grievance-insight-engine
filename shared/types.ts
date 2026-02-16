@@ -3,15 +3,10 @@
 export type Severity = 'pass' | 'warning' | 'fail' | 'info';
 
 export type CategoryId =
-  | 'bot-access'
   | 'content'
-  | 'schema'
-  | 'technical'
-  | 'meta-tags'
-  | 'branding'
-  | 'headings'
-  | 'links'
-  | 'crawlability'
+  | 'html'
+  | 'js'
+  | 'speed'
   | 'ecommerce'
   | 'publisher'
   | 'industry';

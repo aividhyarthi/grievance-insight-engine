@@ -29,8 +29,8 @@ export function ReportDashboard({ report, siteLabel, isComparisonMode }: Props) 
   // All categories in display order
   const allCategories = report.categories;
 
-  // Find special category for bot-access table rendering
-  const botAccessCategory = report.categories.find((c) => c.id === 'bot-access');
+  // Find the HTML category (which now contains bot-access findings) for bot table rendering
+  const htmlCategory = report.categories.find((c) => c.id === 'html');
 
   // PDF Export - expand all categories, then print, then restore
   const handleExportPDF = useCallback(() => {
@@ -256,7 +256,7 @@ export function ReportDashboard({ report, siteLabel, isComparisonMode }: Props) 
             <ExpandedCategoryPanel
               key={cat.id}
               category={cat}
-              botAccessFindings={cat.id === 'bot-access' ? botAccessCategory : undefined}
+              botAccessFindings={cat.id === 'html' ? htmlCategory : undefined}
               onClose={() => {}}
             />
           ))}
@@ -279,7 +279,7 @@ export function ReportDashboard({ report, siteLabel, isComparisonMode }: Props) 
           {expandedCategory && (
             <ExpandedCategoryPanel
               category={allCategories.find((c) => c.id === expandedCategory)!}
-              botAccessFindings={expandedCategory === 'bot-access' ? botAccessCategory : undefined}
+              botAccessFindings={expandedCategory === 'html' ? htmlCategory : undefined}
               onClose={() => setExpandedCategory(null)}
             />
           )}

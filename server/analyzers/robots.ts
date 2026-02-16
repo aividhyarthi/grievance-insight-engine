@@ -15,7 +15,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
       description:
         'The website does not have a robots.txt file. While this means all bots can crawl freely, having an explicit robots.txt shows intentional bot management.',
       severity: 'warning',
-      category: 'bot-access',
+      category: 'html',
       recommendation:
         'Create a robots.txt file to explicitly manage AI bot access and include a sitemap reference.',
     });
@@ -27,7 +27,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
         title: `${bot.name} (${bot.company}) - Allowed (no robots.txt)`,
         description: `${bot.name} can crawl your site because no robots.txt restrictions exist.`,
         severity: 'pass',
-        category: 'bot-access',
+        category: 'html',
         details: { bot: bot.name, company: bot.company, status: 'allowed' },
       });
     });
@@ -42,7 +42,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
         title: 'Sitemap declared in robots.txt',
         description: `Found ${sitemaps.length} sitemap(s) declared: ${sitemaps.join(', ')}`,
         severity: 'pass',
-        category: 'bot-access',
+        category: 'html',
         details: { sitemaps },
       });
     } else {
@@ -52,7 +52,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
         description:
           'No sitemap is declared in robots.txt. Sitemaps help AI bots discover and prioritize your content.',
         severity: 'warning',
-        category: 'bot-access',
+        category: 'html',
         recommendation:
           'Add a Sitemap directive to robots.txt pointing to your XML sitemap.',
       });
@@ -71,7 +71,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
           title: `${bot.name} (${bot.company}) - Allowed`,
           description: `${bot.name} is allowed to crawl this page. Purpose: ${bot.purpose}`,
           severity: 'pass',
-          category: 'bot-access',
+          category: 'html',
           details: {
             bot: bot.name,
             company: bot.company,
@@ -86,7 +86,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
           title: `${bot.name} (${bot.company}) - BLOCKED`,
           description: `${bot.name} is blocked from crawling this page by robots.txt. This means your content will not appear in ${bot.company}'s AI-powered features.`,
           severity: 'fail',
-          category: 'bot-access',
+          category: 'html',
           details: {
             bot: bot.name,
             company: bot.company,
@@ -105,7 +105,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
         title: 'ALL AI bots are blocked',
         description: `All ${AI_BOTS.length} major AI bots are blocked by robots.txt. Your content will not appear in any AI-powered search or answer engine.`,
         severity: 'fail',
-        category: 'bot-access',
+        category: 'html',
         recommendation:
           'Review your robots.txt and selectively allow AI bots that align with your business goals.',
       });
@@ -115,7 +115,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
         title: `${blockedCount} of ${AI_BOTS.length} AI bots blocked`,
         description: `${allowedCount} bots allowed, ${blockedCount} bots blocked. Selective blocking may reduce your visibility in some AI platforms.`,
         severity: 'warning',
-        category: 'bot-access',
+        category: 'html',
         details: { allowed: allowedCount, blocked: blockedCount },
       });
     }
@@ -130,7 +130,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
       description:
         'The page contains a "noai" or "noimageai" meta robots directive, which tells AI systems not to use this content for training or image generation.',
       severity: 'warning',
-      category: 'bot-access',
+      category: 'html',
       recommendation:
         'Remove the noai/noimageai directive if you want AI systems to reference your content.',
     });
@@ -143,7 +143,7 @@ export function analyzeRobots(ctx: AnalysisContext): Finding[] {
       description:
         'The page has a "nosnippet" meta robots directive. This prevents search engines (and AI overviews) from showing any text snippet from your page.',
       severity: 'warning',
-      category: 'bot-access',
+      category: 'html',
       recommendation:
         'Remove nosnippet if you want your content to appear as snippets in AI overviews and search results.',
     });
