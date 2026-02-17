@@ -105,10 +105,16 @@ function ResourceRow({ resource, index }: { resource: ResourceItem; index: numbe
           {shortUrl}
         </span>
 
-        {/* Render-blocking indicator */}
+        {/* Render-blocking indicator — color depends on verdict context */}
         {resource.renderBlocking && (
-          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700 flex-shrink-0">
-            BLOCKING
+          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ${
+            resource.verdict === 'critical'
+              ? 'bg-gray-100 text-gray-500'          // Expected for critical resources — not alarming
+              : resource.verdict === 'deferrable'
+              ? 'bg-orange-100 text-orange-700'       // Should be deferred — moderate concern
+              : 'bg-red-100 text-red-700'             // Removable + blocking = bad
+          }`}>
+            {resource.verdict === 'critical' ? 'RENDER-BLOCKING' : 'BLOCKING'}
           </span>
         )}
 
@@ -140,6 +146,14 @@ function ResourceRow({ resource, index }: { resource: ResourceItem; index: numbe
                 <p><span className="font-medium">Location:</span> {'<' + resource.location + '>'}</p>
                 {resource.type === 'js' && (
                   <p><span className="font-medium">Loading:</span> {resource.hasAsync ? 'async' : resource.hasDefer ? 'defer' : 'synchronous (blocking)'}</p>
+                )}
+                {resource.renderBlocking && (
+                  <p className={`mt-1 ${resource.verdict === 'critical' ? 'text-gray-500' : 'text-orange-600'}`}>
+                    <span className="font-medium">Render-blocking:</span>{' '}
+                    {resource.verdict === 'critical'
+                      ? 'Yes — but this is normal for critical CSS/JS. The browser needs this to paint the page.'
+                      : 'Yes — this delays page rendering. Consider adding async/defer or moving to the end of <body>.'}
+                  </p>
                 )}
               </div>
             </div>
