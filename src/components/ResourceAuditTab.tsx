@@ -586,18 +586,21 @@ export function ResourceAuditTab() {
                   Right-click on any page &rarr; "View Page Source" &rarr; Select All &rarr; Copy &rarr; Paste here
                 </p>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Base URL <span className="text-gray-400 font-normal">(optional — helps identify 1st vs 3rd party)</span>
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-3">
+                <label className="block text-sm font-medium text-amber-800 mb-1.5">
+                  Base URL <span className="text-amber-600 font-normal">(strongly recommended for accurate results)</span>
                 </label>
                 <input
                   type="text"
                   value={baseUrl}
                   onChange={(e) => setBaseUrl(e.target.value)}
                   placeholder="e.g., https://example.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all"
+                  className="w-full px-4 py-3 border border-amber-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-white"
                   disabled={loading}
                 />
+                <p className="mt-1.5 text-xs text-amber-600">
+                  Without the base URL, relative paths can't be resolved and all resources may appear as 1st-party. We'll try to auto-detect from your HTML, but providing it ensures accuracy.
+                </p>
               </div>
               <button
                 type="submit"
@@ -642,13 +645,54 @@ export function ResourceAuditTab() {
       {/* Results */}
       {result && !loading && (
         <>
+          {/* HTML mode warning banner */}
+          {result.inputMode === 'html' && (
+            <div className={`rounded-xl border p-4 ${
+              result.baseUrlSource === 'fallback'
+                ? 'bg-orange-50 border-orange-200'
+                : 'bg-blue-50 border-blue-200'
+            }`}>
+              <div className="flex items-start gap-3">
+                <span className="text-xl flex-shrink-0">
+                  {result.baseUrlSource === 'fallback' ? '⚠️' : 'ℹ️'}
+                </span>
+                <div>
+                  <h4 className={`font-semibold ${
+                    result.baseUrlSource === 'fallback' ? 'text-orange-800' : 'text-blue-800'
+                  }`}>
+                    {result.baseUrlSource === 'fallback'
+                      ? 'Limited Analysis — No Base URL Detected'
+                      : 'HTML Mode — Static Analysis Only'}
+                  </h4>
+                  <p className={`text-sm mt-1 ${
+                    result.baseUrlSource === 'fallback' ? 'text-orange-700' : 'text-blue-700'
+                  }`}>
+                    {result.baseUrlSource === 'fallback'
+                      ? 'Could not detect the page\'s real domain. All resources are showing as 1st-party and relative URLs may not resolve correctly. For accurate results, provide the Base URL or use the "Enter URL" mode to fetch the live page.'
+                      : result.baseUrlSource === 'auto-detected'
+                      ? `Base URL auto-detected as "${result.url}" from the HTML. Resources loaded dynamically by JavaScript at runtime are not included — only what\'s in the raw HTML source. For a complete audit, use "Enter URL" mode.`
+                      : `Using provided base URL. Note: Resources loaded dynamically by JavaScript at runtime are not included — only what\'s in the raw HTML source. For a complete audit, use "Enter URL" mode.`
+                    }
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Report header */}
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
               <div>
                 <p className="text-sm text-gray-500">Resource Audit for</p>
                 <h2 className="text-xl font-bold text-gray-900 break-all">{result.url}</h2>
-                <p className="text-sm text-gray-400 mt-1">{new Date(result.fetchedAt).toLocaleString()}</p>
+                <p className="text-sm text-gray-400 mt-1">
+                  {new Date(result.fetchedAt).toLocaleString()}
+                  {result.inputMode === 'html' && (
+                    <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">
+                      HTML paste mode
+                    </span>
+                  )}
+                </p>
               </div>
               <div className="text-right">
                 <p className="text-sm text-gray-500">HTML Size</p>

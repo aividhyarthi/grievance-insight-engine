@@ -123,6 +123,8 @@ export interface ResourceItem {
 export interface ResourceAuditResult {
   url: string;
   fetchedAt: string;
+  inputMode?: 'url' | 'html';
+  baseUrlSource?: 'provided' | 'auto-detected' | 'fallback';
   htmlSizeBytes: number;
   crawlBudgetUsed: number;
   crawlBudgetLimit: number;
