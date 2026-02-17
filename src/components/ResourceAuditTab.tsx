@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { ResourceAuditResult, ResourceItem, ResourceVerdict } from '../../shared/types';
+import { ScoreGauge } from './ScoreGauge';
 
 function formatSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
@@ -22,6 +23,259 @@ function getCrawlerBadge(advice: string) {
     case 'block-recommended': return { color: 'bg-red-100 text-red-700', label: 'Block Recommended' };
     default: return { color: 'bg-gray-100 text-gray-600', label: advice };
   }
+}
+
+// ===== Resource Health Score =====
+function computeResourceScore(result: ResourceAuditResult): { score: number; grade: string } {
+  let score = 100;
+  const { summary, inlineResources, htmlSizeBytes, crawlBudgetLimit } = result;
+  const total = summary.totalResources || 1;
+
+  // Removable resources: -5 per removable (max -30)
+  score -= Math.min(30, summary.removable * 5);
+
+  // Deferrable render-blocking: count non-critical render-blocking resources, -4 each (max -20)
+  const deferrableBlocking = result.resources.filter(
+    (r) => r.renderBlocking && r.verdict !== 'critical'
+  ).length;
+  score -= Math.min(20, deferrableBlocking * 4);
+
+  // 3rd-party ratio: if >60% of resources are 3rd-party, deduct up to -15
+  const thirdPartyRatio = summary.thirdParty / total;
+  if (thirdPartyRatio > 0.6) score -= Math.min(15, Math.round((thirdPartyRatio - 0.6) * 50));
+
+  // Inline bloat: if inline JS+CSS > 200KB, deduct up to -10
+  const inlineTotalKB = (inlineResources.inlineJsSizeBytes + inlineResources.inlineCssSizeBytes) / 1024;
+  if (inlineTotalKB > 200) score -= Math.min(10, Math.round((inlineTotalKB - 200) / 50));
+
+  // Crawl budget usage: if HTML > 70% of 2MB, deduct up to -15
+  const budgetPercent = htmlSizeBytes / crawlBudgetLimit;
+  if (budgetPercent > 0.7) score -= Math.min(15, Math.round((budgetPercent - 0.7) * 50));
+
+  // Too many total resources: >40 = warning, >60 = bad
+  if (total > 60) score -= 10;
+  else if (total > 40) score -= 5;
+
+  score = Math.max(0, Math.min(100, score));
+
+  let grade: string;
+  if (score >= 90) grade = 'A+';
+  else if (score >= 80) grade = 'A';
+  else if (score >= 70) grade = 'B';
+  else if (score >= 60) grade = 'C';
+  else if (score >= 50) grade = 'D';
+  else grade = 'F';
+
+  return { score, grade };
+}
+
+// ===== Priority Actions (plain-English, no jargon) =====
+interface PriorityAction {
+  priority: number;
+  icon: string;
+  title: string;
+  description: string;
+  impact: string;
+  impactColor: string;
+}
+
+function getPriorityActions(result: ResourceAuditResult): PriorityAction[] {
+  const actions: PriorityAction[] = [];
+  const { summary, resources, inlineResources, htmlSizeBytes, crawlBudgetLimit } = result;
+
+  // 1. Removable resources
+  if (summary.removable > 0) {
+    const removableLabels = [...new Set(resources.filter((r) => r.verdict === 'removable').map((r) => r.categoryLabel))];
+    actions.push({
+      priority: 1,
+      icon: '🗑️',
+      title: `Remove ${summary.removable} unnecessary script${summary.removable > 1 ? 's' : ''}`,
+      description: `Your page loads ${removableLabels.join(', ')} that have zero impact on what visitors see. These only slow down your page.`,
+      impact: 'High — directly improves page speed and Google ranking',
+      impactColor: 'text-red-600',
+    });
+  }
+
+  // 2. Render-blocking non-critical
+  const blockingDeferrable = resources.filter((r) => r.renderBlocking && r.verdict !== 'critical');
+  if (blockingDeferrable.length > 0) {
+    actions.push({
+      priority: 2,
+      icon: '⚡',
+      title: `Fix ${blockingDeferrable.length} render-blocking resource${blockingDeferrable.length > 1 ? 's' : ''}`,
+      description: `${blockingDeferrable.length} script${blockingDeferrable.length > 1 ? 's' : ''} in your page header ${blockingDeferrable.length > 1 ? 'are' : 'is'} forcing the browser to wait before showing content. Adding "async" or "defer" lets the page paint faster.`,
+      impact: 'High — directly improves Largest Contentful Paint (LCP)',
+      impactColor: 'text-red-600',
+    });
+  }
+
+  // 3. Heavy inline code
+  const inlineTotalKB = (inlineResources.inlineJsSizeBytes + inlineResources.inlineCssSizeBytes) / 1024;
+  if (inlineTotalKB > 200) {
+    actions.push({
+      priority: 3,
+      icon: '📦',
+      title: `Move ${Math.round(inlineTotalKB)}KB of inline code to external files`,
+      description: `Large chunks of code are embedded directly in your HTML. This eats into Google's 2MB crawl limit and makes every page load transfer redundant code.`,
+      impact: 'Medium — reduces HTML size and improves cacheability',
+      impactColor: 'text-yellow-600',
+    });
+  }
+
+  // 4. Too many 3rd-party scripts
+  if (summary.thirdParty > summary.firstParty && summary.thirdParty > 5) {
+    actions.push({
+      priority: 4,
+      icon: '🌐',
+      title: `Audit ${summary.thirdParty} third-party scripts`,
+      description: `Your page loads more third-party code (${summary.thirdParty}) than your own code (${summary.firstParty}). Each third-party script adds latency, privacy risk, and dependencies on external servers.`,
+      impact: 'Medium — reduces security risk and improves reliability',
+      impactColor: 'text-yellow-600',
+    });
+  }
+
+  // 5. Crawl budget concern
+  const budgetPercent = Math.round((htmlSizeBytes / crawlBudgetLimit) * 100);
+  if (budgetPercent > 70) {
+    actions.push({
+      priority: 5,
+      icon: '🕷️',
+      title: `Reduce HTML size (${budgetPercent}% of Google's limit)`,
+      description: `Your page HTML uses ${budgetPercent}% of Google's 2MB crawl budget. If it exceeds the limit, Google may not see all your content, which can hurt your search visibility.`,
+      impact: budgetPercent > 90 ? 'High — risk of content being cut off by Google' : 'Medium — approaching Google crawl limit',
+      impactColor: budgetPercent > 90 ? 'text-red-600' : 'text-yellow-600',
+    });
+  }
+
+  // 6. Block wasteful resources for crawlers
+  const blockRecommended = resources.filter((r) => r.crawlerAdvice === 'block-recommended').length;
+  if (blockRecommended > 0) {
+    actions.push({
+      priority: 6,
+      icon: '🤖',
+      title: `Block ${blockRecommended} resource${blockRecommended > 1 ? 's' : ''} from search engine crawlers`,
+      description: `Analytics, tracking, and ad scripts waste Googlebot's crawl budget. Block them in robots.txt so crawlers spend time on your actual content instead.`,
+      impact: 'Medium — saves crawl budget for important pages',
+      impactColor: 'text-yellow-600',
+    });
+  }
+
+  // If nothing found, add a positive action
+  if (actions.length === 0) {
+    actions.push({
+      priority: 1,
+      icon: '✅',
+      title: 'Your page resources look well-optimized',
+      description: 'No major issues found. Your page loads efficiently with a good balance of first-party and third-party resources.',
+      impact: 'No action needed',
+      impactColor: 'text-green-600',
+    });
+  }
+
+  return actions.sort((a, b) => a.priority - b.priority).slice(0, 3);
+}
+
+// ===== Executive Summary with plain-English sentences =====
+function getExecutiveSummary(result: ResourceAuditResult, score: number): string[] {
+  const lines: string[] = [];
+  const { summary, resources } = result;
+
+  // Line 1: Overall health
+  if (score >= 80) {
+    lines.push(`Your page loads ${summary.totalResources} resources efficiently. Resource management is strong — your site is well-positioned for fast loading and AI bot crawling.`);
+  } else if (score >= 60) {
+    lines.push(`Your page loads ${summary.totalResources} external resources. There are some optimization opportunities that could improve page speed and search engine visibility.`);
+  } else {
+    lines.push(`Your page loads ${summary.totalResources} external resources, and several are hurting your page speed and search visibility. Immediate action is recommended.`);
+  }
+
+  // Line 2: Biggest issue
+  if (summary.removable > 0 && summary.removable >= summary.deferrable) {
+    const removableNames = [...new Set(resources.filter((r) => r.verdict === 'removable').map((r) => r.categoryLabel))];
+    lines.push(`${summary.removable} resource${summary.removable > 1 ? 's' : ''} (${removableNames.slice(0, 3).join(', ')}) can be removed entirely — ${summary.removable > 1 ? 'they don\'t' : 'it doesn\'t'} contribute to what visitors see on the page.`);
+  } else if (summary.deferrable > 0) {
+    lines.push(`${summary.deferrable} resource${summary.deferrable > 1 ? 's' : ''} can be deferred to load after the page content appears, which would make the page feel significantly faster to visitors.`);
+  } else {
+    lines.push(`All resources on this page are properly optimized. No unnecessary scripts or stylesheets were detected.`);
+  }
+
+  // Line 3: 3rd party insight
+  if (summary.thirdParty > 0) {
+    const thirdPct = Math.round((summary.thirdParty / (summary.totalResources || 1)) * 100);
+    lines.push(`${thirdPct}% of resources come from third-party services. ${thirdPct > 50 ? 'This is high — each external service adds load time and risk of downtime impacting your site.' : 'This is a reasonable ratio of external dependencies.'}`);
+  }
+
+  return lines;
+}
+
+// ===== Executive Summary Panel Component =====
+function ExecutiveSummary({ result }: { result: ResourceAuditResult }) {
+  const { score, grade } = computeResourceScore(result);
+  const summaryLines = getExecutiveSummary(result, score);
+  const priorities = getPriorityActions(result);
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+      {/* Top: Score + Summary */}
+      <div className="p-6 flex flex-col md:flex-row gap-6 items-start">
+        {/* Score Gauge */}
+        <div className="flex-shrink-0">
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider text-center mb-2">Resource Health</p>
+          <ScoreGauge score={score} grade={grade} size="lg" />
+        </div>
+
+        {/* Plain-English Summary */}
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Executive Summary</h3>
+          <div className="space-y-2">
+            {summaryLines.map((line, i) => (
+              <p key={i} className="text-sm text-gray-700 leading-relaxed">{line}</p>
+            ))}
+          </div>
+
+          {/* Quick stat chips */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-green-50 text-green-700 border border-green-200">
+              {result.summary.critical} Critical (Keep)
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-yellow-50 text-yellow-700 border border-yellow-200">
+              {result.summary.deferrable} Deferrable
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-red-50 text-red-700 border border-red-200">
+              {result.summary.removable} Removable
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+              {result.summary.renderBlocking} Render-Blocking
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom: Priority Actions */}
+      <div className="border-t border-gray-100 bg-gray-50/50 p-6">
+        <h4 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-4">
+          Top Priority Actions
+        </h4>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {priorities.map((action, i) => (
+            <div key={i} className="bg-white rounded-lg border border-gray-200 p-4 flex flex-col">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xl">{action.icon}</span>
+                <span className="text-[10px] font-bold uppercase bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded">
+                  #{i + 1}
+                </span>
+              </div>
+              <h5 className="text-sm font-semibold text-gray-900 mb-1">{action.title}</h5>
+              <p className="text-xs text-gray-600 leading-relaxed flex-1">{action.description}</p>
+              <p className={`text-xs font-medium mt-3 ${action.impactColor}`}>
+                {action.impact}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function BudgetMeter({ used, limit }: { used: number; limit: number }) {
@@ -308,6 +562,9 @@ export function ResourceAuditTab() {
               </div>
             </div>
           </div>
+
+          {/* Executive Summary — CXO-friendly */}
+          <ExecutiveSummary result={result} />
 
           {/* 2MB Budget Meter */}
           <BudgetMeter used={result.crawlBudgetUsed} limit={result.crawlBudgetLimit} />
