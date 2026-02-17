@@ -3,14 +3,166 @@ import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { StatusBadge, SeverityBadge, VerdictBadge, GradeBadge } from './ComplianceBadge';
 import { PROVIDER_INFO } from '@shared/constants';
-import type { ScanResult } from '@shared/types';
+import type { ScanResult, ActionItem } from '@shared/types';
+
+const PRIORITY_CONFIG: Record<string, { label: string; bg: string; text: string; border: string }> = {
+  immediate: { label: 'Do Now', bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
+  short_term: { label: 'Do Soon', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' },
+  ongoing: { label: 'Ongoing', bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+};
+
+const RULE_CATEGORY: Record<string, { label: string; icon: string }> = {
+  LABEL: { label: 'Labeling', icon: '🏷' },
+  META: { label: 'Metadata', icon: '📋' },
+  PLAT: { label: 'Platform Obligations', icon: '🏢' },
+  PUB: { label: 'Publisher Obligations', icon: '📰' },
+};
+
+function getCategoryKey(ruleId: string): string {
+  return ruleId.split('-')[0];
+}
+
+function ActionPlanSection({ actions, verdict, confidence }: { actions: ActionItem[]; verdict: string; confidence: number }) {
+  if (!actions || actions.length === 0) return null;
+
+  const isAI = verdict === 'ai_generated' || verdict === 'ai_modified';
+  const isUncertain = verdict === 'uncertain';
+  const hasImmediateActions = actions.some((a) => a.priority === 'immediate');
+
+  let bannerBg = 'bg-green-50 border-green-200';
+  let bannerText = 'text-green-800';
+  let bannerTitle = 'All Clear — No Action Needed';
+  let bannerSubtitle = 'Content appears human-created and compliant.';
+
+  if (hasImmediateActions && isAI) {
+    bannerBg = 'bg-red-50 border-red-300';
+    bannerText = 'text-red-800';
+    bannerTitle = 'Action Required — AI Content Detected';
+    bannerSubtitle = `This content was detected as ${verdict.replace('_', '-')} with ${confidence}% confidence. Follow these steps to become compliant:`;
+  } else if (isUncertain) {
+    bannerBg = 'bg-amber-50 border-amber-300';
+    bannerText = 'text-amber-800';
+    bannerTitle = 'Review Needed — AI Detection Uncertain';
+    bannerSubtitle = `Detection confidence is ${confidence}%. The content shows some AI patterns. Manual review recommended.`;
+  } else if (isAI && !hasImmediateActions) {
+    bannerBg = 'bg-blue-50 border-blue-200';
+    bannerText = 'text-blue-800';
+    bannerTitle = 'AI Content — Mostly Compliant';
+    bannerSubtitle = 'AI content detected but key compliance checks are passing. Review ongoing items below.';
+  }
+
+  return (
+    <div className={`rounded-xl border-2 ${bannerBg} p-6`}>
+      <h2 className={`text-lg font-bold ${bannerText} mb-1`}>{bannerTitle}</h2>
+      <p className={`text-sm ${bannerText} opacity-80 mb-4`}>{bannerSubtitle}</p>
+
+      <div className="space-y-3">
+        {actions.map((item) => {
+          const config = PRIORITY_CONFIG[item.priority] || PRIORITY_CONFIG.ongoing;
+          return (
+            <div key={item.step} className={`bg-white rounded-lg border ${config.border} p-4`}>
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center text-sm font-bold">
+                  {item.step}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${config.bg} ${config.text}`}>
+                      {config.label}
+                    </span>
+                    {item.ruleIds.length > 0 && (
+                      <span className="text-xs text-gray-400 font-mono">
+                        {item.ruleIds.join(', ')}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm font-semibold text-gray-900 mb-1">{item.action}</p>
+                  <p className="text-xs text-gray-500">{item.reason}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function GroupedRuleChecks({ checks }: { checks: ScanResult['compliance']['ruleChecks'] }) {
+  // Group checks by category
+  const groups: Record<string, typeof checks> = {};
+  for (const check of checks) {
+    const key = getCategoryKey(check.ruleId);
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(check);
+  }
+
+  // Sort: show failed/review first, then compliant, then N/A
+  const statusOrder: Record<string, number> = {
+    non_compliant: 0,
+    needs_review: 1,
+    compliant: 2,
+    exempt: 3,
+    not_applicable: 4,
+  };
+
+  return (
+    <div className="space-y-6">
+      {Object.entries(groups).map(([key, groupChecks]) => {
+        const catInfo = RULE_CATEGORY[key] || { label: key, icon: '📄' };
+        const sorted = [...groupChecks].sort((a, b) => (statusOrder[a.status] ?? 5) - (statusOrder[b.status] ?? 5));
+        const failCount = sorted.filter((c) => c.status === 'non_compliant').length;
+        const reviewCount = sorted.filter((c) => c.status === 'needs_review').length;
+        const passCount = sorted.filter((c) => c.status === 'compliant').length;
+        const naCount = sorted.filter((c) => c.status === 'not_applicable' || c.status === 'exempt').length;
+
+        return (
+          <div key={key}>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-base">{catInfo.icon}</span>
+              <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wide">{catInfo.label}</h3>
+              <div className="flex gap-1 ml-auto">
+                {failCount > 0 && <span className="text-xs px-1.5 py-0.5 rounded bg-red-100 text-red-700">{failCount} failed</span>}
+                {reviewCount > 0 && <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">{reviewCount} review</span>}
+                {passCount > 0 && <span className="text-xs px-1.5 py-0.5 rounded bg-green-100 text-green-700">{passCount} passed</span>}
+                {naCount > 0 && <span className="text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-500">{naCount} N/A</span>}
+              </div>
+            </div>
+            <div className="space-y-2">
+              {sorted.map((check) => (
+                <div key={check.ruleId} className="card p-4">
+                  <div className="flex items-start justify-between mb-1.5">
+                    <div className="flex items-center gap-2">
+                      <StatusBadge status={check.status} />
+                      <SeverityBadge severity={check.severity} />
+                      <span className="text-xs text-gray-400 font-mono">{check.ruleId}</span>
+                    </div>
+                    <span className="text-xs text-gray-400">{check.section}</span>
+                  </div>
+                  <h4 className="text-sm font-semibold text-gray-900 mb-1">{check.ruleName}</h4>
+                  <p className="text-sm text-gray-600">{check.finding}</p>
+                  {check.recommendation && (
+                    <div className="bg-primary-50 border border-primary-100 rounded-lg p-3 mt-2">
+                      <span className="text-xs font-semibold text-primary-700">Recommendation: </span>
+                      <span className="text-xs text-primary-600">{check.recommendation}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function ScanResults() {
   const { id } = useParams<{ id: string }>();
   const { token } = useAuth();
   const [result, setResult] = useState<ScanResult | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'compliance' | 'detection'>('compliance');
+  const [activeTab, setActiveTab] = useState<'action' | 'compliance' | 'detection'>('action');
 
   useEffect(() => {
     fetch(`/api/report/${id}`, {
@@ -40,6 +192,10 @@ export default function ScanResults() {
 
   const { detection, compliance, scanRequest } = result;
 
+  const failedCount = compliance.ruleChecks.filter((c) => c.status === 'non_compliant').length;
+  const reviewCount = compliance.ruleChecks.filter((c) => c.status === 'needs_review').length;
+  const passedCount = compliance.ruleChecks.filter((c) => c.status === 'compliant').length;
+
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
@@ -64,7 +220,11 @@ export default function ScanResults() {
         <div className="card p-6">
           <h3 className="text-sm font-medium text-gray-500 mb-3">Compliance Score</h3>
           <GradeBadge grade={compliance.grade} score={compliance.score} />
-          <p className="text-sm text-gray-600 mt-4">{compliance.summary}</p>
+          <div className="flex gap-3 mt-4 text-xs">
+            {failedCount > 0 && <span className="px-2 py-1 rounded bg-red-100 text-red-700 font-medium">{failedCount} Failed</span>}
+            {reviewCount > 0 && <span className="px-2 py-1 rounded bg-amber-100 text-amber-700 font-medium">{reviewCount} Review</span>}
+            {passedCount > 0 && <span className="px-2 py-1 rounded bg-green-100 text-green-700 font-medium">{passedCount} Passed</span>}
+          </div>
         </div>
 
         <div className="card p-6">
@@ -94,12 +254,20 @@ export default function ScanResults() {
       {/* Tab toggle */}
       <div className="flex gap-2 p-1 bg-gray-100 rounded-lg w-fit">
         <button
+          onClick={() => setActiveTab('action')}
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'action' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500'
+          }`}
+        >
+          Next Steps ({compliance.actionPlan?.length || 0})
+        </button>
+        <button
           onClick={() => setActiveTab('compliance')}
           className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
             activeTab === 'compliance' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500'
           }`}
         >
-          Compliance Checks ({compliance.ruleChecks.length})
+          Compliance ({compliance.ruleChecks.length})
         </button>
         <button
           onClick={() => setActiveTab('detection')}
@@ -107,35 +275,22 @@ export default function ScanResults() {
             activeTab === 'detection' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500'
           }`}
         >
-          Detection Details ({detection.providerResults.length})
+          Detection ({detection.providerResults.length})
         </button>
       </div>
 
-      {/* Compliance checks */}
+      {/* Action Plan tab (default) */}
+      {activeTab === 'action' && (
+        <ActionPlanSection
+          actions={compliance.actionPlan || []}
+          verdict={detection.overallVerdict}
+          confidence={detection.overallConfidence}
+        />
+      )}
+
+      {/* Compliance checks — grouped by category */}
       {activeTab === 'compliance' && (
-        <div className="space-y-3">
-          {compliance.ruleChecks.map((check) => (
-            <div key={check.ruleId} className="card p-5">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <StatusBadge status={check.status} />
-                  <SeverityBadge severity={check.severity} />
-                  <span className="text-xs text-gray-400 font-mono">{check.ruleId}</span>
-                </div>
-                <span className="text-xs text-gray-400">{check.section}</span>
-              </div>
-              <h4 className="text-sm font-semibold text-gray-900 mb-1">{check.ruleName}</h4>
-              <p className="text-sm text-gray-600 mb-2">{check.finding}</p>
-              {check.recommendation && (
-                <div className="bg-primary-50 border border-primary-100 rounded-lg p-3 mt-2">
-                  <span className="text-xs font-semibold text-primary-700">Recommendation: </span>
-                  <span className="text-xs text-primary-600">{check.recommendation}</span>
-                </div>
-              )}
-              <p className="text-xs text-gray-400 mt-2">{check.description}</p>
-            </div>
-          ))}
-        </div>
+        <GroupedRuleChecks checks={compliance.ruleChecks} />
       )}
 
       {/* Detection details */}

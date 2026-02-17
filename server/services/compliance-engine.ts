@@ -1,6 +1,6 @@
 import type {
   ScanRequest, AggregatedDetection, ComplianceReport,
-  ComplianceStatus, RuleCheck,
+  ComplianceStatus, RuleCheck, ActionItem,
 } from '../../shared/types.js';
 import { COMPLIANCE_RULES, EXEMPTIONS, getRulesForContentType } from '../../shared/rules.js';
 import { getGrade } from '../../shared/constants.js';
@@ -31,6 +31,7 @@ class ComplianceEngine {
     const grade = getGrade(score);
     const overallStatus = this.determineOverallStatus(ruleChecks, score);
     const summary = this.generateSummary(ruleChecks, detection, request, overallStatus);
+    const actionPlan = this.generateActionPlan(ruleChecks, detection, request);
 
     return {
       overallStatus,
@@ -38,6 +39,7 @@ class ComplianceEngine {
       grade,
       ruleChecks,
       exemptionsApplied: [...new Set(exemptionsApplied)],
+      actionPlan,
       summary,
       generatedAt: new Date().toISOString(),
     };
@@ -379,6 +381,137 @@ class ComplianceEngine {
     if (score >= 80) return 'compliant';
     if (score >= 50) return 'needs_review';
     return 'non_compliant';
+  }
+
+  private generateActionPlan(
+    checks: RuleCheck[],
+    detection: AggregatedDetection,
+    request: ScanRequest,
+  ): ActionItem[] {
+    const actions: ActionItem[] = [];
+    let step = 1;
+
+    const isAI = detection.overallVerdict === 'ai_generated' || detection.overallVerdict === 'ai_modified';
+    const isUncertain = detection.overallVerdict === 'uncertain';
+    const failedChecks = checks.filter((c) => c.status === 'non_compliant');
+    const reviewChecks = checks.filter((c) => c.status === 'needs_review');
+
+    // If AI detected — immediate labeling actions
+    if (isAI) {
+      const labelFails = failedChecks.filter((c) => c.ruleId.startsWith('LABEL'));
+      if (labelFails.length > 0) {
+        const verdictLabel = detection.overallVerdict === 'ai_generated' ? 'generated' : 'modified';
+        const toolName = detection.generativeModel ? ` (${detection.generativeModel})` : '';
+        actions.push({
+          step: step++,
+          priority: 'immediate',
+          action: `Add a visible AI label to this content: "This content was ${verdictLabel} using AI${toolName}."`,
+          reason: `Content detected as ${detection.overallVerdict} with ${detection.overallConfidence}% confidence but has no AI label. This is a critical violation under India IT Rules 2026.`,
+          ruleIds: labelFails.map((c) => c.ruleId),
+        });
+      }
+
+      const disclosureFails = failedChecks.filter((c) => c.ruleId === 'PUB-001' || c.ruleId === 'PUB-002');
+      if (disclosureFails.length > 0) {
+        actions.push({
+          step: step++,
+          priority: 'immediate',
+          action: `Publisher "${request.publisherName}" must add a self-declaration disclosing AI usage${detection.generativeModel ? ` (tool: ${detection.generativeModel})` : ''}.`,
+          reason: 'Publishers are required to self-declare when AI tools are used in content creation or modification.',
+          ruleIds: disclosureFails.map((c) => c.ruleId),
+        });
+      }
+
+      const metaFails = failedChecks.filter((c) => c.ruleId.startsWith('META'));
+      if (metaFails.length > 0) {
+        actions.push({
+          step: step++,
+          priority: 'short_term',
+          action: 'Embed machine-readable AI provenance metadata (C2PA Content Credentials or IPTC DigitalSourceType) into the content.',
+          reason: 'AI-generated content must carry machine-readable metadata for automated verification and provenance tracking.',
+          ruleIds: metaFails.map((c) => c.ruleId),
+        });
+      }
+
+      // Deepfake check
+      const deepfakeReview = reviewChecks.find((c) => c.ruleId === 'LABEL-003');
+      if (deepfakeReview) {
+        actions.push({
+          step: step++,
+          priority: 'immediate',
+          action: 'Verify if this content depicts a real person. If yes, add mandatory deepfake disclosure: "This is computer-generated content and does not represent reality."',
+          reason: 'Synthetic media depicting real people requires explicit deepfake disclosure under law.',
+          ruleIds: ['LABEL-003'],
+        });
+      }
+    }
+
+    // If uncertain — recommend verification
+    if (isUncertain) {
+      actions.push({
+        step: step++,
+        priority: 'immediate',
+        action: 'Run additional AI detection (enable Hive AI provider for higher accuracy) or manually verify if this content was created using AI tools.',
+        reason: `Detection is uncertain (${detection.overallConfidence}% confidence). The content shows some AI patterns but cannot be conclusively classified.`,
+        ruleIds: [],
+      });
+      actions.push({
+        step: step++,
+        priority: 'short_term',
+        action: 'If content is confirmed as AI-generated, add appropriate AI labels and metadata before publishing.',
+        reason: 'Precautionary labeling is recommended when AI detection is inconclusive.',
+        ruleIds: ['LABEL-001', 'LABEL-002'],
+      });
+    }
+
+    // Platform obligations
+    const platformReviews = reviewChecks.filter((c) => c.ruleId.startsWith('PLAT'));
+    if (platformReviews.length > 0 && request.platformName) {
+      const platformActions: string[] = [];
+      if (platformReviews.some((c) => c.ruleId === 'PLAT-001')) {
+        platformActions.push('Deploy automated AI detection on all user-uploaded content');
+      }
+      if (platformReviews.some((c) => c.ruleId === 'PLAT-002')) {
+        platformActions.push('Add a "Report AI Content" button for users to flag content');
+      }
+      if (platformReviews.some((c) => c.ruleId === 'PLAT-003')) {
+        platformActions.push('Publish quarterly AI compliance reports');
+      }
+      if (platformReviews.some((c) => c.ruleId === 'PLAT-004')) {
+        platformActions.push('Add AI mislabeling as a grievance category in your complaint system');
+      }
+
+      actions.push({
+        step: step++,
+        priority: 'ongoing',
+        action: `Platform "${request.platformName}" must implement: ${platformActions.join('; ')}.`,
+        reason: 'These are mandatory platform obligations under India IT Rules 2026 for social media intermediaries.',
+        ruleIds: platformReviews.map((c) => c.ruleId),
+      });
+    }
+
+    // If everything is compliant
+    if (actions.length === 0) {
+      if (isAI) {
+        actions.push({
+          step: 1,
+          priority: 'ongoing',
+          action: 'Content is compliant. Continue maintaining AI labels, metadata, and disclosures for all future AI-generated content.',
+          reason: 'All compliance checks passed. Maintain this standard across your content pipeline.',
+          ruleIds: [],
+        });
+      } else {
+        actions.push({
+          step: 1,
+          priority: 'ongoing',
+          action: 'No action needed. Content appears to be human-created and does not require AI labeling.',
+          reason: 'AI detection did not flag this content. No compliance obligations apply to human-created content.',
+          ruleIds: [],
+        });
+      }
+    }
+
+    return actions;
   }
 
   private generateSummary(

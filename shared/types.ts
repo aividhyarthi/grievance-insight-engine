@@ -59,12 +59,21 @@ export interface RuleCheck {
   severity: 'critical' | 'major' | 'minor' | 'info';
 }
 
+export interface ActionItem {
+  step: number;
+  priority: 'immediate' | 'short_term' | 'ongoing';
+  action: string;
+  reason: string;
+  ruleIds: string[];
+}
+
 export interface ComplianceReport {
   overallStatus: ComplianceStatus;
   score: number;                  // 0–100
   grade: string;                  // A+, A, B, C, D, F
   ruleChecks: RuleCheck[];
   exemptionsApplied: string[];
+  actionPlan: ActionItem[];       // Clear next steps for the user
   summary: string;
   generatedAt: string;
 }
