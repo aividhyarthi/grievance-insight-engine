@@ -66,7 +66,15 @@ export default function LoginForm() {
 
             {error && (
               <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-700">
-                {error}
+                <p>{error}</p>
+                {error.toLowerCase().includes('no account found') && (
+                  <Link
+                    to="/signup"
+                    className="inline-block mt-2 text-sm font-medium text-primary-600 hover:text-primary-700 underline"
+                  >
+                    Create a new account
+                  </Link>
+                )}
               </div>
             )}
 

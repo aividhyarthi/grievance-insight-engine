@@ -27,9 +27,27 @@ const loginSchema = z.object({
 authRouter.post('/signup', (req, res) => {
   try {
     const data = signupSchema.parse(req.body);
-    const existing = queries.getUserByEmail.get(data.email);
+    const existing = queries.getUserByEmail.get(data.email) as any;
     if (existing) {
-      res.status(409).json({ success: false, error: 'Email already registered' } satisfies ApiResponse);
+      // If account exists and password matches, auto-login instead of erroring
+      if (verifyPassword(data.password, existing.password_hash)) {
+        const token = generateToken(existing.id);
+        const payload: AuthPayload = {
+          token,
+          user: {
+            id: existing.id,
+            email: existing.email,
+            name: existing.name,
+            role: existing.role,
+            plan: existing.plan,
+            organization: existing.organization,
+            createdAt: existing.created_at,
+          },
+        };
+        res.json({ success: true, data: payload, message: 'Welcome back! Logged into existing account.' } satisfies ApiResponse<AuthPayload>);
+        return;
+      }
+      res.status(409).json({ success: false, error: 'Email already registered. Try logging in instead.' } satisfies ApiResponse);
       return;
     }
 
@@ -70,8 +88,17 @@ authRouter.post('/login', (req, res) => {
     const data = loginSchema.parse(req.body);
     const user = queries.getUserByEmail.get(data.email) as any;
 
-    if (!user || !verifyPassword(data.password, user.password_hash)) {
-      res.status(401).json({ success: false, error: 'Invalid email or password' } satisfies ApiResponse);
+    if (!user) {
+      res.status(401).json({
+        success: false,
+        error: 'No account found with this email. Please sign up to create a new account.',
+        message: 'account_not_found',
+      } satisfies ApiResponse);
+      return;
+    }
+
+    if (!verifyPassword(data.password, user.password_hash)) {
+      res.status(401).json({ success: false, error: 'Incorrect password. Please try again.' } satisfies ApiResponse);
       return;
     }
 
