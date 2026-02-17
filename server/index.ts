@@ -14,6 +14,7 @@ import { auditRouter } from './routes/audit.js';
 import { reportRouter } from './routes/report.js';
 import { authRouter } from './routes/auth.js';
 import { stripeRouter } from './routes/stripe.js';
+import { resourceAuditRouter } from './routes/resource-audit.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -50,6 +51,7 @@ app.use('/api', authRouter);
 app.use('/api', auditRouter);
 app.use('/api', reportRouter);
 app.use('/api', stripeRouter);
+app.use('/api', resourceAuditRouter);
 
 // Health check
 app.get('/api/health', (_req, res) => {

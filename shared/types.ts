@@ -80,3 +80,75 @@ export interface AuditError {
   error: string;
   details?: string;
 }
+
+// ===== Resource Audit Types =====
+
+export type ResourceType = 'js' | 'css';
+export type ResourceParty = '1st-party' | '3rd-party';
+export type ResourceVerdict = 'critical' | 'deferrable' | 'removable';
+export type ResourceCategory =
+  | 'framework'
+  | 'analytics'
+  | 'ads'
+  | 'tracking'
+  | 'social'
+  | 'chat-support'
+  | 'font'
+  | 'cdn-library'
+  | 'tag-manager'
+  | 'video'
+  | 'consent'
+  | 'performance'
+  | 'site-core'
+  | 'unknown';
+
+export interface ResourceItem {
+  url: string;
+  type: ResourceType;
+  party: ResourceParty;
+  category: ResourceCategory;
+  categoryLabel: string;
+  verdict: ResourceVerdict;
+  verdictReason: string;
+  renderBlocking: boolean;
+  sizeBytes: number | null;
+  location: 'head' | 'body';
+  hasAsync: boolean;
+  hasDefer: boolean;
+  domain: string;
+  crawlerAdvice: 'allow' | 'block-safe' | 'block-recommended';
+  crawlerAdviceReason: string;
+}
+
+export interface ResourceAuditResult {
+  url: string;
+  fetchedAt: string;
+  htmlSizeBytes: number;
+  crawlBudgetUsed: number;
+  crawlBudgetLimit: number;
+  resources: ResourceItem[];
+  inlineResources: {
+    inlineJsCount: number;
+    inlineJsSizeBytes: number;
+    inlineCssCount: number;
+    inlineCssSizeBytes: number;
+  };
+  summary: {
+    totalResources: number;
+    totalJs: number;
+    totalCss: number;
+    firstParty: number;
+    thirdParty: number;
+    renderBlocking: number;
+    critical: number;
+    deferrable: number;
+    removable: number;
+    estimatedSavingsBytes: number;
+  };
+  verdictBreakdown: {
+    category: ResourceCategory;
+    label: string;
+    count: number;
+    verdict: ResourceVerdict;
+  }[];
+}
