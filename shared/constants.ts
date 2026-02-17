@@ -227,6 +227,11 @@ export const PROVIDER_INFO: Record<string, { name: string; description: string; 
     description: 'Specialized audio deepfake detection. 30+ languages including Hindi, Tamil, Bengali.',
     website: 'https://resemble.ai',
   },
+  huggingface: {
+    name: 'HuggingFace Visual AI',
+    description: 'Free visual AI image detection using Vision Transformer (ViT) models. Analyzes pixel-level patterns to detect AI-generated images. No API key required.',
+    website: 'https://huggingface.co/umm-maybe/AI-image-detector',
+  },
   c2pa: {
     name: 'C2PA Metadata',
     description: 'Content Credentials standard (Adobe/Microsoft). Checks embedded provenance metadata.',

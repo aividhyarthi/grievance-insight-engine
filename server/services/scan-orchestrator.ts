@@ -80,12 +80,13 @@ function aggregateDetections(results: ProviderResult[]): AggregatedDetection {
 
   // Weighted confidence based on provider reliability
   const weights: Record<string, number> = {
-    hive: 3.0,      // External AI API — highest trust
+    hive: 3.0,         // External AI API — highest trust
     sensity: 3.0,
     arya: 2.5,
     resemble: 2.5,
-    c2pa: 2.0,      // Metadata-based — reliable but can be absent
-    heuristic: 1.0, // Heuristic — lowest weight
+    huggingface: 2.5,  // Visual AI detection — free, ViT-based
+    c2pa: 2.0,         // Metadata-based — reliable but can be absent
+    heuristic: 1.0,    // Heuristic — lowest weight
   };
 
   let weightedSum = 0;

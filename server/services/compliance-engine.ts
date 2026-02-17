@@ -509,17 +509,20 @@ class ComplianceEngine {
           ruleIds: [],
         });
       } else {
-        // Check if only heuristic provider was used (limited analysis)
-        const onlyHeuristic = detection.providerResults.length <= 2 &&
-          detection.providerResults.every((r) => r.provider === 'heuristic' || r.provider === 'c2pa');
+        // Check if no visual AI provider ran successfully (limited analysis)
+        const visualProviders = ['hive', 'huggingface', 'sensity', 'arya', 'resemble'];
+        const hasVisualProvider = detection.providerResults.some(
+          (r) => visualProviders.includes(r.provider) && !r.error
+        );
+        const onlyHeuristic = !hasVisualProvider;
         const isImage = request.contentType === 'image';
 
         if (isImage && onlyHeuristic) {
           actions.push({
             step: 1,
             priority: 'short_term',
-            action: 'Limited analysis only. Heuristic checks found no AI metadata signals, but visual AI detection is not available without the Hive AI provider.',
-            reason: 'Image AI detection through metadata alone cannot catch visual artifacts like distorted text, unnatural features, or inconsistent lighting. Enable the Hive AI provider (HIVE_API_KEY) for reliable image analysis.',
+            action: 'Limited analysis only. Visual AI detection providers failed or returned errors. Results are based on metadata analysis only.',
+            reason: 'Image AI detection through metadata alone cannot catch visual artifacts like distorted text, unnatural features, or inconsistent lighting. Check if HuggingFace API is reachable, or enable Hive AI (HIVE_API_KEY) for more reliable analysis.',
             ruleIds: [],
           });
         } else {

@@ -2,6 +2,7 @@ import type { ContentType, DetectionProviderName } from '../../shared/types.js';
 import { DetectionProvider, type DetectionInput } from './base.js';
 import { HeuristicProvider } from './heuristic.js';
 import { HiveProvider } from './hive.js';
+import { HuggingFaceProvider } from './huggingface.js';
 import { C2paProvider } from './c2pa.js';
 
 class ProviderRegistry {
@@ -10,6 +11,7 @@ class ProviderRegistry {
   constructor() {
     this.register(new HeuristicProvider());
     this.register(new HiveProvider());
+    this.register(new HuggingFaceProvider());
     this.register(new C2paProvider());
   }
 
