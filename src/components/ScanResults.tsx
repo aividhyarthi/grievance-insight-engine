@@ -28,6 +28,7 @@ function ActionPlanSection({ actions, verdict, confidence }: { actions: ActionIt
   const isAI = verdict === 'ai_generated' || verdict === 'ai_modified';
   const isUncertain = verdict === 'uncertain';
   const hasImmediateActions = actions.some((a) => a.priority === 'immediate');
+  const hasLimitedAnalysis = actions.some((a) => a.action.toLowerCase().includes('limited analysis'));
 
   let bannerBg = 'bg-green-50 border-green-200';
   let bannerText = 'text-green-800';
@@ -49,6 +50,11 @@ function ActionPlanSection({ actions, verdict, confidence }: { actions: ActionIt
     bannerText = 'text-blue-800';
     bannerTitle = 'AI Content — Mostly Compliant';
     bannerSubtitle = 'AI content detected but key compliance checks are passing. Review ongoing items below.';
+  } else if (hasLimitedAnalysis) {
+    bannerBg = 'bg-amber-50 border-amber-200';
+    bannerText = 'text-amber-800';
+    bannerTitle = 'Limited Analysis — Cannot Confirm';
+    bannerSubtitle = 'Only metadata-based detection was available. Visual AI analysis requires an API provider to be enabled.';
   }
 
   return (

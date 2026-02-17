@@ -468,13 +468,13 @@ export class HeuristicProvider extends DetectionProvider {
 
     const foundFields = cameraFields.filter((f) => lower.includes(f.field));
 
-    if (mimeType === 'image/jpeg') {
+    if (mimeType === 'image/jpeg' || mimeType === 'image/webp') {
       if (!hasExif) {
         return {
           name: 'EXIF data absence',
           score: 55,
           weight: 2.5,
-          detail: 'No EXIF data found in JPEG. Real camera photos almost always contain EXIF. AI-generated images typically lack camera metadata entirely.',
+          detail: `No EXIF data found in ${mimeType === 'image/webp' ? 'WebP' : 'JPEG'}. Real camera photos almost always contain EXIF. AI-generated images typically lack camera metadata entirely.`,
         };
       }
       if (foundFields.length <= 2) {
@@ -510,11 +510,20 @@ export class HeuristicProvider extends DetectionProvider {
       };
     }
 
+    // Other image formats (GIF, BMP, SVG, etc.)
+    if (!hasExif) {
+      return {
+        name: 'No camera EXIF',
+        score: 30,
+        weight: 1.5,
+        detail: `No camera EXIF data found (${mimeType}). Absence of camera metadata is common in AI-generated images.`,
+      };
+    }
     return {
       name: 'EXIF analysis',
       score: 0,
       weight: 0.5,
-      detail: 'EXIF analysis not applicable for this format.',
+      detail: 'EXIF data present in file.',
     };
   }
 
@@ -533,6 +542,28 @@ export class HeuristicProvider extends DetectionProvider {
           height = buffer.readUInt16BE(i + 5);
           width = buffer.readUInt16BE(i + 7);
           break;
+        }
+      }
+    } else if (mimeType === 'image/webp' && buffer.length > 30) {
+      // WebP: RIFF header (12 bytes) then VP8 chunk
+      // Check for "RIFF" header and "WEBP" format
+      const riff = buffer.toString('ascii', 0, 4);
+      const webp = buffer.toString('ascii', 8, 12);
+      if (riff === 'RIFF' && webp === 'WEBP') {
+        const chunkType = buffer.toString('ascii', 12, 16);
+        if (chunkType === 'VP8 ' && buffer.length > 26) {
+          // Lossy VP8: dimensions at offset 26-29 (little-endian 16-bit)
+          width = buffer.readUInt16LE(26) & 0x3FFF;
+          height = buffer.readUInt16LE(28) & 0x3FFF;
+        } else if (chunkType === 'VP8L' && buffer.length > 25) {
+          // Lossless VP8L: dimensions packed in a 32-bit value at offset 21
+          const bits = buffer.readUInt32LE(21);
+          width = (bits & 0x3FFF) + 1;
+          height = ((bits >> 14) & 0x3FFF) + 1;
+        } else if (chunkType === 'VP8X' && buffer.length > 30) {
+          // Extended VP8X: canvas size at offset 24-29
+          width = (buffer[24] | (buffer[25] << 8) | (buffer[26] << 16)) + 1;
+          height = (buffer[27] | (buffer[28] << 8) | (buffer[29] << 16)) + 1;
         }
       }
     }
@@ -650,28 +681,15 @@ export class HeuristicProvider extends DetectionProvider {
   // ─── Compression Analysis ────────────────────────────────────────────────
 
   private analyzeCompression(buffer: Buffer, mimeType: string): { name: string; score: number; weight: number; detail: string } | null {
-    let width = 0;
-    let height = 0;
+    // Use parseDimensions helper to get width/height for any format
+    const dims = this.parseDimensions(buffer, mimeType);
+    if (!dims) return null;
 
-    if (mimeType === 'image/png' && buffer.length > 24) {
-      width = buffer.readUInt32BE(16);
-      height = buffer.readUInt32BE(20);
-    } else if (mimeType === 'image/jpeg') {
-      for (let i = 0; i < buffer.length - 10; i++) {
-        if (buffer[i] === 0xFF && (buffer[i + 1] === 0xC0 || buffer[i + 1] === 0xC2)) {
-          height = buffer.readUInt16BE(i + 5);
-          width = buffer.readUInt16BE(i + 7);
-          break;
-        }
-      }
-    }
-
-    if (width === 0 || height === 0) return null;
-
+    const { width, height } = dims;
     const pixels = width * height;
     const bytesPerPixel = buffer.length / pixels;
 
-    if (mimeType === 'image/jpeg' && bytesPerPixel > 0.3 && bytesPerPixel < 0.6 && pixels > 500000) {
+    if ((mimeType === 'image/jpeg' || mimeType === 'image/webp') && bytesPerPixel > 0.3 && bytesPerPixel < 0.6 && pixels > 500000) {
       return {
         name: 'Compression ratio',
         score: 20,
@@ -689,6 +707,46 @@ export class HeuristicProvider extends DetectionProvider {
       };
     }
 
+    return null;
+  }
+
+  // ─── Shared dimension parser (reusable) ────────────────────────────────
+
+  private parseDimensions(buffer: Buffer, mimeType: string): { width: number; height: number } | null {
+    let width = 0;
+    let height = 0;
+
+    if (mimeType === 'image/png' && buffer.length > 24) {
+      width = buffer.readUInt32BE(16);
+      height = buffer.readUInt32BE(20);
+    } else if (mimeType === 'image/jpeg') {
+      for (let i = 0; i < buffer.length - 10; i++) {
+        if (buffer[i] === 0xFF && (buffer[i + 1] === 0xC0 || buffer[i + 1] === 0xC2)) {
+          height = buffer.readUInt16BE(i + 5);
+          width = buffer.readUInt16BE(i + 7);
+          break;
+        }
+      }
+    } else if (mimeType === 'image/webp' && buffer.length > 30) {
+      const riff = buffer.toString('ascii', 0, 4);
+      const webp = buffer.toString('ascii', 8, 12);
+      if (riff === 'RIFF' && webp === 'WEBP') {
+        const chunkType = buffer.toString('ascii', 12, 16);
+        if (chunkType === 'VP8 ' && buffer.length > 26) {
+          width = buffer.readUInt16LE(26) & 0x3FFF;
+          height = buffer.readUInt16LE(28) & 0x3FFF;
+        } else if (chunkType === 'VP8L' && buffer.length > 25) {
+          const bits = buffer.readUInt32LE(21);
+          width = (bits & 0x3FFF) + 1;
+          height = ((bits >> 14) & 0x3FFF) + 1;
+        } else if (chunkType === 'VP8X' && buffer.length > 30) {
+          width = (buffer[24] | (buffer[25] << 8) | (buffer[26] << 16)) + 1;
+          height = (buffer[27] | (buffer[28] << 8) | (buffer[29] << 16)) + 1;
+        }
+      }
+    }
+
+    if (width > 0 && height > 0) return { width, height };
     return null;
   }
 
@@ -793,6 +851,35 @@ export class HeuristicProvider extends DetectionProvider {
               detail: `Byte-pair diversity: ${(pairDiversity * 100).toFixed(1)}%. Low diversity suggests regular patterns typical of AI imagery.`,
             });
           }
+        }
+      }
+    }
+
+    // WebP: analyze data bytes similarly to JPEG
+    if (mimeType === 'image/webp' && buffer.length > 1000) {
+      // Skip the RIFF/WEBP header (first ~30 bytes) and sample the data
+      const dataStart = 30;
+      const sampleSize = Math.min(10000, buffer.length - dataStart);
+      if (sampleSize > 100) {
+        const sample = buffer.subarray(dataStart, dataStart + sampleSize);
+        const freq = new Array(256).fill(0);
+        for (let i = 0; i < sample.length; i++) {
+          freq[sample[i]]++;
+        }
+        let entropy = 0;
+        for (let i = 0; i < 256; i++) {
+          if (freq[i] > 0) {
+            const p = freq[i] / sample.length;
+            entropy -= p * Math.log2(p);
+          }
+        }
+        if (entropy < 6.8) {
+          results.push({
+            name: 'Data entropy (low)',
+            score: 30,
+            weight: 1.0,
+            detail: `WebP data entropy: ${entropy.toFixed(2)} bits/byte. Below typical for real photos (7.0+). AI images can show lower entropy.`,
+          });
         }
       }
     }

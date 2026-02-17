@@ -500,14 +500,37 @@ class ComplianceEngine {
           reason: 'All compliance checks passed. Maintain this standard across your content pipeline.',
           ruleIds: [],
         });
-      } else {
+      } else if (isUncertain) {
         actions.push({
           step: 1,
-          priority: 'ongoing',
-          action: 'No action needed. Content appears to be human-created and does not require AI labeling.',
-          reason: 'AI detection did not flag this content. No compliance obligations apply to human-created content.',
+          priority: 'short_term',
+          action: 'Detection is inconclusive. Manually verify whether this content was created or modified using AI tools.',
+          reason: `AI confidence is only ${detection.overallConfidence}%. Heuristic analysis alone may not detect all AI content — especially images. For more accurate results, enable the Hive AI detection provider.`,
           ruleIds: [],
         });
+      } else {
+        // Check if only heuristic provider was used (limited analysis)
+        const onlyHeuristic = detection.providerResults.length <= 2 &&
+          detection.providerResults.every((r) => r.provider === 'heuristic' || r.provider === 'c2pa');
+        const isImage = request.contentType === 'image';
+
+        if (isImage && onlyHeuristic) {
+          actions.push({
+            step: 1,
+            priority: 'short_term',
+            action: 'Limited analysis only. Heuristic checks found no AI metadata signals, but visual AI detection is not available without the Hive AI provider.',
+            reason: 'Image AI detection through metadata alone cannot catch visual artifacts like distorted text, unnatural features, or inconsistent lighting. Enable the Hive AI provider (HIVE_API_KEY) for reliable image analysis.',
+            ruleIds: [],
+          });
+        } else {
+          actions.push({
+            step: 1,
+            priority: 'ongoing',
+            action: 'No action needed. Content appears to be human-created and does not require AI labeling.',
+            reason: 'AI detection did not flag this content. No compliance obligations apply to human-created content.',
+            ruleIds: [],
+          });
+        }
       }
     }
 
