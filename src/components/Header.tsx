@@ -3,10 +3,11 @@ import { useAuth, isPro } from '../contexts/AuthContext';
 interface Props {
   onLoginClick?: () => void;
   onDashboardClick?: () => void;
+  onPricingClick?: () => void;
   onLogoClick?: () => void;
 }
 
-export function Header({ onLoginClick, onDashboardClick, onLogoClick }: Props) {
+export function Header({ onLoginClick, onDashboardClick, onPricingClick, onLogoClick }: Props) {
   const { user, logout } = useAuth();
 
   return (
@@ -34,7 +35,7 @@ export function Header({ onLoginClick, onDashboardClick, onLogoClick }: Props) {
                 Rudra Kasturi Inc
               </h1>
               <p className="text-xs text-gray-500">
-                Your AEO Auditor & Insights
+                AEO Auditor, Resource Auditor & Insights
               </p>
             </div>
           </div>
@@ -46,6 +47,12 @@ export function Header({ onLoginClick, onDashboardClick, onLogoClick }: Props) {
                   className="text-sm text-gray-600 hover:text-brand-600 font-medium transition-colors"
                 >
                   My Audits
+                </button>
+                <button
+                  onClick={onPricingClick}
+                  className="text-sm text-gray-600 hover:text-brand-600 font-medium transition-colors"
+                >
+                  Pricing
                 </button>
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center">
@@ -68,12 +75,20 @@ export function Header({ onLoginClick, onDashboardClick, onLogoClick }: Props) {
                 </button>
               </>
             ) : (
-              <button
-                onClick={onLoginClick}
-                className="px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg transition-colors"
-              >
-                Log In
-              </button>
+              <>
+                <button
+                  onClick={onPricingClick}
+                  className="text-sm text-gray-600 hover:text-brand-600 font-medium transition-colors"
+                >
+                  Pricing
+                </button>
+                <button
+                  onClick={onLoginClick}
+                  className="px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg transition-colors"
+                >
+                  Log In
+                </button>
+              </>
             )}
           </div>
         </div>

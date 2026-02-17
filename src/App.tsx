@@ -9,8 +9,9 @@ import { Footer } from './components/Footer';
 import { AuthPage } from './components/AuthPage';
 import { DashboardPage } from './components/DashboardPage';
 import { ResourceAuditTab } from './components/ResourceAuditTab';
+import { PricingPage } from './components/PricingPage';
 
-type Page = 'audit' | 'dashboard';
+type Page = 'audit' | 'dashboard' | 'pricing';
 type ToolTab = 'aeo-audit' | 'resource-audit';
 
 function getHostname(url: string): string {
@@ -76,10 +77,16 @@ export default function App() {
       <Header
         onLoginClick={() => setShowAuth(true)}
         onDashboardClick={() => setPage('dashboard')}
+        onPricingClick={() => setPage('pricing')}
         onLogoClick={() => { setPage('audit'); setReport(null); setError(null); }}
       />
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
-        {page === 'dashboard' && user ? (
+        {page === 'pricing' ? (
+          <PricingPage
+            onLogin={() => setShowAuth(true)}
+            onBack={() => setPage('audit')}
+          />
+        ) : page === 'dashboard' && user ? (
           <DashboardPage
             onViewReport={handleViewHistoryReport}
             onBack={() => setPage('audit')}
