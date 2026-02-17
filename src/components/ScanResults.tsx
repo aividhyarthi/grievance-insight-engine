@@ -54,7 +54,7 @@ function ActionPlanSection({ actions, verdict, confidence }: { actions: ActionIt
     bannerBg = 'bg-amber-50 border-amber-200';
     bannerText = 'text-amber-800';
     bannerTitle = 'Limited Analysis — Cannot Confirm';
-    bannerSubtitle = 'Only metadata-based detection was available. Visual AI analysis requires an API provider to be enabled.';
+    bannerSubtitle = 'Visual AI detection providers returned errors or were unavailable. Results are based on metadata analysis only. Check provider details below for more info.';
   }
 
   return (

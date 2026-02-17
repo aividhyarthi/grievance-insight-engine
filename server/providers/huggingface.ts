@@ -27,7 +27,8 @@ export class HuggingFaceProvider extends DetectionProvider {
   }
 
   isConfigured(): boolean {
-    // Works without a token (rate-limited), better with one
+    // Works best with a token, but we still attempt without one
+    // (HF may return 401 for some models without a token)
     return true;
   }
 
@@ -45,25 +46,29 @@ export class HuggingFaceProvider extends DetectionProvider {
     const imageBuffer = fs.readFileSync(input.filePath);
 
     // Try primary model first, fall back to secondary
+    const errors: string[] = [];
+    const mime = input.mimeType || 'image/jpeg';
+
     for (const model of HF_MODELS) {
       try {
-        const result = await this.callModel(model, imageBuffer, input.mimeType || 'image/jpeg', start);
+        const result = await this.callModel(model, imageBuffer, mime, start);
         if (!result.error) return result;
-        // If model is loading (503), try next or wait
+        errors.push(`${model.split('/')[1]}: ${result.error}`);
+        // If model is loading (503), wait and retry once
         if (result.error.includes('loading')) {
-          // Wait for model to load and retry once
-          await this.sleep(3000);
-          const retry = await this.callModel(model, imageBuffer, input.mimeType || 'image/jpeg', start);
+          await this.sleep(5000);
+          const retry = await this.callModel(model, imageBuffer, mime, start);
           if (!retry.error) return retry;
+          errors.push(`${model.split('/')[1]} (retry): ${retry.error}`);
         }
-      } catch {
-        // Try next model
+      } catch (err: any) {
+        errors.push(`${model.split('/')[1]}: exception: ${err.message}`);
         continue;
       }
     }
 
     return this.makeErrorResult(
-      'HuggingFace visual detection unavailable. All models failed or are loading. Try again in a few seconds.',
+      `HuggingFace visual detection failed. ${errors.join(' | ')}`,
       Date.now() - start,
     );
   }
@@ -78,6 +83,7 @@ export class HuggingFaceProvider extends DetectionProvider {
 
     const headers: Record<string, string> = {
       'Content-Type': mimeType,
+      'x-wait-for-model': 'true', // Wait for cold-start instead of 503
     };
     if (this.apiToken) {
       headers['Authorization'] = `Bearer ${this.apiToken}`;
