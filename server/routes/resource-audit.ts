@@ -6,30 +6,52 @@ import { optionalAuth, type AuthRequest } from '../auth.js';
 
 export const resourceAuditRouter = Router();
 
-const ResourceAuditSchema = z.object({
-  url: z
-    .string()
-    .url('Please enter a valid URL')
-    .refine(
-      (url) => url.startsWith('http://') || url.startsWith('https://'),
-      'URL must start with http:// or https://'
-    ),
-});
+const urlValidator = z
+  .string()
+  .url('Please enter a valid URL')
+  .refine(
+    (url) => url.startsWith('http://') || url.startsWith('https://'),
+    'URL must start with http:// or https://'
+  );
+
+// Mode 1: Fetch URL and analyze
+// Mode 2: Accept raw HTML code + optional base URL for resolving relative paths
+const ResourceAuditSchema = z.union([
+  z.object({
+    mode: z.literal('url'),
+    url: urlValidator,
+  }),
+  z.object({
+    mode: z.literal('html'),
+    html: z.string().min(10, 'HTML code is too short'),
+    baseUrl: z.string().optional(),
+  }),
+]);
 
 resourceAuditRouter.post('/resource-audit', optionalAuth, async (req: AuthRequest, res: Response) => {
   try {
     const parsed = ResourceAuditSchema.safeParse(req.body);
     if (!parsed.success) {
       res.status(400).json({
-        error: 'Invalid URL',
+        error: 'Invalid input',
         details: parsed.error.errors[0]?.message,
       });
       return;
     }
 
-    const pageResult = await fetchPage(parsed.data.url);
-    const result = analyzeResources(pageResult.html, pageResult.finalUrl || parsed.data.url);
+    let html: string;
+    let pageUrl: string;
 
+    if (parsed.data.mode === 'url') {
+      const pageResult = await fetchPage(parsed.data.url);
+      html = pageResult.html;
+      pageUrl = pageResult.finalUrl || parsed.data.url;
+    } else {
+      html = parsed.data.html;
+      pageUrl = parsed.data.baseUrl || 'https://example.com';
+    }
+
+    const result = analyzeResources(html, pageUrl);
     res.json(result);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Resource audit failed';

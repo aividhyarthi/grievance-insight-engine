@@ -429,12 +429,16 @@ function ResourceRow({ resource, index }: { resource: ResourceItem; index: numbe
   );
 }
 
+type InputMode = 'url' | 'code';
 type FilterType = 'all' | 'js' | 'css';
 type FilterParty = 'all' | '1st-party' | '3rd-party';
 type FilterVerdict = 'all' | 'critical' | 'deferrable' | 'removable';
 
 export function ResourceAuditTab() {
+  const [inputMode, setInputMode] = useState<InputMode>('url');
   const [url, setUrl] = useState('');
+  const [htmlCode, setHtmlCode] = useState('');
+  const [baseUrl, setBaseUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ResourceAuditResult | null>(null);
@@ -442,21 +446,35 @@ export function ResourceAuditTab() {
   const [filterParty, setFilterParty] = useState<FilterParty>('all');
   const [filterVerdict, setFilterVerdict] = useState<FilterVerdict>('all');
 
+  const canSubmit = inputMode === 'url' ? url.trim().length > 0 : htmlCode.trim().length > 20;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let finalUrl = url.trim();
-    if (!finalUrl) return;
-    if (!finalUrl.startsWith('http')) finalUrl = `https://${finalUrl}`;
 
     setLoading(true);
     setError(null);
     setResult(null);
 
     try {
+      let body: Record<string, string>;
+
+      if (inputMode === 'url') {
+        let finalUrl = url.trim();
+        if (!finalUrl.startsWith('http')) finalUrl = `https://${finalUrl}`;
+        body = { mode: 'url', url: finalUrl };
+      } else {
+        body = { mode: 'html', html: htmlCode };
+        if (baseUrl.trim()) {
+          let finalBase = baseUrl.trim();
+          if (!finalBase.startsWith('http')) finalBase = `https://${finalBase}`;
+          body.baseUrl = finalBase;
+        }
+      }
+
       const res = await fetch('/api/resource-audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: finalUrl }),
+        body: JSON.stringify(body),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.details || data.error || 'Audit failed');
@@ -489,31 +507,107 @@ export function ResourceAuditTab() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-8 max-w-2xl mx-auto">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1 relative">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                </svg>
-              </div>
-              <input
-                type="text"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="Enter URL to audit resources (e.g., example.com)"
-                className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl text-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all"
-                disabled={loading}
-              />
-            </div>
+        {/* Input mode toggle */}
+        <div className="mt-8 flex justify-center">
+          <div className="inline-flex rounded-lg bg-gray-100 p-0.5">
             <button
-              type="submit"
-              disabled={loading || !url.trim()}
-              className="px-8 py-4 bg-brand-600 text-white font-semibold rounded-xl text-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md whitespace-nowrap"
+              type="button"
+              onClick={() => setInputMode('url')}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                inputMode === 'url'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
             >
-              {loading ? 'Scanning...' : 'Scan Resources'}
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              Enter URL
+            </button>
+            <button
+              type="button"
+              onClick={() => setInputMode('code')}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                inputMode === 'code'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+              Paste HTML Code
             </button>
           </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mt-5 max-w-2xl mx-auto">
+          {inputMode === 'url' ? (
+            /* URL mode */
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex-1 relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  placeholder="Enter URL to audit resources (e.g., example.com)"
+                  className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl text-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all"
+                  disabled={loading}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading || !canSubmit}
+                className="px-8 py-4 bg-brand-600 text-white font-semibold rounded-xl text-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md whitespace-nowrap"
+              >
+                {loading ? 'Scanning...' : 'Scan Resources'}
+              </button>
+            </div>
+          ) : (
+            /* Code paste mode */
+            <div className="space-y-3 text-left">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  Paste your page HTML source code
+                </label>
+                <textarea
+                  value={htmlCode}
+                  onChange={(e) => setHtmlCode(e.target.value)}
+                  placeholder={"<!DOCTYPE html>\n<html>\n<head>\n  <script src=\"...\"></script>\n  <link rel=\"stylesheet\" href=\"...\">\n</head>\n<body>...</body>\n</html>"}
+                  className="w-full h-48 px-4 py-3 border border-gray-300 rounded-xl text-sm font-mono focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all resize-y"
+                  disabled={loading}
+                />
+                <p className="mt-1 text-xs text-gray-400">
+                  Right-click on any page &rarr; "View Page Source" &rarr; Select All &rarr; Copy &rarr; Paste here
+                </p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  Base URL <span className="text-gray-400 font-normal">(optional — helps identify 1st vs 3rd party)</span>
+                </label>
+                <input
+                  type="text"
+                  value={baseUrl}
+                  onChange={(e) => setBaseUrl(e.target.value)}
+                  placeholder="e.g., https://example.com"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all"
+                  disabled={loading}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading || !canSubmit}
+                className="w-full px-8 py-4 bg-brand-600 text-white font-semibold rounded-xl text-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md"
+              >
+                {loading ? 'Scanning...' : 'Analyze HTML Code'}
+              </button>
+            </div>
+          )}
         </form>
 
         <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-gray-500">
