@@ -588,6 +588,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 12px;
 }
 
+.service-card__tag--hot {
+  background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(239,68,68,0.15));
+  color: #F59E0B;
+}
+
+.service-card--featured {
+  border-color: rgba(99,102,241,0.4);
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(99,102,241,0.06) 100%);
+  position: relative;
+}
+
+.service-card--featured::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(99,102,241,0.35);
+  pointer-events: none;
+}
+
 .service-card h3 {
   font-family: var(--font-head);
   font-size: 1.15rem;
@@ -1416,6 +1436,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #F59E0B;
   font-size: 1.1rem;
   letter-spacing: 2px;
+}
+
+.tcard__industry-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: rgba(99,102,241,0.1);
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 100px;
+  padding: 3px 10px;
+  margin-top: -4px;
 }
 
 .tcard__quote {
