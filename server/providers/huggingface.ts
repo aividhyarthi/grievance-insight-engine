@@ -8,8 +8,8 @@ import fs from 'fs';
 // No API key required for basic usage, optional HF_TOKEN for higher rate limits
 
 const HF_MODELS = [
-  'umm-maybe/AI-image-detector',     // Primary: ViT-based, well-tested
-  'dima806/ai_vs_real_image_detection', // Fallback: alternative classifier
+  'Ateeqq/ai-vs-human-image-detector',   // Primary: SigLIP2-based, 99%+ accuracy
+  'Smogy/SMOGY-Ai-images-detector',       // Fallback: fine-tuned sdxl-detector
 ];
 
 const HF_API_BASE = 'https://api-inference.huggingface.co/models';

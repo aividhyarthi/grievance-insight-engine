@@ -12,7 +12,7 @@ export type MediaFormat =
 
 export type DetectionVerdict = 'ai_generated' | 'ai_modified' | 'likely_human' | 'uncertain';
 
-export type DetectionProviderName = 'heuristic' | 'hive' | 'huggingface' | 'sensity' | 'arya' | 'resemble' | 'c2pa';
+export type DetectionProviderName = 'heuristic' | 'hive' | 'huggingface' | 'openai' | 'sensity' | 'arya' | 'resemble' | 'c2pa';
 
 export interface ProviderResult {
   provider: DetectionProviderName;

@@ -232,6 +232,11 @@ export const PROVIDER_INFO: Record<string, { name: string; description: string; 
     description: 'Free visual AI image detection using Vision Transformer (ViT) models. Analyzes pixel-level patterns to detect AI-generated images. No API key required.',
     website: 'https://huggingface.co/umm-maybe/AI-image-detector',
   },
+  openai: {
+    name: 'OpenAI Vision',
+    description: 'GPT-4o vision analysis for AI-generated content detection. Examines visual artifacts, patterns, and anomalies.',
+    website: 'https://platform.openai.com',
+  },
   c2pa: {
     name: 'C2PA Metadata',
     description: 'Content Credentials standard (Adobe/Microsoft). Checks embedded provenance metadata.',
