@@ -341,3 +341,64 @@ function animateCounter(el, target, duration = 1800) {
 
   sections.forEach(s => observer.observe(s));
 })();
+
+/* ---- Testimonials Carousel ---- */
+(function initTestimonials() {
+  const track = document.getElementById('testimonialsTrack');
+  const dotsWrap = document.getElementById('testimonialsDots');
+  const prevBtn = document.getElementById('tPrev');
+  const nextBtn = document.getElementById('tNext');
+  if (!track) return;
+
+  const cards = Array.from(track.children);
+  let current = 0;
+  let perView = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
+  const total = cards.length;
+  const maxIndex = total - perView;
+
+  // Build dots
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i <= maxIndex; i++) {
+      const d = document.createElement('button');
+      d.className = 'tdot' + (i === current ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function updateDots() {
+    Array.from(dotsWrap.children).forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, maxIndex));
+    const cardWidth = cards[0].offsetWidth + 24; // gap 24px
+    track.style.transform = `translateX(-${current * cardWidth}px)`;
+    updateDots();
+  }
+
+  buildDots();
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Auto-rotate every 4 seconds
+  let timer = setInterval(() => goTo(current >= maxIndex ? 0 : current + 1), 4000);
+
+  // Pause on hover
+  track.closest('.testimonials__carousel-wrap').addEventListener('mouseenter', () => clearInterval(timer));
+  track.closest('.testimonials__carousel-wrap').addEventListener('mouseleave', () => {
+    timer = setInterval(() => goTo(current >= maxIndex ? 0 : current + 1), 4000);
+  });
+
+  // Recalculate on resize
+  window.addEventListener('resize', () => {
+    perView = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
+    goTo(0);
+    buildDots();
+  });
+})();
