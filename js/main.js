@@ -293,20 +293,25 @@ function animateCounter(el, target, duration = 1800) {
       return;
     }
 
-    // Simulate submit (replace with your form handler / Netlify Forms)
     const btn = form.querySelector('button[type="submit"]');
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
-    setTimeout(() => {
-      form.reset();
-      btn.textContent = 'Get My Free Growth Audit';
-      btn.disabled = false;
-      if (success) {
-        success.hidden = false;
-        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    }, 1200);
+    const data = new FormData(form);
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() })
+      .then(() => {
+        form.reset();
+        btn.textContent = 'Get My Free Growth Audit';
+        btn.disabled = false;
+        if (success) {
+          success.hidden = false;
+          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      })
+      .catch(() => {
+        btn.textContent = 'Get My Free Growth Audit';
+        btn.disabled = false;
+      });
   });
 })();
 
