@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Grievance Audit Dashboard | Grievance Insight Engine – AI Vidhyarthi</title>
+  <meta name="description" content="Audit and monitor grievance resolution metrics with the Grievance Insight Engine. Track categorization accuracy, sentiment trends, and resolution bottlenecks powered by BigQuery AI." />
+  <meta name="keywords" content="grievance audit, complaint tracking, BigQuery AI, grievance resolution, AI Vidhyarthi, student complaints, university grievance, governance AI" />
+  <meta name="author" content="AI Vidhyarthi" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://aividhyarthi.in/grievance-insight-engine/audit" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aividhyarthi.in/grievance-insight-engine/audit" />
+  <meta property="og:title" content="Grievance Audit Dashboard | Grievance Insight Engine" />
+  <meta property="og:description" content="Monitor and audit grievance resolution metrics powered by BigQuery AI. Real-time insights for universities and local governance bodies." />
+  <meta property="og:image" content="https://aividhyarthi.in/grievance-insight-engine/diagrams/architecture_flow.png" />
+  <meta property="og:site_name" content="Grievance Insight Engine – AI Vidhyarthi" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Grievance Audit Dashboard | Grievance Insight Engine" />
+  <meta name="twitter:description" content="Audit grievance resolution metrics powered by BigQuery AI. Track trends, sentiment, and bottlenecks." />
+  <meta name="twitter:image" content="https://aividhyarthi.in/grievance-insight-engine/diagrams/architecture_flow.png" />
+  <meta name="twitter:site" content="@AIVidhyarthi" />
+
+  <!-- Structured Data: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Grievance Audit Dashboard",
+    "description": "Audit and monitor grievance resolution metrics powered by BigQuery AI for universities and local governance bodies.",
+    "url": "https://aividhyarthi.in/grievance-insight-engine/audit",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Grievance Insight Engine",
+      "url": "https://aividhyarthi.in/grievance-insight-engine"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "AI Vidhyarthi",
+      "url": "https://aividhyarthi.in"
+    },
+    "datePublished": "2026-02-19",
+    "dateModified": "2026-02-19"
+  }
+  </script>
+
+  <!-- Structured Data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Grievance Insight Engine – Audit Module",
+    "applicationCategory": "GovernmentApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "description": "AI-powered audit dashboard for tracking university and local-body grievance resolution using BigQuery AI multimodal analysis.",
+    "creator": {
+      "@type": "Organization",
+      "name": "AI Vidhyarthi"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="audit.css" />
+</head>
+
+<body>
+  <!-- Skip Navigation for Accessibility -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Grievance Insight Engine Home">
+        <span class="brand-icon" aria-hidden="true">⚖️</span>
+        <span class="brand-name">Grievance Insight Engine</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul role="list">
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="audit.html" aria-current="page">Audit</a></li>
+          <li><a href="docs/executive_summary.pdf" target="_blank" rel="noopener noreferrer">Executive Summary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================== HERO ======================== -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container">
+      <p class="hero-eyebrow">BigQuery AI · Audit Dashboard</p>
+      <h1 id="hero-heading">Grievance Audit &amp; Monitoring</h1>
+      <p class="hero-subtitle">
+        Real-time visibility into grievance categorization, resolution timelines,
+        and sentiment trends — powered by <strong>BigQuery AI</strong> multimodal analysis.
+      </p>
+      <div class="hero-actions">
+        <a href="#metrics" class="btn btn-primary">View Metrics</a>
+        <a href="#pipeline" class="btn btn-outline">Audit Pipeline</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== MAIN ======================== -->
+  <main id="main-content">
+
+    <!-- KPI Summary -->
+    <section class="section" id="metrics" aria-labelledby="metrics-heading">
+      <div class="container">
+        <h2 id="metrics-heading" class="section-title">Key Performance Indicators</h2>
+        <p class="section-subtitle">Aggregated audit metrics across all registered grievance channels.</p>
+
+        <div class="kpi-grid" role="list">
+          <article class="kpi-card" role="listitem">
+            <div class="kpi-icon" aria-hidden="true">📋</div>
+            <div class="kpi-value">12,480</div>
+            <div class="kpi-label">Total Grievances Ingested</div>
+            <div class="kpi-trend positive" aria-label="Up 18% from last month">▲ 18% vs last month</div>
+          </article>
+
+          <article class="kpi-card" role="listitem">
+            <div class="kpi-icon" aria-hidden="true">✅</div>
+            <div class="kpi-value">85.3%</div>
+            <div class="kpi-label">Categorization Accuracy</div>
+            <div class="kpi-trend positive" aria-label="Up 3.1% from last month">▲ 3.1% vs last month</div>
+          </article>
+
+          <article class="kpi-card" role="listitem">
+            <div class="kpi-icon" aria-hidden="true">⏱️</div>
+            <div class="kpi-value">4.2 days</div>
+            <div class="kpi-label">Avg. Resolution Time</div>
+            <div class="kpi-trend positive" aria-label="30% faster than baseline">▼ 30% vs baseline</div>
+          </article>
+
+          <article class="kpi-card" role="listitem">
+            <div class="kpi-icon" aria-hidden="true">💰</div>
+            <div class="kpi-value">₹132</div>
+            <div class="kpi-label">Cost per 1,000 Records</div>
+            <div class="kpi-trend positive" aria-label="Below target of ₹150">Below ₹150 target</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audit Pipeline -->
+    <section class="section section-alt" id="pipeline" aria-labelledby="pipeline-heading">
+      <div class="container">
+        <h2 id="pipeline-heading" class="section-title">Audit Pipeline Overview</h2>
+        <p class="section-subtitle">
+          Each grievance passes through a structured AI pipeline before being logged
+          in the audit trail.
+        </p>
+
+        <ol class="pipeline-steps" aria-label="Audit pipeline steps">
+          <li class="pipeline-step">
+            <span class="step-number" aria-hidden="true">01</span>
+            <div class="step-body">
+              <h3 class="step-title">Data Ingestion</h3>
+              <p class="step-desc">
+                Text tickets, PDFs, audio files, and images are registered in
+                <strong>Cloud Storage</strong> and linked via <strong>BigQuery ObjectRef</strong>.
+              </p>
+              <ul class="step-tags" aria-label="Technologies used">
+                <li>Cloud Storage</li>
+                <li>BigQuery ObjectRef</li>
+                <li>Multi-language Audio</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="pipeline-step">
+            <span class="step-number" aria-hidden="true">02</span>
+            <div class="step-body">
+              <h3 class="step-title">AI Structuring</h3>
+              <p class="step-desc">
+                <strong>AI.GENERATE_TABLE</strong> extracts issue type, urgency level,
+                applicant details, and sentiment from raw multimodal inputs.
+              </p>
+              <ul class="step-tags" aria-label="Technologies used">
+                <li>AI.GENERATE_TABLE</li>
+                <li>Gemini Multimodal</li>
+                <li>NLP Extraction</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="pipeline-step">
+            <span class="step-number" aria-hidden="true">03</span>
+            <div class="step-body">
+              <h3 class="step-title">Vector Search &amp; Deduplication</h3>
+              <p class="step-desc">
+                Embeddings are generated and stored; <strong>Vector Search</strong>
+                surfaces similar past cases and recommended resolutions for auditors.
+              </p>
+              <ul class="step-tags" aria-label="Technologies used">
+                <li>Vector Search</li>
+                <li>Embedding API</li>
+                <li>Deduplication</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="pipeline-step">
+            <span class="step-number" aria-hidden="true">04</span>
+            <div class="step-body">
+              <h3 class="step-title">Audit Logging &amp; Dashboard</h3>
+              <p class="step-desc">
+                Structured outputs are persisted in BigQuery audit tables and visualised
+                in <strong>Looker Studio</strong> for governance teams.
+              </p>
+              <ul class="step-tags" aria-label="Technologies used">
+                <li>BigQuery Tables</li>
+                <li>Looker Studio</li>
+                <li>Scheduled Queries</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Grievance Category Breakdown -->
+    <section class="section" id="categories" aria-labelledby="categories-heading">
+      <div class="container">
+        <h2 id="categories-heading" class="section-title">Grievance Category Breakdown</h2>
+        <p class="section-subtitle">Distribution of categorized complaints from the current audit period.</p>
+
+        <div class="table-wrapper" role="region" aria-label="Grievance category data table" tabindex="0">
+          <table class="audit-table">
+            <caption class="visually-hidden">Grievance categories with counts, resolution rates, and average resolution times</caption>
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Count</th>
+                <th scope="col">% of Total</th>
+                <th scope="col">Resolution Rate</th>
+                <th scope="col">Avg. Days to Resolve</th>
+                <th scope="col">Urgency (Avg.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Infrastructure &amp; Maintenance</td>
+                <td>3,842</td>
+                <td>30.8%</td>
+                <td><span class="badge badge-success">88%</span></td>
+                <td>3.9</td>
+                <td><span class="badge badge-warning">Medium</span></td>
+              </tr>
+              <tr>
+                <td>Academic &amp; Administrative</td>
+                <td>2,910</td>
+                <td>23.3%</td>
+                <td><span class="badge badge-success">91%</span></td>
+                <td>2.7</td>
+                <td><span class="badge badge-info">Low</span></td>
+              </tr>
+              <tr>
+                <td>Hostel &amp; Facilities</td>
+                <td>2,340</td>
+                <td>18.7%</td>
+                <td><span class="badge badge-warning">76%</span></td>
+                <td>5.8</td>
+                <td><span class="badge badge-warning">Medium</span></td>
+              </tr>
+              <tr>
+                <td>Safety &amp; Security</td>
+                <td>1,560</td>
+                <td>12.5%</td>
+                <td><span class="badge badge-danger">62%</span></td>
+                <td>7.2</td>
+                <td><span class="badge badge-danger">High</span></td>
+              </tr>
+              <tr>
+                <td>Health &amp; Sanitation</td>
+                <td>1,218</td>
+                <td>9.8%</td>
+                <td><span class="badge badge-warning">79%</span></td>
+                <td>4.4</td>
+                <td><span class="badge badge-warning">Medium</span></td>
+              </tr>
+              <tr>
+                <td>Other / Unclassified</td>
+                <td>610</td>
+                <td>4.9%</td>
+                <td><span class="badge badge-info">95%</span></td>
+                <td>1.8</td>
+                <td><span class="badge badge-info">Low</span></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">Total</th>
+                <td>12,480</td>
+                <td>100%</td>
+                <td><span class="badge badge-success">83%</span></td>
+                <td>4.2</td>
+                <td>—</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sentiment Analysis -->
+    <section class="section section-alt" id="sentiment" aria-labelledby="sentiment-heading">
+      <div class="container">
+        <h2 id="sentiment-heading" class="section-title">Sentiment &amp; Urgency Analysis</h2>
+        <p class="section-subtitle">
+          BigQuery AI classifies each grievance by emotional tone to prioritise
+          high-distress submissions.
+        </p>
+
+        <div class="sentiment-grid">
+          <article class="sentiment-card sentiment-positive">
+            <div class="sentiment-label">Positive / Neutral</div>
+            <div class="sentiment-bar-track" role="img" aria-label="42 percent positive or neutral">
+              <div class="sentiment-bar" style="width: 42%"></div>
+            </div>
+            <div class="sentiment-pct">42%</div>
+            <p class="sentiment-note">Queries for information or follow-up; resolved quickly.</p>
+          </article>
+
+          <article class="sentiment-card sentiment-concerned">
+            <div class="sentiment-label">Concerned / Frustrated</div>
+            <div class="sentiment-bar-track" role="img" aria-label="38 percent concerned or frustrated">
+              <div class="sentiment-bar" style="width: 38%"></div>
+            </div>
+            <div class="sentiment-pct">38%</div>
+            <p class="sentiment-note">Moderate urgency; require acknowledgment within 48 hours.</p>
+          </article>
+
+          <article class="sentiment-card sentiment-critical">
+            <div class="sentiment-label">Distressed / Critical</div>
+            <div class="sentiment-bar-track" role="img" aria-label="20 percent distressed or critical">
+              <div class="sentiment-bar" style="width: 20%"></div>
+            </div>
+            <div class="sentiment-pct">20%</div>
+            <p class="sentiment-note">High-urgency cases; escalated to nodal officer automatically.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance & Impact -->
+    <section class="section" id="compliance" aria-labelledby="compliance-heading">
+      <div class="container">
+        <h2 id="compliance-heading" class="section-title">Compliance &amp; Projected Impact</h2>
+
+        <div class="impact-grid">
+          <article class="impact-card">
+            <h3 class="impact-title">SLA Compliance</h3>
+            <p class="impact-stat">78%</p>
+            <p class="impact-desc">
+              Grievances resolved within the mandated 7-day SLA window. Target: 90% by Q3.
+            </p>
+          </article>
+
+          <article class="impact-card">
+            <h3 class="impact-title">Escalation Rate</h3>
+            <p class="impact-stat">8.4%</p>
+            <p class="impact-desc">
+              Cases auto-escalated by AI due to high urgency or re-submission patterns.
+            </p>
+          </article>
+
+          <article class="impact-card">
+            <h3 class="impact-title">Pilot Campus Impact</h3>
+            <p class="impact-stat">30%</p>
+            <p class="impact-desc">
+              Faster grievance resolution observed in the three pilot university campuses.
+            </p>
+          </article>
+
+          <article class="impact-card">
+            <h3 class="impact-title">Cost Efficiency</h3>
+            <p class="impact-stat">₹132</p>
+            <p class="impact-desc">
+              Per 1,000 records processed — 12% below the ₹150 budget target.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="footer-brand">
+        <strong>Grievance Insight Engine</strong> — AI Vidhyarthi Submission · BigQuery AI Hackathon
+      </p>
+      <p class="footer-credits">
+        Built by <strong>AI Vidhyarthi</strong>, founded by Rudra Prasad Kasturi.
+        Data shown is representative of the pilot dataset.
+      </p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Overview</a>
+        <a href="audit.html" aria-current="page">Audit</a>
+        <a href="docs/executive_summary.pdf" target="_blank" rel="noopener noreferrer">Executive Summary</a>
+        <a href="https://github.com/aividhyarthi/grievance-insight-engine" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
