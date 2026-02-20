@@ -1658,8 +1658,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transform: scale(1.08);
   box-shadow: 0 6px 32px rgba(99,102,241,0.65);
 }
-.chat-toggle.active .icon-chat { display: none; }
+.icon-sara { display: block; }
+.chat-toggle.active .icon-sara { display: none; }
 .chat-toggle:not(.active) .icon-close { display: none; }
+/* Make Sara's face fill the button neatly */
+.icon-sara { width: 100%; height: 100%; }
 
 .chat-toggle__badge {
   position: absolute;

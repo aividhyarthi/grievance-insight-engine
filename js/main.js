@@ -4,6 +4,16 @@
 
 'use strict';
 
+/* ---- Logo fallback: show branded initial when Clearbit logo fails ---- */
+window.tickerLogoFallback = function(img) {
+  const char  = (img.alt || img.closest('.ticker-item, .trust-logo-item')?.querySelector('span')?.textContent || '?').trim().charAt(0).toUpperCase();
+  const palette = ['#6366F1','#7C3AED','#EC4899','#F59E0B','#10B981','#3B82F6','#EF4444','#8B5CF6','#06B6D4','#F97316'];
+  const color = palette[char.charCodeAt(0) % palette.length];
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'><rect width='22' height='22' rx='5' fill='${color}'/><text x='11' y='16' text-anchor='middle' font-family='system-ui,sans-serif' font-size='12' font-weight='700' fill='white'>${char}</text></svg>`;
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  img.onerror = null;
+};
+
 /* ---- Navbar: scroll behaviour & hamburger ---- */
 (function initNav() {
   const nav = document.getElementById('nav');
@@ -406,31 +416,37 @@ function animateCounter(el, target, duration = 1800) {
   const STEPS = [
     {
       id: 'brand',
-      message: "Hi! I'm Axel, AppStudioX's AI Growth Strategist. 👋\n\nQuick question — what's your brand or company name?",
+      message: "Hi! I'm Sara, AppStudioX's AI Growth Strategist. 👋\n\nI help brands dominate search, build authority, and grow faster. Quick question — what's your brand or company name?",
       type: 'text',
       placeholder: 'Enter your brand name…',
     },
     {
       id: 'website',
-      message: (d) => `Nice to meet you, ${d.brand}! 🚀\n\nWhat's your website URL?`,
+      message: (d) => `Lovely to meet you, ${d.brand}! 🚀\n\nWhat's your website URL?`,
       type: 'text',
       placeholder: 'https://yoursite.com',
     },
     {
-      id: 'challenge',
-      message: "What's your biggest digital growth challenge right now?",
+      id: 'service',
+      message: "Which area are you looking to grow? We cover everything from organic search to brand reputation.",
       type: 'quick',
-      options: ['SEO Rankings', 'Brand Visibility', 'Content Strategy', 'Reputation Management', 'Lead Generation'],
+      options: ['SEO & Search Rankings', 'AEO / AI Visibility', 'Content Marketing', 'PR & Branding', 'Reputation Management', 'Growth Strategy'],
+    },
+    {
+      id: 'challenge',
+      message: "Got it! What's your biggest challenge right now?",
+      type: 'quick',
+      options: ['Not ranking on Google', 'Invisible to AI engines', 'Weak content pipeline', 'Negative brand sentiment', 'Low organic traffic', 'No clear growth plan'],
     },
     {
       id: 'goal',
       message: "Understood. What's your primary 12-month goal?",
       type: 'quick',
-      options: ['Top 3 on Google', '5x Organic Traffic', 'Dominant Brand Authority', 'All of the Above'],
+      options: ['Top 3 on Google', 'AI & AEO Visibility', 'Dominant Brand Authority', 'All of the Above'],
     },
     {
       id: 'email',
-      message: "Love that ambition! 🎯\n\nDrop your work email — our senior strategist will reach out personally within 24 hours.",
+      message: (d) => `Love that ambition for ${d.brand}! 🎯\n\nDrop your work email — our senior strategist will reach out personally within 24 hours.`,
       type: 'email',
       placeholder: 'yourname@company.com',
     },
