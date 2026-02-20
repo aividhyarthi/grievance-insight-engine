@@ -1,0 +1,130 @@
+# ============================================================
+# Automated Blog Publishing Pipeline - Configuration
+# ============================================================
+
+# ---------- Schedule ----------
+schedule:
+  interval_hours: 24          # Options: 1, 5, 24 (hours between publishing runs)
+  timezone: "Asia/Kolkata"    # Your timezone
+  max_posts_per_run: 1        # How many blogs to publish per run
+
+# ---------- Topic Sources ----------
+topic_sources:
+  google_trends:
+    enabled: true
+    geo: "IN"                 # Country code: IN, US, GB, etc.
+    timeframe: "now 1-d"      # now 1-H, now 4-H, now 1-d, now 7-d
+    category: 0               # 0=All, 7=Science & Tech, 12=Business, etc.
+    num_topics: 10            # How many trending topics to fetch
+
+  custom_urls:
+    enabled: true
+    sources:
+      - name: "HackerNews"
+        url: "https://news.ycombinator.com/"
+        type: "scrape"
+      - name: "TechCrunch"
+        url: "https://techcrunch.com/"
+        type: "scrape"
+      # Add your client's sites here:
+      # - name: "Client Site"
+      #   url: "https://client-site.com/blog/"
+      #   type: "scrape"
+
+  linkedin:
+    enabled: false            # Requires LinkedIn API access
+    hashtags:
+      - "artificialintelligence"
+      - "automation"
+      - "technology"
+
+# ---------- Content Settings ----------
+content:
+  website_name: "AI Vidhyarthi"
+  website_url: "https://aividhyarthi.com"
+  niche: "AI, Automation, and Technology Education"
+
+  # Tone & style instructions (the "voice" of your website)
+  tone: |
+    Write in a clear, educational, and enthusiastic tone.
+    Target audience: students, developers, and professionals curious about AI.
+    Style: approachable but technically accurate, with real-world examples.
+    Avoid jargon overload — explain complex concepts simply.
+    End with a clear call to action.
+
+  # Blog structure
+  blog:
+    min_words: 800
+    max_words: 1500
+    include_faq: true         # Add FAQ section (helps AEO)
+    include_tldr: true        # Add TL;DR summary at top
+    sections:
+      - "Introduction"
+      - "Why This Matters"
+      - "Key Concepts Explained"
+      - "Real-World Applications"
+      - "How to Get Started"
+      - "Conclusion & Key Takeaways"
+      - "FAQ"
+
+  # SEO/AEO settings
+  seo:
+    target_keyword_density: 1.5  # Percentage
+    meta_description_length: 160
+    generate_schema_markup: true  # JSON-LD for AEO
+    include_internal_links: true
+    num_internal_links: 3
+
+# ---------- Image Generation ----------
+image:
+  enabled: true
+  provider: "openai"          # Options: openai, stability, placeholder
+  size: "1792x1024"           # Blog header image size
+  style: "digital art, professional, clean, tech-themed, vibrant"
+  social_media_size: "1080x1080"  # Square for social posts
+
+# ---------- Publishing (WordPress) ----------
+wordpress:
+  enabled: true
+  site_url: "https://your-wordpress-site.com"  # <-- set this
+  username: ""                # Set via env var: WP_USERNAME
+  app_password: ""            # Set via env var: WP_APP_PASSWORD
+  # WordPress Application Password: Dashboard > Users > Profile > Application Passwords
+  default_status: "publish"   # publish | draft (use draft for review first)
+  default_category: "AI & Automation"
+  author_id: 1
+
+# ---------- Social Media ----------
+social_media:
+  twitter:
+    enabled: false
+    # Set via env vars: TWITTER_API_KEY, TWITTER_API_SECRET,
+    #                   TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET
+    post_template: "New Post: {title}\n\n{summary}\n\nRead more: {url}\n\n{hashtags}"
+    max_hashtags: 5
+
+  linkedin:
+    enabled: false
+    # Set via env vars: LINKEDIN_ACCESS_TOKEN
+    post_template: "{title}\n\n{summary}\n\nRead the full article: {url}\n\n{hashtags}"
+    max_hashtags: 10
+
+  instagram:
+    enabled: false
+    # Instagram requires a Facebook Business account + Meta API
+    # Set via env vars: INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_BUSINESS_ACCOUNT_ID
+    caption_template: "{title}\n\n{summary}\n\nLink in bio!\n\n{hashtags}"
+    max_hashtags: 30
+
+# ---------- API Keys (use env vars — never hardcode) ----------
+api_keys:
+  anthropic: ""               # Set via env var: ANTHROPIC_API_KEY
+  openai: ""                  # Set via env var: OPENAI_API_KEY (for images)
+  stability: ""               # Set via env var: STABILITY_API_KEY
+
+# ---------- Output ----------
+output:
+  save_locally: true          # Save generated content to /output folder
+  output_dir: "output"
+  log_level: "INFO"           # DEBUG, INFO, WARNING, ERROR
+  log_file: "blog_automation.log"
