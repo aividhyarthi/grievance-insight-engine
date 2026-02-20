@@ -510,7 +510,7 @@ class ComplianceEngine {
         });
       } else {
         // Check if no visual AI provider ran successfully (limited analysis)
-        const visualProviders = ['hive', 'huggingface', 'sensity', 'arya', 'resemble'];
+        const visualProviders = ['openai', 'hive', 'huggingface', 'sensity', 'arya', 'resemble'];
         const hasVisualProvider = detection.providerResults.some(
           (r) => visualProviders.includes(r.provider) && !r.error
         );

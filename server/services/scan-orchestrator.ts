@@ -80,6 +80,7 @@ function aggregateDetections(results: ProviderResult[]): AggregatedDetection {
 
   // Weighted confidence based on provider reliability
   const weights: Record<string, number> = {
+    openai: 3.0,       // GPT-4o Vision — strong visual analysis
     hive: 3.0,         // External AI API — highest trust
     sensity: 3.0,
     arya: 2.5,
