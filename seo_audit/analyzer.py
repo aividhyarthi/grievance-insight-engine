@@ -80,7 +80,7 @@ def _check_title(page: PageData) -> list[Finding]:
             category="Title Tag",
             check="Title length",
             severity=Severity.WARNING,
-            detail=f"Title is too short ({len(title)} chars): "{title}"",
+            detail=f"Title is too short ({len(title)} chars): '{title}'",
             recommendation="Expand the title to 50–60 characters for better SERP display.",
         ))
     elif len(title) > 60:
@@ -88,7 +88,7 @@ def _check_title(page: PageData) -> list[Finding]:
             category="Title Tag",
             check="Title length",
             severity=Severity.WARNING,
-            detail=f"Title is too long ({len(title)} chars): "{title}"",
+            detail=f"Title is too long ({len(title)} chars): '{title}'",
             recommendation="Shorten the title to under 60 characters to avoid truncation.",
         ))
     else:
@@ -162,7 +162,7 @@ def _check_headings(page: PageData) -> list[Finding]:
             category="Headings",
             check="H1 presence",
             severity=Severity.PASS,
-            detail=f"Single <h1> found: "{h1s[0]}"",
+            detail=f"Single <h1> found: '{h1s[0]}'",
         ))
 
     if not page.h2_tags:
