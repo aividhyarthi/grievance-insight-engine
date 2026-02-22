@@ -26,7 +26,9 @@ The **Grievance Insight Engine** uses **BigQuery AI multimodal analysis** to tra
 - `data/` – Small sample dataset (dummy tickets, PDFs, audio, images)
 - `diagrams/` – Architecture flow diagram
 - `docs/` – Executive summary proposal PDF
-- `requirements.txt` – (Optional) Dependencies
+- `seo_audit/` – **SEO Audit Tool** (see below)
+- `main.py` – CLI entry point for the SEO Audit Tool
+- `requirements.txt` – Python dependencies
 
 ---
 
@@ -54,6 +56,69 @@ Data sources → Cloud Storage → BigQuery (ObjectRef) → AI.GENERATE_TABLE �
    - Vector search queries  
    - Output structured tables  
 3. (Optional) Connect BigQuery tables to Looker Studio to view dashboard.
+
+---
+
+---
+
+## SEO Audit Tool
+
+An AI-powered command-line SEO auditor built on top of this repo.
+It crawls any public URL, runs 14 rule-based checks, scores the page, and uses **Claude** to generate prioritised, actionable recommendations.
+
+### Checks performed
+
+| Category | Checks |
+|---|---|
+| Reachability | HTTP status code |
+| Security | HTTPS enforcement |
+| Title Tag | Presence, length (50–60 chars) |
+| Meta Description | Presence, length (150–160 chars) |
+| Headings | H1 uniqueness, H2 structure |
+| Images | Alt text, lazy loading |
+| Links | Internal links, anchor text |
+| Performance | Server response time |
+| Canonicalization | `<link rel="canonical">` |
+| Social / Open Graph | og:title, og:description, og:image, og:url |
+| Structured Data | JSON-LD presence |
+| Content | Word count (thin content detection) |
+| Internationalisation | HTML `lang` attribute |
+| Indexability | Robots meta tag (noindex detection) |
+
+### Outputs
+
+- **Terminal** — colour-coded findings + score summary + AI narrative
+- **HTML report** — self-contained, shareable audit page (`seo_report.html`)
+- **JSON report** — machine-readable, CI-friendly (`--json report.json`)
+
+### Quickstart
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run an audit (AI insights require ANTHROPIC_API_KEY)
+export ANTHROPIC_API_KEY=sk-ant-...
+python main.py https://example.com
+
+# Save reports
+python main.py https://example.com --output report.html --json report.json
+
+# Skip AI (no API key needed)
+python main.py https://example.com --no-ai
+```
+
+### Module layout
+
+```
+seo_audit/
+  __init__.py       package marker
+  crawler.py        HTTP fetch + BeautifulSoup DOM extraction
+  analyzer.py       14 rule-based SEO checks → SEOReport + score
+  ai_insights.py    Claude API call for narrative recommendations
+  reporter.py       HTML + JSON report generators
+main.py             CLI entry point (argparse)
+```
 
 ---
 
