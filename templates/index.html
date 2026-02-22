@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SEO Audit Tool — AI-Powered Site Analysis</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); }
+    .card-glow { box-shadow: 0 0 40px rgba(99,102,241,0.15); }
+    .input-focus:focus { outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.4); }
+    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); transition: all 0.2s; }
+    .btn-primary:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(99,102,241,0.4); }
+    .feature-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 0.2s; }
+    .feature-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(99,102,241,0.4); }
+    .site-type-btn { transition: all 0.15s; cursor: pointer; }
+    .site-type-btn.active { background: rgba(99,102,241,0.25); border-color: #6366f1; color: #a5b4fc; }
+    .loader { display: none; }
+    .loader.show { display: flex; }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+
+  <!-- Nav -->
+  <nav class="border-b border-white/10 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-sm font-bold">S</div>
+        <span class="font-bold text-lg tracking-tight">SEO Audit Tool</span>
+        <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30">AI-Powered</span>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm text-white/60">
+        <span>12 Categories</span>
+        <span>6 Site Types</span>
+        <span>Excel + HTML Reports</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="max-w-4xl mx-auto px-6 pt-16 pb-8 text-center">
+    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-indigo-300 text-sm mb-6">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      Powered by Claude AI · AEO + GEO Ready
+    </div>
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+      Full-Stack<br>
+      <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">SEO Audit</span>
+    </h1>
+    <p class="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+      Analyse any website across 12 SEO categories. Get a client-ready proposal, prioritised roadmap, and traffic strategy — in seconds.
+    </p>
+
+    <!-- Error message -->
+    {% if error %}
+    <div class="bg-red-500/10 border border-red-500/30 text-red-300 rounded-xl px-5 py-3 mb-6 text-sm">
+      ⚠ {{ error }}
+    </div>
+    {% endif %}
+
+    <!-- Audit Form -->
+    <form id="auditForm" action="/audit" method="POST" class="space-y-5" onsubmit="showLoader()">
+
+      <!-- URL Input -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+          <svg class="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+          </svg>
+        </div>
+        <input
+          type="text"
+          name="url"
+          placeholder="https://yoursite.com"
+          class="input-focus w-full bg-white/5 border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-white placeholder-white/30 text-lg"
+          required
+          autocomplete="off"
+        />
+      </div>
+
+      <!-- Site Type -->
+      <div class="text-left">
+        <p class="text-white/50 text-sm mb-3 font-medium">Site Type <span class="text-white/30">(for weighted analysis)</span></p>
+        <div class="flex flex-wrap gap-2" id="siteTypePills">
+          {% for value, label in site_types.items() %}
+          <label class="site-type-btn border border-white/15 rounded-xl px-3 py-1.5 text-sm text-white/60 hover:text-white {% if value == 'generic' %}active{% endif %}">
+            <input type="radio" name="site_type" value="{{ value }}" class="hidden" {% if value == 'generic' %}checked{% endif %}>
+            {{ label }}
+          </label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Options row -->
+      <div class="flex items-center gap-6 text-sm text-white/50">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" name="no_ai" value="1" class="rounded border-white/20 bg-white/5 text-indigo-500">
+          <span>Skip AI narratives</span>
+        </label>
+        <span class="text-white/20">|</span>
+        <span class="text-white/30">Analysis takes ~10–30 seconds</span>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-primary w-full py-4 rounded-2xl font-bold text-lg text-white">
+        Run SEO Audit
+      </button>
+
+    </form>
+
+    <!-- Loading overlay -->
+    <div id="loader" class="loader fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 flex-col items-center justify-center gap-6">
+      <div class="relative w-20 h-20">
+        <div class="absolute inset-0 rounded-full border-4 border-indigo-500/20"></div>
+        <div class="absolute inset-0 rounded-full border-4 border-indigo-500 border-t-transparent animate-spin"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-2xl">🔍</div>
+      </div>
+      <div class="text-center">
+        <p class="text-white font-semibold text-xl mb-1">Analysing your site…</p>
+        <p class="text-white/50 text-sm" id="loaderStatus">Fetching page and running 12-category audit</p>
+      </div>
+      <div class="flex gap-2 mt-2">
+        <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay:0s"></div>
+        <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay:0.15s"></div>
+        <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay:0.3s"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features grid -->
+  <section class="max-w-5xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+    {% set features = [
+      ("🔍", "On-Page SEO", "Title, meta, headings, canonical, OG tags"),
+      ("⚡", "Pagespeed", "TTFB, render-blocking, lazy load, compression"),
+      ("🤖", "AEO Ready", "Featured snippets, FAQ schema, AI answer engines"),
+      ("🌐", "GEO Signals", "Entity markup, E-E-A-T, LLM citation readiness"),
+      ("🛒", "Product SEO", "Schema, reviews, breadcrumbs, availability"),
+      ("🔗", "Interlinking", "Anchor text, breadcrumbs, internal structure"),
+      ("📊", "12 Categories", "Full audit across every SEO dimension"),
+      ("📥", "Excel Export", "Client-ready workbook with 6 sheets"),
+    ] %}
+    {% for icon, title, desc in features %}
+    <div class="feature-card rounded-xl p-4">
+      <div class="text-2xl mb-2">{{ icon }}</div>
+      <div class="font-semibold text-sm text-white mb-1">{{ title }}</div>
+      <div class="text-white/40 text-xs leading-relaxed">{{ desc }}</div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <!-- Category list -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <h2 class="text-white/40 text-xs font-semibold tracking-widest uppercase mb-4">All 12 Audit Categories</h2>
+    <div class="flex flex-wrap gap-2">
+      {% for cat in ["On-Page SEO", "Technical SEO", "Content", "Interlinking",
+                     "Pagespeed", "Keywords", "UX / UI", "Product SEO",
+                     "AEO", "GEO", "Off-Page", "Backlinking"] %}
+      <span class="bg-white/5 border border-white/10 text-white/50 text-xs px-3 py-1.5 rounded-full">{{ cat }}</span>
+      {% endfor %}
+    </div>
+  </section>
+
+  <script>
+    // Site type pill selection
+    document.querySelectorAll('.site-type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.site-type-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Loading states
+    const statuses = [
+      "Fetching page and running 12-category audit…",
+      "Checking On-Page SEO, Technical, and Content…",
+      "Analysing Pagespeed, Keywords, and UX signals…",
+      "Running AEO, GEO, Product SEO checks…",
+      "Generating AI Proposal, Roadmap, and Traffic Strategy…",
+      "Almost done — building your report…",
+    ];
+    let statusIdx = 0;
+
+    function showLoader() {
+      document.getElementById('loader').classList.add('show');
+      setInterval(() => {
+        statusIdx = (statusIdx + 1) % statuses.length;
+        document.getElementById('loaderStatus').textContent = statuses[statusIdx];
+      }, 4000);
+    }
+  </script>
+
+</body>
+</html>
