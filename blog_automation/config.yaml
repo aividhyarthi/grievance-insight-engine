@@ -1,130 +1,178 @@
 # ============================================================
-# Automated Blog Publishing Pipeline - Configuration
+# Automated Blog Publishing Pipeline
+# Configured for: Rudra Kasturi — blog.rudrakasturi.com
 # ============================================================
 
 # ---------- Schedule ----------
 schedule:
   interval_hours: 24          # Options: 1, 5, 24 (hours between publishing runs)
-  timezone: "Asia/Kolkata"    # Your timezone
-  max_posts_per_run: 1        # How many blogs to publish per run
+  timezone: "Asia/Kolkata"
+  max_posts_per_run: 1
 
 # ---------- Topic Sources ----------
 topic_sources:
   google_trends:
     enabled: true
-    geo: "IN"                 # Country code: IN, US, GB, etc.
-    timeframe: "now 1-d"      # now 1-H, now 4-H, now 1-d, now 7-d
-    category: 0               # 0=All, 7=Science & Tech, 12=Business, etc.
-    num_topics: 10            # How many trending topics to fetch
+    geo: "IN"                 # India-first, globally relevant
+    timeframe: "now 1-d"
+    category: 12              # 12 = Business & Industry (best fit for Rudra's niche)
+    num_topics: 10
 
   custom_urls:
     enabled: true
     sources:
-      - name: "HackerNews"
-        url: "https://news.ycombinator.com/"
+      - name: "Harvard Business Review"
+        url: "https://hbr.org/"
         type: "scrape"
-      - name: "TechCrunch"
-        url: "https://techcrunch.com/"
+      - name: "The Information"
+        url: "https://www.theinformation.com/"
         type: "scrape"
-      # Add your client's sites here:
-      # - name: "Client Site"
-      #   url: "https://client-site.com/blog/"
-      #   type: "scrape"
+      - name: "Marketing Brew"
+        url: "https://www.marketingbrew.com/"
+        type: "scrape"
+      - name: "Search Engine Journal"
+        url: "https://www.searchenginejournal.com/"
+        type: "scrape"
+      - name: "SparkToro Blog"
+        url: "https://sparktoro.com/blog/"
+        type: "scrape"
 
   linkedin:
-    enabled: false            # Requires LinkedIn API access
+    enabled: false            # Enable once LinkedIn API token is added
     hashtags:
-      - "artificialintelligence"
-      - "automation"
-      - "technology"
+      - "SEO"
+      - "AEO"
+      - "AIstrategy"
+      - "digitaltransformation"
+      - "contentmarketing"
+      - "growthhacking"
+      - "AImarketing"
 
 # ---------- Content Settings ----------
 content:
-  website_name: "AI Vidhyarthi"
-  website_url: "https://aividhyarthi.com"
-  niche: "AI, Automation, and Technology Education"
+  website_name: "Rudra Kasturi"
+  website_url: "https://blog.rudrakasturi.com"
+  author_name: "Rudra Kasturi"
+  niche: >
+    AI strategy, Answer Engine Optimisation (AEO), SEO, digital publishing,
+    platform intelligence, and the business of AI discovery.
+    Audience: CMOs, publishers, founders, growth leaders, and senior marketers
+    who need to win in the AI era — not just rank on Google.
 
-  # Tone & style instructions (the "voice" of your website)
+  # ---------- Tone & Style ----------
+  # Based on Rudra's actual writing (e.g. "Amazon Is Not Anti-AI. Amazon Is Anti-Free Data.")
   tone: |
-    Write in a clear, educational, and enthusiastic tone.
-    Target audience: students, developers, and professionals curious about AI.
-    Style: approachable but technically accurate, with real-world examples.
-    Avoid jargon overload — explain complex concepts simply.
-    End with a clear call to action.
+    You are writing as Rudra Kasturi — a strategic advisor, ex-Google partner,
+    and one of India's leading voices on AI strategy and AEO.
+
+    VOICE:
+    - Short, punchy sentences. One idea per line.
+    - Business math first. Philosophy never.
+    - Speak directly to the reader. Use "you" and "we".
+    - Be the smartest person in the room — but never sound like it.
+    - No academic language. No corporate fluff.
+    - Say the uncomfortable truth calmly. "Harsh, but true."
+
+    STRUCTURE RULES:
+    - Open with a bold, counterintuitive observation. Not a definition.
+    - Use contrast constantly: "Old model: X. New reality: Y."
+    - Create original frameworks. Name them. (e.g. "AI Data Control Score")
+    - Use bullet points for lists — never paragraph walls.
+    - Short sections. Each section = one sharp idea.
+    - End with a prediction or a decision framework, not a summary.
+    - Final paragraph should connect back to rudrakasturi.com and what Rudra helps with.
+
+    EXAMPLE PHRASES (use style, not exact words):
+    - "This is not X. This is Y."
+    - "Simple." (as a one-word paragraph after an explanation)
+    - "That is all."
+    - "Harsh, but true."
+    - "This is not an accident."
+    - Use data points as weapons, not decoration.
+
+    NEVER:
+    - Start with "In today's digital world..."
+    - Use phrases like "In conclusion" or "To summarize"
+    - Write more than 3 lines in a single paragraph
+    - Use passive voice
+    - Sound like ChatGPT wrote it
 
   # Blog structure
   blog:
-    min_words: 800
-    max_words: 1500
-    include_faq: true         # Add FAQ section (helps AEO)
-    include_tldr: true        # Add TL;DR summary at top
+    min_words: 900
+    max_words: 1600
+    include_faq: true         # Critical for AEO / AI answer boxes
+    include_tldr: false       # Rudra doesn't use TL;DR — he hooks you from line 1
     sections:
-      - "Introduction"
+      - "Opening Hook (bold counterintuitive claim)"
       - "Why This Matters"
-      - "Key Concepts Explained"
-      - "Real-World Applications"
-      - "How to Get Started"
-      - "Conclusion & Key Takeaways"
+      - "What Is Actually Happening"
+      - "The Strategic Reason(s)"
+      - "What This Means For You"
+      - "Decision Framework or Scorecard"
+      - "What Smart Players Do Instead"
+      - "Prediction — What Happens Next"
+      - "Final Thought"
       - "FAQ"
 
-  # SEO/AEO settings
+  # SEO / AEO settings
   seo:
-    target_keyword_density: 1.5  # Percentage
+    target_keyword_density: 1.5
     meta_description_length: 160
-    generate_schema_markup: true  # JSON-LD for AEO
+    generate_schema_markup: true   # JSON-LD Article + FAQPage (for AI answer boxes)
     include_internal_links: true
     num_internal_links: 3
 
 # ---------- Image Generation ----------
 image:
   enabled: true
-  provider: "openai"          # Options: openai, stability, placeholder
-  size: "1792x1024"           # Blog header image size
-  style: "digital art, professional, clean, tech-themed, vibrant"
-  social_media_size: "1080x1080"  # Square for social posts
+  provider: "openai"               # DALL-E 3 — best quality for editorial feel
+  size: "1792x1024"
+  style: >
+    clean editorial illustration, minimal, bold typography-ready background,
+    corporate strategy feel, dark navy or deep charcoal with accent colours,
+    no people, no text in image, modern infographic aesthetic
+  social_media_size: "1080x1080"
 
 # ---------- Publishing (WordPress) ----------
 wordpress:
   enabled: true
-  site_url: "https://your-wordpress-site.com"  # <-- set this
-  username: ""                # Set via env var: WP_USERNAME
-  app_password: ""            # Set via env var: WP_APP_PASSWORD
-  # WordPress Application Password: Dashboard > Users > Profile > Application Passwords
-  default_status: "publish"   # publish | draft (use draft for review first)
-  default_category: "AI & Automation"
+  site_url: "https://blog.rudrakasturi.com"
+  username: ""                     # Set via env var: WP_USERNAME
+  app_password: ""                 # Set via env var: WP_APP_PASSWORD
+  # How to get: WP Admin → Users → Your Profile → Application Passwords → Add New
+  default_status: "draft"          # DRAFT first — review before going live (smart default)
+  default_category: "AI Strategy"
   author_id: 1
 
 # ---------- Social Media ----------
 social_media:
   twitter:
-    enabled: false
-    # Set via env vars: TWITTER_API_KEY, TWITTER_API_SECRET,
-    #                   TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET
-    post_template: "New Post: {title}\n\n{summary}\n\nRead more: {url}\n\n{hashtags}"
-    max_hashtags: 5
+    enabled: false                 # Not mentioned — keep off unless added later
 
   linkedin:
-    enabled: false
-    # Set via env vars: LINKEDIN_ACCESS_TOKEN
-    post_template: "{title}\n\n{summary}\n\nRead the full article: {url}\n\n{hashtags}"
-    max_hashtags: 10
+    enabled: true                  # linkedin.com/in/rudrakasturi
+    # Set via env vars: LINKEDIN_ACCESS_TOKEN, LINKEDIN_PERSON_URN
+    post_template: "{title}\n\n{summary}\n\nFull read: {url}\n\n{hashtags}"
+    max_hashtags: 8
+    # LinkedIn tone: professional + punchy. Mirror blog voice.
 
   instagram:
-    enabled: false
-    # Instagram requires a Facebook Business account + Meta API
+    enabled: true                  # @kasturitagore
     # Set via env vars: INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_BUSINESS_ACCOUNT_ID
     caption_template: "{title}\n\n{summary}\n\nLink in bio!\n\n{hashtags}"
-    max_hashtags: 30
+    max_hashtags: 20
+    # Instagram tone: hook in first line, strategic insight, ends with curiosity
 
-# ---------- API Keys (use env vars — never hardcode) ----------
+# ---------- API Keys (always via env vars — never hardcode) ----------
 api_keys:
   anthropic: ""               # Set via env var: ANTHROPIC_API_KEY
-  openai: ""                  # Set via env var: OPENAI_API_KEY (for images)
-  stability: ""               # Set via env var: STABILITY_API_KEY
+  openai: ""                  # Set via env var: OPENAI_API_KEY
+  stability: ""               # Set via env var: STABILITY_API_KEY (not needed if using openai)
 
 # ---------- Output ----------
 output:
-  save_locally: true          # Save generated content to /output folder
+  save_locally: true
   output_dir: "output"
-  log_level: "INFO"           # DEBUG, INFO, WARNING, ERROR
+  log_level: "INFO"
   log_file: "blog_automation.log"
