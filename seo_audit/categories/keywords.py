@@ -24,6 +24,7 @@ from ..crawler import PageData
 
 
 _STOP_WORDS = {
+    # Articles, conjunctions, prepositions, pronouns, auxiliary verbs
     "a","an","the","and","or","but","in","on","at","to","for","of","with",
     "by","from","is","was","are","were","be","been","being","have","has",
     "had","do","does","did","will","would","could","should","may","might",
@@ -38,6 +39,42 @@ _STOP_WORDS = {
     "see","let","find","know","well","www","http","https","com","org","net",
     "privacy","terms","cookie","copyright","rights","reserved","policy",
     "follow","share","like","tweet","post","send","submit","subscribe",
+    # Generic nouns that appear in any article and don't identify the topic
+    "people","person","someone","anyone","everyone",
+    "something","anything","everything","nothing",
+    "way","ways","thing","things","place","places",
+    "world","city","cities","town","towns","area","areas","country","countries",
+    "time","times","year","years","day","days","week","weeks","month","months",
+    "part","parts","point","points","group","groups","life","lives","work",
+    "fact","facts","reason","reasons","case","cases","result","results",
+    "issue","issues","problem","problems","change","changes","example","examples",
+    "number","numbers","system","systems","type","types","kind","kinds",
+    "means","end","ends","level","levels","sense","means",
+    "study","studies","report","reports","data","information","info",
+    "says","said","say","seem","seems","seemed","came","goes","went",
+    # Generic comparative / descriptive adjectives
+    "better","worse","whether","many","much","such","same","other","another",
+    "real","long","short","high","low","large","small","big","little",
+    "old","young","early","late","first","second","third","last","next",
+    "different","important","possible","likely","similar","various","certain",
+    "major","minor","main","key","general","specific","common","popular",
+    "recent","current","local","global","national","social","political",
+    # Generic verbs beyond make/made already above
+    "makes","taking","take","taken","comes","coming","gives","giving","given",
+    "going","look","looks","looked","move","moves","moving","moved",
+    "keep","keeps","kept","turn","turns","turning","turned",
+    "become","becomes","becoming","became","include","includes","including","included",
+    "show","shows","showing","shown","found","finding","think","thinking","thought",
+    "call","calls","called","seem","put","puts","putting","mean","means","meant",
+    "feel","feels","felt","leave","leaves","leaving","left",
+    "try","tries","tried","trying","help","helps","helping","helped",
+    "start","starts","started","starting","end","ended","ending",
+    # Common adverbs
+    "really","actually","simply","still","even","already","often","always","never",
+    "usually","sometimes","perhaps","maybe","probably","certainly","especially",
+    "particularly","generally","largely","mostly","nearly","quite","rather",
+    "however","therefore","although","though","while","since","because","despite",
+    "between","through","without","within","across","around","along","against",
 }
 
 

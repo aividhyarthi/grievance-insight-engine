@@ -74,6 +74,52 @@ def _all_nested_types(obj, out=None) -> list[str]:
     return out
 
 
+_EDITORIAL_URL_RE = re.compile(
+    r"/("
+    r"news|blog|blogs|article|articles|editorial|opinion|opinions|"
+    r"analysis|feature|features|story|stories|magazine|press|"
+    r"co-design|co.design|technology|tech|culture|work-life|leadership|"
+    r"ideas|world-changing|impact|innovation|creativity|"
+    r"economy|finance|design|science|health|politics|environment|"
+    r"sports|entertainment|lifestyle|travel|food|fashion|beauty|"
+    r"interview|interviews|review|reviews|podcast|podcasts|video|videos"
+    r")/",
+    re.I,
+)
+
+
+def _is_editorial_page(page: "PageData", soup, top_types: list[str]) -> bool:
+    """
+    Return True if the page is clearly a news, blog, or editorial page.
+    Used to suppress HTML-signal-based product detection on media sites.
+    """
+    # 1. Schema: Article / NewsArticle / BlogPosting in top-level types
+    editorial_schema_types = {
+        "Article", "NewsArticle", "BlogPosting", "OpinionNewsArticle",
+        "AnalysisNewsArticle", "ReportageNewsArticle", "ReviewNewsArticle",
+    }
+    if editorial_schema_types & set(top_types):
+        return True
+
+    # 2. Open Graph / meta article signals
+    if soup.find("meta", attrs={"property": re.compile(r"^article:", re.I)}):
+        return True
+    if soup.find("meta", attrs={"name": re.compile(r"^article:", re.I)}):
+        return True
+
+    # 3. URL path contains an editorial section keyword
+    if _EDITORIAL_URL_RE.search(page.url):
+        return True
+
+    # 4. HTML: has <article> element AND an author/byline element
+    if soup.find("article") and soup.find(
+        attrs={"class": re.compile(r"\b(author|byline|contributor|journalist|reporter)\b", re.I)}
+    ):
+        return True
+
+    return False
+
+
 def _is_product_page_from_html(soup) -> tuple[bool, list[str]]:
     """
     Determine if the page looks like a product/e-commerce page from HTML signals.
@@ -131,7 +177,16 @@ def run(page: PageData) -> CategoryReport:
 
     # Determine if this is a product page — explicit schema OR strong HTML signals
     schema_is_product = "Product" in top_types
-    html_is_product, html_reasons = _is_product_page_from_html(soup)
+
+    # Skip HTML-based product detection entirely for editorial/news pages.
+    # Media sites commonly have subscription pricing widgets and "buy" CTAs that
+    # would otherwise fire our HTML signals, producing false positives.
+    is_editorial = _is_editorial_page(page, soup, top_types)
+    if is_editorial:
+        html_is_product, html_reasons = False, []
+    else:
+        html_is_product, html_reasons = _is_product_page_from_html(soup)
+
     is_product_page = schema_is_product or html_is_product
 
     # ── Product schema ─────────────────────────────────────────────────────────
