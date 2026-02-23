@@ -3,7 +3,27 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SEO Audit Tool — AI-Powered Site Analysis</title>
+
+  <!-- ── SEO Meta Tags ─────────────────────────────────────────────── -->
+  <title>Appstudiox SEO Auditing Tool | AI-Powered Website Analysis</title>
+  <meta name="description" content="Appstudiox SEO Auditing Tool — run a comprehensive 12-category SEO audit on any website. Get a client-ready proposal, prioritised roadmap, and traffic strategy powered by Claude AI."/>
+  <meta name="author" content="Appstudiox"/>
+  <meta name="robots" content="noindex, nofollow"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Appstudiox SEO Auditing Tool | AI-Powered Website Analysis"/>
+  <meta property="og:description" content="Comprehensive 12-category SEO audit with AI-generated client proposals, roadmaps, and traffic strategies."/>
+  <meta property="og:site_name" content="Appstudiox SEO Auditing Tool"/>
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Appstudiox SEO Auditing Tool"/>
+  <meta name="twitter:description" content="AI-powered 12-category SEO audit. Client-ready reports in seconds."/>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg"/>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,6 +40,7 @@
     .site-type-btn.active { background: rgba(99,102,241,0.25); border-color: #6366f1; color: #a5b4fc; }
     .loader { display: none; }
     .loader.show { display: flex; }
+    .brand-dot { color: #8b5cf6; }
   </style>
 </head>
 <body class="gradient-bg min-h-screen text-white">
@@ -28,14 +49,17 @@
   <nav class="border-b border-white/10 px-6 py-4">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-sm font-bold">S</div>
-        <span class="font-bold text-lg tracking-tight">SEO Audit Tool</span>
-        <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30">AI-Powered</span>
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">Ax</div>
+        <div class="flex flex-col leading-tight">
+          <span class="font-black text-base tracking-tight">Appstudiox<span class="brand-dot">.</span></span>
+          <span class="text-white/40 text-xs font-medium tracking-wide">SEO Auditing Tool</span>
+        </div>
+        <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30 ml-1">AI-Powered</span>
       </div>
-      <div class="hidden md:flex items-center gap-6 text-sm text-white/60">
+      <div class="hidden md:flex items-center gap-6 text-sm text-white/50">
         <span>12 Categories</span>
-        <span>6 Site Types</span>
-        <span>Excel + HTML Reports</span>
+        <span>7 Site Types</span>
+        <span>PDF · Excel · JSON</span>
       </div>
     </div>
   </nav>
@@ -51,7 +75,7 @@
       <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">SEO Audit</span>
     </h1>
     <p class="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-      Analyse any website across 12 SEO categories. Get a client-ready proposal, prioritised roadmap, and traffic strategy — in seconds.
+      Analyse any website across 12 SEO categories. Get a client-ready PDF proposal, prioritised roadmap, and traffic strategy — in seconds.
     </p>
 
     <!-- Error message -->
@@ -139,8 +163,8 @@
       ("🌐", "GEO Signals", "Entity markup, E-E-A-T, LLM citation readiness"),
       ("🛒", "Product SEO", "Schema, reviews, breadcrumbs, availability"),
       ("🔗", "Interlinking", "Anchor text, breadcrumbs, internal structure"),
-      ("📊", "12 Categories", "Full audit across every SEO dimension"),
-      ("📥", "Excel Export", "Client-ready workbook with 6 sheets"),
+      ("📄", "PDF Proposal", "Client-ready branded PDF report with all sections"),
+      ("📥", "Excel + JSON", "Full data export in multiple formats"),
     ] %}
     {% for icon, title, desc in features %}
     <div class="feature-card rounded-xl p-4">

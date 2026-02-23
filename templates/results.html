@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SEO Audit — {{ result.url }}</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <title>Appstudiox SEO Audit — {{ result.url }}</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,6 +13,8 @@
     body { font-family: 'Inter', sans-serif; }
     .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); }
     .card-glass { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+    .card-glass-hover { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 0.2s; cursor: pointer; }
+    .card-glass-hover:hover { background: rgba(99,102,241,0.08); border-color: rgba(99,102,241,0.4); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.15); }
     .tab-btn { transition: all 0.15s; border-bottom: 2px solid transparent; padding: 0.75rem 1.25rem; font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.5); white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; }
     .tab-btn.active { border-bottom-color: #6366f1; color: white; }
     .tab-panel { display: none; }
@@ -19,6 +23,26 @@
     .finding-row:last-child { border-bottom: none; }
     .prose-ai { white-space: pre-line; line-height: 1.75; }
     .score-ring { transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1); }
+    .finding-header { cursor: pointer; transition: background 0.15s; }
+    .finding-header:hover { background: rgba(255,255,255,0.03); }
+    .finding-detail { display: none; }
+    .finding-detail.open { display: block; }
+    .expand-icon { transition: transform 0.2s; display: inline-block; }
+    .expand-icon.rotated { transform: rotate(180deg); }
+    .highlight-cat { animation: highlightPulse 1.8s ease-out; }
+    @keyframes highlightPulse {
+      0% { box-shadow: 0 0 0 0 rgba(99,102,241,0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(99,102,241,0.2); }
+      100% { box-shadow: 0 0 0 0 rgba(99,102,241,0); }
+    }
+    .brand-dot { color: #8b5cf6; }
+    .proposal-section { border-left: 3px solid rgba(99,102,241,0.4); padding-left: 1rem; margin-bottom: 1.5rem; }
+    .impact-high { background: rgba(239,68,68,0.12); color: #fca5a5; }
+    .impact-medium { background: rgba(245,158,11,0.12); color: #fcd34d; }
+    .impact-low { background: rgba(34,197,94,0.12); color: #86efac; }
+    .effort-quick { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    .effort-medium { background: rgba(245,158,11,0.12); color: #fcd34d; }
+    .effort-long { background: rgba(148,163,184,0.12); color: #94a3b8; }
   </style>
 </head>
 <body class="gradient-bg min-h-screen text-white">
@@ -35,11 +59,23 @@
         </a>
         <span class="text-white/20 hidden sm:block">|</span>
         <div class="hidden sm:flex items-center gap-2">
-          <div class="w-6 h-6 bg-indigo-500 rounded-md flex items-center justify-center text-xs font-bold">S</div>
-          <span class="font-semibold text-sm">SEO Audit Tool</span>
+          <div class="w-7 h-7 rounded-md flex items-center justify-center text-xs font-black" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">Ax</div>
+          <div class="flex flex-col leading-tight">
+            <span class="font-black text-sm tracking-tight">Appstudiox<span class="brand-dot">.</span></span>
+            <span class="text-white/30 text-xs">SEO Auditing Tool</span>
+          </div>
         </div>
       </div>
       <div class="flex items-center gap-2">
+        <!-- PDF Proposal -->
+        <a href="/report/{{ job_id }}" target="_blank"
+           class="flex items-center gap-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs px-3 py-1.5 rounded-lg transition-colors font-medium">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          PDF Report
+        </a>
+        <!-- Excel -->
         <a href="/download/excel/{{ job_id }}"
            class="flex items-center gap-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs px-3 py-1.5 rounded-lg transition-colors">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,6 +83,7 @@
           </svg>
           Excel
         </a>
+        <!-- JSON -->
         <a href="/download/json/{{ job_id }}"
            class="flex items-center gap-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs px-3 py-1.5 rounded-lg transition-colors">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,28 +160,33 @@
 
     </div>
 
-    <!-- 12 Category Score Cards -->
+    <!-- 12 Category Score Cards — clickable, jump to findings -->
+    <div class="mb-3 flex items-center gap-2">
+      <span class="text-white/40 text-xs font-semibold uppercase tracking-wider">Category Scores</span>
+      <span class="text-white/20 text-xs">— click any card to see detailed findings</span>
+    </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-8">
       {% for cr in result.category_reports %}
-      <div class="card-glass rounded-xl p-3">
-        <div class="text-xs text-white/40 mb-1.5 leading-tight font-medium">{{ cr.name }}</div>
+      <div class="card-glass-hover rounded-xl p-3 group" onclick="goToCategory({{ loop.index }})" title="View {{ cr.name }} findings">
+        <div class="text-xs text-white/40 mb-1.5 leading-tight font-medium group-hover:text-indigo-300 transition-colors">{{ cr.name }}</div>
         <div class="flex items-baseline gap-1 mb-2">
           <span class="text-xl font-extrabold {% if cr.score >= 70 %}text-green-400{% elif cr.score >= 45 %}text-yellow-400{% else %}text-red-400{% endif %}">
             {{ cr.score }}
           </span>
           <span class="text-white/30 text-xs">/100</span>
         </div>
-        <div class="w-full bg-white/10 rounded-full h-1.5">
-          <div class="{% if cr.score >= 70 %}bg-green-400{% elif cr.score >= 45 %}bg-yellow-400{% else %}bg-red-400{% endif %} h-1.5 rounded-full transition-all"
+        <div class="w-full bg-white/10 rounded-full h-1.5 mb-2">
+          <div class="{% if cr.score >= 70 %}bg-green-400{% elif cr.score >= 45 %}bg-yellow-400{% else %}bg-red-400{% endif %} h-1.5 rounded-full"
                style="width: {{ cr.score }}%"></div>
         </div>
         {% if cr.critical_count > 0 %}
-        <div class="text-red-400 text-xs mt-1.5 font-medium">{{ cr.critical_count }} critical</div>
+        <div class="text-red-400 text-xs font-medium">{{ cr.critical_count }} critical</div>
         {% elif cr.warning_count > 0 %}
-        <div class="text-yellow-400/70 text-xs mt-1.5">{{ cr.warning_count }} warnings</div>
+        <div class="text-yellow-400/70 text-xs">{{ cr.warning_count }} warnings</div>
         {% else %}
-        <div class="text-green-400/60 text-xs mt-1.5">All passing</div>
+        <div class="text-green-400/60 text-xs">All passing</div>
         {% endif %}
+        <div class="text-indigo-400/0 group-hover:text-indigo-400/70 text-xs mt-1 transition-colors font-medium">View details →</div>
       </div>
       {% endfor %}
     </div>
@@ -166,44 +208,128 @@
     <!-- ── PROPOSAL TAB ───────────────────────────────────── -->
     <div id="panel-proposal" class="tab-panel active">
 
-      <div class="card-glass rounded-2xl p-6 mb-4">
-        <h2 class="font-bold text-lg mb-3">Client Proposal — Audit Summary</h2>
-        <p class="text-white/70 leading-relaxed text-sm">
-          This audit analysed <strong class="text-white">{{ result.url }}</strong>
-          as a <strong class="text-white">{{ result.profile.label }}</strong> site
-          across <strong class="text-white">12 SEO categories</strong>.
-          The overall SEO score is
-          <strong class="{% if result.overall_score >= 70 %}text-green-400{% elif result.overall_score >= 45 %}text-yellow-400{% else %}text-red-400{% endif %}">{{ result.overall_score }}/100</strong>
-          —
-          {% if result.overall_score < 45 %}<span class="text-red-400 font-semibold">Needs Immediate Attention</span>
-          {% elif result.overall_score < 70 %}<span class="text-yellow-400 font-semibold">Needs Improvement</span>
-          {% else %}<span class="text-green-400 font-semibold">Good Foundation</span>{% endif %}.
-          The audit identified
-          <strong class="text-red-400">{{ result.critical_findings | length }} critical issues</strong>
-          and <strong class="text-yellow-400">{{ result.warning_findings | length }} warnings</strong>.
-          Resolving the {{ result.quick_wins | length }} quick-win items alone could meaningfully
-          improve rankings within 2–4 weeks.
-        </p>
+      <!-- Header intro card -->
+      <div class="card-glass rounded-2xl p-7 mb-5">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <div>
+            <p class="text-indigo-300 text-xs font-semibold uppercase tracking-widest mb-1">SEO Audit Report</p>
+            <h2 class="font-bold text-xl text-white mb-1">Executive Summary</h2>
+            <p class="text-white/50 text-sm">Prepared by Appstudiox SEO Auditing Tool</p>
+          </div>
+          <div class="shrink-0 text-right">
+            <div class="text-4xl font-black {% if result.overall_score >= 70 %}text-green-400{% elif result.overall_score >= 45 %}text-yellow-400{% else %}text-red-400{% endif %}">{{ result.overall_score }}<span class="text-lg text-white/30">/100</span></div>
+            <div class="text-xs text-white/40 mt-0.5">SEO Health Score</div>
+          </div>
+        </div>
+
+        <div class="border-t border-white/08 pt-4">
+          <p class="text-white/75 leading-relaxed text-sm mb-3">
+            We conducted a comprehensive SEO audit of <strong class="text-white">{{ result.url }}</strong>,
+            analysed as a <strong class="text-white">{{ result.profile.label }}</strong> site,
+            covering <strong class="text-white">12 SEO categories</strong> — from on-page fundamentals
+            and technical health to content quality, page speed, and AI-readiness signals.
+          </p>
+          <p class="text-white/75 leading-relaxed text-sm mb-4">
+            The site achieved an overall SEO score of
+            <strong class="{% if result.overall_score >= 70 %}text-green-400{% elif result.overall_score >= 45 %}text-yellow-400{% else %}text-red-400{% endif %}">{{ result.overall_score }}/100</strong>
+            —
+            {% if result.overall_score < 45 %}
+              <span class="text-red-400 font-semibold">Needs Immediate Attention.</span>
+              There are significant gaps that are likely suppressing organic visibility and traffic right now.
+            {% elif result.overall_score < 70 %}
+              <span class="text-yellow-400 font-semibold">Needs Improvement.</span>
+              The foundation is partially in place, but key issues are limiting the site's ability to rank and attract organic traffic.
+            {% else %}
+              <span class="text-green-400 font-semibold">Good Foundation.</span>
+              Core SEO hygiene is in reasonable shape. The focus should shift to amplifying what's working and closing remaining gaps.
+            {% endif %}
+          </p>
+
+          <!-- Stats strip -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black text-red-400">{{ result.critical_findings | length }}</div>
+              <div class="text-xs text-red-300/70 mt-0.5">Critical Issues</div>
+              <div class="text-xs text-white/30 mt-0.5">Fix immediately</div>
+            </div>
+            <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black text-yellow-400">{{ result.warning_findings | length }}</div>
+              <div class="text-xs text-yellow-300/70 mt-0.5">Warnings</div>
+              <div class="text-xs text-white/30 mt-0.5">Address this month</div>
+            </div>
+            <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black text-blue-400">{{ result.quick_wins | length }}</div>
+              <div class="text-xs text-blue-300/70 mt-0.5">Quick Wins</div>
+              <div class="text-xs text-white/30 mt-0.5">Low effort, fast results</div>
+            </div>
+            <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black text-indigo-400">{{ result.category_reports | length }}</div>
+              <div class="text-xs text-indigo-300/70 mt-0.5">Categories Audited</div>
+              <div class="text-xs text-white/30 mt-0.5">Full-stack coverage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Score Overview -->
+      <div class="card-glass rounded-2xl p-6 mb-5">
+        <h3 class="font-bold text-white mb-4">Category Performance Breakdown</h3>
+        <div class="space-y-3">
+          {% for cr in result.category_reports %}
+          <div class="flex items-center gap-3">
+            <div class="w-36 shrink-0 text-xs text-white/60 font-medium truncate">{{ cr.name }}</div>
+            <div class="flex-1 bg-white/08 rounded-full h-2">
+              <div class="{% if cr.score >= 70 %}bg-green-400{% elif cr.score >= 45 %}bg-yellow-400{% else %}bg-red-400{% endif %} h-2 rounded-full transition-all"
+                   style="width:{{ cr.score }}%"></div>
+            </div>
+            <div class="w-10 text-right text-xs font-bold {% if cr.score >= 70 %}text-green-400{% elif cr.score >= 45 %}text-yellow-400{% else %}text-red-400{% endif %}">{{ cr.score }}</div>
+            <div class="w-16 text-right">
+              {% if cr.critical_count > 0 %}
+              <span class="text-xs text-red-400">{{ cr.critical_count }} critical</span>
+              {% elif cr.warning_count > 0 %}
+              <span class="text-xs text-yellow-400/70">{{ cr.warning_count }} warn</span>
+              {% else %}
+              <span class="text-xs text-green-400/60">✓ Pass</span>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
       </div>
 
       {% if result.critical_findings %}
-      <div class="card-glass rounded-2xl p-6 mb-4">
-        <h3 class="font-bold text-red-400 mb-4 flex items-center gap-2 text-sm">
+      <!-- Critical Issues -->
+      <div class="card-glass rounded-2xl p-6 mb-5 border-l-4 border-red-500">
+        <h3 class="font-bold text-red-400 mb-1 flex items-center gap-2">
           <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
           </svg>
-          Critical Issues Requiring Immediate Action
+          Critical Issues — Require Immediate Action
         </h3>
+        <p class="text-white/40 text-xs mb-4">These issues are actively harming your search visibility and must be resolved as a priority.</p>
         <div class="space-y-0">
-          {% for f in result.critical_findings[:8] %}
-          <div class="finding-row py-3">
+          {% for f in result.critical_findings %}
+          <div class="finding-row py-3.5">
             <div class="flex items-start gap-3">
-              <span class="bg-red-500/15 text-red-400 text-xs px-2 py-0.5 rounded font-semibold shrink-0 mt-0.5">{{ f.category }}</span>
-              <div>
-                <p class="text-white/90 text-sm font-medium">{{ f.check }}</p>
-                <p class="text-white/50 text-xs mt-0.5">{{ f.detail }}</p>
+              <span class="bg-red-500/15 text-red-400 text-xs px-2 py-0.5 rounded font-bold shrink-0 mt-0.5">{{ f.category }}</span>
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-2 flex-wrap">
+                  <p class="text-white/90 text-sm font-semibold">{{ f.check }}</p>
+                  <div class="flex gap-1.5 shrink-0">
+                    {% if f.effort %}
+                    <span class="text-xs px-2 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>
+                    {% endif %}
+                    {% if f.impact %}
+                    <span class="text-xs px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }} Impact</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <p class="text-white/55 text-xs mt-1 leading-relaxed">{{ f.detail }}</p>
                 {% if f.recommendation %}
-                <p class="text-indigo-300 text-xs mt-1"><span class="font-semibold">Fix:</span> {{ f.recommendation }}</p>
+                <div class="mt-2 flex items-start gap-1.5">
+                  <span class="text-indigo-400 text-xs font-bold shrink-0 mt-0.5">→</span>
+                  <p class="text-indigo-300 text-xs leading-relaxed"><span class="font-semibold">How to fix:</span> {{ f.recommendation }}</p>
+                </div>
                 {% endif %}
               </div>
             </div>
@@ -214,16 +340,34 @@
       {% endif %}
 
       {% if result.warning_findings %}
-      <div class="card-glass rounded-2xl p-6 mb-4">
-        <h3 class="font-bold text-yellow-400 mb-4 text-sm">Warnings to Address This Month</h3>
+      <!-- Warnings -->
+      <div class="card-glass rounded-2xl p-6 mb-5 border-l-4 border-yellow-500">
+        <h3 class="font-bold text-yellow-400 mb-1">Warnings — Address This Month</h3>
+        <p class="text-white/40 text-xs mb-4">These issues won't cause immediate ranking drops but are limiting the site's full potential.</p>
         <div class="space-y-0">
-          {% for f in result.warning_findings[:8] %}
-          <div class="finding-row py-2">
+          {% for f in result.warning_findings %}
+          <div class="finding-row py-3">
             <div class="flex items-start gap-3">
-              <span class="bg-yellow-500/10 text-yellow-400 text-xs px-2 py-0.5 rounded font-semibold shrink-0 mt-0.5">{{ f.category }}</span>
-              <div>
-                <p class="text-white/80 text-sm font-medium">{{ f.check }}</p>
-                <p class="text-white/40 text-xs mt-0.5">{{ f.detail }}</p>
+              <span class="bg-yellow-500/10 text-yellow-400 text-xs px-2 py-0.5 rounded font-bold shrink-0 mt-0.5">{{ f.category }}</span>
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-2 flex-wrap">
+                  <p class="text-white/85 text-sm font-medium">{{ f.check }}</p>
+                  <div class="flex gap-1.5 shrink-0">
+                    {% if f.effort %}
+                    <span class="text-xs px-2 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>
+                    {% endif %}
+                    {% if f.impact %}
+                    <span class="text-xs px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }} Impact</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <p class="text-white/45 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
+                {% if f.recommendation %}
+                <div class="mt-1.5 flex items-start gap-1.5">
+                  <span class="text-indigo-400 text-xs font-bold shrink-0">→</span>
+                  <p class="text-indigo-300/80 text-xs leading-relaxed">{{ f.recommendation }}</p>
+                </div>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -236,7 +380,7 @@
       <div class="card-glass rounded-2xl p-6 border border-indigo-500/20">
         <div class="flex items-center gap-2 mb-4">
           <div class="w-6 h-6 bg-gradient-to-br from-indigo-500 to-purple-500 rounded flex items-center justify-center text-xs font-bold">AI</div>
-          <h3 class="font-bold text-indigo-300 text-sm">AI-Generated Executive Summary</h3>
+          <h3 class="font-bold text-indigo-300 text-sm">AI-Generated Executive Narrative</h3>
         </div>
         <div class="prose-ai text-white/70 text-sm">{{ result.ai_proposal }}</div>
       </div>
@@ -246,47 +390,122 @@
 
     <!-- ── FINDINGS TAB ───────────────────────────────────── -->
     <div id="panel-findings" class="tab-panel">
+      <p class="text-white/30 text-xs mb-5">Click any row to expand the full detail and fix recommendation.</p>
       {% for cr in result.category_reports %}
-      <div class="card-glass rounded-2xl p-6 mb-4">
-        <div class="flex items-center justify-between mb-1">
-          <h3 class="font-bold text-white">{{ cr.name }}</h3>
-          <span class="text-sm font-extrabold {% if cr.score >= 70 %}text-green-400{% elif cr.score >= 45 %}text-yellow-400{% else %}text-red-400{% endif %}">
-            {{ cr.score }}/100
-          </span>
+      <div id="cat-{{ loop.index }}" class="card-glass rounded-2xl p-6 mb-4 scroll-mt-20">
+        <div class="flex items-center justify-between mb-2">
+          <div>
+            <h3 class="font-bold text-white text-base">{{ cr.name }}</h3>
+            <p class="text-white/40 text-xs mt-0.5">{{ cr.description }}</p>
+          </div>
+          <div class="text-right shrink-0 ml-4">
+            <span class="text-2xl font-extrabold {% if cr.score >= 70 %}text-green-400{% elif cr.score >= 45 %}text-yellow-400{% else %}text-red-400{% endif %}">
+              {{ cr.score }}
+            </span>
+            <span class="text-white/30 text-sm">/100</span>
+            <div class="w-20 bg-white/08 rounded-full h-1.5 mt-1 ml-auto">
+              <div class="{% if cr.score >= 70 %}bg-green-400{% elif cr.score >= 45 %}bg-yellow-400{% else %}bg-red-400{% endif %} h-1.5 rounded-full"
+                   style="width:{{ cr.score }}%"></div>
+            </div>
+          </div>
         </div>
-        <p class="text-white/40 text-xs mb-4">{{ cr.description }}</p>
+
         {% if cr.findings %}
-        <div class="rounded-xl overflow-hidden border border-white/06">
+        <div class="rounded-xl overflow-hidden border border-white/06 mt-4">
           {% for f in cr.findings %}
-          <div class="finding-row flex items-start gap-3 px-3 py-3
+          <div class="finding-row
             {% if f.severity == Severity.CRITICAL %}bg-red-500/5
             {% elif f.severity == Severity.WARNING %}bg-yellow-500/5
             {% elif f.severity == Severity.PASS %}bg-green-500/5
             {% else %}bg-blue-500/5{% endif %}">
-            <span class="text-xs font-bold px-2 py-0.5 rounded shrink-0 mt-0.5
-              {% if f.severity == Severity.CRITICAL %}bg-red-500/20 text-red-400
-              {% elif f.severity == Severity.WARNING %}bg-yellow-500/15 text-yellow-400
-              {% elif f.severity == Severity.PASS %}bg-green-500/15 text-green-400
-              {% else %}bg-blue-500/15 text-blue-400{% endif %}">
-              {{ f.severity.value | upper }}
-            </span>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="text-white/90 text-sm font-medium">{{ f.check }}</span>
-                {% if f.effort %}<span class="text-xs bg-blue-500/10 text-blue-300 px-1.5 py-0.5 rounded">{{ f.effort }}</span>{% endif %}
-                {% if f.impact %}<span class="text-xs bg-amber-500/10 text-amber-300 px-1.5 py-0.5 rounded">Impact: {{ f.impact }}</span>{% endif %}
-                {% if f.external_data_needed %}<span class="text-xs bg-purple-500/10 text-purple-300 px-1.5 py-0.5 rounded">Ext. tool</span>{% endif %}
+
+            <!-- Clickable header row -->
+            <div class="finding-header flex items-start gap-3 px-4 py-3.5" onclick="toggleFinding(this)">
+              <span class="text-xs font-bold px-2 py-0.5 rounded shrink-0 mt-0.5
+                {% if f.severity == Severity.CRITICAL %}bg-red-500/20 text-red-400
+                {% elif f.severity == Severity.WARNING %}bg-yellow-500/15 text-yellow-400
+                {% elif f.severity == Severity.PASS %}bg-green-500/15 text-green-400
+                {% else %}bg-blue-500/15 text-blue-400{% endif %}">
+                {{ f.severity.value | upper }}
+              </span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                  <span class="text-white/90 text-sm font-semibold">{{ f.check }}</span>
+                  <div class="flex items-center gap-1.5 shrink-0">
+                    {% if f.effort %}
+                    <span class="text-xs px-1.5 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>
+                    {% endif %}
+                    {% if f.impact %}
+                    <span class="text-xs px-1.5 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }}</span>
+                    {% endif %}
+                    <span class="expand-icon text-white/25 text-xs ml-1">▼</span>
+                  </div>
+                </div>
+                <p class="text-white/50 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
               </div>
-              <p class="text-white/50 text-xs mt-0.5">{{ f.detail }}</p>
-              {% if f.recommendation %}
-              <p class="text-indigo-300 text-xs mt-0.5"><span class="font-medium">Fix:</span> {{ f.recommendation }}</p>
-              {% endif %}
             </div>
+
+            <!-- Expanded detail panel -->
+            <div class="finding-detail border-t border-white/05 px-4 pb-4 pt-3 bg-slate-900/40">
+              <div class="ml-9 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div>
+                  <p class="text-xs font-bold text-white/30 uppercase tracking-wider mb-1.5">What We Found</p>
+                  <p class="text-white/70 text-sm leading-relaxed">{{ f.detail }}</p>
+                  {% if f.external_data_needed %}
+                  <p class="text-purple-300/70 text-xs mt-2 italic">⚠ Verification requires an external tool (e.g., Google Search Console, PageSpeed Insights).</p>
+                  {% endif %}
+                </div>
+
+                {% if f.recommendation %}
+                <div>
+                  <p class="text-xs font-bold text-indigo-400/60 uppercase tracking-wider mb-1.5">How to Fix It</p>
+                  <p class="text-indigo-200 text-sm leading-relaxed">{{ f.recommendation }}</p>
+                </div>
+                {% endif %}
+
+                <div class="md:col-span-2">
+                  <div class="flex flex-wrap gap-3 items-center pt-2 border-t border-white/05">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs text-white/30">Severity:</span>
+                      <span class="text-xs font-bold
+                        {% if f.severity == Severity.CRITICAL %}text-red-400
+                        {% elif f.severity == Severity.WARNING %}text-yellow-400
+                        {% elif f.severity == Severity.PASS %}text-green-400
+                        {% else %}text-blue-400{% endif %}">
+                        {{ f.severity.value | title }}
+                      </span>
+                    </div>
+                    {% if f.effort %}
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs text-white/30">Effort:</span>
+                      <span class="text-xs px-2 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>
+                    </div>
+                    {% endif %}
+                    {% if f.impact %}
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs text-white/30">Business Impact:</span>
+                      <span class="text-xs px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }}</span>
+                    </div>
+                    {% endif %}
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs text-white/30">Category:</span>
+                      <span class="text-xs text-white/50">{{ f.category }}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
           {% endfor %}
         </div>
         {% else %}
-        <p class="text-white/30 text-sm italic">No issues found in this category.</p>
+        <div class="mt-4 flex items-center gap-2 text-green-400/70 bg-green-500/05 rounded-xl px-4 py-3">
+          <span class="text-lg">✓</span>
+          <p class="text-sm">No issues found in this category — well done!</p>
+        </div>
         {% endif %}
       </div>
       {% endfor %}
@@ -297,24 +516,33 @@
 
       <!-- Phase 1: Quick Wins -->
       <div class="card-glass rounded-2xl p-6 mb-4 border-l-4 border-red-500">
-        <h3 class="font-bold text-red-400 mb-1">Phase 1 — Quick Wins (Week 1–2)</h3>
-        <p class="text-white/40 text-xs mb-4">High-impact fixes that can be deployed immediately.</p>
+        <h3 class="font-bold text-red-400 mb-0.5 flex items-center gap-2">
+          <span class="bg-red-500/20 text-red-300 text-xs px-2 py-0.5 rounded-full font-bold">Phase 1</span>
+          Quick Wins — Week 1 to 2
+        </h3>
+        <p class="text-white/40 text-xs mb-4">High-impact fixes that require minimal development effort and can be deployed immediately.</p>
         {% if result.quick_wins %}
         <div class="space-y-0">
           {% for f in result.quick_wins[:10] %}
-          <div class="finding-row py-3">
+          <div class="finding-row py-3.5">
             <div class="flex items-start gap-3">
-              <span class="text-xs font-bold shrink-0 mt-0.5 w-20
-                {% if f.severity == Severity.CRITICAL %}text-red-400{% else %}text-yellow-400{% endif %}">
-                [{{ f.severity.value | upper }}]
+              <span class="text-xs font-bold shrink-0 mt-0.5 min-w-[56px]
+                {% if f.severity == Severity.CRITICAL %}bg-red-500/20 text-red-400{% else %}bg-yellow-500/15 text-yellow-400{% endif %} px-2 py-0.5 rounded">
+                {{ f.severity.value | upper }}
               </span>
-              <div>
-                <p class="text-white/90 text-sm font-medium">{{ f.category }} — {{ f.check }}</p>
-                <p class="text-white/50 text-xs mt-0.5">{{ f.detail }}</p>
+              <div class="flex-1">
+                <p class="text-white/90 text-sm font-semibold">{{ f.category }} — {{ f.check }}</p>
+                <p class="text-white/50 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
                 {% if f.recommendation %}
-                <p class="text-indigo-300 text-xs mt-0.5"><em>Fix: {{ f.recommendation }}</em></p>
+                <div class="mt-1.5 flex items-start gap-1.5">
+                  <span class="text-indigo-400 text-xs font-bold shrink-0">→</span>
+                  <p class="text-indigo-300 text-xs leading-relaxed">{{ f.recommendation }}</p>
+                </div>
                 {% endif %}
               </div>
+              {% if f.impact %}
+              <span class="text-xs shrink-0 px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }}</span>
+              {% endif %}
             </div>
           </div>
           {% endfor %}
@@ -326,8 +554,11 @@
 
       <!-- Phase 2: High Impact -->
       <div class="card-glass rounded-2xl p-6 mb-4 border-l-4 border-yellow-500">
-        <h3 class="font-bold text-yellow-400 mb-1">Phase 2 — High Impact (Month 1–2)</h3>
-        <p class="text-white/40 text-xs mb-4">Structural improvements with significant ranking and traffic impact.</p>
+        <h3 class="font-bold text-yellow-400 mb-0.5 flex items-center gap-2">
+          <span class="bg-yellow-500/15 text-yellow-300 text-xs px-2 py-0.5 rounded-full font-bold">Phase 2</span>
+          Core Improvements — Month 1 to 2
+        </h3>
+        <p class="text-white/40 text-xs mb-4">Structural improvements with significant ranking and organic traffic impact.</p>
         {% set ns = namespace(has_items=false) %}
         {% for f in result.high_impact_items %}
           {% if f not in result.quick_wins %}{% set ns.has_items = true %}{% endif %}
@@ -336,14 +567,17 @@
         <div class="space-y-0">
           {% for f in result.high_impact_items %}
           {% if f not in result.quick_wins %}
-          <div class="finding-row py-3">
+          <div class="finding-row py-3.5">
             <div class="flex items-start gap-3">
-              <span class="text-yellow-400 text-xs font-bold shrink-0 mt-0.5 w-20">[{{ f.severity.value | upper }}]</span>
-              <div>
-                <p class="text-white/90 text-sm font-medium">{{ f.category }} — {{ f.check }}</p>
-                <p class="text-white/50 text-xs mt-0.5">{{ f.detail }}</p>
+              <span class="text-yellow-400 text-xs font-bold shrink-0 mt-0.5 min-w-[56px] bg-yellow-500/15 px-2 py-0.5 rounded">{{ f.severity.value | upper }}</span>
+              <div class="flex-1">
+                <p class="text-white/90 text-sm font-semibold">{{ f.category }} — {{ f.check }}</p>
+                <p class="text-white/50 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
                 {% if f.recommendation %}
-                <p class="text-indigo-300 text-xs mt-0.5"><em>Fix: {{ f.recommendation }}</em></p>
+                <div class="mt-1.5 flex items-start gap-1.5">
+                  <span class="text-indigo-400 text-xs font-bold shrink-0">→</span>
+                  <p class="text-indigo-300 text-xs leading-relaxed">{{ f.recommendation }}</p>
+                </div>
                 {% endif %}
               </div>
             </div>
@@ -358,8 +592,11 @@
 
       <!-- Phase 3: Long-term -->
       <div class="card-glass rounded-2xl p-6 mb-4 border-l-4 border-blue-500">
-        <h3 class="font-bold text-blue-400 mb-1">Phase 3 — Long-Term Growth (Month 3–6)</h3>
-        <p class="text-white/40 text-xs mb-4">Content, authority, and UX investments for compounding gains.</p>
+        <h3 class="font-bold text-blue-400 mb-0.5 flex items-center gap-2">
+          <span class="bg-blue-500/15 text-blue-300 text-xs px-2 py-0.5 rounded-full font-bold">Phase 3</span>
+          Long-Term Growth — Month 3 to 6
+        </h3>
+        <p class="text-white/40 text-xs mb-4">Content, authority, and technical investments for compounding organic growth.</p>
         {% set ns2 = namespace(count=0) %}
         {% for f in result.all_findings %}
           {% if f.effort == 'Long-term' and (f.severity == Severity.CRITICAL or f.severity == Severity.WARNING) %}
@@ -372,14 +609,17 @@
           {% for f in result.all_findings %}
           {% if f.effort == 'Long-term' and (f.severity == Severity.CRITICAL or f.severity == Severity.WARNING) and shown.n < 10 %}
           {% set shown.n = shown.n + 1 %}
-          <div class="finding-row py-3">
+          <div class="finding-row py-3.5">
             <div class="flex items-start gap-3">
-              <span class="text-blue-400 text-xs font-bold shrink-0 mt-0.5 w-20">[{{ f.severity.value | upper }}]</span>
-              <div>
-                <p class="text-white/90 text-sm font-medium">{{ f.category }} — {{ f.check }}</p>
-                <p class="text-white/50 text-xs mt-0.5">{{ f.detail }}</p>
+              <span class="text-blue-400 text-xs font-bold shrink-0 mt-0.5 min-w-[56px] bg-blue-500/15 px-2 py-0.5 rounded">{{ f.severity.value | upper }}</span>
+              <div class="flex-1">
+                <p class="text-white/90 text-sm font-semibold">{{ f.category }} — {{ f.check }}</p>
+                <p class="text-white/50 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
                 {% if f.recommendation %}
-                <p class="text-indigo-300 text-xs mt-0.5"><em>Fix: {{ f.recommendation }}</em></p>
+                <div class="mt-1.5 flex items-start gap-1.5">
+                  <span class="text-indigo-400 text-xs font-bold shrink-0">→</span>
+                  <p class="text-indigo-300 text-xs leading-relaxed">{{ f.recommendation }}</p>
+                </div>
                 {% endif %}
               </div>
             </div>
@@ -396,7 +636,7 @@
       <div class="card-glass rounded-2xl p-6 border border-indigo-500/20">
         <div class="flex items-center gap-2 mb-4">
           <div class="w-6 h-6 bg-gradient-to-br from-indigo-500 to-purple-500 rounded flex items-center justify-center text-xs font-bold">AI</div>
-          <h3 class="font-bold text-indigo-300 text-sm">AI-Generated Roadmap Recommendations</h3>
+          <h3 class="font-bold text-indigo-300 text-sm">AI-Generated Roadmap</h3>
         </div>
         <div class="prose-ai text-white/70 text-sm">{{ result.ai_roadmap }}</div>
       </div>
@@ -409,15 +649,15 @@
 
       <div class="card-glass rounded-2xl p-6 mb-4 border-l-4 border-green-500">
         <h3 class="font-bold text-green-400 mb-1">Traffic Strategy — {{ result.profile.label }}</h3>
-        <p class="text-white/40 text-xs mb-4">Site-type-specific recommendations for growing organic traffic.</p>
-        <ul class="space-y-2.5">
+        <p class="text-white/40 text-xs mb-5">Site-type-specific recommendations for growing organic search traffic.</p>
+        <div class="space-y-3">
           {% for note in result.profile.traffic_strategy_notes %}
-          <li class="flex items-start gap-2 text-white/70 text-sm">
-            <span class="text-green-400 mt-0.5 shrink-0 font-bold">→</span>
-            {{ note }}
-          </li>
+          <div class="flex items-start gap-3 bg-green-500/05 rounded-xl px-4 py-3 border border-green-500/10">
+            <span class="text-green-400 font-bold text-sm shrink-0 mt-0.5">→</span>
+            <p class="text-white/70 text-sm leading-relaxed">{{ note }}</p>
+          </div>
           {% endfor %}
-        </ul>
+        </div>
       </div>
 
       {% if result.ai_traffic_strategy %}
@@ -438,16 +678,16 @@
       {% if result.profile.custom_checks %}
       <div class="card-glass rounded-2xl p-6 mb-4">
         <h3 class="font-bold text-white mb-1">{{ result.profile.label }} — Site-Type Checklist</h3>
-        <p class="text-white/40 text-xs mb-4">Items specifically relevant for your site type and industry.</p>
+        <p class="text-white/40 text-xs mb-4">Items specifically relevant for your site type and industry vertical.</p>
         <div class="space-y-0">
           {% for name, rec in result.profile.custom_checks %}
-          <div class="finding-row py-3 flex items-start gap-3">
-            <div class="w-5 h-5 border-2 border-white/20 rounded mt-0.5 shrink-0 flex items-center justify-center">
+          <div class="finding-row py-3.5 flex items-start gap-3">
+            <div class="w-5 h-5 border-2 border-indigo-500/40 rounded mt-0.5 shrink-0 flex items-center justify-center bg-indigo-500/10">
               <div class="w-2 h-2 rounded-sm bg-indigo-500/60"></div>
             </div>
-            <div>
-              <p class="text-white/90 text-sm font-medium">{{ name }}</p>
-              <p class="text-white/50 text-xs mt-0.5">{{ rec }}</p>
+            <div class="flex-1">
+              <p class="text-white/90 text-sm font-semibold">{{ name }}</p>
+              <p class="text-white/50 text-xs mt-0.5 leading-relaxed">{{ rec }}</p>
             </div>
           </div>
           {% endfor %}
@@ -460,8 +700,9 @@
         <h3 class="font-bold text-white mb-4">12-Category Pass / Fail Summary</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {% for cr in result.category_reports %}
-          <div class="flex items-center gap-3 p-3 rounded-xl
-            {% if cr.critical_count > 0 %}bg-red-500/5{% elif cr.warning_count > 0 %}bg-yellow-500/5{% else %}bg-green-500/5{% endif %}">
+          <div class="flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer hover:border-indigo-500/30 transition-colors
+            {% if cr.critical_count > 0 %}bg-red-500/5 border-red-500/15{% elif cr.warning_count > 0 %}bg-yellow-500/5 border-yellow-500/15{% else %}bg-green-500/5 border-green-500/15{% endif %}"
+            onclick="goToCategory({{ loop.index }})" title="View {{ cr.name }} findings">
             <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-bold text-sm
               {% if cr.critical_count > 0 %}bg-red-500/20 text-red-400
               {% elif cr.warning_count > 0 %}bg-yellow-500/15 text-yellow-400
@@ -469,7 +710,7 @@
               {% if cr.critical_count > 0 %}✕{% elif cr.warning_count > 0 %}!{% else %}✓{% endif %}
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-white/80 text-sm font-medium truncate">{{ cr.name }}</p>
+              <p class="text-white/80 text-sm font-semibold truncate">{{ cr.name }}</p>
               <p class="text-white/30 text-xs">
                 {{ cr.score }}/100 ·
                 {% if cr.critical_count > 0 %}<span class="text-red-400">{{ cr.critical_count }} critical</span>{% endif %}
@@ -478,6 +719,7 @@
                 {% if cr.critical_count == 0 and cr.warning_count == 0 %}<span class="text-green-400/60">All passing</span>{% endif %}
               </p>
             </div>
+            <span class="text-white/20 text-xs">→</span>
           </div>
           {% endfor %}
         </div>
@@ -493,6 +735,29 @@
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById('panel-' + name).classList.add('active');
       document.getElementById('tab-' + name).classList.add('active');
+    }
+
+    function goToCategory(idx) {
+      showTab('findings');
+      setTimeout(() => {
+        const el = document.getElementById('cat-' + idx);
+        if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.classList.add('highlight-cat');
+        setTimeout(() => el.classList.remove('highlight-cat'), 2000);
+      }, 60);
+    }
+
+    function toggleFinding(headerEl) {
+      const detail = headerEl.nextElementSibling;
+      const icon = headerEl.querySelector('.expand-icon');
+      if (detail.classList.contains('open')) {
+        detail.classList.remove('open');
+        icon.classList.remove('rotated');
+      } else {
+        detail.classList.add('open');
+        icon.classList.add('rotated');
+      }
     }
 
     // Animate score ring on load

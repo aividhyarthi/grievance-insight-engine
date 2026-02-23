@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <title>SEO Audit Report — {{ result.url }}</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* ── Print Button (hidden on print) ─────────────────── */
+    .print-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #1e1b4b;
+      color: #fff;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .print-bar-left { display: flex; align-items: center; gap: 12px; }
+    .print-bar-logo {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      font-weight: 900;
+      font-size: 13px;
+      border-radius: 6px;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .print-bar-title { font-weight: 700; font-size: 14px; }
+    .print-bar-sub { font-size: 11px; opacity: 0.6; }
+    .btn-print {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.15s;
+    }
+    .btn-print:hover { opacity: 0.88; }
+    .btn-back {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+    }
+    .btn-back:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── Report Wrapper ──────────────────────────────────── */
+    .report-wrap {
+      max-width: 820px;
+      margin: 72px auto 48px;
+      padding: 0 24px;
+    }
+
+    /* ── Cover Page ──────────────────────────────────────── */
+    .cover {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+      color: white;
+      border-radius: 16px;
+      padding: 56px 48px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(99,102,241,0.15);
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -30px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(139,92,246,0.10);
+    }
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .cover-logo-mark {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 10px;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 16px; color: white;
+    }
+    .cover-logo-text { line-height: 1.2; }
+    .cover-logo-text .brand { font-weight: 900; font-size: 18px; }
+    .cover-logo-text .sub { font-size: 12px; opacity: 0.55; }
+    .cover-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 12px;
+    }
+    .cover-title {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .cover-url {
+      font-size: 15px;
+      opacity: 0.65;
+      margin-bottom: 40px;
+      word-break: break-all;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cover-meta-item { }
+    .cover-meta-label { font-size: 10px; opacity: 0.45; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .cover-meta-value { font-size: 14px; font-weight: 700; }
+    .cover-score {
+      position: absolute;
+      top: 48px; right: 48px;
+      text-align: center;
+      z-index: 1;
+    }
+    .cover-score-num {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .cover-score-denom { font-size: 18px; opacity: 0.4; }
+    .cover-score-label { font-size: 11px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .score-green { color: #4ade80; }
+    .score-yellow { color: #facc15; }
+    .score-red { color: #f87171; }
+
+    /* ── Section ─────────────────────────────────────────── */
+    .section {
+      margin-bottom: 32px;
+      page-break-inside: avoid;
+    }
+    .section-break { page-break-before: always; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .section-number {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      font-weight: 900;
+      font-size: 11px;
+      border-radius: 5px;
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .section-subtitle {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* ── Executive Summary ───────────────────────────────── */
+    .exec-intro {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.7;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      border-radius: 10px;
+      padding: 14px 12px;
+      text-align: center;
+      border: 1px solid;
+    }
+    .stat-card.red { background: #fef2f2; border-color: #fecaca; }
+    .stat-card.yellow { background: #fffbeb; border-color: #fde68a; }
+    .stat-card.blue { background: #eff6ff; border-color: #bfdbfe; }
+    .stat-card.indigo { background: #eef2ff; border-color: #c7d2fe; }
+    .stat-num { font-size: 28px; font-weight: 900; }
+    .stat-card.red .stat-num { color: #dc2626; }
+    .stat-card.yellow .stat-num { color: #d97706; }
+    .stat-card.blue .stat-num { color: #2563eb; }
+    .stat-card.indigo .stat-num { color: #4f46e5; }
+    .stat-label { font-size: 11px; font-weight: 600; margin-top: 2px; }
+    .stat-card.red .stat-label { color: #dc2626; }
+    .stat-card.yellow .stat-label { color: #d97706; }
+    .stat-card.blue .stat-label { color: #2563eb; }
+    .stat-card.indigo .stat-label { color: #4f46e5; }
+    .stat-desc { font-size: 10px; color: #94a3b8; margin-top: 2px; }
+
+    /* ── Score Bar ───────────────────────────────────────── */
+    .score-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .score-bar-label { width: 140px; font-size: 12px; color: #475569; flex-shrink: 0; font-weight: 500; }
+    .score-bar-track { flex: 1; background: #e2e8f0; border-radius: 4px; height: 8px; }
+    .score-bar-fill { height: 100%; border-radius: 4px; }
+    .score-bar-fill.green { background: #22c55e; }
+    .score-bar-fill.yellow { background: #eab308; }
+    .score-bar-fill.red { background: #ef4444; }
+    .score-bar-val { width: 32px; text-align: right; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .score-bar-val.green { color: #16a34a; }
+    .score-bar-val.yellow { color: #ca8a04; }
+    .score-bar-val.red { color: #dc2626; }
+    .score-bar-badge { width: 60px; text-align: right; font-size: 10px; flex-shrink: 0; }
+
+    /* ── Category Section ────────────────────────────────── */
+    .cat-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .cat-name { font-size: 15px; font-weight: 800; color: #0f172a; }
+    .cat-desc { font-size: 11px; color: #64748b; margin-top: 2px; }
+    .cat-score-badge {
+      font-size: 20px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .cat-bar-wrap { margin-bottom: 12px; }
+    .cat-bar-track { background: #e2e8f0; border-radius: 4px; height: 6px; }
+    .cat-bar-fill { height: 100%; border-radius: 4px; }
+
+    /* ── Findings Table ──────────────────────────────────── */
+    .findings-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .findings-table th {
+      background: #f1f5f9;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748b;
+      padding: 8px 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .findings-table td {
+      padding: 10px 10px;
+      font-size: 12px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+    .findings-table tr:last-child td { border-bottom: none; }
+    .findings-table tr.row-critical td { background: #fef9f9; }
+    .findings-table tr.row-warning td { background: #fffdf5; }
+    .findings-table tr.row-pass td { background: #f9fefb; }
+    .findings-table tr.row-info td { background: #f9fbff; }
+
+    /* ── Severity Badge ──────────────────────────────────── */
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge-critical { background: #fee2e2; color: #b91c1c; }
+    .badge-warning { background: #fef3c7; color: #92400e; }
+    .badge-pass { background: #d1fae5; color: #065f46; }
+    .badge-info { background: #dbeafe; color: #1e40af; }
+
+    /* ── Effort / Impact Pills ───────────────────────────── */
+    .pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .pill-quick { background: #ede9fe; color: #5b21b6; }
+    .pill-medium { background: #fef3c7; color: #78350f; }
+    .pill-long { background: #f1f5f9; color: #475569; }
+    .pill-high { background: #fee2e2; color: #991b1b; }
+    .pill-med-impact { background: #fef3c7; color: #78350f; }
+    .pill-low-impact { background: #d1fae5; color: #065f46; }
+
+    /* ── Fix Box ─────────────────────────────────────────── */
+    .fix-text { color: #4f46e5; font-style: italic; }
+    .detail-text { color: #334155; }
+    .check-name { font-weight: 600; color: #0f172a; }
+
+    /* ── Roadmap ─────────────────────────────────────────── */
+    .phase-card {
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      border-left: 4px solid;
+    }
+    .phase-1 { background: #fef9f9; border-color: #ef4444; }
+    .phase-2 { background: #fffdf5; border-color: #f59e0b; }
+    .phase-3 { background: #f0f9ff; border-color: #3b82f6; }
+    .phase-title { font-size: 14px; font-weight: 800; margin-bottom: 3px; }
+    .phase-1 .phase-title { color: #dc2626; }
+    .phase-2 .phase-title { color: #d97706; }
+    .phase-3 .phase-title { color: #2563eb; }
+    .phase-sub { font-size: 11px; color: #64748b; margin-bottom: 12px; }
+    .phase-item {
+      display: flex;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .phase-item:last-child { border-bottom: none; }
+    .phase-sev { font-size: 10px; font-weight: 700; min-width: 56px; padding-top: 1px; }
+    .phase-1 .phase-sev { color: #dc2626; }
+    .phase-2 .phase-sev { color: #d97706; }
+    .phase-3 .phase-sev { color: #2563eb; }
+    .phase-content { flex: 1; }
+    .phase-check { font-size: 12px; font-weight: 600; color: #0f172a; }
+    .phase-cat { font-size: 10px; color: #94a3b8; }
+    .phase-detail { font-size: 11px; color: #475569; margin-top: 2px; }
+    .phase-fix { font-size: 11px; color: #4f46e5; margin-top: 3px; font-style: italic; }
+
+    /* ── Traffic Strategy ────────────────────────────────── */
+    .traffic-item {
+      display: flex;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .traffic-arrow { color: #16a34a; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .traffic-text { font-size: 12px; color: #14532d; line-height: 1.5; }
+
+    /* ── Checklist ───────────────────────────────────────── */
+    .checklist-item {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-box {
+      width: 16px; height: 16px;
+      border: 2px solid #c7d2fe;
+      border-radius: 4px;
+      background: #eef2ff;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .checklist-name { font-size: 12px; font-weight: 600; color: #0f172a; }
+    .checklist-rec { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+    /* ── AI Narrative ────────────────────────────────────── */
+    .ai-box {
+      background: #faf5ff;
+      border: 1px solid #e9d5ff;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-top: 16px;
+    }
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 5px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+    .ai-text { font-size: 12px; color: #4c1d95; line-height: 1.7; white-space: pre-line; }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .report-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    /* ── Print Styles ────────────────────────────────────── */
+    @media print {
+      .print-bar { display: none !important; }
+      .report-wrap { margin-top: 0; }
+      body { font-size: 11px; }
+      .cover { border-radius: 0; }
+      .section-break { page-break-before: always; }
+      .section { page-break-inside: avoid; }
+      .findings-table tr { page-break-inside: avoid; }
+      @page {
+        margin: 18mm 16mm;
+        size: A4;
+      }
+      @page :first { margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Print bar (hidden on print) -->
+  <div class="print-bar">
+    <div class="print-bar-left">
+      <div class="print-bar-logo">Ax</div>
+      <div>
+        <div class="print-bar-title">Appstudiox SEO Auditing Tool</div>
+        <div class="print-bar-sub">Click "Print / Save PDF" to download as PDF — use Print → Save as PDF in the dialog</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a href="/audit" class="btn-back">← Back to Results</a>
+      <button class="btn-print" onclick="window.print()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        Print / Save PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="report-wrap">
+
+    <!-- ── COVER PAGE ───────────────────────────────────── -->
+    <div class="cover">
+      <div class="cover-logo">
+        <div class="cover-logo-mark">Ax</div>
+        <div class="cover-logo-text">
+          <div class="brand">Appstudiox<span style="color:#8b5cf6">.</span></div>
+          <div class="sub">SEO Auditing Tool</div>
+        </div>
+      </div>
+
+      <div class="cover-score">
+        <div class="cover-score-num {% if result.overall_score >= 70 %}score-green{% elif result.overall_score >= 45 %}score-yellow{% else %}score-red{% endif %}">
+          {{ result.overall_score }}<span class="cover-score-denom">/100</span>
+        </div>
+        <div class="cover-score-label">SEO Health Score</div>
+        <div style="margin-top:8px;font-size:12px;font-weight:700;
+          {% if result.overall_score >= 70 %}color:#4ade80{% elif result.overall_score >= 45 %}color:#facc15{% else %}color:#f87171{% endif %}">
+          {% if result.overall_score >= 70 %}Good Foundation{% elif result.overall_score >= 45 %}Needs Improvement{% else %}Needs Immediate Attention{% endif %}
+        </div>
+      </div>
+
+      <div class="cover-label">SEO Audit Report</div>
+      <div class="cover-title">Full-Stack SEO Audit<br>& Action Plan</div>
+      <div class="cover-url">{{ result.url }}</div>
+
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Site Type</div>
+          <div class="cover-meta-value">{{ result.profile.label }}</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Categories Audited</div>
+          <div class="cover-meta-value">{{ result.category_reports | length }} of 12</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Critical Issues</div>
+          <div class="cover-meta-value" style="color:#f87171;">{{ result.critical_findings | length }}</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Prepared by</div>
+          <div class="cover-meta-value">Appstudiox</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 1: EXECUTIVE SUMMARY ─────────────────── -->
+    <div class="section section-break">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <div>
+          <div class="section-title">Executive Summary</div>
+          <div class="section-subtitle">Overall health, key findings, and priority areas</div>
+        </div>
+      </div>
+
+      <div class="exec-intro">
+        We conducted a comprehensive SEO audit of <strong>{{ result.url }}</strong>,
+        analysed as a <strong>{{ result.profile.label }}</strong> website, covering
+        <strong>12 SEO categories</strong> — spanning on-page fundamentals, technical health,
+        content quality, page speed, keyword optimisation, UX signals, structured data,
+        AI-readiness (AEO/GEO), off-page authority, and backlink potential.
+        <br><br>
+        The site achieved an overall SEO health score of
+        <strong>{{ result.overall_score }}/100</strong>
+        (<strong>{% if result.overall_score >= 70 %}Good Foundation{% elif result.overall_score >= 45 %}Needs Improvement{% else %}Needs Immediate Attention{% endif %}</strong>).
+        {% if result.overall_score < 45 %}
+        There are significant gaps across multiple categories that are actively suppressing organic visibility. Immediate action is required to prevent further ranking decline.
+        {% elif result.overall_score < 70 %}
+        The foundation is partially in place but key issues are limiting the site's ability to rank competitively and attract consistent organic traffic.
+        {% else %}
+        Core SEO hygiene is in reasonable shape. The focus should now shift to closing remaining gaps and amplifying what's working well.
+        {% endif %}
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card red">
+          <div class="stat-num">{{ result.critical_findings | length }}</div>
+          <div class="stat-label">Critical Issues</div>
+          <div class="stat-desc">Fix immediately</div>
+        </div>
+        <div class="stat-card yellow">
+          <div class="stat-num">{{ result.warning_findings | length }}</div>
+          <div class="stat-label">Warnings</div>
+          <div class="stat-desc">Address this month</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-num">{{ result.quick_wins | length }}</div>
+          <div class="stat-label">Quick Wins</div>
+          <div class="stat-desc">Low effort, fast results</div>
+        </div>
+        <div class="stat-card indigo">
+          <div class="stat-num">{{ result.category_reports | length }}</div>
+          <div class="stat-label">Categories</div>
+          <div class="stat-desc">Full-stack coverage</div>
+        </div>
+      </div>
+
+      <!-- Score bar chart -->
+      <div style="margin-top:8px;">
+        <div style="font-size:12px;font-weight:700;color:#0f172a;margin-bottom:12px;">Category Performance Breakdown</div>
+        {% for cr in result.category_reports %}
+        {% set color = 'green' if cr.score >= 70 else ('yellow' if cr.score >= 45 else 'red') %}
+        <div class="score-bar-row">
+          <div class="score-bar-label">{{ cr.name }}</div>
+          <div class="score-bar-track">
+            <div class="score-bar-fill {{ color }}" style="width:{{ cr.score }}%"></div>
+          </div>
+          <div class="score-bar-val {{ color }}">{{ cr.score }}</div>
+          <div class="score-bar-badge">
+            {% if cr.critical_count > 0 %}<span style="color:#dc2626;font-size:10px;font-weight:600;">{{ cr.critical_count }} critical</span>
+            {% elif cr.warning_count > 0 %}<span style="color:#d97706;font-size:10px;">{{ cr.warning_count }} warn</span>
+            {% else %}<span style="color:#16a34a;font-size:10px;">✓ Pass</span>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: CRITICAL ISSUES ───────────────────── -->
+    {% if result.critical_findings %}
+    <div class="section section-break">
+      <div class="section-header">
+        <div class="section-number" style="background:#ef4444;">!</div>
+        <div>
+          <div class="section-title" style="color:#dc2626;">Critical Issues — Immediate Action Required</div>
+          <div class="section-subtitle">These issues are actively harming search visibility and must be resolved as a priority</div>
+        </div>
+      </div>
+
+      <table class="findings-table">
+        <thead>
+          <tr>
+            <th style="width:130px;">Category / Check</th>
+            <th>What We Found</th>
+            <th>How to Fix It</th>
+            <th style="width:80px;">Effort</th>
+            <th style="width:60px;">Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for f in result.critical_findings %}
+          <tr class="row-critical">
+            <td>
+              <div style="margin-bottom:4px;"><span class="badge badge-critical">CRITICAL</span></div>
+              <div style="font-size:11px;color:#64748b;font-weight:500;">{{ f.category }}</div>
+              <div class="check-name" style="margin-top:3px;">{{ f.check }}</div>
+            </td>
+            <td>
+              <span class="detail-text">{{ f.detail }}</span>
+            </td>
+            <td>
+              {% if f.recommendation %}
+              <span class="fix-text">{{ f.recommendation }}</span>
+              {% else %}
+              <span style="color:#94a3b8;font-size:11px;">—</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if f.effort %}
+              <span class="pill {% if 'Quick' in f.effort %}pill-quick{% elif 'Medium' in f.effort %}pill-medium{% else %}pill-long{% endif %}">{{ f.effort }}</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if f.impact %}
+              <span class="pill {% if f.impact == 'High' %}pill-high{% elif f.impact == 'Medium' %}pill-med-impact{% else %}pill-low-impact{% endif %}">{{ f.impact }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
+    <!-- ── SECTION 3: WARNINGS ───────────────────────────── -->
+    {% if result.warning_findings %}
+    <div class="section section-break">
+      <div class="section-header">
+        <div class="section-number" style="background:#f59e0b;">W</div>
+        <div>
+          <div class="section-title" style="color:#d97706;">Warnings — Address This Month</div>
+          <div class="section-subtitle">These issues are limiting the site's potential but won't cause immediate drops</div>
+        </div>
+      </div>
+
+      <table class="findings-table">
+        <thead>
+          <tr>
+            <th style="width:130px;">Category / Check</th>
+            <th>What We Found</th>
+            <th>How to Fix It</th>
+            <th style="width:80px;">Effort</th>
+            <th style="width:60px;">Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for f in result.warning_findings %}
+          <tr class="row-warning">
+            <td>
+              <div style="margin-bottom:4px;"><span class="badge badge-warning">WARNING</span></div>
+              <div style="font-size:11px;color:#64748b;font-weight:500;">{{ f.category }}</div>
+              <div class="check-name" style="margin-top:3px;">{{ f.check }}</div>
+            </td>
+            <td>
+              <span class="detail-text">{{ f.detail }}</span>
+            </td>
+            <td>
+              {% if f.recommendation %}
+              <span class="fix-text">{{ f.recommendation }}</span>
+              {% else %}
+              <span style="color:#94a3b8;font-size:11px;">—</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if f.effort %}
+              <span class="pill {% if 'Quick' in f.effort %}pill-quick{% elif 'Medium' in f.effort %}pill-medium{% else %}pill-long{% endif %}">{{ f.effort }}</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if f.impact %}
+              <span class="pill {% if f.impact == 'High' %}pill-high{% elif f.impact == 'Medium' %}pill-med-impact{% else %}pill-low-impact{% endif %}">{{ f.impact }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
+    <!-- ── SECTION 4: ALL CATEGORIES (detailed) ──────────── -->
+    <div class="section section-break">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <div>
+          <div class="section-title">Detailed Category Findings</div>
+          <div class="section-subtitle">Full breakdown of all 12 SEO categories with every check result</div>
+        </div>
+      </div>
+
+      {% for cr in result.category_reports %}
+      {% set color = 'green' if cr.score >= 70 else ('yellow' if cr.score >= 45 else 'red') %}
+      <div class="section" style="margin-bottom:28px;{% if not loop.first %}margin-top:24px;{% endif %}">
+        <div style="background:{% if cr.score >= 70 %}#f0fdf4{% elif cr.score >= 45 %}#fffbeb{% else %}#fef2f2{% endif %};
+                    border:1px solid {% if cr.score >= 70 %}#bbf7d0{% elif cr.score >= 45 %}#fde68a{% else %}#fecaca{% endif %};
+                    border-radius:10px;padding:16px 18px;margin-bottom:10px;">
+          <div class="cat-header">
+            <div>
+              <div class="cat-name">{{ cr.name }}</div>
+              <div class="cat-desc">{{ cr.description }}</div>
+            </div>
+            <div class="cat-score-badge {% if cr.score >= 70 %}score-green{% elif cr.score >= 45 %}score-yellow{% else %}score-red{% endif %}" style="{% if cr.score >= 70 %}color:#16a34a{% elif cr.score >= 45 %}color:#d97706{% else %}color:#dc2626{% endif %}">
+              {{ cr.score }}/100
+            </div>
+          </div>
+          <div class="cat-bar-track">
+            <div class="cat-bar-fill score-bar-fill {{ color }}" style="width:{{ cr.score }}%"></div>
+          </div>
+          <div style="margin-top:6px;font-size:11px;color:#64748b;">
+            {% if cr.critical_count > 0 %}<span style="color:#dc2626;font-weight:600;">{{ cr.critical_count }} critical</span>{% endif %}
+            {% if cr.critical_count > 0 and cr.warning_count > 0 %} · {% endif %}
+            {% if cr.warning_count > 0 %}<span style="color:#d97706;">{{ cr.warning_count }} warnings</span>{% endif %}
+            {% if cr.critical_count == 0 and cr.warning_count == 0 %}<span style="color:#16a34a;">All checks passing</span>{% endif %}
+          </div>
+        </div>
+
+        {% if cr.findings %}
+        <table class="findings-table">
+          <thead>
+            <tr>
+              <th style="width:90px;">Status</th>
+              <th style="width:130px;">Check</th>
+              <th>Finding</th>
+              <th>Recommendation</th>
+              <th style="width:70px;">Effort</th>
+              <th style="width:55px;">Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for f in cr.findings %}
+            <tr class="row-{{ f.severity.value }}">
+              <td>
+                <span class="badge badge-{{ f.severity.value }}">{{ f.severity.value | upper }}</span>
+              </td>
+              <td>
+                <span class="check-name">{{ f.check }}</span>
+              </td>
+              <td>
+                <span class="detail-text">{{ f.detail }}</span>
+              </td>
+              <td>
+                {% if f.recommendation %}
+                <span class="fix-text">{{ f.recommendation }}</span>
+                {% else %}
+                <span style="color:#94a3b8;font-size:11px;">—</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if f.effort %}
+                <span class="pill {% if 'Quick' in f.effort %}pill-quick{% elif 'Medium' in f.effort %}pill-medium{% else %}pill-long{% endif %}">{{ f.effort }}</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if f.impact %}
+                <span class="pill {% if f.impact == 'High' %}pill-high{% elif f.impact == 'Medium' %}pill-med-impact{% else %}pill-low-impact{% endif %}">{{ f.impact }}</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <div style="padding:12px 16px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;font-size:12px;color:#166534;">
+          ✓ No issues found in this category — all checks passing.
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- ── SECTION 5: IMPLEMENTATION ROADMAP ─────────────── -->
+    <div class="section section-break">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <div>
+          <div class="section-title">Implementation Roadmap</div>
+          <div class="section-subtitle">Prioritised action plan across 3 phases for maximum SEO impact</div>
+        </div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase-card phase-1">
+        <div class="phase-title">Phase 1 — Quick Wins (Week 1–2)</div>
+        <div class="phase-sub">High-impact fixes requiring minimal effort — deploy immediately for fast results.</div>
+        {% if result.quick_wins %}
+        {% for f in result.quick_wins[:10] %}
+        <div class="phase-item">
+          <div class="phase-sev">{{ f.severity.value | upper }}</div>
+          <div class="phase-content">
+            <div class="phase-cat">{{ f.category }}</div>
+            <div class="phase-check">{{ f.check }}</div>
+            <div class="phase-detail">{{ f.detail }}</div>
+            {% if f.recommendation %}<div class="phase-fix">→ {{ f.recommendation }}</div>{% endif %}
+          </div>
+          {% if f.impact %}<span class="pill {% if f.impact == 'High' %}pill-high{% elif f.impact == 'Medium' %}pill-med-impact{% else %}pill-low-impact{% endif %}" style="align-self:flex-start;margin-top:2px;flex-shrink:0;">{{ f.impact }}</span>{% endif %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div style="font-size:12px;color:#92400e;font-style:italic;">No quick wins identified — the site is well-optimised in key areas.</div>
+        {% endif %}
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-card phase-2">
+        <div class="phase-title">Phase 2 — Core Improvements (Month 1–2)</div>
+        <div class="phase-sub">Structural improvements with significant ranking and traffic impact.</div>
+        {% set ns = namespace(has_items=false) %}
+        {% for f in result.high_impact_items %}
+          {% if f not in result.quick_wins %}{% set ns.has_items = true %}{% endif %}
+        {% endfor %}
+        {% if ns.has_items %}
+        {% for f in result.high_impact_items %}
+        {% if f not in result.quick_wins %}
+        <div class="phase-item">
+          <div class="phase-sev">{{ f.severity.value | upper }}</div>
+          <div class="phase-content">
+            <div class="phase-cat">{{ f.category }}</div>
+            <div class="phase-check">{{ f.check }}</div>
+            <div class="phase-detail">{{ f.detail }}</div>
+            {% if f.recommendation %}<div class="phase-fix">→ {{ f.recommendation }}</div>{% endif %}
+          </div>
+          {% if f.impact %}<span class="pill {% if f.impact == 'High' %}pill-high{% elif f.impact == 'Medium' %}pill-med-impact{% else %}pill-low-impact{% endif %}" style="align-self:flex-start;margin-top:2px;flex-shrink:0;">{{ f.impact }}</span>{% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <div style="font-size:12px;color:#78350f;font-style:italic;">No additional items beyond quick wins.</div>
+        {% endif %}
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-card phase-3">
+        <div class="phase-title">Phase 3 — Long-Term Growth (Month 3–6)</div>
+        <div class="phase-sub">Content, authority, and technical investments for compounding organic growth.</div>
+        {% set ns2 = namespace(count=0) %}
+        {% for f in result.all_findings %}
+          {% if f.effort == 'Long-term' and (f.severity == Severity.CRITICAL or f.severity == Severity.WARNING) %}
+            {% set ns2.count = ns2.count + 1 %}
+          {% endif %}
+        {% endfor %}
+        {% if ns2.count > 0 %}
+        {% set shown = namespace(n=0) %}
+        {% for f in result.all_findings %}
+        {% if f.effort == 'Long-term' and (f.severity == Severity.CRITICAL or f.severity == Severity.WARNING) and shown.n < 10 %}
+        {% set shown.n = shown.n + 1 %}
+        <div class="phase-item">
+          <div class="phase-sev">{{ f.severity.value | upper }}</div>
+          <div class="phase-content">
+            <div class="phase-cat">{{ f.category }}</div>
+            <div class="phase-check">{{ f.check }}</div>
+            <div class="phase-detail">{{ f.detail }}</div>
+            {% if f.recommendation %}<div class="phase-fix">→ {{ f.recommendation }}</div>{% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <div style="font-size:12px;color:#1e3a5f;font-style:italic;">No specific long-term items identified at this time.</div>
+        {% endif %}
+      </div>
+
+      {% if result.ai_roadmap %}
+      <div class="ai-box">
+        <div class="ai-badge">✦ AI Analysis</div>
+        <div class="ai-text">{{ result.ai_roadmap }}</div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- ── SECTION 6: TRAFFIC STRATEGY ───────────────────── -->
+    <div class="section section-break">
+      <div class="section-header">
+        <div class="section-number" style="background:#22c55e;">→</div>
+        <div>
+          <div class="section-title">Traffic Growth Strategy</div>
+          <div class="section-subtitle">{{ result.profile.label }} — site-type-specific organic growth recommendations</div>
+        </div>
+      </div>
+
+      {% for note in result.profile.traffic_strategy_notes %}
+      <div class="traffic-item">
+        <div class="traffic-arrow">→</div>
+        <div class="traffic-text">{{ note }}</div>
+      </div>
+      {% endfor %}
+
+      {% if result.ai_traffic_strategy %}
+      <div class="ai-box">
+        <div class="ai-badge">✦ AI Traffic Strategy</div>
+        <div class="ai-text">{{ result.ai_traffic_strategy }}</div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- ── SECTION 7: SITE CHECKLIST ─────────────────────── -->
+    {% if result.profile.custom_checks %}
+    <div class="section section-break">
+      <div class="section-header">
+        <div class="section-number">7</div>
+        <div>
+          <div class="section-title">{{ result.profile.label }} — Site-Type Checklist</div>
+          <div class="section-subtitle">Items specifically relevant for your site category and industry</div>
+        </div>
+      </div>
+
+      {% for name, rec in result.profile.custom_checks %}
+      <div class="checklist-item">
+        <div class="checklist-box"></div>
+        <div>
+          <div class="checklist-name">{{ name }}</div>
+          <div class="checklist-rec">{{ rec }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if result.ai_proposal %}
+    <!-- ── AI EXECUTIVE SUMMARY ───────────────────────────── -->
+    <div class="section section-break">
+      <div class="section-header">
+        <div class="section-number" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">✦</div>
+        <div>
+          <div class="section-title">AI-Generated Executive Summary</div>
+          <div class="section-subtitle">Narrative analysis and key recommendations</div>
+        </div>
+      </div>
+      <div class="ai-box">
+        <div class="ai-badge">✦ AI Analysis by Claude</div>
+        <div class="ai-text">{{ result.ai_proposal }}</div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <div class="report-footer">
+      <div>
+        <strong style="color:#6366f1;">Appstudiox SEO Auditing Tool</strong> · Confidential
+      </div>
+      <div>{{ result.url }} · {{ result.profile.label }} · Score: {{ result.overall_score }}/100</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

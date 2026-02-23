@@ -118,6 +118,19 @@ def download_json(job_id):
                      mimetype="application/json")
 
 
+@app.route("/report/<job_id>")
+def proposal_report(job_id):
+    result = _cache.get(job_id)
+    if not result:
+        return "Report not found or expired. Please run a new audit.", 404
+    return render_template(
+        "proposal_report.html",
+        result=result,
+        job_id=job_id,
+        Severity=__import__("seo_audit.categories.base", fromlist=["Severity"]).Severity,
+    )
+
+
 @app.route("/health")
 def health():
     return {"status": "ok"}, 200
