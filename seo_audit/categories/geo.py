@@ -164,11 +164,11 @@ def run(page: PageData) -> CategoryReport:
             "About and Contact pages linked — essential E-E-A-T trust signals for LLM citation."))
     else:
         missing = [p for p, has in [("About", about_link), ("Contact", contact_link)] if not has]
-        f.append(Finding("GEO", "About & Contact pages", Severity.WARNING,
+        f.append(Finding("GEO", "About & Contact pages", Severity.CRITICAL,
             f"Missing links to: {', '.join(missing)} page(s).",
             "Ensure About and Contact pages exist and are reachable in nav/footer — "
             "LLMs check these to verify organisational legitimacy.",
-            impact="Medium", effort="Quick Win"))
+            impact="High", effort="Quick Win"))
 
     if not privacy_link:
         f.append(Finding("GEO", "Privacy / Terms pages", Severity.INFO,

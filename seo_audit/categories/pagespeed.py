@@ -289,15 +289,15 @@ def run(page: PageData) -> CategoryReport:
         above_fold_lazy = [img for img in images[:2] if img["loading"] == "lazy"]
         below_fold_no_lazy = [img for img in images[2:] if img["loading"] not in ("lazy", "eager")]
         if above_fold_lazy:
-            f.append(Finding("Pagespeed", "LCP image incorrectly lazy-loaded", Severity.WARNING,
+            f.append(Finding("Pagespeed", "LCP image incorrectly lazy-loaded", Severity.CRITICAL,
                 f"{len(above_fold_lazy)} of the first 2 image(s) have loading='lazy' — this delays LCP.",
                 "Never lazy-load above-the-fold images. Reserve lazy-loading for below-fold only.",
                 impact="High", effort="Quick Win"))
         if below_fold_no_lazy:
-            f.append(Finding("Pagespeed", "Image lazy loading", Severity.WARNING,
+            f.append(Finding("Pagespeed", "Image lazy loading", Severity.CRITICAL,
                 f"{len(below_fold_no_lazy)} below-fold image(s) missing loading='lazy'.",
                 "Add loading='lazy' to images below the fold to reduce initial page weight.",
-                impact="Medium", effort="Quick Win"))
+                impact="High", effort="Quick Win"))
         if not above_fold_lazy and not below_fold_no_lazy:
             f.append(Finding("Pagespeed", "Image lazy loading", Severity.PASS,
                 "Lazy-loading strategy looks correct — above-fold images eager, below-fold lazy."))
@@ -319,6 +319,46 @@ def run(page: PageData) -> CategoryReport:
     elif not jpg_png and images:
         f.append(Finding("Pagespeed", "Modern image formats", Severity.PASS,
             f"All {len(webp_avif)} image(s) use modern WebP/AVIF format."))
+
+    # Image file size — check for missing width/height and missing srcset
+    if images:
+        all_img_tags = soup.find_all("img", src=True)
+        no_dimensions = [
+            img for img in all_img_tags
+            if not img.get("width") and not img.get("height") and not img.get("srcset")
+        ]
+        if no_dimensions:
+            f.append(Finding("Pagespeed", "Image file size", Severity.CRITICAL,
+                f"{len(no_dimensions)} image(s) have no explicit width/height or srcset — "
+                "browser must download full-size images for all viewports, wasting bandwidth.",
+                "Add width and height attributes to every <img>, and use srcset/sizes for "
+                "responsive delivery so mobile devices receive appropriately sized images.",
+                impact="High", effort="Medium"))
+        else:
+            f.append(Finding("Pagespeed", "Image file size", Severity.PASS,
+                "All images have explicit dimensions or srcset for responsive delivery."))
+
+    # Image file name — check for auto-generated or non-descriptive filenames
+    _generic_img_name = re.compile(
+        r"/(?:img|image|photo|pic|dsc|screenshot|unnamed|untitled|thumb|"
+        r"attachment|placeholder|banner|slide|picture|capture|frame)[-_]?\d*"
+        r"\.(jpe?g|png|webp|gif|avif)(?:\?|$)",
+        re.I,
+    )
+    if images:
+        poorly_named = [img for img in images if _generic_img_name.search(img["src"])]
+        if poorly_named:
+            example = poorly_named[0]["src"].split("/")[-1].split("?")[0]
+            f.append(Finding("Pagespeed", "Image file name", Severity.CRITICAL,
+                f"{len(poorly_named)} image(s) have auto-generated or non-descriptive filenames "
+                f"(e.g. '{example}').",
+                "Rename images with keyword-relevant, descriptive filenames "
+                "(e.g. 'dubai-office-interior.webp' instead of 'img001.jpg') — "
+                "Google uses filenames as an image search relevance signal.",
+                impact="Medium", effort="Medium"))
+        else:
+            f.append(Finding("Pagespeed", "Image file name", Severity.PASS,
+                "Image filenames appear descriptive — no auto-generated names detected."))
 
     # Resource hints
     preloads = soup.find_all("link", rel=lambda r: r and "preload" in r)

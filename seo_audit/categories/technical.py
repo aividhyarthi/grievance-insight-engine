@@ -106,7 +106,7 @@ def run(page: PageData) -> CategoryReport:
     # ── Structured Data / JSON-LD ─────────────────────────────────────────────
     schemas = page.structured_data
     if not schemas:
-        f.append(Finding("Technical", "Structured data (JSON-LD)", Severity.WARNING,
+        f.append(Finding("Technical", "Structured data (JSON-LD)", Severity.CRITICAL,
             "No JSON-LD schema found.",
             "Add Schema.org markup (Organization, WebPage, BreadcrumbList) at minimum.",
             impact="High", effort="Medium"))
@@ -138,7 +138,7 @@ def run(page: PageData) -> CategoryReport:
                 issues.append("Article schema missing 'author'")
 
         if issues:
-            f.append(Finding("Technical", "Structured data field validation", Severity.WARNING,
+            f.append(Finding("Technical", "Structured data field validation", Severity.CRITICAL,
                 f"Schema field issues detected: {'; '.join(issues)}.",
                 "Fix these to pass Google's Rich Results Test and maintain rich result eligibility.",
                 impact="High", effort="Medium"))

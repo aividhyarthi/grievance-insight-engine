@@ -80,11 +80,11 @@ def run(page: PageData) -> CategoryReport:
         if _normalise_url(l["href"], page.url) == page_url_norm
     ]
     if self_links:
-        f.append(Finding("Interlinking", "Self-referential links", Severity.WARNING,
+        f.append(Finding("Interlinking", "Self-referential links", Severity.CRITICAL,
             f"{len(self_links)} link(s) point back to this same page — "
             "wasted crawl budget and diluted PageRank.",
             "Remove self-links from navigation/body; they add no SEO or UX value.",
-            impact="Medium", effort="Quick Win"))
+            impact="High", effort="Quick Win"))
     else:
         f.append(Finding("Interlinking", "Self-referential links", Severity.PASS,
             "No self-referential links detected."))
@@ -96,12 +96,12 @@ def run(page: PageData) -> CategoryReport:
     generic = [t for t in anchor_texts if t in _MEANINGLESS_ANCHORS]
     if generic:
         examples = list(dict.fromkeys(generic))[:4]
-        f.append(Finding("Interlinking", "Generic anchor text", Severity.WARNING,
+        f.append(Finding("Interlinking", "Generic anchor text", Severity.CRITICAL,
             f"{len(generic)} internal link(s) use meaningless anchor text "
             f"(e.g. '{examples[0]}'). These pass zero topical signal to Google.",
             "Replace with descriptive, keyword-relevant anchor text that tells both "
             "users and crawlers what the destination page covers.",
-            impact="Medium", effort="Medium"))
+            impact="High", effort="Medium"))
     else:
         f.append(Finding("Interlinking", "Generic anchor text", Severity.PASS,
             "No obviously generic anchor text (click here / read more / here) detected."))
@@ -146,11 +146,11 @@ def run(page: PageData) -> CategoryReport:
     # ── Empty anchor text ─────────────────────────────────────────────────────
     empty = [l for l in links if not l["text"].strip()]
     if empty:
-        f.append(Finding("Interlinking", "Empty anchor text", Severity.WARNING,
+        f.append(Finding("Interlinking", "Empty anchor text", Severity.CRITICAL,
             f"{len(empty)} link(s) have no visible anchor text — "
             "invisible to screen readers and passed over by crawlers.",
             "Add descriptive text or an aria-label to all links.",
-            impact="Medium", effort="Quick Win"))
+            impact="High", effort="Quick Win"))
     else:
         f.append(Finding("Interlinking", "Empty anchor text", Severity.PASS,
             "All links have anchor text."))

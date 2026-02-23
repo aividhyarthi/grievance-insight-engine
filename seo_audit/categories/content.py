@@ -177,10 +177,10 @@ def run(page: PageData) -> CategoryReport:
     text_len = len(body_text)
     ratio = round(text_len / html_len * 100, 1) if html_len else 0
     if ratio < 10:
-        f.append(Finding("Content", "Content-to-code ratio", Severity.WARNING,
+        f.append(Finding("Content", "Content-to-code ratio", Severity.CRITICAL,
             f"Only {ratio}% of page bytes are visible text — heavy markup/script bloat.",
             "Move inline scripts and styles to external files to improve content ratio and caching.",
-            impact="Medium", effort="Medium"))
+            impact="High", effort="Medium"))
     else:
         f.append(Finding("Content", "Content-to-code ratio", Severity.PASS,
             f"Content-to-code ratio: {ratio}%"))

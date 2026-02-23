@@ -103,12 +103,12 @@ def run(page: PageData) -> CategoryReport:
                 "Ensure the consent banner does not cover main content before user interaction.",
                 impact="Low", effort="Quick Win"))
         else:
-            f.append(Finding("UX/UI", "Intrusive popup / interstitial", Severity.WARNING,
+            f.append(Finding("UX/UI", "Intrusive popup / interstitial", Severity.CRITICAL,
                 f"{len(all_popups)} popup/modal/overlay element(s) detected. "
                 "Full-page interstitials that block content are penalised by Google's Page Experience update.",
                 "Replace intrusive popups with inline banners, slide-ins, or bottom bars. "
                 "Never block the main content before the user can read it.",
-                impact="Medium", effort="Medium"))
+                impact="High", effort="Medium"))
 
     # ── Form / lead-gen presence ──────────────────────────────────────────────
     forms = soup.find_all("form")

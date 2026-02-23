@@ -191,7 +191,7 @@ def run(page: PageData) -> CategoryReport:
         f.append(Finding("Keywords", "Primary keyword in title", Severity.PASS,
             f"'{primary_kw}' present in title{pos_note}."))
     else:
-        f.append(Finding("Keywords", "Primary keyword in title", Severity.WARNING,
+        f.append(Finding("Keywords", "Primary keyword in title", Severity.CRITICAL,
             f"Primary keyword '{primary_kw}' not found in title tag.",
             "Include the primary keyword within the first 3 words of the title for maximum signal.",
             impact="High", effort="Quick Win"))

@@ -96,10 +96,10 @@ def run(page: PageData) -> CategoryReport:
             "Add one descriptive H1 containing the primary keyword.",
             impact="High", effort="Quick Win"))
     elif len(h1s) > 1:
-        f.append(Finding("On-Page", "H1 uniqueness", Severity.WARNING,
+        f.append(Finding("On-Page", "H1 uniqueness", Severity.CRITICAL,
             f"{len(h1s)} H1 tags found: {h1s[:3]}",
             "Keep exactly one H1 per page — multiple H1s fragment the primary topic signal.",
-            impact="Medium", effort="Quick Win"))
+            impact="High", effort="Quick Win"))
     else:
         h1 = h1s[0]
         if len(h1) < 10:

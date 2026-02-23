@@ -261,11 +261,11 @@ def _check_sitemap(page: PageData, f: list, root: str, robots_text: str) -> None
         # Check for news sitemap reference
         news_ref = bool(re.search(r"news[-_]sitemap|news/sitemap", sitemap_text, re.I))
         if not news_ref:
-            f.append(Finding("Crawlability", "News sitemap", Severity.INFO,
+            f.append(Finding("Crawlability", "News sitemap", Severity.CRITICAL,
                 "No news sitemap referenced in sitemap index.",
                 "If you publish news/blog content, add a News Sitemap with <news:news> tags "
                 "for faster indexing in Google News.",
-                impact="Medium", effort="Medium"))
+                impact="High", effort="Medium"))
         else:
             f.append(Finding("Crawlability", "News sitemap", Severity.PASS,
                 "News sitemap reference found in sitemap index."))
@@ -305,11 +305,11 @@ def _check_sitemap(page: PageData, f: list, root: str, robots_text: str) -> None
         # News sitemap check for standalone sitemap
         has_news_namespace = "news.google.com" in sitemap_text or "<news:" in sitemap_text
         if not has_news_namespace:
-            f.append(Finding("Crawlability", "News sitemap", Severity.INFO,
+            f.append(Finding("Crawlability", "News sitemap", Severity.CRITICAL,
                 "Current sitemap is not a News Sitemap.",
                 "For news/blog content, create a separate news sitemap with <news:news> tags "
                 "for Google News indexing.",
-                impact="Medium", effort="Medium"))
+                impact="High", effort="Medium"))
         else:
             f.append(Finding("Crawlability", "News sitemap", Severity.PASS,
                 f"News sitemap namespace detected at {found_sitemap}."))
@@ -338,12 +338,12 @@ def _check_redirects(page: PageData, f: list) -> None:
 
     elif canon and canon_norm and canon_norm != page_url_norm:
         # Canonical points to a different URL — common sign of redirect or duplicate
-        f.append(Finding("Crawlability", "Canonical vs URL mismatch", Severity.WARNING,
+        f.append(Finding("Crawlability", "Canonical vs URL mismatch", Severity.CRITICAL,
             f"Page URL: {page.url}\nCanonical: {canon}\n"
             "Canonical points to a different URL — this page may be treated as a duplicate.",
             "Either redirect this URL to the canonical, or ensure the canonical is intentionally "
             "different (e.g. paginated content).",
-            impact="Medium", effort="Medium"))
+            impact="High", effort="Medium"))
     else:
         f.append(Finding("Crawlability", "Redirect / canonical consistency", Severity.PASS,
             "No redirect issues detected and canonical URL matches page URL."))
