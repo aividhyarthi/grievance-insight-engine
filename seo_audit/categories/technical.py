@@ -1,8 +1,8 @@
 """
 technical.py — Technical SEO checks.
-Covers: HTTPS, HTTP status, structured data/schema, hreflang hints,
-        viewport meta, sitemap link, robots.txt hint, response headers,
-        redirect chain signals, charset, doctype.
+Covers: HTTPS, HTTP status, HSTS (with max-age validation), structured data
+        (existence + type-specific field checks), viewport, doctype, charset,
+        hreflang, X-Robots-Tag, Cache-Control (value intelligence).
 """
 
 from __future__ import annotations
@@ -11,6 +11,31 @@ import re
 
 from .base import CategoryReport, Finding, Severity
 from ..crawler import PageData
+
+
+def _hsts_max_age(hsts_value: str) -> int | None:
+    """Parse max-age from HSTS header value. Returns seconds or None."""
+    m = re.search(r"max-age\s*=\s*(\d+)", hsts_value, re.I)
+    return int(m.group(1)) if m else None
+
+
+def _cache_control_is_positive(cc: str) -> bool:
+    """Returns True if Cache-Control actually enables caching (not just present)."""
+    cc_lower = cc.lower()
+    # These directives actively prevent caching
+    blocking = {"no-store", "no-cache", "must-revalidate", "max-age=0"}
+    if any(b in cc_lower for b in blocking):
+        return False
+    return bool(re.search(r"max-age\s*=\s*[1-9]", cc_lower) or "s-maxage" in cc_lower)
+
+
+def _extract_schema_types(page) -> list[str]:
+    types = []
+    for s in page.structured_data:
+        m = re.search(r'"@type"\s*:\s*"([^"]+)"', s)
+        if m:
+            types.append(m.group(1))
+    return types
 
 
 def run(page: PageData) -> CategoryReport:
@@ -24,9 +49,9 @@ def run(page: PageData) -> CategoryReport:
     if page.error:
         f.append(Finding("Technical", "Reachability", Severity.CRITICAL,
             f"Page unreachable: {page.error}",
-            "Ensure the URL is publicly accessible.",
+            "Ensure the URL is publicly accessible without authentication or firewall blocks.",
             impact="High", effort="Quick Win"))
-        return report  # nothing else useful
+        return report
 
     code = page.status_code
     if 200 <= code < 300:
@@ -34,77 +59,118 @@ def run(page: PageData) -> CategoryReport:
             f"HTTP {code} — page is reachable."))
     elif 300 <= code < 400:
         f.append(Finding("Technical", "HTTP redirect", Severity.INFO,
-            f"HTTP {code}. Check redirect chain length.",
-            "Each hop adds latency. Keep chain to ≤2 redirects.",
+            f"HTTP {code}. Each redirect hop adds latency and can lose a small amount of link equity.",
+            "Keep redirect chains to ≤2 hops; prefer 301 over 302 for permanent moves.",
             impact="Medium", effort="Medium"))
     else:
         f.append(Finding("Technical", "HTTP status", Severity.CRITICAL,
-            f"HTTP {code}.",
-            "Fix the server error / broken URL.",
+            f"HTTP {code} — page is returning an error.",
+            "Fix the server error or broken URL immediately.",
             impact="High", effort="Quick Win"))
 
     # ── HTTPS ─────────────────────────────────────────────────────────────────
     if page.url.startswith("https://"):
-        f.append(Finding("Technical", "HTTPS", Severity.PASS, "Page served over HTTPS."))
+        f.append(Finding("Technical", "HTTPS", Severity.PASS,
+            "Page served over HTTPS."))
     else:
         f.append(Finding("Technical", "HTTPS", Severity.CRITICAL,
-            "Page served over HTTP (insecure).",
-            "Install SSL/TLS certificate and redirect all HTTP → HTTPS.",
+            "Page served over HTTP (insecure). Google uses HTTPS as a ranking signal.",
+            "Install an SSL/TLS certificate and redirect all HTTP → HTTPS via 301.",
             impact="High", effort="Medium"))
 
-    # ── HSTS header ──────────────────────────────────────────────────────────
+    # ── HSTS header — presence AND max-age ───────────────────────────────────
     hsts = page.response_headers.get("Strict-Transport-Security", "")
-    if page.url.startswith("https://") and not hsts:
-        f.append(Finding("Technical", "HSTS header", Severity.WARNING,
-            "HSTS header not set.",
-            "Add Strict-Transport-Security header to enforce HTTPS.",
-            impact="Medium", effort="Quick Win"))
-    elif hsts:
-        f.append(Finding("Technical", "HSTS header", Severity.PASS, "HSTS header present."))
+    if page.url.startswith("https://"):
+        if not hsts:
+            f.append(Finding("Technical", "HSTS header", Severity.WARNING,
+                "HSTS header not set — browsers will not enforce HTTPS on repeat visits.",
+                "Add: Strict-Transport-Security: max-age=31536000; includeSubDomains; preload",
+                impact="Medium", effort="Quick Win"))
+        else:
+            max_age = _hsts_max_age(hsts)
+            if max_age is None:
+                f.append(Finding("Technical", "HSTS header", Severity.WARNING,
+                    f"HSTS header present but max-age is missing or unparseable: '{hsts}'",
+                    "Set max-age to at least 31536000 (1 year) per Google's recommendation.",
+                    impact="Low", effort="Quick Win"))
+            elif max_age < 15768000:  # < 6 months
+                f.append(Finding("Technical", "HSTS header", Severity.INFO,
+                    f"HSTS max-age is only {max_age:,}s ({round(max_age/86400)} days). "
+                    "Google requires ≥18 weeks (10,886,400 s) for HSTS preload list.",
+                    "Increase to max-age=31536000 (1 year) for full preload eligibility.",
+                    impact="Low", effort="Quick Win"))
+            else:
+                f.append(Finding("Technical", "HSTS header", Severity.PASS,
+                    f"HSTS: max-age={max_age:,}s ({round(max_age/86400)} days) — strong setting."))
 
     # ── Structured Data / JSON-LD ─────────────────────────────────────────────
     schemas = page.structured_data
     if not schemas:
         f.append(Finding("Technical", "Structured data (JSON-LD)", Severity.WARNING,
             "No JSON-LD schema found.",
-            "Add Schema.org markup (Organization, WebPage, BreadcrumbList etc.).",
+            "Add Schema.org markup (Organization, WebPage, BreadcrumbList) at minimum.",
             impact="High", effort="Medium"))
     else:
-        types = []
-        for s in schemas:
-            m = re.search(r'"@type"\s*:\s*"([^"]+)"', s)
-            if m:
-                types.append(m.group(1))
+        types = _extract_schema_types(page)
         f.append(Finding("Technical", "Structured data (JSON-LD)", Severity.PASS,
             f"{len(schemas)} JSON-LD block(s). Types: {', '.join(types) or 'unknown'}"))
+
+        # Validate critical field presence for common types
+        schema_text = " ".join(schemas)
+        issues = []
+        if "Product" in types:
+            if '"price"' not in schema_text and '"offers"' not in schema_text:
+                issues.append("Product schema missing 'offers/price'")
+            if '"availability"' not in schema_text:
+                issues.append("Product schema missing 'availability'")
+        if "Organization" in types or "LocalBusiness" in types:
+            if '"name"' not in schema_text:
+                issues.append("Organization schema missing 'name'")
+            if '"url"' not in schema_text:
+                issues.append("Organization schema missing 'url'")
+        if "FAQPage" in types:
+            if '"acceptedAnswer"' not in schema_text:
+                issues.append("FAQPage schema missing 'acceptedAnswer' — invalid markup")
+        if "Article" in types or "NewsArticle" in types:
+            if '"datePublished"' not in schema_text:
+                issues.append("Article schema missing 'datePublished'")
+            if '"author"' not in schema_text:
+                issues.append("Article schema missing 'author'")
+
+        if issues:
+            f.append(Finding("Technical", "Structured data field validation", Severity.WARNING,
+                f"Schema field issues detected: {'; '.join(issues)}.",
+                "Fix these to pass Google's Rich Results Test and maintain rich result eligibility.",
+                impact="High", effort="Medium"))
 
     # ── Viewport Meta ─────────────────────────────────────────────────────────
     viewport = page.soup.find("meta", attrs={"name": "viewport"})
     if not viewport:
         f.append(Finding("Technical", "Viewport meta tag", Severity.CRITICAL,
-            "No viewport meta tag — page is not mobile-friendly.",
+            "No viewport meta tag — Google will classify this page as not mobile-friendly.",
             "Add <meta name='viewport' content='width=device-width, initial-scale=1'>",
             impact="High", effort="Quick Win"))
     else:
         f.append(Finding("Technical", "Viewport meta tag", Severity.PASS,
-            f"Viewport: {viewport.get('content','set')}"))
+            f"Viewport: {viewport.get('content', 'set')}"))
 
     # ── Doctype ───────────────────────────────────────────────────────────────
     if page.html and not page.html.strip().lower().startswith("<!doctype"):
         f.append(Finding("Technical", "HTML Doctype", Severity.WARNING,
-            "Missing DOCTYPE declaration.",
-            "Add <!DOCTYPE html> as the first line.",
+            "Missing DOCTYPE declaration — browser may enter quirks mode.",
+            "Add <!DOCTYPE html> as the very first line of the document.",
             impact="Low", effort="Quick Win"))
     else:
-        f.append(Finding("Technical", "HTML Doctype", Severity.PASS, "DOCTYPE present."))
+        f.append(Finding("Technical", "HTML Doctype", Severity.PASS,
+            "DOCTYPE present."))
 
     # ── Charset ───────────────────────────────────────────────────────────────
     charset_tag = page.soup.find("meta", attrs={"charset": True})
     charset_http = page.soup.find("meta", attrs={"http-equiv": re.compile("content-type", re.I)})
     if not charset_tag and not charset_http:
         f.append(Finding("Technical", "Charset declaration", Severity.WARNING,
-            "No charset meta tag found.",
-            "Add <meta charset='UTF-8'>.",
+            "No charset meta tag found — character encoding is ambiguous.",
+            "Add <meta charset='UTF-8'> immediately after the opening <head> tag.",
             impact="Low", effort="Quick Win"))
     else:
         f.append(Finding("Technical", "Charset declaration", Severity.PASS,
@@ -114,33 +180,55 @@ def run(page: PageData) -> CategoryReport:
     hreflang = page.soup.find_all("link", attrs={"hreflang": True})
     if not hreflang:
         f.append(Finding("Technical", "Hreflang tags", Severity.INFO,
-            "No hreflang tags. Required if site targets multiple languages/regions.",
-            "Add hreflang annotations for each language/region variant.",
+            "No hreflang tags found. Required if the site targets multiple languages or regions.",
+            "Add hreflang annotations for each language/region variant and include an x-default.",
             impact="Medium", effort="Long-term"))
     else:
-        f.append(Finding("Technical", "Hreflang tags", Severity.PASS,
-            f"{len(hreflang)} hreflang tag(s) found."))
+        # Check for x-default
+        has_default = any(l.get("hreflang") == "x-default" for l in hreflang)
+        if not has_default:
+            f.append(Finding("Technical", "Hreflang tags", Severity.INFO,
+                f"{len(hreflang)} hreflang tag(s) found but no x-default. "
+                "x-default tells Google which URL to show for unlisted locales.",
+                "Add <link rel='alternate' hreflang='x-default' href='...'>",
+                impact="Low", effort="Quick Win"))
+        else:
+            f.append(Finding("Technical", "Hreflang tags", Severity.PASS,
+                f"{len(hreflang)} hreflang tag(s) including x-default."))
 
     # ── X-Robots-Tag header ───────────────────────────────────────────────────
     x_robots = page.response_headers.get("X-Robots-Tag", "")
     if "noindex" in x_robots.lower():
         f.append(Finding("Technical", "X-Robots-Tag header", Severity.CRITICAL,
-            f"X-Robots-Tag: {x_robots} — page blocked from indexing via header.",
-            "Remove noindex from X-Robots-Tag header.",
+            f"X-Robots-Tag: {x_robots} — page is blocked from indexing via HTTP header.",
+            "Remove noindex from the X-Robots-Tag header (often set in server config or CDN).",
             impact="High", effort="Quick Win"))
     elif x_robots:
         f.append(Finding("Technical", "X-Robots-Tag header", Severity.INFO,
             f"X-Robots-Tag: {x_robots}"))
 
-    # ── Cache-Control ─────────────────────────────────────────────────────────
+    # ── Cache-Control — value intelligence ───────────────────────────────────
     cache = page.response_headers.get("Cache-Control", "")
     if not cache:
         f.append(Finding("Technical", "Cache-Control header", Severity.WARNING,
-            "No Cache-Control header set.",
-            "Configure caching headers to improve repeat-visit performance.",
+            "No Cache-Control header — browsers and CDNs cannot cache the page reliably.",
+            "Set Cache-Control: public, max-age=3600 (or higher for stable pages) to enable caching.",
+            impact="Medium", effort="Medium"))
+    elif not _cache_control_is_positive(cache):
+        f.append(Finding("Technical", "Cache-Control header", Severity.WARNING,
+            f"Cache-Control set to '{cache}' — this actively prevents caching on every visit.",
+            "For public pages, use max-age=3600 or higher. Reserve no-store for private/dynamic content.",
             impact="Medium", effort="Medium"))
     else:
-        f.append(Finding("Technical", "Cache-Control header", Severity.PASS,
-            f"Cache-Control: {cache}"))
+        # Extract max-age for context
+        ma = re.search(r"max-age\s*=\s*(\d+)", cache, re.I)
+        if ma:
+            seconds = int(ma.group(1))
+            days = round(seconds / 86400, 1)
+            f.append(Finding("Technical", "Cache-Control header", Severity.PASS,
+                f"Cache-Control: {cache} (cached for {days} day(s))."))
+        else:
+            f.append(Finding("Technical", "Cache-Control header", Severity.PASS,
+                f"Cache-Control: {cache}"))
 
     return report
