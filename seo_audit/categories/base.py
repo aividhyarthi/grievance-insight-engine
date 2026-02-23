@@ -49,8 +49,15 @@ class CategoryReport:
 
     @property
     def score(self) -> int:
-        """0–100 score for this category."""
+        """0–100 score for this category.
+        Penalty: each critical = -25, each warning = -10.
+        A category with zero passing checks and at least one issue
+        gets an extra -10 floor penalty.
+        """
         base = 100
-        base -= self.critical_count * 15
-        base -= self.warning_count * 5
+        base -= self.critical_count * 25
+        base -= self.warning_count * 10
+        # Extra penalty when nothing passes at all
+        if self.pass_count == 0 and (self.critical_count > 0 or self.warning_count > 0):
+            base -= 10
         return max(0, base)

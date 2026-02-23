@@ -1,5 +1,5 @@
 """
-app.py — Flask web application for the SEO Audit Tool.
+app.py — Flask web application for the Appstudiox SEO Auditing Tool.
 
 Run locally:   python app.py
 Deploy:        gunicorn app:app --workers 2 --timeout 120
@@ -10,10 +10,11 @@ from __future__ import annotations
 import os
 import tempfile
 import uuid
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from flask import Flask, render_template, request, send_file, redirect, url_for
 
-from seo_audit.crawler import fetch_page
+from seo_audit.crawler import fetch_page, parse_raw_html
 from seo_audit.engine import run_audit
 from seo_audit.outputs.ai_narratives import generate_all
 from seo_audit.outputs.excel_report import save_excel
@@ -26,7 +27,6 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "seo-audit-dev-key-change-in-prod")
 
 # In-memory cache for download links (keyed by job_id)
-# For production, replace with Redis or filesystem cache
 _cache: dict[str, object] = {}
 
 SITE_TYPE_LABELS = {
@@ -39,6 +39,23 @@ SITE_TYPE_LABELS = {
     "events":       "Events Website",
 }
 
+_Severity = __import__("seo_audit.categories.base", fromlist=["Severity"]).Severity
+
+
+# ─── Helpers ──────────────────────────────────────────────────────────────────
+
+def _audit_competitor(url: str, site_type: str) -> object | None:
+    """Fetch + audit a single competitor URL. Returns None on failure."""
+    try:
+        if not url.startswith(("http://", "https://")):
+            url = "https://" + url
+        page = fetch_page(url, timeout=15)
+        if page.error:
+            return None
+        return run_audit(page, site_type=site_type)
+    except Exception:
+        return None
+
 
 # ─── Routes ───────────────────────────────────────────────────────────────────
 
@@ -49,40 +66,74 @@ def index():
 
 @app.route("/audit", methods=["POST"])
 def audit():
-    url = request.form.get("url", "").strip()
-    site_type = request.form.get("site_type", "generic")
-    no_ai = request.form.get("no_ai") == "1"
+    input_mode = request.form.get("input_mode", "url")
+    site_type  = request.form.get("site_type", "generic")
+    no_ai      = request.form.get("no_ai") == "1"
 
-    if not url:
-        return render_template("index.html", site_types=SITE_TYPE_LABELS,
-                               error="Please enter a URL to audit.")
+    # ── Fetch / parse the main page ──────────────────────────────────────────
+    if input_mode == "html":
+        html_content = request.form.get("html_content", "").strip()
+        raw_url      = request.form.get("url", "").strip() or "pasted-html"
+        if not html_content:
+            return render_template("index.html", site_types=SITE_TYPE_LABELS,
+                                   error="Please paste some HTML to audit.")
+        if not raw_url.startswith(("http://", "https://", "pasted")):
+            raw_url = "https://" + raw_url
+        page = parse_raw_html(html_content, raw_url)
+    else:
+        url = request.form.get("url", "").strip()
+        if not url:
+            return render_template("index.html", site_types=SITE_TYPE_LABELS,
+                                   error="Please enter a URL to audit.")
+        if not url.startswith(("http://", "https://")):
+            url = "https://" + url
+        page = fetch_page(url, timeout=20)
+        if page.error:
+            return render_template("index.html", site_types=SITE_TYPE_LABELS,
+                                   error=f"Could not reach {url} — {page.error}")
 
-    if not url.startswith(("http://", "https://")):
-        url = "https://" + url
-
-    # Fetch page
-    page = fetch_page(url, timeout=20)
-    if page.error:
-        return render_template("index.html", site_types=SITE_TYPE_LABELS,
-                               error=f"Could not reach {url} — {page.error}")
-
-    # Run full 12-category audit
+    # ── Run full 12-category audit on main site ───────────────────────────────
     result = run_audit(page, site_type=site_type)
 
-    # AI narratives (skipped if no key or user opts out)
+    # ── Competitor audits (up to 3, run in parallel) ──────────────────────────
+    comp_urls = [
+        request.form.get("comp1", "").strip(),
+        request.form.get("comp2", "").strip(),
+        request.form.get("comp3", "").strip(),
+    ]
+    comp_results = []
+    non_empty = [(i, u) for i, u in enumerate(comp_urls) if u]
+    if non_empty:
+        ordered = [None, None, None]
+        with ThreadPoolExecutor(max_workers=3) as ex:
+            futures = {ex.submit(_audit_competitor, u, site_type): i for i, u in non_empty}
+            for fut in as_completed(futures):
+                idx = futures[fut]
+                try:
+                    ordered[idx] = fut.result()
+                except Exception:
+                    ordered[idx] = None
+        comp_results = ordered  # list of AuditResult | None, aligned with comp_urls[0..2]
+    else:
+        comp_results = [None, None, None]
+
+    # ── AI narratives (main site only, skipped if no key or opted out) ────────
     if not no_ai:
         generate_all(result, page)
 
-    # Cache for downloads
+    # ── Cache for downloads ───────────────────────────────────────────────────
     job_id = uuid.uuid4().hex[:10]
     _cache[job_id] = result
+    _cache[job_id + "_comps"] = list(zip(comp_urls, comp_results))
 
     return render_template(
         "results.html",
         result=result,
         job_id=job_id,
         site_types=SITE_TYPE_LABELS,
-        Severity=__import__("seo_audit.categories.base", fromlist=["Severity"]).Severity,
+        Severity=_Severity,
+        comp_pairs=list(zip(comp_urls, comp_results)),  # [(url, result|None), ...]
+        input_mode=input_mode,
     )
 
 
@@ -123,11 +174,13 @@ def proposal_report(job_id):
     result = _cache.get(job_id)
     if not result:
         return "Report not found or expired. Please run a new audit.", 404
+    comp_pairs = _cache.get(job_id + "_comps", [])
     return render_template(
         "proposal_report.html",
         result=result,
         job_id=job_id,
-        Severity=__import__("seo_audit.categories.base", fromlist=["Severity"]).Severity,
+        Severity=_Severity,
+        comp_pairs=comp_pairs,
     )
 
 

@@ -4,24 +4,18 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- ── SEO Meta Tags ─────────────────────────────────────────────── -->
+  <!-- SEO Meta Tags -->
   <title>Appstudiox SEO Auditing Tool | AI-Powered Website Analysis</title>
   <meta name="description" content="Appstudiox SEO Auditing Tool — run a comprehensive 12-category SEO audit on any website. Get a client-ready proposal, prioritised roadmap, and traffic strategy powered by Claude AI."/>
   <meta name="author" content="Appstudiox"/>
   <meta name="robots" content="noindex, nofollow"/>
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Appstudiox SEO Auditing Tool | AI-Powered Website Analysis"/>
   <meta property="og:description" content="Comprehensive 12-category SEO audit with AI-generated client proposals, roadmaps, and traffic strategies."/>
   <meta property="og:site_name" content="Appstudiox SEO Auditing Tool"/>
-
-  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary"/>
   <meta name="twitter:title" content="Appstudiox SEO Auditing Tool"/>
-  <meta name="twitter:description" content="AI-powered 12-category SEO audit. Client-ready reports in seconds."/>
-
-  <!-- Favicon -->
+  <meta name="twitter:description" content="AI-powered 12-category SEO audit. Client-ready PDF reports in seconds."/>
   <link rel="icon" type="image/svg+xml" href="/static/favicon.svg"/>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -30,7 +24,6 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); }
-    .card-glow { box-shadow: 0 0 40px rgba(99,102,241,0.15); }
     .input-focus:focus { outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.4); }
     .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); transition: all 0.2s; }
     .btn-primary:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(99,102,241,0.4); }
@@ -40,7 +33,10 @@
     .site-type-btn.active { background: rgba(99,102,241,0.25); border-color: #6366f1; color: #a5b4fc; }
     .loader { display: none; }
     .loader.show { display: flex; }
-    .brand-dot { color: #8b5cf6; }
+    .mode-btn { transition: all 0.15s; cursor: pointer; }
+    .mode-btn.active { background: rgba(99,102,241,0.25); border-color: #6366f1; color: #a5b4fc; }
+    .comp-section { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .comp-section.open { max-height: 500px; }
   </style>
 </head>
 <body class="gradient-bg min-h-screen text-white">
@@ -51,7 +47,7 @@
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">Ax</div>
         <div class="flex flex-col leading-tight">
-          <span class="font-black text-base tracking-tight">Appstudiox<span class="brand-dot">.</span></span>
+          <span class="font-black text-base tracking-tight">Appstudiox<span style="color:#8b5cf6">.</span></span>
           <span class="text-white/40 text-xs font-medium tracking-wide">SEO Auditing Tool</span>
         </div>
         <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30 ml-1">AI-Powered</span>
@@ -78,7 +74,6 @@
       Analyse any website across 12 SEO categories. Get a client-ready PDF proposal, prioritised roadmap, and traffic strategy — in seconds.
     </p>
 
-    <!-- Error message -->
     {% if error %}
     <div class="bg-red-500/10 border border-red-500/30 text-red-300 rounded-xl px-5 py-3 mb-6 text-sm">
       ⚠ {{ error }}
@@ -86,27 +81,58 @@
     {% endif %}
 
     <!-- Audit Form -->
-    <form id="auditForm" action="/audit" method="POST" class="space-y-5" onsubmit="showLoader()">
+    <form id="auditForm" action="/audit" method="POST" class="space-y-4 text-left" onsubmit="showLoader()">
+      <input type="hidden" name="input_mode" id="inputModeField" value="url"/>
+
+      <!-- Mode Toggle -->
+      <div class="flex gap-2 bg-white/5 rounded-xl p-1 border border-white/10">
+        <button type="button" id="modeUrl" onclick="setMode('url')"
+          class="mode-btn active flex-1 py-2 px-4 rounded-lg text-sm font-semibold text-center">
+          🔗 Enter URL
+        </button>
+        <button type="button" id="modeHtml" onclick="setMode('html')"
+          class="mode-btn flex-1 py-2 px-4 rounded-lg text-sm font-semibold text-center text-white/50">
+          &lt;/&gt; Paste HTML
+        </button>
+      </div>
 
       <!-- URL Input -->
-      <div class="relative">
-        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-          <svg class="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
-          </svg>
+      <div id="urlInputWrap">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <svg class="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+            </svg>
+          </div>
+          <input type="text" name="url" id="urlInput"
+            placeholder="https://yoursite.com"
+            class="input-focus w-full bg-white/5 border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-white placeholder-white/30 text-lg"
+            autocomplete="off"/>
         </div>
-        <input
-          type="text"
-          name="url"
-          placeholder="https://yoursite.com"
-          class="input-focus w-full bg-white/5 border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-white placeholder-white/30 text-lg"
-          required
-          autocomplete="off"
-        />
+      </div>
+
+      <!-- HTML Paste Input -->
+      <div id="htmlInputWrap" class="hidden space-y-3">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <svg class="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+            </svg>
+          </div>
+          <input type="text" name="url" id="urlForHtml"
+            placeholder="Page URL (optional, for context — e.g. https://yoursite.com/page)"
+            class="input-focus w-full bg-white/5 border border-white/15 rounded-2xl pl-12 pr-4 py-3 text-white placeholder-white/30 text-sm"
+            autocomplete="off"/>
+        </div>
+        <textarea name="html_content" id="htmlContent"
+          placeholder="Paste the full HTML source of the page here (Ctrl+U → Select All → Copy in browser)…"
+          rows="8"
+          class="input-focus w-full bg-white/5 border border-white/15 rounded-2xl px-4 py-3 text-white placeholder-white/30 text-sm font-mono resize-y"></textarea>
+        <p class="text-white/30 text-xs">Tip: In Chrome, press <kbd class="bg-white/10 px-1.5 py-0.5 rounded text-white/50">Ctrl+U</kbd> to view page source, then <kbd class="bg-white/10 px-1.5 py-0.5 rounded text-white/50">Ctrl+A</kbd> → <kbd class="bg-white/10 px-1.5 py-0.5 rounded text-white/50">Ctrl+C</kbd> to copy.</p>
       </div>
 
       <!-- Site Type -->
-      <div class="text-left">
+      <div>
         <p class="text-white/50 text-sm mb-3 font-medium">Site Type <span class="text-white/30">(for weighted analysis)</span></p>
         <div class="flex flex-wrap gap-2" id="siteTypePills">
           {% for value, label in site_types.items() %}
@@ -118,14 +144,42 @@
         </div>
       </div>
 
+      <!-- Competitor URLs toggle -->
+      <div class="border border-white/10 rounded-2xl overflow-hidden">
+        <button type="button" onclick="toggleComp()"
+          class="w-full flex items-center justify-between px-5 py-3.5 text-sm font-semibold text-white/60 hover:text-white hover:bg-white/3 transition-colors">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            Compare with competitor sites <span class="text-white/30 font-normal">(optional, up to 3)</span>
+          </span>
+          <span id="compChevron" class="text-white/30 transition-transform text-xs">▼</span>
+        </button>
+        <div id="compSection" class="comp-section">
+          <div class="px-5 pb-5 space-y-3 border-t border-white/08 pt-4">
+            <p class="text-white/35 text-xs">Enter competitor URLs to see a side-by-side score comparison in the results.</p>
+            {% for n in [1, 2, 3] %}
+            <div class="relative">
+              <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                <span class="text-white/25 text-xs font-bold">#{{ n }}</span>
+              </div>
+              <input type="text" name="comp{{ n }}"
+                placeholder="https://competitor{{ n }}.com"
+                class="input-focus w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-4 py-2.5 text-white/80 placeholder-white/25 text-sm"
+                autocomplete="off"/>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
       <!-- Options row -->
-      <div class="flex items-center gap-6 text-sm text-white/50">
+      <div class="flex items-center gap-6 text-sm text-white/50 px-1">
         <label class="flex items-center gap-2 cursor-pointer">
           <input type="checkbox" name="no_ai" value="1" class="rounded border-white/20 bg-white/5 text-indigo-500">
           <span>Skip AI narratives</span>
         </label>
         <span class="text-white/20">|</span>
-        <span class="text-white/30">Analysis takes ~10–30 seconds</span>
+        <span class="text-white/30">Analysis takes ~10–30 sec</span>
       </div>
 
       <!-- Submit -->
@@ -161,7 +215,7 @@
       ("⚡", "Pagespeed", "TTFB, render-blocking, lazy load, compression"),
       ("🤖", "AEO Ready", "Featured snippets, FAQ schema, AI answer engines"),
       ("🌐", "GEO Signals", "Entity markup, E-E-A-T, LLM citation readiness"),
-      ("🛒", "Product SEO", "Schema, reviews, breadcrumbs, availability"),
+      ("📊", "Competitor Compare", "Side-by-side score comparison vs 3 rival sites"),
       ("🔗", "Interlinking", "Anchor text, breadcrumbs, internal structure"),
       ("📄", "PDF Proposal", "Client-ready branded PDF report with all sections"),
       ("📥", "Excel + JSON", "Full data export in multiple formats"),
@@ -188,7 +242,43 @@
   </section>
 
   <script>
-    // Site type pill selection
+    // ── Mode toggle ─────────────────────────────────────────────────────────
+    function setMode(mode) {
+      document.getElementById('inputModeField').value = mode;
+      const urlWrap  = document.getElementById('urlInputWrap');
+      const htmlWrap = document.getElementById('htmlInputWrap');
+      const urlInput = document.getElementById('urlInput');
+      const modeUrl  = document.getElementById('modeUrl');
+      const modeHtml = document.getElementById('modeHtml');
+
+      if (mode === 'url') {
+        urlWrap.classList.remove('hidden');
+        htmlWrap.classList.add('hidden');
+        urlInput.required = true;
+        modeUrl.classList.add('active');
+        modeUrl.classList.remove('text-white/50');
+        modeHtml.classList.remove('active');
+        modeHtml.classList.add('text-white/50');
+      } else {
+        urlWrap.classList.add('hidden');
+        htmlWrap.classList.remove('hidden');
+        urlInput.required = false;
+        modeUrl.classList.remove('active');
+        modeUrl.classList.add('text-white/50');
+        modeHtml.classList.add('active');
+        modeHtml.classList.remove('text-white/50');
+      }
+    }
+
+    // ── Competitor toggle ────────────────────────────────────────────────────
+    let compOpen = false;
+    function toggleComp() {
+      compOpen = !compOpen;
+      document.getElementById('compSection').classList.toggle('open', compOpen);
+      document.getElementById('compChevron').style.transform = compOpen ? 'rotate(180deg)' : '';
+    }
+
+    // ── Site type pills ──────────────────────────────────────────────────────
     document.querySelectorAll('.site-type-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.site-type-btn').forEach(b => b.classList.remove('active'));
@@ -196,12 +286,13 @@
       });
     });
 
-    // Loading states
+    // ── Loading states ───────────────────────────────────────────────────────
     const statuses = [
       "Fetching page and running 12-category audit…",
       "Checking On-Page SEO, Technical, and Content…",
       "Analysing Pagespeed, Keywords, and UX signals…",
       "Running AEO, GEO, Product SEO checks…",
+      "Auditing competitor sites…",
       "Generating AI Proposal, Roadmap, and Traffic Strategy…",
       "Almost done — building your report…",
     ];

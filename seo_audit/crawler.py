@@ -148,6 +148,23 @@ class PageData:
         return body.get_text(separator=" ", strip=True)[:3000]
 
 
+def parse_raw_html(html: str, url: str = "pasted-html") -> PageData:
+    """
+    Build a PageData from raw HTML string (no HTTP request).
+    Useful for auditing pasted HTML, staging pages, or login-gated content.
+    Response-header-based checks (HSTS, compression, cache) will be skipped.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    return PageData(
+        url=url if url else "pasted-html",
+        status_code=200,
+        load_time_ms=0.0,
+        html=html,
+        soup=soup,
+        response_headers={},
+    )
+
+
 def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
     """
     Fetch *url* and return a :class:`PageData` instance.
