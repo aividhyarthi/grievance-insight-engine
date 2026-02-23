@@ -101,26 +101,37 @@ def _check_robots(page: PageData, f: list, root: str) -> str:
     has_user_agent = any(l.lower().startswith("user-agent:") for l in lines)
     has_sitemap_ref = any(l.lower().startswith("sitemap:") for l in lines)
 
-    # Parse blocks properly: a blank line ends a block.
-    # Track which disallow rules belong to which user-agents.
+    # Parse blocks properly per the robots.txt spec.
+    # A block = one or more User-agent lines followed by Allow/Disallow rules.
+    # A new block starts when: (a) a blank line is seen, OR (b) a User-agent
+    # line appears after rules have already been written (no blank line between
+    # blocks — common in real-world robots.txt files).
     wildcard_disallows: list[str] = []   # rules under User-agent: *
     googlebot_disallows: list[str] = []  # rules under User-agent: Googlebot
     current_agents: list[str] = []
+    in_rules_phase = False  # True once Disallow/Allow seen for current block
 
     for line in lines:
         if not line or line.startswith("#"):
-            current_agents = []  # blank line / comment ends the current block
+            current_agents = []
+            in_rules_phase = False
             continue
         lower = line.lower()
         if lower.startswith("user-agent:"):
+            if in_rules_phase:
+                # New User-agent after rules without a blank line = new block
+                current_agents = []
+                in_rules_phase = False
             agent = line.split(":", 1)[1].strip().lower()
             current_agents.append(agent)
-        elif lower.startswith("disallow:"):
-            value = line.split(":", 1)[1].strip()
-            if "*" in current_agents:
-                wildcard_disallows.append(value)
-            if "googlebot" in current_agents:
-                googlebot_disallows.append(value)
+        elif lower.startswith("disallow:") or lower.startswith("allow:"):
+            in_rules_phase = True
+            if lower.startswith("disallow:"):
+                value = line.split(":", 1)[1].strip()
+                if "*" in current_agents:
+                    wildcard_disallows.append(value)
+                if "googlebot" in current_agents:
+                    googlebot_disallows.append(value)
 
     wildcard_blocks_all = "/" in wildcard_disallows
     googlebot_blocks_all = "/" in googlebot_disallows
