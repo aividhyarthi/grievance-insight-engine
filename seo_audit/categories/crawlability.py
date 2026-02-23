@@ -99,34 +99,55 @@ def _check_robots(page: PageData, f: list, root: str) -> str:
     # robots.txt exists — validate content
     lines = [l.strip() for l in text.splitlines()]
     has_user_agent = any(l.lower().startswith("user-agent:") for l in lines)
-    disallow_all = any(
-        l.lower().startswith("disallow:") and l.split(":", 1)[1].strip() == "/"
-        for l in lines
-    )
     has_sitemap_ref = any(l.lower().startswith("sitemap:") for l in lines)
+
+    # Parse blocks properly: a blank line ends a block.
+    # Track which disallow rules belong to which user-agents.
+    wildcard_disallows: list[str] = []   # rules under User-agent: *
+    googlebot_disallows: list[str] = []  # rules under User-agent: Googlebot
+    current_agents: list[str] = []
+
+    for line in lines:
+        if not line or line.startswith("#"):
+            current_agents = []  # blank line / comment ends the current block
+            continue
+        lower = line.lower()
+        if lower.startswith("user-agent:"):
+            agent = line.split(":", 1)[1].strip().lower()
+            current_agents.append(agent)
+        elif lower.startswith("disallow:"):
+            value = line.split(":", 1)[1].strip()
+            if "*" in current_agents:
+                wildcard_disallows.append(value)
+            if "googlebot" in current_agents:
+                googlebot_disallows.append(value)
+
+    wildcard_blocks_all = "/" in wildcard_disallows
+    googlebot_blocks_all = "/" in googlebot_disallows
 
     if not has_user_agent:
         f.append(Finding("Crawlability", "robots.txt — malformed", Severity.WARNING,
             f"robots.txt at {robots_url} has no User-agent directive — file may be malformed.",
             "A valid robots.txt must have at least: 'User-agent: *' followed by Allow/Disallow rules.",
             impact="Medium", effort="Quick Win"))
-    elif disallow_all:
+    elif wildcard_blocks_all:
         f.append(Finding("Crawlability", "robots.txt — blocks all crawlers", Severity.CRITICAL,
-            f"robots.txt at {robots_url} contains 'Disallow: /' — "
+            f"robots.txt at {robots_url} has 'User-agent: *' with 'Disallow: /' — "
             "this blocks ALL search engine crawlers from the entire site.",
             "Remove or restrict the global Disallow: / rule. Only use it on staging/dev environments.",
             impact="High", effort="Quick Win"))
+    elif googlebot_blocks_all:
+        f.append(Finding("Crawlability", "robots.txt — Googlebot blocked", Severity.CRITICAL,
+            f"robots.txt at {robots_url} has 'User-agent: Googlebot' with 'Disallow: /' — "
+            "Google cannot crawl this site.",
+            "Remove the Disallow: / rule from the Googlebot block.",
+            impact="High", effort="Quick Win"))
     else:
-        # Check for suspicious disallow rules on important paths
-        disallow_values = [
-            l.split(":", 1)[1].strip()
-            for l in lines
-            if l.lower().startswith("disallow:")
-        ]
-        suspicious = [d for d in disallow_values if d in ("/", "/api", "/product", "/shop", "/blog")]
+        # Check for suspicious disallow rules on important paths under User-agent: *
+        suspicious = [d for d in wildcard_disallows if d in ("/api", "/product", "/shop", "/blog")]
         if suspicious:
             f.append(Finding("Crawlability", "robots.txt — suspicious disallow rules", Severity.WARNING,
-                f"robots.txt at {robots_url} disallows: {', '.join(suspicious)}.",
+                f"robots.txt at {robots_url} disallows these paths for all crawlers: {', '.join(suspicious)}.",
                 "Review these paths — disallowing /blog, /product, or /shop prevents SEO indexing.",
                 impact="High", effort="Quick Win"))
         else:
