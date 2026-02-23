@@ -3,6 +3,15 @@ keywords.py — Keyword Research / Usage checks.
 Covers: primary keyword in title/H1/meta, keyword density, keyword in URL,
         H2 keyword coverage, top keyword visibility in findings,
         semantic diversity, LSI depth, secondary keyword in meta.
+
+Keyword extraction approach:
+  Uses HEADING-WEIGHTED scoring, not raw body word frequency.
+  H1 words: 10x weight | H2: 5x | H3: 3x | body <p>/<li>/<td>: 1x
+  Nav/header/footer/aside text is EXCLUDED to avoid menu items and
+  repeated footer copy polluting the keyword analysis.
+  This ensures the detected primary keyword reflects the page's actual
+  topic signal (what the author intended in H1) rather than whatever
+  word happens to appear most in boilerplate.
 """
 
 from __future__ import annotations
@@ -22,13 +31,61 @@ _STOP_WORDS = {
     "they","their","he","she","his","her","as","if","so","not","no","up",
     "also","just","very","can","get","got","use","used","make","made",
     "about","more","than","then","when","what","which","who","how","all",
+    # Generic UI / marketing words that pollute keyword analysis
+    "home","menu","page","site","web","click","here","learn","read","view",
+    "contact","help","support","login","sign","search","back","next","prev",
+    "new","free","best","top","great","good","need","want","now","today",
+    "see","let","find","know","well","www","http","https","com","org","net",
+    "privacy","terms","cookie","copyright","rights","reserved","policy",
+    "follow","share","like","tweet","post","send","submit","subscribe",
 }
 
 
-def _extract_keywords(text: str, top_n: int = 20) -> list[tuple[str, int]]:
-    words = re.findall(r"[a-z]{3,}", text.lower())
-    meaningful = [w for w in words if w not in _STOP_WORDS]
-    return Counter(meaningful).most_common(top_n)
+def _extract_keywords_weighted(soup, top_n: int = 20) -> list[tuple[str, int]]:
+    """
+    Extract keywords using heading-weighted scoring.
+    H1 = 10x, H2 = 5x, H3 = 3x, body content tags = 1x.
+    Excludes nav / header / footer / aside / script / style elements.
+    """
+    counter: Counter = Counter()
+    excluded_parents = ("nav", "header", "footer", "aside", "script", "style")
+
+    def _in_excluded(tag) -> bool:
+        return bool(tag.find_parent(excluded_parents))
+
+    def _add_words(tag, weight: int) -> None:
+        if _in_excluded(tag):
+            return
+        for w in re.findall(r"[a-z]{3,}", tag.get_text(separator=" ").lower()):
+            if w not in _STOP_WORDS:
+                counter[w] += weight
+
+    soup_root = soup.find("body") or soup
+
+    for h1 in soup_root.find_all("h1"):
+        _add_words(h1, 10)
+    for h2 in soup_root.find_all("h2"):
+        _add_words(h2, 5)
+    for h3 in soup_root.find_all("h3"):
+        _add_words(h3, 3)
+    for tag in soup_root.find_all(["p", "li", "td", "th", "blockquote", "figcaption"]):
+        _add_words(tag, 1)
+
+    return counter.most_common(top_n)
+
+
+def _content_text_clean(soup) -> str:
+    """
+    Visible text from p/li/td tags only (excluding nav/header/footer/aside).
+    Used for density calculations — must match the domain of _extract_keywords_weighted.
+    """
+    parts = []
+    excluded_parents = ("nav", "header", "footer", "aside", "script", "style")
+    root = soup.find("body") or soup
+    for tag in root.find_all(["p", "li", "td", "th", "h1", "h2", "h3", "h4", "blockquote"]):
+        if not tag.find_parent(excluded_parents):
+            parts.append(tag.get_text(separator=" ", strip=True))
+    return " ".join(parts)
 
 
 def _density(word: str, text: str) -> float:
@@ -42,49 +99,60 @@ def _density(word: str, text: str) -> float:
 def run(page: PageData) -> CategoryReport:
     report = CategoryReport(
         name="Keyword Research & Usage",
-        description="Keyword presence, density, semantic coverage, and H2-level topical signals.",
+        description=(
+            "Keyword presence, density, semantic coverage, and H2-level topical signals. "
+            "Keywords are detected using heading-weighted scoring — H1 words dominate so the "
+            "primary keyword reflects the page's intended topic, not boilerplate repetition."
+        ),
     )
     f = report.findings
 
-    body = page.soup.find("body")
-    body_text = body.get_text(separator=" ", strip=True) if body else ""
+    # Use content-only text for analysis (excludes nav/footer)
+    content_text = _content_text_clean(page.soup)
 
-    if not body_text:
+    if not content_text.strip():
+        # Fall back to full body if structured tags are empty
+        body = page.soup.find("body")
+        content_text = body.get_text(separator=" ", strip=True) if body else ""
+
+    if not content_text.strip():
         f.append(Finding("Keywords", "Keyword analysis", Severity.CRITICAL,
-            "No body text to analyse.",
+            "No analysable content found.",
             impact="High", effort="Medium"))
         return report
 
-    # ── Top keywords — surfaced as a finding so user can validate ────────────
-    top_kw = _extract_keywords(body_text)
+    # ── Weighted keyword extraction ────────────────────────────────────────────
+    top_kw = _extract_keywords_weighted(page.soup)
+
     if not top_kw:
         f.append(Finding("Keywords", "Keyword extraction", Severity.WARNING,
             "Could not extract meaningful keywords from page content.",
             impact="High", effort="Medium"))
         return report
 
-    top_display = ", ".join(f"{w} ({c}×)" for w, c in top_kw[:8])
+    top_display = ", ".join(f"{w} ({c} pts)" for w, c in top_kw[:8])
     f.append(Finding("Keywords", "Detected top keywords", Severity.INFO,
-        f"Most frequent meaningful terms: {top_display}.",
-        "Verify these reflect the page's intended topic. If the wrong keyword dominates, "
-        "rebalance the content to foreground the target term.",
+        f"Top keywords by heading-weighted score: {top_display}.\n"
+        "H1 words score 10×, H2 5×, H3 3×, body text 1× — "
+        "so the primary keyword reflects what your headings emphasise, "
+        "not navigation or footer repetition.\n"
+        "If these don't match your intended topic: check that your H1 contains "
+        "the target keyword, and verify nav/footer text isn't dominating the page.",
         impact="High", effort="Medium"))
 
-    primary_kw, _primary_count = top_kw[0]
+    primary_kw, _primary_score = top_kw[0]
     secondary_kw = top_kw[1][0] if len(top_kw) > 1 else None
 
-    # Store in notes for other modules / reports
     report.notes = "Top keywords: " + ", ".join(f"{w}({c})" for w, c in top_kw[:10])
 
     # ── Primary keyword in title ──────────────────────────────────────────────
     title = page.title.lower()
     if primary_kw in title:
-        # Extra signal: keyword near start of title is stronger
         title_words = title.split()
         pos = next((i for i, w in enumerate(title_words) if primary_kw in w), len(title_words))
-        position_note = " (near start — strong signal)" if pos < 3 else " (towards end — move earlier if possible)"
+        pos_note = " (near start — strong signal)" if pos < 3 else " (towards end — consider moving earlier)"
         f.append(Finding("Keywords", "Primary keyword in title", Severity.PASS,
-            f"'{primary_kw}' present in title{position_note}."))
+            f"'{primary_kw}' present in title{pos_note}."))
     else:
         f.append(Finding("Keywords", "Primary keyword in title", Severity.WARNING,
             f"Primary keyword '{primary_kw}' not found in title tag.",
@@ -106,33 +174,32 @@ def run(page: PageData) -> CategoryReport:
     meta = page.meta_description.lower()
     if primary_kw in meta:
         f.append(Finding("Keywords", "Keyword in meta description", Severity.PASS,
-            f"'{primary_kw}' in meta description — Google may bold it in SERPs."))
+            f"'{primary_kw}' in meta description — Google may bold it for matched queries."))
     else:
         f.append(Finding("Keywords", "Keyword in meta description", Severity.INFO,
             f"'{primary_kw}' absent from meta description.",
-            "Naturally include the primary keyword in the meta description — Google may bold it for matched queries.",
+            "Naturally include the primary keyword — Google may bold it in SERPs for matched searches.",
             impact="Medium", effort="Quick Win"))
 
     # ── Secondary keyword in meta description ────────────────────────────────
     if secondary_kw and secondary_kw not in meta and primary_kw in meta:
         f.append(Finding("Keywords", "Secondary keyword in meta description", Severity.INFO,
             f"Secondary keyword '{secondary_kw}' not in meta description.",
-            "Including a secondary keyword in the meta description widens the query surface "
-            "without extra effort.",
+            "Including a secondary keyword widens the query surface with no extra effort.",
             impact="Low", effort="Quick Win"))
 
-    # ── Keyword density ───────────────────────────────────────────────────────
-    density = _density(primary_kw, body_text)
+    # ── Keyword density — calculated against clean content text only ──────────
+    density = _density(primary_kw, content_text)
     if density < 0.5:
         f.append(Finding("Keywords", "Keyword density", Severity.WARNING,
-            f"'{primary_kw}' density: {density}% (below 0.5%). "
-            "Under-optimised — Google may not associate this page strongly with the term.",
-            "Increase natural usage; try including it in headings, intro, and conclusion.",
+            f"'{primary_kw}' density: {density}% in body content (below 0.5%). "
+            "Under-optimised — Google may not strongly associate this page with the term.",
+            "Increase natural usage; include it in headings, intro paragraph, and conclusion.",
             impact="Medium", effort="Medium"))
     elif density > 3.0:
         f.append(Finding("Keywords", "Keyword density", Severity.WARNING,
             f"'{primary_kw}' density: {density}% — possible keyword stuffing. "
-            "Over-repetition can trigger Google quality filters.",
+            "Over-repetition can trigger quality filters.",
             "Reduce repetition; replace some instances with synonyms and related terms.",
             impact="Medium", effort="Medium"))
     else:
@@ -146,17 +213,16 @@ def run(page: PageData) -> CategoryReport:
         f.append(Finding("Keywords", "Keyword in URL", Severity.PASS,
             f"'{primary_kw}' present in URL slug."))
     else:
-        # Check if any top-3 keyword appears in URL
-        alt_in_url = [kw for kw, _ in top_kw[1:4] if kw in url_lower or kw.replace(" ", "-") in url_lower]
+        alt_in_url = [kw for kw, _ in top_kw[1:4] if kw in url_lower]
         if alt_in_url:
             f.append(Finding("Keywords", "Keyword in URL", Severity.INFO,
                 f"Primary keyword '{primary_kw}' not in URL, but '{alt_in_url[0]}' is.",
-                "Ideally the URL slug matches the primary keyword exactly — consider this for new pages.",
+                "Ideally the URL slug matches the primary keyword exactly — consider for new pages.",
                 impact="Low", effort="Long-term"))
         else:
             f.append(Finding("Keywords", "Keyword in URL", Severity.INFO,
-                f"No top keyword found in URL slug.",
-                "Include the primary keyword in the URL path for cleaner relevance signals.",
+                "No top keyword found in URL slug.",
+                "Include the primary keyword in the URL path.",
                 impact="Medium", effort="Long-term"))
 
     # ── H2 keyword coverage ────────────────────────────────────────────────────
@@ -172,35 +238,33 @@ def run(page: PageData) -> CategoryReport:
     elif not kws_in_h2:
         f.append(Finding("Keywords", "H2 keyword coverage", Severity.WARNING,
             f"None of the top 5 keywords ({', '.join(top5_kws)}) appear in any H2 heading.",
-            "Include key topical terms in H2 headings — they tell Google what each section covers.",
+            "Include key topical terms in H2 headings — they signal section topics to Google.",
             impact="Medium", effort="Quick Win"))
     else:
         f.append(Finding("Keywords", "H2 keyword coverage", Severity.PASS,
             f"H2 headings contain: {', '.join(kws_in_h2)} — good topical signal across sections."))
 
-    # ── Keyword in first 100 words ────────────────────────────────────────────
-    first_100 = " ".join(body_text.split()[:100]).lower()
+    # ── Keyword in first 100 words of content ────────────────────────────────
+    first_100 = " ".join(content_text.split()[:100]).lower()
     if primary_kw in first_100:
         f.append(Finding("Keywords", "Keyword in opening content", Severity.PASS,
-            f"'{primary_kw}' appears in first 100 words — strong relevance signal."))
+            f"'{primary_kw}' appears in the first 100 content words."))
     else:
         f.append(Finding("Keywords", "Keyword in opening content", Severity.INFO,
-            f"'{primary_kw}' not in first 100 words.",
-            "Front-load the primary keyword near the top of the body — "
-            "Google weights early-document signals more heavily.",
+            f"'{primary_kw}' not in first 100 content words.",
+            "Front-load the primary keyword near the top of the body.",
             impact="Medium", effort="Quick Win"))
 
     # ── Semantic / LSI keyword diversity ─────────────────────────────────────
-    vocab_size = len(set(re.findall(r"[a-z]{4,}", body_text.lower())))
-    word_count = len(body_text.split())
-    # Adjust threshold by content length
+    vocab_size = len(set(re.findall(r"[a-z]{4,}", content_text.lower())))
+    word_count = len(content_text.split())
     vocab_threshold = 80 + max(0, (word_count - 400) // 50)
     if vocab_size < vocab_threshold:
         f.append(Finding("Keywords", "Semantic keyword diversity", Severity.WARNING,
-            f"Limited vocabulary ({vocab_size} unique meaningful words). "
-            "Topical authority depends on covering a topic's full semantic field.",
-            "Expand content with LSI/related terms: use Answer The Public or Google's 'People Also Ask' "
-            "to find related concepts to cover.",
+            f"Limited vocabulary ({vocab_size} unique meaningful words in content). "
+            "Topical authority depends on covering the full semantic field of a topic.",
+            "Expand content with LSI/related terms — use Google's 'People Also Ask' "
+            "and Answer The Public to find related concepts.",
             impact="Medium", effort="Long-term"))
     else:
         f.append(Finding("Keywords", "Semantic keyword diversity", Severity.PASS,

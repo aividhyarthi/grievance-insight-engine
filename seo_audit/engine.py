@@ -9,18 +9,20 @@ from .site_types.profiles import SiteType, get_profile
 from .categories import (
     onpage, technical, content, interlinking, pagespeed,
     keywords, ux_ui, product_seo, aeo, geo, offpage, backlinking,
+    crawlability,
 )
 from .outputs.models import AuditResult
 
 _ALL_MODULES = [
     onpage, technical, content, interlinking, pagespeed,
     keywords, ux_ui, product_seo, aeo, geo, offpage, backlinking,
+    crawlability,
 ]
 
 
 def run_audit(page: PageData, site_type: SiteType | str = SiteType.GENERIC) -> AuditResult:
     """
-    Run all 12 category checks and return a fully populated AuditResult.
+    Run all 13 category checks and return a fully populated AuditResult.
     AI narratives are NOT generated here — call outputs.ai_narratives.generate_all() separately.
     """
     profile = get_profile(site_type)
