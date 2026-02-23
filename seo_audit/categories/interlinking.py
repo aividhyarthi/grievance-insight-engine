@@ -136,9 +136,9 @@ def run(page: PageData) -> CategoryReport:
         }
         if repeated:
             examples = sorted(repeated, key=repeated.get, reverse=True)[:3]
+            examples_str = ", ".join('"' + e + '"' for e in examples)
             f.append(Finding("Interlinking", "Over-repeated anchor text", Severity.INFO,
-                f"Anchor(s) used 3+ times across different links: "
-                f"{', '.join(f'\"' + e + '\"' for e in examples)}.",
+                f"Anchor(s) used 3+ times across different links: {examples_str}.",
                 "Vary anchor text for links to different destinations — "
                 "identical anchors across multiple links dilute topical signals.",
                 impact="Low", effort="Medium"))
