@@ -226,6 +226,55 @@ def get_scan_results(scan_id: str) -> dict | None:
     }
 
 
+def get_domain_trends(domain: str) -> list:
+    """Return per-scan summary stats for all completed scans of a domain, oldest first."""
+    conn = get_conn()
+    rows = conn.execute("""
+        SELECT
+            s.scan_id,
+            s.created_at,
+            s.keywords,
+            s.engines,
+            COUNT(c.id)                                                              AS total_citations,
+            SUM(CASE WHEN c.is_target = 1 THEN 1 ELSE 0 END)                        AS target_count,
+            COALESCE(AVG(CASE WHEN c.is_target = 1 THEN CAST(c.position AS REAL) END), 0) AS avg_position,
+            SUM(CASE WHEN c.is_target = 1 AND c.sentiment = 'positive' THEN 1 ELSE 0 END) AS pos_count,
+            SUM(CASE WHEN c.is_target = 1 AND c.sentiment = 'negative' THEN 1 ELSE 0 END) AS neg_count
+        FROM scans s
+        LEFT JOIN citations c ON c.scan_id = s.scan_id
+        WHERE s.target_domain = ? AND s.status = 'completed'
+        GROUP BY s.scan_id
+        ORDER BY s.created_at ASC
+    """, (domain,)).fetchall()
+    conn.close()
+
+    results = []
+    for row in rows:
+        row = dict(row)
+        kw_count  = len(json.loads(row["keywords"]))
+        eng_count = len(json.loads(row["engines"]))
+        total_possible = kw_count * eng_count
+        target_count   = row["target_count"] or 0
+        citation_rate  = round(target_count / total_possible * 100, 1) if total_possible else 0
+
+        pos_c = row["pos_count"] or 0
+        neg_c = row["neg_count"] or 0
+        sentiment_score = int((pos_c - neg_c * 2) / max(target_count, 1) * 50 + 50)
+        sentiment_score = max(0, min(100, sentiment_score))
+
+        results.append({
+            "scan_id":         row["scan_id"],
+            "created_at":      row["created_at"],
+            "citation_rate":   citation_rate,
+            "avg_position":    round(row["avg_position"] or 0, 1),
+            "sentiment_score": sentiment_score,
+            "total_citations": row["total_citations"] or 0,
+            "target_count":    target_count,
+            "keywords_tracked": kw_count,
+        })
+    return results
+
+
 def get_all_scans() -> list:
     conn = get_conn()
     rows = conn.execute(

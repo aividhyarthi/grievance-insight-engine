@@ -10,7 +10,7 @@ from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 
 from models import ScanRequest, ScanResponse, SuggestRequest
-from database import init_db, create_scan, update_scan_status, save_citations, get_scan, get_scan_results, get_all_scans
+from database import init_db, create_scan, update_scan_status, save_citations, get_scan, get_scan_results, get_all_scans, get_domain_trends
 from demo_engine import generate_demo_results
 
 load_dotenv()
@@ -212,6 +212,11 @@ async def get_results(scan_id: str):
     if not results:
         raise HTTPException(status_code=404, detail="Results not found")
     return results
+
+
+@app.get("/api/trends/{domain:path}")
+async def domain_trends(domain: str):
+    return {"domain": domain, "scans": get_domain_trends(domain)}
 
 
 @app.get("/api/scans")
