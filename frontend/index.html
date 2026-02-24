@@ -328,6 +328,10 @@
           <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:12px;">Keyword Performance (Your Site)</div>
           <div style="position:relative;height:220px;"><canvas id="chart-keywords"></canvas></div>
         </div>
+        <div class="metric-card" style="margin-top:16px;">
+          <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:14px;">Share of Voice — Citation Distribution</div>
+          <div id="sov-content"><p style="font-size:13px;color:#94A3B8;margin:0;">Loading...</p></div>
+        </div>
       </div>
 
       <!-- Tab: Citations -->
@@ -890,6 +894,7 @@ function renderResults(data) {
   renderEngineChart(data);
   renderSentimentChart(data);
   renderKeywordChart(data);
+  renderShareOfVoice(data);
 
   // Add competitor options to filter dropdown
   const domainFilter = document.getElementById('filter-domain');
@@ -948,6 +953,64 @@ function renderKeywordChart(data) {
       scales: { x: { grid: { display: false }, ticks: { font:{size:11} } }, y: { grid:{ display:false }, ticks:{font:{size:11}} } },
     },
   });
+}
+
+function renderShareOfVoice(data) {
+  const ca     = data.competitor_analysis;
+  const el     = document.getElementById('sov-content');
+  const total  = Object.values(ca).reduce((s, d) => s + (d.total_citations || 0), 0);
+
+  if (total === 0) {
+    el.innerHTML = '<p style="font-size:13px;color:#94A3B8;margin:0;">No citations found in this scan.</p>';
+    return;
+  }
+
+  const sorted  = Object.entries(ca).sort((a, b) => b[1].total_citations - a[1].total_citations);
+  const palette = ['#6366F1','#10B981','#F59E0B','#EF4444','#3B82F6','#8B5CF6','#EC4899','#14B8A6'];
+  const targetEntry = sorted.find(([, d]) => d.is_target);
+  const yourCites   = targetEntry ? (targetEntry[1].total_citations || 0) : 0;
+  const yourShare   = Math.round(yourCites / total * 100);
+
+  // Only one domain (no competitors)
+  if (sorted.length === 1) {
+    el.innerHTML = `
+      <div style="margin-bottom:10px;">
+        <span style="font-size:26px;font-weight:800;color:#6366F1;">100%</span>
+        <span style="font-size:13px;color:#64748B;margin-left:8px;">of citations in this scan</span>
+      </div>
+      <p style="font-size:12px;color:#94A3B8;margin:0;">Add competitor URLs when scanning to compare share of voice.</p>`;
+    return;
+  }
+
+  const colorFor = (domain, info, i) => info.is_target ? '#6366F1' : (palette[i] || '#94A3B8');
+
+  const barSegs = sorted.map(([domain, info], i) => {
+    const pct   = Math.round(info.total_citations / total * 100);
+    if (pct === 0) return '';
+    const color = colorFor(domain, info, i);
+    return `<div style="flex:${pct};background:${color};height:36px;position:relative;min-width:24px;transition:flex 0.3s;" title="${domain}: ${pct}% (${info.total_citations} citations)">
+      ${pct >= 7 ? `<span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;font-weight:700;color:white;white-space:nowrap;">${pct}%</span>` : ''}
+    </div>`;
+  }).join('');
+
+  const legend = sorted.map(([domain, info], i) => {
+    const pct   = Math.round(info.total_citations / total * 100);
+    const color = colorFor(domain, info, i);
+    return `<div style="display:flex;align-items:center;gap:8px;font-size:12px;padding:4px 0;">
+      <div style="width:12px;height:12px;border-radius:3px;background:${color};flex-shrink:0;"></div>
+      <span style="color:${info.is_target ? '#1D4ED8' : '#374151'};font-weight:${info.is_target ? 600 : 400};">${_esc(domain)}${info.is_target ? ' <span style="font-size:10px;background:#DBEAFE;color:#1E40AF;padding:1px 5px;border-radius:3px;">You</span>' : ''}</span>
+      <span style="margin-left:auto;font-weight:700;color:${color};">${pct}%</span>
+      <span style="color:#94A3B8;min-width:70px;text-align:right;">${info.total_citations} citation${info.total_citations !== 1 ? 's' : ''}</span>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;">
+      <span style="font-size:28px;font-weight:800;color:#6366F1;">${yourShare}%</span>
+      <span style="font-size:13px;color:#64748B;">your share of all AI citations across tracked sites</span>
+    </div>
+    <div style="display:flex;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:14px;">${barSegs}</div>
+    <div style="display:flex;flex-direction:column;">${legend}</div>`;
 }
 
 // ─── Citations Table ───────────────────────────────────
