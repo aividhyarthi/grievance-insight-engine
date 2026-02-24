@@ -776,7 +776,6 @@ function renderCompetitors() {
 
   // Keyword comparison grid
   const keywords = state.results.keywords;
-  const grid = document.getElementById('keyword-comparison-grid');
   const domainList = allDomains.map(([d,info]) => ({ domain: d, isTarget: info.is_target }));
 
   grid.innerHTML = `
