@@ -523,6 +523,12 @@ function toggleEngine(label) {
 //  SCAN
 // ═══════════════════════════════════════════════════════
 async function runScan() {
+  // Auto-add any text typed into the input fields but not yet confirmed with + Add / Enter
+  const pendingComp = document.getElementById('input-competitor').value.trim();
+  if (pendingComp) addCompetitor();
+  const pendingKw = document.getElementById('input-keyword').value.trim();
+  if (pendingKw) addKeyword();
+
   const targetUrl = document.getElementById('input-target-url').value.trim();
   if (!targetUrl) { alert('Please enter your website URL'); return; }
   if (state.keywords.length === 0) { alert('Please add at least one keyword to track'); return; }
@@ -736,6 +742,17 @@ function renderCompetitors() {
   const allDomains = Object.entries(ca).sort((a,b) => b[1].total_citations - a[1].total_citations);
 
   const tbody = document.getElementById('competitors-tbody');
+  const grid  = document.getElementById('keyword-comparison-grid');
+
+  if (allDomains.length <= 1) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:#94A3B8;font-size:13px;">
+      No competitors were tracked in this scan.<br>
+      <span style="font-size:12px;">Add competitor URLs in the scan form and run a new scan to see side-by-side rankings.</span>
+    </td></tr>`;
+    grid.innerHTML = '<p style="color:#94A3B8;font-size:13px;text-align:center;padding:16px 0;">Add competitors to see the keyword comparison grid.</p>';
+    return;
+  }
+
   tbody.innerHTML = allDomains.map(([domain, info], i) => {
     const rank = i + 1;
     const rankColor = rank===1?'#F59E0B':rank===2?'#6B7280':rank===3?'#CD7C2F':'#CBD5E1';
@@ -788,6 +805,7 @@ function renderCompetitors() {
 function renderKeywords() {
   if (!state.results) return;
   const kp = state.results.keyword_performance;
+  const hasCompetitors = (state.results.competitor_urls || []).length > 0;
   const tbody = document.getElementById('keywords-tbody');
   tbody.innerHTML = Object.entries(kp).map(([kw, info]) => {
     const cited = info.target_cited;
@@ -795,6 +813,9 @@ function renderKeywords() {
       const m = ENGINE_META[e];
       return m ? `<span class="engine-badge" style="background:${m.color}20;color:${m.color};margin-right:3px;">${m.name}</span>` : e;
     }).join('');
+    const compCell = hasCompetitors
+      ? `<td>${info.competitor_appearances}</td>`
+      : `<td style="color:#CBD5E1;font-size:11px;">no competitors tracked</td>`;
     return `<tr>
       <td style="max-width:220px;font-weight:500;">${_esc(kw)}</td>
       <td>${cited
@@ -803,7 +824,7 @@ function renderKeywords() {
       <td style="font-weight:600;">${info.target_appearances}</td>
       <td>${info.best_position != null ? `<span class="pos-badge pos-${info.best_position<=3?info.best_position:'other'}">#${info.best_position}</span>` : '—'}</td>
       <td>${engines || '—'}</td>
-      <td>${info.competitor_appearances}</td>
+      ${compCell}
       <td>${info.total_appearances}</td>
     </tr>`;
   }).join('');
