@@ -29,6 +29,20 @@ def init_db():
             completed_at TEXT
         );
 
+        CREATE TABLE IF NOT EXISTS schedules (
+            schedule_id   TEXT PRIMARY KEY,
+            target_url    TEXT NOT NULL,
+            competitor_urls TEXT NOT NULL,
+            keywords      TEXT NOT NULL,
+            engines       TEXT NOT NULL,
+            frequency     TEXT NOT NULL,
+            next_run_at   TEXT NOT NULL,
+            last_run_at   TEXT,
+            last_scan_id  TEXT,
+            is_active     INTEGER NOT NULL DEFAULT 1,
+            created_at    TEXT NOT NULL
+        );
+
         CREATE TABLE IF NOT EXISTS citations (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             scan_id TEXT NOT NULL,
@@ -282,6 +296,62 @@ def get_all_scans() -> list:
     ).fetchall()
     conn.close()
     return [dict(r) for r in rows]
+
+
+def create_schedule(schedule_id: str, target_url: str, competitor_urls: list,
+                    keywords: list, engines: list, frequency: str, next_run_at: str) -> None:
+    conn = get_conn()
+    conn.execute(
+        """INSERT INTO schedules
+           (schedule_id, target_url, competitor_urls, keywords, engines,
+            frequency, next_run_at, is_active, created_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?)""",
+        (schedule_id, target_url, json.dumps(competitor_urls), json.dumps(keywords),
+         json.dumps(engines), frequency, next_run_at, datetime.utcnow().isoformat()),
+    )
+    conn.commit()
+    conn.close()
+
+
+def get_all_schedules() -> list:
+    conn = get_conn()
+    rows = conn.execute("SELECT * FROM schedules ORDER BY created_at DESC").fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def get_due_schedules() -> list:
+    conn = get_conn()
+    now = datetime.utcnow().isoformat()
+    rows = conn.execute(
+        "SELECT * FROM schedules WHERE is_active = 1 AND next_run_at <= ?", (now,)
+    ).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def update_schedule_run(schedule_id: str, last_scan_id: str, next_run_at: str) -> None:
+    conn = get_conn()
+    conn.execute(
+        "UPDATE schedules SET last_run_at=?, last_scan_id=?, next_run_at=? WHERE schedule_id=?",
+        (datetime.utcnow().isoformat(), last_scan_id, next_run_at, schedule_id),
+    )
+    conn.commit()
+    conn.close()
+
+
+def toggle_schedule(schedule_id: str, is_active: bool) -> None:
+    conn = get_conn()
+    conn.execute("UPDATE schedules SET is_active=? WHERE schedule_id=?", (1 if is_active else 0, schedule_id))
+    conn.commit()
+    conn.close()
+
+
+def delete_schedule(schedule_id: str) -> None:
+    conn = get_conn()
+    conn.execute("DELETE FROM schedules WHERE schedule_id=?", (schedule_id,))
+    conn.commit()
+    conn.close()
 
 
 def _get_domain(url: str) -> str:

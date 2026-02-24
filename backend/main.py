@@ -9,8 +9,13 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 
-from models import ScanRequest, ScanResponse, SuggestRequest
-from database import init_db, create_scan, update_scan_status, save_citations, get_scan, get_scan_results, get_all_scans, get_domain_trends
+from models import ScanRequest, ScanResponse, SuggestRequest, ScheduleRequest
+from database import (
+    init_db, create_scan, update_scan_status, save_citations,
+    get_scan, get_scan_results, get_all_scans, get_domain_trends,
+    create_schedule, get_all_schedules, get_due_schedules,
+    update_schedule_run, toggle_schedule, delete_schedule,
+)
 from demo_engine import generate_demo_results
 
 load_dotenv()
@@ -31,6 +36,7 @@ app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 @app.on_event("startup")
 async def startup():
     init_db()
+    asyncio.create_task(_schedule_checker())
 
 
 @app.get("/")
@@ -234,6 +240,67 @@ async def delete_scan(scan_id: str):
     conn.commit()
     conn.close()
     return {"deleted": scan_id}
+
+
+# ─── Schedules ────────────────────────────────────────────────────────────────
+
+def _next_run_time(frequency: str) -> str:
+    from datetime import timedelta
+    from datetime import datetime as dt
+    delta = {"daily": timedelta(days=1), "weekly": timedelta(weeks=1), "monthly": timedelta(days=30)}.get(frequency, timedelta(weeks=1))
+    return (dt.utcnow() + delta).isoformat()
+
+
+@app.post("/api/schedules")
+async def create_schedule_endpoint(req: ScheduleRequest):
+    if not req.keywords:
+        raise HTTPException(status_code=400, detail="At least one keyword required")
+    schedule_id = str(uuid.uuid4())[:8].upper()
+    next_run = _next_run_time(req.frequency)
+    create_schedule(schedule_id, req.target_url, req.competitor_urls, req.keywords, req.engines, req.frequency, next_run)
+    return {"schedule_id": schedule_id, "next_run_at": next_run}
+
+
+@app.get("/api/schedules")
+async def list_schedules():
+    return get_all_schedules()
+
+
+@app.patch("/api/schedules/{schedule_id}/toggle")
+async def toggle_schedule_endpoint(schedule_id: str, active: bool):
+    toggle_schedule(schedule_id, active)
+    return {"schedule_id": schedule_id, "is_active": active}
+
+
+@app.delete("/api/schedules/{schedule_id}")
+async def delete_schedule_endpoint(schedule_id: str):
+    delete_schedule(schedule_id)
+    return {"deleted": schedule_id}
+
+
+async def _schedule_checker():
+    """Background task: check for due schedules every 60 s and fire scans."""
+    while True:
+        await asyncio.sleep(60)
+        try:
+            for sched in get_due_schedules():
+                scan_id = str(uuid.uuid4())[:8].upper()
+                req = ScanRequest(
+                    target_url=sched["target_url"],
+                    competitor_urls=__import__("json").loads(sched["competitor_urls"]),
+                    keywords=__import__("json").loads(sched["keywords"]),
+                    engines=__import__("json").loads(sched["engines"]),
+                    use_demo=_should_use_demo(ScanRequest(
+                        target_url=sched["target_url"],
+                        keywords=__import__("json").loads(sched["keywords"]),
+                    )),
+                )
+                create_scan(scan_id, req)
+                update_schedule_run(sched["schedule_id"], scan_id, _next_run_time(sched["frequency"]))
+                asyncio.create_task(_run_scan(scan_id, req))
+                print(f"[Scheduler] Fired scan {scan_id} for {sched['target_url']} ({sched['frequency']})")
+        except Exception as e:
+            print(f"[Scheduler] Error: {e}")
 
 
 # ─── Keyword Suggestions ──────────────────────────────────────────────────────

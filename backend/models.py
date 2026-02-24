@@ -7,6 +7,14 @@ class SuggestRequest(BaseModel):
     url: str
 
 
+class ScheduleRequest(BaseModel):
+    target_url: str
+    competitor_urls: List[str] = []
+    keywords: List[str]
+    engines: List[str] = ["perplexity", "google_ai_overview", "chatgpt_search", "chatgpt_chat"]
+    frequency: str  # 'daily' | 'weekly' | 'monthly'
+
+
 class ScanRequest(BaseModel):
     target_url: str
     competitor_urls: List[str] = []
