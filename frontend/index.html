@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AEO Citation Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { background: #F8FAFC; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+    .sidebar { background: #0F172A; width: 240px; min-height: 100vh; position: fixed; top: 0; left: 0; display: flex; flex-direction: column; z-index: 50; }
+    .main-content { margin-left: 240px; min-height: 100vh; }
+
+    .nav-btn { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; color: #94A3B8; transition: all 0.15s; text-align: left; background: transparent; border: none; cursor: pointer; }
+    .nav-btn:hover { background: #1E293B; color: #E2E8F0; }
+    .nav-btn.active { background: #1E3A5F; color: #60A5FA; }
+    .nav-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .metric-card { background: white; border-radius: 12px; padding: 20px 24px; border: 1px solid #E2E8F0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .engine-badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+
+    .tag { display: inline-flex; align-items: center; gap: 4px; background: #EFF6FF; color: #3B82F6; border: 1px solid #BFDBFE; border-radius: 20px; padding: 3px 10px; font-size: 12px; font-weight: 500; }
+    .tag-remove { cursor: pointer; color: #93C5FD; hover: color: #3B82F6; line-height: 1; font-size: 14px; }
+
+    .competitor-tag { background: #F0FDF4; color: #16A34A; border-color: #BBF7D0; }
+
+    .sentiment-positive { color: #16A34A; background: #F0FDF4; }
+    .sentiment-neutral { color: #2563EB; background: #EFF6FF; }
+    .sentiment-negative { color: #DC2626; background: #FEF2F2; }
+
+    .pos-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+    .pos-1 { background: #FEF9C3; color: #92400E; }
+    .pos-2 { background: #F1F5F9; color: #475569; }
+    .pos-3 { background: #FEF3C7; color: #92400E; }
+    .pos-other { background: #F8FAFC; color: #94A3B8; }
+
+    .progress-bar { height: 4px; background: #E2E8F0; border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+
+    .spinner { width: 40px; height: 40px; border: 3px solid #E2E8F0; border-top-color: #3B82F6; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+
+    .tab-btn { padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; color: #64748B; cursor: pointer; border: none; background: transparent; transition: all 0.15s; }
+    .tab-btn.active { background: white; color: #1E293B; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th { background: #F8FAFC; color: #64748B; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 14px; text-align: left; border-bottom: 1px solid #E2E8F0; }
+    td { padding: 12px 14px; border-bottom: 1px solid #F1F5F9; font-size: 13px; color: #334155; vertical-align: top; }
+    tr:hover td { background: #F8FAFC; }
+    tr:last-child td { border-bottom: none; }
+
+    input[type="text"], input[type="url"] { width: 100%; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 8px; font-size: 14px; color: #1E293B; background: white; outline: none; transition: border-color 0.15s; }
+    input:focus { border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+
+    .btn-primary { background: #2563EB; color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: background 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { background: #1D4ED8; }
+    .btn-primary:disabled { background: #93C5FD; cursor: not-allowed; }
+
+    .btn-secondary { background: white; color: #374151; padding: 9px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; border: 1.5px solid #E2E8F0; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-secondary:hover { border-color: #CBD5E1; background: #F8FAFC; }
+
+    .engine-check { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+    .engine-check.checked { border-color: #BFDBFE; background: #EFF6FF; }
+
+    .comp-rank { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; font-size: 10px; font-weight: 700; }
+
+    .hidden { display: none !important; }
+
+    .tooltip { position: relative; }
+    .tooltip:hover::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #0F172A; color: white; font-size: 11px; padding: 4px 8px; border-radius: 4px; white-space: nowrap; z-index: 100; }
+
+    .history-row { display: grid; grid-template-columns: 1fr 120px 100px 80px; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #F1F5F9; font-size: 13px; }
+    .history-row:hover { background: #F8FAFC; }
+
+    .demo-banner { background: linear-gradient(135deg, #1E3A5F 0%, #1e40af 100%); color: white; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<div class="flex">
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <!-- Logo -->
+    <div style="padding: 20px 16px 16px; border-bottom: 1px solid #1E293B;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:32px;height:32px;background:linear-gradient(135deg,#3B82F6,#1D4ED8);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#F1F5F9;">AEO Citation</div>
+          <div style="font-size:11px;color:#475569;margin-top:-1px;">Tracker</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav style="padding:12px 10px;flex:1;">
+      <button class="nav-btn active" id="nav-new" onclick="showView('new-scan')">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
+        New Scan
+      </button>
+      <button class="nav-btn" id="nav-history" onclick="showView('history')" style="margin-top:4px;">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Scan History
+      </button>
+    </nav>
+
+    <!-- API Status -->
+    <div id="api-status-panel" style="padding:12px 14px;border-top:1px solid #1E293B;">
+      <div style="font-size:10px;font-weight:600;color:#475569;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">API Status</div>
+      <div id="status-perplexity" class="api-status-row">
+        <span class="status-dot" style="background:#EF4444;"></span>
+        <span style="font-size:11px;color:#64748B;">Perplexity</span>
+        <span style="font-size:10px;color:#475569;margin-left:auto;">Demo</span>
+      </div>
+      <div id="status-serpapi" class="api-status-row" style="margin-top:4px;">
+        <span class="status-dot" style="background:#EF4444;"></span>
+        <span style="font-size:11px;color:#64748B;">SerpAPI</span>
+        <span style="font-size:10px;color:#475569;margin-left:auto;">Demo</span>
+      </div>
+      <div id="status-openai" class="api-status-row" style="margin-top:4px;">
+        <span class="status-dot" style="background:#EF4444;"></span>
+        <span style="font-size:11px;color:#64748B;">OpenAI</span>
+        <span style="font-size:10px;color:#475569;margin-left:auto;">Demo</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main-content" style="padding:32px;">
+
+    <!-- ════════════════════════════════ NEW SCAN VIEW ════════════════════════════════ -->
+    <div id="view-new-scan">
+      <div style="max-width:700px;">
+        <h1 style="font-size:24px;font-weight:800;color:#0F172A;margin-bottom:6px;">AEO Citation Tracker</h1>
+        <p style="color:#64748B;font-size:14px;margin-bottom:24px;">Track where your website is cited across Google AI Overviews, Perplexity, ChatGPT Search &amp; more.</p>
+
+        <!-- Demo Mode Banner -->
+        <div class="demo-banner" style="margin-bottom:24px;" id="demo-notice">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+          <div>
+            <strong>Demo Mode Active</strong> — Results use realistic simulated data.
+            Add API keys to <code style="background:rgba(255,255,255,0.15);padding:1px 5px;border-radius:3px;">.env</code> for live data from real engines.
+            <a href="https://serpapi.com" target="_blank" style="color:#93C5FD;text-decoration:underline;margin-left:4px;">Get SerpAPI free →</a>
+          </div>
+        </div>
+
+        <!-- Form Card -->
+        <div style="background:white;border-radius:14px;border:1px solid #E2E8F0;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+
+          <!-- Target URL -->
+          <div style="margin-bottom:20px;">
+            <label style="display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px;">Your Website URL</label>
+            <input type="url" id="input-target-url" placeholder="https://yourwebsite.com" />
+          </div>
+
+          <!-- Competitor URLs -->
+          <div style="margin-bottom:20px;">
+            <label style="display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px;">Competitor URLs <span style="font-weight:400;color:#94A3B8;">(optional)</span></label>
+            <div id="competitor-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;min-height:4px;"></div>
+            <div style="display:flex;gap:8px;">
+              <input type="url" id="input-competitor" placeholder="https://competitor.com" style="flex:1;" onkeydown="if(event.key==='Enter')addCompetitor()" />
+              <button class="btn-secondary" onclick="addCompetitor()">+ Add</button>
+            </div>
+          </div>
+
+          <!-- Keywords -->
+          <div style="margin-bottom:20px;">
+            <label style="display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px;">Keywords / Questions to Track</label>
+            <div id="keyword-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;min-height:4px;"></div>
+            <div style="display:flex;gap:8px;">
+              <input type="text" id="input-keyword" placeholder="e.g. best SEO tool 2025" style="flex:1;" onkeydown="if(event.key==='Enter')addKeyword()" />
+              <button class="btn-secondary" onclick="addKeyword()">+ Add</button>
+            </div>
+            <p style="font-size:11px;color:#94A3B8;margin-top:6px;">Tip: use actual questions users ask — "what is the best tool for X?"</p>
+          </div>
+
+          <!-- Engines -->
+          <div style="margin-bottom:24px;">
+            <label style="display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:10px;">AI Engines to Track</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;" id="engine-checkboxes">
+              <label class="engine-check checked" data-engine="perplexity" onclick="toggleEngine(this)">
+                <input type="checkbox" checked style="display:none;" />
+                <span style="width:10px;height:10px;border-radius:50%;background:#20B2AA;flex-shrink:0;"></span>
+                <span style="font-size:13px;color:#1E293B;font-weight:500;">Perplexity AI</span>
+              </label>
+              <label class="engine-check checked" data-engine="google_ai_overview" onclick="toggleEngine(this)">
+                <input type="checkbox" checked style="display:none;" />
+                <span style="width:10px;height:10px;border-radius:50%;background:#4285F4;flex-shrink:0;"></span>
+                <span style="font-size:13px;color:#1E293B;font-weight:500;">Google AI Overview</span>
+              </label>
+              <label class="engine-check checked" data-engine="chatgpt_search" onclick="toggleEngine(this)">
+                <input type="checkbox" checked style="display:none;" />
+                <span style="width:10px;height:10px;border-radius:50%;background:#10A37F;flex-shrink:0;"></span>
+                <span style="font-size:13px;color:#1E293B;font-weight:500;">ChatGPT Search</span>
+              </label>
+              <label class="engine-check checked" data-engine="chatgpt_chat" onclick="toggleEngine(this)">
+                <input type="checkbox" checked style="display:none;" />
+                <span style="width:10px;height:10px;border-radius:50%;background:#74AA9C;flex-shrink:0;"></span>
+                <span style="font-size:13px;color:#1E293B;font-weight:500;">ChatGPT (Chat)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button class="btn-primary" id="btn-run-scan" onclick="runScan()" style="width:100%;justify-content:center;">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            Run Citation Scan
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ════════════════════════════════ SCANNING VIEW ════════════════════════════════ -->
+    <div id="view-scanning" class="hidden">
+      <div style="max-width:540px;margin:80px auto;text-align:center;">
+        <div style="display:flex;justify-content:center;margin-bottom:24px;">
+          <div class="spinner"></div>
+        </div>
+        <h2 style="font-size:20px;font-weight:700;color:#0F172A;margin-bottom:8px;">Scanning AI Engines...</h2>
+        <p style="color:#64748B;font-size:14px;margin-bottom:28px;" id="scan-status-text">Querying Perplexity AI...</p>
+
+        <!-- Progress Steps -->
+        <div style="text-align:left;background:white;border-radius:12px;border:1px solid #E2E8F0;padding:20px;" id="scan-steps">
+          <div class="scan-step" id="step-perplexity" style="display:flex;align-items:center;gap:12px;padding:8px 0;">
+            <div class="pulse-dot" style="background:#20B2AA;"></div>
+            <span style="font-size:13px;color:#374151;">Perplexity AI</span>
+            <span style="margin-left:auto;font-size:11px;color:#94A3B8;">Querying...</span>
+          </div>
+          <div class="scan-step" id="step-google" style="display:flex;align-items:center;gap:12px;padding:8px 0;opacity:0.4;">
+            <div class="pulse-dot" style="background:#4285F4;"></div>
+            <span style="font-size:13px;color:#374151;">Google AI Overview</span>
+            <span style="margin-left:auto;font-size:11px;color:#94A3B8;">Waiting...</span>
+          </div>
+          <div class="scan-step" id="step-chatgpt-search" style="display:flex;align-items:center;gap:12px;padding:8px 0;opacity:0.4;">
+            <div class="pulse-dot" style="background:#10A37F;"></div>
+            <span style="font-size:13px;color:#374151;">ChatGPT Search</span>
+            <span style="margin-left:auto;font-size:11px;color:#94A3B8;">Waiting...</span>
+          </div>
+          <div class="scan-step" id="step-chatgpt-chat" style="display:flex;align-items:center;gap:12px;padding:8px 0;opacity:0.4;">
+            <div class="pulse-dot" style="background:#74AA9C;"></div>
+            <span style="font-size:13px;color:#374151;">ChatGPT (Chat)</span>
+            <span style="margin-left:auto;font-size:11px;color:#94A3B8;">Waiting...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ════════════════════════════════ RESULTS VIEW ════════════════════════════════ -->
+    <div id="view-results" class="hidden">
+
+      <!-- Header -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <button class="btn-secondary" onclick="showView('new-scan')" style="padding:6px 12px;font-size:12px;">← New Scan</button>
+            <span id="result-scan-id" style="font-size:11px;color:#94A3B8;font-family:monospace;"></span>
+          </div>
+          <h2 style="font-size:20px;font-weight:700;color:#0F172A;" id="result-target-url"></h2>
+          <p style="font-size:13px;color:#64748B;margin-top:2px;" id="result-meta"></p>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn-secondary" onclick="exportCSV()">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Export CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;" id="summary-cards"></div>
+
+      <!-- Tabs -->
+      <div style="background:#F1F5F9;border-radius:10px;padding:4px;display:inline-flex;gap:2px;margin-bottom:20px;" id="result-tabs">
+        <button class="tab-btn active" onclick="showResultTab('overview')">Overview</button>
+        <button class="tab-btn" onclick="showResultTab('citations')">Citations</button>
+        <button class="tab-btn" onclick="showResultTab('competitors')">Competitors</button>
+        <button class="tab-btn" onclick="showResultTab('keywords')">Keywords</button>
+      </div>
+
+      <!-- Tab: Overview -->
+      <div id="tab-overview">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div class="metric-card">
+            <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:12px;">Citation by Engine</div>
+            <div style="position:relative;height:200px;"><canvas id="chart-engines"></canvas></div>
+          </div>
+          <div class="metric-card">
+            <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:12px;">Sentiment Distribution</div>
+            <div style="position:relative;height:200px;"><canvas id="chart-sentiment"></canvas></div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:12px;">Keyword Performance (Your Site)</div>
+          <div style="position:relative;height:220px;"><canvas id="chart-keywords"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Tab: Citations -->
+      <div id="tab-citations" class="hidden">
+        <!-- Filters -->
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
+          <select id="filter-engine" onchange="renderCitationsTable()" style="padding:7px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:13px;color:#374151;background:white;outline:none;">
+            <option value="all">All Engines</option>
+            <option value="perplexity">Perplexity AI</option>
+            <option value="google_ai_overview">Google AI Overview</option>
+            <option value="chatgpt_search">ChatGPT Search</option>
+            <option value="chatgpt_chat">ChatGPT Chat</option>
+          </select>
+          <select id="filter-sentiment" onchange="renderCitationsTable()" style="padding:7px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:13px;color:#374151;background:white;outline:none;">
+            <option value="all">All Sentiments</option>
+            <option value="positive">Positive</option>
+            <option value="neutral">Neutral</option>
+            <option value="negative">Negative</option>
+          </select>
+          <select id="filter-domain" onchange="renderCitationsTable()" style="padding:7px 12px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:13px;color:#374151;background:white;outline:none;">
+            <option value="all">All Sites</option>
+            <option value="target">Your Site Only</option>
+          </select>
+          <span id="citation-count-badge" style="font-size:12px;color:#64748B;margin-left:auto;"></span>
+        </div>
+
+        <div style="background:white;border-radius:12px;border:1px solid #E2E8F0;overflow:hidden;">
+          <table>
+            <thead>
+              <tr>
+                <th>Keyword / Question</th>
+                <th>Engine</th>
+                <th>Site</th>
+                <th>Position</th>
+                <th>Times Cited</th>
+                <th>Sentiment</th>
+                <th>Context Snippet</th>
+              </tr>
+            </thead>
+            <tbody id="citations-tbody"></tbody>
+          </table>
+          <div id="citations-empty" class="hidden" style="text-align:center;padding:40px;color:#94A3B8;font-size:13px;">No citations match the current filters.</div>
+        </div>
+      </div>
+
+      <!-- Tab: Competitors -->
+      <div id="tab-competitors" class="hidden">
+        <div style="background:white;border-radius:12px;border:1px solid #E2E8F0;overflow:hidden;margin-bottom:16px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Domain</th>
+                <th>Overall Rank</th>
+                <th>Total Citations</th>
+                <th>Avg. Position</th>
+                <th>Positive</th>
+                <th>Neutral</th>
+                <th>Negative</th>
+                <th>Top Engine</th>
+              </tr>
+            </thead>
+            <tbody id="competitors-tbody"></tbody>
+          </table>
+        </div>
+
+        <!-- Per-Keyword Comparison -->
+        <div class="metric-card">
+          <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:14px;">Citation Presence by Keyword (All Sites)</div>
+          <div id="keyword-comparison-grid"></div>
+        </div>
+      </div>
+
+      <!-- Tab: Keywords -->
+      <div id="tab-keywords" class="hidden">
+        <div style="background:white;border-radius:12px;border:1px solid #E2E8F0;overflow:hidden;">
+          <table>
+            <thead>
+              <tr>
+                <th>Keyword / Question</th>
+                <th>Your Site Cited?</th>
+                <th>Your Appearances</th>
+                <th>Best Position</th>
+                <th>Engines Cited In</th>
+                <th>Competitor Appearances</th>
+                <th>Total Appearances</th>
+              </tr>
+            </thead>
+            <tbody id="keywords-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ════════════════════════════════ HISTORY VIEW ════════════════════════════════ -->
+    <div id="view-history" class="hidden">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <h2 style="font-size:20px;font-weight:700;color:#0F172A;">Scan History</h2>
+        <button class="btn-secondary" onclick="loadHistory()">↻ Refresh</button>
+      </div>
+      <div style="background:white;border-radius:12px;border:1px solid #E2E8F0;overflow:hidden;">
+        <div style="display:grid;grid-template-columns:1fr 130px 100px 80px 100px;gap:12px;padding:10px 16px;background:#F8FAFC;border-bottom:1px solid #E2E8F0;">
+          <span style="font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.05em;">Website</span>
+          <span style="font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.05em;">Date</span>
+          <span style="font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.05em;">Status</span>
+          <span style="font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.05em;">ID</span>
+          <span></span>
+        </div>
+        <div id="history-list">
+          <div style="text-align:center;padding:40px;color:#94A3B8;font-size:13px;">Loading history...</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+
+<style>
+  .api-status-row { display:flex;align-items:center;gap:6px; }
+  .status-dot { width:6px;height:6px;border-radius:50%;flex-shrink:0; }
+</style>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════
+const state = {
+  competitors: [],
+  keywords: [],
+  engines: ['perplexity', 'google_ai_overview', 'chatgpt_search', 'chatgpt_chat'],
+  currentScanId: null,
+  results: null,
+  pollTimer: null,
+  charts: {},
+};
+
+const ENGINE_META = {
+  perplexity:         { name: 'Perplexity AI',       color: '#20B2AA' },
+  google_ai_overview: { name: 'Google AI Overview',  color: '#4285F4' },
+  chatgpt_search:     { name: 'ChatGPT Search',       color: '#10A37F' },
+  chatgpt_chat:       { name: 'ChatGPT (Chat)',        color: '#74AA9C' },
+};
+
+// ═══════════════════════════════════════════════════════
+//  VIEW ROUTING
+// ═══════════════════════════════════════════════════════
+function showView(name) {
+  ['new-scan','scanning','results','history'].forEach(v => {
+    document.getElementById(`view-${v}`).classList.add('hidden');
+  });
+  document.getElementById(`view-${name}`).classList.remove('hidden');
+  ['nav-new','nav-history'].forEach(el => document.getElementById(el)?.classList.remove('active'));
+  if (name === 'new-scan') document.getElementById('nav-new').classList.add('active');
+  if (name === 'history') { document.getElementById('nav-history').classList.add('active'); loadHistory(); }
+}
+
+function showResultTab(name) {
+  ['overview','citations','competitors','keywords'].forEach(t => {
+    document.getElementById(`tab-${t}`).classList.add('hidden');
+  });
+  document.getElementById(`tab-${name}`).classList.remove('hidden');
+  document.querySelectorAll('#result-tabs .tab-btn').forEach((btn,i) => {
+    btn.classList.toggle('active', ['overview','citations','competitors','keywords'][i] === name);
+  });
+  if (name === 'citations') renderCitationsTable();
+  if (name === 'competitors') renderCompetitors();
+  if (name === 'keywords') renderKeywords();
+}
+
+// ═══════════════════════════════════════════════════════
+//  FORM HELPERS
+// ═══════════════════════════════════════════════════════
+function addCompetitor() {
+  const input = document.getElementById('input-competitor');
+  const url = input.value.trim();
+  if (!url || state.competitors.includes(url)) { input.value=''; return; }
+  state.competitors.push(url);
+  input.value = '';
+  renderTags();
+}
+
+function addKeyword() {
+  const input = document.getElementById('input-keyword');
+  const kw = input.value.trim();
+  if (!kw || state.keywords.includes(kw)) { input.value=''; return; }
+  state.keywords.push(kw);
+  input.value = '';
+  renderTags();
+}
+
+function removeCompetitor(idx) { state.competitors.splice(idx,1); renderTags(); }
+function removeKeyword(idx) { state.keywords.splice(idx,1); renderTags(); }
+
+function renderTags() {
+  const ct = document.getElementById('competitor-tags');
+  ct.innerHTML = state.competitors.map((c,i) =>
+    `<span class="tag competitor-tag">${_domain(c)} <span class="tag-remove" onclick="removeCompetitor(${i})">×</span></span>`
+  ).join('');
+  const kt = document.getElementById('keyword-tags');
+  kt.innerHTML = state.keywords.map((k,i) =>
+    `<span class="tag">${_esc(k)} <span class="tag-remove" onclick="removeKeyword(${i})">×</span></span>`
+  ).join('');
+}
+
+function toggleEngine(label) {
+  const engine = label.dataset.engine;
+  const checked = label.classList.toggle('checked');
+  const idx = state.engines.indexOf(engine);
+  if (checked && idx === -1) state.engines.push(engine);
+  if (!checked && idx !== -1) state.engines.splice(idx, 1);
+}
+
+// ═══════════════════════════════════════════════════════
+//  SCAN
+// ═══════════════════════════════════════════════════════
+async function runScan() {
+  const targetUrl = document.getElementById('input-target-url').value.trim();
+  if (!targetUrl) { alert('Please enter your website URL'); return; }
+  if (state.keywords.length === 0) { alert('Please add at least one keyword to track'); return; }
+  if (state.engines.length === 0) { alert('Please select at least one engine'); return; }
+
+  document.getElementById('btn-run-scan').disabled = true;
+
+  const payload = {
+    target_url: targetUrl,
+    competitor_urls: state.competitors,
+    keywords: state.keywords,
+    engines: state.engines,
+    use_demo: true,
+  };
+
+  try {
+    const resp = await fetch('/api/scan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.detail || 'Scan failed'); return; }
+    state.currentScanId = data.scan_id;
+    startScanProgress();
+    showView('scanning');
+    pollForResults();
+  } catch(e) {
+    alert('Could not connect to server. Is the backend running?');
+  } finally {
+    document.getElementById('btn-run-scan').disabled = false;
+  }
+}
+
+function startScanProgress() {
+  const steps = ['step-perplexity','step-google','step-chatgpt-search','step-chatgpt-chat'];
+  const msgs = ['Querying Perplexity AI...','Checking Google AI Overviews...','Querying ChatGPT Search...','Querying ChatGPT Chat...'];
+  let i = 0;
+  function advance() {
+    if (i < steps.length) {
+      steps.forEach((s,j) => {
+        const el = document.getElementById(s);
+        el.style.opacity = j < i ? '0.5' : j === i ? '1' : '0.4';
+        el.querySelector('span:last-child').textContent = j < i ? '✓ Done' : j === i ? 'Scanning...' : 'Waiting...';
+      });
+      document.getElementById('scan-status-text').textContent = msgs[i] || 'Finalising...';
+      i++;
+      setTimeout(advance, 900);
+    }
+  }
+  advance();
+}
+
+async function pollForResults() {
+  const check = async () => {
+    try {
+      const resp = await fetch(`/api/scan/${state.currentScanId}/results`);
+      const data = await resp.json();
+      if (data.status === 'completed') {
+        state.results = data;
+        renderResults(data);
+        showView('results');
+        return;
+      }
+      if (data.status === 'failed') { alert('Scan failed. Please try again.'); showView('new-scan'); return; }
+    } catch(e) {}
+    state.pollTimer = setTimeout(check, 1500);
+  };
+  check();
+}
+
+// ═══════════════════════════════════════════════════════
+//  RESULTS RENDERING
+// ═══════════════════════════════════════════════════════
+function renderResults(data) {
+  const s = data.summary;
+
+  // Header
+  document.getElementById('result-scan-id').textContent = `Scan #${data.scan_id}`;
+  document.getElementById('result-target-url').textContent = data.target_url;
+  document.getElementById('result-meta').textContent =
+    `${data.keywords.length} keywords · ${data.engines_used.length} engines · ${data.citations.length} total citations tracked`;
+
+  // Summary cards
+  const cards = [
+    { label: 'Your Citations', value: s.target_citation_count, sub: `${Math.round(s.target_citation_rate*100)}% citation rate`, color: '#3B82F6', icon: '📍' },
+    { label: 'Avg. Position', value: s.avg_position || '—', sub: 'when cited', color: '#8B5CF6', icon: '🏆' },
+    { label: 'Sentiment Score', value: `${s.sentiment_score}/100`, sub: s.sentiment_score > 65 ? '🟢 Mostly positive' : s.sentiment_score > 40 ? '🟡 Mostly neutral' : '🔴 Watch out', color: '#10B981', icon: '💬' },
+    { label: 'Rank vs Competitors', value: s.rank_vs_competitors, sub: 'by citation volume', color: '#F59E0B', icon: '📊' },
+  ];
+  document.getElementById('summary-cards').innerHTML = cards.map(c => `
+    <div class="metric-card">
+      <div style="font-size:11px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">${c.icon} ${c.label}</div>
+      <div style="font-size:28px;font-weight:800;color:${c.color};line-height:1;">${c.value}</div>
+      <div style="font-size:12px;color:#94A3B8;margin-top:4px;">${c.sub}</div>
+    </div>
+  `).join('');
+
+  // Charts
+  renderEngineChart(data);
+  renderSentimentChart(data);
+  renderKeywordChart(data);
+
+  // Add competitor options to filter dropdown
+  const domainFilter = document.getElementById('filter-domain');
+  while (domainFilter.options.length > 2) domainFilter.remove(2);
+  data.competitor_urls.forEach(url => {
+    const d = _domain(url);
+    domainFilter.add(new Option(d, d));
+  });
+}
+
+function destroyChart(key) {
+  if (state.charts[key]) { state.charts[key].destroy(); state.charts[key] = null; }
+}
+
+function renderEngineChart(data) {
+  destroyChart('engines');
+  const eb = data.engine_breakdown;
+  const engines = Object.keys(eb);
+  const counts = engines.map(e => eb[e].total_mentions || 0);
+  const colors = engines.map(e => ENGINE_META[e]?.color || '#94A3B8');
+  const ctx = document.getElementById('chart-engines').getContext('2d');
+  state.charts['engines'] = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels: engines.map(e => ENGINE_META[e]?.name || e), datasets: [{ data: counts, backgroundColor: colors, borderWidth: 2, borderColor: 'white' }] },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ font:{size:11}, padding:12 } } } },
+  });
+}
+
+function renderSentimentChart(data) {
+  destroyChart('sentiment');
+  const target = data.citations.filter(c => c.is_target);
+  const pos = target.filter(c => c.sentiment === 'positive').length;
+  const neu = target.filter(c => c.sentiment === 'neutral').length;
+  const neg = target.filter(c => c.sentiment === 'negative').length;
+  const ctx = document.getElementById('chart-sentiment').getContext('2d');
+  state.charts['sentiment'] = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels: ['Positive','Neutral','Negative'], datasets: [{ data:[pos,neu,neg], backgroundColor:['#10B981','#3B82F6','#EF4444'], borderWidth:2, borderColor:'white' }] },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ font:{size:11}, padding:12 } } } },
+  });
+}
+
+function renderKeywordChart(data) {
+  destroyChart('keywords');
+  const kp = data.keyword_performance;
+  const labels = Object.keys(kp);
+  const vals = labels.map(k => kp[k].target_appearances || 0);
+  const colors = labels.map(k => kp[k].target_cited ? '#3B82F6' : '#E2E8F0');
+  const ctx = document.getElementById('chart-keywords').getContext('2d');
+  state.charts['keywords'] = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label:'Your Citations', data: vals, backgroundColor: colors, borderRadius: 5 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: { x: { grid: { display: false }, ticks: { font:{size:11} } }, y: { grid:{ display:false }, ticks:{font:{size:11}} } },
+    },
+  });
+}
+
+// ─── Citations Table ───────────────────────────────────
+function renderCitationsTable() {
+  if (!state.results) return;
+  const eFilter = document.getElementById('filter-engine').value;
+  const sFilter = document.getElementById('filter-sentiment').value;
+  const dFilter = document.getElementById('filter-domain').value;
+
+  let rows = state.results.citations;
+  if (eFilter !== 'all') rows = rows.filter(r => r.engine === eFilter);
+  if (sFilter !== 'all') rows = rows.filter(r => r.sentiment === sFilter);
+  if (dFilter === 'target') rows = rows.filter(r => r.is_target);
+  else if (dFilter !== 'all') rows = rows.filter(r => r.cited_domain === dFilter);
+
+  document.getElementById('citation-count-badge').textContent = `${rows.length} result${rows.length!==1?'s':''}`;
+
+  const tbody = document.getElementById('citations-tbody');
+  const empty = document.getElementById('citations-empty');
+
+  if (rows.length === 0) {
+    tbody.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  tbody.innerHTML = rows.map(r => {
+    const eng = ENGINE_META[r.engine] || { name: r.engine, color: '#94A3B8' };
+    const posClass = r.position===1?'pos-1':r.position===2?'pos-2':r.position===3?'pos-3':'pos-other';
+    const sentClass = `sentiment-${r.sentiment}`;
+    const domainLabel = r.is_target
+      ? `<span style="font-weight:600;color:#1D4ED8;">${r.cited_domain}</span> <span style="font-size:10px;background:#DBEAFE;color:#1E40AF;padding:1px 5px;border-radius:3px;">You</span>`
+      : `<span>${r.cited_domain}</span>`;
+    return `<tr>
+      <td style="max-width:200px;"><span title="${_esc(r.keyword)}" style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${_esc(r.keyword)}</span></td>
+      <td><span class="engine-badge" style="background:${eng.color}20;color:${eng.color};">${eng.name}</span></td>
+      <td>${domainLabel}</td>
+      <td><span class="pos-badge ${posClass}">${r.position}</span></td>
+      <td style="font-weight:600;">${r.citation_count}×</td>
+      <td><span class="${sentClass}" style="padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">${_cap(r.sentiment)}</span></td>
+      <td style="max-width:240px;font-size:12px;color:#64748B;font-style:italic;">"${_esc(r.snippet.substring(0,120))}${r.snippet.length>120?'…':''}"</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── Competitors Tab ───────────────────────────────────
+function renderCompetitors() {
+  if (!state.results) return;
+  const ca = state.results.competitor_analysis;
+  const allDomains = Object.entries(ca).sort((a,b) => b[1].total_citations - a[1].total_citations);
+
+  const tbody = document.getElementById('competitors-tbody');
+  tbody.innerHTML = allDomains.map(([domain, info], i) => {
+    const rank = i + 1;
+    const rankColor = rank===1?'#F59E0B':rank===2?'#6B7280':rank===3?'#CD7C2F':'#CBD5E1';
+    const isTarget = info.is_target;
+    const topEngine = Object.entries(info.engine_breakdown || {}).sort((a,b)=>b[1]-a[1])[0];
+    const topEngMeta = topEngine ? ENGINE_META[topEngine[0]] : null;
+    return `<tr style="${isTarget?'background:#EFF6FF;':''}" >
+      <td>
+        <span style="font-weight:${isTarget?700:400};color:${isTarget?'#1D4ED8':'#1E293B'};">${domain}</span>
+        ${isTarget?'<span style="font-size:10px;background:#DBEAFE;color:#1E40AF;padding:1px 5px;border-radius:3px;margin-left:6px;">You</span>':''}
+      </td>
+      <td><span class="comp-rank" style="background:${rankColor}20;color:${rankColor};width:24px;height:24px;font-size:12px;font-weight:700;">${rank}</span></td>
+      <td style="font-weight:600;">${info.total_citations}</td>
+      <td>${info.avg_position}</td>
+      <td style="color:#16A34A;font-weight:500;">${info.sentiment_breakdown?.positive||0}</td>
+      <td style="color:#2563EB;font-weight:500;">${info.sentiment_breakdown?.neutral||0}</td>
+      <td style="color:#DC2626;font-weight:500;">${info.sentiment_breakdown?.negative||0}</td>
+      <td>${topEngMeta?`<span class="engine-badge" style="background:${topEngMeta.color}20;color:${topEngMeta.color};">${topEngMeta.name}</span>`:'—'}</td>
+    </tr>`;
+  }).join('');
+
+  // Keyword comparison grid
+  const keywords = state.results.keywords;
+  const grid = document.getElementById('keyword-comparison-grid');
+  const domainList = allDomains.map(([d,info]) => ({ domain: d, isTarget: info.is_target }));
+
+  grid.innerHTML = `
+    <div style="overflow-x:auto;">
+      <table>
+        <thead><tr>
+          <th>Keyword</th>
+          ${domainList.map(d => `<th style="color:${d.isTarget?'#1D4ED8':'#64748B'};">${d.domain}${d.isTarget?' (You)':''}</th>`).join('')}
+        </tr></thead>
+        <tbody>${keywords.map(kw => {
+          return `<tr>
+            <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${_esc(kw)}</td>
+            ${domainList.map(d => {
+              const cite = state.results.citations.find(c => c.keyword===kw && c.cited_domain===d.domain);
+              if (!cite) return `<td style="text-align:center;color:#E2E8F0;">—</td>`;
+              const posClass = cite.position===1?'pos-1':cite.position===2?'pos-2':cite.position===3?'pos-3':'pos-other';
+              return `<td style="text-align:center;"><span class="pos-badge ${posClass}">#${cite.position}</span></td>`;
+            }).join('')}
+          </tr>`;
+        }).join('')}</tbody>
+      </table>
+    </div>`;
+}
+
+// ─── Keywords Tab ───────────────────────────────────────
+function renderKeywords() {
+  if (!state.results) return;
+  const kp = state.results.keyword_performance;
+  const tbody = document.getElementById('keywords-tbody');
+  tbody.innerHTML = Object.entries(kp).map(([kw, info]) => {
+    const cited = info.target_cited;
+    const engines = (info.engines_cited_in || []).map(e => {
+      const m = ENGINE_META[e];
+      return m ? `<span class="engine-badge" style="background:${m.color}20;color:${m.color};margin-right:3px;">${m.name}</span>` : e;
+    }).join('');
+    return `<tr>
+      <td style="max-width:220px;font-weight:500;">${_esc(kw)}</td>
+      <td>${cited
+        ? '<span style="color:#16A34A;font-weight:600;">✓ Yes</span>'
+        : '<span style="color:#DC2626;">✗ No</span>'}</td>
+      <td style="font-weight:600;">${info.target_appearances}</td>
+      <td>${info.best_position != null ? `<span class="pos-badge pos-${info.best_position<=3?info.best_position:'other'}">#${info.best_position}</span>` : '—'}</td>
+      <td>${engines || '—'}</td>
+      <td>${info.competitor_appearances}</td>
+      <td>${info.total_appearances}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+//  HISTORY
+// ═══════════════════════════════════════════════════════
+async function loadHistory() {
+  const list = document.getElementById('history-list');
+  list.innerHTML = '<div style="text-align:center;padding:30px;color:#94A3B8;font-size:13px;">Loading...</div>';
+  try {
+    const resp = await fetch('/api/scans');
+    const scans = await resp.json();
+    if (scans.length === 0) {
+      list.innerHTML = '<div style="text-align:center;padding:40px;color:#94A3B8;font-size:13px;">No scans yet. Run your first scan!</div>';
+      return;
+    }
+    list.innerHTML = scans.map(s => {
+      const statusColor = s.status==='completed'?'#16A34A':s.status==='running'?'#F59E0B':'#DC2626';
+      const date = new Date(s.created_at).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+      return `<div style="display:grid;grid-template-columns:1fr 130px 100px 80px 100px;gap:12px;align-items:center;padding:14px 16px;border-bottom:1px solid #F1F5F9;" class="history-row-item">
+        <div>
+          <div style="font-weight:600;font-size:13px;color:#1E293B;">${s.target_url}</div>
+          <div style="font-size:11px;color:#94A3B8;">${s.target_domain}</div>
+        </div>
+        <div style="font-size:12px;color:#64748B;">${date}</div>
+        <div><span style="color:${statusColor};font-size:12px;font-weight:600;">${_cap(s.status)}</span></div>
+        <div style="font-size:11px;color:#94A3B8;font-family:monospace;">${s.scan_id}</div>
+        <div>
+          ${s.status==='completed'?`<button class="btn-secondary" onclick="loadScanResults('${s.scan_id}')" style="font-size:11px;padding:5px 10px;">View →</button>`:''}
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:#DC2626;font-size:13px;">Could not load history.</div>';
+  }
+}
+
+async function loadScanResults(scanId) {
+  const resp = await fetch(`/api/scan/${scanId}/results`);
+  const data = await resp.json();
+  if (data.status === 'completed') {
+    state.results = data;
+    renderResults(data);
+    showView('results');
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+//  EXPORT CSV
+// ═══════════════════════════════════════════════════════
+function exportCSV() {
+  if (!state.results) return;
+  const headers = ['Keyword','Engine','Domain','Is Your Site','Position','Citation Count','Sentiment','Snippet'];
+  const rows = state.results.citations.map(c => [
+    `"${c.keyword.replace(/"/g,'""')}"`,
+    c.engine_name,
+    c.cited_domain,
+    c.is_target ? 'Yes' : 'No',
+    c.position,
+    c.citation_count,
+    c.sentiment,
+    `"${(c.snippet||'').replace(/"/g,'""')}"`,
+  ].join(','));
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `aeo-citations-${state.results.scan_id}.csv`;
+  a.click();
+}
+
+// ═══════════════════════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════════════════════
+function _domain(url) {
+  return url.replace(/https?:\/\//,'').replace(/www\./,'').split('/')[0].split('?')[0];
+}
+function _esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function _cap(s) {
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+}
+
+// ═══════════════════════════════════════════════════════
+//  API STATUS CHECK
+// ═══════════════════════════════════════════════════════
+async function checkApiStatus() {
+  try {
+    const resp = await fetch('/api/status');
+    const s = await resp.json();
+    const update = (id, connected) => {
+      const row = document.getElementById(id);
+      if (!row) return;
+      const dot = row.querySelector('.status-dot');
+      const label = row.querySelector('span:last-child');
+      dot.style.background = connected ? '#22C55E' : '#EF4444';
+      label.textContent = connected ? 'Live' : 'Demo';
+    };
+    update('status-perplexity', s.perplexity);
+    update('status-serpapi', s.serpapi);
+    update('status-openai', s.openai);
+    if (!s.demo_mode) document.getElementById('demo-notice').classList.add('hidden');
+  } catch(e) {}
+}
+
+// ═══════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════
+checkApiStatus();
+</script>
+</body>
+</html>
