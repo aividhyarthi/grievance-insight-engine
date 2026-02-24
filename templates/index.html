@@ -22,37 +22,36 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); }
-    .input-focus:focus { outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.4); }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    .input-focus:focus { outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.2); border-color: #6366f1; }
     .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); transition: all 0.2s; }
-    .btn-primary:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(99,102,241,0.4); }
-    .feature-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 0.2s; }
-    .feature-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(99,102,241,0.4); }
+    .btn-primary:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(99,102,241,0.35); }
+    .feature-card { background: #ffffff; border: 1px solid #e2e8f0; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .feature-card:hover { border-color: rgba(99,102,241,0.4); box-shadow: 0 4px 16px rgba(99,102,241,0.1); }
     .site-type-btn { transition: all 0.15s; cursor: pointer; }
-    .site-type-btn.active { background: rgba(99,102,241,0.25); border-color: #6366f1; color: #a5b4fc; }
+    .site-type-btn.active { background: #eef2ff; border-color: #6366f1; color: #4338ca; font-weight: 600; }
     .loader { display: none; }
     .loader.show { display: flex; }
-    .mode-btn { transition: all 0.15s; cursor: pointer; }
-    .mode-btn.active { background: rgba(99,102,241,0.25); border-color: #6366f1; color: #a5b4fc; }
+    .mode-btn { transition: all 0.15s; cursor: pointer; color: #64748b; }
+    .mode-btn.active { background: #ffffff; border-color: #6366f1; color: #4338ca; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
     .comp-section { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
     .comp-section.open { max-height: 500px; }
   </style>
 </head>
-<body class="gradient-bg min-h-screen text-white">
+<body class="min-h-screen text-slate-800">
 
   <!-- Nav -->
-  <nav class="border-b border-white/10 px-6 py-4">
+  <nav class="border-b border-slate-200 bg-white px-6 py-4 shadow-sm">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">Ax</div>
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black text-white" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">Ax</div>
         <div class="flex flex-col leading-tight">
-          <span class="font-black text-base tracking-tight">Appstudiox<span style="color:#8b5cf6">.</span></span>
-          <span class="text-white/40 text-xs font-medium tracking-wide">SEO Auditing Tool</span>
+          <span class="font-black text-base tracking-tight text-slate-900">Appstudiox<span style="color:#8b5cf6">.</span></span>
+          <span class="text-slate-400 text-xs font-medium tracking-wide">SEO Auditing Tool</span>
         </div>
-        <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30 ml-1">AI-Powered</span>
+        <span class="text-xs bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full border border-indigo-200 ml-1">AI-Powered</span>
       </div>
-      <div class="hidden md:flex items-center gap-6 text-sm text-white/50">
+      <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
         <span>12 Categories</span>
         <span>7 Site Types</span>
         <span>PDF · Excel · JSON</span>
@@ -62,20 +61,20 @@
 
   <!-- Hero -->
   <section class="max-w-4xl mx-auto px-6 pt-16 pb-8 text-center">
-    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-indigo-300 text-sm mb-6">
+    <div class="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 rounded-full px-4 py-1.5 text-indigo-600 text-sm mb-6">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
       Powered by Claude AI · AEO + GEO Ready
     </div>
-    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight text-slate-900">
       Full-Stack<br>
-      <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">SEO Audit</span>
+      <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">SEO Audit</span>
     </h1>
-    <p class="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+    <p class="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto mb-10">
       Analyse any website across 12 SEO categories. Get a client-ready PDF proposal, prioritised roadmap, and traffic strategy — in seconds.
     </p>
 
     {% if error %}
-    <div class="bg-red-500/10 border border-red-500/30 text-red-300 rounded-xl px-5 py-3 mb-6 text-sm">
+    <div class="bg-red-50 border border-red-200 text-red-600 rounded-xl px-5 py-3 mb-6 text-sm">
       ⚠ {{ error }}
     </div>
     {% endif %}
@@ -85,13 +84,13 @@
       <input type="hidden" name="input_mode" id="inputModeField" value="url"/>
 
       <!-- Mode Toggle -->
-      <div class="flex gap-2 bg-white/5 rounded-xl p-1 border border-white/10">
+      <div class="flex gap-1.5 bg-slate-100 rounded-xl p-1 border border-slate-200">
         <button type="button" id="modeUrl" onclick="setMode('url')"
           class="mode-btn active flex-1 py-2 px-4 rounded-lg text-sm font-semibold text-center">
           🔗 Enter URL
         </button>
         <button type="button" id="modeHtml" onclick="setMode('html')"
-          class="mode-btn flex-1 py-2 px-4 rounded-lg text-sm font-semibold text-center text-white/50">
+          class="mode-btn flex-1 py-2 px-4 rounded-lg text-sm font-semibold text-center">
           &lt;/&gt; Paste HTML
         </button>
       </div>
@@ -100,13 +99,13 @@
       <div id="urlInputWrap">
         <div class="relative">
           <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-            <svg class="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
             </svg>
           </div>
           <input type="text" name="url" id="urlInput"
             placeholder="https://yoursite.com"
-            class="input-focus w-full bg-white/5 border border-white/15 rounded-2xl pl-12 pr-4 py-4 text-white placeholder-white/30 text-lg"
+            class="input-focus w-full bg-white border border-slate-200 rounded-2xl pl-12 pr-4 py-4 text-slate-800 placeholder-slate-400 text-lg shadow-sm"
             autocomplete="off"/>
         </div>
       </div>
@@ -115,28 +114,28 @@
       <div id="htmlInputWrap" class="hidden space-y-3">
         <div class="relative">
           <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-            <svg class="w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
             </svg>
           </div>
           <input type="text" name="url" id="urlForHtml"
             placeholder="Page URL (optional, for context — e.g. https://yoursite.com/page)"
-            class="input-focus w-full bg-white/5 border border-white/15 rounded-2xl pl-12 pr-4 py-3 text-white placeholder-white/30 text-sm"
+            class="input-focus w-full bg-white border border-slate-200 rounded-2xl pl-12 pr-4 py-3 text-slate-800 placeholder-slate-400 text-sm shadow-sm"
             autocomplete="off"/>
         </div>
         <textarea name="html_content" id="htmlContent"
           placeholder="Paste the full HTML source of the page here (Ctrl+U → Select All → Copy in browser)…"
           rows="8"
-          class="input-focus w-full bg-white/5 border border-white/15 rounded-2xl px-4 py-3 text-white placeholder-white/30 text-sm font-mono resize-y"></textarea>
-        <p class="text-white/30 text-xs">Tip: In Chrome, press <kbd class="bg-white/10 px-1.5 py-0.5 rounded text-white/50">Ctrl+U</kbd> to view page source, then <kbd class="bg-white/10 px-1.5 py-0.5 rounded text-white/50">Ctrl+A</kbd> → <kbd class="bg-white/10 px-1.5 py-0.5 rounded text-white/50">Ctrl+C</kbd> to copy.</p>
+          class="input-focus w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 text-slate-800 placeholder-slate-400 text-sm font-mono resize-y shadow-sm"></textarea>
+        <p class="text-slate-400 text-xs">Tip: In Chrome, press <kbd class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded text-slate-500">Ctrl+U</kbd> to view page source, then <kbd class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded text-slate-500">Ctrl+A</kbd> → <kbd class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded text-slate-500">Ctrl+C</kbd> to copy.</p>
       </div>
 
       <!-- Site Type -->
       <div>
-        <p class="text-white/50 text-sm mb-3 font-medium">Site Type <span class="text-white/30">(for weighted analysis)</span></p>
+        <p class="text-slate-500 text-sm mb-3 font-medium">Site Type <span class="text-slate-400">(for weighted analysis)</span></p>
         <div class="flex flex-wrap gap-2" id="siteTypePills">
           {% for value, label in site_types.items() %}
-          <label class="site-type-btn border border-white/15 rounded-xl px-3 py-1.5 text-sm text-white/60 hover:text-white {% if value == 'generic' %}active{% endif %}">
+          <label class="site-type-btn border border-slate-200 bg-white rounded-xl px-3 py-1.5 text-sm text-slate-600 hover:text-slate-900 hover:border-indigo-300 shadow-sm {% if value == 'generic' %}active{% endif %}">
             <input type="radio" name="site_type" value="{{ value }}" class="hidden" {% if value == 'generic' %}checked{% endif %}>
             {{ label }}
           </label>
@@ -145,26 +144,26 @@
       </div>
 
       <!-- Competitor URLs toggle -->
-      <div class="border border-white/10 rounded-2xl overflow-hidden">
+      <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
         <button type="button" onclick="toggleComp()"
-          class="w-full flex items-center justify-between px-5 py-3.5 text-sm font-semibold text-white/60 hover:text-white hover:bg-white/3 transition-colors">
+          class="w-full flex items-center justify-between px-5 py-3.5 text-sm font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors">
           <span class="flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-            Compare with competitor sites <span class="text-white/30 font-normal">(optional, up to 3)</span>
+            Compare with competitor sites <span class="text-slate-400 font-normal">(optional, up to 3)</span>
           </span>
-          <span id="compChevron" class="text-white/30 transition-transform text-xs">▼</span>
+          <span id="compChevron" class="text-slate-300 transition-transform text-xs">▼</span>
         </button>
         <div id="compSection" class="comp-section">
-          <div class="px-5 pb-5 space-y-3 border-t border-white/08 pt-4">
-            <p class="text-white/35 text-xs">Enter competitor URLs to see a side-by-side score comparison in the results.</p>
+          <div class="px-5 pb-5 space-y-3 border-t border-slate-100 pt-4">
+            <p class="text-slate-400 text-xs">Enter competitor URLs to see a side-by-side score comparison in the results.</p>
             {% for n in [1, 2, 3] %}
             <div class="relative">
               <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <span class="text-white/25 text-xs font-bold">#{{ n }}</span>
+                <span class="text-slate-400 text-xs font-bold">#{{ n }}</span>
               </div>
               <input type="text" name="comp{{ n }}"
                 placeholder="https://competitor{{ n }}.com"
-                class="input-focus w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-4 py-2.5 text-white/80 placeholder-white/25 text-sm"
+                class="input-focus w-full bg-white border border-slate-200 rounded-xl pl-8 pr-4 py-2.5 text-slate-700 placeholder-slate-400 text-sm shadow-sm"
                 autocomplete="off"/>
             </div>
             {% endfor %}
@@ -173,13 +172,13 @@
       </div>
 
       <!-- Options row -->
-      <div class="flex items-center gap-6 text-sm text-white/50 px-1">
+      <div class="flex items-center gap-6 text-sm text-slate-500 px-1">
         <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" name="no_ai" value="1" class="rounded border-white/20 bg-white/5 text-indigo-500">
+          <input type="checkbox" name="no_ai" value="1" class="rounded border-slate-300 bg-white text-indigo-500">
           <span>Skip AI narratives</span>
         </label>
-        <span class="text-white/20">|</span>
-        <span class="text-white/30">Analysis takes ~10–30 sec</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-slate-400">Analysis takes ~10–30 sec</span>
       </div>
 
       <!-- Submit -->
@@ -190,20 +189,20 @@
     </form>
 
     <!-- Loading overlay -->
-    <div id="loader" class="loader fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 flex-col items-center justify-center gap-6">
+    <div id="loader" class="loader fixed inset-0 bg-white/95 backdrop-blur-sm z-50 flex-col items-center justify-center gap-6">
       <div class="relative w-20 h-20">
-        <div class="absolute inset-0 rounded-full border-4 border-indigo-500/20"></div>
+        <div class="absolute inset-0 rounded-full border-4 border-indigo-200"></div>
         <div class="absolute inset-0 rounded-full border-4 border-indigo-500 border-t-transparent animate-spin"></div>
         <div class="absolute inset-0 flex items-center justify-center text-2xl">🔍</div>
       </div>
       <div class="text-center">
-        <p class="text-white font-semibold text-xl mb-1">Analysing your site…</p>
-        <p class="text-white/50 text-sm" id="loaderStatus">Fetching page and running 12-category audit</p>
+        <p class="text-slate-800 font-semibold text-xl mb-1">Analysing your site…</p>
+        <p class="text-slate-500 text-sm" id="loaderStatus">Fetching page and running 12-category audit</p>
       </div>
       <div class="flex gap-2 mt-2">
-        <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay:0s"></div>
-        <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay:0.15s"></div>
-        <div class="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay:0.3s"></div>
+        <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay:0s"></div>
+        <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay:0.15s"></div>
+        <div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" style="animation-delay:0.3s"></div>
       </div>
     </div>
   </section>
@@ -223,20 +222,20 @@
     {% for icon, title, desc in features %}
     <div class="feature-card rounded-xl p-4">
       <div class="text-2xl mb-2">{{ icon }}</div>
-      <div class="font-semibold text-sm text-white mb-1">{{ title }}</div>
-      <div class="text-white/40 text-xs leading-relaxed">{{ desc }}</div>
+      <div class="font-semibold text-sm text-slate-800 mb-1">{{ title }}</div>
+      <div class="text-slate-400 text-xs leading-relaxed">{{ desc }}</div>
     </div>
     {% endfor %}
   </section>
 
   <!-- Category list -->
   <section class="max-w-5xl mx-auto px-6 pb-16">
-    <h2 class="text-white/40 text-xs font-semibold tracking-widest uppercase mb-4">All 12 Audit Categories</h2>
+    <h2 class="text-slate-400 text-xs font-semibold tracking-widest uppercase mb-4">All 12 Audit Categories</h2>
     <div class="flex flex-wrap gap-2">
       {% for cat in ["On-Page SEO", "Technical SEO", "Content", "Interlinking",
                      "Pagespeed", "Keywords", "UX / UI", "Product SEO",
                      "AEO", "GEO", "Off-Page", "Backlinking"] %}
-      <span class="bg-white/5 border border-white/10 text-white/50 text-xs px-3 py-1.5 rounded-full">{{ cat }}</span>
+      <span class="bg-white border border-slate-200 text-slate-500 text-xs px-3 py-1.5 rounded-full shadow-sm">{{ cat }}</span>
       {% endfor %}
     </div>
   </section>
@@ -256,17 +255,17 @@
         htmlWrap.classList.add('hidden');
         urlInput.required = true;
         modeUrl.classList.add('active');
-        modeUrl.classList.remove('text-white/50');
+        modeUrl.classList.remove('text-slate-500');
         modeHtml.classList.remove('active');
-        modeHtml.classList.add('text-white/50');
+        modeHtml.classList.add('text-slate-500');
       } else {
         urlWrap.classList.add('hidden');
         htmlWrap.classList.remove('hidden');
         urlInput.required = false;
         modeUrl.classList.remove('active');
-        modeUrl.classList.add('text-white/50');
+        modeUrl.classList.add('text-slate-500');
         modeHtml.classList.add('active');
-        modeHtml.classList.remove('text-white/50');
+        modeHtml.classList.remove('text-slate-500');
       }
     }
 
