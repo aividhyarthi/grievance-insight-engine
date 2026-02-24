@@ -3,6 +3,10 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 
+class SuggestRequest(BaseModel):
+    url: str
+
+
 class ScanRequest(BaseModel):
     target_url: str
     competitor_urls: List[str] = []
