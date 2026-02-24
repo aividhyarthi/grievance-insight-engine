@@ -1,0 +1,9 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-dotenv==1.0.0
+pydantic==2.5.0
+aiofiles==23.2.1
+requests==2.31.0
+# playwright is NOT included — it requires browser binaries not available on Railway.
+# Web-scrape fallback in scrapers/perplexity_scraper.py will raise a clear error if called.
+# Use the Perplexity API key instead (PERPLEXITY_API_KEY in Railway env vars).
