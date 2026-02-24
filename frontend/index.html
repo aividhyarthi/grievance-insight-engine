@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AEO Citation Tracker</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Rudra Kasturi Inc — AI Citation Tracker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563EB'/><circle cx='13' cy='13' r='7' stroke='white' stroke-width='2.5' fill='none'/><line x1='18.5' y1='18.5' x2='26' y2='26' stroke='white' stroke-width='2.5' stroke-linecap='round'/><circle cx='22' cy='10' r='4' fill='%2360A5FA'/><text x='19.5' y='13.5' font-size='7' font-weight='bold' fill='white' font-family='sans-serif'>AI</text></svg>" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -96,21 +98,25 @@
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </div>
         <div>
-          <div style="font-size:13px;font-weight:700;color:#F1F5F9;">AEO Citation</div>
-          <div style="font-size:11px;color:#475569;margin-top:-1px;">Tracker</div>
+          <div style="font-size:12px;font-weight:700;color:#F1F5F9;line-height:1.2;">Rudra Kasturi Inc</div>
+          <div style="font-size:10px;color:#60A5FA;margin-top:2px;font-weight:500;">AI Citation Tracker</div>
         </div>
       </div>
     </div>
 
     <!-- Nav -->
     <nav style="padding:12px 10px;flex:1;">
-      <button class="nav-btn active" id="nav-new" onclick="showView('new-scan')">
+      <button type="button" class="nav-btn active" id="nav-new" onclick="showView('new-scan')">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
         New Scan
       </button>
-      <button class="nav-btn" id="nav-history" onclick="showView('history')" style="margin-top:4px;">
+      <button type="button" class="nav-btn" id="nav-history" onclick="showView('history')" style="margin-top:4px;">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         Scan History
+      </button>
+      <button type="button" class="nav-btn" id="nav-schedules" onclick="showView('schedules')" style="margin-top:4px;">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Schedules
       </button>
     </nav>
 
@@ -141,7 +147,8 @@
     <!-- ════════════════════════════════ NEW SCAN VIEW ════════════════════════════════ -->
     <div id="view-new-scan">
       <div style="max-width:700px;">
-        <h1 style="font-size:24px;font-weight:800;color:#0F172A;margin-bottom:6px;">AEO Citation Tracker</h1>
+        <h1 style="font-size:24px;font-weight:800;color:#0F172A;margin-bottom:4px;">AI Citation Tracker</h1>
+        <div style="font-size:11px;font-weight:600;color:#6366F1;margin-bottom:6px;letter-spacing:0.04em;">RUDRA KASTURI INC</div>
         <p style="color:#64748B;font-size:14px;margin-bottom:24px;">Track where your website is cited across Google AI Overviews, Perplexity, ChatGPT Search &amp; more.</p>
 
         <!-- Demo Mode Banner -->
@@ -333,7 +340,7 @@
           <div style="position:relative;height:220px;"><canvas id="chart-keywords"></canvas></div>
         </div>
         <div class="metric-card" style="margin-top:16px;">
-          <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:14px;">Share of Voice — Citation Distribution</div>
+          <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:14px;">Share of Voice — Per AI Engine</div>
           <div id="sov-content"><p style="font-size:13px;color:#94A3B8;margin:0;">Loading...</p></div>
         </div>
       </div>
@@ -458,9 +465,12 @@
       </div>
 
       <!-- Scheduled Scans Section -->
-      <div style="margin-top:28px;">
+      <div id="schedules-section" style="margin-top:28px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-          <h2 style="font-size:18px;font-weight:700;color:#0F172A;">Scheduled Scans</h2>
+          <div>
+            <h2 style="font-size:18px;font-weight:700;color:#0F172A;margin-bottom:2px;">Scheduled Scans</h2>
+            <p style="font-size:12px;color:#94A3B8;margin:0;">To create a schedule: run a scan → view results → click the <strong>📅 Schedule</strong> button.</p>
+          </div>
         </div>
         <div id="schedules-list">
           <div style="text-align:center;padding:40px;background:white;border-radius:12px;border:1px solid #E2E8F0;color:#94A3B8;font-size:13px;">Loading schedules...</div>
@@ -539,10 +549,21 @@ function showView(name) {
   ['new-scan','scanning','results','history'].forEach(v => {
     document.getElementById(`view-${v}`).classList.add('hidden');
   });
-  document.getElementById(`view-${name}`).classList.remove('hidden');
-  ['nav-new','nav-history'].forEach(el => document.getElementById(el)?.classList.remove('active'));
-  if (name === 'new-scan') document.getElementById('nav-new').classList.add('active');
-  if (name === 'history') { document.getElementById('nav-history').classList.add('active'); loadHistory(); }
+  // 'schedules' reuses the history view and scrolls to the schedules section
+  const viewId = name === 'schedules' ? 'history' : name;
+  document.getElementById(`view-${viewId}`).classList.remove('hidden');
+
+  ['nav-new','nav-history','nav-schedules'].forEach(id => document.getElementById(id)?.classList.remove('active'));
+  if (name === 'new-scan')   document.getElementById('nav-new').classList.add('active');
+  if (name === 'history')    { document.getElementById('nav-history').classList.add('active'); loadHistory(); }
+  if (name === 'schedules')  {
+    document.getElementById('nav-schedules').classList.add('active');
+    loadHistory();
+    setTimeout(() => {
+      const el = document.getElementById('schedules-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 400);
+  }
 }
 
 function showResultTab(name) {
@@ -1004,61 +1025,100 @@ function renderKeywordChart(data) {
 }
 
 function renderShareOfVoice(data) {
-  const ca     = data.competitor_analysis;
-  const el     = document.getElementById('sov-content');
-  const total  = Object.values(ca).reduce((s, d) => s + (d.total_citations || 0), 0);
+  const ca      = data.competitor_analysis;
+  const el      = document.getElementById('sov-content');
+  const engines = data.engines_used || [];
 
-  if (total === 0) {
+  const totalAll = Object.values(ca).reduce((s, d) => s + (d.total_citations || 0), 0);
+  if (totalAll === 0) {
     el.innerHTML = '<p style="font-size:13px;color:#94A3B8;margin:0;">No citations found in this scan.</p>';
     return;
   }
 
-  const sorted  = Object.entries(ca).sort((a, b) => b[1].total_citations - a[1].total_citations);
+  // Assign stable colors per domain (target always indigo)
   const palette = ['#6366F1','#10B981','#F59E0B','#EF4444','#3B82F6','#8B5CF6','#EC4899','#14B8A6'];
-  const targetEntry = sorted.find(([, d]) => d.is_target);
-  const yourCites   = targetEntry ? (targetEntry[1].total_citations || 0) : 0;
-  const yourShare   = Math.round(yourCites / total * 100);
+  const sorted  = Object.entries(ca).sort((a, b) => b[1].total_citations - a[1].total_citations);
+  const domainColor = {};
+  let ci = 0;
+  sorted.forEach(function(entry) {
+    domainColor[entry[0]] = entry[1].is_target ? '#6366F1' : (palette[ci++ % palette.length]);
+  });
 
-  // Only one domain (no competitors)
-  if (sorted.length === 1) {
-    el.innerHTML = `
-      <div style="margin-bottom:10px;">
-        <span style="font-size:26px;font-weight:800;color:#6366F1;">100%</span>
-        <span style="font-size:13px;color:#64748B;margin-left:8px;">of citations in this scan</span>
-      </div>
-      <p style="font-size:12px;color:#94A3B8;margin:0;">Add competitor URLs when scanning to compare share of voice.</p>`;
-    return;
-  }
+  // Overall headline
+  const targetEntry = sorted.find(function(e) { return e[1].is_target; });
+  const yourTotal   = targetEntry ? (targetEntry[1].total_citations || 0) : 0;
+  const yourOverall = Math.round(yourTotal / totalAll * 100);
 
-  const colorFor = (domain, info, i) => info.is_target ? '#6366F1' : (palette[i] || '#94A3B8');
+  // Engine meta
+  const ENG = {
+    perplexity:         { name: 'Perplexity AI',      color: '#20B2AA' },
+    google_ai_overview: { name: 'Google AI Overview', color: '#4285F4' },
+    chatgpt_search:     { name: 'ChatGPT Search',      color: '#10A37F' },
+    chatgpt_chat:       { name: 'ChatGPT (Chat)',       color: '#74AA9C' },
+  };
 
-  const barSegs = sorted.map(([domain, info], i) => {
-    const pct   = Math.round(info.total_citations / total * 100);
-    if (pct === 0) return '';
-    const color = colorFor(domain, info, i);
-    return `<div style="flex:${pct};background:${color};height:36px;position:relative;min-width:24px;transition:flex 0.3s;" title="${domain}: ${pct}% (${info.total_citations} citations)">
-      ${pct >= 7 ? `<span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;font-weight:700;color:white;white-space:nowrap;">${pct}%</span>` : ''}
-    </div>`;
+  // Build per-engine stacked bar rows
+  const engineRows = engines.map(function(eng) {
+    const meta = ENG[eng] || { name: eng, color: '#94A3B8' };
+
+    // How many citations did each domain get from this engine?
+    const domainCounts = sorted.map(function(entry) {
+      const domain = entry[0];
+      const info   = entry[1];
+      const count  = (info.engine_breakdown && info.engine_breakdown[eng]) || 0;
+      return { domain: domain, is_target: info.is_target, count: count, color: domainColor[domain] };
+    }).filter(function(d) { return d.count > 0; });
+
+    const engTotal = domainCounts.reduce(function(s, d) { return s + d.count; }, 0);
+    if (engTotal === 0) return '';
+
+    const youEntry   = domainCounts.find(function(d) { return d.is_target; });
+    const yourEngPct = youEntry ? Math.round(youEntry.count / engTotal * 100) : 0;
+
+    const segs = domainCounts.map(function(d) {
+      const pct = Math.round(d.count / engTotal * 100);
+      if (pct === 0) return '';
+      return '<div style="flex:' + pct + ';background:' + d.color + ';height:28px;position:relative;min-width:18px;" title="' + _esc(d.domain) + ': ' + pct + '% (' + d.count + ')">'
+        + (pct >= 8 ? '<span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;font-weight:700;color:white;white-space:nowrap;">' + pct + '%</span>' : '')
+        + '</div>';
+    }).join('');
+
+    return '<div style="margin-bottom:14px;">'
+      + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">'
+      +   '<span style="width:8px;height:8px;border-radius:50%;background:' + meta.color + ';flex-shrink:0;display:inline-block;"></span>'
+      +   '<span style="font-size:12px;font-weight:600;color:#374151;">' + _esc(meta.name) + '</span>'
+      +   '<span style="margin-left:auto;font-size:12px;color:#64748B;">Your share: <strong style="color:#6366F1;">' + yourEngPct + '%</strong> of ' + engTotal + ' citation' + (engTotal !== 1 ? 's' : '') + '</span>'
+      + '</div>'
+      + '<div style="display:flex;border-radius:6px;overflow:hidden;gap:2px;">' + segs + '</div>'
+      + '</div>';
   }).join('');
 
-  const legend = sorted.map(([domain, info], i) => {
-    const pct   = Math.round(info.total_citations / total * 100);
-    const color = colorFor(domain, info, i);
-    return `<div style="display:flex;align-items:center;gap:8px;font-size:12px;padding:4px 0;">
-      <div style="width:12px;height:12px;border-radius:3px;background:${color};flex-shrink:0;"></div>
-      <span style="color:${info.is_target ? '#1D4ED8' : '#374151'};font-weight:${info.is_target ? 600 : 400};">${_esc(domain)}${info.is_target ? ' <span style="font-size:10px;background:#DBEAFE;color:#1E40AF;padding:1px 5px;border-radius:3px;">You</span>' : ''}</span>
-      <span style="margin-left:auto;font-weight:700;color:${color};">${pct}%</span>
-      <span style="color:#94A3B8;min-width:70px;text-align:right;">${info.total_citations} citation${info.total_citations !== 1 ? 's' : ''}</span>
-    </div>`;
-  }).join('');
+  // Domain colour legend
+  const noCompetitors = sorted.length === 1;
+  const legend = noCompetitors
+    ? '<p style="font-size:12px;color:#94A3B8;margin:8px 0 0;">Add competitor URLs when scanning to compare share of voice per engine.</p>'
+    : '<div style="border-top:1px solid #F1F5F9;margin-top:4px;padding-top:10px;">'
+      + sorted.map(function(entry) {
+          const domain = entry[0]; const info = entry[1];
+          const pct   = Math.round(info.total_citations / totalAll * 100);
+          const color = domainColor[domain];
+          return '<div style="display:flex;align-items:center;gap:8px;font-size:12px;padding:3px 0;">'
+            + '<div style="width:10px;height:10px;border-radius:3px;background:' + color + ';flex-shrink:0;"></div>'
+            + '<span style="color:' + (info.is_target ? '#1D4ED8' : '#374151') + ';font-weight:' + (info.is_target ? 600 : 400) + ';">' + _esc(domain)
+            + (info.is_target ? ' <span style="font-size:10px;background:#DBEAFE;color:#1E40AF;padding:1px 5px;border-radius:3px;">You</span>' : '') + '</span>'
+            + '<span style="margin-left:auto;font-weight:700;color:' + color + ';">' + pct + '%</span>'
+            + '<span style="color:#94A3B8;min-width:72px;text-align:right;">' + info.total_citations + ' total</span>'
+            + '</div>';
+        }).join('')
+      + '</div>';
 
-  el.innerHTML = `
-    <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;">
-      <span style="font-size:28px;font-weight:800;color:#6366F1;">${yourShare}%</span>
-      <span style="font-size:13px;color:#64748B;">your share of all AI citations across tracked sites</span>
-    </div>
-    <div style="display:flex;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:14px;">${barSegs}</div>
-    <div style="display:flex;flex-direction:column;">${legend}</div>`;
+  el.innerHTML =
+    '<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:18px;">'
+    + '<span style="font-size:26px;font-weight:800;color:#6366F1;">' + yourOverall + '%</span>'
+    + '<span style="font-size:13px;color:#64748B;">your overall share of AI citations</span>'
+    + '</div>'
+    + engineRows
+    + legend;
 }
 
 // ─── Citations Table ───────────────────────────────────
