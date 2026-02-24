@@ -19,10 +19,22 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
+      background: #f8fafc;
       color: #1e293b;
       font-size: 12px;
       line-height: 1.5;
+    }
+
+    .wrap > .section,
+    .wrap > .cover {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      padding: 28px 32px;
+      margin-bottom: 20px;
+    }
+    .wrap > .cover {
+      padding: 0;
     }
 
     /* ── Print Button Bar ────────────────────────────────── */
@@ -80,9 +92,9 @@
 
     /* ── Wrapper ─────────────────────────────────────────── */
     .wrap {
-      max-width: 800px;
-      margin: 60px auto 48px;
-      padding: 0 20px;
+      max-width: 820px;
+      margin: 68px auto 48px;
+      padding: 0 16px;
     }
 
     /* ── COVER PAGE ──────────────────────────────────────── */
@@ -184,30 +196,31 @@
     .cover-strip-red { background: #ef4444; }
 
     /* ── Section ─────────────────────────────────────────── */
-    .section { margin-bottom: 28px; }
+    .section { margin-bottom: 20px; }
     .page-break { page-break-before: always; }
 
     .sec-header {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 14px;
-      padding-bottom: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
       border-bottom: 2px solid #e2e8f0;
     }
     .sec-num {
       color: white;
       font-weight: 900;
       font-size: 11px;
-      border-radius: 5px;
-      width: 24px; height: 24px;
+      border-radius: 6px;
+      width: 26px; height: 26px;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      background: #6366f1;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      box-shadow: 0 2px 6px rgba(99,102,241,0.35);
     }
-    .sec-num-red { background: #ef4444; }
-    .sec-num-amber { background: #f59e0b; }
-    .sec-num-green { background: #22c55e; }
+    .sec-num-red { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 2px 6px rgba(239,68,68,0.35); }
+    .sec-num-amber { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 2px 6px rgba(245,158,11,0.35); }
+    .sec-num-green { background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 2px 6px rgba(34,197,94,0.35); }
     .sec-title { font-size: 16px; font-weight: 800; color: #0f172a; }
     .sec-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
 
@@ -235,11 +248,23 @@
       padding: 14px 10px;
       text-align: center;
       border: 1px solid;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
     }
     .stat-red { background: #fef2f2; border-color: #fecaca; }
+    .stat-red::before { background: #dc2626; }
     .stat-yellow { background: #fffbeb; border-color: #fde68a; }
+    .stat-yellow::before { background: #d97706; }
     .stat-blue { background: #eff6ff; border-color: #bfdbfe; }
+    .stat-blue::before { background: #2563eb; }
     .stat-indigo { background: #eef2ff; border-color: #c7d2fe; }
+    .stat-indigo::before { background: #4f46e5; }
     .stat-num { font-size: 26px; font-weight: 900; }
     .stat-red .stat-num { color: #dc2626; }
     .stat-yellow .stat-num { color: #d97706; }
@@ -251,6 +276,111 @@
     .stat-blue .stat-lbl { color: #2563eb; }
     .stat-indigo .stat-lbl { color: #4f46e5; }
     .stat-desc { font-size: 9px; color: #94a3b8; margin-top: 2px; }
+
+    /* ── Issue summary cards ──────────────────────────────── */
+    .issue-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .issue-card {
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid;
+      page-break-inside: avoid;
+    }
+    .issue-card-critical {
+      background: #fff5f5;
+      border-color: #fecaca;
+      border-left: 3px solid #dc2626;
+    }
+    .issue-card-warning {
+      background: #fffbeb;
+      border-color: #fde68a;
+      border-left: 3px solid #d97706;
+    }
+    .issue-card-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+    }
+    .issue-card-cat {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      background: rgba(0,0,0,0.06);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: #475569;
+    }
+    .issue-card-check {
+      font-size: 11px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .issue-card-detail {
+      font-size: 10px;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .issue-card-fix {
+      font-size: 9.5px;
+      color: #4f46e5;
+      font-style: italic;
+      line-height: 1.4;
+      border-top: 1px solid rgba(99,102,241,0.12);
+      padding-top: 4px;
+      margin-top: 2px;
+    }
+    .issue-card-fix::before { content: '→ Fix: '; font-weight: 700; font-style: normal; }
+
+    /* ── Subsection label ─────────────────────────────────── */
+    .subsec-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .subsec-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    /* ── Highlight callout ────────────────────────────────── */
+    .callout-box {
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .callout-critical { background: #fef2f2; border: 1px solid #fecaca; }
+    .callout-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .callout-critical .callout-icon { background: #dc2626; color: white; }
+    .callout-body { flex: 1; }
+    .callout-title { font-size: 12px; font-weight: 800; color: #991b1b; margin-bottom: 3px; }
+    .callout-text { font-size: 11px; color: #7f1d1d; line-height: 1.55; }
 
     /* ── Score bar chart ─────────────────────────────────── */
     .bar-row {
@@ -476,14 +606,18 @@
 
     /* ── Print ───────────────────────────────────────────── */
     @media print {
+      body { background: #ffffff; }
       .print-bar { display: none !important; }
       .wrap { margin-top: 0; max-width: 100%; padding: 0 8px; }
-      .cover { border-radius: 0; }
+      .wrap > .section,
+      .wrap > .cover { box-shadow: none; border-radius: 0; padding: 20px 0; background: transparent; }
+      .cover { border-radius: 0 !important; }
       .page-break { page-break-before: always; }
       .section { page-break-inside: avoid; }
       .cat-block { page-break-inside: avoid; }
       .phase { page-break-inside: avoid; }
       .ftable tr { page-break-inside: avoid; }
+      .issue-card { page-break-inside: avoid; }
       @page {
         margin: 14mm 12mm;
         size: A4;
@@ -585,6 +719,26 @@
         </div>
       </div>
     </div>
+
+    <!-- Cover bottom: top critical issues preview -->
+    {% if result.critical_findings %}
+    <div style="background:rgba(0,0,0,0.25);padding:14px 44px;border-top:1px solid rgba(255,255,255,0.08);">
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">Top Issues Requiring Attention</div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        {% for f in result.critical_findings[:3] %}
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span style="background:#ef4444;color:white;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;flex-shrink:0;">CRITICAL</span>
+          <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.85);">{{ f.check }}</span>
+          <span style="font-size:9px;color:rgba(255,255,255,0.35);flex-shrink:0;">{{ f.category }}</span>
+        </div>
+        {% endfor %}
+        {% if result.critical_findings | length > 3 %}
+        <div style="font-size:9px;color:rgba(255,255,255,0.3);margin-top:2px;">+ {{ result.critical_findings | length - 3 }} more critical issue{{ 's' if result.critical_findings | length - 3 > 1 else '' }} — see Section 2</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
     <div class="cover-strip {% if score >= 80 %}cover-strip-green{% elif score >= 55 %}cover-strip-yellow{% else %}cover-strip-red{% endif %}"></div>
   </div>
 
@@ -597,6 +751,26 @@
         <div class="sec-sub">Overall health, key metrics, and category performance at a glance</div>
       </div>
     </div>
+
+    {% if result.critical_findings | length >= 5 %}
+    <div class="callout-box callout-critical" style="margin-bottom:14px;">
+      <div class="callout-icon">!</div>
+      <div class="callout-body">
+        <div class="callout-title">{{ result.critical_findings | length }} Critical Issues Detected</div>
+        <div class="callout-text">
+          This site has <strong>{{ result.critical_findings | length }} critical SEO issues</strong> that are actively suppressing organic visibility.
+          Immediate remediation is strongly recommended. Key problem areas include:
+          {% set shown_cats = [] %}
+          {% for f in result.critical_findings %}
+            {% if f.category not in shown_cats and shown_cats | length < 4 %}
+              {% if shown_cats.append(f.category) %}{% endif %}
+            {% endif %}
+          {% endfor %}
+          {{ shown_cats | join(', ') }}{% if result.critical_findings | length > shown_cats | length %}, and more{% endif %}.
+        </div>
+      </div>
+    </div>
+    {% endif %}
 
     <div class="exec-intro">
       We conducted a comprehensive SEO audit of <strong>{{ result.url }}</strong>,
@@ -639,6 +813,40 @@
         <div class="stat-desc">Full-stack coverage</div>
       </div>
     </div>
+
+    <!-- Key Issues at a Glance -->
+    {% set top_criticals = result.critical_findings[:6] %}
+    {% if top_criticals %}
+    <div class="subsec-label">Critical Issues at a Glance</div>
+    <div class="issue-summary-grid">
+      {% for f in top_criticals %}
+      <div class="issue-card issue-card-critical">
+        <div class="issue-card-header">
+          <span class="badge badge-critical">CRITICAL</span>
+          <span class="issue-card-cat">{{ f.category }}</span>
+        </div>
+        <div class="issue-card-check">{{ f.check }}</div>
+        <div class="issue-card-detail">{{ f.detail }}</div>
+        {% if f.recommendation %}<div class="issue-card-fix">{{ f.recommendation }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% elif result.warning_findings %}
+    <div class="subsec-label">Top Warnings at a Glance</div>
+    <div class="issue-summary-grid">
+      {% for f in result.warning_findings[:4] %}
+      <div class="issue-card issue-card-warning">
+        <div class="issue-card-header">
+          <span class="badge badge-warning">WARNING</span>
+          <span class="issue-card-cat">{{ f.category }}</span>
+        </div>
+        <div class="issue-card-check">{{ f.check }}</div>
+        <div class="issue-card-detail">{{ f.detail }}</div>
+        {% if f.recommendation %}<div class="issue-card-fix">{{ f.recommendation }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
 
     <!-- Score bar chart with mini gauges -->
     <div style="font-size:11px;font-weight:800;color:#0f172a;margin-bottom:12px;">Category Performance</div>
