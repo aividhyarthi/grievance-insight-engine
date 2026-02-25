@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ClientLogos } from './ClientLogos';
 
 interface Props {
   onSubmit: (url: string, competitors: string[]) => void;
@@ -167,6 +168,8 @@ export function AuditForm({ onSubmit, loading }: Props) {
           </span>
         ))}
       </div>
+
+      <ClientLogos />
     </div>
   );
 }

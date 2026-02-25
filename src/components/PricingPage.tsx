@@ -31,24 +31,6 @@ interface PlanTier {
 
 const PLANS: PlanTier[] = [
   {
-    name: 'Free',
-    monthlyINR: '0',
-    monthlyUSD: '0',
-    annualINR: '0',
-    annualUSD: '0',
-    urlScans: '3 URL scans/day',
-    features: [
-      { text: 'AEO Audit (basic)', included: true },
-      { text: 'Resource Audit (basic)', included: true },
-      { text: 'HTML paste mode (unlimited)', included: true },
-      { text: 'Score & top 3 actions', included: true },
-      { text: 'PDF export', included: false },
-      { text: 'Audit history', included: false },
-      { text: 'Competitor comparison', included: false },
-      { text: 'Bulk URL scanning', included: false },
-    ],
-  },
-  {
     name: 'Starter',
     monthlyINR: '999',
     monthlyUSD: '12',
@@ -163,12 +145,12 @@ export function PricingPage({ onLogin, onBack }: Props) {
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gray-900">Simple, Transparent Pricing</h1>
         <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
-          Start free, upgrade when you need more. Every plan includes both AEO Audit and Resource Audit tools.
+          Choose the plan that fits your needs. Every plan includes both AEO Audit and Resource Audit tools.
         </p>
       </div>
 
       {/* Plan Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {PLANS.map((plan) => (
           <div
             key={plan.name}
@@ -224,25 +206,16 @@ export function PricingPage({ onLogin, onBack }: Props) {
             </ul>
 
             {/* CTA */}
-            {plan.name === 'Free' ? (
-              <button
-                onClick={onBack}
-                className="w-full py-2.5 text-sm font-semibold rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                Current Plan
-              </button>
-            ) : (
-              <button
-                onClick={user ? handleUpgrade : onLogin}
-                className={`w-full py-2.5 text-sm font-semibold rounded-lg transition-colors ${
-                  plan.highlight
-                    ? 'bg-brand-600 text-white hover:bg-brand-700'
-                    : 'bg-gray-900 text-white hover:bg-gray-800'
-                }`}
-              >
-                {user ? 'Upgrade Now' : 'Sign Up & Upgrade'}
-              </button>
-            )}
+            <button
+              onClick={user ? handleUpgrade : onLogin}
+              className={`w-full py-2.5 text-sm font-semibold rounded-lg transition-colors ${
+                plan.highlight
+                  ? 'bg-brand-600 text-white hover:bg-brand-700'
+                  : 'bg-gray-900 text-white hover:bg-gray-800'
+              }`}
+            >
+              {user ? 'Get Started' : 'Sign Up & Get Started'}
+            </button>
           </div>
         ))}
       </div>

@@ -10,8 +10,12 @@ import { AuthPage } from './components/AuthPage';
 import { DashboardPage } from './components/DashboardPage';
 import { ResourceAuditTab } from './components/ResourceAuditTab';
 import { PricingPage } from './components/PricingPage';
+import { ClientLogos } from './components/ClientLogos';
+import { ChatAgent } from './components/ChatAgent';
+import { PrivacyPage } from './components/PrivacyPage';
+import { TermsPage } from './components/TermsPage';
 
-type Page = 'audit' | 'dashboard' | 'pricing';
+type Page = 'audit' | 'dashboard' | 'pricing' | 'privacy' | 'terms';
 type ToolTab = 'aeo-audit' | 'resource-audit';
 
 function getHostname(url: string): string {
@@ -81,7 +85,11 @@ export default function App() {
         onLogoClick={() => { setPage('audit'); setReport(null); setError(null); }}
       />
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
-        {page === 'pricing' ? (
+        {page === 'privacy' ? (
+          <PrivacyPage onBack={() => setPage('audit')} />
+        ) : page === 'terms' ? (
+          <TermsPage onBack={() => setPage('audit')} />
+        ) : page === 'pricing' ? (
           <PricingPage
             onLogin={() => setShowAuth(true)}
             onBack={() => setPage('audit')}
@@ -203,7 +211,11 @@ export default function App() {
           </>
         )}
       </main>
-      <Footer />
+      <Footer
+        onPrivacyClick={() => setPage('privacy')}
+        onTermsClick={() => setPage('terms')}
+      />
+      <ChatAgent />
 
       {showAuth && <AuthPage onClose={() => setShowAuth(false)} />}
     </div>
