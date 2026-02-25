@@ -1977,9 +1977,34 @@ const CAT_COLOR = {
   refunds:'#EC4899', tech:'#3B82F6', general:'#6B7280',
 };
 const CAT_LABEL = {
+  // ecommerce
   customer_service:'Customer Service', product_quality:'Product Quality',
   pricing:'Pricing & Fees', delivery:'Delivery & Logistics',
   refunds:'Refunds & Returns', tech:'App & Website', general:'General',
+  // healthcare
+  patient_care:'Patient Care Quality', appointment_booking:'Appointment Booking',
+  billing_insurance:'Billing & Insurance', staff_quality:'Staff & Doctor Quality',
+  waiting_time:'Wait Times', hygiene:'Hygiene & Cleanliness',
+  // education
+  course_quality:'Course & Curriculum Quality', faculty_responsiveness:'Faculty & Teaching Quality',
+  admission_process:'Admission Process', campus_facilities:'Campus Facilities',
+  placement_support:'Placement & Career Support', fee_transparency:'Fee Structure & Transparency',
+  // media
+  content_quality:'Content Quality & Accuracy', subscription_issues:'Subscription & Paywall Issues',
+  website_performance:'Website & App Performance', ad_experience:'Ad Experience',
+  comment_moderation:'Comment Moderation & Community',
+  // restaurant
+  food_quality:'Food Quality', hygiene_cleanliness:'Hygiene & Cleanliness',
+  service_speed:'Service Speed & Staff', delivery_experience:'Delivery Experience',
+  pricing_value:'Pricing & Value',
+  // finance
+  transaction_failures:'Transaction & Payment Issues', hidden_charges:'Hidden Charges & Fees',
+  account_issues:'Account Management', loan_process:'Loan & Credit Process',
+  // saas
+  product_bugs:'Product Reliability & Bugs', pricing_model:'Pricing & Value',
+  onboarding_complexity:'Onboarding & Usability', downtime_reliability:'Uptime & Reliability',
+  // shared
+  customer_support:'Customer Support',
 };
 const SRC_META = {
   ai_engine:       { label:'AI Engines',       color:'#2563EB',  bg:'#EFF6FF' },
@@ -2378,70 +2403,161 @@ function exportKyobrPDF() {
   if (!data) return;
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ unit:'pt', format:'a4' });
-  const W=595.28, H=841.89, PAD=44;
+  const W=595.28, H=841.89, PAD=40;
   const reviews = data.reviews||[];
   const summary = data.summary||{};
+  const industry = data.industry_type||'ecommerce';
 
+  // ── Helpers ────────────────────────────────────────────────────────────────
   function rgb(hex){return [parseInt(hex.slice(1,3),16),parseInt(hex.slice(3,5),16),parseInt(hex.slice(5,7),16)];}
   function fill(hex){const[r,g,b]=rgb(hex);doc.setFillColor(r,g,b);}
   function ink(hex){const[r,g,b]=rgb(hex);doc.setTextColor(r,g,b);}
+  function stroke(hex,w){const[r,g,b]=rgb(hex);doc.setDrawColor(r,g,b);if(w)doc.setLineWidth(w);}
   function frect(x,y,w,h,hex,rx){fill(hex);rx?doc.roundedRect(x,y,w,h,rx,rx,'F'):doc.rect(x,y,w,h,'F');}
-  function txt(s,x,y,sz,hex,wt,al){ink(hex||'#0F172A');doc.setFontSize(sz||10);doc.setFont('helvetica',wt||'normal');doc.text(String(s),al==='center'?W/2:x,y,al==='center'?{align:'center'}:{});}
-  function divider(y){doc.setLineWidth(0.5);const[r,g,b]=rgb('#E2E8F0');doc.setDrawColor(r,g,b);doc.line(PAD,y,W-PAD,y);}
+  function txt(s,x,y,sz,hex,wt,al){
+    ink(hex||'#0F172A');doc.setFontSize(sz||10);doc.setFont('helvetica',wt||'normal');
+    doc.text(String(s||''),al==='center'?W/2:(al==='right'?x:x),y,{align:al||'left'});
+  }
 
   const hc = HEALTH_COLOR[summary.brand_health]||'#64748B';
+  const industryLabel = {healthcare:'Healthcare',education:'Education',media:'Media / Blog',restaurant:'Restaurant',finance:'Finance / Banking',saas:'Software / SaaS',ecommerce:'E-commerce'}[industry]||industry;
+  const enginesArr = summary.engines_queried||['Perplexity AI','ChatGPT','Google Gemini','DeepSeek','Google AI Overview'];
+  const enginesLabel = enginesArr.join('  ·  ');
+  const dt = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
 
-  // Cover
-  frect(0,0,W,H,'#0F172A'); frect(0,0,5,H,'#DC2626');
-  frect(PAD,44,170,28,'#1E293B',4); txt('RUDRA KASTURI INC — KYOBR',PAD+10,62,8,'#F87171','bold');
-  txt('Brand Reputation Intelligence',PAD,150,28,'#F1F5F9','bold');
-  txt(data.brand,PAD,186,22,'#FFFFFF','bold');
-  txt(data.timeframe_label||'Last 7 days',PAD,208,12,'#94A3B8','normal');
+  // ══════════════════════════════════════════════════════
+  //  PAGE 1 — COVER
+  // ══════════════════════════════════════════════════════
+  frect(0,0,W,H,'#0F172A');
+  frect(0,0,6,H,'#DC2626');
 
-  frect(W-162,128,116,80,hc,10);
-  txt(_cap(summary.brand_health||'fair'),W-104,172,16,'#FFFFFF','bold','center');
-  txt('Brand Health',W-104,192,8,'#FFFFFF','normal','center');
+  // Report label chip
+  frect(PAD,38,210,24,'#1E293B',4);
+  txt('KYOBR — BRAND REPUTATION REPORT',PAD+10,54,7.5,'#F87171','bold');
 
-  const mts=[
-    {l:'Total Issues',v:summary.total_issues||reviews.length},
-    {l:'High Severity',v:summary.high_severity||0},
-    {l:'Med Severity',v:summary.medium_severity||0},
-    {l:'Sources Scanned',v:summary.ai_engines_searched||4},
+  // Brand name + period
+  txt('Brand Reputation Intelligence',PAD,136,20,'#94A3B8','normal');
+  txt(data.brand,PAD,176,36,'#FFFFFF','bold');
+  txt((data.timeframe_label||'Last 7 days') + '   ·   Industry: ' + industryLabel, PAD, 200, 10.5, '#64748B', 'normal');
+
+  // Health badge
+  frect(W-152,126,112,80,hc,10);
+  ink('#FFFFFF'); doc.setFontSize(24); doc.setFont('helvetica','bold');
+  doc.text(_cap(summary.brand_health||'fair'), W-96, 170, {align:'center'});
+  txt('Brand Health', W-96, 188, 8, '#FFFFFF', 'normal', 'center');
+
+  // Metric boxes
+  const metrics=[
+    {l:'Total Issues',     v:summary.total_issues||reviews.length},
+    {l:'High Severity',    v:summary.high_severity||0},
+    {l:'Med Severity',     v:summary.medium_severity||0},
+    {l:'AI Engines Scanned', v:enginesArr.length},
   ];
-  const pw2=(W-PAD*2-12)/4;
-  mts.forEach((m,i)=>{
-    const mx=PAD+i*(pw2+4)+pw2/2;
-    frect(PAD+i*(pw2+4),260,pw2,58,'#1E293B',6);
-    txt(String(m.v),mx,292,18,'#F1F5F9','bold','center');
-    txt(m.l,mx,308,8,'#64748B','normal','center');
+  const mw=(W-PAD*2-12)/4;
+  metrics.forEach((m,i)=>{
+    const mx=PAD+i*(mw+4);
+    frect(mx,228,mw,60,'#1E293B',6);
+    ink('#F1F5F9'); doc.setFontSize(22); doc.setFont('helvetica','bold');
+    doc.text(String(m.v), mx+mw/2, 257, {align:'center'});
+    ink('#64748B'); doc.setFontSize(7.5); doc.setFont('helvetica','normal');
+    doc.text(m.l, mx+mw/2, 272, {align:'center'});
   });
 
-  const dt=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  frect(0,H-36,W,36,'#1E293B'); txt(`Generated ${dt}  |  Confidential — Rudra Kasturi Inc`,0,H-13,7,'#475569','normal','center');
+  // Engines scanned block
+  frect(PAD,306,W-PAD*2,44,'#1E293B',6);
+  txt('AI Engines Scanned', PAD+14, 322, 8, '#94A3B8', 'bold');
+  txt(enginesLabel, PAD+14, 338, 8.5, '#CBD5E1', 'normal');
 
-  // Page 2: Issues
+  // Top 5 issues preview
+  let sy=370;
+  txt('Top Issues Found', PAD, sy, 11, '#F1F5F9', 'bold'); sy+=16;
+  reviews.slice(0,5).forEach(r=>{
+    const sc=r.severity==='high'?'#DC2626':'#F59E0B';
+    frect(PAD, sy, 5, 28, sc, 2);
+    frect(PAD+5, sy, W-PAD*2-5, 28, '#1E293B');
+    const catLabel = CAT_LABEL[r.category_key]||r.category||r.category_key;
+    ink('#94A3B8'); doc.setFontSize(7); doc.setFont('helvetica','bold');
+    doc.text(catLabel.toUpperCase(), PAD+14, sy+11);
+    ink(sc); doc.setFontSize(7); doc.setFont('helvetica','bold');
+    doc.text(r.severity.toUpperCase(), W-PAD-6, sy+11, {align:'right'});
+    ink('#8B9BB4'); doc.setFontSize(7.5); doc.setFont('helvetica','normal');
+    const preview = (doc.splitTextToSize(r.text||'', W-PAD*2-60))[0]||'';
+    doc.text(preview, PAD+14, sy+22);
+    ink('#475569'); doc.setFontSize(7); doc.setFont('helvetica','normal');
+    doc.text(r.platform||'', W-PAD-6, sy+22, {align:'right'});
+    sy+=32;
+  });
+
+  // Footer
+  frect(0,H-32,W,32,'#1E293B');
+  txt(`Generated ${dt}   |   KYOBR Brand Intelligence   |   Confidential`, 0, H-11, 7, '#475569', 'normal', 'center');
+
+  // ══════════════════════════════════════════════════════
+  //  PAGE 2+ — FULL ISSUE DETAILS
+  // ══════════════════════════════════════════════════════
   doc.addPage();
-  frect(0,0,W,58,'#DC2626');
-  txt('KYOBR — Identified Issues',PAD,36,18,'#FFFFFF','bold');
-  txt(data.brand,W-PAD,36,9,'#FCA5A5','normal');
 
-  let y=76;
+  function pageHeader(){
+    frect(0,0,W,50,'#DC2626');
+    txt('All Identified Issues — Full Detail', PAD, 30, 15, '#FFFFFF', 'bold');
+    txt(data.brand+'   ·   '+( data.timeframe_label||'Last 7 days'), W-PAD, 22, 8.5, '#FCA5A5', 'normal', 'right');
+    txt('Scanned via: '+enginesLabel, W-PAD, 38, 7.5, '#FECACA', 'normal', 'right');
+  }
+  pageHeader();
+  let y=62;
+
   reviews.forEach((r,idx)=>{
-    const rowH=48;
-    if(y+rowH>H-50){doc.addPage();frect(0,0,W,40,'#DC2626');y=56;}
-    frect(PAD,y,W-PAD*2,rowH,idx%2===0?'#FFFFFF':'#F8FAFC');
-    const svColor=r.severity==='high'?'#DC2626':'#F59E0B';
+    // Pre-calculate text lines to know the exact row height needed
+    doc.setFontSize(9); doc.setFont('helvetica','normal');
+    const textLines = doc.splitTextToSize(r.text||'', W-PAD*2-24);
+    const rowH = Math.max(60, textLines.length * 12 + 38);
+
+    if(y+rowH > H-38){
+      // Footer on current page
+      frect(0,H-28,W,28,'#1E293B');
+      txt(`KYOBR Report  ·  ${data.brand}  ·  Confidential`, 0, H-9, 7, '#475569', 'normal', 'center');
+      doc.addPage();
+      pageHeader();
+      y=62;
+    }
+
+    // Row background
+    frect(PAD, y, W-PAD*2, rowH, idx%2===0?'#FFFFFF':'#F8FAFC');
+
+    // Left severity stripe
+    const svColor = r.severity==='high'?'#DC2626':'#F59E0B';
+    frect(PAD, y, 5, rowH, svColor, 2);
+
+    // Severity badge
     const[br,bg2,bb]=rgb(svColor); doc.setFillColor(br,bg2,bb);
-    doc.roundedRect(PAD,y,3,rowH,2,2,'F');
-    ink(svColor); doc.setFontSize(8); doc.setFont('helvetica','bold');
-    doc.text(r.severity.toUpperCase(),PAD+8,y+14);
-    ink('#64748B'); doc.setFontSize(8); doc.setFont('helvetica','normal');
-    doc.text(`${CAT_LABEL[r.category_key]||r.category}  |  ${r.platform||''}  |  ${r.mentions||'?'} mentions`,PAD+8,y+26);
-    ink('#374151'); doc.setFontSize(8.5); doc.setFont('helvetica','normal');
-    const lines=doc.splitTextToSize(r.text||'',W-PAD*2-16);
-    doc.text(lines[0]||'',PAD+8,y+39);
-    y+=rowH+4;
+    doc.roundedRect(PAD+10, y+9, r.severity==='high'?28:24, 14, 3,3,'F');
+    ink('#FFFFFF'); doc.setFontSize(7); doc.setFont('helvetica','bold');
+    doc.text(r.severity==='high'?'HIGH':'MED', PAD+24, y+18.5, {align:'center'});
+
+    // Category name (bold, readable)
+    const catLabel = CAT_LABEL[r.category_key]||r.category||r.category_key;
+    ink('#111827'); doc.setFontSize(10); doc.setFont('helvetica','bold');
+    doc.text(catLabel, PAD+46, y+19);
+
+    // Platform + mentions on right
+    const meta = (r.platform||'') + (r.mentions ? '  ·  '+r.mentions+' mentions' : '');
+    ink('#6B7280'); doc.setFontSize(8); doc.setFont('helvetica','normal');
+    doc.text(meta, W-PAD-8, y+19, {align:'right'});
+
+    // Separator line under header row
+    stroke('#E5E7EB', 0.4);
+    doc.line(PAD+10, y+26, W-PAD-10, y+26);
+
+    // Full complaint text — ALL lines, no truncation
+    ink('#1F2937'); doc.setFontSize(9); doc.setFont('helvetica','normal');
+    doc.text(textLines, PAD+10, y+38);
+
+    y += rowH + 6;
   });
+
+  // Final page footer
+  frect(0,H-28,W,28,'#1E293B');
+  txt(`KYOBR Report  ·  ${data.brand}  ·  ${dt}  ·  Confidential`, 0, H-9, 7, '#475569', 'normal', 'center');
 
   doc.save(`KYOBR-${data.brand}-${KYOBR_STATE.timeframe}.pdf`);
 }
