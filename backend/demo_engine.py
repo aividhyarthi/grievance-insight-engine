@@ -34,6 +34,24 @@ ENGINES = {
         "citation_rate": 0.42,
         "max_sources_per_query": 3,
     },
+    "google_gemini": {
+        "name": "Google Gemini",
+        "color": "#8E44AD",
+        "citation_rate": 0.58,
+        "max_sources_per_query": 4,
+    },
+    "deepseek": {
+        "name": "DeepSeek",
+        "color": "#E74C3C",
+        "citation_rate": 0.50,
+        "max_sources_per_query": 4,
+    },
+    "bing_ai": {
+        "name": "Bing AI (Copilot)",
+        "color": "#00A4EF",
+        "citation_rate": 0.48,
+        "max_sources_per_query": 4,
+    },
 }
 
 POSITIVE_SNIPPETS = [

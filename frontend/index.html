@@ -561,7 +561,20 @@
           <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
             <div style="flex:1;min-width:200px;">
               <label style="display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px;">Your Brand</label>
-              <input type="text" id="kyobr-input" placeholder="e.g. Cars24, Zomato, Amazon..." onkeydown="if(event.key==='Enter')runKYOBR()" />
+              <input type="text" id="kyobr-input" placeholder="e.g. Apollo Hospital, MIT, TechCrunch..." onkeydown="if(event.key==='Enter')runKYOBR()" />
+            </div>
+            <div style="flex-shrink:0;min-width:180px;">
+              <label style="display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px;">Business Type <span style="font-weight:400;color:#94A3B8;">(auto-detect)</span></label>
+              <select id="kyobr-biz-type" style="width:100%;padding:7px 10px;border:1px solid #D1D5DB;border-radius:8px;font-size:13px;color:#374151;background:white;">
+                <option value="">Auto Detect</option>
+                <option value="healthcare">Healthcare / Hospital</option>
+                <option value="education">Education / College</option>
+                <option value="media">Blog / News / Media</option>
+                <option value="restaurant">Restaurant / Food</option>
+                <option value="finance">Finance / Banking</option>
+                <option value="saas">Software / SaaS</option>
+                <option value="ecommerce">E-commerce / Retail</option>
+              </select>
             </div>
             <div style="flex-shrink:0;">
               <label style="display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px;">Timeframe</label>
@@ -593,7 +606,7 @@
         <div id="kyobr-loading" style="display:none;text-align:center;padding:60px 20px;background:white;border-radius:14px;border:1px solid #E2E8F0;">
           <div class="spinner" style="margin:0 auto 20px;"></div>
           <div style="font-size:15px;font-weight:600;color:#0F172A;margin-bottom:6px;">Scanning AI Engines, Forums &amp; Social Media...</div>
-          <div id="kyobr-loading-sub" style="font-size:13px;color:#64748B;">Querying Perplexity AI, ChatGPT, Google AI Overview, Reddit, Trustpilot and more...</div>
+          <div id="kyobr-loading-sub" style="font-size:13px;color:#64748B;">Querying Perplexity AI, ChatGPT, Google Gemini, DeepSeek, Google AI Overview, Reddit, Trustpilot and more...</div>
         </div>
 
         <!-- Results Container -->
@@ -712,10 +725,13 @@ const state = {
 };
 
 const ENGINE_META = {
-  perplexity:         { name: 'Perplexity AI',       color: '#20B2AA' },
-  google_ai_overview: { name: 'Google AI Overview',  color: '#4285F4' },
-  chatgpt_search:     { name: 'ChatGPT Search',       color: '#10A37F' },
-  chatgpt_chat:       { name: 'ChatGPT (Chat)',        color: '#74AA9C' },
+  perplexity:         { name: 'Perplexity AI',        color: '#20B2AA' },
+  google_ai_overview: { name: 'Google AI Overview',   color: '#4285F4' },
+  chatgpt_search:     { name: 'ChatGPT Search',        color: '#10A37F' },
+  chatgpt_chat:       { name: 'ChatGPT (Chat)',         color: '#74AA9C' },
+  google_gemini:      { name: 'Google Gemini',          color: '#8E44AD' },
+  deepseek:           { name: 'DeepSeek',               color: '#E74C3C' },
+  bing_ai:            { name: 'Bing AI (Copilot)',      color: '#00A4EF' },
 };
 
 // ═══════════════════════════════════════════════════════
@@ -2001,24 +2017,25 @@ function _renderKyobrCompTags() {
 }
 
 async function runKYOBR() {
-  const brand = document.getElementById('kyobr-input').value.trim();
+  const brand    = document.getElementById('kyobr-input').value.trim();
   if (!brand) { alert('Please enter a brand name'); return; }
-  const btn     = document.getElementById('btn-kyobr');
-  const loading = document.getElementById('kyobr-loading');
-  const results = document.getElementById('kyobr-results');
+  const bizType  = document.getElementById('kyobr-biz-type').value || null;
+  const btn      = document.getElementById('btn-kyobr');
+  const loading  = document.getElementById('kyobr-loading');
+  const results  = document.getElementById('kyobr-results');
   const hasComps = KYOBR_STATE.competitors.length > 0;
 
   btn.disabled = true; btn.textContent = 'Analyzing...';
   loading.style.display = 'block';
   results.style.display = 'none';
   document.getElementById('kyobr-loading-sub').textContent =
-    `Scanning Perplexity AI, ChatGPT, Google AI, Reddit, Trustpilot${hasComps ? ` + ${hasComps} competitor brands` : ''}…`;
+    `Scanning Perplexity AI, ChatGPT, Google Gemini, DeepSeek, Google AI Overview, Reddit, Trustpilot${hasComps ? ` + ${hasComps} competitor brands` : ''}…`;
 
   try {
     const resp = await fetch('/api/kyobr', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ brand, competitors: KYOBR_STATE.competitors, timeframe: KYOBR_STATE.timeframe }),
+      body: JSON.stringify({ brand, competitors: KYOBR_STATE.competitors, timeframe: KYOBR_STATE.timeframe, business_type: bizType }),
     });
     if (!resp.ok) throw new Error('API error');
     const data = await resp.json();
@@ -2053,8 +2070,10 @@ function renderKYOBRResults(data) {
 
   // Update header
   document.getElementById('kyobr-result-brand').textContent = brand;
+  const industryLabel = { healthcare:'Healthcare', education:'Education', media:'Media/Blog', restaurant:'Restaurant', finance:'Finance', saas:'Software/SaaS', ecommerce:'E-commerce' }[data.industry_type] || '';
+  const enginesLabel  = (summary.engines_queried||[]).join(', ') || `${summary.ai_engines_searched||5} AI engines`;
   document.getElementById('kyobr-result-meta').textContent =
-    `${data.timeframe_label||'Last 7 days'} · ${reviews.length} issue${reviews.length!==1?'s':''} · ${summary.ai_engines_searched||4} sources searched · Brand health: ${_cap(summary.brand_health||'fair')}`;
+    `${data.timeframe_label||'Last 7 days'} · ${reviews.length} issue${reviews.length!==1?'s':''} · Scanned: ${enginesLabel}${industryLabel ? ` · Industry: ${industryLabel}` : ''} · Brand health: ${_cap(summary.brand_health||'fair')}`;
 
   // Toggle competitors tab visibility
   document.getElementById('kyobr-tab-comp-btn').style.opacity = hasComps ? '1' : '0.4';

@@ -11,6 +11,7 @@ class KYOBRRequest(BaseModel):
     brand: str
     competitors: List[str] = []
     timeframe: str = "7d"   # "24h" | "7d" | "30d"
+    business_type: Optional[str] = None  # "healthcare" | "education" | "media" | "restaurant" | "finance" | "saas" | "ecommerce"
 
 
 class ScheduleRequest(BaseModel):

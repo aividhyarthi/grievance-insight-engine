@@ -53,6 +53,8 @@ async def api_status():
         "perplexity": bool(os.getenv("PERPLEXITY_API_KEY")),
         "serpapi": bool(os.getenv("SERPAPI_KEY")),
         "openai": bool(os.getenv("OPENAI_API_KEY")),
+        "gemini": bool(os.getenv("GEMINI_API_KEY")),
+        "deepseek": bool(os.getenv("DEEPSEEK_API_KEY")),
         "demo_mode": not any([
             os.getenv("PERPLEXITY_API_KEY"),
             os.getenv("SERPAPI_KEY"),
@@ -499,11 +501,14 @@ def _suggest_demo(url: str, page_text: str) -> list:
 
 # ─── KYOBR — Know Your Own Brand Reviews ──────────────────────────────────────
 
-# Platform → source_type classification (hidden from users, used for tab grouping)
+# Platform → source_type classification
 _PLATFORM_TYPE = {
     "Perplexity AI":       "ai_engine",
     "Google AI Overview":  "ai_engine",
     "ChatGPT Search":      "ai_engine",
+    "ChatGPT":             "ai_engine",
+    "Google Gemini":       "ai_engine",
+    "DeepSeek":            "ai_engine",
     "Reddit":              "forum",
     "Quora":               "forum",
     "MouthShut":           "forum",
@@ -513,6 +518,13 @@ _PLATFORM_TYPE = {
     "App Store":           "review_platform",
     "Play Store":          "review_platform",
     "Amazon Reviews":      "review_platform",
+    "Practo":              "review_platform",
+    "JustDial":            "review_platform",
+    "Zomato":              "review_platform",
+    "Swiggy":              "review_platform",
+    "TripAdvisor":         "review_platform",
+    "G2":                  "review_platform",
+    "Capterra":            "review_platform",
     "Twitter/X":           "social",
     "Facebook":            "social",
     "LinkedIn":            "social",
@@ -521,14 +533,369 @@ _PLATFORM_TYPE = {
 
 _TIMEFRAME_LABEL = {"24h": "Last 24 hours", "7d": "Last 7 days", "30d": "Last 30 days"}
 
-# Category → platforms most commonly associated
-_CAT_PLATFORMS = {
-    "customer_service": ["Reddit", "Twitter/X", "Trustpilot", "Google Reviews"],
-    "product_quality":  ["Amazon Reviews", "Trustpilot", "Reddit", "Google Reviews"],
-    "pricing":          ["Trustpilot", "Reddit", "Quora", "Facebook"],
-    "delivery":         ["Twitter/X", "Reddit", "Trustpilot", "Consumer Complaints"],
-    "refunds":          ["Trustpilot", "Consumer Complaints", "Reddit", "MouthShut"],
-    "tech":             ["App Store", "Play Store", "Reddit", "Twitter/X"],
+
+def _detect_business_type(brand: str, hint: str = None) -> str:
+    """Infer the industry from a brand name or an explicit caller-supplied hint."""
+    valid = {"healthcare", "education", "media", "restaurant", "finance", "saas", "ecommerce"}
+    if hint and hint in valid:
+        return hint
+    b = brand.lower()
+    if any(k in b for k in ["hospital", "clinic", "health", "medical", "pharma", "doctor", "care", "dental", "eye", "wellness", "apollo", "fortis", "aiims", "max"]):
+        return "healthcare"
+    if any(k in b for k in ["college", "university", "school", "academy", "institute", "edu", "learning", "coaching", "campus", "iit", "iim", "nit"]):
+        return "education"
+    if any(k in b for k in ["blog", "news", "media", "magazine", "times", "post", "journal", "press", "daily", "wire", "herald", "digest", "tribune"]):
+        return "media"
+    if any(k in b for k in ["restaurant", "cafe", "food", "kitchen", "bistro", "grill", "pizza", "burger", "diner", "eats", "bites", "zomato", "swiggy"]):
+        return "restaurant"
+    if any(k in b for k in ["bank", "finance", "fintech", "insurance", "loan", "credit", "invest", "capital", "wealth", "pay", "wallet", "paytm", "razorpay"]):
+        return "finance"
+    if any(k in b for k in ["tech", "software", "app", "platform", "cloud", "digital", "systems", "solutions", "labs", "studio", "dev", "saas", "ai"]):
+        return "saas"
+    return "ecommerce"
+
+
+# Industry-specific complaint templates — keyed by business type
+# Each entry: { "platforms_by_cat": {...}, "templates": { cat_key: (cat_label, [(text, severity), ...]) } }
+# Use {B} as a placeholder for brand.title() — filled at call time.
+_INDUSTRY_TEMPLATES = {
+    "ecommerce": {
+        "platforms_by_cat": {
+            "customer_service": ["Reddit", "Twitter/X", "Trustpilot", "Google Reviews"],
+            "product_quality":  ["Amazon Reviews", "Trustpilot", "Reddit", "Google Reviews"],
+            "pricing":          ["Trustpilot", "Reddit", "Quora", "Facebook"],
+            "delivery":         ["Twitter/X", "Reddit", "Trustpilot", "Consumer Complaints"],
+            "refunds":          ["Trustpilot", "Consumer Complaints", "Reddit", "MouthShut"],
+            "tech":             ["App Store", "Play Store", "Reddit", "Twitter/X"],
+        },
+        "templates": {
+            "customer_service": ("Customer Service", [
+                ("{B}'s customer support is extremely slow — users report waiting 3–7 business days with many queries going unanswered entirely.", "high"),
+                ("Support agents at {B} give inconsistent answers — the same question gets different responses depending on who you speak to.", "medium"),
+                ("{B}'s live chat frequently disconnects mid-conversation, forcing customers to repeat their issue from scratch.", "medium"),
+            ]),
+            "product_quality": ("Product Quality", [
+                ("Items from {B} don't match photos or descriptions — buyers frequently report products arriving in noticeably worse condition.", "high"),
+                ("Counterfeit or substandard products are a recurring complaint about {B} despite their stated verification process.", "high"),
+                ("Quality from {B} is inconsistent — some customers are satisfied while others receive defective or incorrect items.", "medium"),
+            ]),
+            "pricing": ("Pricing & Fees", [
+                ("{B} is criticised for hidden fees revealed only at checkout — processing and convenience charges not shown upfront.", "high"),
+                ("Prices on {B} are inflated 15–25% above market value, especially for resale goods where comparisons are easy.", "medium"),
+                ("Surprise post-purchase charges are common on {B} — customers report being billed extra days after a transaction.", "high"),
+            ]),
+            "delivery": ("Delivery & Logistics", [
+                ("Delivery delays of 2–3× the promised timeline are the top complaint about {B} across Reddit, Trustpilot, and consumer forums.", "high"),
+                ("Packages from {B} arrive damaged — and the company refuses to take responsibility — a frequently cited issue in reviews.", "medium"),
+                ("Tracking information for {B} shipments is often inaccurate or not updated for 48–72 hours, leaving customers in the dark.", "medium"),
+            ]),
+            "refunds": ("Returns & Refunds", [
+                ("Getting a refund from {B} is described as 'nearly impossible' by verified reviewers — many wait 30+ days for money back.", "high"),
+                ("{B}'s return policy is too restrictive — legitimate requests are frequently rejected with vague, unhelpful reasons.", "high"),
+                ("{B}'s refund process requires excessive documentation; customers report needing 5+ support contacts for a single refund.", "medium"),
+            ]),
+            "tech": ("App & Website", [
+                ("{B}'s mobile app crashes during checkout — users lose orders and must restart, a top complaint in App Store reviews.", "high"),
+                ("Random account suspensions on {B} with no explanation and difficulty reaching support are frequently reported.", "medium"),
+                ("{B}'s website slows significantly during high-traffic periods — session errors reported during sales and peak hours.", "medium"),
+            ]),
+        },
+    },
+    "healthcare": {
+        "platforms_by_cat": {
+            "patient_care":        ["Google Reviews", "Practo", "JustDial", "Facebook"],
+            "appointment_booking": ["Google Reviews", "Practo", "Facebook", "Twitter/X"],
+            "billing_insurance":   ["Consumer Complaints", "Google Reviews", "Reddit", "Facebook"],
+            "staff_quality":       ["Google Reviews", "Practo", "Facebook", "MouthShut"],
+            "waiting_time":        ["Google Reviews", "Facebook", "Twitter/X", "Practo"],
+            "hygiene":             ["Google Reviews", "Facebook", "MouthShut", "Consumer Complaints"],
+        },
+        "templates": {
+            "patient_care": ("Patient Care Quality", [
+                ("Doctors at {B} spend under 5 minutes per consultation — patients feel rushed, unheard, and inadequately examined.", "high"),
+                ("Patients report misdiagnosis or delayed diagnosis at {B}, citing insufficient examination and lack of follow-up care.", "high"),
+                ("Post-treatment guidance at {B} is poorly managed — patients struggle to get test results explained or follow-up appointments.", "medium"),
+            ]),
+            "appointment_booking": ("Appointment Booking", [
+                ("Getting an appointment at {B} is 'a nightmare' — patients wait 3–4 weeks even for urgent consultations.", "high"),
+                ("{B}'s online booking system crashes and shows wrong availability, forcing patients to call and wait on hold.", "medium"),
+                ("Walk-in patients at {B} are turned away despite visible availability, due to rigid appointment-only policies.", "medium"),
+            ]),
+            "billing_insurance": ("Billing & Insurance", [
+                ("Patients receive unexpected bills from {B} months after treatment — charges not pre-approved or covered by insurance.", "high"),
+                ("{B}'s billing is criticised for lack of transparency — itemized bills are hard to get and frequently contain errors.", "high"),
+                ("Insurance claim processing at {B} takes 60–90 days, far exceeding industry standards and causing financial stress.", "medium"),
+            ]),
+            "staff_quality": ("Staff & Doctor Quality", [
+                ("Nursing staff at {B} are reported as dismissive and slow to respond to patient concerns or call bells.", "medium"),
+                ("Doctors at {B} appear overworked and distracted — poor patient-physician communication is a recurring complaint.", "high"),
+                ("Administrative staff at {B} are described as rude and unhelpful when patients navigate complex procedures.", "medium"),
+            ]),
+            "waiting_time": ("Wait Times", [
+                ("Emergency patients at {B} wait 4–6 hours before being seen — far exceeding acceptable emergency care response times.", "high"),
+                ("Scheduled appointments at {B} run 1–2 hours late with no communication to waiting patients.", "medium"),
+                ("Pharmacy wait times at {B} are consistently reported as 45–60 minutes for prescription fulfillment.", "medium"),
+            ]),
+            "hygiene": ("Hygiene & Cleanliness", [
+                ("Patients report {B}'s facilities are unclean — dusty waiting areas, unhygienic restrooms, poorly sanitized equipment.", "high"),
+                ("Infection control at {B} is questioned — patients observed staff not following standard hygiene protocols.", "high"),
+                ("General upkeep at {B} is described as 'below hospital-grade standard' by multiple recent visitors.", "medium"),
+            ]),
+        },
+    },
+    "education": {
+        "platforms_by_cat": {
+            "course_quality":         ["Google Reviews", "Quora", "Reddit", "Facebook"],
+            "faculty_responsiveness": ["Google Reviews", "Quora", "Reddit", "Facebook"],
+            "admission_process":      ["Google Reviews", "Facebook", "Quora", "Reddit"],
+            "campus_facilities":      ["Google Reviews", "Facebook", "MouthShut", "Reddit"],
+            "placement_support":      ["Quora", "Reddit", "LinkedIn", "Google Reviews"],
+            "fee_transparency":       ["Consumer Complaints", "Google Reviews", "Reddit", "Facebook"],
+        },
+        "templates": {
+            "course_quality": ("Course & Curriculum Quality", [
+                ("Course content at {B} is outdated — syllabi haven't been updated in 3–5 years, especially in tech and business programs.", "high"),
+                ("Practical training at {B} is severely lacking — students report 80% theory and only 20% hands-on learning.", "high"),
+                ("Graduates of {B} say skills taught don't match industry requirements, making job hunting difficult post-completion.", "medium"),
+            ]),
+            "faculty_responsiveness": ("Faculty & Teaching Quality", [
+                ("Faculty at {B} are frequently unavailable outside class — students struggle to get academic guidance or mentoring.", "high"),
+                ("Several professors at {B} are described as unengaged, reading directly from slides with poor knowledge transfer.", "medium"),
+                ("Part-time faculty outnumber permanent staff at {B}, leading to inconsistent teaching quality and high turnover.", "medium"),
+            ]),
+            "admission_process": ("Admission Process", [
+                ("The admission process at {B} is opaque — selection criteria are unclear and rejected applicants receive no feedback.", "medium"),
+                ("{B} made verbal admission promises not honored in the formal offer letter, causing significant distress.", "high"),
+                ("Documentation requirements for {B} admission are excessive and poorly communicated, causing repeated delays.", "medium"),
+            ]),
+            "campus_facilities": ("Campus Facilities", [
+                ("{B}'s library has outdated books, limited journal access, and insufficient seating during exam periods.", "medium"),
+                ("Hostel facilities at {B} are poorly rated — overcrowding, inadequate maintenance, slow complaint resolution.", "high"),
+                ("Sports and recreational facilities at {B} are in disrepair with limited booking availability for students.", "medium"),
+            ]),
+            "placement_support": ("Placement & Career Support", [
+                ("Placement statistics at {B} are disputed by alumni — claimed 90%+ rates are far from actual figures.", "high"),
+                ("Career services at {B} are passive — a basic job portal with no active recruiter relationships or alumni network.", "high"),
+                ("Companies visiting {B} for campus recruitment are limited and offer packages well below industry benchmarks.", "medium"),
+            ]),
+            "fee_transparency": ("Fee Structure & Transparency", [
+                ("{B} adds fees after admission — development, exam, and activity charges not mentioned in the original offer letter.", "high"),
+                ("Scholarship information at {B} is poorly communicated — many eligible students miss out due to lack of awareness.", "medium"),
+                ("{B}'s refund policy for early withdrawal is unfair — students receive little to no refund regardless of timing.", "high"),
+            ]),
+        },
+    },
+    "media": {
+        "platforms_by_cat": {
+            "content_quality":     ["Reddit", "Twitter/X", "Facebook", "Quora"],
+            "subscription_issues": ["Consumer Complaints", "Reddit", "Twitter/X", "App Store"],
+            "website_performance": ["App Store", "Play Store", "Reddit", "Twitter/X"],
+            "ad_experience":       ["Reddit", "Twitter/X", "Facebook", "Quora"],
+            "comment_moderation":  ["Reddit", "Twitter/X", "Facebook", "Quora"],
+        },
+        "templates": {
+            "content_quality": ("Content Quality & Accuracy", [
+                ("{B} is criticised for factual errors — several high-profile mistakes published without corrections or retractions.", "high"),
+                ("Content on {B} is clickbait-driven, prioritizing page views over accurate or substantive reporting.", "high"),
+                ("Editorial standards at {B} have declined — errors in grammar, fact-checking, and source attribution are increasing.", "medium"),
+            ]),
+            "subscription_issues": ("Subscription & Paywall Issues", [
+                ("Canceling a {B} subscription is deliberately difficult — the process is buried and customer service is unresponsive.", "high"),
+                ("{B}'s paywall is aggressive — free limits reset inconsistently and billing continues after cancellation requests.", "high"),
+                ("Subscribers report {B} raises prices without notice, and billing disputes are hard to resolve.", "medium"),
+            ]),
+            "website_performance": ("Website & App Performance", [
+                ("{B}'s website is dominated by ads — autoplay videos and pop-ups make reading nearly impossible.", "high"),
+                ("Page loading on {B} is significantly slower than competitors, especially on mobile — readers abandon articles.", "medium"),
+                ("{B}'s app has poor ratings for crashes, login issues, and offline content not loading as advertised.", "medium"),
+            ]),
+            "ad_experience": ("Ad Experience", [
+                ("The volume of ads on {B} is described as 'unreadable' — full-page interstitials and mid-article ads dominate.", "high"),
+                ("Even paid subscribers to {B} see ads, contradicting the ad-free promise made at sign-up.", "high"),
+                ("Ad targeting on {B} is intrusive — users report privacy concerns about undisclosed tracking practices.", "medium"),
+            ]),
+            "comment_moderation": ("Comment Moderation & Community", [
+                ("Comment sections on {B} are toxic and poorly moderated — harassment goes unchecked for days.", "medium"),
+                ("{B} deletes legitimate comments while leaving inflammatory ones — users allege bias in moderation.", "high"),
+                ("Community engagement on {B} is declining — readers suspect shadowbanning of popular contributors.", "medium"),
+            ]),
+        },
+    },
+    "restaurant": {
+        "platforms_by_cat": {
+            "food_quality":        ["Zomato", "Google Reviews", "TripAdvisor", "Facebook"],
+            "hygiene_cleanliness": ["Google Reviews", "Facebook", "MouthShut", "Consumer Complaints"],
+            "service_speed":       ["Google Reviews", "Zomato", "Facebook", "Twitter/X"],
+            "delivery_experience": ["Zomato", "Swiggy", "Google Reviews", "Twitter/X"],
+            "pricing_value":       ["Google Reviews", "Zomato", "Facebook", "Quora"],
+        },
+        "templates": {
+            "food_quality": ("Food Quality", [
+                ("Food from {B} doesn't match menu descriptions — customers report undersized portions, wrong ingredients, poor presentation.", "high"),
+                ("Food safety concerns at {B} are serious — customers report foreign objects found in food and food-borne illness.", "high"),
+                ("Quality at {B} is wildly inconsistent — excellent on some visits and unacceptable on others, with no apparent quality control.", "medium"),
+            ]),
+            "hygiene_cleanliness": ("Hygiene & Cleanliness", [
+                ("{B}'s kitchen and dining area hygiene is questioned — pest activity, unclean tables, and poor food handling reported.", "high"),
+                ("Health inspection concerns at {B} include food storage temperature violations and cross-contamination risks.", "high"),
+                ("Restroom hygiene at {B} is frequently cited as unacceptable — a recurring complaint in Google and Zomato reviews.", "medium"),
+            ]),
+            "service_speed": ("Service Speed & Staff", [
+                ("Wait times at {B} are excessive — customers report 45–60 minutes for food even during off-peak hours.", "high"),
+                ("Staff at {B} are inattentive and poorly trained — wrong orders, missed requests, and rude responses are common.", "medium"),
+                ("Order accuracy at {B} is low — missing items and incorrect orders are repeatedly reported for dine-in and delivery.", "medium"),
+            ]),
+            "delivery_experience": ("Delivery Experience", [
+                ("Delivery orders from {B} arrive cold or in damaged packaging — temperature maintenance is a major complaint.", "high"),
+                ("Delivery times from {B} are consistently 2–3× the estimate with no updates or communication.", "medium"),
+                ("Online orders to {B} are frequently lost — customers are charged with no delivery and face poor support.", "high"),
+            ]),
+            "pricing_value": ("Pricing & Value", [
+                ("Prices at {B} have risen significantly without improvement in quality or portions — value for money is poor.", "medium"),
+                ("{B} adds hidden charges — packaging fees and service charges not shown upfront add 20–30% to the bill.", "high"),
+                ("Value at {B} is poor compared to similar establishments — smaller portions at higher prices are a common complaint.", "medium"),
+            ]),
+        },
+    },
+    "finance": {
+        "platforms_by_cat": {
+            "transaction_failures": ["Consumer Complaints", "Twitter/X", "App Store", "Google Reviews"],
+            "customer_support":     ["Consumer Complaints", "Twitter/X", "Google Reviews", "Reddit"],
+            "hidden_charges":       ["Consumer Complaints", "Reddit", "Quora", "Google Reviews"],
+            "account_issues":       ["Consumer Complaints", "Twitter/X", "Reddit", "Google Reviews"],
+            "loan_process":         ["Consumer Complaints", "Reddit", "Google Reviews", "Quora"],
+        },
+        "templates": {
+            "transaction_failures": ("Transaction & Payment Issues", [
+                ("{B} transactions fail with money debited but not credited — resolution takes 5–7 business days with little support.", "high"),
+                ("International transfers through {B} are delayed 3–5 days beyond stated timelines, causing financial losses for customers.", "high"),
+                ("Duplicate charges are a recurring issue with {B} — multiple debits for a single transaction with slow resolution.", "medium"),
+            ]),
+            "customer_support": ("Customer Support", [
+                ("{B}'s helpline is inaccessible — average hold times of 45–60 minutes are reported for urgent account issues.", "high"),
+                ("Fraud complaints at {B} are handled poorly — unauthorized transactions take weeks to reverse.", "high"),
+                ("Chat support at {B} is scripted and unhelpful — complex issues require multiple escalations over weeks.", "medium"),
+            ]),
+            "hidden_charges": ("Hidden Charges & Fees", [
+                ("{B} imposes undisclosed fees — account maintenance, transaction, and penalty charges customers were never warned about.", "high"),
+                ("Interest rates on {B} products are misleading — advertised rates differ significantly from effective annual rates.", "high"),
+                ("Early repayment penalties on {B} loans are excessive and not prominently disclosed during the application process.", "medium"),
+            ]),
+            "account_issues": ("Account Management", [
+                ("{B} freezes accounts without prior notice — customers lose fund access for days with minimal communication.", "high"),
+                ("KYC updates at {B} are bureaucratic — multiple branch visits required for simple document changes.", "medium"),
+                ("Account closure at {B} is deliberately difficult — formal requests are ignored or dragged out indefinitely.", "medium"),
+            ]),
+            "loan_process": ("Loan & Credit Process", [
+                ("{B} rejects loan applications without any explanation — applicants have no clarity or recourse after rejection.", "medium"),
+                ("{B}'s loan disbursal takes 15–20 days despite advertising 'instant' or 'same-day' approvals.", "high"),
+                ("Loan restructuring at {B} during financial hardship is nearly impossible — support is minimal and processes are rigid.", "high"),
+            ]),
+        },
+    },
+    "saas": {
+        "platforms_by_cat": {
+            "product_bugs":          ["Reddit", "Twitter/X", "App Store", "G2"],
+            "customer_support":      ["Reddit", "G2", "Capterra", "Twitter/X"],
+            "pricing_model":         ["Reddit", "G2", "Capterra", "Quora"],
+            "onboarding_complexity": ["Reddit", "G2", "App Store", "Quora"],
+            "downtime_reliability":  ["Twitter/X", "Reddit", "G2", "Consumer Complaints"],
+        },
+        "templates": {
+            "product_bugs": ("Product Reliability & Bugs", [
+                ("{B} has critical bugs affecting core workflows — data loss incidents and broken features in recent releases.", "high"),
+                ("{B} experiences unexpected downtime 3–4 times monthly, directly impacting operations for paying customers.", "high"),
+                ("Bug fixes at {B} are extremely slow — issues filed 6–12 months ago remain open with little communication.", "medium"),
+            ]),
+            "customer_support": ("Customer Support Quality", [
+                ("{B}'s support response times are unacceptable — enterprise customers wait 5–7 days on critical issues.", "high"),
+                ("Support at {B} lacks technical depth — agents can't resolve issues and escalations rarely reach engineers.", "medium"),
+                ("Documentation at {B} is incomplete and outdated — users waste hours on issues that should be in the knowledge base.", "medium"),
+            ]),
+            "pricing_model": ("Pricing & Value", [
+                ("{B}'s pricing increased 40–60% over two years with no significant new features — a top grievance for long-term customers.", "high"),
+                ("Seat-based pricing at {B} is punitive for growing teams — costs scale far faster than the value delivered.", "high"),
+                ("Feature gating at {B} is excessive — essential capabilities are locked behind premium tiers, making the base plan unusable.", "medium"),
+            ]),
+            "onboarding_complexity": ("Onboarding & Usability", [
+                ("{B}'s onboarding is overly complex — new users face a steep learning curve with insufficient guided setup.", "medium"),
+                ("The UI/UX at {B} grows more complex with each update — simple tasks now require significantly more steps.", "medium"),
+                ("Migration to {B} is poorly supported — data import tools are limited and professional migration services are expensive.", "high"),
+            ]),
+            "downtime_reliability": ("Uptime & Reliability", [
+                ("{B} has failed its 99.9% uptime SLA multiple times — breaches are rarely acknowledged or compensated.", "high"),
+                ("Scheduled maintenance at {B} consistently overruns — 1-hour windows extend to 4–6 hours, impacting global customers.", "medium"),
+                ("API reliability at {B} is a major concern — rate limits and intermittent errors are poorly documented.", "medium"),
+            ]),
+        },
+    },
+}
+
+# Industry-specific query hints for live API calls
+_INDUSTRY_QUERY_HINTS = {
+    "healthcare": "as a hospital, clinic, or healthcare provider",
+    "education":  "as a college, university, or educational institution",
+    "media":      "as a news website, blog, or media platform",
+    "restaurant": "as a restaurant, food delivery, or dining service",
+    "finance":    "as a bank, fintech, or financial services provider",
+    "saas":       "as a software platform or SaaS product",
+    "ecommerce":  "as an online store or e-commerce platform",
+}
+
+# Industry-specific regex patterns for categorizing live API responses
+_INDUSTRY_CAT_PATTERNS = {
+    "ecommerce": {
+        r"service|support|staff|agent|response|customer care": ("customer_service", "Customer Service"),
+        r"quality|defect|fake|counterfeit|damage|broken|condition": ("product_quality", "Product Quality"),
+        r"price|fee|charge|hidden|expensive|cost|billing": ("pricing", "Pricing & Fees"),
+        r"deliver|ship|delay|late|courier|logistics": ("delivery", "Delivery & Logistics"),
+        r"refund|return|cancel|money back": ("refunds", "Returns & Refunds"),
+        r"app|website|crash|login|technical|slow|error|bug": ("tech", "App & Website"),
+    },
+    "healthcare": {
+        r"patient|care|doctor|treatment|diagnosis|consultation|medication": ("patient_care", "Patient Care Quality"),
+        r"appointment|book|schedule|availability|slot": ("appointment_booking", "Appointment Booking"),
+        r"bill|charge|insurance|fee|cost|payment|claim": ("billing_insurance", "Billing & Insurance"),
+        r"staff|nurse|physician|rude|attitude|behavior|communication": ("staff_quality", "Staff & Doctor Quality"),
+        r"wait|waiting|time|delay|queue|hours": ("waiting_time", "Wait Times"),
+        r"hygiene|clean|sanitize|infection|dirty|pest": ("hygiene", "Hygiene & Cleanliness"),
+    },
+    "education": {
+        r"course|curriculum|syllabus|teach|lecture|class|content": ("course_quality", "Course & Curriculum Quality"),
+        r"faculty|professor|teacher|mentor|response|available|office": ("faculty_responsiveness", "Faculty & Teaching Quality"),
+        r"admission|apply|application|process|criteria|selection": ("admission_process", "Admission Process"),
+        r"campus|hostel|facility|lab|library|infrastructure|canteen": ("campus_facilities", "Campus Facilities"),
+        r"placement|job|career|recruit|intern|employ|package": ("placement_support", "Placement & Career Support"),
+        r"fee|cost|charge|money|refund|scholarship|financial": ("fee_transparency", "Fee Structure & Transparency"),
+    },
+    "media": {
+        r"content|article|accuracy|fact|error|mislead|wrong": ("content_quality", "Content Quality & Accuracy"),
+        r"subscription|paywall|cancel|billing|charge|renew": ("subscription_issues", "Subscription & Paywall Issues"),
+        r"website|app|load|crash|speed|performance|mobile": ("website_performance", "Website & App Performance"),
+        r"ad|advertisement|popup|intrusive|banner|autoplay": ("ad_experience", "Ad Experience"),
+        r"comment|moderat|community|censor|ban|delete": ("comment_moderation", "Comment Moderation & Community"),
+    },
+    "restaurant": {
+        r"food|taste|quality|portion|ingredient|menu|dish": ("food_quality", "Food Quality"),
+        r"hygiene|clean|sanitize|pest|dirty|health inspection": ("hygiene_cleanliness", "Hygiene & Cleanliness"),
+        r"service|staff|waiter|rude|slow|wait|order": ("service_speed", "Service Speed & Staff"),
+        r"deliver|delivery|cold|packaging|late|wrong order": ("delivery_experience", "Delivery Experience"),
+        r"price|cost|expensive|value|charge|hidden|overpriced": ("pricing_value", "Pricing & Value"),
+    },
+    "finance": {
+        r"transaction|payment|transfer|failed|debit|credit|bounce": ("transaction_failures", "Transaction & Payment Issues"),
+        r"support|helpline|response|service|agent|hold": ("customer_support", "Customer Support"),
+        r"fee|charge|hidden|interest|penalty|rate|undisclosed": ("hidden_charges", "Hidden Charges & Fees"),
+        r"account|freeze|suspend|access|kyc|close|block": ("account_issues", "Account Management"),
+        r"loan|credit|disbursal|reject|emi|interest|mortgage": ("loan_process", "Loan & Credit Process"),
+    },
+    "saas": {
+        r"bug|crash|error|broken|feature|issue|glitch|data loss": ("product_bugs", "Product Reliability & Bugs"),
+        r"support|ticket|response|agent|helpdesk|escalat": ("customer_support", "Customer Support Quality"),
+        r"price|cost|tier|plan|expensive|billing|seat|license": ("pricing_model", "Pricing & Value"),
+        r"onboard|setup|complex|difficult|ui|ux|learn|migrate": ("onboarding_complexity", "Onboarding & Usability"),
+        r"downtime|outage|uptime|slow|latency|reliability|sla": ("downtime_reliability", "Uptime & Reliability"),
+    },
 }
 
 
@@ -538,31 +905,30 @@ async def kyobr_search(body: KYOBRRequest):
     if not brand:
         raise HTTPException(status_code=400, detail="Brand name required")
 
-    timeframe = body.timeframe if body.timeframe in ("24h", "7d", "30d") else "7d"
-    competitors = [c.strip() for c in body.competitors if c.strip()][:4]  # max 4
+    timeframe    = body.timeframe if body.timeframe in ("24h", "7d", "30d") else "7d"
+    competitors  = [c.strip() for c in body.competitors if c.strip()][:4]
+    biz_type     = body.business_type  # may be None — detection runs inside helpers
 
     perplexity_key = os.getenv("PERPLEXITY_API_KEY")
-    use_live = bool(perplexity_key)
+    has_any_live   = bool(perplexity_key or os.getenv("OPENAI_API_KEY") or
+                          os.getenv("GEMINI_API_KEY") or os.getenv("DEEPSEEK_API_KEY"))
 
     async def _scan_one(b: str) -> dict:
-        if use_live:
+        if has_any_live:
             try:
-                return await _kyobr_real(b, perplexity_key, timeframe)
+                return await _kyobr_real(b, timeframe, biz_type)
             except Exception as e:
                 print(f"[KYOBR] Real API error for '{b}': {e}")
-        return _kyobr_demo(b, timeframe)
+        return _kyobr_demo(b, timeframe, biz_type)
 
-    # Scan primary brand
     primary = await _scan_one(brand)
 
-    # Scan competitors (if any)
     competitor_data = {}
     for comp in competitors:
         competitor_data[comp] = await _scan_one(comp)
 
     result = {**primary, "competitor_data": competitor_data}
 
-    # Save to history
     import uuid
     scan_id = str(uuid.uuid4())[:8].upper()
     save_kyobr_scan(scan_id, brand, timeframe, result)
@@ -584,154 +950,206 @@ async def kyobr_get_scan(scan_id: str):
     return data
 
 
-async def _kyobr_real(brand: str, api_key: str, timeframe: str = "7d") -> dict:
-    """Query Perplexity for real negative brand reviews."""
-    import requests as req, asyncio, re
+async def _kyobr_real(brand: str, timeframe: str = "7d", business_type_hint: str = None) -> dict:
+    """Query available AI engines for real negative brand feedback."""
+    import requests as req, re
 
-    tf_phrase = {"24h": "in the last 24 hours", "7d": "in the last 7 days", "30d": "in the last 30 days"}.get(timeframe, "recently")
-    queries = [
-        f"What are the most common complaints and negative reviews about {brand} from real customers {tf_phrase}?",
-        f"What problems and criticisms do users most frequently report about {brand} {tf_phrase}?",
-    ]
+    industry   = _detect_business_type(brand, business_type_hint)
+    hint_phrase = _INDUSTRY_QUERY_HINTS.get(industry, "")
+    tf_phrase   = {"24h": "in the last 24 hours", "7d": "in the last 7 days", "30d": "in the last 30 days"}.get(timeframe, "recently")
+    cat_map     = _INDUSTRY_CAT_PATTERNS.get(industry, _INDUSTRY_CAT_PATTERNS["ecommerce"])
+    ind_data    = _INDUSTRY_TEMPLATES.get(industry, _INDUSTRY_TEMPLATES["ecommerce"])
 
-    raw_texts = []
-    for query in queries:
-        resp = await asyncio.get_event_loop().run_in_executor(None, lambda q=query: req.post(
-            "https://api.perplexity.ai/chat/completions",
-            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-            json={
-                "model": "sonar",
-                "messages": [
-                    {"role": "system", "content": "Extract only specific, factual negative complaints from real user reviews. Be concise and structured."},
-                    {"role": "user", "content": q},
-                ],
-                "max_tokens": 600,
-            },
-            timeout=20,
-        ))
-        if resp.ok:
-            raw_texts.append(resp.json()["choices"][0]["message"]["content"])
+    raw: list[tuple[str, str]] = []   # (text, engine_name)
+    engines_queried: list[str] = []
 
-    CATEGORIES_MAP = {
-        "service|support|staff|agent|response|customer care": ("customer_service", "Customer Service"),
-        "quality|defect|fake|counterfeit|damage|broken|condition": ("product_quality", "Product Quality"),
-        "price|fee|charge|hidden|expensive|cost|billing": ("pricing", "Pricing & Fees"),
-        "deliver|ship|delay|late|courier|logistics": ("delivery", "Delivery & Logistics"),
-        "refund|return|cancel|money back": ("refunds", "Returns & Refunds"),
-        "app|website|crash|login|technical|slow|error|bug": ("tech", "App & Website"),
-    }
+    # ── 1. Perplexity ──────────────────────────────────────────────────────────
+    perplexity_key = os.getenv("PERPLEXITY_API_KEY")
+    if perplexity_key:
+        for q in [
+            f"What are the most common complaints and negative reviews about {brand} {hint_phrase} from real customers {tf_phrase}?",
+            f"What problems and criticisms do users most frequently report about {brand} {hint_phrase} {tf_phrase}?",
+        ]:
+            try:
+                resp = await __import__("asyncio").get_event_loop().run_in_executor(
+                    None, lambda _q=q: req.post(
+                        "https://api.perplexity.ai/chat/completions",
+                        headers={"Authorization": f"Bearer {perplexity_key}", "Content-Type": "application/json"},
+                        json={"model": "sonar", "messages": [
+                            {"role": "system", "content": "List only specific, factual negative complaints from real user reviews. Be concise and structured."},
+                            {"role": "user", "content": _q},
+                        ], "max_tokens": 600},
+                        timeout=20,
+                    ))
+                if resp.ok:
+                    raw.append((resp.json()["choices"][0]["message"]["content"], "Perplexity AI"))
+            except Exception as e:
+                print(f"[KYOBR] Perplexity error: {e}")
+        if any(src == "Perplexity AI" for _, src in raw):
+            engines_queried.append("Perplexity AI")
 
-    reviews = []
-    for text in raw_texts:
+    # ── 2. ChatGPT (OpenAI) ────────────────────────────────────────────────────
+    openai_key = os.getenv("OPENAI_API_KEY")
+    if openai_key:
+        try:
+            q = (f"List the most common complaints and negative reviews about {brand} {hint_phrase} "
+                 f"from real customers {tf_phrase}. Be specific and factual.")
+            resp = await __import__("asyncio").get_event_loop().run_in_executor(
+                None, lambda: req.post(
+                    "https://api.openai.com/v1/chat/completions",
+                    headers={"Authorization": f"Bearer {openai_key}", "Content-Type": "application/json"},
+                    json={"model": "gpt-4o-mini", "messages": [
+                        {"role": "system", "content": "List specific, factual negative complaints from real user reviews. Be concise."},
+                        {"role": "user", "content": q},
+                    ], "max_tokens": 600, "temperature": 0.3},
+                    timeout=20,
+                ))
+            if resp.ok:
+                raw.append((resp.json()["choices"][0]["message"]["content"], "ChatGPT"))
+                engines_queried.append("ChatGPT")
+        except Exception as e:
+            print(f"[KYOBR] ChatGPT error: {e}")
+
+    # ── 3. Google Gemini ───────────────────────────────────────────────────────
+    gemini_key = os.getenv("GEMINI_API_KEY")
+    if gemini_key:
+        try:
+            q = (f"What are the most common complaints and negative reviews about {brand} {hint_phrase} "
+                 f"from real customers {tf_phrase}?")
+            resp = await __import__("asyncio").get_event_loop().run_in_executor(
+                None, lambda: req.post(
+                    f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_key}",
+                    headers={"Content-Type": "application/json"},
+                    json={"contents": [{"parts": [{"text": q}]}],
+                          "generationConfig": {"maxOutputTokens": 600}},
+                    timeout=20,
+                ))
+            if resp.ok:
+                parts = resp.json().get("candidates", [{}])[0].get("content", {}).get("parts", [])
+                text  = " ".join(p.get("text", "") for p in parts).strip()
+                if text:
+                    raw.append((text, "Google Gemini"))
+                    engines_queried.append("Google Gemini")
+        except Exception as e:
+            print(f"[KYOBR] Gemini error: {e}")
+
+    # ── 4. DeepSeek ───────────────────────────────────────────────────────────
+    deepseek_key = os.getenv("DEEPSEEK_API_KEY")
+    if deepseek_key:
+        try:
+            q = (f"What are the most common complaints and negative reviews about {brand} {hint_phrase} "
+                 f"from real customers {tf_phrase}?")
+            resp = await __import__("asyncio").get_event_loop().run_in_executor(
+                None, lambda: req.post(
+                    "https://api.deepseek.com/chat/completions",
+                    headers={"Authorization": f"Bearer {deepseek_key}", "Content-Type": "application/json"},
+                    json={"model": "deepseek-chat", "messages": [
+                        {"role": "system", "content": "List specific, factual negative complaints from real user reviews. Be concise."},
+                        {"role": "user", "content": q},
+                    ], "max_tokens": 600, "temperature": 0.3},
+                    timeout=20,
+                ))
+            if resp.ok:
+                raw.append((resp.json()["choices"][0]["message"]["content"], "DeepSeek"))
+                engines_queried.append("DeepSeek")
+        except Exception as e:
+            print(f"[KYOBR] DeepSeek error: {e}")
+
+    # ── Parse all responses ────────────────────────────────────────────────────
+    reviews: list[dict] = []
+    for text, engine_name in raw:
         lines = [l.strip() for l in re.split(r'\n+|•|\d+\.', text) if len(l.strip()) > 40]
-        for line in lines[:5]:
+        for line in lines[:4]:
             cat_key, cat_name = "general", "General"
-            for pattern, (k, n) in CATEGORIES_MAP.items():
+            for pattern, (k, n) in cat_map.items():
                 if re.search(pattern, line.lower()):
                     cat_key, cat_name = k, n
                     break
-            severity = "high" if any(w in line.lower() for w in ["serious", "worst", "terrible", "fraud", "scam", "never", "always"]) else "medium"
-            platforms = _CAT_PLATFORMS.get(cat_key, ["Perplexity AI", "Reddit"])
-            platform = platforms[len(reviews) % len(platforms)]
+            severity  = "high" if any(w in line.lower() for w in ["serious", "worst", "terrible", "fraud", "scam", "never", "always", "dangerous", "fail"]) else "medium"
+            platforms = ind_data["platforms_by_cat"].get(cat_key, ["Google Reviews", "Reddit"])
+            platform  = platforms[len(reviews) % len(platforms)]
             reviews.append({
-                "category": cat_name,
+                "category":     cat_name,
                 "category_key": cat_key,
-                "text": line,
-                "severity": severity,
-                "platform": platform,
-                "source_type": _PLATFORM_TYPE.get(platform, "forum"),
-                "mentions": None,
+                "text":         line,
+                "severity":     severity,
+                "platform":     platform,
+                "source_type":  _PLATFORM_TYPE.get(platform, "forum"),
+                "mentions":     None,
+                "found_by":     engine_name,
             })
 
     if not reviews:
-        return _kyobr_demo(brand, timeframe)
+        return _kyobr_demo(brand, timeframe, business_type_hint)
 
-    return _build_kyobr_response(brand, reviews, timeframe, "live")
+    return _build_kyobr_response(brand, reviews, timeframe, "live", industry, engines_queried)
 
 
-def _kyobr_demo(brand: str, timeframe: str = "7d") -> dict:
-    """Generate realistic demo negative review data for a brand."""
+def _kyobr_demo(brand: str, timeframe: str = "7d", business_type_hint: str = None) -> dict:
+    """Generate industry-specific demo feedback — different templates for hospital vs college vs blog etc."""
     import random, hashlib
-    seed = int(hashlib.md5((brand.lower() + timeframe).encode()).hexdigest()[:8], 16)
-    rng  = random.Random(seed)
-    B    = brand.title()
 
-    TEMPLATES = {
-        "customer_service": ("Customer Service", [
-            (f"Customer support at {B} is extremely slow — users report waiting 3–7 business days for a response to basic queries, with many complaints going unanswered entirely.", "high"),
-            (f"Multiple reviewers note that {B} support agents give inconsistent answers. The same question receives different responses depending on who you speak to.", "medium"),
-            (f"{B}'s live chat frequently disconnects mid-conversation, forcing customers to restart and repeat their issue from scratch.", "medium"),
-        ]),
-        "product_quality": ("Product Quality", [
-            (f"A significant number of buyers report that items received from {B} do not match the quality shown in product photos or descriptions — often arriving in a noticeably worse condition.", "high"),
-            (f"Counterfeit or substandard products are a recurring complaint about {B} despite their stated verification process.", "high"),
-            (f"Quality is inconsistent across orders from {B} — some customers are satisfied while others report defective or incorrect items.", "medium"),
-        ]),
-        "pricing": ("Pricing & Fees", [
-            (f"{B} is frequently criticised for hidden fees not disclosed until the final checkout step — processing fees, convenience charges, and delivery costs appear only at payment.", "high"),
-            (f"Users feel {B}'s prices are inflated 15–25% above actual market value, particularly for resale goods where price comparisons are easy.", "medium"),
-            (f"Surprise charges post-purchase are a common complaint — customers report being billed additional amounts days after completing a transaction with {B}.", "high"),
-        ]),
-        "delivery": ("Delivery & Logistics", [
-            (f"Delivery delays of 2–3× the promised timeline are the top complaint about {B} across Reddit, Trustpilot, and consumer forums.", "high"),
-            (f"Packages arriving damaged — and {B} refusing to take responsibility — is a frequently cited issue in negative reviews.", "medium"),
-            (f"Tracking information for {B} shipments is often inaccurate or not updated for 48–72 hours, leaving customers with no visibility into their order.", "medium"),
-        ]),
-        "refunds": ("Returns & Refunds", [
-            (f"Getting a refund from {B} is described as 'nearly impossible' by multiple verified reviewers, with many waiting 30+ days for money back.", "high"),
-            (f"{B}'s return policy is considered too restrictive — legitimate return requests are frequently rejected with vague reasons.", "high"),
-            (f"The refund process at {B} requires excessive documentation and multiple follow-ups; customers report needing to contact support 5+ times to resolve a single refund.", "medium"),
-        ]),
-        "tech": ("App & Website", [
-            (f"The {B} mobile app crashes frequently during checkout, causing users to lose their order and have to restart — a common complaint in App Store and Play Store reviews.", "high"),
-            (f"Multiple users report random account suspensions on {B} with no explanation and difficulty reaching support to reinstate access.", "medium"),
-            (f"Website performance degrades significantly during high-traffic periods — slow page loads and session errors are reported during sales and peak hours on {B}.", "medium"),
-        ]),
-    }
+    industry  = _detect_business_type(brand, business_type_hint)
+    ind_data  = _INDUSTRY_TEMPLATES.get(industry, _INDUSTRY_TEMPLATES["ecommerce"])
+    seed      = int(hashlib.md5((brand.lower() + timeframe).encode()).hexdigest()[:8], 16)
+    rng       = random.Random(seed)
+    B         = brand.title()
 
-    keys = list(TEMPLATES.keys())
+    # Fill brand name into template strings
+    filled: dict[str, tuple[str, list]] = {}
+    for cat_key, (cat_name, items) in ind_data["templates"].items():
+        filled[cat_key] = (cat_name, [(txt.replace("{B}", B), sev) for txt, sev in items])
+
+    keys = list(filled.keys())
     rng.shuffle(keys)
     reviews = []
     for cat_key in keys[:5 + rng.randint(0, 1)]:
-        cat_name, templates = TEMPLATES[cat_key]
-        text, severity = rng.choice(templates)
-        platforms = _CAT_PLATFORMS.get(cat_key, ["Perplexity AI"])
-        platform  = rng.choice(platforms)
+        cat_name, items = filled[cat_key]
+        text, severity  = rng.choice(items)
+        platforms       = ind_data["platforms_by_cat"].get(cat_key, ["Google Reviews", "Reddit"])
+        platform        = rng.choice(platforms)
         reviews.append({
-            "category":    cat_name,
+            "category":     cat_name,
             "category_key": cat_key,
-            "text":        text,
-            "severity":    severity,
-            "platform":    platform,
-            "source_type": _PLATFORM_TYPE.get(platform, "forum"),
-            "mentions":    rng.randint(28, 420) if severity == "high" else rng.randint(8, 90),
+            "text":         text,
+            "severity":     severity,
+            "platform":     platform,
+            "source_type":  _PLATFORM_TYPE.get(platform, "forum"),
+            "mentions":     rng.randint(28, 420) if severity == "high" else rng.randint(8, 90),
         })
 
     reviews.sort(key=lambda r: 0 if r["severity"] == "high" else 1)
-    return _build_kyobr_response(brand, reviews, timeframe, "demo")
+
+    demo_engines = ["Perplexity AI", "ChatGPT", "Google Gemini", "DeepSeek", "Google AI Overview"]
+    return _build_kyobr_response(brand, reviews, timeframe, "demo", industry, demo_engines)
 
 
-def _build_kyobr_response(brand: str, reviews: list, timeframe: str, source: str) -> dict:
+def _build_kyobr_response(brand: str, reviews: list, timeframe: str, source: str,
+                           industry: str = "ecommerce", engines_queried: list = None) -> dict:
     """Assemble the final KYOBR response dict with aggregated summary."""
-    high   = sum(1 for r in reviews if r["severity"] == "high")
-    cats   = list(dict.fromkeys(r["category"] for r in reviews))
-    source_counts = {}
+    if engines_queried is None:
+        engines_queried = ["Perplexity AI", "ChatGPT", "Google Gemini", "DeepSeek", "Google AI Overview"]
+    high  = sum(1 for r in reviews if r["severity"] == "high")
+    cats  = list(dict.fromkeys(r["category"] for r in reviews))
+    src_counts: dict[str, int] = {}
     for r in reviews:
-        source_counts[r["source_type"]] = source_counts.get(r["source_type"], 0) + 1
+        src_counts[r["source_type"]] = src_counts.get(r["source_type"], 0) + 1
 
     return {
-        "brand":            brand,
-        "timeframe":        timeframe,
-        "timeframe_label":  _TIMEFRAME_LABEL.get(timeframe, "Last 7 days"),
-        "reviews":          reviews,
+        "brand":           brand,
+        "timeframe":       timeframe,
+        "timeframe_label": _TIMEFRAME_LABEL.get(timeframe, "Last 7 days"),
+        "industry_type":   industry,
+        "reviews":         reviews,
         "summary": {
             "total_issues":        len(reviews),
             "high_severity":       high,
             "medium_severity":     len(reviews) - high,
             "top_categories":      cats[:3],
             "brand_health":        "poor" if high >= 3 else "concerning" if high >= 2 else "fair",
-            "ai_engines_searched": 4,
-            "source_breakdown":    source_counts,
+            "ai_engines_searched": len(engines_queried),
+            "engines_queried":     engines_queried,
+            "source_breakdown":    src_counts,
         },
         "source": source,
     }
