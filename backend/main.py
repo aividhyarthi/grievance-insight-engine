@@ -15,6 +15,7 @@ from database import (
     get_scan, get_scan_results, get_all_scans, get_domain_trends,
     create_schedule, get_all_schedules, get_due_schedules,
     update_schedule_run, toggle_schedule, delete_schedule,
+    save_kyobr_scan, get_kyobr_history, get_kyobr_scan,
 )
 from demo_engine import generate_demo_results
 
@@ -498,29 +499,99 @@ def _suggest_demo(url: str, page_text: str) -> list:
 
 # ─── KYOBR — Know Your Own Brand Reviews ──────────────────────────────────────
 
+# Platform → source_type classification (hidden from users, used for tab grouping)
+_PLATFORM_TYPE = {
+    "Perplexity AI":       "ai_engine",
+    "Google AI Overview":  "ai_engine",
+    "ChatGPT Search":      "ai_engine",
+    "Reddit":              "forum",
+    "Quora":               "forum",
+    "MouthShut":           "forum",
+    "Consumer Complaints": "forum",
+    "Trustpilot":          "review_platform",
+    "Google Reviews":      "review_platform",
+    "App Store":           "review_platform",
+    "Play Store":          "review_platform",
+    "Amazon Reviews":      "review_platform",
+    "Twitter/X":           "social",
+    "Facebook":            "social",
+    "LinkedIn":            "social",
+    "Instagram":           "social",
+}
+
+_TIMEFRAME_LABEL = {"24h": "Last 24 hours", "7d": "Last 7 days", "30d": "Last 30 days"}
+
+# Category → platforms most commonly associated
+_CAT_PLATFORMS = {
+    "customer_service": ["Reddit", "Twitter/X", "Trustpilot", "Google Reviews"],
+    "product_quality":  ["Amazon Reviews", "Trustpilot", "Reddit", "Google Reviews"],
+    "pricing":          ["Trustpilot", "Reddit", "Quora", "Facebook"],
+    "delivery":         ["Twitter/X", "Reddit", "Trustpilot", "Consumer Complaints"],
+    "refunds":          ["Trustpilot", "Consumer Complaints", "Reddit", "MouthShut"],
+    "tech":             ["App Store", "Play Store", "Reddit", "Twitter/X"],
+}
+
+
 @app.post("/api/kyobr")
 async def kyobr_search(body: KYOBRRequest):
     brand = body.brand.strip()
     if not brand:
         raise HTTPException(status_code=400, detail="Brand name required")
 
+    timeframe = body.timeframe if body.timeframe in ("24h", "7d", "30d") else "7d"
+    competitors = [c.strip() for c in body.competitors if c.strip()][:4]  # max 4
+
     perplexity_key = os.getenv("PERPLEXITY_API_KEY")
-    if perplexity_key:
-        try:
-            return await _kyobr_real(brand, perplexity_key)
-        except Exception as e:
-            print(f"[KYOBR] Real API error: {e}")
+    use_live = bool(perplexity_key)
 
-    return _kyobr_demo(brand)
+    async def _scan_one(b: str) -> dict:
+        if use_live:
+            try:
+                return await _kyobr_real(b, perplexity_key, timeframe)
+            except Exception as e:
+                print(f"[KYOBR] Real API error for '{b}': {e}")
+        return _kyobr_demo(b, timeframe)
+
+    # Scan primary brand
+    primary = await _scan_one(brand)
+
+    # Scan competitors (if any)
+    competitor_data = {}
+    for comp in competitors:
+        competitor_data[comp] = await _scan_one(comp)
+
+    result = {**primary, "competitor_data": competitor_data}
+
+    # Save to history
+    import uuid
+    scan_id = str(uuid.uuid4())[:8].upper()
+    save_kyobr_scan(scan_id, brand, timeframe, result)
+    result["scan_id"] = scan_id
+
+    return result
 
 
-async def _kyobr_real(brand: str, api_key: str) -> dict:
+@app.get("/api/kyobr/history/{brand:path}")
+async def kyobr_history(brand: str, limit: int = 20):
+    return get_kyobr_history(brand, limit)
+
+
+@app.get("/api/kyobr/scan/{scan_id}")
+async def kyobr_get_scan(scan_id: str):
+    data = get_kyobr_scan(scan_id)
+    if not data:
+        raise HTTPException(status_code=404, detail="Scan not found")
+    return data
+
+
+async def _kyobr_real(brand: str, api_key: str, timeframe: str = "7d") -> dict:
     """Query Perplexity for real negative brand reviews."""
-    import requests as req, asyncio
+    import requests as req, asyncio, re
 
+    tf_phrase = {"24h": "in the last 24 hours", "7d": "in the last 7 days", "30d": "in the last 30 days"}.get(timeframe, "recently")
     queries = [
-        f"What are the most common complaints and negative reviews about {brand} from real customers in 2024 and 2025?",
-        f"What problems and criticisms do users most frequently report about {brand}?",
+        f"What are the most common complaints and negative reviews about {brand} from real customers {tf_phrase}?",
+        f"What problems and criticisms do users most frequently report about {brand} {tf_phrase}?",
     ]
 
     raw_texts = []
@@ -541,9 +612,6 @@ async def _kyobr_real(brand: str, api_key: str) -> dict:
         if resp.ok:
             raw_texts.append(resp.json()["choices"][0]["message"]["content"])
 
-    # Parse raw text into structured complaints
-    reviews = []
-    import re
     CATEGORIES_MAP = {
         "service|support|staff|agent|response|customer care": ("customer_service", "Customer Service"),
         "quality|defect|fake|counterfeit|damage|broken|condition": ("product_quality", "Product Quality"),
@@ -552,51 +620,39 @@ async def _kyobr_real(brand: str, api_key: str) -> dict:
         "refund|return|cancel|money back": ("refunds", "Returns & Refunds"),
         "app|website|crash|login|technical|slow|error|bug": ("tech", "App & Website"),
     }
-    SOURCES = ["Perplexity AI", "Google AI Overview", "ChatGPT Search"]
 
+    reviews = []
     for text in raw_texts:
         lines = [l.strip() for l in re.split(r'\n+|•|\d+\.', text) if len(l.strip()) > 40]
         for line in lines[:5]:
             cat_key, cat_name = "general", "General"
-            line_lower = line.lower()
             for pattern, (k, n) in CATEGORIES_MAP.items():
-                if re.search(pattern, line_lower):
+                if re.search(pattern, line.lower()):
                     cat_key, cat_name = k, n
                     break
+            severity = "high" if any(w in line.lower() for w in ["serious", "worst", "terrible", "fraud", "scam", "never", "always"]) else "medium"
+            platforms = _CAT_PLATFORMS.get(cat_key, ["Perplexity AI", "Reddit"])
+            platform = platforms[len(reviews) % len(platforms)]
             reviews.append({
                 "category": cat_name,
                 "category_key": cat_key,
                 "text": line,
-                "severity": "high" if any(w in line_lower for w in ["serious", "worst", "terrible", "fraud", "scam", "never", "always"]) else "medium",
-                "source": SOURCES[len(reviews) % len(SOURCES)],
-                "query": queries[0],
+                "severity": severity,
+                "platform": platform,
+                "source_type": _PLATFORM_TYPE.get(platform, "forum"),
                 "mentions": None,
             })
 
     if not reviews:
-        return _kyobr_demo(brand)
+        return _kyobr_demo(brand, timeframe)
 
-    high = sum(1 for r in reviews if r["severity"] == "high")
-    return {
-        "brand": brand,
-        "reviews": reviews[:8],
-        "summary": {
-            "total_issues": len(reviews),
-            "high_severity": high,
-            "medium_severity": len(reviews) - high,
-            "top_categories": list({r["category"] for r in reviews})[:3],
-            "brand_health": "poor" if high >= 3 else "concerning" if high >= 2 else "fair",
-            "ai_engines_searched": 2,
-            "queries_run": len(queries),
-        },
-        "source": "live",
-    }
+    return _build_kyobr_response(brand, reviews, timeframe, "live")
 
 
-def _kyobr_demo(brand: str) -> dict:
+def _kyobr_demo(brand: str, timeframe: str = "7d") -> dict:
     """Generate realistic demo negative review data for a brand."""
     import random, hashlib
-    seed = int(hashlib.md5(brand.lower().encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5((brand.lower() + timeframe).encode()).hexdigest()[:8], 16)
     rng  = random.Random(seed)
     B    = brand.title()
 
@@ -633,46 +689,51 @@ def _kyobr_demo(brand: str) -> dict:
         ]),
     }
 
-    SOURCES = ["Perplexity AI", "Google AI Overview", "ChatGPT Search", "Reddit (via AI)"]
-    QUERIES = [
-        f"{brand} negative reviews", f"what's wrong with {brand}?",
-        f"{brand} complaints 2025",  f"{brand} user problems",
-        f"is {brand} reliable?",    f"bad experiences with {brand}",
-    ]
-
     keys = list(TEMPLATES.keys())
     rng.shuffle(keys)
     reviews = []
     for cat_key in keys[:5 + rng.randint(0, 1)]:
         cat_name, templates = TEMPLATES[cat_key]
         text, severity = rng.choice(templates)
+        platforms = _CAT_PLATFORMS.get(cat_key, ["Perplexity AI"])
+        platform  = rng.choice(platforms)
         reviews.append({
-            "category": cat_name,
+            "category":    cat_name,
             "category_key": cat_key,
-            "text": text,
-            "severity": severity,
-            "source": rng.choice(SOURCES),
-            "query": rng.choice(QUERIES),
-            "mentions": rng.randint(28, 420) if severity == "high" else rng.randint(8, 90),
+            "text":        text,
+            "severity":    severity,
+            "platform":    platform,
+            "source_type": _PLATFORM_TYPE.get(platform, "forum"),
+            "mentions":    rng.randint(28, 420) if severity == "high" else rng.randint(8, 90),
         })
 
     reviews.sort(key=lambda r: 0 if r["severity"] == "high" else 1)
-    high = sum(1 for r in reviews if r["severity"] == "high")
-    cats = list(dict.fromkeys(r["category"] for r in reviews))
+    return _build_kyobr_response(brand, reviews, timeframe, "demo")
+
+
+def _build_kyobr_response(brand: str, reviews: list, timeframe: str, source: str) -> dict:
+    """Assemble the final KYOBR response dict with aggregated summary."""
+    high   = sum(1 for r in reviews if r["severity"] == "high")
+    cats   = list(dict.fromkeys(r["category"] for r in reviews))
+    source_counts = {}
+    for r in reviews:
+        source_counts[r["source_type"]] = source_counts.get(r["source_type"], 0) + 1
 
     return {
-        "brand": brand,
-        "reviews": reviews,
+        "brand":            brand,
+        "timeframe":        timeframe,
+        "timeframe_label":  _TIMEFRAME_LABEL.get(timeframe, "Last 7 days"),
+        "reviews":          reviews,
         "summary": {
-            "total_issues": len(reviews),
-            "high_severity": high,
-            "medium_severity": len(reviews) - high,
-            "top_categories": cats[:3],
-            "brand_health": "poor" if high >= 3 else "concerning" if high >= 2 else "fair",
+            "total_issues":        len(reviews),
+            "high_severity":       high,
+            "medium_severity":     len(reviews) - high,
+            "top_categories":      cats[:3],
+            "brand_health":        "poor" if high >= 3 else "concerning" if high >= 2 else "fair",
             "ai_engines_searched": 4,
-            "queries_run": len(QUERIES),
+            "source_breakdown":    source_counts,
         },
-        "source": "demo",
+        "source": source,
     }
 
 

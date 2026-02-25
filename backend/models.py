@@ -9,6 +9,8 @@ class SuggestRequest(BaseModel):
 
 class KYOBRRequest(BaseModel):
     brand: str
+    competitors: List[str] = []
+    timeframe: str = "7d"   # "24h" | "7d" | "30d"
 
 
 class ScheduleRequest(BaseModel):

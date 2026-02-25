@@ -43,6 +43,14 @@ def init_db():
             created_at    TEXT NOT NULL
         );
 
+        CREATE TABLE IF NOT EXISTS kyobr_scans (
+            scan_id     TEXT PRIMARY KEY,
+            brand       TEXT NOT NULL,
+            timeframe   TEXT NOT NULL DEFAULT '7d',
+            data        TEXT NOT NULL,
+            created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+
         CREATE TABLE IF NOT EXISTS citations (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             scan_id TEXT NOT NULL,
@@ -352,6 +360,33 @@ def delete_schedule(schedule_id: str) -> None:
     conn.execute("DELETE FROM schedules WHERE schedule_id=?", (schedule_id,))
     conn.commit()
     conn.close()
+
+
+def save_kyobr_scan(scan_id: str, brand: str, timeframe: str, data: dict) -> None:
+    conn = get_conn()
+    conn.execute(
+        "INSERT INTO kyobr_scans (scan_id, brand, timeframe, data, created_at) VALUES (?,?,?,?,datetime('now'))",
+        (scan_id, brand.lower().strip(), timeframe, json.dumps(data)),
+    )
+    conn.commit()
+    conn.close()
+
+
+def get_kyobr_history(brand: str, limit: int = 20) -> list:
+    conn = get_conn()
+    rows = conn.execute(
+        "SELECT scan_id, brand, timeframe, created_at FROM kyobr_scans WHERE lower(brand)=? ORDER BY created_at DESC LIMIT ?",
+        (brand.lower().strip(), limit),
+    ).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def get_kyobr_scan(scan_id: str) -> dict | None:
+    conn = get_conn()
+    row = conn.execute("SELECT data FROM kyobr_scans WHERE scan_id=?", (scan_id,)).fetchone()
+    conn.close()
+    return json.loads(row["data"]) if row else None
 
 
 def _get_domain(url: str) -> str:
