@@ -6,9 +6,9 @@ interface Props {
 const EMAILS = [
   { label: 'AI & Product', email: 'ai@appstudiox.com' },
   { label: 'AEO Strategy', email: 'aeo@appstudiox.com' },
-  { label: 'SEO', email: 'seo@bestfreshfries.com' },
-  { label: 'Social Media', email: 'social@bestfreshfries.com' },
-  { label: 'Growth Strategy', email: 'strategy@bestfreshfries.com' },
+  { label: 'SEO', email: 'seo@appstudiox.com' },
+  { label: 'Social Media', email: 'social@appstudiox.com' },
+  { label: 'Growth Strategy', email: 'strategy@appstudiox.com' },
   { label: 'General', email: 'contact@appstudiox.com' },
 ];
 
