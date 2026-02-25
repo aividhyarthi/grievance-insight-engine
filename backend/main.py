@@ -1100,14 +1100,23 @@ def _kyobr_demo(brand: str, timeframe: str = "7d", business_type_hint: str = Non
     for cat_key, (cat_name, items) in ind_data["templates"].items():
         filled[cat_key] = (cat_name, [(txt.replace("{B}", B), sev) for txt, sev in items])
 
+    # AI engines to show as the source — cycle through them so every issue
+    # clearly shows an AI engine that surfaced the complaint
+    _AI_ENGINES = ["Perplexity AI", "ChatGPT", "Google Gemini", "DeepSeek", "Google AI Overview"]
+
     keys = list(filled.keys())
     rng.shuffle(keys)
     reviews = []
-    for cat_key in keys[:5 + rng.randint(0, 1)]:
+    for i, cat_key in enumerate(keys[:5 + rng.randint(0, 1)]):
         cat_name, items = filled[cat_key]
         text, severity  = rng.choice(items)
-        platforms       = ind_data["platforms_by_cat"].get(cat_key, ["Google Reviews", "Reddit"])
-        platform        = rng.choice(platforms)
+        # First 5 issues: one AI engine each (cycling) — shows real engine coverage
+        # Any extra issue: fall back to an industry-specific platform
+        if i < len(_AI_ENGINES):
+            platform = _AI_ENGINES[i]
+        else:
+            fallback_platforms = ind_data["platforms_by_cat"].get(cat_key, ["Google Reviews", "Reddit"])
+            platform = rng.choice(fallback_platforms)
         reviews.append({
             "category":     cat_name,
             "category_key": cat_key,
@@ -1120,7 +1129,7 @@ def _kyobr_demo(brand: str, timeframe: str = "7d", business_type_hint: str = Non
 
     reviews.sort(key=lambda r: 0 if r["severity"] == "high" else 1)
 
-    demo_engines = ["Perplexity AI", "ChatGPT", "Google Gemini", "DeepSeek", "Google AI Overview"]
+    demo_engines = _AI_ENGINES
     return _build_kyobr_response(brand, reviews, timeframe, "demo", industry, demo_engines)
 
 
