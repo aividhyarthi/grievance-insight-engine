@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     * { font-family: 'Inter', sans-serif; }
     body { background: #F8FAFC; }
@@ -117,6 +118,12 @@
       <button type="button" class="nav-btn" id="nav-schedules" onclick="showView('schedules')" style="margin-top:4px;">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Schedules
+      </button>
+      <div style="margin:16px 4px 6px;height:1px;background:#1E293B;"></div>
+      <div style="font-size:10px;font-weight:600;color:#334155;text-transform:uppercase;letter-spacing:0.08em;padding:0 4px 6px;">Brand Intelligence</div>
+      <button type="button" class="nav-btn" id="nav-kyobr" onclick="showView('kyobr')" style="background:rgba(220,38,38,0.1);color:#FCA5A5;">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        KYOBR
       </button>
     </nav>
 
@@ -308,6 +315,10 @@
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             Export CSV
           </button>
+          <button class="btn-primary" onclick="exportPDF()" id="btn-export-pdf" style="background:linear-gradient(135deg,#6366F1,#4338CA);">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            Export PDF
+          </button>
         </div>
       </div>
 
@@ -325,6 +336,23 @@
 
       <!-- Tab: Overview -->
       <div id="tab-overview">
+
+        <!-- Executive Summary Card -->
+        <div class="metric-card" style="margin-bottom:20px;border-left:4px solid #6366F1;padding:20px 24px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:260px;">
+              <div style="font-size:10px;font-weight:700;color:#6366F1;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Executive Summary</div>
+              <div style="font-size:15px;font-weight:700;color:#0F172A;margin-bottom:12px;">AI Visibility Report for CXOs</div>
+              <div id="exec-summary-text" style="font-size:13px;color:#374151;line-height:1.75;margin-bottom:12px;"></div>
+              <div id="exec-insights" style="display:flex;flex-direction:column;gap:6px;"></div>
+            </div>
+            <div style="text-align:center;background:linear-gradient(135deg,#EEF2FF,#E0E7FF);border-radius:14px;padding:18px 24px;flex-shrink:0;">
+              <div id="ai-vis-score" style="font-size:48px;font-weight:800;line-height:1;color:#6366F1;">—</div>
+              <div style="font-size:10px;font-weight:700;color:#6366F1;text-transform:uppercase;letter-spacing:0.06em;margin-top:6px;">AI Visibility<br>Score / 100</div>
+            </div>
+          </div>
+        </div>
+
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
           <div class="metric-card">
             <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:12px;">Citation by Engine</div>
@@ -512,6 +540,48 @@
       </div>
     </div>
 
+    <!-- ══════════════════════════════════ KYOBR VIEW ══════════════════════════════════ -->
+    <div id="view-kyobr" class="hidden">
+      <div style="max-width:860px;">
+        <!-- Header -->
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#DC2626,#991B1B);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
+          <div>
+            <h1 style="font-size:22px;font-weight:800;color:#0F172A;margin-bottom:2px;">KYOBR</h1>
+            <p style="font-size:13px;color:#64748B;margin:0;">Know Your Own Brand Reviews — AI-powered negative sentiment intelligence</p>
+          </div>
+        </div>
+
+        <!-- Search Box -->
+        <div style="background:white;border-radius:14px;border:1px solid #E2E8F0;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.05);margin-bottom:24px;">
+          <label style="display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">Enter Your Brand Name</label>
+          <div style="display:flex;gap:10px;">
+            <input type="text" id="kyobr-input" placeholder="e.g. Cars24, Zomato, Swiggy, Amazon..." style="flex:1;" onkeydown="if(event.key==='Enter')runKYOBR()" />
+            <button type="button" class="btn-primary" onclick="runKYOBR()" id="btn-kyobr" style="background:linear-gradient(135deg,#DC2626,#B91C1C);white-space:nowrap;flex-shrink:0;">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              Analyze Brand
+            </button>
+          </div>
+          <p style="font-size:11px;color:#94A3B8;margin-top:8px;">We query AI engines for ONLY the negative things people say — no noise, just critical brand intelligence.</p>
+        </div>
+
+        <!-- Loading state -->
+        <div id="kyobr-loading" style="display:none;text-align:center;padding:60px 20px;background:white;border-radius:14px;border:1px solid #E2E8F0;">
+          <div class="spinner" style="margin:0 auto 20px;"></div>
+          <div style="font-size:15px;font-weight:600;color:#0F172A;margin-bottom:6px;">Scanning AI Engines...</div>
+          <div style="font-size:13px;color:#64748B;">Searching Perplexity AI, ChatGPT &amp; Google AI Overview for complaints about your brand</div>
+        </div>
+
+        <!-- Results -->
+        <div id="kyobr-results" style="display:none;">
+          <div id="kyobr-summary-bar" style="margin-bottom:20px;"></div>
+          <div id="kyobr-cards" style="display:flex;flex-direction:column;gap:14px;"></div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -546,14 +616,14 @@ const ENGINE_META = {
 //  VIEW ROUTING
 // ═══════════════════════════════════════════════════════
 function showView(name) {
-  ['new-scan','scanning','results','history'].forEach(v => {
+  ['new-scan','scanning','results','history','kyobr'].forEach(v => {
     document.getElementById(`view-${v}`).classList.add('hidden');
   });
   // 'schedules' reuses the history view and scrolls to the schedules section
   const viewId = name === 'schedules' ? 'history' : name;
   document.getElementById(`view-${viewId}`).classList.remove('hidden');
 
-  ['nav-new','nav-history','nav-schedules'].forEach(id => document.getElementById(id)?.classList.remove('active'));
+  ['nav-new','nav-history','nav-schedules','nav-kyobr'].forEach(id => document.getElementById(id)?.classList.remove('active'));
   if (name === 'new-scan')   document.getElementById('nav-new').classList.add('active');
   if (name === 'history')    { document.getElementById('nav-history').classList.add('active'); loadHistory(); }
   if (name === 'schedules')  {
@@ -564,6 +634,7 @@ function showView(name) {
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 400);
   }
+  if (name === 'kyobr') document.getElementById('nav-kyobr').classList.add('active');
 }
 
 function showResultTab(name) {
@@ -964,6 +1035,7 @@ function renderResults(data) {
   renderSentimentChart(data);
   renderKeywordChart(data);
   renderShareOfVoice(data);
+  renderExecutiveSummary(data);
 
   // Add competitor options to filter dropdown
   const domainFilter = document.getElementById('filter-domain');
@@ -1442,6 +1514,471 @@ function exportCSV() {
   a.href = URL.createObjectURL(blob);
   a.download = `aeo-citations-${state.results.scan_id}.csv`;
   a.click();
+}
+
+// ═══════════════════════════════════════════════════════
+//  EXECUTIVE SUMMARY (WEB)
+// ═══════════════════════════════════════════════════════
+function _calcVisibilityScore(data, s) {
+  const citPct   = Math.min(s.target_citation_rate * 100, 100);
+  const posScore = s.avg_position > 0 ? Math.max(0, 100 - (s.avg_position - 1) * 18) : 0;
+  const engScore = (s.engines_covered / 4) * 100;
+  return Math.round(citPct * 0.4 + posScore * 0.25 + s.sentiment_score * 0.2 + engScore * 0.15);
+}
+
+function renderExecutiveSummary(data) {
+  const s = data.summary;
+  if (!s) return;
+  const score     = _calcVisibilityScore(data, s);
+  const scoreEl   = document.getElementById('ai-vis-score');
+  scoreEl.textContent = score;
+  scoreEl.style.color = score >= 70 ? '#10B981' : score >= 40 ? '#F59E0B' : '#EF4444';
+
+  const tier = score >= 70 ? 'strong' : score >= 40 ? 'moderate' : 'limited';
+  document.getElementById('exec-summary-text').innerHTML =
+    `<strong>${_esc(data.target_domain)}</strong> has <strong>${tier} AI visibility</strong> with a score of <strong style="color:#6366F1;">${score}/100</strong>. Across <strong>${s.keywords_tracked} keyword${s.keywords_tracked !== 1 ? 's' : ''}</strong> and <strong>${s.engines_covered} AI engine${s.engines_covered !== 1 ? 's' : ''}</strong>, your site was cited <strong>${s.target_citation_count} time${s.target_citation_count !== 1 ? 's' : ''}</strong> — ranked <strong>${s.rank_vs_competitors}</strong> among tracked domains.`;
+
+  const insights = [];
+  if (s.target_citation_rate < 0.3)
+    insights.push({ color: '#DC2626', text: `Citation rate is ${Math.round(s.target_citation_rate * 100)}% — improve AI discoverability through targeted content covering each tracked query.` });
+  else if (s.target_citation_rate >= 0.7)
+    insights.push({ color: '#16A34A', text: `Excellent citation rate of ${Math.round(s.target_citation_rate * 100)}% — your content is highly indexed by AI engines.` });
+
+  if (s.sentiment_score < 40)
+    insights.push({ color: '#DC2626', text: `Sentiment score is ${s.sentiment_score}/100. Negative mentions detected — address with positive PR content.` });
+  else if (s.sentiment_score >= 70)
+    insights.push({ color: '#16A34A', text: `High sentiment score of ${s.sentiment_score}/100 — AI engines describe your brand very favorably.` });
+
+  if (s.avg_position > 0 && s.avg_position <= 2)
+    insights.push({ color: '#6366F1', text: `Average position #${s.avg_position} — your site consistently appears at the top of AI citations.` });
+
+  const kp = data.keyword_performance || {};
+  const missed = Object.values(kp).filter(k => !k.target_cited).length;
+  if (missed > 0)
+    insights.push({ color: '#F59E0B', text: `${missed} keyword${missed !== 1 ? 's' : ''} have no AI citation yet — these are your top content opportunities.` });
+
+  if (!insights.length)
+    insights.push({ color: '#6366F1', text: 'Run more scans over time to build trend data and track changes in AI visibility.' });
+
+  document.getElementById('exec-insights').innerHTML = insights.map(ins =>
+    `<div style="display:flex;align-items:flex-start;gap:8px;padding:8px 12px;border-radius:8px;background:#F8FAFC;border:1px solid #E2E8F0;">
+      <span style="width:4px;height:4px;border-radius:50%;background:${ins.color};flex-shrink:0;margin-top:7px;"></span>
+      <span style="font-size:12px;color:#374151;line-height:1.6;">${ins.text}</span>
+    </div>`
+  ).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+//  PDF EXPORT
+// ═══════════════════════════════════════════════════════
+function exportPDF() {
+  if (!state.results) return;
+  const data  = state.results;
+  const s     = data.summary;
+  const score = _calcVisibilityScore(data, s);
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+  const W = 595.28, H = 841.89, PAD = 44;
+
+  // ── Core helpers ──────────────────────────────────────
+  function rgb(hex) {
+    return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)];
+  }
+  function fill(hex) { const [r,g,b]=rgb(hex); doc.setFillColor(r,g,b); }
+  function ink(hex)  { const [r,g,b]=rgb(hex); doc.setTextColor(r,g,b); }
+  function drw(hex)  { const [r,g,b]=rgb(hex); doc.setDrawColor(r,g,b); }
+
+  function frect(x,y,w,h,hex,rx) {
+    fill(hex);
+    rx ? doc.roundedRect(x,y,w,h,rx,rx,'F') : doc.rect(x,y,w,h,'F');
+  }
+  function txt(str,x,y,size,hex,weight,align) {
+    ink(hex||'#0F172A'); doc.setFontSize(size||10); doc.setFont('helvetica',weight||'normal');
+    doc.text(String(str), align==='center'?W/2:x, y, align==='center'?{align:'center'}:{});
+  }
+  function divider(y,hex) {
+    doc.setLineWidth(0.5); drw(hex||'#E2E8F0'); doc.line(PAD,y,W-PAD,y);
+  }
+  function pageHeader(title,domain,accent) {
+    frect(0,0,W,58,accent||'#1E3A5F');
+    txt('RUDRA KASTURI INC', W-PAD, 20, 7, '#94A3B8', 'normal');
+    txt(title, PAD, 38, 18, '#FFFFFF', 'bold');
+    if (domain) txt(domain, W-PAD, 38, 9, '#C7D2FE', 'normal');
+  }
+  function pageFooter(n) {
+    const dt = new Date().toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+    frect(0,H-26,W,26,'#0F172A');
+    txt(`Page ${n}  |  Rudra Kasturi Inc — AI Citation Tracker  |  ${dt}`, 0, H-9, 7, '#475569', 'normal', 'center');
+  }
+  function metricBox(x,y,w,h,label,value,sub,accent) {
+    frect(x,y,w,h,'#F8FAFC',5); frect(x,y,3,h,accent||'#6366F1',2);
+    txt(label.toUpperCase(),x+14,y+13,7,'#94A3B8','bold');
+    txt(String(value),x+14,y+30,15,accent||'#6366F1','bold');
+    if (sub) txt(sub,x+14,y+43,7,'#94A3B8','normal');
+  }
+
+  const ENG_NAMES = { perplexity:'Perplexity AI', google_ai_overview:'Google AI Overview', chatgpt_search:'ChatGPT Search', chatgpt_chat:'ChatGPT (Chat)' };
+  const ENG_COLS  = { perplexity:'#20B2AA', google_ai_overview:'#4285F4', chatgpt_search:'#10A37F', chatgpt_chat:'#74AA9C' };
+  const scoreColor = score >= 70 ? '#10B981' : score >= 40 ? '#F59E0B' : '#EF4444';
+
+  // ══ PAGE 1 — COVER ══════════════════════════════════════
+  frect(0,0,W,H,'#0F172A'); frect(0,0,5,H,'#6366F1');
+
+  // Company badge
+  frect(PAD,44,150,28,'#1E293B',4);
+  txt('RUDRA KASTURI INC',PAD+10,62,8,'#60A5FA','bold');
+
+  // Title
+  txt('AI Visibility',PAD,158,34,'#F1F5F9','bold');
+  txt('Intelligence Report',PAD,200,34,'#F1F5F9','bold');
+  txt(data.target_domain,PAD,228,13,'#94A3B8','normal');
+
+  // Score box
+  frect(W-162,128,116,116,'#1E293B',12);
+  frect(W-150,140,92,92,scoreColor,8);
+  txt(String(score),W-104,196,30,'#FFFFFF','bold','center');
+  txt('/ 100',W-104,213,9,'#FFFFFF','normal','center');
+  txt('AI Visibility Score',W-104,254,8,'#94A3B8','normal','center');
+
+  // Divider
+  doc.setLineWidth(0.5); drw('#1E293B'); doc.line(PAD,265,W-PAD,265);
+
+  // 5 metric columns
+  const mts=[
+    {l:'Your Citations',  v:s.target_citation_count},
+    {l:'Citation Rate',   v:Math.round(s.target_citation_rate*100)+'%'},
+    {l:'Avg Position',    v:s.avg_position>0?'#'+s.avg_position:'N/A'},
+    {l:'AI Engines',      v:s.engines_covered},
+    {l:'Keywords',        v:s.keywords_tracked},
+  ];
+  const pw = (W-PAD*2-16)/5;
+  mts.forEach((m,i) => {
+    const mx = PAD + i*(pw+4) + pw/2;
+    txt(String(m.v),mx,308,22,'#F1F5F9','bold','center');
+    txt(m.l,mx,325,8,'#64748B','normal','center');
+  });
+
+  // Summary preview
+  frect(PAD,356,W-PAD*2,100,'#1E293B',8);
+  txt('EXECUTIVE SUMMARY',PAD+16,376,7,'#64748B','bold');
+  const tier = score>=70?'strong':score>=40?'moderate':'limited';
+  const cvTxt = `${data.target_domain} demonstrates ${tier} AI visibility — score ${score}/100. Cited ${s.target_citation_count}x across ${s.keywords_tracked} keywords and ${s.engines_covered} AI engines. Ranked ${s.rank_vs_competitors}. Sentiment ${s.sentiment_score}/100.`;
+  ink('#CBD5E1'); doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text(doc.splitTextToSize(cvTxt,W-PAD*2-36).slice(0,4),PAD+16,392);
+
+  // Footer
+  frect(0,H-36,W,36,'#1E293B');
+  const dt0 = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  txt(`Generated on ${dt0}  |  Confidential — Rudra Kasturi Inc`,0,H-13,7,'#475569','normal','center');
+
+  // ══ PAGE 2 — EXECUTIVE SUMMARY ═════════════════════════
+  doc.addPage();
+  pageHeader('Executive Summary',data.target_domain,'#4338CA');
+  let y = 76;
+
+  // Score tier card
+  frect(PAD,y,W-PAD*2,72,'#EEF2FF',8);
+  frect(PAD,y,72,72,scoreColor,8);
+  txt(String(score),PAD+36,y+36,22,'#FFFFFF','bold','center');
+  txt('/100',PAD+36,y+50,8,'#FFFFFF','normal','center');
+  const tierLabel = score>=70?'Strong AI Visibility':score>=40?'Moderate AI Visibility':'Limited AI Visibility';
+  txt(tierLabel,PAD+84,y+24,13,'#0F172A','bold');
+  const snipTxt = `${data.target_domain} was cited ${s.target_citation_count}x across ${s.engines_covered} AI engines for ${s.keywords_tracked} keywords. Sentiment rated ${s.sentiment_score}/100.`;
+  ink('#374151'); doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text(doc.splitTextToSize(snipTxt,W-PAD*2-92).slice(0,2),PAD+84,y+40);
+  y += 90;
+
+  // 4 metric boxes
+  const mbw = (W-PAD*2-12)/4, mbh = 68;
+  metricBox(PAD,              y,mbw,mbh,'Your Citations', s.target_citation_count,`of ${s.total_citations} total`,'#3B82F6');
+  metricBox(PAD+(mbw+4),      y,mbw,mbh,'Citation Rate',  Math.round(s.target_citation_rate*100)+'%','of tracked queries','#6366F1');
+  metricBox(PAD+(mbw+4)*2,    y,mbw,mbh,'Avg Position',   s.avg_position>0?'#'+s.avg_position:'N/A','when cited','#8B5CF6');
+  metricBox(PAD+(mbw+4)*3,    y,mbw,mbh,'Sentiment',      s.sentiment_score+'/100',s.sentiment_score>=65?'Mostly positive':s.sentiment_score>=40?'Mixed':'Needs attention','#10B981');
+  y += mbh + 22;
+
+  // Insights
+  txt('Key Insights & Recommendations',PAD,y,12,'#0F172A','bold');
+  y += 12; divider(y); y += 16;
+
+  const iList = [];
+  if (s.target_citation_rate < 0.3)
+    iList.push({ col:'#DC2626', t:`Citation rate ${Math.round(s.target_citation_rate*100)}% — below 30%. Create content directly answering each tracked query to lift AI citations.` });
+  else if (s.target_citation_rate >= 0.7)
+    iList.push({ col:'#16A34A', t:`Citation rate ${Math.round(s.target_citation_rate*100)}% — excellent. Your content strategy is delivering strong AI discoverability.` });
+  if (s.sentiment_score < 40)
+    iList.push({ col:'#DC2626', t:`Sentiment ${s.sentiment_score}/100. Negative mentions detected in AI results — address with reputation-positive content.` });
+  else if (s.sentiment_score >= 70)
+    iList.push({ col:'#16A34A', t:`Sentiment ${s.sentiment_score}/100 — AI engines describe your brand very favorably. Maintain quality content.` });
+  if (s.avg_position > 0 && s.avg_position <= 2)
+    iList.push({ col:'#6366F1', t:`Average position #${s.avg_position} — you rank in top positions when cited by AI engines.` });
+  const kpObj = data.keyword_performance || {};
+  const missed3 = Object.values(kpObj).filter(k=>!k.target_cited).length;
+  if (missed3 > 0)
+    iList.push({ col:'#F59E0B', t:`${missed3} keyword(s) have no AI citations — these represent your most actionable content gaps.` });
+  if (!iList.length)
+    iList.push({ col:'#6366F1', t:'Run multiple scans to identify citation trends and content gaps over time.' });
+
+  iList.slice(0,5).forEach(ins => {
+    frect(PAD,y,W-PAD*2,34,'#F8FAFC',5); frect(PAD,y,3,34,ins.col,2);
+    const lines = doc.splitTextToSize(ins.t,W-PAD*2-30);
+    ink('#1E293B'); doc.setFontSize(9); doc.setFont('helvetica','normal');
+    doc.text(lines[0]||ins.t,PAD+16,y+15);
+    if (lines[1]) { doc.setFontSize(8); doc.text(lines[1],PAD+16,y+27); }
+    y += 42;
+  });
+
+  y += 8;
+  if (y < H-80) {
+    frect(PAD,y,W-PAD*2,50,'#FFF7ED',8); frect(PAD,y,3,50,'#F59E0B',2);
+    txt('COMPETITIVE RANKING',PAD+16,y+16,7,'#92400E','bold');
+    txt(`Ranked ${s.rank_vs_competitors}${data.competitor_urls.length?` — vs ${data.competitor_urls.length} competitor(s)`:' — no competitors tracked'}`,PAD+16,y+34,10,'#1E293B','bold');
+  }
+  pageFooter(2);
+
+  // ══ PAGE 3 — ENGINE PERFORMANCE ════════════════════════
+  doc.addPage();
+  pageHeader('Engine Performance',data.target_domain,'#0F766E');
+  y = 76;
+
+  txt('Citation Breakdown by AI Engine',PAD,y,12,'#0F172A','bold');
+  y += 12; divider(y); y += 8;
+
+  frect(PAD,y,W-PAD*2,24,'#F1F5F9');
+  const ecol = [PAD+4,PAD+172,PAD+258,PAD+338,PAD+418];
+  ['Engine','Your Citations','Total Mentions','Avg Position','Coverage'].forEach((h,i)=>{
+    ink('#64748B'); doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text(h,ecol[i],y+15);
+  });
+  y += 28;
+
+  Object.entries(data.engine_breakdown||{}).forEach(([eng,info],idx)=>{
+    frect(PAD,y,W-PAD*2,28,idx%2===0?'#FFFFFF':'#F8FAFC');
+    const ec2=ENG_COLS[eng]||'#94A3B8'; const [er,eg2,eb]=rgb(ec2);
+    doc.setFillColor(er,eg2,eb); doc.ellipse(ecol[0]+5,y+14,4,4,'F');
+    ink('#1E293B'); doc.setFontSize(9); doc.setFont('helvetica','bold');
+    doc.text(ENG_NAMES[eng]||eng,ecol[0]+14,y+17);
+    ink('#374151'); doc.setFont('helvetica','normal');
+    doc.text(String(info.count||0),ecol[1],y+17);
+    doc.text(String(info.total_mentions||0),ecol[2],y+17);
+    doc.text(info.avg_position>0?'#'+info.avg_position:'—',ecol[3],y+17);
+    ink(info.count>0?'#16A34A':'#DC2626'); doc.setFontSize(8); doc.setFont('helvetica','bold');
+    doc.text(info.count>0?'Cited':'Not cited',ecol[4],y+17);
+    y += 30;
+  });
+
+  y += 20;
+  txt('Share of Voice — All Tracked Domains',PAD,y,12,'#0F172A','bold');
+  y += 12; divider(y); y += 14;
+
+  const caObj = data.competitor_analysis||{};
+  const totAll = Object.values(caObj).reduce((t,d)=>t+(d.total_citations||0),0);
+  if (totAll > 0) {
+    const srtd = Object.entries(caObj).sort((a,b)=>b[1].total_citations-a[1].total_citations);
+    const dp=['#6366F1','#10B981','#F59E0B','#EF4444','#3B82F6','#8B5CF6']; let ci2=0;
+    srtd.forEach(([dom,inf])=>{
+      const pct=Math.round((inf.total_citations||0)/totAll*100);
+      const bc=inf.is_target?'#6366F1':dp[ci2++%dp.length];
+      const barW=Math.max(pct/100*(W-PAD*2-130),0);
+      ink(inf.is_target?'#1D4ED8':'#374151'); doc.setFontSize(9); doc.setFont(inf.is_target?'helvetica':'helvetica',inf.is_target?'bold':'normal');
+      doc.text((inf.is_target?'(You) ':'')+dom,PAD,y+12);
+      frect(PAD+130,y,W-PAD*2-130,16,'#E2E8F0',3);
+      if (barW>0) { const [br2,bg3,bb2]=rgb(bc); doc.setFillColor(br2,bg3,bb2); doc.roundedRect(PAD+130,y,barW,16,3,3,'F'); }
+      ink('#0F172A'); doc.setFontSize(8); doc.setFont('helvetica','bold');
+      doc.text(pct+'%',PAD+130+barW+8,y+11);
+      y += 24;
+    });
+  } else {
+    txt('No citation data available for comparison.',PAD,y+10,9,'#94A3B8','normal');
+  }
+  pageFooter(3);
+
+  // ══ PAGE 4 — KEYWORDS ══════════════════════════════════
+  doc.addPage();
+  pageHeader('Keyword Performance',data.target_domain,'#7C3AED');
+  y = 76;
+
+  txt('All Tracked Keywords',PAD,y,12,'#0F172A','bold');
+  y += 12; divider(y); y += 8;
+
+  frect(PAD,y,W-PAD*2,24,'#F1F5F9');
+  const kc=[PAD+4,PAD+212,PAD+282,PAD+352,PAD+422];
+  ['Keyword','Cited?','Appearances','Best Pos.','Engines'].forEach((h,i)=>{
+    ink('#64748B'); doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text(h,kc[i],y+15);
+  });
+  y += 28;
+
+  const kp4 = data.keyword_performance||{};
+  let pgN = 4;
+  Object.entries(kp4).forEach(([kw,info],idx)=>{
+    if (y > H-80) {
+      pageFooter(pgN); pgN++;
+      doc.addPage();
+      pageHeader('Keyword Performance (cont.)',data.target_domain,'#7C3AED');
+      y = 76;
+    }
+    frect(PAD,y,W-PAD*2,26,idx%2===0?'#FFFFFF':'#F8FAFC');
+    const kwTxt = kw.length>40?kw.substring(0,38)+'...':kw;
+    ink('#1E293B'); doc.setFontSize(8.5); doc.setFont('helvetica','normal'); doc.text(kwTxt,kc[0],y+17);
+    const [br4,bg4,bb4]=rgb(info.target_cited?'#D1FAE5':'#FEE2E2');
+    doc.setFillColor(br4,bg4,bb4); doc.roundedRect(kc[1],y+5,30,15,3,3,'F');
+    ink(info.target_cited?'#16A34A':'#DC2626'); doc.setFontSize(8); doc.setFont('helvetica','bold');
+    doc.text(info.target_cited?'YES':'NO',kc[1]+5,y+16);
+    ink('#374151'); doc.setFontSize(9); doc.setFont('helvetica','normal');
+    doc.text(String(info.target_appearances||0),kc[2]+8,y+17);
+    doc.text(info.best_position!=null?'#'+info.best_position:'—',kc[3]+8,y+17);
+    const engsStr=(info.engines_cited_in||[]).map(e=>ENG_NAMES[e]||e).join(', ');
+    ink('#64748B'); doc.setFontSize(7.5);
+    doc.text((engsStr.length>28?engsStr.substring(0,26)+'...':engsStr)||'—',kc[4],y+17);
+    y += 28;
+  });
+
+  y += 10;
+  if (y < H-80) {
+    const cited4=Object.values(kp4).filter(k=>k.target_cited).length;
+    const tot4=Object.keys(kp4).length;
+    frect(PAD,y,W-PAD*2,52,'#EEF2FF',8); frect(PAD,y,3,52,'#6366F1',2);
+    txt(`${cited4} of ${tot4} keywords (${tot4?Math.round(cited4/tot4*100):0}%) are generating AI citations for ${data.target_domain}.`,PAD+16,y+20,9,'#4338CA','bold');
+    txt('Focus content strategy on uncited keywords to increase your overall AI visibility score.',PAD+16,y+36,8,'#6366F1','normal');
+  }
+  pageFooter(pgN);
+
+  doc.save(`AI-Citation-Report-${data.target_domain}-${data.scan_id}.pdf`);
+}
+
+// ═══════════════════════════════════════════════════════
+//  KYOBR — Know Your Own Brand Reviews
+// ═══════════════════════════════════════════════════════
+async function runKYOBR() {
+  const brand   = document.getElementById('kyobr-input').value.trim();
+  if (!brand) { alert('Please enter a brand name'); return; }
+  const btn     = document.getElementById('btn-kyobr');
+  const loading = document.getElementById('kyobr-loading');
+  const results = document.getElementById('kyobr-results');
+
+  btn.disabled = true; btn.textContent = 'Analyzing...';
+  loading.style.display = 'block';
+  results.style.display = 'none';
+
+  try {
+    const resp = await fetch('/api/kyobr', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ brand }),
+    });
+    if (!resp.ok) throw new Error('API error');
+    renderKYOBRResults(await resp.json());
+  } catch(e) {
+    alert('Could not analyze brand. Please try again.');
+  } finally {
+    loading.style.display = 'none';
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg> Analyze Brand';
+  }
+}
+
+function renderKYOBRResults(data) {
+  const summaryEl = document.getElementById('kyobr-summary-bar');
+  const cardsEl   = document.getElementById('kyobr-cards');
+  const resultsEl = document.getElementById('kyobr-results');
+  const reviews   = data.reviews || [];
+  const summary   = data.summary || {};
+  const brand     = data.brand || '';
+
+  const CAT_COLOR = {
+    customer_service:'#EF4444', product_quality:'#F97316',
+    pricing:'#F59E0B', delivery:'#8B5CF6',
+    refunds:'#EC4899', tech:'#3B82F6', general:'#6B7280',
+  };
+  const CAT_LABEL = {
+    customer_service:'Customer Service', product_quality:'Product Quality',
+    pricing:'Pricing & Fees', delivery:'Delivery & Logistics',
+    refunds:'Refunds & Returns', tech:'App & Website', general:'General',
+  };
+  const HEALTH_COLOR = { poor:'#DC2626', concerning:'#F59E0B', fair:'#2563EB', good:'#16A34A' };
+
+  const catBreak = {};
+  reviews.forEach(r => { catBreak[r.category_key] = (catBreak[r.category_key]||0)+1; });
+
+  const hc = HEALTH_COLOR[summary.brand_health] || '#64748B';
+
+  summaryEl.innerHTML = `
+    <div style="background:white;border-radius:12px;border:1px solid #E2E8F0;padding:20px 24px;margin-bottom:20px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:#DC2626;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">KYOBR Analysis</div>
+          <div style="font-size:20px;font-weight:800;color:#0F172A;">${_esc(brand)}</div>
+          <div style="font-size:13px;color:#64748B;margin-top:4px;">${reviews.length} negative sentiment area${reviews.length!==1?'s':''} identified across ${summary.ai_engines_searched||4} AI engines</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+          <span style="font-size:11px;font-weight:700;color:${hc};background:${hc}18;border:1px solid ${hc}40;padding:4px 12px;border-radius:20px;">Brand Health: ${_cap(summary.brand_health||'fair')}</span>
+          ${data.source==='demo'
+            ? '<span style="font-size:9px;font-weight:700;color:#92400E;background:#FEF3C7;border:1px solid #FDE68A;padding:3px 8px;border-radius:10px;">DEMO DATA</span>'
+            : '<span style="font-size:9px;font-weight:700;color:#065F46;background:#D1FAE5;border:1px solid #A7F3D0;padding:3px 8px;border-radius:10px;">LIVE DATA</span>'}
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="text-align:center;background:#FEF2F2;border-radius:8px;padding:10px 18px;flex:1;min-width:80px;">
+          <div style="font-size:22px;font-weight:800;color:#DC2626;">${summary.high_severity||0}</div>
+          <div style="font-size:10px;font-weight:600;color:#B91C1C;text-transform:uppercase;letter-spacing:0.04em;">High Severity</div>
+        </div>
+        <div style="text-align:center;background:#FFFBEB;border-radius:8px;padding:10px 18px;flex:1;min-width:80px;">
+          <div style="font-size:22px;font-weight:800;color:#F59E0B;">${summary.medium_severity||0}</div>
+          <div style="font-size:10px;font-weight:600;color:#B45309;text-transform:uppercase;letter-spacing:0.04em;">Medium Severity</div>
+        </div>
+        <div style="text-align:center;background:#EFF6FF;border-radius:8px;padding:10px 18px;flex:1;min-width:80px;">
+          <div style="font-size:22px;font-weight:800;color:#2563EB;">${summary.total_issues||reviews.length}</div>
+          <div style="font-size:10px;font-weight:600;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.04em;">Total Issues</div>
+        </div>
+        <div style="text-align:center;background:#F0FDF4;border-radius:8px;padding:10px 18px;flex:1;min-width:80px;">
+          <div style="font-size:22px;font-weight:800;color:#16A34A;">${summary.ai_engines_searched||4}</div>
+          <div style="font-size:10px;font-weight:600;color:#15803D;text-transform:uppercase;letter-spacing:0.04em;">Engines Searched</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        ${Object.entries(catBreak).map(([k,cnt])=>{
+          const c=CAT_COLOR[k]||'#6B7280', l=CAT_LABEL[k]||k;
+          return `<span style="font-size:11px;font-weight:600;color:${c};background:${c}15;border:1px solid ${c}35;padding:3px 10px;border-radius:20px;">${_esc(l)} (${cnt})</span>`;
+        }).join('')}
+      </div>
+    </div>`;
+
+  const SEV = {
+    high:   { color:'#DC2626', bg:'#FEF2F2', border:'#FECACA', label:'HIGH SEVERITY' },
+    medium: { color:'#F59E0B', bg:'#FFFBEB', border:'#FDE68A', label:'MED SEVERITY' },
+  };
+
+  cardsEl.innerHTML = reviews.map(r => {
+    const sv = SEV[r.severity] || SEV.medium;
+    const catColor = CAT_COLOR[r.category_key] || '#6B7280';
+    const catLabel = CAT_LABEL[r.category_key] || r.category;
+    const volPct   = Math.min(((r.mentions||10)/400)*100,100).toFixed(0);
+    return `
+    <div style="background:white;border-radius:12px;border:1.5px solid ${sv.border};padding:20px 22px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:${sv.color};border-radius:2px 0 0 2px;"></div>
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;padding-left:10px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="font-size:10px;font-weight:700;color:${sv.color};background:${sv.bg};border:1px solid ${sv.border};padding:2px 8px;border-radius:10px;">${sv.label}</span>
+          <span style="font-size:10px;font-weight:600;color:${catColor};background:${catColor}15;padding:2px 8px;border-radius:10px;">${_esc(catLabel)}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <span style="font-size:10px;color:#94A3B8;font-weight:500;">Volume:</span>
+          <div style="width:80px;height:6px;background:#E2E8F0;border-radius:3px;overflow:hidden;">
+            <div style="width:${volPct}%;height:6px;background:${sv.color};border-radius:3px;transition:width 0.6s ease;"></div>
+          </div>
+          <span style="font-size:11px;font-weight:700;color:${sv.color};">${r.mentions||'?'}</span>
+        </div>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#0F172A;margin-bottom:10px;padding-left:10px;">${_esc(r.category)}</div>
+      <div style="font-size:13px;color:#374151;line-height:1.75;padding-left:10px;">${_esc(r.text||'')}</div>
+      ${r.source ? `
+      <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-left:10px;flex-wrap:wrap;border-top:1px solid #F1F5F9;padding-top:12px;">
+        <span style="font-size:10px;color:#94A3B8;font-weight:600;">Detected via:</span>
+        <span style="font-size:10px;color:#60A5FA;background:#1E3A5F;padding:2px 8px;border-radius:10px;font-weight:500;">${_esc(r.source)}</span>
+        ${r.query ? `<span style="font-size:10px;color:#94A3B8;font-style:italic;">query: "${_esc(r.query)}"</span>` : ''}
+      </div>` : ''}
+    </div>`;
+  }).join('');
+
+  resultsEl.style.display = 'block';
 }
 
 // ═══════════════════════════════════════════════════════

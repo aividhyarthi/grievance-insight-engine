@@ -7,6 +7,10 @@ class SuggestRequest(BaseModel):
     url: str
 
 
+class KYOBRRequest(BaseModel):
+    brand: str
+
+
 class ScheduleRequest(BaseModel):
     target_url: str
     competitor_urls: List[str] = []

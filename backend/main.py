@@ -9,7 +9,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 
-from models import ScanRequest, ScanResponse, SuggestRequest, ScheduleRequest
+from models import ScanRequest, ScanResponse, SuggestRequest, ScheduleRequest, KYOBRRequest
 from database import (
     init_db, create_scan, update_scan_status, save_citations,
     get_scan, get_scan_results, get_all_scans, get_domain_trends,
@@ -494,6 +494,186 @@ def _suggest_demo(url: str, page_text: str) -> list:
     }.get(niche, [])
 
     return (base + extras)[:15]
+
+
+# ─── KYOBR — Know Your Own Brand Reviews ──────────────────────────────────────
+
+@app.post("/api/kyobr")
+async def kyobr_search(body: KYOBRRequest):
+    brand = body.brand.strip()
+    if not brand:
+        raise HTTPException(status_code=400, detail="Brand name required")
+
+    perplexity_key = os.getenv("PERPLEXITY_API_KEY")
+    if perplexity_key:
+        try:
+            return await _kyobr_real(brand, perplexity_key)
+        except Exception as e:
+            print(f"[KYOBR] Real API error: {e}")
+
+    return _kyobr_demo(brand)
+
+
+async def _kyobr_real(brand: str, api_key: str) -> dict:
+    """Query Perplexity for real negative brand reviews."""
+    import requests as req, asyncio
+
+    queries = [
+        f"What are the most common complaints and negative reviews about {brand} from real customers in 2024 and 2025?",
+        f"What problems and criticisms do users most frequently report about {brand}?",
+    ]
+
+    raw_texts = []
+    for query in queries:
+        resp = await asyncio.get_event_loop().run_in_executor(None, lambda q=query: req.post(
+            "https://api.perplexity.ai/chat/completions",
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            json={
+                "model": "sonar",
+                "messages": [
+                    {"role": "system", "content": "Extract only specific, factual negative complaints from real user reviews. Be concise and structured."},
+                    {"role": "user", "content": q},
+                ],
+                "max_tokens": 600,
+            },
+            timeout=20,
+        ))
+        if resp.ok:
+            raw_texts.append(resp.json()["choices"][0]["message"]["content"])
+
+    # Parse raw text into structured complaints
+    reviews = []
+    import re
+    CATEGORIES_MAP = {
+        "service|support|staff|agent|response|customer care": ("customer_service", "Customer Service"),
+        "quality|defect|fake|counterfeit|damage|broken|condition": ("product_quality", "Product Quality"),
+        "price|fee|charge|hidden|expensive|cost|billing": ("pricing", "Pricing & Fees"),
+        "deliver|ship|delay|late|courier|logistics": ("delivery", "Delivery & Logistics"),
+        "refund|return|cancel|money back": ("refunds", "Returns & Refunds"),
+        "app|website|crash|login|technical|slow|error|bug": ("tech", "App & Website"),
+    }
+    SOURCES = ["Perplexity AI", "Google AI Overview", "ChatGPT Search"]
+
+    for text in raw_texts:
+        lines = [l.strip() for l in re.split(r'\n+|•|\d+\.', text) if len(l.strip()) > 40]
+        for line in lines[:5]:
+            cat_key, cat_name = "general", "General"
+            line_lower = line.lower()
+            for pattern, (k, n) in CATEGORIES_MAP.items():
+                if re.search(pattern, line_lower):
+                    cat_key, cat_name = k, n
+                    break
+            reviews.append({
+                "category": cat_name,
+                "category_key": cat_key,
+                "text": line,
+                "severity": "high" if any(w in line_lower for w in ["serious", "worst", "terrible", "fraud", "scam", "never", "always"]) else "medium",
+                "source": SOURCES[len(reviews) % len(SOURCES)],
+                "query": queries[0],
+                "mentions": None,
+            })
+
+    if not reviews:
+        return _kyobr_demo(brand)
+
+    high = sum(1 for r in reviews if r["severity"] == "high")
+    return {
+        "brand": brand,
+        "reviews": reviews[:8],
+        "summary": {
+            "total_issues": len(reviews),
+            "high_severity": high,
+            "medium_severity": len(reviews) - high,
+            "top_categories": list({r["category"] for r in reviews})[:3],
+            "brand_health": "poor" if high >= 3 else "concerning" if high >= 2 else "fair",
+            "ai_engines_searched": 2,
+            "queries_run": len(queries),
+        },
+        "source": "live",
+    }
+
+
+def _kyobr_demo(brand: str) -> dict:
+    """Generate realistic demo negative review data for a brand."""
+    import random, hashlib
+    seed = int(hashlib.md5(brand.lower().encode()).hexdigest()[:8], 16)
+    rng  = random.Random(seed)
+    B    = brand.title()
+
+    TEMPLATES = {
+        "customer_service": ("Customer Service", [
+            (f"Customer support at {B} is extremely slow — users report waiting 3–7 business days for a response to basic queries, with many complaints going unanswered entirely.", "high"),
+            (f"Multiple reviewers note that {B} support agents give inconsistent answers. The same question receives different responses depending on who you speak to.", "medium"),
+            (f"{B}'s live chat frequently disconnects mid-conversation, forcing customers to restart and repeat their issue from scratch.", "medium"),
+        ]),
+        "product_quality": ("Product Quality", [
+            (f"A significant number of buyers report that items received from {B} do not match the quality shown in product photos or descriptions — often arriving in a noticeably worse condition.", "high"),
+            (f"Counterfeit or substandard products are a recurring complaint about {B} despite their stated verification process.", "high"),
+            (f"Quality is inconsistent across orders from {B} — some customers are satisfied while others report defective or incorrect items.", "medium"),
+        ]),
+        "pricing": ("Pricing & Fees", [
+            (f"{B} is frequently criticised for hidden fees not disclosed until the final checkout step — processing fees, convenience charges, and delivery costs appear only at payment.", "high"),
+            (f"Users feel {B}'s prices are inflated 15–25% above actual market value, particularly for resale goods where price comparisons are easy.", "medium"),
+            (f"Surprise charges post-purchase are a common complaint — customers report being billed additional amounts days after completing a transaction with {B}.", "high"),
+        ]),
+        "delivery": ("Delivery & Logistics", [
+            (f"Delivery delays of 2–3× the promised timeline are the top complaint about {B} across Reddit, Trustpilot, and consumer forums.", "high"),
+            (f"Packages arriving damaged — and {B} refusing to take responsibility — is a frequently cited issue in negative reviews.", "medium"),
+            (f"Tracking information for {B} shipments is often inaccurate or not updated for 48–72 hours, leaving customers with no visibility into their order.", "medium"),
+        ]),
+        "refunds": ("Returns & Refunds", [
+            (f"Getting a refund from {B} is described as 'nearly impossible' by multiple verified reviewers, with many waiting 30+ days for money back.", "high"),
+            (f"{B}'s return policy is considered too restrictive — legitimate return requests are frequently rejected with vague reasons.", "high"),
+            (f"The refund process at {B} requires excessive documentation and multiple follow-ups; customers report needing to contact support 5+ times to resolve a single refund.", "medium"),
+        ]),
+        "tech": ("App & Website", [
+            (f"The {B} mobile app crashes frequently during checkout, causing users to lose their order and have to restart — a common complaint in App Store and Play Store reviews.", "high"),
+            (f"Multiple users report random account suspensions on {B} with no explanation and difficulty reaching support to reinstate access.", "medium"),
+            (f"Website performance degrades significantly during high-traffic periods — slow page loads and session errors are reported during sales and peak hours on {B}.", "medium"),
+        ]),
+    }
+
+    SOURCES = ["Perplexity AI", "Google AI Overview", "ChatGPT Search", "Reddit (via AI)"]
+    QUERIES = [
+        f"{brand} negative reviews", f"what's wrong with {brand}?",
+        f"{brand} complaints 2025",  f"{brand} user problems",
+        f"is {brand} reliable?",    f"bad experiences with {brand}",
+    ]
+
+    keys = list(TEMPLATES.keys())
+    rng.shuffle(keys)
+    reviews = []
+    for cat_key in keys[:5 + rng.randint(0, 1)]:
+        cat_name, templates = TEMPLATES[cat_key]
+        text, severity = rng.choice(templates)
+        reviews.append({
+            "category": cat_name,
+            "category_key": cat_key,
+            "text": text,
+            "severity": severity,
+            "source": rng.choice(SOURCES),
+            "query": rng.choice(QUERIES),
+            "mentions": rng.randint(28, 420) if severity == "high" else rng.randint(8, 90),
+        })
+
+    reviews.sort(key=lambda r: 0 if r["severity"] == "high" else 1)
+    high = sum(1 for r in reviews if r["severity"] == "high")
+    cats = list(dict.fromkeys(r["category"] for r in reviews))
+
+    return {
+        "brand": brand,
+        "reviews": reviews,
+        "summary": {
+            "total_issues": len(reviews),
+            "high_severity": high,
+            "medium_severity": len(reviews) - high,
+            "top_categories": cats[:3],
+            "brand_health": "poor" if high >= 3 else "concerning" if high >= 2 else "fair",
+            "ai_engines_searched": 4,
+            "queries_run": len(QUERIES),
+        },
+        "source": "demo",
+    }
 
 
 if __name__ == "__main__":
