@@ -174,22 +174,34 @@ def run(page: PageData) -> CategoryReport:
                 impact="Medium", effort="Medium"))
 
     # ── Breadcrumbs ───────────────────────────────────────────────────────────
+    # 1. JSON-LD schema (most common: Yoast, RankMath, custom)
     breadcrumb_schema = any('"BreadcrumbList"' in s for s in page.structured_data)
+    # 2. HTML element: aria-label or class containing "breadcrumb"
     breadcrumb_nav = (
         page.soup.find(["nav", "ol", "ul"],
             attrs={"aria-label": lambda v: v and "breadcrumb" in v.lower()})
         or page.soup.find(attrs={"class": lambda v: v and "breadcrumb" in " ".join(v).lower()})
     )
-    if not breadcrumb_schema and not breadcrumb_nav:
+    # 3. Microdata: itemtype="https://schema.org/BreadcrumbList" (common in older WordPress themes)
+    breadcrumb_microdata = page.soup.find(
+        attrs={"itemtype": re.compile(r"BreadcrumbList", re.I)}
+    )
+    if not breadcrumb_schema and not breadcrumb_nav and not breadcrumb_microdata:
         f.append(Finding("Interlinking", "Breadcrumb navigation", Severity.WARNING,
             "No breadcrumb nav or BreadcrumbList schema found.",
             "Add breadcrumbs with BreadcrumbList JSON-LD — displays category path in SERPs "
             "and reduces effective crawl depth for deep pages.",
             impact="Medium", effort="Medium"))
     else:
-        extra = " + BreadcrumbList schema" if breadcrumb_schema else ""
+        signals = []
+        if breadcrumb_schema:
+            signals.append("JSON-LD schema")
+        if breadcrumb_microdata:
+            signals.append("microdata")
+        if breadcrumb_nav:
+            signals.append("HTML nav element")
         f.append(Finding("Interlinking", "Breadcrumb navigation", Severity.PASS,
-            f"Breadcrumb navigation present{extra}."))
+            f"Breadcrumb navigation present ({', '.join(signals)})."))
 
     # ── Navigation <nav> element ──────────────────────────────────────────────
     nav_tags = page.soup.find_all("nav")

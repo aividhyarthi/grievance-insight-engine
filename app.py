@@ -73,7 +73,7 @@ def audit():
     # ── Fetch / parse the main page ──────────────────────────────────────────
     if input_mode == "html":
         html_content = request.form.get("html_content", "").strip()
-        raw_url      = request.form.get("url", "").strip() or "pasted-html"
+        raw_url      = request.form.get("html_url", "").strip() or "pasted-html"
         if not html_content:
             return render_template("index.html", site_types=SITE_TYPE_LABELS,
                                    error="Please paste some HTML to audit.")
