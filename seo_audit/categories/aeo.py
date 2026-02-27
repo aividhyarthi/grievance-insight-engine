@@ -83,8 +83,14 @@ def run(page: PageData) -> CategoryReport:
             impact="High", effort="Medium"))
 
     # ── Definition / direct answer pattern ───────────────────────────────────
+    # Require a noun/subject (capitalised term or quoted phrase) before the
+    # definition verb so vague sentences like "The problem is that…" don't match.
     definition_pattern = re.compile(
-        r"\b(is|are|means|refers to|defined as|describes|can be defined)\b.{10,120}[.!]", re.I)
+        r"(?:[A-Z][a-zA-Z]{2,}|\"[^\"]{3,}\"|'[^']{3,}')"  # subject: proper noun or quoted term
+        r"\s+(?:is|are|means|refers to|defined as|describes|can be defined as)"
+        r"\b.{10,120}[.!]",
+        re.I,
+    )
     defs = definition_pattern.findall(body_text[:5000])
     if defs:
         f.append(Finding("AEO", "Direct answer / definition sentences", Severity.PASS,

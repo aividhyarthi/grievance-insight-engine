@@ -186,7 +186,12 @@ def run(page: PageData) -> CategoryReport:
     title = page.title.lower()
     if primary_kw in title:
         title_words = title.split()
-        pos = next((i for i, w in enumerate(title_words) if primary_kw in w), len(title_words))
+        kw_words = primary_kw.split()
+        pos = len(title_words)  # default: not found (end)
+        for i in range(len(title_words) - len(kw_words) + 1):
+            if title_words[i:i + len(kw_words)] == kw_words:
+                pos = i
+                break
         pos_note = " (near start — strong signal)" if pos < 3 else " (towards end — consider moving earlier)"
         f.append(Finding("Keywords", "Primary keyword in title", Severity.PASS,
             f"'{primary_kw}' present in title{pos_note}."))

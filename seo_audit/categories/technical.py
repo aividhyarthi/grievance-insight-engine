@@ -26,7 +26,7 @@ def _cache_control_is_positive(cc: str) -> bool:
     blocking = {"no-store", "no-cache", "must-revalidate", "max-age=0"}
     if any(b in cc_lower for b in blocking):
         return False
-    return bool(re.search(r"max-age\s*=\s*[1-9]", cc_lower) or "s-maxage" in cc_lower)
+    return bool(re.search(r"max-age\s*=\s*[1-9]\d*", cc_lower) or "s-maxage" in cc_lower)
 
 
 def _extract_schema_types(page) -> list[str]:

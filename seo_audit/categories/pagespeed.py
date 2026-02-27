@@ -286,21 +286,26 @@ def run(page: PageData) -> CategoryReport:
     # Image lazy loading (with above-fold awareness)
     images = page.images
     if images:
+        # Heuristic: first 2 images in DOM order are likely above the fold.
+        # Note: actual fold position depends on CSS/viewport — treat these as signals, not absolutes.
         above_fold_lazy = [img for img in images[:2] if img["loading"] == "lazy"]
         below_fold_no_lazy = [img for img in images[2:] if img["loading"] not in ("lazy", "eager")]
         if above_fold_lazy:
-            f.append(Finding("Pagespeed", "LCP image incorrectly lazy-loaded", Severity.CRITICAL,
-                f"{len(above_fold_lazy)} of the first 2 image(s) have loading='lazy' — this delays LCP.",
-                "Never lazy-load above-the-fold images. Reserve lazy-loading for below-fold only.",
+            f.append(Finding("Pagespeed", "LCP image possibly lazy-loaded", Severity.WARNING,
+                f"{len(above_fold_lazy)} of the first 2 image(s) in the DOM have loading='lazy' — "
+                "if these are above the fold, this delays the Largest Contentful Paint (LCP).",
+                "Avoid lazy-loading images that appear in the initial viewport. "
+                "Use loading='eager' (or omit the attribute) for hero/above-fold images.",
                 impact="High", effort="Quick Win"))
         if below_fold_no_lazy:
-            f.append(Finding("Pagespeed", "Image lazy loading", Severity.CRITICAL,
-                f"{len(below_fold_no_lazy)} below-fold image(s) missing loading='lazy'.",
-                "Add loading='lazy' to images below the fold to reduce initial page weight.",
-                impact="High", effort="Quick Win"))
+            f.append(Finding("Pagespeed", "Image lazy loading", Severity.WARNING,
+                f"{len(below_fold_no_lazy)} image(s) beyond the first 2 are missing loading='lazy'.",
+                "Add loading='lazy' to images below the fold to defer their download "
+                "and reduce initial page weight.",
+                impact="Medium", effort="Quick Win"))
         if not above_fold_lazy and not below_fold_no_lazy:
             f.append(Finding("Pagespeed", "Image lazy loading", Severity.PASS,
-                "Lazy-loading strategy looks correct — above-fold images eager, below-fold lazy."))
+                "Lazy-loading strategy looks correct — first images are eager, remainder are lazy."))
 
     # Modern image formats
     jpg_png = [img for img in images if re.search(r"\.(jpe?g|png)(\?|$)", img["src"], re.I)]
