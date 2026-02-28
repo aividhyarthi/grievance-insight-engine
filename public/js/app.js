@@ -6,7 +6,9 @@
 
 /* ── App state ──────────────────────────────────────────── */
 const state = {
-  language: 'English',   // selected language code (matches keys in UI / LANGUAGES)
+  language:    'English',   // selected language code (matches keys in UI / LANGUAGES)
+  currentData: null,        // last scan result, used for audio playback
+  isSpeaking:  false,
 };
 
 /* ── DOM refs ────────────────────────────────────────────── */
@@ -143,9 +145,85 @@ async function handleScan() {
 }
 
 async function restartScanner() {
+  stopSpeaking();
   show('scanner');
   await camera.start();
 }
+
+/* ══════════════════════════════════════════════════════════
+   Audio — Text-to-Speech
+══════════════════════════════════════════════════════════ */
+function speakResults() {
+  if (!('speechSynthesis' in window)) {
+    showToast('Text-to-speech is not supported on this device.');
+    return;
+  }
+
+  if (state.isSpeaking) {
+    stopSpeaking();
+    return;
+  }
+
+  const data    = state.currentData;
+  const ui      = getUI(state.language);
+  const langObj = LANGUAGES.find(l => l.code === state.language);
+  const bcp47   = langObj?.speechLang || 'en-IN';
+
+  // Build a natural spoken summary from available fields
+  const parts = [
+    data.name,
+    data.type,
+    data.use        && `${ui.labelUse}: ${data.use}`,
+    data.dosage     && `${ui.labelDose}: ${data.dosage}`,
+    data.sideEffects && `${ui.labelSide}: ${data.sideEffects}`,
+    data.warnings   && `${ui.labelWarn}: ${data.warnings}`,
+    data.storage    && `${ui.labelStore}: ${data.storage}`,
+  ].filter(Boolean).join('. ');
+
+  const utterance  = new SpeechSynthesisUtterance(parts);
+  utterance.lang   = bcp47;
+  utterance.rate   = 0.88;
+  utterance.pitch  = 1;
+
+  utterance.onstart = () => {
+    state.isSpeaking = true;
+    setListenBtnState(true);
+  };
+  utterance.onend = utterance.onerror = () => {
+    state.isSpeaking = false;
+    setListenBtnState(false);
+  };
+
+  window.speechSynthesis.cancel(); // clear any queued speech
+  window.speechSynthesis.speak(utterance);
+}
+
+function stopSpeaking() {
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  state.isSpeaking = false;
+  setListenBtnState(false);
+}
+
+function setListenBtnState(speaking) {
+  const btn      = $('btn-listen');
+  const iconPlay = $('icon-listen');
+  const iconStop = $('icon-stop');
+  if (!btn) return;
+  const ui = getUI(state.language);
+  if (speaking) {
+    btn.classList.add('listening');
+    btn.setAttribute('aria-label', ui.stop);
+    iconPlay.style.display = 'none';
+    iconStop.style.display = '';
+  } else {
+    btn.classList.remove('listening');
+    btn.setAttribute('aria-label', ui.listen);
+    iconPlay.style.display = '';
+    iconStop.style.display = 'none';
+  }
+}
+
+$('btn-listen').addEventListener('click', speakResults);
 
 /* ══════════════════════════════════════════════════════════
    SCREEN 4 — Results rendering
@@ -165,6 +243,10 @@ const CARD_DEFS = [
 ];
 
 function renderResults(data, ui) {
+  state.currentData = data;
+  stopSpeaking();
+  setListenBtnState(false);
+
   // Hero
   $('result-name').textContent = data.name  || '—';
   $('result-type').textContent = data.type  || '';
@@ -200,7 +282,7 @@ function renderResults(data, ui) {
 }
 
 // Results back button (top-left arrow)
-$('btn-results-back').addEventListener('click', () => restartScanner());
+$('btn-results-back').addEventListener('click', () => { stopSpeaking(); restartScanner(); });
 
 /* ══════════════════════════════════════════════════════════
    Helpers

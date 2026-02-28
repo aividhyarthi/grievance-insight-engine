@@ -489,6 +489,20 @@ html, body {
 
 
 /* ════════════════════════════════════════════════════════════
+   Listen button (audio read-out)
+════════════════════════════════════════════════════════════ */
+.listen-btn { margin-top: 2px; }
+
+.listen-btn.listening {
+  background: var(--teal);
+  animation: listenPulse 1.4s ease-in-out infinite;
+}
+@keyframes listenPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,168,150,0.55); }
+  50%       { box-shadow: 0 0 0 8px rgba(0,168,150,0); }
+}
+
+/* ════════════════════════════════════════════════════════════
    Toast (error notification)
 ════════════════════════════════════════════════════════════ */
 .toast {

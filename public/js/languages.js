@@ -4,18 +4,18 @@
 ═══════════════════════════════════════════════════════════ */
 
 const LANGUAGES = [
-  { code: 'English',   name: 'English',   nativeName: 'English'    },
-  { code: 'Hindi',     name: 'Hindi',     nativeName: 'हिन्दी'        },
-  { code: 'Tamil',     name: 'Tamil',     nativeName: 'தமிழ்'        },
-  { code: 'Telugu',    name: 'Telugu',    nativeName: 'తెలుగు'       },
-  { code: 'Kannada',   name: 'Kannada',   nativeName: 'ಕನ್ನಡ'        },
-  { code: 'Malayalam', name: 'Malayalam', nativeName: 'മലയാളം'      },
-  { code: 'Bengali',   name: 'Bengali',   nativeName: 'বাংলা'        },
-  { code: 'Marathi',   name: 'Marathi',   nativeName: 'मराठी'        },
-  { code: 'Gujarati',  name: 'Gujarati',  nativeName: 'ગુજરાતી'     },
-  { code: 'Punjabi',   name: 'Punjabi',   nativeName: 'ਪੰਜਾਬੀ'      },
-  { code: 'Odia',      name: 'Odia',      nativeName: 'ଓଡ଼ିଆ'        },
-  { code: 'Urdu',      name: 'Urdu',      nativeName: 'اردو'         },
+  { code: 'English',   name: 'English',   nativeName: 'English',   speechLang: 'en-IN'  },
+  { code: 'Hindi',     name: 'Hindi',     nativeName: 'हिन्दी',      speechLang: 'hi-IN'  },
+  { code: 'Tamil',     name: 'Tamil',     nativeName: 'தமிழ்',      speechLang: 'ta-IN'  },
+  { code: 'Telugu',    name: 'Telugu',    nativeName: 'తెలుగు',     speechLang: 'te-IN'  },
+  { code: 'Kannada',   name: 'Kannada',   nativeName: 'ಕನ್ನಡ',      speechLang: 'kn-IN'  },
+  { code: 'Malayalam', name: 'Malayalam', nativeName: 'മലയാളം',    speechLang: 'ml-IN'  },
+  { code: 'Bengali',   name: 'Bengali',   nativeName: 'বাংলা',      speechLang: 'bn-IN'  },
+  { code: 'Marathi',   name: 'Marathi',   nativeName: 'मराठी',      speechLang: 'mr-IN'  },
+  { code: 'Gujarati',  name: 'Gujarati',  nativeName: 'ગુજરાતી',   speechLang: 'gu-IN'  },
+  { code: 'Punjabi',   name: 'Punjabi',   nativeName: 'ਪੰਜਾਬੀ',    speechLang: 'pa-IN'  },
+  { code: 'Odia',      name: 'Odia',      nativeName: 'ଓଡ଼ିଆ',      speechLang: 'or-IN'  },
+  { code: 'Urdu',      name: 'Urdu',      nativeName: 'اردو',       speechLang: 'ur-IN'  },
 ];
 
 /* UI strings — every phrase that appears in buttons, labels,
@@ -37,6 +37,8 @@ const UI = {
     errAnalyze:   'Could not analyze the medicine. Please try again.',
     errNotFound:  'Medicine not identified. Try scanning in better lighting.',
     errNoKey:     'API key not configured on server. Add ANTHROPIC_API_KEY to .env file.',
+    listen:       'Listen',
+    stop:         'Stop',
   },
 
   Hindi: {
@@ -55,6 +57,8 @@ const UI = {
     errAnalyze:   'दवाई की जानकारी नहीं मिल पाई। कृपया फिर से प्रयास करें।',
     errNotFound:  'दवाई की पहचान नहीं हो पाई। बेहतर रोशनी में स्कैन करें।',
     errNoKey:     'सर्वर पर API की कॉन्फ़िगर नहीं है।',
+    listen:       'सुनें',
+    stop:         'रोकें',
   },
 
   Tamil: {
@@ -73,6 +77,8 @@ const UI = {
     errAnalyze:   'மருந்தை பகுப்பாய்வு செய்ய முடியவில்லை. மீண்டும் முயற்சிக்கவும்.',
     errNotFound:  'மருந்து அடையாளம் காணவில்லை. நல்ல வெளிச்சத்தில் ஸ்கேன் செய்யவும்.',
     errNoKey:     'சர்வரில் API கீ அமைக்கப்படவில்லை.',
+    listen:       'கேளுங்கள்',
+    stop:         'நிறுத்து',
   },
 
   Telugu: {
@@ -91,6 +97,8 @@ const UI = {
     errAnalyze:   'మందును విశ్లేషించడం సాధ్యం కాలేదు. మళ్ళీ ప్రయత్నించండి.',
     errNotFound:  'మందు గుర్తించబడలేదు. మెరుగైన వెలుతురులో స్కాన్ చేయండి.',
     errNoKey:     'సర్వర్‌లో API కీ కాన్ఫిగర్ కాలేదు.',
+    listen:       'వినండి',
+    stop:         'ఆపు',
   },
 
   Kannada: {
@@ -109,6 +117,8 @@ const UI = {
     errAnalyze:   'ಔಷಧ ವಿಶ್ಲೇಷಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
     errNotFound:  'ಔಷಧ ಗುರುತಿಸಲಾಗಲಿಲ್ಲ. ಉತ್ತಮ ಬೆಳಕಿನಲ್ಲಿ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.',
     errNoKey:     'ಸರ್ವರ್‌ನಲ್ಲಿ API ಕೀ ಕಾನ್ಫಿಗರ್ ಆಗಿಲ್ಲ.',
+    listen:       'ಕೇಳಿ',
+    stop:         'ನಿಲ್ಲಿಸಿ',
   },
 
   Malayalam: {
@@ -127,6 +137,8 @@ const UI = {
     errAnalyze:   'മരുന്ന് വിശകലനം ചെയ്യാൻ കഴിഞ്ഞില്ല. വീണ്ടും ശ്രമിക്കൂ.',
     errNotFound:  'മരുന്ന് തിരിച്ചറിഞ്ഞില്ല. നല്ല വെളിച്ചത്തിൽ സ്കാൻ ചെയ്യൂ.',
     errNoKey:     'സർവ്വറിൽ API കീ കോൺഫിഗർ ചെയ്തിട്ടില്ല.',
+    listen:       'കേൾക്കൂ',
+    stop:         'നിർത്തൂ',
   },
 
   Bengali: {
@@ -145,6 +157,8 @@ const UI = {
     errAnalyze:   'ওষুধ বিশ্লেষণ করা সম্ভব হয়নি। আবার চেষ্টা করুন।',
     errNotFound:  'ওষুধ সনাক্ত করা যায়নি। ভালো আলোতে স্ক্যান করুন।',
     errNoKey:     'সার্ভারে API কী কনফিগার করা নেই।',
+    listen:       'শুনুন',
+    stop:         'থামুন',
   },
 
   Marathi: {
@@ -163,6 +177,8 @@ const UI = {
     errAnalyze:   'औषध विश्लेषण करणे शक्य नाही. पुन्हा प्रयत्न करा.',
     errNotFound:  'औषध ओळखले नाही. चांगल्या प्रकाशात स्कॅन करा.',
     errNoKey:     'सर्व्हरवर API की कॉन्फिगर नाही.',
+    listen:       'ऐका',
+    stop:         'थांबा',
   },
 
   Gujarati: {
@@ -181,6 +197,8 @@ const UI = {
     errAnalyze:   'દવાનું વિશ્લેષણ કરવું શક્ય ન બન્યું. ફરી પ્રયાસ કરો.',
     errNotFound:  'દવા ઓળખી શકાઈ નહીં. સારા પ્રકાશમાં સ્કૅન કરો.',
     errNoKey:     'સર્વર પર API કી ગોઠવેલ નથી.',
+    listen:       'સાંભળો',
+    stop:         'બંધ',
   },
 
   Punjabi: {
@@ -199,6 +217,8 @@ const UI = {
     errAnalyze:   'ਦਵਾਈ ਦਾ ਵਿਸ਼ਲੇਸ਼ਣ ਸੰਭਵ ਨਹੀਂ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
     errNotFound:  'ਦਵਾਈ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੋਈ। ਚੰਗੀ ਰੌਸ਼ਨੀ ਵਿੱਚ ਸਕੈਨ ਕਰੋ।',
     errNoKey:     'ਸਰਵਰ ਤੇ API ਕੀ ਕੌਂਫਿਗਰ ਨਹੀਂ।',
+    listen:       'ਸੁਣੋ',
+    stop:         'ਰੋਕੋ',
   },
 
   Odia: {
@@ -217,6 +237,8 @@ const UI = {
     errAnalyze:   'ଔଷଧ ବିଶ୍ଳେଷଣ ସମ୍ଭବ ନୁହେଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
     errNotFound:  'ଔଷଧ ଚିହ୍ନଟ ହୋଇପାରିଲା ନାହିଁ। ଭଲ ଆଲୋକରେ ସ୍କ୍ୟାନ୍ କରନ୍ତୁ।',
     errNoKey:     'ସର୍ଭରରେ API ଚାବି ସଂରଚିତ ନାହିଁ।',
+    listen:       'ଶୁଣନ୍ତୁ',
+    stop:         'ବନ୍ଦ',
   },
 
   Urdu: {
@@ -235,6 +257,8 @@ const UI = {
     errAnalyze:   'دوائی کا تجزیہ ممکن نہیں۔ دوبارہ کوشش کریں۔',
     errNotFound:  'دوائی کی شناخت نہیں ہو سکی۔ اچھی روشنی میں اسکین کریں۔',
     errNoKey:     'سرور پر API کی ترتیب نہیں دی گئی۔',
+    listen:       'سنیں',
+    stop:         'روکیں',
   },
 };
 

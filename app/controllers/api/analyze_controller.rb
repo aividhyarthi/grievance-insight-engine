@@ -50,10 +50,14 @@ module Api
         )
 
         raw_text = message.content.first.text.strip
+        Rails.logger.info "[Api::AnalyzeController] Raw response (first 300): #{raw_text.first(300)}"
 
-        # Extract JSON from the response (Claude may wrap it in markdown fences)
-        json_match = raw_text.match(/\{[\s\S]*\}/)
+        # Strip markdown code fences if Claude wrapped the JSON (common for non-English responses)
+        cleaned = raw_text.gsub(/\A\s*```(?:json)?\s*\n?/, "").gsub(/\n?\s*```\s*\z/, "").strip
+
+        json_match = cleaned.match(/\{[\s\S]*\}/)
         unless json_match
+          Rails.logger.error "[Api::AnalyzeController] No JSON found. Raw: #{raw_text.first(400)}"
           return render json: { success: false, error: "Could not parse medicine information from AI response." }
         end
 
