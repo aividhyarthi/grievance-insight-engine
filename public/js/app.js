@@ -39,7 +39,7 @@ function showToast(msg) {
   $('toast-msg').textContent = msg;
   toast.classList.remove('hidden');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.add('hidden'), 4500);
+  toastTimer = setTimeout(() => toast.classList.add('hidden'), 6000);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -127,16 +127,18 @@ async function handleScan() {
     if (result.success && result.data) {
       renderResults(result.data, ui);
     } else {
-      const msg = result.error?.includes('API key')
+      const serverError = result.error || '';
+      console.error('Analyze API error:', serverError);
+      const msg = serverError.includes('API key') || serverError.includes('ANTHROPIC')
         ? ui.errNoKey
-        : ui.errNotFound;
+        : (serverError || ui.errNotFound);
       showToast(msg);
-      restartScanner();
+      setTimeout(restartScanner, 3500);
     }
   } catch (err) {
-    console.error('Analyze error:', err);
+    console.error('Analyze fetch error:', err);
     showToast(ui.errAnalyze);
-    restartScanner();
+    setTimeout(restartScanner, 3500);
   }
 }
 
