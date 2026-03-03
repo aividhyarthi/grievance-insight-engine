@@ -220,7 +220,25 @@ class SocialMediaPostGenerator:
     ) -> list[str]:
         size   = PLATFORM_SIZES.get(platform, (1080, 1080))
         colors = _extract_colors(image_path)
+        out    = os.path.join(output_dir, 'post_main.jpg')
 
+        # ── Try HTML/CSS renderer first (Playwright) ──────────────────────
+        try:
+            from utils.html_renderer import render_studio, render_stripe, render_frame
+            renderers = {
+                'minimal':  render_studio,
+                'bold':     render_stripe,
+                'magazine': render_frame,
+            }
+            fn = renderers.get(style, render_studio)
+            fn(image_path=image_path, name=product_name, tagline=tagline,
+               brand=brand_name, cta=cta, colors=colors,
+               size=size, output_path=out)
+            return [out]
+        except Exception as exc:
+            print(f'[html_renderer] failed ({exc}), falling back to PIL')
+
+        # ── PIL fallback ──────────────────────────────────────────────────
         with Image.open(image_path) as raw:
             prod = raw.convert('RGBA')
             dispatch = {
@@ -231,7 +249,6 @@ class SocialMediaPostGenerator:
             fn = dispatch.get(style, self._minimal)
             canvas = fn(prod, product_name, tagline, brand_name, cta, size, colors)
 
-        out = os.path.join(output_dir, 'post_main.jpg')
         canvas.convert('RGB').save(out, 'JPEG', quality=95)
         return [out]
 
