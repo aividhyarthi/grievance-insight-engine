@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PostCraft — Social Media Post Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="brand-icon">✦</span>
+      <span class="brand-name">PostCraft</span>
+      <span class="brand-sub">by AI Vidhyarthi</span>
+    </div>
+    <div class="nav-badge">Beta</div>
+  </div>
+</nav>
+
+<!-- ── MAIN LAYOUT ─────────────────────────────────────────────────────────── -->
+<main class="main-wrap">
+
+  <!-- ── LEFT PANEL: form ─────────────────────────────────────────────────── -->
+  <aside class="form-panel">
+
+    <!-- STEP 1 — Image upload -->
+    <section class="form-section">
+      <div class="section-label"><span class="step-num">1</span>Upload Product Image</div>
+
+      <div id="drop-zone" class="drop-zone">
+        <input type="file" id="image-input" accept="image/*" hidden />
+        <div id="dz-content">
+          <div class="dz-icon">↑</div>
+          <div class="dz-title">Drag &amp; drop your image here</div>
+          <div class="dz-sub">or <span class="dz-link" id="dz-browse">browse file</span></div>
+          <div class="dz-hint">PNG, JPG, WebP · Max 25 MB</div>
+        </div>
+        <img id="img-preview" class="img-preview hidden" alt="preview" />
+        <div id="dz-change" class="dz-change hidden">
+          <button type="button" id="dz-change-btn" class="btn-ghost btn-sm">Change image</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 — Product details -->
+    <section class="form-section">
+      <div class="section-label"><span class="step-num">2</span>Product Details</div>
+
+      <div class="field">
+        <label for="product_name">Product Name <span class="req">*</span></label>
+        <input type="text" id="product_name" placeholder="e.g. CloudStep Running Shoes" />
+      </div>
+
+      <div class="field">
+        <label for="brand_name">Brand / Handle</label>
+        <input type="text" id="brand_name" placeholder="e.g. @StrideCo" />
+      </div>
+
+      <div class="field">
+        <label for="tagline">Tagline <span class="hint-label">(optional)</span></label>
+        <input type="text" id="tagline" placeholder="e.g. Run further. Feel lighter." />
+      </div>
+
+      <div class="field">
+        <label for="description">Product Description <span class="hint-label">(optional — improves AI copy)</span></label>
+        <textarea id="description" rows="3"
+                  placeholder="A few words about the product, its benefits, target audience…"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="cta">Call to Action</label>
+        <input type="text" id="cta" value="Shop Now" placeholder="e.g. Shop Now, Learn More" />
+      </div>
+    </section>
+
+    <!-- STEP 3 — Post settings -->
+    <section class="form-section">
+      <div class="section-label"><span class="step-num">3</span>Post Settings</div>
+
+      <!-- Post type -->
+      <div class="field">
+        <label>Post Type</label>
+        <div class="toggle-group" id="post-type-group">
+          <button class="toggle-btn active" data-value="individual">
+            <span class="t-icon">□</span> Individual Post
+          </button>
+          <button class="toggle-btn" data-value="carousel">
+            <span class="t-icon">⊟</span> Explainer Carousel
+            <span class="badge-new">5 slides</span>
+          </button>
+        </div>
+        <input type="hidden" id="post_type" value="individual" />
+      </div>
+
+      <!-- Platform -->
+      <div class="field">
+        <label for="platform">Platform &amp; Dimensions</label>
+        <select id="platform">
+          <optgroup label="Instagram">
+            <option value="instagram_square" selected>Instagram Square — 1080 × 1080</option>
+            <option value="instagram_portrait">Instagram Portrait — 1080 × 1350</option>
+            <option value="instagram_story">Instagram Story — 1080 × 1920</option>
+          </optgroup>
+          <optgroup label="Facebook / Meta">
+            <option value="facebook">Facebook Post — 1200 × 630</option>
+          </optgroup>
+          <optgroup label="YouTube">
+            <option value="youtube">YouTube Thumbnail — 1280 × 720</option>
+          </optgroup>
+          <optgroup label="Twitter / X">
+            <option value="twitter">Twitter / X Card — 1600 × 900</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <!-- Style -->
+      <div class="field">
+        <label>Design Style</label>
+        <div class="style-grid" id="style-group">
+          <button class="style-btn active" data-value="minimal">
+            <div class="style-thumb style-minimal">
+              <div class="st-img"></div>
+              <div class="st-text">
+                <div class="st-t1"></div>
+                <div class="st-t2"></div>
+              </div>
+            </div>
+            <span class="style-label">Minimal</span>
+            <span class="style-desc">Clean · White space</span>
+          </button>
+          <button class="style-btn" data-value="bold">
+            <div class="style-thumb style-bold">
+              <div class="st-overlay">
+                <div class="st-t1"></div>
+                <div class="st-t2"></div>
+              </div>
+            </div>
+            <span class="style-label">Bold</span>
+            <span class="style-desc">Full-bleed · Impactful</span>
+          </button>
+          <button class="style-btn" data-value="magazine">
+            <div class="style-thumb style-magazine">
+              <div class="st-left"></div>
+              <div class="st-right">
+                <div class="st-t1"></div>
+                <div class="st-t2"></div>
+              </div>
+            </div>
+            <span class="style-label">Magazine</span>
+            <span class="style-desc">Split · Editorial</span>
+          </button>
+        </div>
+        <input type="hidden" id="style" value="minimal" />
+      </div>
+
+      <!-- API key (optional) -->
+      <div class="field">
+        <label for="api_key">
+          Anthropic API Key
+          <span class="hint-label">(optional — enables AI-generated captions)</span>
+        </label>
+        <div class="key-wrap">
+          <input type="password" id="api_key"
+                 placeholder="sk-ant-…  (leave blank to use env var)" />
+          <button type="button" class="btn-ghost btn-sm" id="toggle-key">Show</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GENERATE BUTTON -->
+    <div class="form-section generate-wrap">
+      <button id="generate-btn" class="btn-generate" disabled>
+        <span id="btn-idle">✦ Generate Posts</span>
+        <span id="btn-loading" class="hidden">
+          <span class="spinner"></span> Generating…
+        </span>
+      </button>
+      <div id="error-msg" class="error-box hidden"></div>
+    </div>
+
+  </aside>
+
+  <!-- ── RIGHT PANEL: results ──────────────────────────────────────────────── -->
+  <section class="result-panel" id="result-panel">
+
+    <!-- Empty state -->
+    <div id="empty-state" class="empty-state">
+      <div class="es-icon">✦</div>
+      <div class="es-title">Your posts will appear here</div>
+      <div class="es-sub">Upload a product image and fill in the details, then hit Generate.</div>
+    </div>
+
+    <!-- Results -->
+    <div id="results-wrap" class="hidden">
+
+      <div class="results-header">
+        <h2 class="results-title">Generated Posts</h2>
+        <button id="download-zip-btn" class="btn-download">
+          ↓ Download All (ZIP)
+        </button>
+      </div>
+
+      <!-- Image gallery -->
+      <div id="image-gallery" class="image-gallery"></div>
+
+      <!-- Divider -->
+      <div class="section-divider">Copy &amp; Paste Ready</div>
+
+      <!-- Text outputs -->
+      <div class="text-outputs">
+
+        <div class="text-card">
+          <div class="tc-label">Title / Headline</div>
+          <div class="tc-content" id="out-title">—</div>
+          <button class="btn-copy" data-target="out-title">Copy</button>
+        </div>
+
+        <div class="text-card">
+          <div class="tc-label">Caption</div>
+          <div class="tc-content" id="out-caption">—</div>
+          <button class="btn-copy" data-target="out-caption">Copy</button>
+        </div>
+
+        <div class="text-card">
+          <div class="tc-label">Hashtags</div>
+          <div class="tc-content hashtag-content" id="out-hashtags">—</div>
+          <button class="btn-copy" data-target="out-hashtags">Copy</button>
+        </div>
+
+        <div class="text-card" id="features-card" style="display:none">
+          <div class="tc-label">Slide Feature Points</div>
+          <div class="tc-content" id="out-features">—</div>
+          <button class="btn-copy" data-target="out-features">Copy</button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ── LIGHTBOX ────────────────────────────────────────────────────────────── -->
+<div id="lightbox" class="lightbox hidden">
+  <div class="lb-backdrop" id="lb-backdrop"></div>
+  <div class="lb-content">
+    <button class="lb-close" id="lb-close">✕</button>
+    <img id="lb-img" src="" alt="full preview" />
+    <a id="lb-download" class="btn-ghost btn-sm lb-dl" download>↓ Download</a>
+  </div>
+</div>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>
