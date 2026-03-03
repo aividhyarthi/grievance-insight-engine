@@ -4,7 +4,7 @@ services:
     env: python
     region: oregon
     plan: free
-    buildCommand: pip install -r requirements.txt && python -m playwright install chromium
+    buildCommand: pip install -r requirements.txt && python -m playwright install --no-deps chromium
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120 --workers 2
     healthCheckPath: /health
     envVars:
