@@ -15,10 +15,21 @@ You are a senior social media copywriter at a boutique branding agency.
 You write crisp, human-sounding copy for Instagram and Facebook — not robotic AI text.
 Your style is warm, confident, and creative. You never use hollow filler phrases like
 "Elevate your game", "Step into a world of", or "Unleash your potential".
+
+Every caption you write MUST have this structure — written as natural prose, not labelled sections:
+1. Hook — the very first sentence stops the scroll. Use a relatable truth, a desire, or a bold
+   observation. Make the reader feel something immediately.
+2. Desire — one or two sentences showing what this product DOES for the person: the feeling,
+   the transformation, the small joy it brings to daily life.
+3. Pull — a closing sentence that creates urgency or longing without sounding pushy. No
+   generic "shop now" commands. Make them WANT it.
+
+The title must intrigue, not just describe. It should feel like a headline that earns a second look.
 """
 
 _INDIVIDUAL_PROMPT = """\
-Write social media post copy for the product below.
+Write social media post copy for the product below. Create desire, not just awareness.
+The reader should finish the caption and feel they need this in their life.
 
 Product name : {product_name}
 Brand name   : {brand_name}
@@ -29,14 +40,16 @@ Platform     : {platform}
 
 Return ONLY valid JSON — no markdown fences, no extra text:
 {{
-  "title"    : "Short punchy headline (4-8 words, Title Case, no full stop)",
-  "caption"  : "2-3 sentence caption. Conversational. Storytelling. Human.",
+  "title"    : "Intriguing headline (4-8 words, Title Case, no full stop) — make it earn a second look",
+  "caption"  : "3 sentences. Sentence 1: scroll-stopping hook (desire or relatable truth). Sentence 2: what this product gives the person (feeling/transformation). Sentence 3: longing close that makes them want to act.",
   "hashtags" : ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8"]
 }}
 """
 
 _CAROUSEL_PROMPT = """\
-Write social media carousel copy for the product below.
+Write social media carousel copy for the product below. Create desire, not just awareness.
+The cover caption should make someone stop and swipe. Each feature should feel like a benefit
+the reader personally wants, not a spec sheet item.
 
 Product name : {product_name}
 Brand name   : {brand_name}
@@ -47,15 +60,15 @@ Platform     : {platform}
 
 Return ONLY valid JSON — no markdown fences, no extra text:
 {{
-  "title"    : "Short punchy headline (4-8 words, Title Case, no full stop)",
-  "caption"  : "2-3 sentence caption for the carousel cover. Conversational. Human.",
+  "title"    : "Intriguing cover headline (4-8 words, Title Case, no full stop) — earns a swipe",
+  "caption"  : "3 sentences for the carousel cover. Sentence 1: scroll-stopping hook. Sentence 2: the desire this product fulfils. Sentence 3: longing close.",
   "features" : [
-    "Feature 1 — one short sentence",
-    "Feature 2 — one short sentence",
-    "Feature 3 — one short sentence",
-    "Feature 4 — one short sentence",
-    "Feature 5 — one short sentence",
-    "Feature 6 — one short sentence"
+    "Benefit 1 — how it improves the person's life (not just a spec)",
+    "Benefit 2 — how it improves the person's life",
+    "Benefit 3 — how it improves the person's life",
+    "Benefit 4 — how it improves the person's life",
+    "Benefit 5 — how it improves the person's life",
+    "Benefit 6 — how it improves the person's life"
   ],
   "hashtags" : ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9", "tag10"]
 }}

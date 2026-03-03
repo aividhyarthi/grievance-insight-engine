@@ -234,16 +234,27 @@ class SocialMediaPostGenerator:
     # ── individual-post styles ────────────────────────────────────────────────
 
     def _minimal(self, prod, name, tagline, brand, cta, size, colors):
-        """Warm white bg · product centred upper 60% · text panel below."""
+        """Warm white bg · subtle tinted accent circle · product centred · clean editorial text."""
         w, h = size
-        bg    = (250, 250, 248, 255)
+        bg    = (252, 252, 250, 255)
         canvas = Image.new('RGBA', size, bg)
 
         # ── image area ──────────────────────────────────────────────────
         area_w = int(w * 0.82)
-        area_h = int(h * 0.60)
+        area_h = int(h * 0.58)
         area_x = (w - area_w) // 2
         area_y = int(h * 0.04)
+
+        # Large subtle accent circle behind product — adds canvas depth
+        circle_layer = Image.new('RGBA', size, (0, 0, 0, 0))
+        cd  = ImageDraw.Draw(circle_layer)
+        cr  = int(min(area_w, area_h) * 0.62)
+        ccx = w // 2
+        ccy = area_y + area_h // 2
+        tint = _lighten(colors['dominant'], 0.84)
+        cd.ellipse([ccx - cr, ccy - cr, ccx + cr, ccy + cr],
+                   fill=(*tint, 38))
+        canvas = Image.alpha_composite(canvas, circle_layer)
 
         product = prod.copy()
         product.thumbnail((area_w, area_h), Image.LANCZOS)
@@ -255,57 +266,70 @@ class SocialMediaPostGenerator:
         sd   = ImageDraw.Draw(shad)
         sr   = [px + 20, py + product.height - 10,
                 px + product.width - 20, py + product.height + 30]
-        sd.ellipse(sr, fill=(0, 0, 0, 50))
-        canvas = Image.alpha_composite(canvas, shad.filter(ImageFilter.GaussianBlur(18)))
+        sd.ellipse(sr, fill=(0, 0, 0, 55))
+        canvas = Image.alpha_composite(canvas, shad.filter(ImageFilter.GaussianBlur(20)))
 
         _paste_alpha(canvas, product, (px, py))
 
         # ── text area ───────────────────────────────────────────────────
-        draw  = ImageDraw.Draw(canvas)
-        ty    = area_y + area_h + int(h * 0.038)
+        draw   = ImageDraw.Draw(canvas)
+        ty     = area_y + area_h + int(h * 0.032)
         margin = int(w * 0.074)
 
-        # accent line
+        # wider accent bar + thin decorative second bar
         acc = _to_rgba(colors['dominant'])
-        draw.rectangle([(margin, ty), (margin + 48, ty + 5)], fill=acc)
-        ty += 28
+        draw.rectangle([(margin, ty), (margin + 56, ty + 5)], fill=acc)
+        draw.rectangle([(margin + 62, ty + 1), (margin + 74, ty + 4)],
+                       fill=(*colors['dominant'], 100))
+        ty += 26
 
-        # product name
-        tf   = get_font('bold', self._scale(w, 68))
+        # product name — slightly larger for presence
+        tf    = get_font('bold', self._scale(w, 72))
         lines = _wrap(name.upper(), tf, w - margin * 2, draw)
         for line in lines[:2]:
-            draw.text((margin, ty), line, font=tf, fill=(22, 22, 22, 255))
-            ty += _text_h(draw, line, tf) + 10
-        ty += 6
+            draw.text((margin, ty), line, font=tf, fill=(18, 18, 18, 255))
+            ty += _text_h(draw, line, tf) + 8
+        ty += 8
 
-        # tagline
+        # tagline — refined light weight
         if tagline:
-            sf = get_font('regular', self._scale(w, 34))
+            sf = get_font('light', self._scale(w, 33))
             for line in _wrap(tagline, sf, w - margin * 2, draw)[:2]:
-                draw.text((margin, ty), line, font=sf, fill=(120, 120, 120, 255))
-                ty += _text_h(draw, line, sf) + 8
+                draw.text((margin, ty), line, font=sf, fill=(110, 110, 110, 255))
+                ty += _text_h(draw, line, sf) + 7
+
+        # CTA pill — subtle, bottom aligned
+        if cta:
+            cf   = get_font('semibold', self._scale(w, 24))
+            cw   = _text_w(draw, cta, cf)
+            pad  = 22
+            pill_y = h - int(h * 0.092)
+            _draw_rounded_rect(draw, (margin, pill_y, margin + cw + pad * 2, pill_y + 46),
+                               23, _to_rgba(colors['dominant']))
+            draw.text((margin + pad, pill_y + 11), cta, font=cf,
+                      fill=(255, 255, 255, 255))
 
         # brand bottom-right
         if brand:
-            bf   = get_font('light', self._scale(w, 26))
+            bf   = get_font('light', self._scale(w, 24))
             bw   = _text_w(draw, brand, bf)
-            draw.text((w - bw - margin, h - margin + 10), brand,
-                      font=bf, fill=(175, 175, 175, 255))
+            draw.text((w - bw - margin, h - int(h * 0.076)), brand,
+                      font=bf, fill=(165, 165, 165, 255))
 
         return canvas
 
     def _bold(self, prod, name, tagline, brand, cta, size, colors):
-        """Full-bleed product photo · dark gradient · bold white text."""
+        """Full-bleed product photo · light vignette top · strong gradient bottom text area."""
         w, h = size
 
         # background: product image cropped to full frame
         bg = _crop_to_fit(prod.convert('RGB'), size).convert('RGBA')
-        # darken overall
-        dark_layer = Image.new('RGBA', size, (0, 0, 0, 140))
+        # very light uniform tint — just enough contrast without hiding the product
+        dark_layer = Image.new('RGBA', size, (0, 0, 0, 55))
         canvas = Image.alpha_composite(bg, dark_layer)
 
-        # strong gradient bottom half
-        grad = _gradient_overlay(size, (0, 0, 0, 0), (0, 0, 0, 220))
+        # gradient darkens only the bottom ~55% where text lives
+        grad = _gradient_overlay(size, (0, 0, 0, 0), (0, 0, 0, 215))
         canvas = Image.alpha_composite(canvas, grad)
 
         draw   = ImageDraw.Draw(canvas)
@@ -354,70 +378,80 @@ class SocialMediaPostGenerator:
         return canvas
 
     def _magazine(self, prod, name, tagline, brand, cta, size, colors):
-        """Split: product image left 55% · coloured text panel right 45%."""
+        """Full-bleed product hero · white editorial bottom panel · clean magazine feel."""
         w, h = size
 
-        # left image panel
-        img_w  = int(w * 0.55)
-        img_h  = h
-        left   = _crop_to_fit(prod.convert('RGB'), (img_w, img_h)).convert('RGBA')
-        canvas = Image.new('RGBA', size, (255, 255, 255, 255))
-        canvas.paste(left, (0, 0))
+        # Full-bleed product image as canvas base
+        bg     = _crop_to_fit(prod.convert('RGB'), size).convert('RGBA')
+        canvas = bg.copy()
 
-        # right panel background
-        panel_color = _lighten(colors['dominant'], 0.82)
-        right_panel = Image.new('RGBA', (w - img_w, h), (*panel_color, 255))
-        canvas.paste(right_panel, (img_w, 0))
+        # White editorial panel — bottom 42%
+        panel_h = int(h * 0.42)
+        panel_y = h - panel_h
+        draw = ImageDraw.Draw(canvas)
+        draw.rectangle([(0, panel_y), (w, h)], fill=(255, 255, 255, 255))
 
-        draw   = ImageDraw.Draw(canvas)
-        px     = img_w + int((w - img_w) * 0.1)   # text left edge
-        max_tw = int((w - img_w) * 0.82)
-        ty     = int(h * 0.12)
+        # Feathered transition: gradient from transparent → white just above panel
+        fade_h  = int(h * 0.06)
+        fade    = _gradient_overlay((w, fade_h), (255, 255, 255, 0), (255, 255, 255, 255))
+        _paste_alpha(canvas, fade, (0, panel_y - fade_h))
 
-        # top accent bar
-        acc = _to_rgba(colors['dominant'])
-        draw.rectangle([(px, ty), (px + 50, ty + 6)], fill=acc)
-        ty += 28
+        # Re-acquire draw after compositing
+        draw = ImageDraw.Draw(canvas)
+        margin = int(w * 0.083)
 
-        # brand
+        # ── brand watermark top-left on image area ──────────────────────────
         if brand:
-            bf = get_font('semibold', self._scale(w - img_w, 26))
-            draw.text((px, ty), brand.upper(), font=bf,
-                      fill=(*_darken(colors['dominant'], 0.3), 255))
-            ty += _text_h(draw, brand, bf) + 22
+            top_bar_h = int(h * 0.10)
+            top_veil  = Image.new('RGBA', (w, top_bar_h), (0, 0, 0, 90))
+            _paste_alpha(canvas, top_veil, (0, 0))
+            draw = ImageDraw.Draw(canvas)
+            bf   = get_font('semibold', self._scale(w, 24))
+            draw.text((margin, int(top_bar_h * 0.28)), brand.upper(),
+                      font=bf, fill=(255, 255, 255, 200))
 
-        # product name — large, stacked
-        tf = get_font('bold', self._scale(w - img_w, 72))
-        for line in _wrap(name.upper(), tf, max_tw, draw)[:3]:
-            draw.text((px, ty), line, font=tf, fill=(22, 22, 22, 255))
-            ty += _text_h(draw, line, tf) + 8
-        ty += 16
+        # ── white panel text block ────────────────────────────────────────
+        acc = _to_rgba(colors['dominant'])
 
-        # divider
-        draw.line([(px, ty), (px + max_tw, ty)], fill=(*_darken(colors['dominant'], 0.2), 180), width=2)
-        ty += 22
+        # Wide accent bar
+        bar_y = panel_y + int(panel_h * 0.10)
+        draw.rectangle([(margin, bar_y), (margin + int(w * 0.28), bar_y + 5)], fill=acc)
+        ty = bar_y + 26
 
-        # tagline
+        # Product name — large, commanding
+        tf = get_font('bold', self._scale(w, 72))
+        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
+            draw.text((margin, ty), line, font=tf, fill=(15, 15, 15, 255))
+            ty += _text_h(draw, line, tf) + 6
+        ty += 8
+
+        # Tagline — light weight, refined
         if tagline:
-            sf = get_font('regular', self._scale(w - img_w, 30))
-            for line in _wrap(tagline, sf, max_tw, draw)[:3]:
-                draw.text((px, ty), line, font=sf, fill=(80, 80, 80, 255))
-                ty += _text_h(draw, line, sf) + 8
-        ty += 30
+            sf = get_font('light', self._scale(w, 30))
+            for line in _wrap(tagline, sf, int(w * 0.68), draw)[:2]:
+                draw.text((margin, ty), line, font=sf, fill=(105, 105, 105, 255))
+                ty += _text_h(draw, line, sf) + 6
 
-        # CTA pill at bottom of panel
+        # ── bottom row: brand label left · CTA pill right ─────────────────
+        bottom_y = h - int(h * 0.062)
+
+        if brand:
+            lf = get_font('regular', self._scale(w, 20))
+            draw.text((margin, bottom_y), brand.upper(),
+                      font=lf, fill=(*_darken(colors['dominant'], 0.25), 180))
+
         if cta:
-            cf  = get_font('semibold', self._scale(w - img_w, 28))
-            cw  = _text_w(draw, cta, cf)
-            pad = 24
-            pill_y = h - int(h * 0.14)
-            _draw_rounded_rect(draw, (px, pill_y, px + cw + pad * 2, pill_y + 54),
-                               27, _to_rgba(colors['dominant']))
-            draw.text((px + pad, pill_y + 13), cta, font=cf,
+            cf     = get_font('semibold', self._scale(w, 26))
+            cw     = _text_w(draw, cta, cf)
+            pad    = 26
+            pill_h = 50
+            px1    = w - margin
+            px0    = px1 - cw - pad * 2
+            py0    = bottom_y - 8
+            _draw_rounded_rect(draw, (px0, py0, px1, py0 + pill_h),
+                               25, _to_rgba(colors['dominant']))
+            draw.text((px0 + pad, py0 + 12), cta, font=cf,
                       fill=(255, 255, 255, 255))
-
-        # thin separator line between panels
-        draw.line([(img_w, 0), (img_w, h)], fill=(220, 220, 220, 200), width=2)
 
         return canvas
 
