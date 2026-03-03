@@ -222,23 +222,25 @@ class SocialMediaPostGenerator:
         colors = _extract_colors(image_path)
         out    = os.path.join(output_dir, 'post_main.jpg')
 
-        # ── Try HTML/CSS renderer first (Playwright) ──────────────────────
+        # Try SVG renderer first (browser-free, Canva-quality output)
         try:
             from utils.html_renderer import render_studio, render_stripe, render_frame
-            renderers = {
+            _svg_dispatch = {
                 'minimal':  render_studio,
                 'bold':     render_stripe,
                 'magazine': render_frame,
             }
-            fn = renderers.get(style, render_studio)
-            fn(image_path=image_path, name=product_name, tagline=tagline,
-               brand=brand_name, cta=cta, colors=colors,
-               size=size, output_path=out)
+            fn = _svg_dispatch.get(style, render_studio)
+            fn(
+                image_path=image_path, name=product_name, tagline=tagline,
+                brand=brand_name, cta=cta, colors=colors, size=size,
+                output_path=out,
+            )
             return [out]
         except Exception as exc:
-            print(f'[html_renderer] failed ({exc}), falling back to PIL')
+            print(f'[svg_renderer] failed ({exc}), falling back to PIL')
 
-        # ── PIL fallback ──────────────────────────────────────────────────
+        # PIL fallback
         with Image.open(image_path) as raw:
             prod = raw.convert('RGBA')
             dispatch = {

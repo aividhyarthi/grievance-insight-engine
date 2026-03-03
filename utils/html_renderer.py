@@ -1,312 +1,482 @@
 """
-HTML/CSS → Playwright renderer for Instagram-quality post images.
+Instagram post renderer using SVG + CairoSVG.
 
+No browser required — works on any server with libcairo (Ubuntu ships it).
 Three templates:
-  studio  (minimal) – radial gradient bg · ghost letter · product hero · clean type
-  stripe  (bold)    – full product photo · left colour sidebar · bold bottom panel
-  frame   (magazine)– light canvas · product right with mask-fade · editorial type left
+  render_studio  — minimal / clean editorial
+  render_stripe  — bold left-stripe sidebar
+  render_frame   — magazine right-bleed product
 """
+
 from __future__ import annotations
 
-import asyncio
 import base64
-import html as _html_lib
-import os
+import html
+import io
+import textwrap
 from pathlib import Path
 
-# ── helpers ───────────────────────────────────────────────────────────────────
-
-_FONT_CACHE = Path.home() / '.postcraft_fonts'
-_FONT_FILES = {
-    'bold':     'Montserrat-Bold',
-    'semibold': 'Montserrat-SemiBold',
-    'regular':  'Montserrat-Regular',
-    'light':    'Montserrat-Light',
-}
-_FONT_WEIGHTS = {'bold': 800, 'semibold': 600, 'regular': 400, 'light': 300}
+from PIL import Image
 
 
-def _font_face_css() -> str:
-    rules: list[str] = []
-    for key, fname in _FONT_FILES.items():
-        path = _FONT_CACHE / f'{fname}.ttf'
-        if path.exists():
-            b64 = base64.b64encode(path.read_bytes()).decode('ascii')
-            rules.append(
-                f"@font-face{{font-family:'M';font-weight:{_FONT_WEIGHTS[key]};"
-                f"src:url('data:font/truetype;base64,{b64}') format('truetype');}}"
-            )
-    return '\n'.join(rules) or ''
+# ── colour helpers ────────────────────────────────────────────────────────────
+
+def _clamp(v: float) -> int:
+    return max(0, min(255, int(v)))
 
 
-def _img_url(image_path: str) -> str:
-    ext  = Path(image_path).suffix.lower().lstrip('.')
-    mime = {'jpg': 'image/jpeg', 'jpeg': 'image/jpeg',
-            'png': 'image/png', 'webp': 'image/webp',
-            'gif': 'image/gif'}.get(ext, 'image/jpeg')
-    data = base64.b64encode(Path(image_path).read_bytes()).decode('ascii')
-    return f'data:{mime};base64,{data}'
+def _parse(c) -> tuple[int, int, int]:
+    """Accept (r,g,b) tuple or '#rrggbb' hex string."""
+    if isinstance(c, (list, tuple)):
+        return int(c[0]), int(c[1]), int(c[2])
+    s = str(c).strip().lstrip('#')
+    if len(s) == 3:
+        s = s[0]*2 + s[1]*2 + s[2]*2
+    return int(s[0:2], 16), int(s[2:4], 16), int(s[4:6], 16)
 
 
-def _hex(rgb: tuple) -> str:
-    return '#{:02x}{:02x}{:02x}'.format(int(rgb[0]), int(rgb[1]), int(rgb[2]))
+def _hex(c) -> str:
+    r, g, b = _parse(c)
+    return f'#{r:02x}{g:02x}{b:02x}'
 
 
-def _rgba(rgb: tuple, a: float) -> str:
-    return f'rgba({int(rgb[0])},{int(rgb[1])},{int(rgb[2])},{a})'
+def _lighten(c, pct: float) -> str:
+    r, g, b = _parse(c)
+    f = pct / 100
+    return f'#{_clamp(r + (255-r)*f):02x}{_clamp(g + (255-g)*f):02x}{_clamp(b + (255-b)*f):02x}'
 
 
-def _lighten(c: tuple, f: float) -> tuple:
-    return tuple(min(255, int(v + (255 - v) * f)) for v in c[:3])
+def _darken(c, pct: float) -> str:
+    r, g, b = _parse(c)
+    f = pct / 100
+    return f'#{_clamp(r*(1-f)):02x}{_clamp(g*(1-f)):02x}{_clamp(b*(1-f)):02x}'
 
 
-def _darken(c: tuple, f: float) -> tuple:
-    return tuple(max(0, int(v * (1 - f))) for v in c[:3])
+def _luminance(c) -> float:
+    r, g, b = _parse(c)
+    return 0.299*r + 0.587*g + 0.114*b
 
 
-def _e(s: str) -> str:
-    """HTML-escape user text to prevent injection."""
-    return _html_lib.escape(str(s))
+def _on(c) -> str:
+    """White or dark text depending on background luminance."""
+    return '#ffffff' if _luminance(c) < 145 else '#111111'
 
 
-def _screenshot(html_src: str, output_path: str, w: int, h: int) -> None:
-    """Render HTML to an image file using Playwright Chromium."""
-
-    async def _run() -> None:
-        from playwright.async_api import async_playwright
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(
-                args=['--no-sandbox', '--disable-dev-shm-usage',
-                      '--disable-gpu', '--disable-setuid-sandbox']
-            )
-            page = await browser.new_page(viewport={'width': w, 'height': h})
-            await page.set_content(html_src, wait_until='load')
-            await page.screenshot(path=output_path, clip={'x': 0, 'y': 0, 'width': w, 'height': h})
-            await browser.close()
-
-    asyncio.run(_run())
+def _e(text) -> str:
+    return html.escape(str(text))
 
 
-# ── Template 1: STUDIO ────────────────────────────────────────────────────────
+# ── image helper ──────────────────────────────────────────────────────────────
 
-def render_studio(
-    image_path: str, name: str, tagline: str, brand: str, cta: str,
-    colors: dict, size: tuple, output_path: str,
-) -> None:
-    """
-    STUDIO — Radial gradient background from extracted brand colour.
-    Giant ghost letter as texture. Product floats with drop-shadow.
-    Bold text block at the bottom with CTA pill.
-    """
-    w, h  = size
-    dom   = colors['dominant']
-    bg_l  = _hex(_lighten(dom, 0.91))
-    bg_m  = _hex(_lighten(dom, 0.80))
-    dom_h = _hex(dom)
-    tag_c = _hex(_darken(dom, 0.05))
-    brand_c = _hex(_darken(dom, 0.18))
-    first = _e((name[0] if name else 'A').upper())
-    fc    = _font_face_css()
-    iurl  = _img_url(image_path)
-
-    html = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><style>
-{fc}
-*{{margin:0;padding:0;box-sizing:border-box}}
-body{{width:{w}px;height:{h}px;overflow:hidden;
-  font-family:'M','Helvetica Neue',Arial,sans-serif}}
-.c{{width:{w}px;height:{h}px;position:relative;overflow:hidden;
-  background:radial-gradient(ellipse at 38% 36%,{bg_l} 0%,{bg_m} 52%,{bg_l} 100%)}}
-.ghost{{position:absolute;top:-4%;right:-3%;
-  font-size:{int(h*.48)}px;font-weight:800;line-height:1;
-  color:{dom_h};opacity:.065;pointer-events:none;user-select:none;
-  font-family:'M','Helvetica Neue',Arial,sans-serif}}
-.brand-top{{position:absolute;top:4.2%;left:7%;
-  font-size:{int(w*.022)}px;font-weight:600;letter-spacing:.16em;
-  color:{brand_c};text-transform:uppercase}}
-.pzone{{position:absolute;top:8%;left:10%;right:10%;height:55%;
-  display:flex;align-items:center;justify-content:center}}
-.pzone img{{max-width:100%;max-height:100%;object-fit:contain;
-  filter:drop-shadow(0 20px 44px rgba(0,0,0,.17))}}
-.txt{{position:absolute;bottom:0;left:0;right:0;
-  padding:0 7% {int(h*.076)}px}}
-.bar{{width:72px;height:7px;background:{dom_h};border-radius:4px;
-  margin-bottom:{int(h*.018)}px}}
-.name{{font-size:{int(w*.070)}px;font-weight:800;line-height:1.06;
-  color:#0d0d0d;letter-spacing:.03em;text-transform:uppercase;
-  margin-bottom:{int(h*.011)}px;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
-.tag{{font-size:{int(w*.030)}px;font-weight:300;line-height:1.45;
-  color:{tag_c};margin-bottom:{int(h*.020)}px;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}}
-.row{{display:flex;align-items:center;justify-content:space-between}}
-.cta{{background:{dom_h};color:#fff;
-  font-size:{int(w*.023)}px;font-weight:700;letter-spacing:.06em;
-  padding:{int(h*.013)}px {int(w*.028)}px;border-radius:100px;text-transform:uppercase}}
-.bmark{{font-size:{int(w*.019)}px;font-weight:300;color:#aaa;letter-spacing:.10em}}
-</style></head><body>
-<div class="c">
-  <div class="ghost">{first}</div>
-  {'<div class="brand-top">'+_e(brand).upper()+'</div>' if brand else ''}
-  <div class="pzone"><img src="{iurl}"/></div>
-  <div class="txt">
-    <div class="bar"></div>
-    <div class="name">{_e(name).upper()}</div>
-    {'<div class="tag">'+_e(tagline)+'</div>' if tagline else ''}
-    <div class="row">
-      {'<div class="cta">'+_e(cta)+'</div>' if cta else '<div></div>'}
-      {'<div class="bmark">'+_e(brand)+'</div>' if brand else '<div></div>'}
-    </div>
-  </div>
-</div></body></html>"""
-
-    _screenshot(html, output_path, w, h)
+def _img_uri(image_path: str) -> tuple[str, int, int]:
+    """Return (data-URI, natural_w, natural_h)."""
+    with Image.open(image_path) as img:
+        nw, nh = img.size
+        img = img.convert('RGBA')
+        buf = io.BytesIO()
+        img.save(buf, 'PNG')
+        b64 = base64.b64encode(buf.getvalue()).decode()
+    return f'data:image/png;base64,{b64}', nw, nh
 
 
-# ── Template 2: STRIPE ────────────────────────────────────────────────────────
+# ── text helper ───────────────────────────────────────────────────────────────
 
-def render_stripe(
-    image_path: str, name: str, tagline: str, brand: str, cta: str,
-    colors: dict, size: tuple, output_path: str,
-) -> None:
-    """
-    STRIPE — Crystal-clear full product photo as background.
-    Left colour sidebar with rotated brand name.
-    Solid colour bottom panel — white bold text + inverted CTA.
-    """
-    w, h    = size
-    dom     = colors['dominant']
-    dom_h   = _hex(dom)
-    acc_l   = _hex(_lighten(dom, 0.38))
-    fc      = _font_face_css()
-    iurl    = _img_url(image_path)
-    s_pct   = 15   # sidebar %
-    p_pct   = 34   # bottom panel %
-
-    html = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><style>
-{fc}
-*{{margin:0;padding:0;box-sizing:border-box}}
-body{{width:{w}px;height:{h}px;overflow:hidden;
-  font-family:'M','Helvetica Neue',Arial,sans-serif}}
-.c{{width:{w}px;height:{h}px;position:relative;overflow:hidden}}
-.bg{{position:absolute;inset:0;
-  background:url('{iurl}') center/cover no-repeat}}
-.strip{{position:absolute;left:0;top:0;bottom:0;width:{s_pct}%;
-  background:{dom_h};
-  display:flex;flex-direction:column;align-items:center;justify-content:center}}
-.diamond{{width:{int(w*s_pct/100*.40)}px;height:{int(w*s_pct/100*.40)}px;
-  background:rgba(255,255,255,.18);transform:rotate(45deg);
-  position:absolute;top:{int(h*.055)}px}}
-.vbrand{{writing-mode:vertical-rl;transform:rotate(180deg);
-  font-size:{int(w*.021)}px;font-weight:600;letter-spacing:.18em;
-  color:rgba(255,255,255,.88);text-transform:uppercase}}
-.panel{{position:absolute;left:0;right:0;bottom:0;height:{p_pct}%;
-  background:{dom_h}}}
-.panel-line{{position:absolute;top:0;left:{s_pct}%;right:0;height:3px;background:{acc_l}}}
-.ptxt{{position:absolute;top:0;left:{s_pct+5}%;right:5%;bottom:0;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:{int(h*p_pct/100*.12)}px 0}}
-.pname{{font-size:{int(w*.072)}px;font-weight:800;line-height:1.06;
-  color:#fff;text-transform:uppercase;letter-spacing:.03em;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-  margin-bottom:{int(h*.009)}px}}
-.ptag{{font-size:{int(w*.027)}px;font-weight:300;
-  color:rgba(255,255,255,.82);line-height:1.4;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
-.cta-wrap{{position:absolute;bottom:{int(h*.035)}px;right:5%}}
-.cta{{display:inline-block;background:#fff;color:{dom_h};
-  font-size:{int(w*.023)}px;font-weight:700;letter-spacing:.06em;
-  padding:{int(h*.012)}px {int(w*.028)}px;border-radius:100px;text-transform:uppercase}}
-</style></head><body>
-<div class="c">
-  <div class="bg"></div>
-  <div class="strip">
-    <div class="diamond"></div>
-    {'<div class="vbrand">'+_e(brand).upper()+'</div>' if brand else ''}
-  </div>
-  <div class="panel">
-    <div class="panel-line"></div>
-    <div class="ptxt">
-      <div class="pname">{_e(name).upper()}</div>
-      {'<div class="ptag">'+_e(tagline)+'</div>' if tagline else ''}
-    </div>
-    {'<div class="cta-wrap"><div class="cta">'+_e(cta)+'</div></div>' if cta else ''}
-  </div>
-</div></body></html>"""
-
-    _screenshot(html, output_path, w, h)
+def _wrap(text: str, max_chars: int, max_lines: int) -> list[str]:
+    lines: list[str] = []
+    for line in textwrap.wrap(str(text), width=max_chars):
+        lines.append(line)
+        if len(lines) >= max_lines:
+            break
+    return lines or [str(text)[:max_chars]]
 
 
-# ── Template 3: FRAME ─────────────────────────────────────────────────────────
+def _tspan_block(lines: list[str], x: float, y: float, dy: float,
+                 anchor: str = 'start') -> str:
+    """Return <tspan> elements for a multi-line text block."""
+    parts: list[str] = []
+    for i, line in enumerate(lines):
+        shift = 0 if i == 0 else dy
+        parts.append(f'<tspan x="{x:.1f}" dy="{shift:.1f}">{_e(line)}</tspan>')
+    return '\n'.join(parts)
 
-def render_frame(
-    image_path: str, name: str, tagline: str, brand: str, cta: str,
-    colors: dict, size: tuple, output_path: str,
-) -> None:
-    """
-    FRAME — Light canvas in extracted brand colour.
-    Product photo bleeds right edge with CSS mask gradient fade (seamless blend).
-    Editorial left column: thin edge bar · brand · accent line · name · tagline · CTA.
-    Large decorative circle as background accent.
-    """
-    w, h   = size
-    dom    = colors['dominant']
-    dom_h  = _hex(dom)
-    bg_c   = _hex(_lighten(dom, 0.93))
-    txt_c  = _hex(_darken(dom, 0.22))
-    fc     = _font_face_css()
-    iurl   = _img_url(image_path)
 
-    # Circle geometry
-    cr   = int(h * 0.37)
-    ccx  = int(w * 0.39)
-    ccy  = int(h * 0.50)
+# ── cover-fit calculation ─────────────────────────────────────────────────────
 
-    html = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><style>
-{fc}
-*{{margin:0;padding:0;box-sizing:border-box}}
-body{{width:{w}px;height:{h}px;overflow:hidden;
-  font-family:'M','Helvetica Neue',Arial,sans-serif}}
-.c{{width:{w}px;height:{h}px;position:relative;overflow:hidden;background:{bg_c}}}
-.edge{{position:absolute;left:0;top:0;bottom:0;width:5px;background:{dom_h}}}
-.ring1{{position:absolute;
-  left:{ccx-cr}px;top:{ccy-cr}px;width:{cr*2}px;height:{cr*2}px;
-  border-radius:50%;border:{max(3,int(w*.004))}px solid {_rgba(dom,.20)}}}
-.ring2{{position:absolute;
-  left:{ccx-int(cr*.72)}px;top:{ccy-int(cr*.72)}px;
-  width:{int(cr*1.44)}px;height:{int(cr*1.44)}px;
-  border-radius:50%;border:{max(2,int(w*.002))}px solid {_rgba(dom,.11)}}}
-.photo{{position:absolute;right:0;top:0;bottom:0;width:63%;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 40%);
-  mask-image:linear-gradient(to right,transparent 0%,black 40%)}}
-.photo img{{width:100%;height:100%;object-fit:cover;object-position:center}}
-.col{{position:absolute;left:0;top:0;bottom:0;width:44%;
-  padding:{int(h*.08)}px {int(w*.05)}px {int(h*.08)}px {int(w*.078)}px;
-  display:flex;flex-direction:column;justify-content:center;gap:{int(h*.014)}px}}
-.brand-lbl{{font-size:{int(w*.021)}px;font-weight:600;color:{txt_c};
-  letter-spacing:.16em;text-transform:uppercase;opacity:.88}}
-.bar{{width:{int(w*.10)}px;height:6px;background:{dom_h};border-radius:3px}}
-.name{{font-size:{int(w*.068)}px;font-weight:800;line-height:1.06;
-  color:#090909;letter-spacing:.03em;text-transform:uppercase;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}}
-.tag{{font-size:{int(w*.025)}px;font-weight:400;color:#6a6a6a;line-height:1.5;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
-.cta{{display:inline-block;align-self:flex-start;
-  background:{dom_h};color:#fff;
-  font-size:{int(w*.023)}px;font-weight:700;letter-spacing:.06em;
-  padding:{int(h*.013)}px {int(w*.030)}px;border-radius:100px;text-transform:uppercase}}
-</style></head><body>
-<div class="c">
-  <div class="edge"></div>
-  <div class="ring1"></div>
-  <div class="ring2"></div>
-  <div class="photo"><img src="{iurl}"/></div>
-  <div class="col">
-    {'<div class="brand-lbl">'+_e(brand).upper()+'</div>' if brand else ''}
-    <div class="bar"></div>
-    <div class="name">{_e(name).upper()}</div>
-    {'<div class="tag">'+_e(tagline)+'</div>' if tagline else ''}
-    {'<div class="cta">'+_e(cta)+'</div>' if cta else ''}
-  </div>
-</div></body></html>"""
+def _cover(iw: int, ih: int, bw: float, bh: float, ox: float = 0, oy: float = 0):
+    """Return (draw_x, draw_y, draw_w, draw_h) so image covers the box."""
+    scale = max(bw / iw, bh / ih)
+    dw = iw * scale
+    dh = ih * scale
+    dx = ox + (bw - dw) / 2
+    dy = oy + (bh - dh) / 2
+    return dx, dy, dw, dh
 
-    _screenshot(html, output_path, w, h)
+
+# ── cairosvg render ───────────────────────────────────────────────────────────
+
+def _render(svg: str, output_path: str, w: int, h: int) -> None:
+    import cairosvg
+    cairosvg.svg2png(
+        bytestring=svg.encode('utf-8'),
+        write_to=str(output_path),
+        output_width=w,
+        output_height=h,
+    )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  TEMPLATE 1 — Studio (clean, minimal, editorial)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def render_studio(image_path: str, name: str, tagline: str, brand: str,
+                  cta: str, colors: dict, size: tuple, output_path: str) -> None:
+    w, h = size
+    bg  = _hex(colors.get('dominant', (30, 30, 50)))
+    acc = _hex(colors.get('accent',   (220, 200, 140)))
+    txt = _on(bg)
+
+    uri, iw, ih = _img_uri(image_path)
+
+    # Product image box — centred, top 60%
+    box_w = int(w * 0.74)
+    box_h = int(h * 0.60)
+    box_x = (w - box_w) // 2
+    box_y = int(h * 0.055)
+
+    dx, dy, dw, dh = _cover(iw, ih, box_w, box_h, box_x, box_y)
+
+    name_lines = _wrap(name, 20, 2)
+    tag_lines  = _wrap(tagline, 30, 2)
+
+    name_fs  = min(int(w * 0.058), 63)
+    tag_fs   = int(name_fs * 0.40)
+    brand_fs = int(tag_fs  * 0.84)
+
+    text_top = box_y + box_h + int(h * 0.032)
+
+    svg = f'''<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="{w}" height="{h}" viewBox="0 0 {w} {h}">
+<defs>
+  <radialGradient id="bg" cx="32%" cy="28%" r="72%">
+    <stop offset="0%"   stop-color="{_lighten(bg, 24)}"/>
+    <stop offset="100%" stop-color="{_darken(bg, 10)}"/>
+  </radialGradient>
+  <clipPath id="pc">
+    <rect x="{box_x}" y="{box_y}" width="{box_w}" height="{box_h}" rx="16"/>
+  </clipPath>
+  <filter id="sh" x="-25%" y="-25%" width="150%" height="150%">
+    <feDropShadow dx="0" dy="18" stdDeviation="26"
+                  flood-color="#000000" flood-opacity="0.52"/>
+  </filter>
+  <linearGradient id="imgfade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="55%" stop-color="{bg}" stop-opacity="0"/>
+    <stop offset="100%" stop-color="{bg}" stop-opacity="0.8"/>
+  </linearGradient>
+</defs>
+
+<!-- background -->
+<rect width="{w}" height="{h}" fill="url(#bg)"/>
+
+<!-- soft decorative circles -->
+<circle cx="{int(w*0.88)}" cy="{int(h*0.10)}" r="{int(w*0.24)}"
+        fill="{_lighten(acc, 55)}" opacity="0.05"/>
+<circle cx="{int(w*0.08)}" cy="{int(h*0.90)}" r="{int(w*0.20)}"
+        fill="{acc}" opacity="0.04"/>
+
+<!-- product image -->
+<g filter="url(#sh)">
+  <image href="{uri}" x="{dx:.1f}" y="{dy:.1f}"
+         width="{dw:.1f}" height="{dh:.1f}"
+         preserveAspectRatio="none"
+         clip-path="url(#pc)"/>
+</g>
+<!-- bottom image fade -->
+<rect x="{box_x}" y="{box_y}" width="{box_w}" height="{box_h}"
+      fill="url(#imgfade)" clip-path="url(#pc)"/>
+
+<!-- brand -->
+<text x="{w//2}" y="{text_top + brand_fs:.0f}"
+      text-anchor="middle"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{brand_fs}" fill="{acc}"
+      font-weight="300" letter-spacing="6" opacity="0.72">
+  {_e(brand.upper())}
+</text>
+
+<!-- divider pill -->
+<rect x="{w//2 - 18}" y="{text_top + brand_fs + int(h*0.014):.0f}"
+      width="36" height="1.5" rx="1"
+      fill="{acc}" opacity="0.38"/>
+
+<!-- product name -->
+<text x="{w//2}" y="{text_top + brand_fs + int(h*0.046):.0f}"
+      text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="{name_fs}" fill="{txt}"
+      font-weight="700">
+  {_tspan_block(name_lines, w/2, 0, name_fs * 1.14, 'middle')}
+</text>
+
+<!-- tagline -->
+<text x="{w//2}" y="{text_top + brand_fs + int(h*0.046) + len(name_lines)*int(name_fs*1.14) + int(h*0.018):.0f}"
+      text-anchor="middle"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{tag_fs}" fill="{txt}"
+      font-weight="300" opacity="0.68">
+  {_tspan_block(tag_lines, w/2, 0, tag_fs * 1.35, 'middle')}
+</text>
+
+<!-- CTA -->
+<text x="{w//2}" y="{h - int(h*0.042):.0f}"
+      text-anchor="middle"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{int(tag_fs * 0.88)}" fill="{acc}"
+      font-weight="600" letter-spacing="3">
+  {_e(cta.upper())}
+</text>
+</svg>'''
+
+    _render(svg, output_path, w, h)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  TEMPLATE 2 — Stripe (bold, left sidebar, full-bleed product)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def render_stripe(image_path: str, name: str, tagline: str, brand: str,
+                  cta: str, colors: dict, size: tuple, output_path: str) -> None:
+    w, h = size
+    stripe_col = _hex(colors.get('dominant', (180, 40, 40)))
+    acc        = _hex(colors.get('accent',   (240, 190, 50)))
+
+    uri, iw, ih = _img_uri(image_path)
+
+    stripe_w  = int(w * 0.26)
+    img_x     = stripe_w
+    img_w     = w - stripe_w
+
+    dx, dy, dw, dh = _cover(iw, ih, img_w, h, img_x, 0)
+
+    name_lines = _wrap(name,    18, 3)
+    tag_lines  = _wrap(tagline, 26, 2)
+
+    name_fs  = min(int(w * 0.052), 56)
+    tag_fs   = int(name_fs * 0.37)
+    brand_fs = int(stripe_w * 0.115)
+
+    # Vertical brand: character stack
+    brand_chars = list(brand.upper()[:16])
+    char_h      = stripe_w * 0.13
+    total_ch    = len(brand_chars) * char_h
+    brand_y0    = (h - total_ch) / 2
+
+    panel_h = int(h * 0.30)
+    panel_y = h - panel_h
+    txt_x   = img_x + int(img_w * 0.07)
+
+    svg = f'''<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="{w}" height="{h}" viewBox="0 0 {w} {h}">
+<defs>
+  <clipPath id="imgc">
+    <rect x="{img_x}" y="0" width="{img_w}" height="{h}"/>
+  </clipPath>
+  <linearGradient id="btm" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%"   stop-color="#000000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000000" stop-opacity="0.82"/>
+  </linearGradient>
+  <linearGradient id="stripe_g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%"   stop-color="{_darken(stripe_col, 18)}"/>
+    <stop offset="100%" stop-color="{stripe_col}"/>
+  </linearGradient>
+  <filter id="sh2" x="-20%" y="0" width="140%" height="100%">
+    <feDropShadow dx="6" dy="0" stdDeviation="14"
+                  flood-color="#000000" flood-opacity="0.38"/>
+  </filter>
+</defs>
+
+<!-- product image (right) -->
+<image href="{uri}" x="{dx:.1f}" y="{dy:.1f}"
+       width="{dw:.1f}" height="{dh:.1f}"
+       preserveAspectRatio="none"
+       clip-path="url(#imgc)"/>
+
+<!-- bottom gradient overlay -->
+<rect x="{img_x}" y="0" width="{img_w}" height="{h}"
+      fill="url(#btm)"/>
+
+<!-- left stripe -->
+<rect x="0" y="0" width="{stripe_w}" height="{h}"
+      fill="url(#stripe_g)" filter="url(#sh2)"/>
+
+<!-- accent edge line on stripe -->
+<rect x="{stripe_w - 3}" y="0" width="3" height="{h}"
+      fill="{acc}" opacity="0.65"/>
+'''
+
+    # Vertical brand text (character by character)
+    brand_txt = _on(stripe_col)
+    for i, ch in enumerate(brand_chars):
+        cy = brand_y0 + i * char_h + char_h * 0.75
+        svg += f'''<text x="{stripe_w // 2}" y="{cy:.1f}"
+      text-anchor="middle"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{brand_fs:.1f}" fill="{brand_txt}"
+      font-weight="700">{_e(ch)}</text>\n'''
+
+    # Product name on bottom panel
+    name_y = panel_y + int(panel_h * 0.24)
+    for i, line in enumerate(name_lines):
+        fy = name_y + i * int(name_fs * 1.10)
+        svg += f'''<text x="{txt_x}" y="{fy}"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="{name_fs}" fill="#ffffff"
+      font-weight="700">{_e(line)}</text>\n'''
+
+    tag_y = name_y + len(name_lines) * int(name_fs * 1.10) + int(h * 0.014)
+    for i, line in enumerate(tag_lines):
+        fy = tag_y + i * int(tag_fs * 1.38)
+        svg += f'''<text x="{txt_x}" y="{fy}"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{tag_fs}" fill="#ffffff"
+      font-weight="300" opacity="0.82">{_e(line)}</text>\n'''
+
+    cta_x = img_x + img_w - int(img_w * 0.07)
+    cta_y = h - int(h * 0.034)
+    svg += f'''<text x="{cta_x}" y="{cta_y}"
+      text-anchor="end"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{int(tag_fs * 0.9)}" fill="{acc}"
+      font-weight="700" letter-spacing="2">{_e(cta.upper())}</text>
+</svg>'''
+
+    _render(svg, output_path, w, h)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  TEMPLATE 3 — Frame (magazine, editorial left, product right bleed)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def render_frame(image_path: str, name: str, tagline: str, brand: str,
+                 cta: str, colors: dict, size: tuple, output_path: str) -> None:
+    w, h = size
+    bg      = '#f4f0e8'   # cream editorial
+    primary = _hex(colors.get('dominant', (40, 55, 80)))
+    acc     = _hex(colors.get('accent',   (210, 60, 50)))
+
+    uri, iw, ih = _img_uri(image_path)
+
+    img_x = int(w * 0.44)
+    img_w = w - img_x
+
+    dx, dy, dw, dh = _cover(iw, ih, img_w, h, img_x, 0)
+
+    left_w = int(w * 0.41)
+    pad    = int(left_w * 0.10)
+
+    name_lines = _wrap(name,    14, 3)
+    tag_lines  = _wrap(tagline, 20, 3)
+
+    name_fs  = min(int(left_w * 0.118), 72)
+    tag_fs   = int(name_fs * 0.36)
+    brand_fs = int(tag_fs  * 0.84)
+
+    # Decorative circle
+    deco_r  = int(left_w * 0.34)
+    deco_cx = left_w - int(left_w * 0.04)
+    deco_cy = int(h * 0.70)
+
+    name_top = int(h * 0.22)
+    name_lh  = int(name_fs * 1.08)
+    rule_y   = name_top + len(name_lines) * name_lh + int(h * 0.025)
+    tag_top  = rule_y + int(h * 0.034)
+
+    cta_chars = len(cta)
+    cta_box_w = max(cta_chars * int(tag_fs * 0.60) + pad, int(left_w * 0.45))
+    cta_y     = h - int(h * 0.068)
+
+    svg = f'''<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="{w}" height="{h}" viewBox="0 0 {w} {h}">
+<defs>
+  <clipPath id="imgc">
+    <rect x="{img_x}" y="0" width="{img_w}" height="{h}"/>
+  </clipPath>
+  <linearGradient id="img_fade" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%"   stop-color="{bg}" stop-opacity="0"/>
+    <stop offset="38%"  stop-color="{bg}" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="{bg}" stop-opacity="1"/>
+  </linearGradient>
+  <linearGradient id="topbar" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%"   stop-color="{primary}"/>
+    <stop offset="60%"  stop-color="{_lighten(primary, 22)}"/>
+    <stop offset="100%" stop-color="{primary}" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+
+<!-- editorial background -->
+<rect width="{w}" height="{h}" fill="{bg}"/>
+
+<!-- product image (right bleed) -->
+<image href="{uri}" x="{dx:.1f}" y="{dy:.1f}"
+       width="{dw:.1f}" height="{dh:.1f}"
+       preserveAspectRatio="none"
+       clip-path="url(#imgc)"/>
+
+<!-- fade from image into editorial left -->
+<rect x="{img_x - int(left_w*0.12)}" y="0"
+      width="{int(left_w*0.12) + img_w}" height="{h}"
+      fill="url(#img_fade)"/>
+
+<!-- decorative circle -->
+<circle cx="{deco_cx}" cy="{deco_cy}" r="{deco_r}"
+        fill="{acc}" opacity="0.07"/>
+<circle cx="{deco_cx}" cy="{deco_cy}" r="{deco_r - 7}"
+        fill="none" stroke="{acc}" stroke-width="1.5" opacity="0.22"/>
+
+<!-- top accent bar -->
+<rect x="{pad}" y="{int(h*0.058)}" width="{left_w - pad*2}" height="3"
+      fill="url(#topbar)"/>
+
+<!-- brand -->
+<text x="{pad}" y="{int(h*0.058) + int(h*0.048):.0f}"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{brand_fs}" fill="{primary}"
+      font-weight="300" letter-spacing="5" opacity="0.58">
+  {_e(brand.upper())}
+</text>
+
+<!-- product name -->
+<text x="{pad}" y="{name_top + name_fs:.0f}"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="{name_fs}" fill="{primary}"
+      font-weight="700">
+  {_tspan_block(name_lines, pad, 0, name_lh)}
+</text>
+
+<!-- accent rule -->
+<rect x="{pad}" y="{rule_y}" width="{int(left_w * 0.15)}" height="2.5"
+      fill="{acc}"/>
+
+<!-- tagline -->
+<text x="{pad}" y="{tag_top + tag_fs:.0f}"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{tag_fs}" fill="{primary}"
+      font-weight="300" opacity="0.76">
+  {_tspan_block(tag_lines, pad, 0, int(tag_fs * 1.48))}
+</text>
+
+<!-- CTA button -->
+<rect x="{pad - 10}" y="{cta_y - int(tag_fs * 1.08)}"
+      width="{cta_box_w}" height="{int(tag_fs * 1.52)}"
+      fill="{acc}" rx="4"/>
+<text x="{pad + 4}" y="{cta_y:.0f}"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="{int(tag_fs * 0.88)}" fill="#ffffff"
+      font-weight="700" letter-spacing="2">
+  {_e(cta.upper())}
+</text>
+</svg>'''
+
+    _render(svg, output_path, w, h)
