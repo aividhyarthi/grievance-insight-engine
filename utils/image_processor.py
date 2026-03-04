@@ -248,8 +248,8 @@ class SocialMediaPostGenerator:
                 'bold':     self._bold,
                 'magazine': self._magazine,
             }
-            fn = dispatch.get(style, self._minimal)
-            canvas = fn(prod, product_name, tagline, brand_name, cta, size, colors)
+            canvas = dispatch.get(style, self._minimal)(
+                prod, product_name, tagline, brand_name, cta, size, colors)
 
         canvas.convert('RGB').save(out, 'JPEG', quality=95)
         return [out]
