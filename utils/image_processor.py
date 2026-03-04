@@ -666,10 +666,11 @@ class SocialMediaPostGenerator:
                   font=lf, fill=(*colors['accent'], 255))
 
         y  = int(h * 0.22)
-        tf = get_font('bold', 62)
-        draw.text((margin, y), name.upper()[:28], font=tf,
-                  fill=(255, 255, 255, 255))
-        y += _text_h(draw, name[:28], tf) + 40
+        tf = get_font('bold', 56)
+        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
+            draw.text((margin, y), line, font=tf, fill=(255, 255, 255, 255))
+            y += _text_h(draw, line, tf) + 6
+        y += 28
 
         # feature bullets
         bf = get_font('semibold', 36)
@@ -692,8 +693,9 @@ class SocialMediaPostGenerator:
 
             # feature text
             fx = margin + nr * 2 + 18
-            draw.text((fx, y), feat[:55], font=bf, fill=(255, 255, 255, 255))
-            y += _text_h(draw, feat, bf) + 8
+            fl = _wrap(feat, bf, w - fx - 20, draw)[0]
+            draw.text((fx, y), fl, font=bf, fill=(255, 255, 255, 255))
+            y += _text_h(draw, fl, bf) + 8
             y += 30
 
         dot_color = (255, 255, 255, 255)
@@ -729,9 +731,11 @@ class SocialMediaPostGenerator:
         y += 30
 
         # title
-        tf = get_font('bold', 62)
-        draw.text((margin, y), name.upper()[:28], font=tf, fill=(22, 22, 22, 255))
-        y += _text_h(draw, name[:28], tf) + 18
+        tf = get_font('bold', 56)
+        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
+            draw.text((margin, y), line, font=tf, fill=(22, 22, 22, 255))
+            y += _text_h(draw, line, tf) + 6
+        y += 12
 
         # description
         if description:
@@ -765,10 +769,11 @@ class SocialMediaPostGenerator:
 
         # centre block
         cy = int(h * 0.30)
-        tf = get_font('bold', 92)
-        draw.text((margin, cy), name.upper()[:20], font=tf,
-                  fill=(255, 255, 255, 255))
-        cy += _text_h(draw, name[:20], tf) + 18
+        tf = get_font('bold', 76)
+        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
+            draw.text((margin, cy), line, font=tf, fill=(255, 255, 255, 255))
+            cy += _text_h(draw, line, tf) + 8
+        cy += 10
 
         sf = get_font('light', 38)
         tag = 'Get yours today.'
