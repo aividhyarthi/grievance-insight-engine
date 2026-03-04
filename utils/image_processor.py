@@ -555,97 +555,137 @@ class SocialMediaPostGenerator:
         draw.text((margin, margin - 4), brand.upper(), font=bf, fill=color)
 
     def _c_cover(self, prod, name, tagline, brand, size, colors):
-        """Slide 1 — full-bleed hero, product name bottom, swipe hint."""
-        w, h = size
-        bg    = _crop_to_fit(prod.convert('RGB'), size).convert('RGBA')
-        dark  = Image.new('RGBA', size, (0, 0, 0, 110))
-        canvas = Image.alpha_composite(bg, dark)
-
-        top_grad = _gradient_overlay(size, (0, 0, 0, 180), (0, 0, 0, 0))
-        bot_grad = _gradient_overlay(size, (0, 0, 0, 0), (0, 0, 0, 230))
-        canvas   = Image.alpha_composite(canvas, top_grad)
-        canvas   = Image.alpha_composite(canvas, bot_grad)
-
-        draw   = ImageDraw.Draw(canvas)
+        """Slide 1 — product on brand-tinted bg, clear and prominent."""
+        w, h   = size
         margin = 72
 
-        self._c_header(draw, brand, w, margin, colors, white=True)
+        # Light brand-tinted background — product stays visible
+        bg_col = _lighten(colors['dominant'], 0.86)
+        canvas = Image.new('RGBA', size, (*bg_col, 255))
 
-        # "Swipe →" hint
-        hf = get_font('light', 24)
+        draw = ImageDraw.Draw(canvas)
+        acc  = _to_rgba(colors['dominant'])
+
+        # Brand header top-left
+        self._c_header(draw, brand, w, margin, colors, white=False)
+
+        # Swipe hint top-right
+        hf   = get_font('light', 24)
         hint = 'Swipe for more →'
         hw   = _text_w(draw, hint, hf)
         draw.text((w - hw - margin, margin), hint,
-                  font=hf, fill=(255, 255, 255, 160))
+                  font=hf, fill=(*_darken(colors['dominant'], 0.25), 140))
 
-        # product name bottom
-        y  = h - int(h * 0.30)
-        tf = get_font('bold', 88)
+        # Product image — clear, upper 56% of canvas
+        area_w = int(w * 0.84)
+        area_h = int(h * 0.54)
+        area_y = int(h * 0.10)
+        area_x = (w - area_w) // 2
+
+        product = prod.copy()
+        product.thumbnail((area_w, area_h), Image.LANCZOS)
+        px = area_x + (area_w - product.width)  // 2
+        py = area_y + (area_h - product.height) // 2
+
+        # Elliptical drop shadow
+        shad = Image.new('RGBA', size, (0, 0, 0, 0))
+        sd   = ImageDraw.Draw(shad)
+        sd.ellipse([px + 30, py + product.height - 6,
+                    px + product.width - 30, py + product.height + 36],
+                   fill=(0, 0, 0, 40))
+        canvas = Image.alpha_composite(
+            canvas, shad.filter(ImageFilter.GaussianBlur(22)))
+        _paste_alpha(canvas, product, (px, py))
+
+        # Text block below image
+        draw = ImageDraw.Draw(canvas)
+        y    = area_y + area_h + int(h * 0.022)
+
+        # Accent bar
+        draw.rectangle([(margin, y), (margin + 68, y + 6)], fill=acc)
+        draw.rectangle([(margin + 74, y + 1), (margin + 88, y + 5)],
+                       fill=(*colors['dominant'], 80))
+        y += 26
+
+        # Product name — bold, dark
+        tf = get_font('bold', 72)
         for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
-            draw.text((margin, y), line, font=tf, fill=(255, 255, 255, 255))
-            y += _text_h(draw, line, tf) + 10
-        y += 10
+            draw.text((margin, y), line, font=tf, fill=(14, 14, 14, 255))
+            y += _text_h(draw, line, tf) + 5
+        y += 4
 
+        # Tagline — brand-tinted, readable
         if tagline:
-            sf = get_font('regular', 36)
+            sf = get_font('regular', 30)
             for line in _wrap(tagline, sf, w - margin * 2, draw)[:2]:
                 draw.text((margin, y), line, font=sf,
-                          fill=(255, 255, 255, 190))
-                y += _text_h(draw, line, sf) + 6
+                          fill=(*_darken(colors['dominant'], 0.08), 200))
+                y += _text_h(draw, line, sf) + 5
 
-        # slide dots
-        _draw_nav_dots(draw, w, h - 46, 5, 0, (255, 255, 255, 255))
+        _draw_nav_dots(draw, w, h - 46, 5, 0,
+                       (*_darken(colors['dominant'], 0.4), 255))
         return canvas
 
     def _c_intro(self, prod, name, tagline, description, size, colors):
-        """Slide 2 — right-side product thumbnail, intro text left."""
+        """Slide 2 — tagline as the hook, product thumbnail right, description below."""
         w, h = size
         bg_col = _lighten(colors['dominant'], 0.90)
         canvas = Image.new('RGBA', size, (*bg_col, 255))
 
-        # right thumb
-        thumb_sz = int(w * 0.42)
+        # Product thumbnail right side
+        thumb_sz = int(w * 0.40)
         thumb    = prod.copy()
         thumb.thumbnail((thumb_sz, thumb_sz), Image.LANCZOS)
-        tx = w - thumb.width - 40
+        tx = w - thumb.width - 44
         ty = (h - thumb.height) // 2
         _paste_alpha(canvas, thumb, (tx, ty))
 
-        # subtle colour strip on the right edge
         draw = ImageDraw.Draw(canvas)
         acc  = _to_rgba(colors['dominant'])
+
+        # Subtle right-edge accent strip
         draw.rectangle([(w - 8, 0), (w, h)], fill=acc)
 
-        margin = 72
-        self._c_header(draw, name, w, margin, colors, white=False)
+        margin   = 72
+        text_max = int(w * 0.52)   # stay left of the thumbnail
 
-        y = int(h * 0.22)
-        # "Introducing…" label
-        lf = get_font('semibold', 28)
-        draw.text((margin, y), 'Introducing', font=lf,
-                  fill=(*colors['dominant'], 255))
-        y += 42
+        y = int(h * 0.15)
 
-        # big name
-        tf = get_font('bold', 80)
-        for line in _wrap(name.upper(), tf, int(w * 0.52), draw)[:2]:
-            draw.text((margin, y), line, font=tf, fill=(22, 22, 22, 255))
-            y += _text_h(draw, line, tf) + 10
-        y += 14
+        # Small slide label (not "Introducing" — just a subtle category tag)
+        lf = get_font('semibold', 22)
+        draw.text((margin, y), '— THE PRODUCT', font=lf,
+                  fill=(*_darken(colors['dominant'], 0.3), 180))
+        y += 40
 
-        # divider
-        draw.rectangle([(margin, y), (margin + 60, y + 5)], fill=acc)
-        y += 28
+        # Tagline as the HERO — this is the hook that makes people keep reading
+        if tagline:
+            tf = get_font('bold', 62)
+            for line in _wrap(tagline, tf, text_max, draw)[:3]:
+                draw.text((margin, y), line, font=tf, fill=(18, 18, 18, 255))
+                y += _text_h(draw, line, tf) + 8
+            y += 10
 
-        # description
+        # Accent divider
+        draw.rectangle([(margin, y), (margin + 52, y + 4)], fill=acc)
+        y += 24
+
+        # Product name — smaller, supporting
+        nf = get_font('semibold', 26)
+        for line in _wrap(name.upper(), nf, text_max, draw)[:2]:
+            draw.text((margin, y), line, font=nf,
+                      fill=(*_darken(colors['dominant'], 0.35), 210))
+            y += _text_h(draw, line, nf) + 4
+        y += 16
+
+        # Description body
         if description:
-            df   = get_font('regular', 32)
-            text = description[:200]   # keep it readable
-            for line in _wrap(text, df, int(w * 0.50), draw)[:5]:
-                draw.text((margin, y), line, font=df, fill=(70, 70, 70, 255))
-                y += _text_h(draw, line, df) + 8
+            df = get_font('regular', 30)
+            for line in _wrap(description[:220], df, text_max, draw)[:4]:
+                draw.text((margin, y), line, font=df, fill=(62, 62, 62, 255))
+                y += _text_h(draw, line, df) + 7
 
-        _draw_nav_dots(draw, w, h - 46, 5, 1, (*_darken(colors['dominant'], 0.4), 255))
+        _draw_nav_dots(draw, w, h - 46, 5, 1,
+                       (*_darken(colors['dominant'], 0.4), 255))
         return canvas
 
     def _c_features(self, features: list[str], name: str, size, colors, slide: int = 2):
