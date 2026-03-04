@@ -11,66 +11,72 @@ import os
 
 
 _SYSTEM_PROMPT = """\
-You are a senior social media copywriter at a boutique branding agency.
-You write crisp, human-sounding copy for Instagram and Facebook — not robotic AI text.
-Your style is warm, confident, and creative. You never use hollow filler phrases like
-"Elevate your game", "Step into a world of", or "Unleash your potential".
+You are a senior social media copywriter at an award-winning branding agency.
+You TRANSFORM raw product information into polished, desire-creating Instagram copy.
 
-Every caption you write MUST have this structure — written as natural prose, not labelled sections:
-1. Hook — the very first sentence stops the scroll. Use a relatable truth, a desire, or a bold
-   observation. Make the reader feel something immediately.
-2. Desire — one or two sentences showing what this product DOES for the person: the feeling,
-   the transformation, the small joy it brings to daily life.
-3. Pull — a closing sentence that creates urgency or longing without sounding pushy. No
-   generic "shop now" commands. Make them WANT it.
+CRITICAL RULES:
+- ALWAYS fix spelling, grammar, and capitalisation in whatever the user provides — never echo errors back.
+- NEVER copy the user's tagline or description verbatim. Rewrite everything in your own creative voice.
+- NEVER use the user's tagline as your title. Invent a fresh headline every time.
+- If product inputs look rough or test-like, still write real, polished copy for them.
+- Do NOT use hollow phrases like "Elevate your game", "Step into a world of", "Unleash your potential", "Game-changer", or "Revolutionary".
 
-The title must intrigue, not just describe. It should feel like a headline that earns a second look.
+Every caption MUST follow this structure (written as natural prose, no labels):
+1. Hook — first sentence stops the scroll: a relatable truth, a desire, or a bold observation that makes the reader feel something immediately.
+2. Desire — one or two sentences showing what this product DOES for the person: the feeling, the transformation, the small everyday joy.
+3. Pull — a closing line that creates longing without being pushy. No generic "shop now" commands. Make them WANT it.
+
+The title must intrigue and earn a second look — like a headline, not a product label.
 """
 
 _INDIVIDUAL_PROMPT = """\
-Write social media post copy for the product below. Create desire, not just awareness.
-The reader should finish the caption and feel they need this in their life.
+A brand has given you raw product details. Your job is to REWRITE everything as compelling
+Instagram copy that creates desire. Fix any typos or grammar issues in the inputs — do NOT
+echo them back. The title must be YOUR invention, not the user's tagline rephrased.
 
-Product name : {product_name}
-Brand name   : {brand_name}
-Tagline      : {tagline}
-Description  : {description}
-CTA          : {cta}
-Platform     : {platform}
+Raw inputs (treat as inspiration, not final copy):
+  Product : {product_name}
+  Brand   : {brand_name}
+  Tagline : {tagline}
+  Details : {description}
+  CTA     : {cta}
+  Platform: {platform}
 
 Return ONLY valid JSON — no markdown fences, no extra text:
 {{
-  "title"    : "Intriguing headline (4-8 words, Title Case, no full stop) — make it earn a second look",
-  "caption"  : "3 sentences. Sentence 1: scroll-stopping hook (desire or relatable truth). Sentence 2: what this product gives the person (feeling/transformation). Sentence 3: longing close that makes them want to act.",
-  "hashtags" : ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8"]
+  "title"   : "Your fresh headline (4-8 words, Title Case, no full stop). Must intrigue, not just describe. Do NOT reuse the tagline.",
+  "caption" : "3 sentences of polished copy. S1: scroll-stopping hook — a desire or relatable truth. S2: what this product does FOR the person (feeling/transformation/joy). S3: longing close that makes them want it — no generic CTA commands.",
+  "hashtags": ["tag1","tag2","tag3","tag4","tag5","tag6","tag7","tag8"]
 }}
 """
 
 _CAROUSEL_PROMPT = """\
-Write social media carousel copy for the product below. Create desire, not just awareness.
-The cover caption should make someone stop and swipe. Each feature should feel like a benefit
-the reader personally wants, not a spec sheet item.
+A brand has given you raw product details for a carousel post. REWRITE everything as polished,
+desire-creating copy. Fix any typos or grammar issues — do NOT echo them. Each feature should
+feel like a personal benefit the reader wants, not a product spec. Title must be your own fresh
+invention, not the user's tagline.
 
-Product name : {product_name}
-Brand name   : {brand_name}
-Tagline      : {tagline}
-Description  : {description}
-CTA          : {cta}
-Platform     : {platform}
+Raw inputs (treat as inspiration, not final copy):
+  Product : {product_name}
+  Brand   : {brand_name}
+  Tagline : {tagline}
+  Details : {description}
+  CTA     : {cta}
+  Platform: {platform}
 
 Return ONLY valid JSON — no markdown fences, no extra text:
 {{
-  "title"    : "Intriguing cover headline (4-8 words, Title Case, no full stop) — earns a swipe",
-  "caption"  : "3 sentences for the carousel cover. Sentence 1: scroll-stopping hook. Sentence 2: the desire this product fulfils. Sentence 3: longing close.",
-  "features" : [
-    "Benefit 1 — how it improves the person's life (not just a spec)",
-    "Benefit 2 — how it improves the person's life",
-    "Benefit 3 — how it improves the person's life",
-    "Benefit 4 — how it improves the person's life",
-    "Benefit 5 — how it improves the person's life",
-    "Benefit 6 — how it improves the person's life"
+  "title"   : "Your fresh cover headline (4-8 words, Title Case, no full stop). Must earn a swipe — not a rephrased tagline.",
+  "caption" : "3 sentences of polished cover copy. S1: scroll-stopping hook. S2: the desire this fulfils. S3: longing close that earns a swipe.",
+  "features": [
+    "Benefit phrased as personal gain — how it changes daily life (not a spec)",
+    "Benefit phrased as personal gain",
+    "Benefit phrased as personal gain",
+    "Benefit phrased as personal gain",
+    "Benefit phrased as personal gain",
+    "Benefit phrased as personal gain"
   ],
-  "hashtags" : ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9", "tag10"]
+  "hashtags": ["tag1","tag2","tag3","tag4","tag5","tag6","tag7","tag8","tag9","tag10"]
 }}
 """
 
@@ -123,7 +129,8 @@ class CaptionGenerator:
         client = anthropic.Anthropic(api_key=self.api_key)
         msg = client.messages.create(
             model='claude-sonnet-4-6',
-            max_tokens=800,
+            max_tokens=1200,
+            temperature=1,
             system=_SYSTEM_PROMPT,
             messages=[{'role': 'user', 'content': prompt}],
         )
@@ -143,27 +150,29 @@ class CaptionGenerator:
     @staticmethod
     def _fallback(product_name: str, tagline: str, description: str,
                   brand_name: str, post_type: str) -> dict:
-        """Template-based fallback when no API key is available."""
-        title = tagline or f'Discover {product_name}'
+        """Fallback when API key is missing or the Claude call fails."""
+        pn = product_name.strip().title() if product_name else 'this product'
+        bn = brand_name.strip() if brand_name else ''
+        title = f'The {pn} You Didn\'t Know You Needed'
+        by_line = f' by {bn}' if bn else ''
         caption = (
-            description[:180] + '…'
-            if description and len(description) > 50
-            else f'Meet {product_name} — crafted for those who care about quality. '
-                 f'{"By " + brand_name + "." if brand_name else ""}'
+            f'Some things just make life better — {pn}{by_line} is one of them. '
+            f'It\'s the kind of find that quietly upgrades your everyday without asking for credit. '
+            f'Once you have it, you\'ll wonder how you managed without it.'
         )
         hashtags = [
-            product_name.replace(' ', ''),
-            brand_name.replace(' ', '') if brand_name else 'brand',
-            'NewArrival', 'MustHave', 'ShopNow', 'ProductLaunch',
-            'QualityFirst', 'Design', 'Style', 'Lifestyle',
+            pn.replace(' ', ''),
+            bn.replace(' ', '') if bn else 'brand',
+            'NewArrival', 'MustHave', 'ProductLaunch',
+            'QualityFirst', 'Design', 'Style', 'Lifestyle', 'ShopNow',
         ]
         features = [
-            f'Premium quality {product_name}',
-            'Built to last, designed to impress',
-            'Perfect for everyday use',
-            'Thoughtfully crafted details',
-            'Loved by customers worldwide',
-            'Available now — limited stock',
+            f'Designed to fit seamlessly into your daily routine',
+            f'Quality you can feel the moment you use it',
+            f'The kind of detail that makes all the difference',
+            f'Built for real life — not just a shelf',
+            f'A small upgrade with an outsized impact',
+            f'Available now — your future self will thank you',
         ]
         base = {'title': title, 'caption': caption, 'hashtags': hashtags}
         if post_type == 'carousel':
