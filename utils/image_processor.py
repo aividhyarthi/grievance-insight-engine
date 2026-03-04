@@ -191,6 +191,32 @@ def _draw_rounded_rect(draw: ImageDraw.ImageDraw, xy, radius: int, fill) -> None
     draw.ellipse([x1 - radius * 2, y1 - radius * 2, x1, y1], fill=fill)
 
 
+def _draw_star(draw: ImageDraw.ImageDraw, center: tuple, r: int, fill) -> None:
+    """Draw a 4-point sparkle star. r = outer radius."""
+    cx, cy = center
+    pts = []
+    for i in range(8):
+        angle  = math.pi * i / 4 - math.pi / 2
+        radius = r if i % 2 == 0 else max(2, int(r * 0.38))
+        pts.append((cx + radius * math.cos(angle),
+                    cy + radius * math.sin(angle)))
+    draw.polygon(pts, fill=fill)
+
+
+def _badge_label(name: str) -> str:
+    """Derive a short category badge from the product name."""
+    nl = name.lower()
+    if any(k in nl for k in ('kids', 'children', 'toddler', 'baby')):
+        return 'KIDS COLLECTION'
+    if any(k in nl for k in ('bed', 'sheet', 'pillow', 'quilt', 'duvet', 'linen')):
+        return 'HOME COLLECTION'
+    if any(k in nl for k in ('shirt', 'dress', 'pant', 'jacket', 'wear', 'cloth')):
+        return 'FASHION'
+    if any(k in nl for k in ('phone', 'laptop', 'tech', 'device', 'electronic')):
+        return 'TECH'
+    return 'FEATURED'
+
+
 # ── slide navigation dot ─────────────────────────────────────────────────────
 
 def _draw_nav_dots(draw: ImageDraw.ImageDraw, w: int, y: int,
@@ -555,84 +581,102 @@ class SocialMediaPostGenerator:
         draw.text((margin, margin - 4), brand.upper(), font=bf, fill=color)
 
     def _c_cover(self, prod, name, tagline, brand, size, colors):
-        """Slide 1 — product on brand-tinted bg, fixed text zone, no overflow."""
+        """Slide 1 — full-bleed hero image top 55%, gradient into branded panel, creative type."""
         w, h   = size
-        margin = 72
+        margin = 60
+        acc    = _to_rgba(colors['accent'])
+        bg_col = _lighten(colors['dominant'], 0.93)
 
-        bg_col = _lighten(colors['dominant'], 0.86)
+        # ── Base canvas: light brand tint ────────────────────────────────
         canvas = Image.new('RGBA', size, (*bg_col, 255))
-        draw   = ImageDraw.Draw(canvas)
-        acc    = _to_rgba(colors['dominant'])
 
-        # Brand header
-        self._c_header(draw, brand, w, margin, colors, white=False)
-        hf = get_font('light', 24)
-        hint = 'Swipe for more →'
-        hw   = _text_w(draw, hint, hf)
-        draw.text((w - hw - margin, margin), hint,
-                  font=hf, fill=(*_darken(colors['dominant'], 0.25), 140))
+        # ── Hero image: full-width, fills top 55% ────────────────────────
+        img_h = int(h * 0.55)
+        # Composite RGBA product onto white before crop (handles cutout PNGs)
+        hero_bg = Image.new('RGB', prod.size, (255, 255, 255))
+        if prod.mode == 'RGBA':
+            hero_bg.paste(prod, mask=prod.split()[3])
+        else:
+            hero_bg.paste(prod)
+        hero = _crop_to_fit(hero_bg, (w, img_h)).convert('RGBA')
+        _paste_alpha(canvas, hero, (0, 0))
 
-        # ── Fixed bottom text zone: 260px above nav dots ────────────────
-        # Everything else is the image area.
-        nav_top    = h - 70            # don't write below here
-        text_zone  = 260               # px reserved for name + tagline
-        text_start = nav_top - text_zone
+        # Gradient seam: blends the image bottom smoothly into bg panel
+        fade = _gradient_overlay((w, 150), (0, 0, 0, 0), (*bg_col, 255))
+        _paste_alpha(canvas, fade, (0, img_h - 70))
 
-        # ── Product image fills header-to-text_start ────────────────────
-        area_y = int(h * 0.10)
-        area_h = text_start - area_y - 16   # 16px gap above text
-        area_w = int(w * 0.84)
-        area_x = (w - area_w) // 2
-
-        product = prod.copy()
-        product.thumbnail((area_w, max(area_h, 1)), Image.LANCZOS)
-        px = area_x + (area_w - product.width)  // 2
-        py = area_y + (area_h - product.height) // 2
-
-        shad = Image.new('RGBA', size, (0, 0, 0, 0))
-        sd   = ImageDraw.Draw(shad)
-        sd.ellipse([px + 30, py + product.height - 6,
-                    px + product.width - 30, py + product.height + 36],
-                   fill=(0, 0, 0, 40))
-        canvas = Image.alpha_composite(
-            canvas, shad.filter(ImageFilter.GaussianBlur(22)))
-        _paste_alpha(canvas, product, (px, py))
+        # Dark top scrim so header text is always readable over any image
+        scrim = _gradient_overlay((w, 120), (0, 0, 0, 170), (0, 0, 0, 0))
+        _paste_alpha(canvas, scrim, (0, 0))
 
         draw = ImageDraw.Draw(canvas)
-        y    = text_start
 
-        # Accent bar
-        draw.rectangle([(margin, y), (margin + 68, y + 6)], fill=acc)
-        y += 26
+        # ── Brand name — white on dark scrim (top left) ──────────────────
+        bf  = get_font('bold', 24)
+        bup = (brand or '').upper()
+        draw.text((margin, 36), bup, font=bf, fill=(255, 255, 255, 230))
+        # Thin accent underline beneath brand name
+        bw = _text_w(draw, bup, bf)
+        draw.rectangle([(margin, 65), (margin + min(bw, 72), 69)],
+                       fill=(*acc[:3], 200))
 
-        # ── Auto-size product name to fit in ≤2 lines ──────────────────
-        # Must check len of the FULL wrap, not the [:2] slice
-        nf, nlines = get_font('bold', 28), []
-        for font_size in range(68, 27, -8):
+        # ── "Swipe for more →" — dark pill (always visible) ──────────────
+        sf  = get_font('regular', 20)
+        hint = 'Swipe for more  →'
+        hw   = _text_w(draw, hint, sf)
+        hx   = w - hw - margin - 20
+        hy   = 33
+        _draw_rounded_rect(draw, (hx - 14, hy - 6, hx + hw + 14, hy + 30),
+                           17, (0, 0, 0, 130))
+        draw.text((hx, hy), hint, font=sf, fill=(255, 255, 255, 235))
+
+        # ── Decorative sparkle stars (placed in lower image area) ─────────
+        _draw_star(draw, (w - 66,  int(img_h * 0.60)), 14, (*acc[:3], 200))
+        _draw_star(draw, (44,      int(img_h * 0.72)), 10, (*acc[:3], 160))
+        _draw_star(draw, (w - 108, int(img_h * 0.40)),  7, (*acc[:3], 130))
+
+        # ── Text panel ───────────────────────────────────────────────────
+        y       = img_h + 44
+        nav_top = h - 65
+        y_cap   = nav_top - 10
+
+        # Category badge pill
+        badge_f = get_font('semibold', 20)
+        badge   = _badge_label(name)
+        badge_w = _text_w(draw, badge, badge_f)
+        bpad, bht = 18, 34
+        _draw_rounded_rect(draw,
+                           (margin, y, margin + badge_w + bpad * 2, y + bht),
+                           17, acc)
+        draw.text((margin + bpad, y + 7), badge, font=badge_f,
+                  fill=(255, 255, 255, 255))
+        y += bht + 20
+
+        # Product name — auto-sized, sentence case (not ALL CAPS), bold
+        nf, nlines = get_font('bold', 28), [name]
+        for font_size in range(62, 27, -8):
             nf        = get_font('bold', font_size)
-            all_lines = _wrap(name.upper(), nf, w - margin * 2, draw)
+            all_lines = _wrap(name, nf, w - margin * 2, draw)
             nlines    = all_lines[:2]
             if len(all_lines) <= 2:
                 break
         for line in nlines:
-            if y + _text_h(draw, line, nf) > nav_top:
+            if y + _text_h(draw, line, nf) > y_cap:
                 break
-            draw.text((margin, y), line, font=nf, fill=(14, 14, 14, 255))
-            y += _text_h(draw, line, nf) + 5
-        y += 4
+            draw.text((margin, y), line, font=nf, fill=(18, 18, 18, 255))
+            y += _text_h(draw, line, nf) + 6
+        y += 12
 
-        # ── Tagline: single line only, truncated to fit ─────────────────
-        if tagline and y + 40 < nav_top:
-            sf   = get_font('regular', 28)
+        # Tagline — light weight (creates contrast with bold name)
+        if tagline and y + 34 < y_cap:
+            tf   = get_font('light', 26)
             tmax = w - margin * 2
-            tlines = _wrap(tagline, sf, tmax, draw)
-            tline  = tlines[0] if tlines else ''
-            # Truncate with ellipsis if it's too long
-            while tline and _text_w(draw, tline, sf) > tmax:
-                tline = tline[:-4] + '…'
-            if tline:
-                draw.text((margin, y), tline, font=sf,
-                          fill=(*_darken(colors['dominant'], 0.08), 190))
+            tl   = (_wrap(tagline, tf, tmax, draw) or [''])[0]
+            while tl and _text_w(draw, tl, tf) > tmax:
+                tl = tl[:-4] + '…'
+            if tl and y + _text_h(draw, tl, tf) <= y_cap:
+                draw.text((margin, y), tl, font=tf,
+                          fill=(*_darken(colors['dominant'], 0.55), 195))
 
         _draw_nav_dots(draw, w, h - 46, 5, 0,
                        (*_darken(colors['dominant'], 0.4), 255))
