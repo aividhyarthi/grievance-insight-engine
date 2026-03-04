@@ -689,56 +689,57 @@ class SocialMediaPostGenerator:
         return canvas
 
     def _c_features(self, features: list[str], name: str, size, colors, slide: int = 2):
-        """Slide 3 (or 4) — bullet list of key features."""
-        w, h = size
-        bg_col = (25, 25, 35, 255) if slide % 2 == 0 else _to_rgba(_darken(colors['dominant'], 0.55))
-        canvas = Image.new('RGBA', size, bg_col)
-        draw   = ImageDraw.Draw(canvas)
+        """Slide 3 (or 4) — clean feature bullets on light brand bg."""
+        w, h   = size
         margin = 80
 
-        # top accent
+        # Light brand-tinted background (alternating lightness for slide 3 vs 4)
+        tint = 0.92 if slide % 2 == 0 else 0.86
+        bg_col = _lighten(colors['dominant'], tint)
+        canvas = Image.new('RGBA', size, (*bg_col, 255))
+        draw   = ImageDraw.Draw(canvas)
+
         acc = _to_rgba(colors['accent'])
-        draw.rectangle([(0, 0), (w, 8)], fill=acc)
 
-        # section label
-        lf = get_font('semibold', 28)
-        draw.text((margin, margin + 10), 'KEY FEATURES',
-                  font=lf, fill=(*colors['accent'], 255))
+        # Top accent strip
+        draw.rectangle([(0, 0), (w, 6)], fill=acc)
 
-        y  = int(h * 0.22)
-        tf = get_font('bold', 56)
-        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
-            draw.text((margin, y), line, font=tf, fill=(255, 255, 255, 255))
-            y += _text_h(draw, line, tf) + 6
+        # Slide label
+        lf = get_font('semibold', 22)
+        label = '— WHAT YOU GET' if slide == 2 else '— AND THERE\'S MORE'
+        draw.text((margin, margin + 10), label, font=lf,
+                  fill=(*_darken(colors['dominant'], 0.3), 180))
+
+        y = int(h * 0.16)
+
+        # Accent divider
+        draw.rectangle([(margin, y), (margin + 56, y + 5)], fill=acc)
         y += 28
 
-        # feature bullets
+        # Feature bullets — dark text on light bg
         bf = get_font('semibold', 36)
-        rf = get_font('regular', 32)
         if not features:
-            features = ['Quality crafted for everyday use',
-                        'Designed with you in mind',
-                        'Trusted by professionals']
+            features = [name]
         for i, feat in enumerate(features[:4]):
-            # number badge
-            num = str(i + 1)
-            nr  = 28
+            # Number badge
+            num = str(i + 1 + (0 if slide == 2 else 3))
+            nr  = 26
             nx  = margin
             ny  = y + 4
             draw.ellipse([nx, ny, nx + nr * 2, ny + nr * 2], fill=acc)
-            nf  = get_font('bold', 24)
+            nf  = get_font('bold', 22)
             nw  = _text_w(draw, num, nf)
-            draw.text((nx + nr - nw // 2, ny + 6), num, font=nf,
+            draw.text((nx + nr - nw // 2, ny + 7), num, font=nf,
                       fill=(255, 255, 255, 255))
 
-            # feature text
+            # Feature text — wraps to 2 lines max
             fx = margin + nr * 2 + 18
-            fl = _wrap(feat, bf, w - fx - 20, draw)[0]
-            draw.text((fx, y), fl, font=bf, fill=(255, 255, 255, 255))
-            y += _text_h(draw, fl, bf) + 8
-            y += 30
+            for fl in _wrap(feat, bf, w - fx - 40, draw)[:2]:
+                draw.text((fx, y), fl, font=bf, fill=(22, 22, 22, 255))
+                y += _text_h(draw, fl, bf) + 6
+            y += 28
 
-        dot_color = (255, 255, 255, 255)
+        dot_color = (*_darken(colors['dominant'], 0.4), 255)
         _draw_nav_dots(draw, w, h - 46, 5, slide, dot_color)
         return canvas
 
@@ -788,50 +789,70 @@ class SocialMediaPostGenerator:
         return canvas
 
     def _c_cta(self, prod, name, cta, brand, size, colors):
-        """Slide 5 — strong CTA finish."""
+        """Slide 5 — clean CTA with visible product image."""
         w, h = size
 
-        # blurred bg derived from product image
-        bg  = _crop_to_fit(prod.convert('RGB'), size).convert('RGBA')
-        blr = bg.filter(ImageFilter.GaussianBlur(18))
-        dk  = Image.new('RGBA', size, (0, 0, 0, 170))
-        canvas = Image.alpha_composite(blr, dk)
+        # Light brand-tinted background — product stays visible
+        bg_col = _lighten(colors['dominant'], 0.88)
+        canvas = Image.new('RGBA', size, (*bg_col, 255))
 
         draw   = ImageDraw.Draw(canvas)
         margin = 80
         acc    = _to_rgba(colors['accent'])
 
-        # top accent bar
-        draw.rectangle([(0, 0), (w, 8)], fill=acc)
+        # Top accent strip
+        draw.rectangle([(0, 0), (w, 6)], fill=acc)
 
-        # brand
-        self._c_header(draw, brand, w, margin, colors, white=True)
+        # Brand header
+        self._c_header(draw, brand, w, margin, colors, white=False)
 
-        # centre block
-        cy = int(h * 0.30)
-        tf = get_font('bold', 76)
+        # Product image — clear, upper portion
+        area_w = int(w * 0.60)
+        area_h = int(h * 0.42)
+        area_y = int(h * 0.12)
+        area_x = (w - area_w) // 2
+
+        product = prod.copy()
+        product.thumbnail((area_w, area_h), Image.LANCZOS)
+        px = area_x + (area_w - product.width)  // 2
+        py = area_y + (area_h - product.height) // 2
+
+        # Soft shadow
+        shad = Image.new('RGBA', size, (0, 0, 0, 0))
+        sd   = ImageDraw.Draw(shad)
+        sd.ellipse([px + 20, py + product.height - 4,
+                    px + product.width - 20, py + product.height + 30],
+                   fill=(0, 0, 0, 35))
+        canvas = Image.alpha_composite(
+            canvas, shad.filter(ImageFilter.GaussianBlur(18)))
+        _paste_alpha(canvas, product, (px, py))
+
+        # Text below product
+        draw = ImageDraw.Draw(canvas)
+        cy   = area_y + area_h + int(h * 0.04)
+
+        # Product name — centred
+        tf = get_font('bold', 56)
         for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
-            draw.text((margin, cy), line, font=tf, fill=(255, 255, 255, 255))
-            cy += _text_h(draw, line, tf) + 8
-        cy += 10
+            lw = _text_w(draw, line, tf)
+            draw.text(((w - lw) // 2, cy), line, font=tf,
+                      fill=(18, 18, 18, 255))
+            cy += _text_h(draw, line, tf) + 6
+        cy += 24
 
-        sf = get_font('light', 38)
-        tag = 'Get yours today.'
-        draw.text((margin, cy), tag, font=sf, fill=(255, 255, 255, 190))
-        cy += _text_h(draw, tag, sf) + 50
-
-        # big CTA button
-        cf  = get_font('bold', 40)
-        cw  = _text_w(draw, cta, cf)
-        pad = 50
-        btn_h   = 80
-        btn_x0  = margin
-        btn_x1  = margin + cw + pad * 2
+        # CTA button — centred
+        cf    = get_font('bold', 40)
+        cw    = _text_w(draw, cta, cf)
+        pad   = 50
+        btn_h = 80
+        btn_x0 = (w - cw - pad * 2) // 2
+        btn_x1 = btn_x0 + cw + pad * 2
         _draw_rounded_rect(draw, (btn_x0, cy, btn_x1, cy + btn_h), 40, acc)
         draw.text((btn_x0 + pad, cy + 20), cta, font=cf,
                   fill=(255, 255, 255, 255))
 
-        _draw_nav_dots(draw, w, h - 46, 5, 4, (255, 255, 255, 255))
+        _draw_nav_dots(draw, w, h - 46, 5, 4,
+                       (*_darken(colors['dominant'], 0.4), 255))
         return canvas
 
     # ── utility ───────────────────────────────────────────────────────────────

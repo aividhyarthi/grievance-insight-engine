@@ -166,15 +166,37 @@ class CaptionGenerator:
             'NewArrival', 'MustHave', 'ProductLaunch',
             'QualityFirst', 'Design', 'Style', 'Lifestyle', 'ShopNow',
         ]
-        features = [
-            f'Designed to fit seamlessly into your daily routine',
-            f'Quality you can feel the moment you use it',
-            f'The kind of detail that makes all the difference',
-            f'Built for real life — not just a shelf',
-            f'A small upgrade with an outsized impact',
-            f'Available now — your future self will thank you',
+
+        # Build features from actual product info instead of generic copy
+        features: list[str] = []
+        desc = (description or '').strip()
+        tag  = (tagline or '').strip()
+
+        # Pull real sentences from the description
+        sentences = [
+            s.strip() for s in re.split(r'[.!?]+', desc)
+            if s.strip() and len(s.strip()) > 15
         ]
+
+        if tag:
+            features.append(tag)
+        features.extend(sentences)
+
+        # If still short, add product-specific lines (not generic)
+        specific = [
+            f'{pn} — made for people who notice the difference',
+            f'Thoughtful {pn.lower()} design that fits your life',
+            f'{bn + " delivers" if bn else "Delivering"} on every detail',
+            f'The {pn.lower()} upgrade worth talking about',
+            f'Feel it, use it, love it — {pn.lower()} done right',
+            f'Join the people who already chose {pn.lower()}',
+        ]
+        for line in specific:
+            if len(features) >= 6:
+                break
+            features.append(line)
+
         base = {'title': title, 'caption': caption, 'hashtags': hashtags}
         if post_type == 'carousel':
-            base['features'] = features
+            base['features'] = features[:6]
         return base
