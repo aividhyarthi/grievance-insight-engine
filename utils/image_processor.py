@@ -231,6 +231,30 @@ def _draw_nav_dots(draw: ImageDraw.ImageDraw, w: int, y: int,
         draw.ellipse([cx, y, cx + dot_r * 2, y + dot_r * 2], fill=fill)
 
 
+def _draw_brand_band(
+    canvas: Image.Image, w: int, h: int,
+    brand: str, colors: dict,
+    slide_idx: int, slide_total: int = 5,
+) -> int:
+    """Draw accent footer band (brand name + white nav dots). Returns band_y."""
+    band_h = 90
+    band_y = h - band_h
+    acc    = _to_rgba(colors['accent'])
+    draw   = ImageDraw.Draw(canvas)
+    draw.rectangle([(0, band_y), (w, h)], fill=acc)
+
+    brand_up = (brand or '').upper()
+    if brand_up:
+        bf = get_font('light', 20)
+        bw = _text_w(draw, brand_up, bf)
+        draw.text(((w - bw) // 2, band_y + 10), brand_up,
+                  font=bf, fill=(255, 255, 255, 175))
+
+    _draw_nav_dots(draw, w, band_y + 54, slide_total, slide_idx,
+                   (255, 255, 255, 230))
+    return band_y
+
+
 # ── main generator class ──────────────────────────────────────────────────────
 
 class SocialMediaPostGenerator:
@@ -292,9 +316,9 @@ class SocialMediaPostGenerator:
             prod = raw.convert('RGBA')
             slides = [
                 self._c_cover(prod, product_name, tagline, brand_name, size, colors),
-                self._c_intro(prod, product_name, tagline, description, size, colors),
-                self._c_features(features[:3], product_name, size, colors, slide=2),
-                self._c_details(prod, description, features[3:6], product_name, size, colors),
+                self._c_intro(prod, product_name, tagline, description, brand_name, size, colors),
+                self._c_features(features[:3], product_name, brand_name, size, colors, slide=2),
+                self._c_details(prod, description, features[3:6], product_name, brand_name, size, colors),
                 self._c_cta(prod, product_name, cta, brand_name, size, colors),
             ]
 
@@ -668,42 +692,52 @@ class SocialMediaPostGenerator:
         y += 12
 
         # Tagline — light weight (creates contrast with bold name)
-        if tagline and y + 34 < y_cap:
+        band_y = h - 90
+        if tagline and y + 34 < band_y:
             tf   = get_font('light', 26)
             tmax = w - margin * 2
             tl   = (_wrap(tagline, tf, tmax, draw) or [''])[0]
             while tl and _text_w(draw, tl, tf) > tmax:
                 tl = tl[:-4] + '…'
-            if tl and y + _text_h(draw, tl, tf) <= y_cap:
+            if tl and y + _text_h(draw, tl, tf) <= band_y:
                 draw.text((margin, y), tl, font=tf,
                           fill=(*_darken(colors['dominant'], 0.55), 195))
+                y += _text_h(draw, tl, tf) + 10
 
-        _draw_nav_dots(draw, w, h - 46, 5, 0,
-                       (*_darken(colors['dominant'], 0.4), 255))
+        # Sparkle fill row — fills any remaining gap above the brand band
+        if band_y - y > 50:
+            mid_y = y + (band_y - y) // 2
+            step  = 64
+            for sx in range(margin + 16, w - margin - 16, step):
+                _draw_star(draw, (sx, mid_y), 4, (*colors['accent'], 55))
+
+        _draw_brand_band(canvas, w, h, brand, colors, 0)
         return canvas
 
-    def _c_intro(self, prod, name, tagline, description, size, colors):
+    def _c_intro(self, prod, name, tagline, description, brand, size, colors):
         """Slide 2 — tagline as hook, thumbnail right, no overlap, hard y-cap."""
-        w, h = size
-        bg_col = _lighten(colors['dominant'], 0.90)
-        canvas = Image.new('RGBA', size, (*bg_col, 255))
+        w, h    = size
+        band_y  = h - 90
+        bg_col  = _lighten(colors['dominant'], 0.90)
+        canvas  = Image.new('RGBA', size, (*bg_col, 255))
 
-        # ── Thumbnail: position it first so we know its left edge ───────
+        # ── Thumbnail: centred in active area (above brand band) ─────────
         thumb_sz = int(w * 0.38)
         thumb    = prod.copy()
         thumb.thumbnail((thumb_sz, thumb_sz), Image.LANCZOS)
         tx = w - thumb.width - 44
-        ty = (h - thumb.height) // 2
+        ty = (band_y - thumb.height) // 2
         _paste_alpha(canvas, thumb, (tx, ty))
 
         draw = ImageDraw.Draw(canvas)
         acc  = _to_rgba(colors['dominant'])
-        draw.rectangle([(w - 8, 0), (w, h)], fill=acc)
+        # Right accent bar — stops at brand band
+        draw.rectangle([(w - 8, 0), (w, band_y)], fill=acc)
 
         margin   = 72
         # text_max = left col width: never touch the thumbnail
         text_max = tx - margin - 24
-        y_cap    = h - 90   # hard bottom boundary
+        y_cap    = band_y - 16   # hard bottom boundary
 
         y = int(h * 0.14)
 
@@ -756,71 +790,91 @@ class SocialMediaPostGenerator:
                 draw.text((margin, y), line, font=df, fill=(62, 62, 62, 255))
                 y += _text_h(draw, line, df) + 7
 
-        _draw_nav_dots(draw, w, h - 46, 5, 1,
-                       (*_darken(colors['dominant'], 0.4), 255))
+        _draw_brand_band(canvas, w, h, brand, colors, 1)
         return canvas
 
-    def _c_features(self, features: list[str], name: str, size, colors, slide: int = 2):
-        """Slide 3 (or 4) — clean feature bullets on light brand bg."""
+    def _c_features(self, features: list[str], name: str, brand: str, size, colors, slide: int = 2):
+        """Slide 3 or 4 — feature cards fill the full height, no whitespace."""
         w, h   = size
-        margin = 80
+        margin = 60
+        band_y = h - 90
+        acc    = _to_rgba(colors['accent'])
+        bg_col = _lighten(colors['dominant'], 0.91)
 
-        # Light brand-tinted background (alternating lightness for slide 3 vs 4)
-        tint = 0.92 if slide % 2 == 0 else 0.86
-        bg_col = _lighten(colors['dominant'], tint)
         canvas = Image.new('RGBA', size, (*bg_col, 255))
-        draw   = ImageDraw.Draw(canvas)
 
-        acc = _to_rgba(colors['accent'])
+        # Ghost oversized sparkle star — fills lower-right corner visually
+        gd = ImageDraw.Draw(canvas)
+        _draw_star(gd, (w - 50, band_y - 40), 210, (*colors['accent'], 11))
+        _draw_star(gd, (w - 50, band_y - 40), 130, (*colors['accent'],  8))
+
+        draw = ImageDraw.Draw(canvas)
 
         # Top accent strip
-        draw.rectangle([(0, 0), (w, 6)], fill=acc)
+        draw.rectangle([(0, 0), (w, 8)], fill=acc)
 
         # Slide label
-        lf = get_font('semibold', 22)
+        lf    = get_font('semibold', 22)
         label = '— WHAT YOU GET' if slide == 2 else '— AND THERE\'S MORE'
-        draw.text((margin, margin + 10), label, font=lf,
+        draw.text((margin, 28), label, font=lf,
                   fill=(*_darken(colors['dominant'], 0.3), 180))
 
-        y = int(h * 0.16)
-
-        # Accent divider
+        # Accent divider below label
+        y = 68
         draw.rectangle([(margin, y), (margin + 56, y + 5)], fill=acc)
-        y += 28
+        y += 20
 
-        # Feature bullets — dark text on light bg
-        bf = get_font('semibold', 36)
-        if not features:
-            features = [name]
-        for i, feat in enumerate(features[:4]):
-            # Number badge
+        # ── Feature cards — evenly fill available height ──────────────────
+        items = (features or [name])[:3]
+        n     = len(items)
+        gap   = 14
+        card_h = (band_y - y - gap * (n - 1)) // n
+        card_h = max(card_h, 110)
+
+        bf = get_font('semibold', 40)
+
+        for i, feat in enumerate(items):
+            card_y0 = y + i * (card_h + gap)
+            card_y1 = card_y0 + card_h
+
+            # White card with subtle shadow line at bottom
+            _draw_rounded_rect(draw,
+                               (margin, card_y0, w - margin, card_y1),
+                               20, (255, 255, 255, 235))
+            # Thin accent left border on each card
+            draw.rectangle([(margin, card_y0 + 20),
+                             (margin + 5, card_y1 - 20)], fill=acc)
+
+            # Number badge — accent circle, vertically centred
+            nr  = 28
+            nbx = margin + 22
+            nby = card_y0 + card_h // 2
+            draw.ellipse([nbx, nby - nr, nbx + nr * 2, nby + nr], fill=acc)
+            nf  = get_font('bold', 24)
             num = str(i + 1 + (0 if slide == 2 else 3))
-            nr  = 26
-            nx  = margin
-            ny  = y + 4
-            draw.ellipse([nx, ny, nx + nr * 2, ny + nr * 2], fill=acc)
-            nf  = get_font('bold', 22)
             nw  = _text_w(draw, num, nf)
-            draw.text((nx + nr - nw // 2, ny + 7), num, font=nf,
+            draw.text((nbx + nr - nw // 2, nby - 12), num, font=nf,
                       fill=(255, 255, 255, 255))
 
-            # Feature text — wraps to 2 lines max
-            fx = margin + nr * 2 + 18
-            for fl in _wrap(feat, bf, w - fx - 40, draw)[:2]:
-                draw.text((fx, y), fl, font=bf, fill=(22, 22, 22, 255))
-                y += _text_h(draw, fl, bf) + 6
-            y += 28
+            # Feature text — vertically centred in card
+            fx     = nbx + nr * 2 + 20
+            fmax_w = w - margin - fx - 24
+            flines = _wrap(feat, bf, fmax_w, draw)[:2]
+            th     = sum(_text_h(draw, l, bf) for l in flines) + (len(flines) - 1) * 6
+            fy     = card_y0 + (card_h - th) // 2
+            for fl in flines:
+                draw.text((fx, fy), fl, font=bf, fill=(22, 22, 22, 255))
+                fy += _text_h(draw, fl, bf) + 6
 
-        dot_color = (*_darken(colors['dominant'], 0.4), 255)
-        _draw_nav_dots(draw, w, h - 46, 5, slide, dot_color)
+        _draw_brand_band(canvas, w, h, brand, colors, slide)
         return canvas
 
-    def _c_details(self, prod, description, extra_features, name, size, colors):
+    def _c_details(self, prod, description, extra_features, name, brand, size, colors):
         """Slide 4 — product image + more detail / extra features."""
         w, h = size
 
         if extra_features:
-            return self._c_features(extra_features, name, size, colors, slide=3)
+            return self._c_features(extra_features, name, brand, size, colors, slide=3)
 
         # otherwise show a photo + description layout
         bg_col = _lighten(colors['dominant'], 0.88)
@@ -868,7 +922,7 @@ class SocialMediaPostGenerator:
                 draw.text((margin, y), line, font=df, fill=(60, 60, 60, 255))
                 y += _text_h(draw, line, df) + 8
 
-        _draw_nav_dots(draw, w, h - 46, 5, 3, (*_darken(colors['dominant'], 0.4), 255))
+        _draw_brand_band(canvas, w, h, brand, colors, 3)
         return canvas
 
     def _c_cta(self, prod, name, cta, brand, size, colors):
@@ -933,6 +987,8 @@ class SocialMediaPostGenerator:
         cy += 24
 
         # CTA button — centred, only if it fits
+        band_y = h - 90
+        y_cap  = band_y - 12
         if cy + 80 < y_cap:
             cf    = get_font('bold', 40)
             cw    = _text_w(draw, cta, cf)
@@ -943,9 +999,23 @@ class SocialMediaPostGenerator:
             _draw_rounded_rect(draw, (btn_x0, cy, btn_x1, cy + btn_h), 40, acc)
             draw.text((btn_x0 + pad, cy + 20), cta, font=cf,
                       fill=(255, 255, 255, 255))
+            cy += btn_h + 16
 
-        _draw_nav_dots(draw, w, h - 46, 5, 4,
-                       (*_darken(colors['dominant'], 0.4), 255))
+        # Perks strip — fills remaining gap above brand band
+        if cy + 30 < y_cap:
+            pf   = get_font('light', 22)
+            perks = 'Free shipping   ·   Easy returns'
+            pw   = _text_w(draw, perks, pf)
+            py   = cy + (y_cap - cy) // 2
+            draw.text(((w - pw) // 2, py), perks, font=pf,
+                      fill=(*_darken(colors['dominant'], 0.4), 150))
+            # Small stars flanking the perks text
+            _draw_star(draw, ((w - pw) // 2 - 22, py + 10), 5,
+                       (*colors['accent'], 140))
+            _draw_star(draw, ((w + pw) // 2 + 22, py + 10), 5,
+                       (*colors['accent'], 140))
+
+        _draw_brand_band(canvas, w, h, brand, colors, 4)
         return canvas
 
     # ── utility ───────────────────────────────────────────────────────────────
