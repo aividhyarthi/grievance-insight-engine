@@ -606,10 +606,13 @@ class SocialMediaPostGenerator:
         y += 26
 
         # ── Auto-size product name to fit in ≤2 lines ──────────────────
+        # Must check len of the FULL wrap, not the [:2] slice
+        nf, nlines = get_font('bold', 28), []
         for font_size in range(68, 27, -8):
-            nf    = get_font('bold', font_size)
-            nlines = _wrap(name.upper(), nf, w - margin * 2, draw)[:2]
-            if len(nlines) <= 2:
+            nf        = get_font('bold', font_size)
+            all_lines = _wrap(name.upper(), nf, w - margin * 2, draw)
+            nlines    = all_lines[:2]
+            if len(all_lines) <= 2:
                 break
         for line in nlines:
             if y + _text_h(draw, line, nf) > nav_top:
@@ -668,10 +671,13 @@ class SocialMediaPostGenerator:
 
         # ── Tagline as HERO — auto-sized to fit in ≤2 lines ────────────
         if tagline:
+            # Must check len of FULL wrap, not the [:2] slice
+            hf, hlines = get_font('bold', 28), []
             for hero_size in range(56, 27, -6):
-                hf     = get_font('bold', hero_size)
-                hlines = _wrap(tagline, hf, text_max, draw)[:2]
-                if len(hlines) <= 2:
+                hf        = get_font('bold', hero_size)
+                all_lines = _wrap(tagline, hf, text_max, draw)
+                hlines    = all_lines[:2]
+                if len(all_lines) <= 2:
                     break
             for line in hlines:
                 if y + _text_h(draw, line, hf) > y_cap:
@@ -788,22 +794,33 @@ class SocialMediaPostGenerator:
         draw   = ImageDraw.Draw(canvas)
         margin = 72
         y      = top_h + 30
+        y_cap  = h - 90
 
         acc = _to_rgba(colors['dominant'])
         draw.rectangle([(margin, y), (margin + 60, y + 5)], fill=acc)
         y += 30
 
-        # title
-        tf = get_font('bold', 56)
-        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
+        # title — auto-sized + y-guarded
+        tf, tlines = get_font('bold', 28), []
+        for font_size in range(56, 27, -8):
+            tf        = get_font('bold', font_size)
+            all_lines = _wrap(name.upper(), tf, w - margin * 2, draw)
+            tlines    = all_lines[:2]
+            if len(all_lines) <= 2:
+                break
+        for line in tlines:
+            if y + _text_h(draw, line, tf) > y_cap:
+                break
             draw.text((margin, y), line, font=tf, fill=(22, 22, 22, 255))
             y += _text_h(draw, line, tf) + 6
         y += 12
 
-        # description
+        # description — y-guarded
         if description:
             df = get_font('regular', 31)
             for line in _wrap(description[:180], df, w - margin * 2, draw)[:5]:
+                if y + _text_h(draw, line, df) > y_cap:
+                    break
                 draw.text((margin, y), line, font=df, fill=(60, 60, 60, 255))
                 y += _text_h(draw, line, df) + 8
 
@@ -850,28 +867,38 @@ class SocialMediaPostGenerator:
         _paste_alpha(canvas, product, (px, py))
 
         # Text below product
-        draw = ImageDraw.Draw(canvas)
-        cy   = area_y + area_h + int(h * 0.04)
+        draw  = ImageDraw.Draw(canvas)
+        cy    = area_y + area_h + int(h * 0.04)
+        y_cap = h - 90
 
-        # Product name — centred
-        tf = get_font('bold', 56)
-        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
+        # Product name — centred, auto-sized, y-guarded
+        tf, nlines = get_font('bold', 28), []
+        for font_size in range(56, 27, -8):
+            tf        = get_font('bold', font_size)
+            all_lines = _wrap(name.upper(), tf, w - margin * 2, draw)
+            nlines    = all_lines[:2]
+            if len(all_lines) <= 2:
+                break
+        for line in nlines:
+            if cy + _text_h(draw, line, tf) > y_cap:
+                break
             lw = _text_w(draw, line, tf)
             draw.text(((w - lw) // 2, cy), line, font=tf,
                       fill=(18, 18, 18, 255))
             cy += _text_h(draw, line, tf) + 6
         cy += 24
 
-        # CTA button — centred
-        cf    = get_font('bold', 40)
-        cw    = _text_w(draw, cta, cf)
-        pad   = 50
-        btn_h = 80
-        btn_x0 = (w - cw - pad * 2) // 2
-        btn_x1 = btn_x0 + cw + pad * 2
-        _draw_rounded_rect(draw, (btn_x0, cy, btn_x1, cy + btn_h), 40, acc)
-        draw.text((btn_x0 + pad, cy + 20), cta, font=cf,
-                  fill=(255, 255, 255, 255))
+        # CTA button — centred, only if it fits
+        if cy + 80 < y_cap:
+            cf    = get_font('bold', 40)
+            cw    = _text_w(draw, cta, cf)
+            pad   = 50
+            btn_h = 80
+            btn_x0 = (w - cw - pad * 2) // 2
+            btn_x1 = btn_x0 + cw + pad * 2
+            _draw_rounded_rect(draw, (btn_x0, cy, btn_x1, cy + btn_h), 40, acc)
+            draw.text((btn_x0 + pad, cy + 20), cta, font=cf,
+                      fill=(255, 255, 255, 255))
 
         _draw_nav_dots(draw, w, h - 46, 5, 4,
                        (*_darken(colors['dominant'], 0.4), 255))
