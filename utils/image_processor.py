@@ -555,39 +555,40 @@ class SocialMediaPostGenerator:
         draw.text((margin, margin - 4), brand.upper(), font=bf, fill=color)
 
     def _c_cover(self, prod, name, tagline, brand, size, colors):
-        """Slide 1 — product on brand-tinted bg, clear and prominent."""
+        """Slide 1 — product on brand-tinted bg, fixed text zone, no overflow."""
         w, h   = size
         margin = 72
 
-        # Light brand-tinted background — product stays visible
         bg_col = _lighten(colors['dominant'], 0.86)
         canvas = Image.new('RGBA', size, (*bg_col, 255))
+        draw   = ImageDraw.Draw(canvas)
+        acc    = _to_rgba(colors['dominant'])
 
-        draw = ImageDraw.Draw(canvas)
-        acc  = _to_rgba(colors['dominant'])
-
-        # Brand header top-left
+        # Brand header
         self._c_header(draw, brand, w, margin, colors, white=False)
-
-        # Swipe hint top-right
-        hf   = get_font('light', 24)
+        hf = get_font('light', 24)
         hint = 'Swipe for more →'
         hw   = _text_w(draw, hint, hf)
         draw.text((w - hw - margin, margin), hint,
                   font=hf, fill=(*_darken(colors['dominant'], 0.25), 140))
 
-        # Product image — clear, upper 56% of canvas
-        area_w = int(w * 0.84)
-        area_h = int(h * 0.54)
+        # ── Fixed bottom text zone: 260px above nav dots ────────────────
+        # Everything else is the image area.
+        nav_top    = h - 70            # don't write below here
+        text_zone  = 260               # px reserved for name + tagline
+        text_start = nav_top - text_zone
+
+        # ── Product image fills header-to-text_start ────────────────────
         area_y = int(h * 0.10)
+        area_h = text_start - area_y - 16   # 16px gap above text
+        area_w = int(w * 0.84)
         area_x = (w - area_w) // 2
 
         product = prod.copy()
-        product.thumbnail((area_w, area_h), Image.LANCZOS)
+        product.thumbnail((area_w, max(area_h, 1)), Image.LANCZOS)
         px = area_x + (area_w - product.width)  // 2
         py = area_y + (area_h - product.height) // 2
 
-        # Elliptical drop shadow
         shad = Image.new('RGBA', size, (0, 0, 0, 0))
         sd   = ImageDraw.Draw(shad)
         sd.ellipse([px + 30, py + product.height - 6,
@@ -597,43 +598,51 @@ class SocialMediaPostGenerator:
             canvas, shad.filter(ImageFilter.GaussianBlur(22)))
         _paste_alpha(canvas, product, (px, py))
 
-        # Text block below image
         draw = ImageDraw.Draw(canvas)
-        y    = area_y + area_h + int(h * 0.022)
+        y    = text_start
 
         # Accent bar
         draw.rectangle([(margin, y), (margin + 68, y + 6)], fill=acc)
-        draw.rectangle([(margin + 74, y + 1), (margin + 88, y + 5)],
-                       fill=(*colors['dominant'], 80))
         y += 26
 
-        # Product name — bold, dark
-        tf = get_font('bold', 72)
-        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
-            draw.text((margin, y), line, font=tf, fill=(14, 14, 14, 255))
-            y += _text_h(draw, line, tf) + 5
+        # ── Auto-size product name to fit in ≤2 lines ──────────────────
+        for font_size in range(68, 27, -8):
+            nf    = get_font('bold', font_size)
+            nlines = _wrap(name.upper(), nf, w - margin * 2, draw)[:2]
+            if len(nlines) <= 2:
+                break
+        for line in nlines:
+            if y + _text_h(draw, line, nf) > nav_top:
+                break
+            draw.text((margin, y), line, font=nf, fill=(14, 14, 14, 255))
+            y += _text_h(draw, line, nf) + 5
         y += 4
 
-        # Tagline — brand-tinted, readable
-        if tagline:
-            sf = get_font('regular', 30)
-            for line in _wrap(tagline, sf, w - margin * 2, draw)[:2]:
-                draw.text((margin, y), line, font=sf,
-                          fill=(*_darken(colors['dominant'], 0.08), 200))
-                y += _text_h(draw, line, sf) + 5
+        # ── Tagline: single line only, truncated to fit ─────────────────
+        if tagline and y + 40 < nav_top:
+            sf   = get_font('regular', 28)
+            tmax = w - margin * 2
+            tlines = _wrap(tagline, sf, tmax, draw)
+            tline  = tlines[0] if tlines else ''
+            # Truncate with ellipsis if it's too long
+            while tline and _text_w(draw, tline, sf) > tmax:
+                tline = tline[:-4] + '…'
+            if tline:
+                draw.text((margin, y), tline, font=sf,
+                          fill=(*_darken(colors['dominant'], 0.08), 190))
 
         _draw_nav_dots(draw, w, h - 46, 5, 0,
                        (*_darken(colors['dominant'], 0.4), 255))
         return canvas
 
     def _c_intro(self, prod, name, tagline, description, size, colors):
-        """Slide 2 — tagline as the hook, product thumbnail right, description below."""
+        """Slide 2 — tagline as hook, thumbnail right, no overlap, hard y-cap."""
         w, h = size
         bg_col = _lighten(colors['dominant'], 0.90)
         canvas = Image.new('RGBA', size, (*bg_col, 255))
 
-        # Product thumbnail right side
-        thumb_sz = int(w * 0.40)
+        # ── Thumbnail: position it first so we know its left edge ───────
+        thumb_sz = int(w * 0.38)
         thumb    = prod.copy()
         thumb.thumbnail((thumb_sz, thumb_sz), Image.LANCZOS)
         tx = w - thumb.width - 44
@@ -642,45 +651,58 @@ class SocialMediaPostGenerator:
 
         draw = ImageDraw.Draw(canvas)
         acc  = _to_rgba(colors['dominant'])
-
-        # Subtle right-edge accent strip
         draw.rectangle([(w - 8, 0), (w, h)], fill=acc)
 
         margin   = 72
-        text_max = int(w * 0.52)   # stay left of the thumbnail
+        # text_max = left col width: never touch the thumbnail
+        text_max = tx - margin - 24
+        y_cap    = h - 90   # hard bottom boundary
 
-        y = int(h * 0.15)
+        y = int(h * 0.14)
 
-        # Small slide label (not "Introducing" — just a subtle category tag)
+        # Slide label
         lf = get_font('semibold', 22)
         draw.text((margin, y), '— THE PRODUCT', font=lf,
                   fill=(*_darken(colors['dominant'], 0.3), 180))
-        y += 40
+        y += 38
 
-        # Tagline as the HERO — this is the hook that makes people keep reading
+        # ── Tagline as HERO — auto-sized to fit in ≤2 lines ────────────
         if tagline:
-            tf = get_font('bold', 62)
-            for line in _wrap(tagline, tf, text_max, draw)[:3]:
-                draw.text((margin, y), line, font=tf, fill=(18, 18, 18, 255))
-                y += _text_h(draw, line, tf) + 8
+            for hero_size in range(56, 27, -6):
+                hf     = get_font('bold', hero_size)
+                hlines = _wrap(tagline, hf, text_max, draw)[:2]
+                if len(hlines) <= 2:
+                    break
+            for line in hlines:
+                if y + _text_h(draw, line, hf) > y_cap:
+                    break
+                draw.text((margin, y), line, font=hf, fill=(18, 18, 18, 255))
+                y += _text_h(draw, line, hf) + 8
             y += 10
 
         # Accent divider
-        draw.rectangle([(margin, y), (margin + 52, y + 4)], fill=acc)
-        y += 24
+        if y + 28 < y_cap:
+            draw.rectangle([(margin, y), (margin + 52, y + 4)], fill=acc)
+            y += 24
 
-        # Product name — smaller, supporting
-        nf = get_font('semibold', 26)
-        for line in _wrap(name.upper(), nf, text_max, draw)[:2]:
-            draw.text((margin, y), line, font=nf,
-                      fill=(*_darken(colors['dominant'], 0.35), 210))
-            y += _text_h(draw, line, nf) + 4
-        y += 16
+        # Product name — one line max, smaller
+        if y + 32 < y_cap:
+            nf     = get_font('semibold', 24)
+            nlines = _wrap(name.upper(), nf, text_max, draw)[:1]
+            for line in nlines:
+                if y + _text_h(draw, line, nf) > y_cap:
+                    break
+                draw.text((margin, y), line, font=nf,
+                          fill=(*_darken(colors['dominant'], 0.35), 200))
+                y += _text_h(draw, line, nf) + 4
+            y += 14
 
-        # Description body
-        if description:
-            df = get_font('regular', 30)
-            for line in _wrap(description[:220], df, text_max, draw)[:4]:
+        # Description — stop at y_cap
+        if description and y + 38 < y_cap:
+            df = get_font('regular', 28)
+            for line in _wrap(description[:240], df, text_max, draw):
+                if y + _text_h(draw, line, df) > y_cap:
+                    break
                 draw.text((margin, y), line, font=df, fill=(62, 62, 62, 255))
                 y += _text_h(draw, line, df) + 7
 
