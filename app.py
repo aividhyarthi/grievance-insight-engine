@@ -219,7 +219,11 @@ def scrape_url():
                 ),
             }],
         )
-        result = json.loads(msg.content[0].text.strip())
+        raw = msg.content[0].text.strip()
+        # Strip markdown code fences if Claude wrapped the JSON
+        raw = re.sub(r'^```(?:json)?\s*', '', raw)
+        raw = re.sub(r'\s*```$', '', raw).strip()
+        result = json.loads(raw)
         return jsonify(result)
     except Exception as exc:
         return jsonify({'error': f'Could not extract product info: {exc}'}), 500
