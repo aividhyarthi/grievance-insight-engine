@@ -64,6 +64,52 @@ def generate():
     if not product_name:
         return jsonify({'error': 'Product name is required'}), 400
 
+    # ── style reference image (optional) ────────────────────────────────────
+    ref_file = request.files.get('reference_image')
+    if ref_file and ref_file.filename and allowed_file(ref_file.filename) and api_key:
+        try:
+            import base64
+            import httpx
+            import anthropic
+            ref_bytes = ref_file.read()
+            ref_b64   = base64.standard_b64encode(ref_bytes).decode()
+            ref_mime  = ref_file.content_type or 'image/jpeg'
+            with httpx.Client() as hc:
+                ac = anthropic.Anthropic(api_key=api_key, http_client=hc)
+                vr = ac.messages.create(
+                    model='claude-haiku-4-5-20251001',
+                    max_tokens=300,
+                    messages=[{
+                        'role': 'user',
+                        'content': [
+                            {
+                                'type': 'image',
+                                'source': {
+                                    'type': 'base64',
+                                    'media_type': ref_mime,
+                                    'data': ref_b64,
+                                },
+                            },
+                            {
+                                'type': 'text',
+                                'text': (
+                                    'Describe the visual style, mood, colour palette, and aesthetic of this image '
+                                    'in 2-3 sentences. Focus on: dominant colours, tone (dark/light/warm/cool), '
+                                    'layout feel (minimal/busy/editorial), and overall vibe. '
+                                    'Be specific and practical — this description will guide a designer.'
+                                ),
+                            },
+                        ],
+                    }],
+                )
+            style_desc = vr.content[0].text.strip()
+            if creative_direction:
+                creative_direction = f'Style reference vibe: {style_desc}\n\nAdditional direction: {creative_direction}'
+            else:
+                creative_direction = f'Style reference vibe: {style_desc}'
+        except Exception as exc:
+            print(f'[ref_img] Vision analysis failed: {exc}')
+
     # ── session setup ────────────────────────────────────────────────────────
     session_id = str(uuid.uuid4())
     session_dir = os.path.join(app.config['OUTPUT_FOLDER'], session_id)

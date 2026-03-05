@@ -46,8 +46,56 @@ const lbDl      = document.getElementById('lb-download');
 const lbClose   = document.getElementById('lb-close');
 const lbBack    = document.getElementById('lb-backdrop');
 
-let currentSessionId = null;
+let currentSessionId  = null;
 let uploadedFile      = null;
+let referenceFile     = null;
+
+// ── reference image picker ────────────────────────────────────────────────────
+const refDropZone    = document.getElementById('ref-drop-zone');
+const refImageInput  = document.getElementById('ref-image-input');
+const refDzContent   = document.getElementById('ref-dz-content');
+const refPreviewWrap = document.getElementById('ref-preview-wrap');
+const refImgPreview  = document.getElementById('ref-img-preview');
+const refClearBtn    = document.getElementById('ref-clear-btn');
+const refStatus      = document.getElementById('ref-status');
+const refDzBrowse    = document.getElementById('ref-dz-browse');
+
+refDropZone.addEventListener('click', (e) => {
+  if (e.target === refClearBtn) return;
+  refImageInput.click();
+});
+refDzBrowse.addEventListener('click', () => refImageInput.click());
+refImageInput.addEventListener('change', () => {
+  if (refImageInput.files[0]) handleRefFile(refImageInput.files[0]);
+});
+refDropZone.addEventListener('dragover', (e) => {
+  e.preventDefault(); refDropZone.classList.add('drag-over');
+});
+refDropZone.addEventListener('dragleave', () => refDropZone.classList.remove('drag-over'));
+refDropZone.addEventListener('drop', (e) => {
+  e.preventDefault(); refDropZone.classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f) handleRefFile(f);
+});
+refClearBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  referenceFile = null;
+  refImageInput.value = '';
+  refImgPreview.src = '';
+  refPreviewWrap.classList.add('hidden');
+  refDzContent.classList.remove('hidden');
+  refStatus.classList.add('hidden');
+});
+
+function handleRefFile(file) {
+  referenceFile = file;
+  refImgPreview.src = URL.createObjectURL(file);
+  refDzContent.classList.add('hidden');
+  refPreviewWrap.classList.remove('hidden');
+  refStatus.textContent = '✓ Reference image ready — AI will analyse its style on generate';
+  refStatus.className = 'ref-status success';
+  refStatus.classList.remove('hidden');
+}
 
 // ── drag-and-drop / file input ────────────────────────────────────────────────
 dropZone.addEventListener('click', (e) => {
@@ -136,6 +184,7 @@ async function generate() {
   fd.append('platform',     platformSel.value);
   fd.append('style',        styleHid.value);
   fd.append('api_key',      apiKeyInput.value.trim());
+  if (referenceFile) fd.append('reference_image', referenceFile);
 
   try {
     const res  = await fetch('/generate', { method: 'POST', body: fd });

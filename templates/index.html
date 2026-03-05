@@ -228,6 +228,27 @@
                   placeholder="e.g. Use a blue background, feature a baby using the product, make it feel luxurious and warm…"></textarea>
       </div>
 
+      <!-- Style Reference Image -->
+      <div class="field">
+        <label>
+          Style Reference Image
+          <span class="hint-label">(optional — AI reads the vibe and applies it)</span>
+        </label>
+        <div id="ref-drop-zone" class="ref-drop-zone">
+          <input type="file" id="ref-image-input" accept="image/*" hidden />
+          <div id="ref-dz-content" class="ref-dz-content">
+            <span class="ref-dz-icon">🖼</span>
+            <span class="ref-dz-text">Upload a reference post or mood board</span>
+            <span class="ref-dz-browse" id="ref-dz-browse">browse</span>
+          </div>
+          <div id="ref-preview-wrap" class="ref-preview-wrap hidden">
+            <img id="ref-img-preview" class="ref-img-preview" alt="reference preview" />
+            <button type="button" id="ref-clear-btn" class="ref-clear-btn" title="Remove reference">✕</button>
+          </div>
+        </div>
+        <div id="ref-status" class="ref-status hidden"></div>
+      </div>
+
       <!-- API key (optional) -->
       <div class="field">
         <label for="api_key">
