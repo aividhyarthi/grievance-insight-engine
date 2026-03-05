@@ -13,6 +13,7 @@ Carousel (5 slides):
 from __future__ import annotations
 
 import os
+import re
 import math
 from typing import Any
 
@@ -30,6 +31,41 @@ PLATFORM_SIZES: dict[str, tuple[int, int]] = {
     'twitter':           (1600, 900),
     'website_featured':  (1200, 900),
 }
+
+# ── creative direction colour hints ──────────────────────────────────────────
+
+_COLOR_MAP: dict[str, tuple] = {
+    'red':    (204, 32,  32),  'crimson': (185, 28,  28),
+    'blue':   (29,  78, 216),  'navy':    (30,  58, 138),  'sky': (14, 165, 233),
+    'green':  (22, 163,  74),  'teal':    (13, 148, 136),  'emerald': (5, 150, 105),
+    'purple': (124, 58, 237),  'violet':  (139, 92, 246),
+    'pink':   (219, 39, 119),  'rose':    (225, 29,  72),
+    'orange': (234, 88,  12),  'amber':   (217, 119,  6),
+    'yellow': (202,138,   4),  'gold':    (180, 130,  30),
+    'black':  (15,  15,  15),  'dark':    (25,  25,  35),
+    'white':  (245,245, 245),  'cream':   (254, 250, 224),
+    'grey':   (100,116, 139),  'gray':    (100, 116, 139),
+    'brown':  (120, 53,  15),  'tan':     (180, 140,  90),
+    'coral':  (239, 100,  74), 'indigo':  (67,  56, 202),
+    'mint':   (52, 211, 153),  'sand':    (210, 180, 130),
+}
+
+
+def _color_from_direction(text: str) -> tuple | None:
+    """Return an (r,g,b) tuple if a known colour name appears in the creative direction."""
+    tl = text.lower()
+    for name, rgb in _COLOR_MAP.items():
+        if re.search(rf'\b{name}\b', tl):
+            return rgb
+    # Hex colour: #rrggbb or #rgb
+    m = re.search(r'#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b', text)
+    if m:
+        s = m.group(1)
+        if len(s) == 3:
+            s = s[0]*2 + s[1]*2 + s[2]*2
+        return int(s[0:2], 16), int(s[2:4], 16), int(s[4:6], 16)
+    return None
+
 
 # ── colour helpers ────────────────────────────────────────────────────────────
 
@@ -295,9 +331,15 @@ class SocialMediaPostGenerator:
     def create_individual_post(
         self, *, image_path: str, product_name: str, tagline: str,
         brand_name: str, cta: str, style: str, platform: str, output_dir: str,
+        creative_direction: str = '',
     ) -> list[str]:
         size   = PLATFORM_SIZES.get(platform, (1080, 1080))
         colors = _extract_colors(image_path)
+        # Apply colour hint from creative direction — overrides extracted palette
+        cd_color = _color_from_direction(creative_direction)
+        if cd_color:
+            colors = {**colors, 'dominant': cd_color,
+                      'accent': _lighten(cd_color, 0.45)}
         out    = os.path.join(output_dir, 'post_main.jpg')
 
         # Try SVG renderer first (browser-free, Canva-quality output)
@@ -336,11 +378,17 @@ class SocialMediaPostGenerator:
         self, *, image_path: str, product_name: str, tagline: str,
         description: str, features: list[str], brand_name: str, cta: str,
         style: str, platform: str, output_dir: str,
+        creative_direction: str = '',
     ) -> list[str]:
         size = PLATFORM_SIZES.get(platform, (1080, 1080))
         if size[1] > 1350:
             size = (1080, 1350)   # cap carousel to portrait max
         colors = _extract_colors(image_path)
+        # Apply colour hint from creative direction — overrides extracted palette
+        cd_color = _color_from_direction(creative_direction)
+        if cd_color:
+            colors = {**colors, 'dominant': cd_color,
+                      'accent': _lighten(cd_color, 0.45)}
         # Apply style-specific theme overrides so each style looks distinct
         if style == 'bold':
             colors = {**colors, 'bg_tint': 0.55,

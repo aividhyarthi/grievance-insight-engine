@@ -50,15 +50,16 @@ def generate():
         return jsonify({'error': 'Unsupported file type. Use PNG, JPG, JPEG, WebP, or GIF.'}), 400
 
     # ── collect form fields ──────────────────────────────────────────────────
-    product_name  = request.form.get('product_name', '').strip()
-    tagline       = request.form.get('tagline', '').strip()
-    description   = request.form.get('description', '').strip()
-    brand_name    = request.form.get('brand_name', '').strip()
-    cta           = request.form.get('cta', 'Shop Now').strip()
-    post_type     = request.form.get('post_type', 'individual')   # individual | carousel
-    platform      = request.form.get('platform', 'instagram_square')
-    style         = request.form.get('style', 'minimal')
-    api_key       = request.form.get('api_key', '').strip() or os.environ.get('ANTHROPIC_API_KEY', '')
+    product_name       = request.form.get('product_name', '').strip()
+    tagline            = request.form.get('tagline', '').strip()
+    description        = request.form.get('description', '').strip()
+    brand_name         = request.form.get('brand_name', '').strip()
+    cta                = request.form.get('cta', 'Shop Now').strip()
+    creative_direction = request.form.get('creative_direction', '').strip()
+    post_type          = request.form.get('post_type', 'individual')   # individual | carousel
+    platform           = request.form.get('platform', 'instagram_square')
+    style              = request.form.get('style', 'minimal')
+    api_key            = request.form.get('api_key', '').strip() or os.environ.get('ANTHROPIC_API_KEY', '')
 
     if not product_name:
         return jsonify({'error': 'Product name is required'}), 400
@@ -82,6 +83,7 @@ def generate():
             description=description,
             brand_name=brand_name,
             cta=cta,
+            creative_direction=creative_direction,
             post_type=post_type,
             platform=platform,
         )
@@ -99,6 +101,7 @@ def generate():
                 cta=cta,
                 style=style,
                 platform=platform,
+                creative_direction=creative_direction,
                 output_dir=session_dir,
             )
         else:
@@ -112,6 +115,7 @@ def generate():
                 cta=cta,
                 style=style,
                 platform=platform,
+                creative_direction=creative_direction,
                 output_dir=session_dir,
             )
 

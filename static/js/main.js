@@ -19,6 +19,7 @@ const cta         = document.getElementById('cta');
 const apiKeyInput = document.getElementById('api_key');
 const toggleKey   = document.getElementById('toggle-key');
 
+const creativeDir = document.getElementById('creative_direction');
 const postTypeHid = document.getElementById('post_type');
 const styleHid    = document.getElementById('style');
 const platformSel = document.getElementById('platform');
@@ -129,8 +130,9 @@ async function generate() {
   fd.append('brand_name',   brandName.value.trim());
   fd.append('tagline',      tagline.value.trim());
   fd.append('description',  description.value.trim());
-  fd.append('cta',          cta.value.trim() || 'Shop Now');
-  fd.append('post_type',    postTypeHid.value);
+  fd.append('cta',                cta.value.trim() || 'Shop Now');
+  fd.append('creative_direction', creativeDir.value.trim());
+  fd.append('post_type',          postTypeHid.value);
   fd.append('platform',     platformSel.value);
   fd.append('style',        styleHid.value);
   fd.append('api_key',      apiKeyInput.value.trim());

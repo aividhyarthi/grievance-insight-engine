@@ -54,6 +54,7 @@ Raw inputs (treat as inspiration, not final copy):
   CTA     : {cta}
   Platform: {platform}
 
+{creative_direction_block}
 Return ONLY valid JSON — no markdown fences, no extra text:
 {{
   "title"   : "Your fresh headline (4-8 words, Title Case, no full stop). Must intrigue, not just describe. Do NOT reuse the tagline.",
@@ -76,6 +77,7 @@ Raw inputs (treat as inspiration, not final copy):
   CTA     : {cta}
   Platform: {platform}
 
+{creative_direction_block}
 Return ONLY valid JSON — no markdown fences, no extra text:
 {{
   "title"   : "Your fresh cover headline (4-8 words, Title Case, no full stop). Must earn a swipe — not a rephrased tagline.",
@@ -105,6 +107,7 @@ class CaptionGenerator:
         description: str,
         brand_name: str,
         cta: str,
+        creative_direction: str = '',
         post_type: str,
         platform: str,
     ) -> dict:
@@ -118,6 +121,7 @@ class CaptionGenerator:
                 description=description,
                 brand_name=brand_name,
                 cta=cta,
+                creative_direction=creative_direction,
                 post_type=post_type,
                 platform=platform,
             )
@@ -130,6 +134,11 @@ class CaptionGenerator:
         import anthropic
 
         template = _CAROUSEL_PROMPT if kwargs['post_type'] == 'carousel' else _INDIVIDUAL_PROMPT
+        cd = (kwargs.get('creative_direction') or '').strip()
+        cd_block = (
+            f'IMPORTANT — Creative direction from the user (follow these instructions):\n  {cd}\n'
+            if cd else ''
+        )
         prompt = template.format(
             product_name=kwargs['product_name'] or 'Unknown',
             brand_name=kwargs['brand_name']    or '',
@@ -137,6 +146,7 @@ class CaptionGenerator:
             description=kwargs['description']   or '',
             cta=kwargs['cta']                   or 'Shop Now',
             platform=kwargs['platform']         or 'instagram_square',
+            creative_direction_block=cd_block,
         )
 
         with httpx.Client() as http_client:
