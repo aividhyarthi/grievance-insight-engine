@@ -290,13 +290,33 @@ async function importFromUrl() {
     }
 
     // Auto-fill form fields with extracted data
-    if (data.product_name) { productName.value = data.product_name; checkReady(); }
-    if (data.brand_name)   { brandName.value   = data.brand_name; }
-    if (data.tagline)      { tagline.value      = data.tagline; }
-    if (data.description)  { description.value  = data.description; }
-    if (data.cta)          { cta.value          = data.cta; }
+    if (data.product_name) productName.value = data.product_name;
+    if (data.brand_name)   brandName.value   = data.brand_name;
+    if (data.tagline)      tagline.value      = data.tagline;
+    if (data.description)  description.value  = data.description;
+    if (data.cta)          cta.value          = data.cta;
 
-    setUrlStatus('success', '✓ Details imported — review and generate!');
+    // Auto-fill drop zone with the product's og:image (proxied to bypass CORS)
+    if (data.image_url) {
+      try {
+        const imgRes = await fetch(`/proxy-image?url=${encodeURIComponent(data.image_url)}`);
+        if (imgRes.ok) {
+          const blob = await imgRes.blob();
+          const ext  = blob.type.includes('png') ? 'png' : 'jpg';
+          handleFile(new File([blob], `product.${ext}`, { type: blob.type }));
+          setUrlStatus('success', '✓ Details & image imported — ready to generate!');
+        } else {
+          checkReady();
+          setUrlStatus('success', '✓ Details imported — add a product image to generate.');
+        }
+      } catch (_) {
+        checkReady();
+        setUrlStatus('success', '✓ Details imported — add a product image to generate.');
+      }
+    } else {
+      checkReady();
+      setUrlStatus('success', '✓ Details imported — add a product image to generate.');
+    }
   } catch (err) {
     setUrlStatus('error', 'Network error — could not reach the URL.');
     console.error(err);

@@ -235,9 +235,37 @@ def scrape_url():
         m   = re.search(r'\{.*\}', raw, re.DOTALL)
         raw = m.group(0) if m else raw
         result = json.loads(raw)
+
+        # Include the og:image URL so the frontend can auto-fill the drop zone
+        og = re.search(
+            r'<meta[^>]+(?:property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']'
+            r'|content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\'])',
+            raw_html, re.IGNORECASE,
+        )
+        if og:
+            result['image_url'] = og.group(1) or og.group(2)
+
         return jsonify(result)
     except Exception as exc:
         return jsonify({'error': f'Could not extract product info: {exc}'}), 500
+
+
+@app.route('/proxy-image')
+def proxy_image():
+    """Proxy an external image URL to avoid CORS restrictions in the browser."""
+    img_url = request.args.get('url', '').strip()
+    if not img_url or not img_url.startswith(('http://', 'https://')):
+        return jsonify({'error': 'Invalid URL'}), 400
+    try:
+        import requests as req
+        headers = {'User-Agent': 'Mozilla/5.0 (compatible; PostCraft-Bot/1.0)'}
+        resp = req.get(img_url, headers=headers, timeout=10, stream=True)
+        resp.raise_for_status()
+        content_type = resp.headers.get('Content-Type', 'image/jpeg')
+        from flask import Response
+        return Response(resp.content, content_type=content_type)
+    except Exception as exc:
+        return jsonify({'error': str(exc)}), 400
 
 
 if __name__ == '__main__':
