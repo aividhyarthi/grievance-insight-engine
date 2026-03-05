@@ -239,7 +239,8 @@ def _draw_brand_band(
     """Draw accent footer band (brand name + white nav dots). Returns band_y."""
     band_h = 90
     band_y = h - band_h
-    acc    = _to_rgba(colors['accent'])
+    # Respect style-specific band colour if set
+    acc    = _to_rgba(colors.get('band_acc', colors['accent']))
     draw   = ImageDraw.Draw(canvas)
     draw.rectangle([(0, band_y), (w, h)], fill=acc)
 
@@ -253,6 +254,32 @@ def _draw_brand_band(
     _draw_nav_dots(draw, w, band_y + 54, slide_total, slide_idx,
                    (255, 255, 255, 230))
     return band_y
+
+
+def _carousel_bg(colors: dict, delta: float = 0.0) -> tuple:
+    """Background colour for a carousel slide, respecting style theme overrides."""
+    fixed = colors.get('bg_fixed')
+    if fixed:
+        return fixed
+    tint = min(0.97, colors.get('bg_tint', 0.91) + delta)
+    return _lighten(colors['dominant'], tint)
+
+
+def _draw_instagram_icon(
+    draw: ImageDraw.ImageDraw, cx: int, cy: int, r: int = 18, fill=None
+) -> None:
+    """Draw a simplified Instagram camera icon centred at (cx, cy)."""
+    if fill is None:
+        fill = (193, 53, 132, 210)   # Instagram gradient purple-pink fallback
+    _draw_rounded_rect(draw, (cx - r, cy - r, cx + r, cy + r), r // 3, fill)
+    ir = int(r * 0.52)
+    draw.ellipse([cx - ir, cy - ir, cx + ir, cy + ir],
+                 outline=(255, 255, 255, 220), width=max(2, r // 8))
+    dr = max(2, r // 7)
+    dx = cx + int(r * 0.48)
+    dy = cy - int(r * 0.48)
+    draw.ellipse([dx - dr, dy - dr, dx + dr, dy + dr],
+                 fill=(255, 255, 255, 220))
 
 
 # ── main generator class ──────────────────────────────────────────────────────
@@ -309,8 +336,19 @@ class SocialMediaPostGenerator:
         description: str, features: list[str], brand_name: str, cta: str,
         style: str, platform: str, output_dir: str,
     ) -> list[str]:
-        size   = (1080, 1080)   # carousels always square
+        size = PLATFORM_SIZES.get(platform, (1080, 1080))
+        if size[1] > 1350:
+            size = (1080, 1350)   # cap carousel to portrait max
         colors = _extract_colors(image_path)
+        # Apply style-specific theme overrides so each style looks distinct
+        if style == 'bold':
+            colors = {**colors, 'bg_tint': 0.55,
+                      'card_bg': (*_lighten(colors['dominant'], 0.82), 235),
+                      'band_acc': colors['dominant']}
+        elif style == 'magazine':
+            colors = {**colors, 'bg_fixed': (248, 244, 238),
+                      'card_bg': (255, 255, 255, 250),
+                      'band_acc': colors['accent']}
 
         with Image.open(image_path) as raw:
             prod = raw.convert('RGBA')
@@ -365,8 +403,9 @@ class SocialMediaPostGenerator:
                       font=bf, fill=(*_darken(colors['dominant'], 0.15), 210))
 
         # ── Step 4: Product image — clear, prominent, centred upper area ─
+        # Keep image at 46% height so there is room for text below
         area_w = int(w * 0.80)
-        area_h = int(h * 0.54)
+        area_h = int(h * 0.46)
         area_y = int(h * 0.085)
         area_x = (w - area_w) // 2
 
@@ -391,47 +430,70 @@ class SocialMediaPostGenerator:
         ty   = area_y + area_h + int(h * 0.022)
         acc  = _to_rgba(colors['dominant'])
 
-        # Bold accent bar (wider, bolder than before)
+        # Kids / category badge pill above product name
+        badge = _badge_label(name)
+        if badge != 'FEATURED':
+            badge_f = get_font('semibold', self._scale(w, 18))
+            badge_w = _text_w(draw, badge, badge_f)
+            bpad, bht = 14, 28
+            _draw_rounded_rect(draw,
+                               (margin, ty, margin + badge_w + bpad * 2, ty + bht),
+                               14, acc)
+            draw.text((margin + bpad, ty + 5), badge,
+                      font=badge_f, fill=(255, 255, 255, 255))
+            ty += bht + 10
+
+        # Bold accent bar
         draw.rectangle([(margin, ty), (margin + 72, ty + 7)], fill=acc)
-        # Second thin decorative bar
         draw.rectangle([(margin + 78, ty + 1), (margin + 92, ty + 5)],
                        fill=(*colors['dominant'], 90))
         ty += 30
 
-        # Product name — bold, dominant, uppercase
-        tf = get_font('bold', self._scale(w, 78))
-        for line in _wrap(name.upper(), tf, w - margin * 2, draw)[:2]:
-            draw.text((margin, ty), line, font=tf, fill=(12, 12, 12, 255))
-            ty += _text_h(draw, line, tf) + 6
+        # Product name — bold, dominant, sentence case
+        nf = get_font('bold', self._scale(w, 68))
+        for font_size in range(68, 27, -6):
+            nf        = get_font('bold', self._scale(w, font_size))
+            all_lines = _wrap(name, nf, w - margin * 2, draw)
+            nlines    = all_lines[:2]
+            if len(all_lines) <= 2:
+                break
+        for line in nlines:
+            draw.text((margin, ty), line, font=nf, fill=(12, 12, 12, 255))
+            ty += _text_h(draw, line, nf) + 6
         ty += 6
 
-        # Tagline — light, colored (not plain grey)
+        # Tagline — light, colored
         if tagline:
-            sf = get_font('light', self._scale(w, 33))
+            sf = get_font('light', self._scale(w, 30))
             for line in _wrap(tagline, sf, w - margin * 2, draw)[:2]:
                 draw.text((margin, ty), line, font=sf,
                           fill=(*_darken(colors['dominant'], 0.08), 210))
                 ty += _text_h(draw, line, sf) + 6
 
-        # CTA pill button
-        if cta:
-            cf     = get_font('semibold', self._scale(w, 25))
-            cw     = _text_w(draw, cta, cf)
-            pad    = 24
-            pill_y = h - int(h * 0.086)
+        # CTA pill — positioned dynamically after text content
+        ty += 20
+        bottom_safe = h - int(h * 0.10)   # leave 10% margin at bottom
+        if cta and ty + 54 < bottom_safe:
+            cf  = get_font('semibold', self._scale(w, 25))
+            cw  = _text_w(draw, cta, cf)
+            pad = 24
             _draw_rounded_rect(draw,
-                               (margin, pill_y,
-                                margin + cw + pad * 2, pill_y + 50),
+                               (margin, ty, margin + cw + pad * 2, ty + 50),
                                25, acc)
-            draw.text((margin + pad, pill_y + 13), cta,
+            draw.text((margin + pad, ty + 13), cta,
                       font=cf, fill=(255, 255, 255, 255))
+            ty += 60
 
-        # Brand watermark bottom-right
+        # Instagram icon + brand watermark — bottom row
+        wm_y = h - int(h * 0.052)
         if brand:
-            bf2 = get_font('light', self._scale(w, 21))
+            bf2 = get_font('light', self._scale(w, 20))
             bw  = _text_w(draw, brand, bf2)
-            draw.text((w - bw - margin, h - int(h * 0.068)), brand,
+            draw.text((w - bw - margin, wm_y), brand,
                       font=bf2, fill=(155, 155, 155, 255))
+        _draw_instagram_icon(draw, margin + 18, wm_y + 10,
+                             r=self._scale(w, 16),
+                             fill=(193, 53, 132, 190))
 
         return canvas
 
@@ -498,19 +560,25 @@ class SocialMediaPostGenerator:
                           fill=(255, 255, 255, 185))
                 ty += _text_h(draw, line, sf) + 5
 
-        # ── Step 5: CTA — inverted pill (white bg, color text) ───────────
-        if cta:
+        # ── Step 5: CTA — inverted pill, positioned after text ───────────
+        ty += 16
+        panel_bottom = h - int(h * 0.04)
+        if cta and ty + 54 < panel_bottom:
             cf     = get_font('semibold', self._scale(w, 26))
             cw_val = _text_w(draw, cta, cf)
             pad    = 26
             pill_h = 50
             px1    = w - margin_r
             px0    = px1 - cw_val - pad * 2
-            py0    = h - int(h * 0.08)
-            _draw_rounded_rect(draw, (px0, py0, px1, py0 + pill_h),
+            _draw_rounded_rect(draw, (px0, ty, px1, ty + pill_h),
                                25, (255, 255, 255, 255))
-            draw.text((px0 + pad, py0 + 12), cta, font=cf,
+            draw.text((px0 + pad, ty + 12), cta, font=cf,
                       fill=(*colors['dominant'], 255))
+
+        # Instagram icon — top-right corner on sidebar
+        _draw_instagram_icon(draw, strip_w // 2, int(h * 0.965),
+                             r=self._scale(w, 14),
+                             fill=(255, 255, 255, 160))
 
         return canvas
 
@@ -591,6 +659,13 @@ class SocialMediaPostGenerator:
                                26, acc)
             draw.text((margin + pad, ty + 14), cta,
                       font=cf, fill=(255, 255, 255, 255))
+            ty += pill_h + 14
+
+        # Instagram icon — below CTA or near bottom-left
+        ig_y = max(ty + 8, h - int(h * 0.065))
+        _draw_instagram_icon(draw, margin + 18, ig_y,
+                             r=self._scale(w, 15),
+                             fill=(193, 53, 132, 200))
 
         return canvas
 
@@ -609,7 +684,7 @@ class SocialMediaPostGenerator:
         w, h   = size
         margin = 60
         acc    = _to_rgba(colors['accent'])
-        bg_col = _lighten(colors['dominant'], 0.93)
+        bg_col = _carousel_bg(colors, delta=0.02)
 
         # ── Base canvas: light brand tint ────────────────────────────────
         canvas = Image.new('RGBA', size, (*bg_col, 255))
@@ -718,7 +793,7 @@ class SocialMediaPostGenerator:
         """Slide 2 — tagline as hook, thumbnail right, no overlap, hard y-cap."""
         w, h    = size
         band_y  = h - 90
-        bg_col  = _lighten(colors['dominant'], 0.90)
+        bg_col  = _carousel_bg(colors)
         canvas  = Image.new('RGBA', size, (*bg_col, 255))
 
         # ── Thumbnail: centred in active area (above brand band) ─────────
@@ -799,7 +874,7 @@ class SocialMediaPostGenerator:
         margin = 60
         band_y = h - 90
         acc    = _to_rgba(colors['accent'])
-        bg_col = _lighten(colors['dominant'], 0.91)
+        bg_col = _carousel_bg(colors)
 
         canvas = Image.new('RGBA', size, (*bg_col, 255))
 
@@ -838,9 +913,10 @@ class SocialMediaPostGenerator:
             card_y1 = card_y0 + card_h
 
             # White card with subtle shadow line at bottom
+            card_fill = colors.get('card_bg', (255, 255, 255, 235))
             _draw_rounded_rect(draw,
                                (margin, card_y0, w - margin, card_y1),
-                               20, (255, 255, 255, 235))
+                               20, card_fill)
             # Thin accent left border on each card
             draw.rectangle([(margin, card_y0 + 20),
                              (margin + 5, card_y1 - 20)], fill=acc)
@@ -877,7 +953,7 @@ class SocialMediaPostGenerator:
             return self._c_features(extra_features, name, brand, size, colors, slide=3)
 
         # otherwise show a photo + description layout
-        bg_col = _lighten(colors['dominant'], 0.88)
+        bg_col = _carousel_bg(colors, delta=-0.03)
         canvas = Image.new('RGBA', size, (*bg_col, 255))
 
         # top half image
@@ -930,7 +1006,7 @@ class SocialMediaPostGenerator:
         w, h = size
 
         # Light brand-tinted background — product stays visible
-        bg_col = _lighten(colors['dominant'], 0.88)
+        bg_col = _carousel_bg(colors, delta=-0.03)
         canvas = Image.new('RGBA', size, (*bg_col, 255))
 
         draw   = ImageDraw.Draw(canvas)
