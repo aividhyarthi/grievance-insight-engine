@@ -114,7 +114,6 @@ def render_studio(image_path, name, tagline, brand, cta, colors, size, output_pa
 
     bw, bh = int(w * 0.74), int(h * 0.60)
     bx, by = (w - bw) // 2, int(h * 0.055)
-    dx, dy, dw, dh = _cover(iw, ih, bw, bh, bx, by)
 
     nl = _wrap(name, 20, 2)
     tl = _wrap(tagline, 30, 2)
@@ -144,8 +143,8 @@ def render_studio(image_path, name, tagline, brand, cta, colors, size, output_pa
 <circle cx="{int(w*.88)}" cy="{int(h*.10)}" r="{int(w*.24)}" fill="{_lighten(acc,55)}" opacity="0.05"/>
 <circle cx="{int(w*.08)}" cy="{int(h*.90)}" r="{int(w*.20)}" fill="{acc}" opacity="0.04"/>
 <g filter="url(#sh)">
-  <image href="{uri}" x="{dx:.1f}" y="{dy:.1f}" width="{dw:.1f}" height="{dh:.1f}"
-         preserveAspectRatio="none" clip-path="url(#pc)"/>
+  <image href="{uri}" x="{bx}" y="{by}" width="{bw}" height="{bh}"
+         preserveAspectRatio="xMidYMid meet" clip-path="url(#pc)"/>
 </g>
 <rect x="{bx}" y="{by}" width="{bw}" height="{bh}" fill="url(#imgfade)" clip-path="url(#pc)"/>
 <text x="{w//2}" y="{top+bfs:.0f}" text-anchor="middle"
@@ -179,7 +178,6 @@ def render_stripe(image_path, name, tagline, brand, cta, colors, size, output_pa
     sw = int(w * 0.26)
     ix = sw
     iw2 = w - sw
-    dx, dy, dw, dh = _cover(iw, ih, iw2, h, ix, 0)
 
     nl = _wrap(name,    18, 3)
     tl = _wrap(tagline, 26, 2)
@@ -211,8 +209,8 @@ def render_stripe(image_path, name, tagline, brand, cta, colors, size, output_pa
     <feDropShadow dx="6" dy="0" stdDeviation="14" flood-color="#000" flood-opacity="0.38"/>
   </filter>
 </defs>
-<image href="{uri}" x="{dx:.1f}" y="{dy:.1f}" width="{dw:.1f}" height="{dh:.1f}"
-       preserveAspectRatio="none" clip-path="url(#imgc)"/>
+<image href="{uri}" x="{ix}" y="0" width="{iw2}" height="{h}"
+       preserveAspectRatio="xMidYMid slice" clip-path="url(#imgc)"/>
 <rect x="{ix}" y="0" width="{iw2}" height="{h}" fill="url(#btm)"/>
 <rect x="0"   y="0" width="{sw}"  height="{h}" fill="url(#sg)" filter="url(#sh2)"/>
 <rect x="{sw-3}" y="0" width="3" height="{h}" fill="{acc}" opacity="0.65"/>
@@ -256,7 +254,6 @@ def render_frame(image_path, name, tagline, brand, cta, colors, size, output_pat
 
     ix  = int(w * 0.44)
     iw2 = w - ix
-    dx, dy, dw, dh = _cover(iw, ih, iw2, h, ix, 0)
 
     lw  = int(w * 0.41)
     pad = int(lw * 0.10)
@@ -295,8 +292,8 @@ def render_frame(image_path, name, tagline, brand, cta, colors, size, output_pat
   </linearGradient>
 </defs>
 <rect width="{w}" height="{h}" fill="{bg}"/>
-<image href="{uri}" x="{dx:.1f}" y="{dy:.1f}" width="{dw:.1f}" height="{dh:.1f}"
-       preserveAspectRatio="none" clip-path="url(#imgc)"/>
+<image href="{uri}" x="{ix}" y="0" width="{iw2}" height="{h}"
+       preserveAspectRatio="xMidYMid slice" clip-path="url(#imgc)"/>
 <rect x="{ix-int(lw*.12)}" y="0" width="{int(lw*.12)+iw2}" height="{h}" fill="url(#ifade)"/>
 <circle cx="{dcx}" cy="{dcy}" r="{dr}"   fill="{acc}" opacity="0.07"/>
 <circle cx="{dcx}" cy="{dcy}" r="{dr-7}" fill="none" stroke="{acc}" stroke-width="1.5" opacity="0.22"/>
