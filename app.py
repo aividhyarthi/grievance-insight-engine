@@ -197,8 +197,12 @@ def scrape_url():
     # ── ask Claude to extract product fields ─────────────────────────────────
     try:
         import json
+        import httpx
         import anthropic
-        client = anthropic.Anthropic(api_key=api_key)
+        # Pass an explicit httpx client to avoid proxy-injection issues
+        # (anthropic==0.34 + httpx>=1.0 pass 'proxies' which httpx 1.x removed)
+        client = anthropic.Anthropic(api_key=api_key,
+                                     http_client=httpx.Client())
         msg = client.messages.create(
             model='claude-haiku-4-5-20251001',
             max_tokens=512,
