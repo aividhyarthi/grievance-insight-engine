@@ -106,62 +106,68 @@ def _render(svg: str, output_path: str, w: int, h: int) -> None:
 
 def render_studio(image_path, name, tagline, brand, cta, colors, size, output_path):
     w, h = size
-    bg  = _hex(colors.get('dominant', (30, 30, 50)))
-    acc = _hex(colors.get('accent',   (220, 200, 140)))
-    txt = _on(bg)
+    acc  = _hex(colors.get('accent',   (220, 200, 140)))
 
     uri, iw, ih = _img_uri(image_path)
 
-    bw, bh = int(w * 0.74), int(h * 0.60)
-    bx, by = (w - bw) // 2, int(h * 0.055)
+    nl  = _wrap(name,    18, 2)
+    tl  = _wrap(tagline, 28, 2)
+    nfs = min(int(w * 0.065), 70)
+    tfs = max(int(nfs * 0.40), 22)
+    bfs = max(int(tfs * 0.82), 18)
+    lhn = int(nfs * 1.15)   # title line-height
+    lht = int(tfs * 1.40)   # tagline line-height
 
-    nl = _wrap(name, 20, 2)
-    tl = _wrap(tagline, 30, 2)
-    nfs = min(int(w * 0.058), 63)
-    tfs = int(nfs * 0.40)
-    bfs = int(tfs * 0.84)
-    top = by + bh + int(h * 0.032)
+    # ── Stack text blocks from bottom up ─────────────────────────────────
+    cta_y   = h - int(h * 0.052)
+    tl_y    = cta_y  - int(h * 0.058) - (len(tl) - 1) * lht
+    nl_y    = tl_y   - int(h * 0.030) - (len(nl) - 1) * lhn
+    brand_y = nl_y   - int(h * 0.050)
+
+    # Scrim: transparent at 44%, fully dark by 80%
+    scrim_start = 44
 
     svg = f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      width="{w}" height="{h}" viewBox="0 0 {w} {h}">
 <defs>
-  <radialGradient id="bg" cx="32%" cy="28%" r="72%">
-    <stop offset="0%"   stop-color="{_lighten(bg,24)}"/>
-    <stop offset="100%" stop-color="{_darken(bg,10)}"/>
-  </radialGradient>
-  <clipPath id="pc"><rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="16"/></clipPath>
-  <filter id="sh" x="-25%" y="-25%" width="150%" height="150%">
-    <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#000" flood-opacity="0.52"/>
-  </filter>
-  <linearGradient id="imgfade" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="55%" stop-color="{bg}" stop-opacity="0"/>
-    <stop offset="100%" stop-color="{bg}" stop-opacity="0.8"/>
+  <linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="{scrim_start}%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="80%"            stop-color="#000" stop-opacity="0.82"/>
+    <stop offset="100%"           stop-color="#000" stop-opacity="0.94"/>
   </linearGradient>
+  <filter id="sh">
+    <feDropShadow dx="0" dy="2" stdDeviation="9" flood-color="#000" flood-opacity="0.55"/>
+  </filter>
 </defs>
-<rect width="{w}" height="{h}" fill="url(#bg)"/>
-<circle cx="{int(w*.88)}" cy="{int(h*.10)}" r="{int(w*.24)}" fill="{_lighten(acc,55)}" opacity="0.05"/>
-<circle cx="{int(w*.08)}" cy="{int(h*.90)}" r="{int(w*.20)}" fill="{acc}" opacity="0.04"/>
-<g filter="url(#sh)">
-  <image href="{uri}" x="{bx}" y="{by}" width="{bw}" height="{bh}"
-         preserveAspectRatio="xMidYMid meet" clip-path="url(#pc)"/>
-</g>
-<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" fill="url(#imgfade)" clip-path="url(#pc)"/>
-<text x="{w//2}" y="{top+bfs:.0f}" text-anchor="middle"
+<!-- full-bleed product image covering entire canvas -->
+<image href="{uri}" x="0" y="0" width="{w}" height="{h}"
+       preserveAspectRatio="xMidYMid slice"/>
+<!-- gradient scrim so bottom text is always readable -->
+<rect x="0" y="0" width="{w}" height="{h}" fill="url(#scrim)"/>
+<!-- brand label -->
+<text x="{w // 2}" y="{brand_y:.0f}" text-anchor="middle"
       font-family="Helvetica Neue,Arial,sans-serif" font-size="{bfs}"
-      fill="{acc}" font-weight="300" letter-spacing="6" opacity="0.72">{_e(brand.upper())}</text>
-<rect x="{w//2-18}" y="{top+bfs+int(h*.014):.0f}" width="36" height="1.5" rx="1" fill="{acc}" opacity="0.38"/>
-<text x="{w//2}" y="{top+bfs+int(h*.046):.0f}" text-anchor="middle"
-      font-family="Georgia,'Times New Roman',serif" font-size="{nfs}" fill="{txt}" font-weight="700">
-  {_tspan(nl, w/2, nfs*1.14)}
+      fill="{acc}" font-weight="300" letter-spacing="5" opacity="0.82">{_e(brand.upper())}</text>
+<!-- rule -->
+<rect x="{w // 2 - 22}" y="{brand_y + int(bfs * 0.55):.0f}" width="44" height="1.5"
+      fill="{acc}" opacity="0.42"/>
+<!-- title -->
+<text x="{w // 2}" y="{nl_y:.0f}" text-anchor="middle"
+      font-family="Georgia,'Times New Roman',serif" font-size="{nfs}"
+      fill="#ffffff" font-weight="700" filter="url(#sh)">
+  {_tspan(nl, w / 2, lhn)}
 </text>
-<text x="{w//2}" y="{top+bfs+int(h*.046)+len(nl)*int(nfs*1.14)+int(h*.018):.0f}" text-anchor="middle"
-      font-family="Helvetica Neue,Arial,sans-serif" font-size="{tfs}" fill="{txt}" font-weight="300" opacity="0.68">
-  {_tspan(tl, w/2, tfs*1.35)}
+<!-- tagline -->
+<text x="{w // 2}" y="{tl_y:.0f}" text-anchor="middle"
+      font-family="Helvetica Neue,Arial,sans-serif" font-size="{tfs}"
+      fill="#ffffff" font-weight="300" opacity="0.80" filter="url(#sh)">
+  {_tspan(tl, w / 2, lht)}
 </text>
-<text x="{w//2}" y="{h-int(h*.042):.0f}" text-anchor="middle"
-      font-family="Helvetica Neue,Arial,sans-serif" font-size="{int(tfs*.88)}"
-      fill="{acc}" font-weight="600" letter-spacing="3">{_e(cta.upper())}</text>
+<!-- CTA -->
+<text x="{w // 2}" y="{cta_y:.0f}" text-anchor="middle"
+      font-family="Helvetica Neue,Arial,sans-serif" font-size="{int(tfs * 0.88)}"
+      fill="{acc}" font-weight="700" letter-spacing="3">{_e(cta.upper())}</text>
 </svg>'''
     _render(svg, output_path, w, h)
 
