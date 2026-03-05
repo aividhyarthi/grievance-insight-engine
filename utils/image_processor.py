@@ -28,6 +28,7 @@ PLATFORM_SIZES: dict[str, tuple[int, int]] = {
     'facebook':          (1200, 630),
     'youtube':           (1280, 720),
     'twitter':           (1600, 900),
+    'website_featured':  (1200, 900),
 }
 
 # ── colour helpers ────────────────────────────────────────────────────────────
