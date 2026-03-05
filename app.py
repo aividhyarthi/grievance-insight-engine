@@ -194,35 +194,46 @@ def scrape_url():
     text = unescape(text)
     text = re.sub(r'\s+', ' ', text).strip()[:8000]
 
+    if len(text) < 120:
+        return jsonify({
+            'error': (
+                'Not enough text found on that page. '
+                'The site may require JavaScript to render (e.g. Shopify / React). '
+                'Please fill in the product details manually.'
+            )
+        }), 400
+
     # ── ask Claude to extract product fields ─────────────────────────────────
     try:
         import json
         import httpx
         import anthropic
-        # Pass an explicit httpx client to avoid proxy-injection issues
-        # (anthropic==0.34 + httpx>=1.0 pass 'proxies' which httpx 1.x removed)
-        client = anthropic.Anthropic(api_key=api_key,
-                                     http_client=httpx.Client())
-        msg = client.messages.create(
-            model='claude-haiku-4-5-20251001',
-            max_tokens=512,
-            messages=[{
-                'role': 'user',
-                'content': (
-                    'Extract product information from this webpage text. '
-                    'Return ONLY a JSON object with keys: '
-                    'product_name, brand_name, tagline, description, cta. '
-                    'cta should be a short action phrase like "Shop Now" or "Buy Now". '
-                    'Keep description to 1-2 sentences max. '
-                    'Return only valid JSON, no markdown, no extra text.\n\n'
-                    f'Page text:\n{text}'
-                ),
-            }],
-        )
+
+        with httpx.Client() as http_client:
+            client = anthropic.Anthropic(api_key=api_key,
+                                         http_client=http_client)
+            msg = client.messages.create(
+                model='claude-haiku-4-5-20251001',
+                max_tokens=512,
+                messages=[{
+                    'role': 'user',
+                    'content': (
+                        'Extract product information from this webpage text. '
+                        'Return ONLY a JSON object with keys: '
+                        'product_name, brand_name, tagline, description, cta. '
+                        'cta should be a short action phrase like "Shop Now" or "Buy Now". '
+                        'Keep description to 1-2 sentences max. '
+                        'Return only valid JSON, no markdown, no extra text.\n\n'
+                        f'Page text:\n{text}'
+                    ),
+                }],
+            )
+
         raw = msg.content[0].text.strip()
-        # Strip markdown code fences if Claude wrapped the JSON
-        raw = re.sub(r'^```(?:json)?\s*', '', raw)
-        raw = re.sub(r'\s*```$', '', raw).strip()
+        # Strip code fences and find the first {...} block — handles any wrapping
+        raw = re.sub(r'```[a-z]*\s*', '', raw).replace('```', '').strip()
+        m   = re.search(r'\{.*\}', raw, re.DOTALL)
+        raw = m.group(0) if m else raw
         result = json.loads(raw)
         return jsonify(result)
     except Exception as exc:

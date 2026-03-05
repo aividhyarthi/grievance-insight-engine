@@ -10,6 +10,18 @@ import re
 import os
 
 
+def _parse_json(text: str) -> str:
+    """Strip code fences and return the first JSON object found in text."""
+    # Remove ``` fences (with or without language tag, with or without newlines)
+    text = re.sub(r'```[a-z]*\s*', '', text).replace('```', '').strip()
+    # If what remains starts with '{' we're done
+    if text.startswith('{'):
+        return text
+    # Otherwise find the first {...} block (handles surrounding prose)
+    m = re.search(r'\{.*\}', text, re.DOTALL)
+    return m.group(0) if m else text
+
+
 _SYSTEM_PROMPT = """\
 You are a senior social media copywriter at an award-winning branding agency.
 You TRANSFORM raw product information into polished, desire-creating Instagram copy.
@@ -114,6 +126,7 @@ class CaptionGenerator:
             return self._fallback(product_name, tagline, description, brand_name, post_type)
 
     def _call_claude(self, **kwargs) -> dict:
+        import httpx
         import anthropic
 
         template = _CAROUSEL_PROMPT if kwargs['post_type'] == 'carousel' else _INDIVIDUAL_PROMPT
@@ -126,20 +139,19 @@ class CaptionGenerator:
             platform=kwargs['platform']         or 'instagram_square',
         )
 
-        client = anthropic.Anthropic(api_key=self.api_key)
-        msg = client.messages.create(
-            model='claude-sonnet-4-6',
-            max_tokens=1200,
-            temperature=1,
-            system=_SYSTEM_PROMPT,
-            messages=[{'role': 'user', 'content': prompt}],
-        )
+        with httpx.Client() as http_client:
+            client = anthropic.Anthropic(api_key=self.api_key,
+                                         http_client=http_client)
+            msg = client.messages.create(
+                model='claude-sonnet-4-6',
+                max_tokens=1200,
+                temperature=1,
+                system=_SYSTEM_PROMPT,
+                messages=[{'role': 'user', 'content': prompt}],
+            )
 
-        raw = msg.content[0].text.strip()
-        # Strip any accidental code fences
-        raw = re.sub(r'^```[a-z]*\n?', '', raw)
-        raw = re.sub(r'\n?```$', '', raw)
-        data = json.loads(raw)
+        raw  = msg.content[0].text.strip()
+        data = json.loads(_parse_json(raw))
 
         # Normalise hashtags — strip leading #, re-add later on display
         data['hashtags'] = [
