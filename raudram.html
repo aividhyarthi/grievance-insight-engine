@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raudram — Divine Digital Oracle</title>
+  <style>
+    /* ── Root Theme ── */
+    :root {
+      --bg:         #080200;
+      --saffron:    #C4762A;
+      --gold:       #D4AF37;
+      --gold-hi:    #FFD700;
+      --cream:      #F5E6C8;
+      --muted:      #A08060;
+      --card-bg:    rgba(196,118,42,0.08);
+      --card-bdr:   rgba(212,175,55,0.35);
+      --modal-bg:   rgba(8,2,0,0.97);
+      --glow:       rgba(212,175,55,0.25);
+      --user-bubble:#2A1500;
+      --ai-bubble:  rgba(196,118,42,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Particle Canvas (bg) ── */
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Page Layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── Language Bar ── */
+    .lang-bar {
+      position: fixed;
+      top: 14px;
+      right: 20px;
+      z-index: 50;
+      display: flex;
+      gap: 8px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--card-bdr);
+      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: all .25s;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold-hi);
+      box-shadow: 0 0 8px var(--glow);
+    }
+
+    /* ── Hero / Avatar ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 40px;
+    }
+
+    .avatar-ring {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      margin-bottom: 18px;
+    }
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold), var(--saffron), var(--gold-hi), var(--saffron), var(--gold));
+      animation: spin 8s linear infinite;
+      filter: blur(2px);
+    }
+    .avatar-ring::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--bg);
+      z-index: 1;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .avatar-img {
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      z-index: 2;
+      object-fit: cover;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      /* Replace src in the img tag below with your actual image */
+    }
+
+    /* Placeholder shown when no image loaded */
+    .avatar-placeholder {
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      z-index: 2;
+      background: radial-gradient(circle at 40% 35%, #3D1F00 0%, #1A0800 60%, #080200 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 68px;
+      user-select: none;
+    }
+
+    .title-name {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: 6px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-hi), var(--saffron));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+    .title-sub {
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 28px auto 24px;
+    }
+
+    /* ── Pick-topic label ── */
+    .pick-label {
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    /* ── Topic Cards Grid ── */
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      max-width: 820px;
+      padding: 0 20px 60px;
+    }
+
+    .topic-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-bdr);
+      border-radius: 12px;
+      padding: 14px 22px;
+      cursor: pointer;
+      text-align: center;
+      min-width: 130px;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .topic-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212,175,55,0.15), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .topic-card:hover::before, .topic-card:focus::before { opacity: 1; }
+    .topic-card:hover, .topic-card:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px var(--glow), 0 4px 20px rgba(0,0,0,.5);
+      transform: translateY(-3px);
+      outline: none;
+    }
+    .topic-card:active { transform: translateY(0); }
+
+    .topic-icon { font-size: 26px; margin-bottom: 6px; display: block; }
+    .topic-name {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--cream);
+    }
+    .topic-desc {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 3px;
+      letter-spacing: .5px;
+    }
+
+    /* ── Modal Overlay ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── Modal Box ── */
+    .modal {
+      background: var(--modal-bg);
+      border: 1px solid var(--card-bdr);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(212,175,55,0.15), 0 20px 60px rgba(0,0,0,.8);
+      transform: translateY(20px);
+      transition: transform .35s;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    /* ── Modal Header ── */
+    .modal-head {
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--card-bdr);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .modal-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .modal-avatar-ph {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #3D1F00, #1A0800);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .modal-head-info { flex: 1; }
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold-hi);
+      letter-spacing: 2px;
+    }
+    .modal-topic-badge {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--saffron);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .modal-close {
+      background: none;
+      border: 1px solid var(--card-bdr);
+      color: var(--muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+    }
+    .modal-close:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── Chat Area ── */
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      scroll-behavior: smooth;
+    }
+    .chat-area::-webkit-scrollbar { width: 4px; }
+    .chat-area::-webkit-scrollbar-thumb { background: var(--card-bdr); border-radius: 2px; }
+
+    .bubble {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .bubble.ai {
+      background: var(--ai-bubble);
+      border: 1px solid var(--card-bdr);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .bubble.user {
+      background: var(--user-bubble);
+      border: 1px solid rgba(196,118,42,0.25);
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      color: var(--cream);
+    }
+    .bubble.ai .sender {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    /* typing indicator */
+    .typing {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--ai-bubble);
+      border: 1px solid var(--card-bdr);
+      border-radius: 14px;
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+    }
+    .typing span {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: bounce 1.2s infinite;
+    }
+    .typing span:nth-child(2) { animation-delay: .2s; }
+    .typing span:nth-child(3) { animation-delay: .4s; }
+    @keyframes bounce {
+      0%,80%,100% { transform: translateY(0); opacity:.4; }
+      40%         { transform: translateY(-6px); opacity:1; }
+    }
+
+    /* ── Input Row ── */
+    .input-row {
+      padding: 14px 18px 18px;
+      border-top: 1px solid var(--card-bdr);
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .msg-input {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--card-bdr);
+      color: var(--cream);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      resize: none;
+      min-height: 44px;
+      max-height: 120px;
+      outline: none;
+      transition: border-color .25s;
+      font-family: inherit;
+    }
+    .msg-input:focus { border-color: var(--gold); }
+    .msg-input::placeholder { color: var(--muted); }
+
+    .send-btn {
+      background: linear-gradient(135deg, var(--saffron), var(--gold));
+      border: none;
+      border-radius: 12px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all .25s;
+      box-shadow: 0 0 12px rgba(212,175,55,.3);
+    }
+    .send-btn:hover { box-shadow: 0 0 20px rgba(212,175,55,.5); transform: scale(1.05); }
+    .send-btn:active { transform: scale(.97); }
+    .send-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+    .send-btn svg { width: 20px; height: 20px; fill: #080200; }
+
+    /* responsive */
+    @media (max-width: 480px) {
+      .avatar-ring { width: 190px; height: 190px; }
+      .topics { gap: 10px; }
+      .topic-card { min-width: 110px; padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="page">
+
+  <!-- Language Toggle -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('hi')">हि</button>
+    <button class="lang-btn" onclick="setLang('te')">తె</button>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="avatar-ring">
+      <!--
+        TO USE YOUR OWN PHOTO:
+        Replace the div below with:
+        <img class="avatar-img" src="YOUR_IMAGE_URL" alt="Raudram" />
+        and remove the avatar-placeholder div.
+      -->
+      <div class="avatar-placeholder">🔱</div>
+    </div>
+
+    <div class="title-name">RAUDRAM</div>
+    <div class="title-sub" id="sub-tagline">Divine Digital Oracle</div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="pick-label" id="pick-label">Choose your domain of wisdom</div>
+
+  <!-- Topic Cards -->
+  <div class="topics" id="topics-grid">
+    <!-- filled by JS -->
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-avatar-ph" id="modal-avatar-ph">🔱</div>
+      <div class="modal-head-info">
+        <div class="modal-title">RAUDRAM</div>
+        <div class="modal-topic-badge" id="modal-topic-badge">— SEO —</div>
+      </div>
+      <button class="modal-close" id="modal-close" title="Close">✕</button>
+    </div>
+
+    <div class="chat-area" id="chat-area"></div>
+
+    <div class="input-row">
+      <textarea
+        class="msg-input"
+        id="msg-input"
+        rows="1"
+        placeholder="Ask Raudram..."
+      ></textarea>
+      <button class="send-btn" id="send-btn" title="Send" disabled>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   CONFIG — change PROXY_URL to match your host
+   ════════════════════════════════════════════ */
+const PROXY_URL = '/wp-content/raudram/raudram-proxy.php'; // adjust path if needed
+
+/* ════════════════════════════════════════════
+   TOPICS
+   ════════════════════════════════════════════ */
+const TOPICS = [
+  { id:'SEO',       icon:'🔍', name:'SEO',          desc:'Search Engine Optimization' },
+  { id:'AEO',       icon:'🤖', name:'AEO',          desc:'Answer Engine Optimization' },
+  { id:'GEO',       icon:'🌐', name:'GEO',          desc:'Generative Engine Optimization' },
+  { id:'TechSEO',   icon:'⚙️', name:'Tech SEO',     desc:'Technical SEO & Core Web Vitals' },
+  { id:'YouTube',   icon:'▶️', name:'YouTube',       desc:'YouTube SEO & Growth' },
+  { id:'Social',    icon:'📱', name:'Social Media',  desc:'Organic & Paid Social Strategy' },
+  { id:'ORM',       icon:'🛡️', name:'ORM',          desc:'Online Reputation Management' },
+  { id:'Strategy',  icon:'♟️', name:'Strategy',      desc:'Digital Marketing Strategy' },
+];
+
+/* ════════════════════════════════════════════
+   TRANSLATIONS
+   ════════════════════════════════════════════ */
+const i18n = {
+  en: {
+    tagline:    'Divine Digital Oracle',
+    pickLabel:  'Choose your domain of wisdom',
+    greeting:   (t) => `Hey, I am Raudram 🔱\nWhat brings you to me today?\nI am here to illuminate your path on **${t}**.`,
+    placeholder:'Ask Raudram...',
+    thinking:   'Raudram is contemplating...',
+  },
+  hi: {
+    tagline:    'दिव्य डिजिटल दृष्टा',
+    pickLabel:  'अपना ज्ञान क्षेत्र चुनें',
+    greeting:   (t) => `नमस्ते, मैं रौद्रम हूं 🔱\nआज आप किसलिए आए हैं?\nमैं **${t}** के विषय में आपका मार्गदर्शन करने के लिए यहां हूं।`,
+    placeholder:'रौद्रम से पूछें...',
+    thinking:   'रौद्रम विचार कर रहे हैं...',
+  },
+  te: {
+    tagline:    'దివ్య డిజిటల్ దర్శకుడు',
+    pickLabel:  'మీ జ్ఞాన రంగాన్ని ఎంచుకోండి',
+    greeting:   (t) => `నమస్కారం, నేను రౌద్రం 🔱\nఈరోజు మీరు ఏమి కోసం వచ్చారు?\nనేను **${t}** విషయంలో మీకు మార్గనిర్దేశం చేయడానికి ఇక్కడ ఉన్నాను।`,
+    placeholder:'రౌద్రాన్ని అడగండి...',
+    thinking:   'రౌద్రం ఆలోచిస్తున్నారు...',
+  },
+};
+
+/* ════════════════════════════════════════════
+   STATE
+   ════════════════════════════════════════════ */
+let currentLang    = 'en';
+let currentTopic   = null;
+let chatHistory    = [];   // [{role:'user'|'assistant', content:'...'}]
+let isLoading      = false;
+
+/* ════════════════════════════════════════════
+   PARTICLES (gold dust effect)
+   ════════════════════════════════════════════ */
+(function initParticles() {
+  const canvas = document.getElementById('particles');
+  const ctx    = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < 55; i++) {
+    particles.push({
+      x: Math.random() * 1200,
+      y: Math.random() * 900,
+      r: Math.random() * 1.6 + .4,
+      a: Math.random() * Math.PI * 2,
+      speed: .2 + Math.random() * .4,
+      opacity: Math.random() * .5 + .1,
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
+      ctx.fill();
+      p.y -= p.speed;
+      p.x += Math.sin(p.a) * .3;
+      p.a += .01;
+      if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ════════════════════════════════════════════
+   BUILD TOPIC CARDS
+   ════════════════════════════════════════════ */
+function buildTopics() {
+  const grid = document.getElementById('topics-grid');
+  grid.innerHTML = '';
+  TOPICS.forEach(t => {
+    const card = document.createElement('button');
+    card.className = 'topic-card';
+    card.setAttribute('tabindex', '0');
+    card.innerHTML = `
+      <span class="topic-icon">${t.icon}</span>
+      <div class="topic-name">${t.name}</div>
+      <div class="topic-desc">${t.desc}</div>
+    `;
+    card.addEventListener('click', () => openModal(t));
+    grid.appendChild(card);
+  });
+}
+
+/* ════════════════════════════════════════════
+   LANGUAGE
+   ════════════════════════════════════════════ */
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    if (b.textContent.trim().toLowerCase() === lang ||
+        (lang === 'hi' && b.textContent.includes('हि')) ||
+        (lang === 'te' && b.textContent.includes('తె'))) {
+      b.classList.add('active');
+    }
+  });
+  const t = i18n[lang];
+  document.getElementById('sub-tagline').textContent  = t.tagline;
+  document.getElementById('pick-label').textContent   = t.pickLabel;
+  document.getElementById('msg-input').placeholder    = t.placeholder;
+}
+
+/* ════════════════════════════════════════════
+   MODAL
+   ════════════════════════════════════════════ */
+function openModal(topic) {
+  currentTopic = topic;
+  chatHistory  = [];
+
+  document.getElementById('modal-topic-badge').textContent = `— ${topic.name} —`;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('send-btn').disabled = false;
+
+  const chatArea = document.getElementById('chat-area');
+  chatArea.innerHTML = '';
+
+  // Greeting
+  const greeting = i18n[currentLang].greeting(topic.name);
+  addBubble('ai', greeting);
+
+  document.getElementById('msg-input').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  chatHistory = [];
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+
+/* ════════════════════════════════════════════
+   CHAT UTILITIES
+   ════════════════════════════════════════════ */
+function addBubble(role, text) {
+  const area   = document.getElementById('chat-area');
+  const bubble = document.createElement('div');
+  bubble.className = `bubble ${role}`;
+
+  if (role === 'ai') {
+    bubble.innerHTML = `<div class="sender">Raudram</div>${formatText(text)}`;
+  } else {
+    bubble.textContent = text;
+  }
+
+  area.appendChild(bubble);
+  area.scrollTop = area.scrollHeight;
+  return bubble;
+}
+
+function formatText(text) {
+  // bold **text**, line breaks, basic formatting
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br/>');
+}
+
+function showTyping() {
+  const area = document.getElementById('chat-area');
+  const el   = document.createElement('div');
+  el.className = 'typing';
+  el.id        = 'typing-indicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  area.appendChild(el);
+  area.scrollTop = area.scrollHeight;
+}
+
+function hideTyping() {
+  const el = document.getElementById('typing-indicator');
+  if (el) el.remove();
+}
+
+/* ════════════════════════════════════════════
+   SEND MESSAGE
+   ════════════════════════════════════════════ */
+async function sendMessage() {
+  const input   = document.getElementById('msg-input');
+  const message = input.value.trim();
+  if (!message || isLoading) return;
+
+  isLoading = true;
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('send-btn').disabled = true;
+
+  addBubble('user', message);
+  chatHistory.push({ role: 'user', content: message });
+
+  showTyping();
+
+  try {
+    const response = await fetch(PROXY_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        topic:    currentTopic.id,
+        language: currentLang,
+        history:  chatHistory,
+        message:  message,
+      }),
+    });
+
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+
+    hideTyping();
+
+    const reply = data.response || 'I am unable to respond right now. Please try again.';
+    addBubble('ai', reply);
+    chatHistory.push({ role: 'assistant', content: reply });
+
+  } catch (err) {
+    hideTyping();
+    addBubble('ai', `🙏 Forgive me, something went wrong. Please try again.\n\n_(${err.message})_`);
+    console.error('Raudram API error:', err);
+  }
+
+  isLoading = false;
+  document.getElementById('send-btn').disabled = false;
+  document.getElementById('msg-input').focus();
+}
+
+/* ════════════════════════════════════════════
+   INPUT EVENTS
+   ════════════════════════════════════════════ */
+const msgInput = document.getElementById('msg-input');
+msgInput.addEventListener('input', function () {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+});
+msgInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+document.getElementById('send-btn').addEventListener('click', sendMessage);
+
+/* ════════════════════════════════════════════
+   INIT
+   ════════════════════════════════════════════ */
+buildTopics();
+setLang('en');
+</script>
+</body>
+</html>
