@@ -124,26 +124,36 @@ def render_studio(image_path, name, tagline, brand, cta, colors, size, output_pa
     nl_y    = tl_y   - int(h * 0.030) - (len(nl) - 1) * lhn
     brand_y = nl_y   - int(h * 0.050)
 
-    # Scrim: transparent at 44%, fully dark by 80%
-    scrim_start = 44
+    # Image zone: top portion of canvas where the product image sits
+    img_zone_h = int(h * 0.62)
+    # Scrim starts just below the image zone so text is always readable
+    scrim_pct  = max(38, int(img_zone_h * 100 // h) - 4)
 
     svg = f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      width="{w}" height="{h}" viewBox="0 0 {w} {h}">
 <defs>
   <linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="{scrim_start}%" stop-color="#000" stop-opacity="0"/>
-    <stop offset="80%"            stop-color="#000" stop-opacity="0.82"/>
-    <stop offset="100%"           stop-color="#000" stop-opacity="0.94"/>
+    <stop offset="{scrim_pct}%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="82%"          stop-color="#000" stop-opacity="0.82"/>
+    <stop offset="100%"         stop-color="#000" stop-opacity="0.94"/>
   </linearGradient>
+  <filter id="bgblur" x="-5%" y="-5%" width="110%" height="110%">
+    <feGaussianBlur stdDeviation="28"/>
+  </filter>
   <filter id="sh">
     <feDropShadow dx="0" dy="2" stdDeviation="9" flood-color="#000" flood-opacity="0.55"/>
   </filter>
 </defs>
-<!-- full-bleed product image covering entire canvas -->
+<!-- ① blurred background — fills full canvas, no empty bars -->
 <image href="{uri}" x="0" y="0" width="{w}" height="{h}"
-       preserveAspectRatio="xMidYMid slice"/>
-<!-- gradient scrim so bottom text is always readable -->
+       preserveAspectRatio="xMidYMid slice" filter="url(#bgblur)" opacity="0.72"/>
+<!-- ② dark wash so blurred bg doesn't fight the text -->
+<rect x="0" y="0" width="{w}" height="{h}" fill="#000" opacity="0.28"/>
+<!-- ③ FULL product image — contained in top zone, no cropping -->
+<image href="{uri}" x="0" y="0" width="{w}" height="{img_zone_h}"
+       preserveAspectRatio="xMidYMid meet"/>
+<!-- ④ gradient scrim for text legibility -->
 <rect x="0" y="0" width="{w}" height="{h}" fill="url(#scrim)"/>
 <!-- brand label -->
 <text x="{w // 2}" y="{brand_y:.0f}" text-anchor="middle"
