@@ -3,7 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PostCraft — Social Media Post Generator</title>
+
+  <!-- ── SEO ────────────────────────────────────────────────────────────── -->
+  <title>PostCraft by Rudra Kasturi Inc. — AI Social Media Post Generator</title>
+  <meta name="description"
+        content="Create scroll-stopping social media posts in 3 steps: upload your product image, add details, and generate. Supports Instagram, Facebook, YouTube &amp; more. Powered by AI." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- ── Favicon ────────────────────────────────────────────────────────── -->
+  <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg" />
+
+  <!-- ── Structured data — HowTo ────────────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to create an AI-generated social media post with PostCraft",
+    "description": "Generate professional social media posts for Instagram, Facebook, YouTube and more using AI.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": "1",
+        "name": "Upload your product image",
+        "text": "Drag and drop or browse to upload a PNG, JPG or WebP product photo (max 25 MB)."
+      },
+      {
+        "@type": "HowToStep",
+        "position": "2",
+        "name": "Fill in product details",
+        "text": "Enter the product name, brand, tagline and a short description. You can also import details automatically from a product page URL."
+      },
+      {
+        "@type": "HowToStep",
+        "position": "3",
+        "name": "Choose settings and generate",
+        "text": "Pick your post type (individual or carousel), platform, and design style, then click Generate Posts."
+      }
+    ]
+  }
+  </script>
+
+  <!-- ── Fonts + styles ─────────────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
@@ -18,7 +58,7 @@
     <div class="nav-brand">
       <span class="brand-icon">✦</span>
       <span class="brand-name">PostCraft</span>
-      <span class="brand-sub">by AI Vidhyarthi</span>
+      <span class="brand-sub">by Rudra Kasturi Inc.</span>
     </div>
     <div class="nav-badge">Beta</div>
   </div>
@@ -29,6 +69,20 @@
 
   <!-- ── LEFT PANEL: form ─────────────────────────────────────────────────── -->
   <aside class="form-panel">
+
+    <!-- URL IMPORT (optional quick-fill) -->
+    <section class="form-section url-import-section">
+      <div class="section-label url-label">
+        <span class="url-icon">⬇</span> Import from URL
+        <span class="hint-label">&nbsp;— paste a product page to auto-fill details</span>
+      </div>
+      <div class="url-row">
+        <input type="url" id="url-input"
+               placeholder="https://yourstore.com/product/…" />
+        <button type="button" id="url-load-btn" class="btn-ghost btn-sm">Load</button>
+      </div>
+      <div id="url-status" class="url-status hidden"></div>
+    </section>
 
     <!-- STEP 1 — Image upload -->
     <section class="form-section">
@@ -164,7 +218,7 @@
       <div class="field">
         <label for="api_key">
           Anthropic API Key
-          <span class="hint-label">(optional — enables AI-generated captions)</span>
+          <span class="hint-label">(optional — enables AI captions &amp; URL import)</span>
         </label>
         <div class="key-wrap">
           <input type="password" id="api_key"
@@ -256,6 +310,13 @@
     <a id="lb-download" class="btn-ghost btn-sm lb-dl" download>↓ Download</a>
   </div>
 </div>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <span class="footer-brand">PostCraft</span>
+  <span class="footer-sep">·</span>
+  <span class="footer-owner">by Rudra Kasturi Inc.</span>
+</footer>
 
 <script src="/static/js/main.js"></script>
 </body>

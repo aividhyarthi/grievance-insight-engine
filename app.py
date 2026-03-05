@@ -1,7 +1,9 @@
 import os
+import re
 import uuid
 import zipfile
 import io
+from html import unescape
 from flask import Flask, render_template, request, jsonify, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
@@ -152,6 +154,71 @@ def download_zip(session_id):
         as_attachment=True,
         download_name=f'postcraft_{session_id[:8]}.zip',
     )
+
+
+@app.route('/robots.txt')
+def robots():
+    return (
+        'User-agent: *\nDisallow: /\n',
+        200,
+        {'Content-Type': 'text/plain'},
+    )
+
+
+@app.route('/scrape', methods=['POST'])
+def scrape_url():
+    """Fetch a product page URL and extract structured info via Claude."""
+    data    = request.get_json(silent=True) or {}
+    url     = data.get('url', '').strip()
+    api_key = data.get('api_key', '').strip() or os.environ.get('ANTHROPIC_API_KEY', '')
+
+    if not url:
+        return jsonify({'error': 'URL is required'}), 400
+    if not api_key:
+        return jsonify({'error': 'Anthropic API key is required to read a URL'}), 400
+
+    # ── fetch page ───────────────────────────────────────────────────────────
+    try:
+        import requests as req
+        headers = {'User-Agent': 'Mozilla/5.0 (compatible; PostCraft-Bot/1.0)'}
+        resp    = req.get(url, headers=headers, timeout=12)
+        resp.raise_for_status()
+        raw_html = resp.text
+    except Exception as exc:
+        return jsonify({'error': f'Could not fetch URL: {exc}'}), 400
+
+    # ── strip HTML to clean text (stdlib only) ───────────────────────────────
+    text = re.sub(r'<(script|style)[^>]*>.*?</(script|style)>',
+                  '', raw_html, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r'<[^>]+>', ' ', text)
+    text = unescape(text)
+    text = re.sub(r'\s+', ' ', text).strip()[:8000]
+
+    # ── ask Claude to extract product fields ─────────────────────────────────
+    try:
+        import json
+        import anthropic
+        client = anthropic.Anthropic(api_key=api_key)
+        msg = client.messages.create(
+            model='claude-haiku-4-5-20251001',
+            max_tokens=512,
+            messages=[{
+                'role': 'user',
+                'content': (
+                    'Extract product information from this webpage text. '
+                    'Return ONLY a JSON object with keys: '
+                    'product_name, brand_name, tagline, description, cta. '
+                    'cta should be a short action phrase like "Shop Now" or "Buy Now". '
+                    'Keep description to 1-2 sentences max. '
+                    'Return only valid JSON, no markdown, no extra text.\n\n'
+                    f'Page text:\n{text}'
+                ),
+            }],
+        )
+        result = json.loads(msg.content[0].text.strip())
+        return jsonify(result)
+    except Exception as exc:
+        return jsonify({'error': f'Could not extract product info: {exc}'}), 500
 
 
 if __name__ == '__main__':

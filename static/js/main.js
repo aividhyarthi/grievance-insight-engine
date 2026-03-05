@@ -1,4 +1,4 @@
-/* ── PostCraft — frontend logic ─────────────────────────────────────────── */
+/* ── PostCraft by Rudra Kasturi Inc. — frontend logic ───────────────────── */
 
 'use strict';
 
@@ -260,6 +260,56 @@ document.querySelectorAll('.btn-copy').forEach(btn => {
     });
   });
 });
+
+// ── URL import ────────────────────────────────────────────────────────────────
+const urlInput   = document.getElementById('url-input');
+const urlLoadBtn = document.getElementById('url-load-btn');
+const urlStatus  = document.getElementById('url-status');
+
+urlLoadBtn.addEventListener('click', importFromUrl);
+urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') importFromUrl(); });
+
+async function importFromUrl() {
+  const url = urlInput.value.trim();
+  if (!url) return;
+
+  setUrlStatus('loading', '⏳ Fetching page…');
+  urlLoadBtn.disabled = true;
+
+  try {
+    const res  = await fetch('/scrape', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url, api_key: apiKeyInput.value.trim() }),
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      setUrlStatus('error', data.error || 'Could not import from URL.');
+      return;
+    }
+
+    // Auto-fill form fields with extracted data
+    if (data.product_name) { productName.value = data.product_name; checkReady(); }
+    if (data.brand_name)   { brandName.value   = data.brand_name; }
+    if (data.tagline)      { tagline.value      = data.tagline; }
+    if (data.description)  { description.value  = data.description; }
+    if (data.cta)          { cta.value          = data.cta; }
+
+    setUrlStatus('success', '✓ Details imported — review and generate!');
+  } catch (err) {
+    setUrlStatus('error', 'Network error — could not reach the URL.');
+    console.error(err);
+  } finally {
+    urlLoadBtn.disabled = false;
+  }
+}
+
+function setUrlStatus(type, msg) {
+  urlStatus.textContent = msg;
+  urlStatus.className   = `url-status ${type}`;
+  urlStatus.classList.remove('hidden');
+}
 
 // ── helpers ───────────────────────────────────────────────────────────────────
 function setLoading(on) {
