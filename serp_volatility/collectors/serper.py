@@ -2,10 +2,11 @@
 Serper.dev SERP collector — cheapest option at $0.30/1K queries.
 """
 
+import json
 import requests
 from datetime import datetime, timezone
 
-from .base import BaseSerpCollector, SerpResult
+from .base import BaseSerpCollector, SerpFeature, SerpResult
 
 
 class SerperCollector(BaseSerpCollector):
@@ -17,7 +18,7 @@ class SerperCollector(BaseSerpCollector):
         category: str,
         device: str = "desktop",
         num_results: int = 20,
-    ) -> list[SerpResult]:
+    ) -> tuple[list[SerpResult], list[SerpFeature]]:
         headers = {
             "X-API-KEY": self.config.serp_api.api_key,
             "Content-Type": "application/json",
@@ -30,12 +31,8 @@ class SerperCollector(BaseSerpCollector):
             "num": num_results,
         }
 
-        # Serper doesn't have a direct mobile param, but we can set the
-        # user agent type via the 'type' or device header
         if device == "mobile":
             payload["type"] = "search"
-            # Serper uses a separate endpoint or param for mobile — we pass it
-            # as a header hint; actual mobile SERP may need the paid tier
             headers["X-Device"] = "mobile"
 
         response = requests.post(
@@ -47,8 +44,8 @@ class SerperCollector(BaseSerpCollector):
         response.raise_for_status()
         data = response.json()
 
-        results = []
         now = datetime.now(timezone.utc)
+        results = []
 
         for item in data.get("organic", [])[:num_results]:
             position = item.get("position", 0)
@@ -67,4 +64,71 @@ class SerperCollector(BaseSerpCollector):
                 )
             )
 
-        return results
+        features = self._parse_features(data, keyword, category, device, now)
+        return results, features
+
+    def _parse_features(
+        self, data: dict, keyword: str, category: str, device: str, now: datetime
+    ) -> list[SerpFeature]:
+        features = []
+
+        def add(feature_type: str, count: int = 1, extra: dict = None):
+            features.append(SerpFeature(
+                keyword=keyword,
+                category=category,
+                device=device,
+                feature_type=feature_type,
+                collected_at=now,
+                count=count,
+                feature_data=json.dumps(extra) if extra else None,
+            ))
+
+        # AI Overview (answerBox with type "ai_overview", or dedicated key)
+        ai_overview = data.get("aiOverview") or data.get("ai_overview")
+        if ai_overview:
+            add("ai_overview", extra={"source": "serper"})
+        elif data.get("answerBox", {}).get("type") == "ai_overview":
+            add("ai_overview")
+
+        # Featured Snippet / Answer Box (non-AI)
+        answer_box = data.get("answerBox")
+        if answer_box and not ai_overview:
+            snippet_type = answer_box.get("type", "snippet")
+            add("featured_snippet", extra={"type": snippet_type, "title": answer_box.get("title", "")})
+
+        # Knowledge Panel
+        if data.get("knowledgeGraph"):
+            kg = data["knowledgeGraph"]
+            add("knowledge_panel", extra={"title": kg.get("title", ""), "type": kg.get("type", "")})
+
+        # Top Stories
+        top_stories = data.get("topStories", [])
+        if top_stories:
+            add("top_stories", count=len(top_stories))
+
+        # People Also Ask
+        paa = data.get("peopleAlsoAsk", [])
+        if paa:
+            add("people_also_ask", count=len(paa))
+
+        # Shopping
+        shopping = data.get("shopping", [])
+        if shopping:
+            add("shopping", count=len(shopping))
+
+        # Image Pack
+        images = data.get("images", [])
+        if images:
+            add("image_pack", count=len(images))
+
+        # Videos
+        videos = data.get("videos", [])
+        if videos:
+            add("video", count=len(videos))
+
+        # Local Pack
+        places = data.get("places", [])
+        if places:
+            add("local_pack", count=len(places))
+
+        return features

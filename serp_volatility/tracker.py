@@ -61,15 +61,18 @@ def collect_serp_data(config: TrackerConfig, storage: SQLiteStore):
         for kw in keywords:
             for device in config.devices:
                 try:
-                    results = collector.fetch_serp(
+                    results, features = collector.fetch_serp(
                         keyword=kw,
                         category=category,
                         device=device,
                         num_results=config.top_n_results,
                     )
                     storage.store_results(results)
+                    storage.store_features(features)
                     total += len(results)
-                    print(f"  [{device}] '{kw}' -> {len(results)} results")
+                    feature_names = [f.feature_type for f in features]
+                    feature_str = f" | features: {', '.join(feature_names)}" if feature_names else ""
+                    print(f"  [{device}] '{kw}' -> {len(results)} results{feature_str}")
 
                     # Rate limiting
                     time.sleep(0.5)
@@ -100,6 +103,64 @@ def compute_volatility(config: TrackerConfig, storage: SQLiteStore):
             level = VolatilityCalculator._score_to_level(score)
             bar = "█" * int(score) + "░" * (10 - int(score))
             print(f"  {cat_name:<30} {bar} {score:.1f} [{level}]")
+
+
+def _generate_demo_features(storage, categories, target_date, collected_at, is_update_period):
+    """Generate realistic demo SERP feature presence data for a single day."""
+    from .collectors.base import SerpFeature
+
+    # Base probability a feature appears for a given keyword (realistic rates)
+    # During an algo update period, AI Overview and Featured Snippet rates spike
+    base_probs = {
+        "ai_overview":      0.30 if is_update_period else 0.18,
+        "featured_snippet": 0.25 if is_update_period else 0.20,
+        "people_also_ask":  0.70,
+        "top_stories":      0.35,
+        "knowledge_panel":  0.15,
+        "local_pack":       0.12,
+        "shopping":         0.20,
+        "image_pack":       0.40,
+        "video":            0.22,
+    }
+
+    # Some categories are more likely to trigger specific features
+    category_boosts = {
+        "news":         {"top_stories": 0.40, "knowledge_panel": 0.10},
+        "ecommerce":    {"shopping": 0.40, "image_pack": 0.20},
+        "travel":       {"local_pack": 0.25, "image_pack": 0.15},
+        "health":       {"featured_snippet": 0.20, "people_also_ask": 0.15},
+        "government":   {"featured_snippet": 0.20, "knowledge_panel": 0.15},
+        "entertainment":{"video": 0.30, "top_stories": 0.15, "image_pack": 0.15},
+        "food":         {"local_pack": 0.35, "image_pack": 0.15},
+        "education":    {"featured_snippet": 0.15, "people_also_ask": 0.10},
+    }
+
+    all_features = []
+    for category in categories:
+        keywords = storage.get_keywords_for_category(category)
+        boosts = category_boosts.get(category, {})
+
+        for kw in keywords:
+            random.seed(f"{kw}-features-{target_date}")
+            for feature_type, base_prob in base_probs.items():
+                prob = min(base_prob + boosts.get(feature_type, 0.0), 0.95)
+                if random.random() < prob:
+                    count = 1
+                    if feature_type in ("top_stories", "people_also_ask"):
+                        count = random.randint(3, 8)
+                    elif feature_type in ("shopping", "image_pack"):
+                        count = random.randint(4, 12)
+
+                    all_features.append(SerpFeature(
+                        keyword=kw,
+                        category=category,
+                        device="desktop",
+                        feature_type=feature_type,
+                        collected_at=collected_at,
+                        count=count,
+                    ))
+
+    storage.store_features(all_features)
 
 
 def generate_demo_data(storage: SQLiteStore):
@@ -162,6 +223,9 @@ def generate_demo_data(storage: SQLiteStore):
                     ))
 
                 storage.store_results(results)
+
+        # Generate realistic demo SERP feature data
+        _generate_demo_features(storage, categories, target_date, collected_at, is_update_period)
 
         if day_offset % 5 == 0:
             print(f"  Generated data for {target_date} (day -{day_offset})")

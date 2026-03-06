@@ -3,12 +3,13 @@ SQLite storage backend for SERP data.
 Lightweight local storage — good for development and small-scale tracking.
 """
 
+import json
 import sqlite3
 from datetime import date, datetime
 from pathlib import Path
 from typing import Optional
 
-from ..collectors.base import SerpResult
+from ..collectors.base import SerpFeature, SerpResult
 
 
 class SQLiteStore:
@@ -67,6 +68,24 @@ class SQLiteStore:
 
                 CREATE INDEX IF NOT EXISTS idx_volatility_date
                     ON volatility_scores(score_date, device);
+
+                CREATE TABLE IF NOT EXISTS serp_features (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    keyword TEXT NOT NULL,
+                    category TEXT NOT NULL,
+                    device TEXT NOT NULL DEFAULT 'desktop',
+                    feature_type TEXT NOT NULL,
+                    count INTEGER NOT NULL DEFAULT 1,
+                    feature_data TEXT,
+                    collected_date DATE NOT NULL,
+                    collected_at TIMESTAMP NOT NULL
+                );
+
+                CREATE INDEX IF NOT EXISTS idx_features_date
+                    ON serp_features(collected_date, device, feature_type);
+
+                CREATE INDEX IF NOT EXISTS idx_features_keyword
+                    ON serp_features(keyword, collected_date);
             """)
 
     def _connect(self) -> sqlite3.Connection:
@@ -173,6 +192,74 @@ class SQLiteStore:
                         None,
                     ),
                 )
+
+    def store_features(self, features: list[SerpFeature]):
+        """Store detected SERP features for a batch of keywords."""
+        if not features:
+            return
+        with self._connect() as conn:
+            conn.executemany(
+                """INSERT INTO serp_features
+                   (keyword, category, device, feature_type, count, feature_data,
+                    collected_date, collected_at)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                [
+                    (
+                        f.keyword, f.category, f.device, f.feature_type, f.count,
+                        f.feature_data,
+                        f.collected_at.date().isoformat(),
+                        f.collected_at.isoformat(),
+                    )
+                    for f in features
+                ],
+            )
+
+    def get_feature_summary(
+        self, target_date: date, device: str = "desktop"
+    ) -> list[dict]:
+        """
+        For a given date, return for each feature_type:
+          - how many keywords triggered it
+          - total count of items (e.g. number of top stories shown)
+        """
+        with self._connect() as conn:
+            rows = conn.execute(
+                """SELECT feature_type,
+                          COUNT(DISTINCT keyword) AS keywords_with_feature,
+                          SUM(count) AS total_items
+                   FROM serp_features
+                   WHERE collected_date = ? AND device = ?
+                   GROUP BY feature_type
+                   ORDER BY keywords_with_feature DESC""",
+                (target_date.isoformat(), device),
+            ).fetchall()
+            return [dict(r) for r in rows]
+
+    def get_feature_history(
+        self, feature_type: str, days: int = 30, device: str = "desktop"
+    ) -> list[dict]:
+        """
+        Day-by-day presence of a specific SERP feature:
+          - date
+          - keywords_with_feature  (number of keywords where it appeared)
+          - total_keywords          (total tracked on that date, for % calc)
+        """
+        with self._connect() as conn:
+            rows = conn.execute(
+                """SELECT
+                       f.collected_date AS score_date,
+                       COUNT(DISTINCT f.keyword) AS keywords_with_feature,
+                       (SELECT COUNT(DISTINCT keyword) FROM serp_features
+                        WHERE collected_date = f.collected_date AND device = f.device
+                       ) AS total_keywords
+                   FROM serp_features f
+                   WHERE f.feature_type = ? AND f.device = ?
+                   GROUP BY f.collected_date
+                   ORDER BY f.collected_date DESC
+                   LIMIT ?""",
+                (feature_type, device, days),
+            ).fetchall()
+            return [dict(r) for r in reversed(rows)]
 
     def get_volatility_history(
         self, days: int = 30, device: str = "desktop", category: str = "overall"

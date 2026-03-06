@@ -289,6 +289,127 @@ def main():
     else:
         st.info("No category data available. Run data collection first.")
 
+    # --- SERP Features Panel ---
+    st.markdown("---")
+    st.subheader("SERP Features Tracker")
+    st.caption(
+        "Which features (AI Overview, Top Stories, Rich Snippets, etc.) "
+        "are appearing — and how their presence is shifting over time."
+    )
+
+    FEATURE_LABELS = {
+        "ai_overview":      "AI Overview (SGE)",
+        "featured_snippet": "Featured Snippet",
+        "people_also_ask":  "People Also Ask",
+        "top_stories":      "Top Stories",
+        "image_pack":       "Image Pack",
+        "video":            "Video Results",
+        "shopping":         "Shopping",
+        "local_pack":       "Local Pack",
+        "knowledge_panel":  "Knowledge Panel",
+    }
+    FEATURE_ICONS = {
+        "ai_overview":      "🤖",
+        "featured_snippet": "⭐",
+        "people_also_ask":  "❓",
+        "top_stories":      "📰",
+        "image_pack":       "🖼️",
+        "video":            "🎬",
+        "shopping":         "🛒",
+        "local_pack":       "📍",
+        "knowledge_panel":  "📚",
+    }
+
+    feature_summary = storage.get_feature_summary(today, device)
+
+    if feature_summary:
+        # Total keywords for percentage calculation
+        total_kw = storage.get_keyword_count() or 1
+
+        # Top row: metric cards for each feature
+        features_sorted = sorted(feature_summary, key=lambda x: x["keywords_with_feature"], reverse=True)
+        cols_per_row = 3
+        for row_start in range(0, len(features_sorted), cols_per_row):
+            row_features = features_sorted[row_start:row_start + cols_per_row]
+            cols = st.columns(cols_per_row)
+            for col, feat in zip(cols, row_features):
+                ft = feat["feature_type"]
+                label = FEATURE_LABELS.get(ft, ft.replace("_", " ").title())
+                icon = FEATURE_ICONS.get(ft, "📊")
+                pct = round(feat["keywords_with_feature"] / total_kw * 100, 1)
+                with col:
+                    st.metric(
+                        label=f"{icon} {label}",
+                        value=f"{pct}% of keywords",
+                        help=f"Appeared on {feat['keywords_with_feature']} keywords today (total items: {feat['total_items']})",
+                    )
+
+        st.markdown("---")
+
+        # Feature trend chart — pick which features to plot
+        st.markdown("**Feature Presence Over Time** (% of tracked keywords)")
+        default_features = ["ai_overview", "featured_snippet", "top_stories", "people_also_ask"]
+        available_features = [f["feature_type"] for f in feature_summary]
+        selected_features = st.multiselect(
+            "Select features to compare",
+            options=available_features,
+            default=[f for f in default_features if f in available_features],
+            format_func=lambda x: f"{FEATURE_ICONS.get(x, '')} {FEATURE_LABELS.get(x, x)}",
+            key="feature_multiselect",
+        )
+
+        if selected_features:
+            fig_features = go.Figure()
+            for ft in selected_features:
+                history = storage.get_feature_history(ft, days_range, device)
+                if history:
+                    df_ft = pd.DataFrame(history)
+                    df_ft["score_date"] = pd.to_datetime(df_ft["score_date"])
+                    df_ft["pct"] = (df_ft["keywords_with_feature"] / df_ft["total_keywords"].replace(0, 1) * 100).round(1)
+                    label = f"{FEATURE_ICONS.get(ft, '')} {FEATURE_LABELS.get(ft, ft)}"
+                    fig_features.add_trace(go.Scatter(
+                        x=df_ft["score_date"],
+                        y=df_ft["pct"],
+                        mode="lines+markers",
+                        name=label,
+                        line=dict(width=2),
+                        marker=dict(size=5),
+                    ))
+
+            fig_features.update_layout(
+                yaxis=dict(title="% Keywords with Feature", range=[0, 100]),
+                xaxis=dict(title="Date"),
+                height=400,
+                margin=dict(t=20, b=40),
+                hovermode="x unified",
+                legend=dict(orientation="h", yanchor="bottom", y=-0.35),
+            )
+            st.plotly_chart(fig_features, use_container_width=True)
+
+        # AI Overview call-out — highlighted separately since it's most impactful
+        ai_data = next((f for f in feature_summary if f["feature_type"] == "ai_overview"), None)
+        if ai_data:
+            ai_pct = round(ai_data["keywords_with_feature"] / total_kw * 100, 1)
+            ai_history = storage.get_feature_history("ai_overview", 2, device)
+            delta_str = ""
+            if len(ai_history) >= 2:
+                prev_pct = round(ai_history[-2]["keywords_with_feature"] / max(ai_history[-2]["total_keywords"], 1) * 100, 1)
+                delta = round(ai_pct - prev_pct, 1)
+                delta_str = f" ({'+' if delta >= 0 else ''}{delta}% vs yesterday)"
+
+            level_color = "#e53935" if ai_pct > 40 else "#fb8c00" if ai_pct > 20 else "#43a047"
+            st.markdown(
+                f'<div style="background:{level_color}22; border-left: 4px solid {level_color}; '
+                f'padding: 12px 16px; border-radius: 4px; margin-top: 12px;">'
+                f'<strong>🤖 AI Overview Impact{delta_str}</strong><br>'
+                f'Google is showing AI Overviews on <strong>{ai_pct}%</strong> of tracked India keywords today. '
+                f'{"High AI displacement — organic clicks may be significantly reduced." if ai_pct > 40 else "Moderate AI presence — monitor closely." if ai_pct > 20 else "Low AI Overview presence — organic results mostly unaffected."}'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+    else:
+        st.info("No SERP feature data yet. Run `python -m serp_volatility demo` or `collect` to generate data.")
+
     # --- Footer ---
     st.markdown("---")
     st.caption(
