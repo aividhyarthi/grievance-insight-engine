@@ -22,6 +22,18 @@
 
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <!-- Define logo fallback EARLY so onerror fires correctly before main.js loads -->
+  <script>
+    window.tickerLogoFallback = function(img) {
+      var text = img.alt || (img.closest('.ticker-item,.trust-logo-item') && img.closest('.ticker-item,.trust-logo-item').querySelector('span') ? img.closest('.ticker-item,.trust-logo-item').querySelector('span').textContent : '');
+      var char = (text || '?').trim().charAt(0).toUpperCase();
+      var palette = ['#6366F1','#7C3AED','#EC4899','#F59E0B','#10B981','#3B82F6','#EF4444','#8B5CF6','#06B6D4','#F97316'];
+      var color = palette[char.charCodeAt(0) % palette.length];
+      var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='" + color + "'/><text x='12' y='17' text-anchor='middle' font-family='system-ui,sans-serif' font-size='13' font-weight='700' fill='white'>" + char + "</text></svg>";
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      img.onerror = null;
+    };
+  </script>
 </head>
 <body>
 
@@ -34,6 +46,7 @@
       <nav class="nav__links" id="navLinks">
         <a href="#services">Services</a>
         <a href="#results">Results</a>
+        <a href="#tools">Tools</a>
         <a href="#clients">Clients</a>
         <a href="#process">Process</a>
         <a href="#team">Team</a>
@@ -384,6 +397,91 @@
       </div>
 
       <p class="results__disclaimer">* Figures represent portfolio-wide averages across 2-year client engagements. Individual results vary by industry, competition, and starting baseline. We do not guarantee specific outcomes.</p>
+    </div>
+  </section>
+
+  <!-- ===== TOOLS ===== -->
+  <section class="section tools" id="tools">
+    <div class="container">
+      <div class="section-header section-header--light">
+        <div class="section-badge section-badge--dark">Built In-House</div>
+        <h2 class="section-title">Our <span class="gradient-text">Intelligence Toolkit</span></h2>
+        <p class="section-sub">Free tools built by the AppStudioX team — because great strategy starts with great data.</p>
+      </div>
+      <div class="tools__grid">
+
+        <div class="tool-card reveal">
+          <div class="tool-card__header">
+            <span class="tool-icon">✍️</span>
+            <span class="tool-badge tool-badge--social">Social Media</span>
+          </div>
+          <h3>PostCraft</h3>
+          <p>Generate scroll-stopping social content in seconds. Tailored captions, hashtags, and formats for every platform.</p>
+          <a href="https://postcraft-social-media-generator.onrender.com/" target="_blank" rel="noopener" class="tool-card__cta">Launch Tool →</a>
+        </div>
+
+        <div class="tool-card reveal">
+          <div class="tool-card__header">
+            <span class="tool-icon">⭐</span>
+            <span class="tool-badge tool-badge--brand">Brand Intel</span>
+          </div>
+          <h3>Brand Review Analyser</h3>
+          <p>Analyse your brand's online reviews across platforms. Understand sentiment and surface what customers really say.</p>
+          <a href="https://accomplished-youth-production.up.railway.app/" target="_blank" rel="noopener" class="tool-card__cta">Launch Tool →</a>
+        </div>
+
+        <div class="tool-card reveal">
+          <div class="tool-card__header">
+            <span class="tool-icon">📍</span>
+            <span class="tool-badge tool-badge--local">Local SEO</span>
+          </div>
+          <h3>Citation Scanner</h3>
+          <p>Scan and audit your brand's citations across directories. Find inconsistencies before they hurt your local SEO.</p>
+          <a href="https://accomplished-youth-production.up.railway.app/" target="_blank" rel="noopener" class="tool-card__cta">Launch Tool →</a>
+        </div>
+
+        <div class="tool-card reveal">
+          <div class="tool-card__header">
+            <span class="tool-icon">🔍</span>
+            <span class="tool-badge tool-badge--seo">SEO</span>
+          </div>
+          <h3>SEO Audit Tool</h3>
+          <p>Run a full SEO audit on any website. Uncover technical issues, content gaps, and ranking opportunities instantly.</p>
+          <a href="https://grievance-insight-engine-production-a536.up.railway.app/" target="_blank" rel="noopener" class="tool-card__cta">Launch Tool →</a>
+        </div>
+
+        <div class="tool-card reveal">
+          <div class="tool-card__header">
+            <span class="tool-icon">🤖</span>
+            <span class="tool-badge tool-badge--aeo">AEO</span>
+          </div>
+          <h3>AEO Audit</h3>
+          <p>Audit your content for Answer Engine Optimisation. See exactly how AI assistants and voice search find your brand.</p>
+          <a href="https://grievance-insight-engine-production.up.railway.app/" target="_blank" rel="noopener" class="tool-card__cta">Launch Tool →</a>
+        </div>
+
+        <div class="tool-card reveal">
+          <div class="tool-card__header">
+            <span class="tool-icon">📊</span>
+            <span class="tool-badge tool-badge--content">Content</span>
+          </div>
+          <h3>Resource Audit</h3>
+          <p>Audit your digital content library and assets. Identify what's working, what's outdated, and what's missing.</p>
+          <a href="https://grievance-insight-engine-production.up.railway.app/" target="_blank" rel="noopener" class="tool-card__cta">Launch Tool →</a>
+        </div>
+
+        <div class="tool-card tool-card--featured reveal">
+          <div class="tool-card__tag">AI</div>
+          <div class="tool-card__header">
+            <span class="tool-icon">⚡</span>
+            <span class="tool-badge tool-badge--ai">AI Assistant</span>
+          </div>
+          <h3>Raudram GPT</h3>
+          <p>AppStudioX's custom AI growth assistant. Ask strategy questions, get content ideas, and explore growth tactics.</p>
+          <a href="https://blog.rudrakasturi.com/wp-content/raudram/raudram.html" target="_blank" rel="noopener" class="tool-card__cta">Launch Tool →</a>
+        </div>
+
+      </div>
     </div>
   </section>
 

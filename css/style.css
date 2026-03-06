@@ -403,7 +403,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-wrap: wrap;
 }
 
-.hero__trust-logos span {
+.hero__trust-logos span:not(.trust-logo-item) {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 6px;
@@ -411,6 +411,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: rgba(255,255,255,0.7);
   font-weight: 500;
   font-size: 0.82rem;
+}
+.trust-logo-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  background: rgba(255,255,255,0.07) !important;
+  border: 1px solid rgba(255,255,255,0.13) !important;
+  border-radius: 8px !important;
+  padding: 5px 12px !important;
+  color: rgba(255,255,255,0.85) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+.trust-logo-item img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .hero__scroll-hint {
@@ -1375,6 +1395,118 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer__bottom-links a:hover { color: rgba(255,255,255,0.6); }
 
 /* FAB replaced by chat widget */
+
+/* ===== TOOLS SECTION ===== */
+.tools { background: var(--dark); }
+
+.tools__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+
+.tool-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.tool-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.tool-card:hover {
+  border-color: rgba(99,102,241,0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(99,102,241,0.15);
+}
+.tool-card:hover::before { opacity: 1; }
+
+.tool-card--featured {
+  border-color: rgba(99,102,241,0.3);
+  background: rgba(99,102,241,0.07);
+}
+
+.tool-card__tag {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: linear-gradient(135deg, var(--accent), #7C3AED);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tool-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tool-icon { font-size: 26px; line-height: 1; }
+
+.tool-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+.tool-badge--social  { background: rgba(236,72,153,0.15);  color: #F472B6; }
+.tool-badge--brand   { background: rgba(245,158,11,0.15);  color: #FCD34D; }
+.tool-badge--local   { background: rgba(16,185,129,0.15);  color: #34D399; }
+.tool-badge--seo     { background: rgba(99,102,241,0.18);  color: #818CF8; }
+.tool-badge--aeo     { background: rgba(124,58,237,0.18);  color: #A78BFA; }
+.tool-badge--content { background: rgba(59,130,246,0.15);  color: #60A5FA; }
+.tool-badge--ai      { background: rgba(99,102,241,0.22);  color: #C4B5FD; }
+
+.tool-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  font-family: var(--font-head);
+  margin: 0;
+}
+.tool-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.52);
+  margin: 0;
+  flex: 1;
+}
+.tool-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 2px;
+  transition: gap 0.15s ease, color 0.15s ease;
+  width: fit-content;
+}
+.tool-card__cta:hover { color: #A5B4FC; gap: 10px; }
+
+@media (max-width: 1024px) { .tools__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .tools__grid { grid-template-columns: 1fr; } }
 
 /* ============================
    TESTIMONIALS
