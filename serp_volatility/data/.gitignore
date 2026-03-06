@@ -1,2 +1,5 @@
-# Ignore SQLite database (generated via demo/collection)
+# Ignore SQLite database and journal files (generated via demo/collection)
 *.db
+*.db-journal
+*.db-wal
+*.db-shm
