@@ -23,6 +23,14 @@ from serp_volatility.config import CATEGORIES, TrackerConfig
 from serp_volatility.storage.sqlite_store import SQLiteStore
 from serp_volatility.analysis.volatility import VolatilityCalculator
 
+
+def ensure_demo_data(storage: SQLiteStore):
+    """Auto-generate demo data if database is empty (first deploy)."""
+    if storage.get_keyword_count() == 0:
+        from serp_volatility.tracker import generate_demo_data
+        generate_demo_data(storage)
+
+
 # --- Page Config ---
 st.set_page_config(
     page_title="India SERP Volatility Tracker",
@@ -82,6 +90,7 @@ def main():
     config = TrackerConfig()
     db_path = config.sqlite_path
     storage = SQLiteStore(db_path)
+    ensure_demo_data(storage)
     calculator = VolatilityCalculator(storage, config)
 
     # --- Sidebar ---
