@@ -135,12 +135,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Light sections on dark bg */
 .process .section-title,
 .team .section-title,
-.results .section-title {
+.results .section-title,
+.tools .section-title {
   color: var(--white);
 }
 .process .section-sub,
 .team .section-sub,
-.results .section-sub {
+.results .section-sub,
+.tools .section-sub {
   color: rgba(255,255,255,0.65);
 }
 
@@ -1397,7 +1399,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* FAB replaced by chat widget */
 
 /* ===== TOOLS SECTION ===== */
-.tools { background: var(--dark); }
+.tools { background: var(--primary-soft); }
 
 .tools__grid {
   display: grid;
