@@ -23,7 +23,7 @@ import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from .config import TrackerConfig, CATEGORIES
+from .config import CTR_BY_POSITION, TrackerConfig, CATEGORIES
 from .collectors.factory import get_collector
 from .storage.sqlite_store import SQLiteStore
 from .analysis.volatility import VolatilityCalculator
@@ -105,15 +105,13 @@ def compute_volatility(config: TrackerConfig, storage: SQLiteStore):
             print(f"  {cat_name:<30} {bar} {score:.1f} [{level}]")
 
 
-def _generate_demo_features(storage, categories, target_date, collected_at, is_update_period, devices=None):
-    """Generate realistic demo SERP feature presence data for a single day."""
+def _collect_demo_features(categories, storage, target_date, collected_at, is_update_period, devices=None):
+    """Return demo SERP feature records for a single day (no DB writes)."""
     from .collectors.base import SerpFeature
 
     if devices is None:
         devices = ["desktop", "mobile"]
 
-    # Base probability a feature appears for a given keyword (realistic rates)
-    # During an algo update period, AI Overview and Featured Snippet rates spike
     base_probs = {
         "ai_overview":      0.30 if is_update_period else 0.18,
         "featured_snippet": 0.25 if is_update_period else 0.20,
@@ -126,15 +124,13 @@ def _generate_demo_features(storage, categories, target_date, collected_at, is_u
         "video":            0.22,
     }
 
-    # Mobile has slightly different feature rates
     mobile_adjustments = {
-        "local_pack":   0.10,   # Local pack shows more on mobile
+        "local_pack":   0.10,
         "image_pack":   0.05,
         "shopping":     0.05,
         "knowledge_panel": -0.03,
     }
 
-    # Some categories are more likely to trigger specific features
     category_boosts = {
         "news":         {"top_stories": 0.40, "knowledge_panel": 0.10},
         "ecommerce":    {"shopping": 0.40, "image_pack": 0.20},
@@ -146,12 +142,11 @@ def _generate_demo_features(storage, categories, target_date, collected_at, is_u
         "education":    {"featured_snippet": 0.15, "people_also_ask": 0.10},
     }
 
-    all_features = []
+    features = []
     for device in devices:
         for category in categories:
             keywords = storage.get_keywords_for_category(category)
             boosts = category_boosts.get(category, {})
-
             for kw in keywords:
                 random.seed(f"{kw}-features-{target_date}-{device}")
                 for feature_type, base_prob in base_probs.items():
@@ -163,8 +158,7 @@ def _generate_demo_features(storage, categories, target_date, collected_at, is_u
                             count = random.randint(3, 8)
                         elif feature_type in ("shopping", "image_pack"):
                             count = random.randint(4, 12)
-
-                        all_features.append(SerpFeature(
+                        features.append(SerpFeature(
                             keyword=kw,
                             category=category,
                             device=device,
@@ -172,8 +166,7 @@ def _generate_demo_features(storage, categories, target_date, collected_at, is_u
                             collected_at=collected_at,
                             count=count,
                         ))
-
-    storage.store_features(all_features)
+    return features
 
 
 def generate_demo_data(storage: SQLiteStore):
@@ -194,6 +187,11 @@ def generate_demo_data(storage: SQLiteStore):
         "portal.in", "gateway.co.in", "connect.com", "solutions.in",
     ]
 
+    from .collectors.base import SerpResult
+
+    # Collect ALL results first, then insert in one transaction (fast)
+    all_results = []
+
     for day_offset in range(30, 0, -1):
         target_date = date.today() - timedelta(days=day_offset)
         collected_at = datetime.combine(target_date, datetime.min.time()).replace(tzinfo=timezone.utc)
@@ -201,8 +199,6 @@ def generate_demo_data(storage: SQLiteStore):
         # Simulate higher volatility around day 15 (simulated algo update)
         is_update_period = 13 <= day_offset <= 17
         shuffle_intensity = 0.6 if is_update_period else 0.15
-
-        from .collectors.base import SerpResult
 
         for device in config.devices:
             for category in categories:
@@ -230,9 +226,8 @@ def generate_demo_data(storage: SQLiteStore):
                         i, j = random.sample(range(len(shuffled)), 2)
                         shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
 
-                    results = []
                     for pos, domain in enumerate(shuffled, 1):
-                        results.append(SerpResult(
+                        all_results.append(SerpResult(
                             keyword=kw,
                             category=category,
                             position=pos,
@@ -243,27 +238,91 @@ def generate_demo_data(storage: SQLiteStore):
                             collected_at=collected_at,
                         ))
 
-                    storage.store_results(results)
-
-        # Generate realistic demo SERP feature data (both devices)
-        _generate_demo_features(storage, categories, target_date, collected_at, is_update_period, config.devices)
-
         if day_offset % 5 == 0:
-            print(f"  Generated data for {target_date} (day -{day_offset})")
+            print(f"  Prepared data for {target_date} (day -{day_offset})")
+
+    # Single bulk insert for all 30 days (orders of magnitude faster than per-keyword inserts)
+    storage.store_results(all_results)
+    print(f"Inserted {len(all_results)} SERP results in bulk.")
+
+    # Bulk insert features for all days
+    all_features = []
+    for day_offset in range(30, 0, -1):
+        target_date = date.today() - timedelta(days=day_offset)
+        collected_at = datetime.combine(target_date, datetime.min.time()).replace(tzinfo=timezone.utc)
+        is_update_period = 13 <= day_offset <= 17
+        from .collectors.base import SerpFeature
+        all_features.extend(
+            _collect_demo_features(categories, storage, target_date, collected_at, is_update_period, config.devices)
+        )
+    storage.store_features(all_features)
 
     print(f"Demo data generated for 30 days across {len(categories)} categories.")
 
-    # Also compute volatility scores for all days (both devices)
-    calculator = VolatilityCalculator(storage, config)
-    print("\nComputing volatility scores...")
+    # Build in-memory position map to compute volatility without SQL queries.
+    # key: (keyword, date, device) -> {domain: position}
+    pos_map: dict[tuple, dict[str, int]] = {}
+    for r in all_results:
+        key = (r.keyword, r.collected_at.date(), r.device)
+        if key not in pos_map:
+            pos_map[key] = {}
+        pos_map[key][r.domain] = r.position
+
+    # Pre-fetch keyword lists per category (one DB query per category)
+    kw_by_cat = {cat: storage.get_keywords_for_category(cat) for cat in categories}
+    kw_count = sum(len(v) for v in kw_by_cat.values())
+
+    print("\nComputing volatility scores (in-memory)...")
+    volatility_rows: list[dict] = []
+    max_change = config.max_expected_change
+
     for day_offset in range(29, 0, -1):
         target_date = date.today() - timedelta(days=day_offset)
-        for device in config.devices:
-            result = calculator.compute_overall_volatility(target_date, device)
-            if result["overall_score"] > 0:
-                storage.store_volatility_score(result)
+        prev_date = target_date - timedelta(days=1)
 
-    print("Volatility scores computed.")
+        for device in config.devices:
+            category_scores: dict[str, float] = {}
+            all_vols: list[float] = []
+
+            for category, keywords in kw_by_cat.items():
+                kw_vols: list[float] = []
+                for kw in keywords:
+                    curr = pos_map.get((kw, target_date, device), {})
+                    prev = pos_map.get((kw, prev_date, device), {})
+                    if not curr or not prev:
+                        continue
+                    all_domains = set(curr) | set(prev)
+                    out_of_range = max(max(curr.values(), default=20), max(prev.values(), default=20)) + 1
+                    total_w = total_wc = 0.0
+                    for domain in all_domains:
+                        cp = curr.get(domain, out_of_range)
+                        pp = prev.get(domain, out_of_range)
+                        w = CTR_BY_POSITION.get(min(cp, pp), 0.003)
+                        total_wc += w * abs(cp - pp)
+                        total_w += w
+                    if total_w:
+                        kw_vols.append(min(total_wc / total_w / max_change, 1.0))
+                if kw_vols:
+                    score = round(sum(kw_vols) / len(kw_vols) * 10.0, 2)
+                    category_scores[category] = score
+                    all_vols.append(score)
+
+            if not all_vols:
+                continue
+            overall = round(sum(all_vols) / len(all_vols), 2)
+            level = VolatilityCalculator._score_to_level(overall)
+            volatility_rows.append({
+                "date": target_date.isoformat(),
+                "device": device,
+                "overall_score": overall,
+                "category_scores": category_scores,
+                "level": level,
+                "keywords_tracked": kw_count,
+            })
+
+    for row in volatility_rows:
+        storage.store_volatility_score(row)
+    print(f"Volatility scores computed for {len(volatility_rows)} day/device combinations.")
 
 
 def main():

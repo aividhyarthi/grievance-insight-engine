@@ -26,9 +26,13 @@ from serp_volatility.analysis.volatility import VolatilityCalculator
 
 def ensure_demo_data(storage: SQLiteStore):
     """Auto-generate demo data if database is empty (first deploy)."""
-    if storage.get_keyword_count() == 0:
-        from serp_volatility.tracker import generate_demo_data
-        generate_demo_data(storage)
+    try:
+        if storage.get_keyword_count() == 0:
+            from serp_volatility.tracker import generate_demo_data
+            with st.spinner("Generating demo data for first launch…"):
+                generate_demo_data(storage)
+    except Exception as e:
+        st.warning(f"Demo data generation skipped: {e}")
 
 
 # --- Page Config ---
