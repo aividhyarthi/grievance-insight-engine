@@ -5,7 +5,8 @@
   },
   "deploy": {
     "startCommand": "streamlit run serp_volatility/dashboard/app.py --server.port=$PORT --server.headless=true --server.address=0.0.0.0",
-    "healthcheckPath": "/",
+    "healthcheckPath": "/_stcore/health",
+    "healthcheckTimeout": 120,
     "restartPolicyType": "ON_FAILURE"
   }
 }
