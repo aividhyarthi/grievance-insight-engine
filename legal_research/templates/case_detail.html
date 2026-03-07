@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}{{ case.case_name }} — Legal Research{% endblock %}
+
+{% block content %}
+<div class="case-detail">
+    <a href="/" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Search
+    </a>
+
+    <div class="case-detail-header">
+        <h1>{{ case.case_name }}</h1>
+        <p class="case-number">{{ case.case_number }}</p>
+        <div class="case-meta">
+            <span class="badge badge-type">{{ case.case_type }}</span>
+            <span class="badge badge-court">{{ case.court_level }}</span>
+            <span class="badge badge-year">{{ case.year }}</span>
+            {% if case.outcome %}
+            <span class="badge badge-outcome-{{ case.outcome }}">{{ case.outcome }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Case Info Grid -->
+    <div class="detail-section">
+        <h2>Case Information</h2>
+        <div class="detail-grid">
+            <div class="detail-item">
+                <label>Court</label>
+                <span>{{ case.court }}</span>
+            </div>
+            <div class="detail-item">
+                <label>Date Decided</label>
+                <span>{{ case.date_decided or 'N/A' }}</span>
+            </div>
+            <div class="detail-item">
+                <label>Jurisdiction</label>
+                <span>{{ case.jurisdiction or 'N/A' }}</span>
+            </div>
+            <div class="detail-item">
+                <label>Judges</label>
+                <span>{{ case.judges or 'N/A' }}</span>
+            </div>
+            {% if case.petitioner %}
+            <div class="detail-item">
+                <label>Petitioner</label>
+                <span>{{ case.petitioner }}</span>
+            </div>
+            {% endif %}
+            {% if case.respondent %}
+            <div class="detail-item">
+                <label>Respondent</label>
+                <span>{{ case.respondent }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="detail-section">
+        <h2>Summary</h2>
+        <p>{{ case.summary }}</p>
+    </div>
+
+    <!-- Facts -->
+    {% if case.facts %}
+    <div class="detail-section">
+        <h2>Facts of the Case</h2>
+        <p>{{ case.facts }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Issues -->
+    {% if case.issues %}
+    <div class="detail-section">
+        <h2>Issues for Determination</h2>
+        <p>{{ case.issues }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Legal Reasoning — the most valuable section -->
+    {% if case.legal_reasoning %}
+    <div class="detail-section" style="border-left: 4px solid var(--accent);">
+        <h2>Legal Reasoning & Analysis</h2>
+        <p>{{ case.legal_reasoning }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Key Principles -->
+    {% if case.key_principles %}
+    <div class="detail-section" style="background: #fef9ee;">
+        <h2>Key Legal Principles</h2>
+        <ul style="list-style: none; padding: 0;">
+            {% for principle in case.key_principles.split(';') %}
+            <li style="padding: 0.4rem 0; border-bottom: 1px solid #f0e6ce; font-size: 0.925rem;">
+                <strong style="color: var(--accent);">&#9670;</strong> {{ principle.strip() }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Statutes Referenced -->
+    {% if case.statutes_referenced %}
+    <div class="detail-section">
+        <h2>Statutes & Provisions Referenced</h2>
+        <p>{{ case.statutes_referenced }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Precedents Cited -->
+    {% if case.precedents_cited %}
+    <div class="detail-section">
+        <h2>Precedents Cited</h2>
+        <p>{{ case.precedents_cited }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Impact -->
+    {% if case.impact %}
+    <div class="detail-section" style="border-left: 4px solid var(--success);">
+        <h2>Impact & Significance</h2>
+        <p>{{ case.impact }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Tags -->
+    {% if case.tags %}
+    <div class="detail-section">
+        <h2>Tags</h2>
+        <div class="case-tags">
+            {% for tag in case.tags.split(',') %}
+            <span class="tag">{{ tag.strip() }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Similar Cases -->
+    <div class="detail-section similar-cases" id="similarCases">
+        <h2>Related Cases</h2>
+        <div id="similarCasesList">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Loading similar cases...</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    fetch('/api/cases/{{ case.id }}/similar')
+        .then(r => r.json())
+        .then(cases => {
+            const list = document.getElementById('similarCasesList');
+            if (cases.length === 0) {
+                list.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">No similar cases found.</p>';
+                return;
+            }
+            list.innerHTML = cases.map(c => `
+                <div class="similar-case-item">
+                    <a href="/case/${c.id}">${c.case_name} (${c.year})</a>
+                    <p>${c.summary.substring(0, 120)}...</p>
+                </div>
+            `).join('');
+        });
+</script>
+{% endblock %}

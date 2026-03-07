@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Legal Glossary — Legal Research{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Legal Glossary</h1>
+    <p>Essential legal terminology with definitions, examples, and context</p>
+</div>
+
+<div class="content">
+    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center;">
+        <div class="search-container" style="max-width: 400px; flex: 1;">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" class="search-bar" id="glossarySearch" placeholder="Search terms..." style="font-size: 0.95rem; padding: 0.75rem 1rem 0.75rem 2.75rem;">
+        </div>
+        <select class="filter-select" id="glossaryCategory">
+            <option value="">All Categories</option>
+            <option value="General">General</option>
+            <option value="Criminal">Criminal</option>
+            <option value="Civil">Civil</option>
+            <option value="Constitutional">Constitutional</option>
+            <option value="Corporate">Corporate</option>
+            <option value="Contract">Contract</option>
+            <option value="Procedure">Procedure</option>
+            <option value="Evidence">Evidence</option>
+            <option value="Remedy">Remedy</option>
+        </select>
+    </div>
+
+    <div class="glossary-grid" id="glossaryGrid">
+        <div class="loading">Loading glossary...</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const glossaryGrid = document.getElementById('glossaryGrid');
+    const glossarySearch = document.getElementById('glossarySearch');
+    const glossaryCategory = document.getElementById('glossaryCategory');
+    let debounce;
+
+    function fetchGlossary() {
+        const params = new URLSearchParams();
+        const q = glossarySearch.value.trim();
+        if (q) params.set('q', q);
+        if (glossaryCategory.value) params.set('category', glossaryCategory.value);
+
+        fetch(`/api/glossary?${params}`)
+            .then(r => r.json())
+            .then(terms => {
+                if (terms.length === 0) {
+                    glossaryGrid.innerHTML = '<div class="empty-state"><h3>No terms found</h3></div>';
+                    return;
+                }
+                glossaryGrid.innerHTML = terms.map(t => `
+                    <div class="glossary-card">
+                        <h3>${t.term}</h3>
+                        <div class="category">${t.category || 'General'}</div>
+                        <p class="definition">${t.definition}</p>
+                        ${t.example_usage ? `<p class="example">"${t.example_usage}"</p>` : ''}
+                        ${t.related_terms ? `<p class="related">Related: ${t.related_terms}</p>` : ''}
+                    </div>
+                `).join('');
+            });
+    }
+
+    glossarySearch.addEventListener('input', () => {
+        clearTimeout(debounce);
+        debounce = setTimeout(fetchGlossary, 300);
+    });
+    glossaryCategory.addEventListener('change', fetchGlossary);
+
+    fetchGlossary();
+</script>
+{% endblock %}

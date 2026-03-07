@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block title %}Legal Case Research Library — Search Landmark Cases{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Legal Case Research Library</h1>
+    <p>Search landmark cases, legal precedents, and court reasoning. Built for lawyers — from students to senior advocates.</p>
+    <div class="search-container">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" class="search-bar" id="searchInput" placeholder="Search cases, principles, statutes, or keywords..." autofocus>
+    </div>
+</section>
+
+<div class="filters-bar" id="filtersBar">
+    <span class="filter-label">Filter:</span>
+    <select class="filter-select" id="filterType">
+        <option value="">All Case Types</option>
+    </select>
+    <select class="filter-select" id="filterCourt">
+        <option value="">All Courts</option>
+    </select>
+    <select class="filter-select" id="filterOutcome">
+        <option value="">All Outcomes</option>
+        <option value="favor">In Favor</option>
+        <option value="against">Against</option>
+        <option value="partial">Partial</option>
+        <option value="remanded">Remanded</option>
+    </select>
+    <select class="filter-select" id="filterJurisdiction">
+        <option value="">All Jurisdictions</option>
+    </select>
+    <select class="filter-select" id="filterSort">
+        <option value="year_desc">Newest First</option>
+        <option value="year_asc">Oldest First</option>
+        <option value="name">A-Z by Name</option>
+    </select>
+    <button class="btn btn-outline btn-sm" id="clearFilters">Clear All</button>
+</div>
+
+<div class="content">
+    <div class="results-header">
+        <span class="results-count" id="resultsCount"></span>
+    </div>
+    <div class="case-grid" id="caseGrid">
+        <div class="loading">Loading cases...</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let debounceTimer;
+    const searchInput = document.getElementById('searchInput');
+    const caseGrid = document.getElementById('caseGrid');
+    const resultsCount = document.getElementById('resultsCount');
+    const filterType = document.getElementById('filterType');
+    const filterCourt = document.getElementById('filterCourt');
+    const filterOutcome = document.getElementById('filterOutcome');
+    const filterJurisdiction = document.getElementById('filterJurisdiction');
+    const filterSort = document.getElementById('filterSort');
+
+    // Load filter options
+    fetch('/api/filters')
+        .then(r => r.json())
+        .then(data => {
+            data.case_types.forEach(t => {
+                filterType.innerHTML += `<option value="${t}">${t}</option>`;
+            });
+            data.court_levels.forEach(c => {
+                const label = c.charAt(0).toUpperCase() + c.slice(1);
+                filterCourt.innerHTML += `<option value="${c}">${label} Court</option>`;
+            });
+            data.jurisdictions.forEach(j => {
+                filterJurisdiction.innerHTML += `<option value="${j}">${j}</option>`;
+            });
+        });
+
+    function fetchCases() {
+        const params = new URLSearchParams();
+        const q = searchInput.value.trim();
+        if (q) params.set('q', q);
+        if (filterType.value) params.set('case_type', filterType.value);
+        if (filterCourt.value) params.set('court_level', filterCourt.value);
+        if (filterOutcome.value) params.set('outcome', filterOutcome.value);
+        if (filterJurisdiction.value) params.set('jurisdiction', filterJurisdiction.value);
+        params.set('sort', filterSort.value);
+
+        caseGrid.innerHTML = '<div class="loading">Searching...</div>';
+
+        fetch(`/api/cases?${params}`)
+            .then(r => r.json())
+            .then(cases => {
+                resultsCount.textContent = `${cases.length} case${cases.length !== 1 ? 's' : ''} found`;
+                if (cases.length === 0) {
+                    caseGrid.innerHTML = `
+                        <div class="empty-state">
+                            <h3>No cases found</h3>
+                            <p>Try adjusting your search terms or filters.</p>
+                        </div>`;
+                    return;
+                }
+                caseGrid.innerHTML = cases.map(c => renderCaseCard(c)).join('');
+            });
+    }
+
+    function renderCaseCard(c) {
+        const outcomeBadge = c.outcome
+            ? `<span class="badge badge-outcome-${c.outcome}">${c.outcome}</span>`
+            : '';
+        const tags = (c.tags || []).slice(0, 5).map(t =>
+            `<span class="tag">${t.trim()}</span>`
+        ).join('');
+
+        return `
+            <div class="case-card" onclick="window.location='/case/${c.id}'">
+                <div class="case-card-header">
+                    <h3><a href="/case/${c.id}">${c.case_name}</a></h3>
+                    ${outcomeBadge}
+                </div>
+                <div class="case-meta">
+                    <span class="badge badge-type">${c.case_type}</span>
+                    <span class="badge badge-court">${c.court_level}</span>
+                    <span class="badge badge-year">${c.year}</span>
+                </div>
+                <p class="case-summary">${truncate(c.summary, 200)}</p>
+                <div class="case-tags">${tags}</div>
+            </div>`;
+    }
+
+    function truncate(str, len) {
+        if (!str) return '';
+        return str.length > len ? str.substring(0, len) + '...' : str;
+    }
+
+    // Debounced search
+    searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(fetchCases, 300);
+    });
+
+    // Filter changes
+    [filterType, filterCourt, filterOutcome, filterJurisdiction, filterSort].forEach(el => {
+        el.addEventListener('change', fetchCases);
+    });
+
+    // Clear filters
+    document.getElementById('clearFilters').addEventListener('click', () => {
+        searchInput.value = '';
+        filterType.value = '';
+        filterCourt.value = '';
+        filterOutcome.value = '';
+        filterJurisdiction.value = '';
+        filterSort.value = 'year_desc';
+        fetchCases();
+    });
+
+    // Initial load
+    fetchCases();
+</script>
+{% endblock %}

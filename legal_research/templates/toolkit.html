@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Young Lawyer Toolkit — Legal Research{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Young Lawyer Toolkit</h1>
+    <p>Case brief templates, guides, and resources to help you prepare stronger cases</p>
+</div>
+
+<div class="content">
+    <!-- Quick Guide Section -->
+    <div class="detail-section" style="margin-bottom: 2rem; border-left: 4px solid var(--accent);">
+        <h2>How to Brief a Case</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+            <div>
+                <strong style="color: var(--primary); font-size: 1.5rem;">1</strong>
+                <p style="font-size: 0.9rem; margin-top: 0.25rem;"><strong>Read the full case</strong> — Understand the complete narrative before taking notes.</p>
+            </div>
+            <div>
+                <strong style="color: var(--primary); font-size: 1.5rem;">2</strong>
+                <p style="font-size: 0.9rem; margin-top: 0.25rem;"><strong>Identify the issues</strong> — What legal questions did the court address?</p>
+            </div>
+            <div>
+                <strong style="color: var(--primary); font-size: 1.5rem;">3</strong>
+                <p style="font-size: 0.9rem; margin-top: 0.25rem;"><strong>Extract the reasoning</strong> — How did the court reach its decision?</p>
+            </div>
+            <div>
+                <strong style="color: var(--primary); font-size: 1.5rem;">4</strong>
+                <p style="font-size: 0.9rem; margin-top: 0.25rem;"><strong>Note the principles</strong> — What precedent does this case establish?</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <button class="btn btn-primary btn-sm filter-btn active" data-type="">All Templates</button>
+        <button class="btn btn-outline btn-sm filter-btn" data-type="Criminal">Criminal</button>
+        <button class="btn btn-outline btn-sm filter-btn" data-type="Civil">Civil</button>
+        <button class="btn btn-outline btn-sm filter-btn" data-type="Constitutional">Constitutional</button>
+        <button class="btn btn-outline btn-sm filter-btn" data-type="Corporate">Corporate</button>
+    </div>
+
+    <div class="toolkit-grid" id="templatesGrid">
+        <div class="loading">Loading templates...</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const templatesGrid = document.getElementById('templatesGrid');
+    let allTemplates = [];
+
+    function renderTemplates(templates) {
+        if (templates.length === 0) {
+            templatesGrid.innerHTML = '<div class="empty-state"><h3>No templates found</h3></div>';
+            return;
+        }
+        templatesGrid.innerHTML = templates.map(t => `
+            <div class="template-card">
+                <div class="case-meta" style="margin-bottom: 0.5rem;">
+                    <span class="badge badge-type">${t.case_type}</span>
+                </div>
+                <h3>${t.name}</h3>
+                <p>${t.description}</p>
+                <button class="btn btn-accent btn-sm" onclick="toggleTemplate(this, 'tmpl-${t.id}')">
+                    View Template
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="toggleTips(this, 'tips-${t.id}')" style="margin-left: 0.5rem;">
+                    Tips
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="copyTemplate('tmpl-${t.id}')" style="margin-left: 0.5rem;">
+                    Copy
+                </button>
+                <div class="template-preview" id="tmpl-${t.id}">${escapeHtml(t.template_content)}</div>
+                <div class="template-tips" id="tips-${t.id}">${t.tips || ''}</div>
+            </div>
+        `).join('');
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function toggleTemplate(btn, id) {
+        const el = document.getElementById(id);
+        el.classList.toggle('show');
+        btn.textContent = el.classList.contains('show') ? 'Hide Template' : 'View Template';
+    }
+
+    function toggleTips(btn, id) {
+        const el = document.getElementById(id);
+        el.classList.toggle('show');
+        btn.textContent = el.classList.contains('show') ? 'Hide Tips' : 'Tips';
+    }
+
+    function copyTemplate(id) {
+        const el = document.getElementById(id);
+        navigator.clipboard.writeText(el.textContent).then(() => {
+            alert('Template copied to clipboard!');
+        });
+    }
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active');
+                b.classList.remove('btn-primary');
+                b.classList.add('btn-outline');
+            });
+            btn.classList.add('active');
+            btn.classList.add('btn-primary');
+            btn.classList.remove('btn-outline');
+
+            const type = btn.dataset.type;
+            const filtered = type ? allTemplates.filter(t => t.case_type === type) : allTemplates;
+            renderTemplates(filtered);
+        });
+    });
+
+    // Load templates
+    fetch('/api/templates')
+        .then(r => r.json())
+        .then(templates => {
+            allTemplates = templates;
+            renderTemplates(templates);
+        });
+</script>
+{% endblock %}
