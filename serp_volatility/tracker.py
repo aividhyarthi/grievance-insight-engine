@@ -105,9 +105,12 @@ def compute_volatility(config: TrackerConfig, storage: SQLiteStore):
             print(f"  {cat_name:<30} {bar} {score:.1f} [{level}]")
 
 
-def _generate_demo_features(storage, categories, target_date, collected_at, is_update_period):
+def _generate_demo_features(storage, categories, target_date, collected_at, is_update_period, devices=None):
     """Generate realistic demo SERP feature presence data for a single day."""
     from .collectors.base import SerpFeature
+
+    if devices is None:
+        devices = ["desktop", "mobile"]
 
     # Base probability a feature appears for a given keyword (realistic rates)
     # During an algo update period, AI Overview and Featured Snippet rates spike
@@ -123,6 +126,14 @@ def _generate_demo_features(storage, categories, target_date, collected_at, is_u
         "video":            0.22,
     }
 
+    # Mobile has slightly different feature rates
+    mobile_adjustments = {
+        "local_pack":   0.10,   # Local pack shows more on mobile
+        "image_pack":   0.05,
+        "shopping":     0.05,
+        "knowledge_panel": -0.03,
+    }
+
     # Some categories are more likely to trigger specific features
     category_boosts = {
         "news":         {"top_stories": 0.40, "knowledge_panel": 0.10},
@@ -136,29 +147,31 @@ def _generate_demo_features(storage, categories, target_date, collected_at, is_u
     }
 
     all_features = []
-    for category in categories:
-        keywords = storage.get_keywords_for_category(category)
-        boosts = category_boosts.get(category, {})
+    for device in devices:
+        for category in categories:
+            keywords = storage.get_keywords_for_category(category)
+            boosts = category_boosts.get(category, {})
 
-        for kw in keywords:
-            random.seed(f"{kw}-features-{target_date}")
-            for feature_type, base_prob in base_probs.items():
-                prob = min(base_prob + boosts.get(feature_type, 0.0), 0.95)
-                if random.random() < prob:
-                    count = 1
-                    if feature_type in ("top_stories", "people_also_ask"):
-                        count = random.randint(3, 8)
-                    elif feature_type in ("shopping", "image_pack"):
-                        count = random.randint(4, 12)
+            for kw in keywords:
+                random.seed(f"{kw}-features-{target_date}-{device}")
+                for feature_type, base_prob in base_probs.items():
+                    mobile_adj = mobile_adjustments.get(feature_type, 0.0) if device == "mobile" else 0.0
+                    prob = min(base_prob + boosts.get(feature_type, 0.0) + mobile_adj, 0.95)
+                    if random.random() < prob:
+                        count = 1
+                        if feature_type in ("top_stories", "people_also_ask"):
+                            count = random.randint(3, 8)
+                        elif feature_type in ("shopping", "image_pack"):
+                            count = random.randint(4, 12)
 
-                    all_features.append(SerpFeature(
-                        keyword=kw,
-                        category=category,
-                        device="desktop",
-                        feature_type=feature_type,
-                        collected_at=collected_at,
-                        count=count,
-                    ))
+                        all_features.append(SerpFeature(
+                            keyword=kw,
+                            category=category,
+                            device=device,
+                            feature_type=feature_type,
+                            collected_at=collected_at,
+                            count=count,
+                        ))
 
     storage.store_features(all_features)
 
@@ -191,55 +204,64 @@ def generate_demo_data(storage: SQLiteStore):
 
         from .collectors.base import SerpResult
 
-        for category in categories:
-            keywords = storage.get_keywords_for_category(category)
-            for kw in keywords:
-                # Create a deterministic but slightly shuffled ranking
-                random.seed(f"{kw}-{category}-base")
-                domain_pool = list(base_domains)
-                random.shuffle(domain_pool)
+        for device in config.devices:
+            for category in categories:
+                keywords = storage.get_keywords_for_category(category)
+                for kw in keywords:
+                    # Create a deterministic but slightly shuffled ranking
+                    random.seed(f"{kw}-{category}-{device}-base")
+                    domain_pool = list(base_domains)
+                    random.shuffle(domain_pool)
 
-                # Apply daily shuffle
-                random.seed(f"{kw}-{target_date}")
-                shuffled = list(domain_pool[:config.top_n_results])
+                    # Mobile rankings differ slightly from desktop
+                    if device == "mobile":
+                        random.seed(f"{kw}-{category}-mobile-swap")
+                        for _ in range(3):
+                            i, j = random.sample(range(len(domain_pool)), 2)
+                            domain_pool[i], domain_pool[j] = domain_pool[j], domain_pool[i]
 
-                # Shuffle intensity determines how much positions change
-                num_swaps = int(len(shuffled) * shuffle_intensity)
-                for _ in range(num_swaps):
-                    i, j = random.sample(range(len(shuffled)), 2)
-                    shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
+                    # Apply daily shuffle
+                    random.seed(f"{kw}-{target_date}-{device}")
+                    shuffled = list(domain_pool[:config.top_n_results])
 
-                results = []
-                for pos, domain in enumerate(shuffled, 1):
-                    results.append(SerpResult(
-                        keyword=kw,
-                        category=category,
-                        position=pos,
-                        url=f"https://{domain}/page",
-                        title=f"Page about {kw}",
-                        domain=domain,
-                        device="desktop",
-                        collected_at=collected_at,
-                    ))
+                    # Shuffle intensity determines how much positions change
+                    num_swaps = int(len(shuffled) * shuffle_intensity)
+                    for _ in range(num_swaps):
+                        i, j = random.sample(range(len(shuffled)), 2)
+                        shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
 
-                storage.store_results(results)
+                    results = []
+                    for pos, domain in enumerate(shuffled, 1):
+                        results.append(SerpResult(
+                            keyword=kw,
+                            category=category,
+                            position=pos,
+                            url=f"https://{domain}/page",
+                            title=f"Page about {kw}",
+                            domain=domain,
+                            device=device,
+                            collected_at=collected_at,
+                        ))
 
-        # Generate realistic demo SERP feature data
-        _generate_demo_features(storage, categories, target_date, collected_at, is_update_period)
+                    storage.store_results(results)
+
+        # Generate realistic demo SERP feature data (both devices)
+        _generate_demo_features(storage, categories, target_date, collected_at, is_update_period, config.devices)
 
         if day_offset % 5 == 0:
             print(f"  Generated data for {target_date} (day -{day_offset})")
 
     print(f"Demo data generated for 30 days across {len(categories)} categories.")
 
-    # Also compute volatility scores for all days
+    # Also compute volatility scores for all days (both devices)
     calculator = VolatilityCalculator(storage, config)
     print("\nComputing volatility scores...")
     for day_offset in range(29, 0, -1):
         target_date = date.today() - timedelta(days=day_offset)
-        result = calculator.compute_overall_volatility(target_date, "desktop")
-        if result["overall_score"] > 0:
-            storage.store_volatility_score(result)
+        for device in config.devices:
+            result = calculator.compute_overall_volatility(target_date, device)
+            if result["overall_score"] > 0:
+                storage.store_volatility_score(result)
 
     print("Volatility scores computed.")
 
