@@ -738,6 +738,275 @@ a:hover { color: var(--accent); }
     .tl-dot { left: 20px; }
 }
 
+/* ── Homepage Dashboard ── */
+.hero-home { padding: 2.5rem 2rem 2rem; }
+.hero-home p { margin-bottom: 1.5rem; }
+
+.hero-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    opacity: 0.75;
+    color: white;
+}
+
+/* Stats Ticker */
+.stats-ticker {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    background: var(--primary-dark);
+    padding: 0;
+    border-bottom: 3px solid var(--accent);
+}
+
+.ticker-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    min-width: 110px;
+}
+
+.ticker-item:last-child { border-right: none; }
+
+.ticker-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.ticker-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.2rem;
+}
+
+/* Dashboard Grid */
+.home-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 1.5rem;
+}
+
+.dash-main { display: flex; flex-direction: column; gap: 1.5rem; }
+.dash-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* Dashboard Cards */
+.dash-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.dash-card-header {
+    padding: 1rem 1.25rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.dash-card-header h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.dash-card-header h2 svg { color: var(--accent); flex-shrink: 0; }
+
+.dash-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.dash-card-body { padding: 1rem 1.25rem; }
+
+.empty-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 1.5rem 0;
+}
+
+/* On This Day */
+.dash-on-this-day { border-left: 4px solid var(--accent); }
+
+.otd-case {
+    display: flex;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+}
+
+.otd-case:last-child { border-bottom: none; }
+.otd-case:hover { background: #fef9ee; margin: 0 -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+
+.otd-year {
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 800;
+    border-radius: var(--radius);
+}
+
+.otd-info strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--primary);
+    line-height: 1.3;
+    margin-bottom: 0.15rem;
+}
+
+.otd-court {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.otd-info p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Important Cases */
+.dash-important { border-left: 4px solid var(--info); }
+
+.imp-case {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.imp-case:last-child { border-bottom: none; }
+.imp-case:hover { background: #f7f8fa; margin: 0 -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+
+.imp-case-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.imp-case h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.3;
+}
+
+.imp-case h3 a { color: inherit; }
+.imp-case h3 a:hover { color: var(--accent); }
+
+.imp-case p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0.5rem 0;
+}
+
+/* News Sidebar */
+.dash-news { border-top: 3px solid var(--danger); }
+
+.news-item {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.news-item:last-child { border-bottom: none; }
+
+.news-cat {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    background: var(--danger);
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.35rem;
+}
+
+.news-item h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.35;
+    margin-bottom: 0.25rem;
+}
+
+.news-item p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Quick Links */
+.dash-quicklinks { border-top: 3px solid var(--accent); }
+
+.quick-link-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.quick-link-item:last-child { border-bottom: none; }
+.quick-link-item:hover { color: var(--accent); padding-left: 0.5rem; }
+.quick-link-item svg { color: var(--text-muted); flex-shrink: 0; }
+
+/* Dashboard responsive */
+@media (max-width: 900px) {
+    .home-dashboard {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    .stats-ticker { justify-content: flex-start; overflow-x: auto; }
+    .ticker-item { min-width: 90px; padding: 0.75rem 1rem; }
+}
+
+@media (max-width: 768px) {
+    .ticker-num { font-size: 1.2rem; }
+    .ticker-item { min-width: 80px; padding: 0.6rem 0.75rem; }
+}
+
 /* ── Footer ── */
 .footer {
     text-align: center;

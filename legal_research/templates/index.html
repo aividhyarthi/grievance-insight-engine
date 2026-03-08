@@ -1,162 +1,226 @@
 {% extends "base.html" %}
-{% block title %}Legal Case Research Library — Search Landmark Cases{% endblock %}
+{% block title %}Legal Case Research Library — Dashboard{% endblock %}
 
 {% block content %}
-<section class="hero">
+<!-- Hero with quick search -->
+<section class="hero hero-home">
     <h1>Legal Case Research Library</h1>
-    <p>Search landmark cases, legal precedents, and court reasoning. Built for lawyers — from students to senior advocates.</p>
+    <p>Landmark cases, legal precedents, and court reasoning — built for lawyers, students &amp; senior advocates.</p>
     <div class="search-container">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
-        <input type="text" class="search-bar" id="searchInput" placeholder="Search cases, principles, statutes, or keywords..." autofocus>
+        <input type="text" class="search-bar" id="heroSearch" placeholder="Quick search cases, statutes, principles..." onkeydown="if(event.key==='Enter') window.location='/search?q='+encodeURIComponent(this.value)">
+    </div>
+    <div class="hero-date">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        {{ today.strftime('%A, %d %B %Y') }}
     </div>
 </section>
 
-<div class="filters-bar" id="filtersBar">
-    <span class="filter-label">Filter:</span>
-    <select class="filter-select" id="filterType">
-        <option value="">All Case Types</option>
-    </select>
-    <select class="filter-select" id="filterCourt">
-        <option value="">All Courts</option>
-    </select>
-    <select class="filter-select" id="filterOutcome">
-        <option value="">All Outcomes</option>
-        <option value="favor">In Favor</option>
-        <option value="against">Against</option>
-        <option value="partial">Partial</option>
-        <option value="remanded">Remanded</option>
-    </select>
-    <select class="filter-select" id="filterJurisdiction">
-        <option value="">All Jurisdictions</option>
-    </select>
-    <select class="filter-select" id="filterSort">
-        <option value="year_desc">Newest First</option>
-        <option value="year_asc">Oldest First</option>
-        <option value="name">A-Z by Name</option>
-    </select>
-    <button class="btn btn-outline btn-sm" id="clearFilters">Clear All</button>
-</div>
-
-<div class="content">
-    <div class="results-header">
-        <span class="results-count" id="resultsCount"></span>
+<!-- Stats Ticker -->
+<section class="stats-ticker" id="statsTicker">
+    <div class="ticker-item">
+        <span class="ticker-num" id="statTotal">--</span>
+        <span class="ticker-label">Total Cases</span>
     </div>
-    <div class="case-grid" id="caseGrid">
-        <div class="loading">Loading cases...</div>
+    <div class="ticker-item">
+        <span class="ticker-num" id="statSC">--</span>
+        <span class="ticker-label">Supreme Court</span>
+    </div>
+    <div class="ticker-item">
+        <span class="ticker-num" id="statHC">--</span>
+        <span class="ticker-label">High Court</span>
+    </div>
+    <div class="ticker-item">
+        <span class="ticker-num" id="statIndian">--</span>
+        <span class="ticker-label">Indian Cases</span>
+    </div>
+    <div class="ticker-item">
+        <span class="ticker-num" id="statConst">--</span>
+        <span class="ticker-label">Constitutional</span>
+    </div>
+    <div class="ticker-item">
+        <span class="ticker-num" id="statCriminal">--</span>
+        <span class="ticker-label">Criminal</span>
+    </div>
+    <div class="ticker-item">
+        <span class="ticker-num" id="statTypes">--</span>
+        <span class="ticker-label">Case Types</span>
+    </div>
+    <div class="ticker-item">
+        <span class="ticker-num" id="statSpan">--</span>
+        <span class="ticker-label">Year Span</span>
+    </div>
+</section>
+
+<!-- Main Dashboard Grid -->
+<div class="home-dashboard">
+
+    <!-- Left Column -->
+    <div class="dash-main">
+
+        <!-- On This Day -->
+        <div class="dash-card dash-on-this-day">
+            <div class="dash-card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    On This Day in Legal History
+                </h2>
+                <span class="dash-subtitle">Cases decided around {{ today.strftime('%d %B') }}</span>
+            </div>
+            <div class="dash-card-body" id="onThisDayList">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <!-- Important Cases Today -->
+        <div class="dash-card dash-important">
+            <div class="dash-card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Featured Landmark Cases
+                </h2>
+                <span class="dash-subtitle">Daily spotlight on important judgments</span>
+            </div>
+            <div class="dash-card-body" id="importantCasesList">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="dash-sidebar">
+
+        <!-- Latest Legal News -->
+        <div class="dash-card dash-news">
+            <div class="dash-card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+                    Latest Legal News
+                </h2>
+            </div>
+            <div class="dash-card-body" id="newsListBody">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="dash-card dash-quicklinks">
+            <div class="dash-card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    Quick Links
+                </h2>
+            </div>
+            <div class="dash-card-body">
+                <a href="/search" class="quick-link-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    Advanced Case Search
+                </a>
+                <a href="/analytics" class="quick-link-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                    Case Analytics &amp; Charts
+                </a>
+                <a href="/toolkit" class="quick-link-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg>
+                    Case Brief Toolkit
+                </a>
+                <a href="/glossary" class="quick-link-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                    Legal Glossary
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-    let debounceTimer;
-    const searchInput = document.getElementById('searchInput');
-    const caseGrid = document.getElementById('caseGrid');
-    const resultsCount = document.getElementById('resultsCount');
-    const filterType = document.getElementById('filterType');
-    const filterCourt = document.getElementById('filterCourt');
-    const filterOutcome = document.getElementById('filterOutcome');
-    const filterJurisdiction = document.getElementById('filterJurisdiction');
-    const filterSort = document.getElementById('filterSort');
-
-    // Load filter options
-    fetch('/api/filters')
+    // ── Stats Ticker ──
+    fetch('/api/homepage/court-stats')
         .then(r => r.json())
-        .then(data => {
-            data.case_types.forEach(t => {
-                filterType.innerHTML += `<option value="${t}">${t}</option>`;
-            });
-            data.court_levels.forEach(c => {
-                const label = c.charAt(0).toUpperCase() + c.slice(1);
-                filterCourt.innerHTML += `<option value="${c}">${label} Court</option>`;
-            });
-            data.jurisdictions.forEach(j => {
-                filterJurisdiction.innerHTML += `<option value="${j}">${j}</option>`;
-            });
+        .then(s => {
+            document.getElementById('statTotal').textContent = s.total_cases;
+            document.getElementById('statSC').textContent = s.supreme_court_cases;
+            document.getElementById('statHC').textContent = s.high_court_cases;
+            document.getElementById('statIndian').textContent = s.indian_cases;
+            document.getElementById('statConst').textContent = s.constitutional_cases;
+            document.getElementById('statCriminal').textContent = s.criminal_cases;
+            document.getElementById('statTypes').textContent = s.case_types;
+            document.getElementById('statSpan').textContent =
+                s.oldest_year && s.latest_year ? s.oldest_year + '–' + s.latest_year : '--';
         });
 
-    function fetchCases() {
-        const params = new URLSearchParams();
-        const q = searchInput.value.trim();
-        if (q) params.set('q', q);
-        if (filterType.value) params.set('case_type', filterType.value);
-        if (filterCourt.value) params.set('court_level', filterCourt.value);
-        if (filterOutcome.value) params.set('outcome', filterOutcome.value);
-        if (filterJurisdiction.value) params.set('jurisdiction', filterJurisdiction.value);
-        params.set('sort', filterSort.value);
+    // ── On This Day ──
+    fetch('/api/homepage/on-this-day')
+        .then(r => r.json())
+        .then(cases => {
+            const el = document.getElementById('onThisDayList');
+            if (!cases.length) {
+                el.innerHTML = '<p class="empty-note">No cases found for today\'s date. Check back tomorrow!</p>';
+                return;
+            }
+            el.innerHTML = cases.map(c => `
+                <a href="/case/${c.id}" class="otd-case">
+                    <div class="otd-year">${c.year}</div>
+                    <div class="otd-info">
+                        <strong>${c.case_name}</strong>
+                        <span class="otd-court">${c.court} &middot; ${c.case_type}</span>
+                        <p>${truncate(c.summary, 150)}</p>
+                    </div>
+                </a>
+            `).join('');
+        });
 
-        caseGrid.innerHTML = '<div class="loading">Searching...</div>';
+    // ── Important Cases ──
+    fetch('/api/homepage/important-cases')
+        .then(r => r.json())
+        .then(cases => {
+            const el = document.getElementById('importantCasesList');
+            if (!cases.length) { el.innerHTML = '<p class="empty-note">No cases loaded yet.</p>'; return; }
+            el.innerHTML = cases.map(c => {
+                const outcomeBadge = c.outcome
+                    ? `<span class="badge badge-outcome-${c.outcome}">${c.outcome}</span>` : '';
+                const tags = (c.tags || []).slice(0, 4).map(t =>
+                    `<span class="tag">${t.trim()}</span>`).join('');
+                return `
+                <div class="imp-case" onclick="window.location='/case/${c.id}'">
+                    <div class="imp-case-top">
+                        <h3><a href="/case/${c.id}">${c.case_name}</a></h3>
+                        ${outcomeBadge}
+                    </div>
+                    <div class="case-meta">
+                        <span class="badge badge-type">${c.case_type}</span>
+                        <span class="badge badge-court">${c.court_level}</span>
+                        <span class="badge badge-year">${c.year}</span>
+                    </div>
+                    <p>${truncate(c.summary, 180)}</p>
+                    <div class="case-tags">${tags}</div>
+                </div>`;
+            }).join('');
+        });
 
-        fetch(`/api/cases?${params}`)
-            .then(r => r.json())
-            .then(cases => {
-                resultsCount.textContent = `${cases.length} case${cases.length !== 1 ? 's' : ''} found`;
-                if (cases.length === 0) {
-                    caseGrid.innerHTML = `
-                        <div class="empty-state">
-                            <h3>No cases found</h3>
-                            <p>Try adjusting your search terms or filters.</p>
-                        </div>`;
-                    return;
-                }
-                caseGrid.innerHTML = cases.map(c => renderCaseCard(c)).join('');
-            });
-    }
-
-    function renderCaseCard(c) {
-        const outcomeBadge = c.outcome
-            ? `<span class="badge badge-outcome-${c.outcome}">${c.outcome}</span>`
-            : '';
-        const tags = (c.tags || []).slice(0, 5).map(t =>
-            `<span class="tag">${t.trim()}</span>`
-        ).join('');
-
-        return `
-            <div class="case-card" onclick="window.location='/case/${c.id}'">
-                <div class="case-card-header">
-                    <h3><a href="/case/${c.id}">${c.case_name}</a></h3>
-                    ${outcomeBadge}
+    // ── Legal News ──
+    fetch('/api/homepage/legal-news')
+        .then(r => r.json())
+        .then(news => {
+            const el = document.getElementById('newsListBody');
+            el.innerHTML = news.map(n => `
+                <div class="news-item">
+                    <span class="news-cat">${n.category}</span>
+                    <h4>${n.title}</h4>
+                    <p>${n.summary}</p>
                 </div>
-                <div class="case-meta">
-                    <span class="badge badge-type">${c.case_type}</span>
-                    <span class="badge badge-court">${c.court_level}</span>
-                    <span class="badge badge-year">${c.year}</span>
-                </div>
-                <p class="case-summary">${truncate(c.summary, 200)}</p>
-                <div class="case-tags">${tags}</div>
-            </div>`;
-    }
+            `).join('');
+        });
 
     function truncate(str, len) {
         if (!str) return '';
         return str.length > len ? str.substring(0, len) + '...' : str;
     }
-
-    // Debounced search
-    searchInput.addEventListener('input', () => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(fetchCases, 300);
-    });
-
-    // Filter changes
-    [filterType, filterCourt, filterOutcome, filterJurisdiction, filterSort].forEach(el => {
-        el.addEventListener('change', fetchCases);
-    });
-
-    // Clear filters
-    document.getElementById('clearFilters').addEventListener('click', () => {
-        searchInput.value = '';
-        filterType.value = '';
-        filterCourt.value = '';
-        filterOutcome.value = '';
-        filterJurisdiction.value = '';
-        filterSort.value = 'year_desc';
-        fetchCases();
-    });
-
-    // Initial load
-    fetchCases();
 </script>
 {% endblock %}

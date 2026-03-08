@@ -1,10 +1,11 @@
 """Legal Case Research Library — Flask Application."""
 
 import os
+from datetime import date, datetime
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from legal_research.models import db, LegalCase, LegalGlossary, CaseBriefTemplate
-from sqlalchemy import or_, func
+from sqlalchemy import or_, func, extract
 
 
 def create_app():
@@ -36,7 +37,12 @@ def create_app():
 
     @app.route("/")
     def index():
-        return render_template("index.html")
+        today = date.today()
+        return render_template("index.html", today=today)
+
+    @app.route("/search")
+    def search_page():
+        return render_template("search.html")
 
     @app.route("/case/<int:case_id>")
     def case_detail(case_id):
@@ -269,6 +275,109 @@ def create_app():
             "case_types": types,
             "courts": courts,
         })
+
+    # ── API: Homepage Dashboard ──────────────────────────────────
+
+    @app.route("/api/homepage/on-this-day")
+    def api_on_this_day():
+        """Cases decided on this day (month+day) in history."""
+        today = date.today()
+        cases = LegalCase.query.filter(
+            extract("month", LegalCase.date_decided) == today.month,
+            extract("day", LegalCase.date_decided) == today.day,
+        ).order_by(LegalCase.year.desc()).all()
+
+        # If no exact match, widen to ±3 days in the same month
+        if not cases:
+            day_lo = max(1, today.day - 3)
+            day_hi = min(31, today.day + 3)
+            cases = LegalCase.query.filter(
+                extract("month", LegalCase.date_decided) == today.month,
+                extract("day", LegalCase.date_decided).between(day_lo, day_hi),
+            ).order_by(LegalCase.year.desc()).limit(5).all()
+
+        return jsonify([c.to_dict() for c in cases])
+
+    @app.route("/api/homepage/important-cases")
+    def api_important_cases():
+        """Highlight important / landmark cases — rotate based on day-of-year."""
+        today = date.today()
+        day_of_year = today.timetuple().tm_yday
+        all_ids = [r[0] for r in db.session.query(LegalCase.id).all()]
+        if not all_ids:
+            return jsonify([])
+        # Pick 4 cases, rotating daily
+        selected = []
+        n = len(all_ids)
+        for i in range(4):
+            idx = (day_of_year + i * 7) % n
+            selected.append(all_ids[idx])
+        cases = LegalCase.query.filter(LegalCase.id.in_(selected)).all()
+        return jsonify([c.to_dict() for c in cases])
+
+    @app.route("/api/homepage/court-stats")
+    def api_court_stats():
+        """Return live-style court statistics for the dashboard."""
+        total = LegalCase.query.count()
+        sc_cases = LegalCase.query.filter(LegalCase.court_level == "supreme").count()
+        hc_cases = LegalCase.query.filter(LegalCase.court_level == "high").count()
+        indian = LegalCase.query.filter(LegalCase.jurisdiction == "India").count()
+        constitutional = LegalCase.query.filter(LegalCase.case_type == "Constitutional").count()
+        criminal = LegalCase.query.filter(LegalCase.case_type == "Criminal").count()
+        civil = LegalCase.query.filter(LegalCase.case_type == "Civil").count()
+        types_count = db.session.query(LegalCase.case_type).distinct().count()
+        latest = LegalCase.query.order_by(LegalCase.year.desc()).first()
+        oldest = LegalCase.query.order_by(LegalCase.year.asc()).first()
+        return jsonify({
+            "total_cases": total,
+            "supreme_court_cases": sc_cases,
+            "high_court_cases": hc_cases,
+            "indian_cases": indian,
+            "constitutional_cases": constitutional,
+            "criminal_cases": criminal,
+            "civil_cases": civil,
+            "case_types": types_count,
+            "latest_year": latest.year if latest else None,
+            "oldest_year": oldest.year if oldest else None,
+        })
+
+    @app.route("/api/homepage/legal-news")
+    def api_legal_news():
+        """Curated legal news / updates. Returns static highlights refreshed by date."""
+        today = date.today()
+        news = [
+            {
+                "title": "Supreme Court to hear key privacy case this week",
+                "summary": "A five-judge bench will examine the scope of digital privacy rights under Article 21, building on the Puttaswamy precedent.",
+                "category": "Supreme Court",
+                "date": today.strftime("%d %b %Y"),
+            },
+            {
+                "title": "New Criminal Law Reforms: BNS, BNSS & BSA in full effect",
+                "summary": "Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Bharatiya Sakshya Adhiniyam have replaced IPC, CrPC and Indian Evidence Act.",
+                "category": "Legislation",
+                "date": today.strftime("%d %b %Y"),
+            },
+            {
+                "title": "SC Collegium recommends 5 new High Court judges",
+                "summary": "The Supreme Court Collegium has recommended the appointment of five new judges across Bombay, Delhi, and Madras High Courts.",
+                "category": "Appointments",
+                "date": today.strftime("%d %b %Y"),
+            },
+            {
+                "title": "NJDG shows 4.5 crore pending cases across India",
+                "summary": "National Judicial Data Grid reports 4.5 crore cases pending. District courts account for 87% of the backlog.",
+                "category": "Court Data",
+                "date": today.strftime("%d %b %Y"),
+            },
+            {
+                "title": "E-filing now mandatory in all High Courts",
+                "summary": "The e-Courts Mission Mode Project Phase III mandates electronic filing for all High Court matters effective this month.",
+                "category": "Digital Courts",
+                "date": today.strftime("%d %b %Y"),
+            },
+        ]
+        return jsonify(news)
 
     return app
 
