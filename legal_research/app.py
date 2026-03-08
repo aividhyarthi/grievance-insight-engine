@@ -61,6 +61,14 @@ def create_app():
     def glossary_page():
         return render_template("glossary.html")
 
+    @app.route("/judges")
+    def judges_page():
+        return render_template("judges.html")
+
+    @app.route("/resources")
+    def resources_page():
+        return render_template("resources.html")
+
     # ── API: Search & Filter ──────────────────────────────────────
 
     @app.route("/api/cases")
@@ -343,38 +351,49 @@ def create_app():
 
     @app.route("/api/homepage/legal-news")
     def api_legal_news():
-        """Curated legal news / updates. Returns static highlights refreshed by date."""
-        today = date.today()
+        """Curated legal news / updates with clickable links to official sources."""
         news = [
             {
-                "title": "Supreme Court to hear key privacy case this week",
-                "summary": "A five-judge bench will examine the scope of digital privacy rights under Article 21, building on the Puttaswamy precedent.",
-                "category": "Supreme Court",
-                "date": today.strftime("%d %b %Y"),
-            },
-            {
-                "title": "New Criminal Law Reforms: BNS, BNSS & BSA in full effect",
-                "summary": "Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Bharatiya Sakshya Adhiniyam have replaced IPC, CrPC and Indian Evidence Act.",
+                "title": "BNS, BNSS & BSA now fully replace IPC, CrPC & Evidence Act",
+                "summary": "Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Bharatiya Sakshya Adhiniyam are in full effect from 1 July 2024.",
                 "category": "Legislation",
-                "date": today.strftime("%d %b %Y"),
+                "date": "01 Jul 2024",
+                "url": "https://www.indiacode.nic.in/",
             },
             {
-                "title": "SC Collegium recommends 5 new High Court judges",
-                "summary": "The Supreme Court Collegium has recommended the appointment of five new judges across Bombay, Delhi, and Madras High Courts.",
-                "category": "Appointments",
-                "date": today.strftime("%d %b %Y"),
+                "title": "SC upholds sub-classification within SC/ST reservations",
+                "summary": "A 7-judge Constitution Bench ruled that States can sub-classify Scheduled Castes and Tribes for reservation purposes.",
+                "category": "Supreme Court",
+                "date": "01 Aug 2024",
+                "url": "https://www.sci.gov.in/",
             },
             {
-                "title": "NJDG shows 4.5 crore pending cases across India",
-                "summary": "National Judicial Data Grid reports 4.5 crore cases pending. District courts account for 87% of the backlog.",
+                "title": "Digital Personal Data Protection Rules notified",
+                "summary": "The DPDP Act 2023 rules are notified, operationalizing India's data protection framework with consent manager and Data Protection Board provisions.",
+                "category": "Legislation",
+                "date": "03 Jan 2025",
+                "url": "https://www.meity.gov.in/",
+            },
+            {
+                "title": "NJDG: Over 4.5 crore cases pending across India",
+                "summary": "National Judicial Data Grid shows 4.5+ crore cases pending. District courts account for 87% of the backlog. SC urges fast-tracking old cases.",
                 "category": "Court Data",
-                "date": today.strftime("%d %b %Y"),
+                "url": "https://njdg.ecourts.gov.in/njdgnew/",
+                "date": "2025",
             },
             {
-                "title": "E-filing now mandatory in all High Courts",
-                "summary": "The e-Courts Mission Mode Project Phase III mandates electronic filing for all High Court matters effective this month.",
+                "title": "e-Courts Phase III: AI tools & live-streaming of court proceedings",
+                "summary": "Supreme Court extends live-streaming to Constitution Bench hearings. E-filing and virtual hearings now standard across all High Courts.",
                 "category": "Digital Courts",
-                "date": today.strftime("%d %b %Y"),
+                "url": "https://ecourts.gov.in/ecourts_home/",
+                "date": "2025",
+            },
+            {
+                "title": "Mediation Act 2023 comes into force",
+                "summary": "India's first standalone mediation law provides a framework for institutional mediation, enforceability of mediated settlements, and establishment of the Mediation Council.",
+                "category": "Legislation",
+                "date": "09 Oct 2023",
+                "url": "https://www.indiacode.nic.in/",
             },
         ]
         return jsonify(news)

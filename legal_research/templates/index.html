@@ -131,6 +131,14 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
                     Legal Glossary
                 </a>
+                <a href="/judges" class="quick-link-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Current Judges — SC &amp; HCs
+                </a>
+                <a href="/resources" class="quick-link-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg>
+                    Lawyer Resources &amp; Tools
+                </a>
             </div>
         </div>
 
@@ -210,11 +218,15 @@
         .then(news => {
             const el = document.getElementById('newsListBody');
             el.innerHTML = news.map(n => `
-                <div class="news-item">
-                    <span class="news-cat">${n.category}</span>
+                <a href="${n.url}" target="_blank" rel="noopener" class="news-item news-item-link">
+                    <div class="news-item-top">
+                        <span class="news-cat">${n.category}</span>
+                        <span class="news-date">${n.date || ''}</span>
+                    </div>
                     <h4>${n.title}</h4>
                     <p>${n.summary}</p>
-                </div>
+                    <span class="news-source">${new URL(n.url).hostname} &rarr;</span>
+                </a>
             `).join('');
         });
 

@@ -1359,6 +1359,33 @@ a:hover { color: var(--accent); }
 
 .news-item:last-child { border-bottom: none; }
 
+.news-item-link {
+    display: block;
+    text-decoration: none;
+    border-radius: var(--radius);
+    padding: 0.75rem !important;
+    margin: 0 -0.5rem;
+    transition: background 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+}
+.news-item-link:hover {
+    background: #f0f7ff;
+    box-shadow: 0 1px 4px rgba(26,54,93,0.08);
+}
+
+.news-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.35rem;
+}
+
+.news-date {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
 .news-cat {
     display: inline-block;
     font-size: 0.65rem;
@@ -1369,7 +1396,6 @@ a:hover { color: var(--accent); }
     background: var(--danger);
     padding: 0.1rem 0.5rem;
     border-radius: 3px;
-    margin-bottom: 0.35rem;
 }
 
 .news-item h4 {
@@ -1385,6 +1411,14 @@ a:hover { color: var(--accent); }
     color: var(--text-light);
     line-height: 1.5;
     margin: 0;
+}
+
+.news-source {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--info);
+    font-weight: 600;
+    margin-top: 0.35rem;
 }
 
 /* Quick Links */
@@ -1432,6 +1466,306 @@ a:hover { color: var(--accent); }
     margin-top: 3rem;
 }
 
+/* ── Judges Page ── */
+.judges-page { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+.judges-hero {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.judges-hero h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+.judges-hero p { color: var(--text-light); font-size: 0.95rem; margin-top: 0.35rem; }
+.judges-disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+.judges-disclaimer a { color: var(--info); }
+
+.judges-section {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.judges-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--primary);
+    color: white;
+}
+.judges-sc-header { background: linear-gradient(135deg, #1a365d, #2c5282); }
+.judges-hc-header { background: linear-gradient(135deg, #1a4731, #276749); }
+
+.judges-section-header h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+.judges-section-header p { font-size: 0.8rem; opacity: 0.8; margin: 0.15rem 0 0; }
+
+.judges-official-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8rem;
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.12);
+    transition: background 0.15s;
+}
+.judges-official-link:hover { background: rgba(255,255,255,0.25); color: white; }
+
+.judges-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+.judges-table thead { background: #f7f8fa; }
+.judges-table th {
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+}
+.judges-table td {
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+.judges-table tr:last-child td { border-bottom: none; }
+.judges-table tr:hover { background: #f0f7ff; }
+
+.jd-name { font-weight: 600; color: var(--primary); }
+.jd-court { font-weight: 600; }
+.jd-row-retired { opacity: 0.5; }
+
+.jd-cji-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 0.05rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    margin-left: 0.3rem;
+    vertical-align: middle;
+}
+
+.jd-badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+.jd-retired { background: #e2e8f0; color: #718096; }
+.jd-urgent { background: #fed7d7; color: #c53030; }
+.jd-soon { background: #fefcbf; color: #975a16; }
+.jd-ok { background: #c6f6d5; color: #276749; }
+.jd-safe { background: #ebf4ff; color: #2b6cb0; }
+
+.jd-wiki-link {
+    color: var(--info);
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+.jd-wiki-link:hover { text-decoration: underline; }
+
+.judges-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.judges-stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    text-align: center;
+}
+.judges-stat-num {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+.judges-stat-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* ── Resources Page ── */
+.resources-page { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+.resources-hero {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.resources-hero h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+.resources-hero p { color: var(--text-light); font-size: 0.95rem; margin-top: 0.35rem; }
+
+.res-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.res-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.res-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.25rem;
+    color: white;
+}
+.res-card-header h2 { font-size: 0.9rem; font-weight: 700; margin: 0; }
+.res-header-blue { background: linear-gradient(135deg, #2b6cb0, #3182ce); }
+.res-header-gold { background: linear-gradient(135deg, #975a16, #d69e2e); }
+.res-header-green { background: linear-gradient(135deg, #276749, #38a169); }
+.res-header-purple { background: linear-gradient(135deg, #553c9a, #6b46c1); }
+.res-header-red { background: linear-gradient(135deg, #9b2c2c, #e53e3e); }
+.res-header-orange { background: linear-gradient(135deg, #c05621, #dd6b20); }
+.res-header-teal { background: linear-gradient(135deg, #234e52, #319795); }
+
+.res-card-body { padding: 1rem 1.25rem; }
+
+.res-link {
+    display: block;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: padding-left 0.15s;
+}
+.res-link:last-child { border-bottom: none; }
+.res-link:hover { padding-left: 0.4rem; }
+
+.res-link strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--primary);
+}
+.res-link span {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+/* Resource Tables */
+.res-ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+.res-ref-table thead { background: #f7f8fa; }
+.res-ref-table th {
+    padding: 0.5rem 0.6rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+}
+.res-ref-table td {
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.4;
+}
+.res-ref-table tr:last-child td { border-bottom: none; }
+
+.res-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+/* Limitation Calculator */
+.res-calc-info { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem; }
+
+.res-calc-form { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.res-calc-row label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.res-calc-row input,
+.res-calc-row select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    color: var(--text);
+    background: white;
+}
+
+.res-calc-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.res-calc-btn:hover { background: var(--primary-light); }
+
+.res-calc-result {
+    padding: 0.85rem;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+.res-calc-valid { background: #f0fff4; border: 1px solid var(--success); }
+.res-calc-expired { background: #fff5f5; border: 1px solid var(--danger); }
+.res-expired-text { color: var(--danger); font-weight: 700; }
+.res-valid-text { color: var(--success); font-weight: 700; }
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
     .navbar { padding: 0 1rem; }
@@ -1443,4 +1777,10 @@ a:hover { color: var(--accent); }
     .detail-grid { grid-template-columns: 1fr; }
     .analytics-grid { grid-template-columns: 1fr; }
     .case-detail { padding: 1rem; }
+    .judges-page { padding: 1rem; }
+    .judges-stats-row { grid-template-columns: 1fr 1fr; }
+    .judges-table { font-size: 0.75rem; }
+    .judges-table th, .judges-table td { padding: 0.4rem 0.5rem; }
+    .res-grid { grid-template-columns: 1fr; }
+    .resources-page { padding: 1rem; }
 }

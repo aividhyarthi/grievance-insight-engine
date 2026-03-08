@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+{% block title %}Lawyer Resources & Tools{% endblock %}
+
+{% block content %}
+<div class="resources-page">
+
+    <div class="resources-hero">
+        <h1>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg>
+            Lawyer Resources & Practice Tools
+        </h1>
+        <p>Essential links, calculators, and references for practicing lawyers in India.</p>
+    </div>
+
+    <div class="res-grid">
+
+        <!-- Court Websites -->
+        <div class="res-card">
+            <div class="res-card-header res-header-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/></svg>
+                <h2>Official Court Websites</h2>
+            </div>
+            <div class="res-card-body">
+                <a href="https://www.sci.gov.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>Supreme Court of India</strong>
+                    <span>sci.gov.in — Judgments, cause lists, case status</span>
+                </a>
+                <a href="https://njdg.ecourts.gov.in/njdgnew/" target="_blank" rel="noopener" class="res-link">
+                    <strong>National Judicial Data Grid (NJDG)</strong>
+                    <span>Pendency data for all courts across India</span>
+                </a>
+                <a href="https://ecourts.gov.in/ecourts_home/" target="_blank" rel="noopener" class="res-link">
+                    <strong>eCourts Services</strong>
+                    <span>Case status, orders, cause lists for district & HC courts</span>
+                </a>
+                <a href="https://efiling.ecourts.gov.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>eFiling Portal</strong>
+                    <span>Electronic filing for all courts</span>
+                </a>
+                <a href="https://main.sci.gov.in/cause-list" target="_blank" rel="noopener" class="res-link">
+                    <strong>SC Daily Cause List</strong>
+                    <span>Today's listing of matters before Supreme Court</span>
+                </a>
+                <a href="https://main.sci.gov.in/case-status" target="_blank" rel="noopener" class="res-link">
+                    <strong>SC Case Status</strong>
+                    <span>Check status by diary number, case number, or party name</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Legal Databases -->
+        <div class="res-card">
+            <div class="res-card-header res-header-gold">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                <h2>Legal Databases & Portals</h2>
+            </div>
+            <div class="res-card-body">
+                <a href="https://www.indiacode.nic.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>India Code</strong>
+                    <span>Complete repository of Central and State Acts</span>
+                </a>
+                <a href="https://indiankanoon.org/" target="_blank" rel="noopener" class="res-link">
+                    <strong>Indian Kanoon</strong>
+                    <span>Free search engine for Indian court judgments</span>
+                </a>
+                <a href="https://legislative.gov.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>Legislative Department</strong>
+                    <span>Bills, Acts, Ordinances, and Constitution of India</span>
+                </a>
+                <a href="https://www.sci.gov.in/judgement/judgement.html" target="_blank" rel="noopener" class="res-link">
+                    <strong>SC Judgments Archive</strong>
+                    <span>Supreme Court judgment search by year, bench, subject</span>
+                </a>
+                <a href="https://egazette.gov.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>eGazette of India</strong>
+                    <span>Official gazette notifications and orders</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Limitation Calculator -->
+        <div class="res-card">
+            <div class="res-card-header res-header-green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <h2>Limitation Period Calculator</h2>
+            </div>
+            <div class="res-card-body">
+                <p class="res-calc-info">Calculate the last date for filing based on the Limitation Act, 1963.</p>
+                <div class="res-calc-form">
+                    <div class="res-calc-row">
+                        <label>Cause of Action Date</label>
+                        <input type="date" id="limStartDate">
+                    </div>
+                    <div class="res-calc-row">
+                        <label>Limitation Period</label>
+                        <select id="limPeriod">
+                            <option value="30">30 days — Appeals to HC (Order 43)</option>
+                            <option value="90">90 days — SLP to Supreme Court</option>
+                            <option value="60">60 days — Appeal under Section 96 CPC (decree)</option>
+                            <option value="30">30 days — Revision application</option>
+                            <option value="365" selected>1 year — Suit for compensation (tort)</option>
+                            <option value="1095">3 years — Suits based on contract</option>
+                            <option value="1095">3 years — Money suits, recovery</option>
+                            <option value="1095">3 years — Suits relating to accounts</option>
+                            <option value="4380">12 years — Suit for possession of immovable property</option>
+                            <option value="custom">Custom period...</option>
+                        </select>
+                    </div>
+                    <div class="res-calc-row" id="customDaysRow" style="display:none;">
+                        <label>Custom Days</label>
+                        <input type="number" id="limCustomDays" placeholder="Enter number of days">
+                    </div>
+                    <button class="res-calc-btn" onclick="calcLimitation()">Calculate Last Date</button>
+                    <div class="res-calc-result" id="limResult" style="display:none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Court Fees Reference -->
+        <div class="res-card">
+            <div class="res-card-header res-header-purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                <h2>Quick Reference — Court Fees</h2>
+            </div>
+            <div class="res-card-body">
+                <table class="res-ref-table">
+                    <thead><tr><th>Type of Matter</th><th>Court Fee</th></tr></thead>
+                    <tbody>
+                        <tr><td>SLP before Supreme Court</td><td>Rs. 560 (for individuals)</td></tr>
+                        <tr><td>Writ Petition (SC)</td><td>Rs. 560</td></tr>
+                        <tr><td>Civil Appeal (SC)</td><td>Rs. 560 + process fee</td></tr>
+                        <tr><td>PIL (SC)</td><td>Rs. 50</td></tr>
+                        <tr><td>Writ Petition (HC)</td><td>Varies by state — Rs. 100-500</td></tr>
+                        <tr><td>Regular Civil Suit</td><td>Ad valorem (based on claim amount)</td></tr>
+                        <tr><td>Criminal Appeal</td><td>Rs. 50 - 100 (HC), Rs. 560 (SC)</td></tr>
+                    </tbody>
+                </table>
+                <p class="res-note">Court fees vary by state. Check your respective HC website for exact amounts.</p>
+            </div>
+        </div>
+
+        <!-- Key Timelines -->
+        <div class="res-card">
+            <div class="res-card-header res-header-red">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <h2>Critical Timelines for Lawyers</h2>
+            </div>
+            <div class="res-card-body">
+                <table class="res-ref-table">
+                    <thead><tr><th>Action</th><th>Limitation</th><th>Reference</th></tr></thead>
+                    <tbody>
+                        <tr><td>SLP to Supreme Court</td><td>90 days from HC order</td><td>Article 136, Constitution</td></tr>
+                        <tr><td>Appeal under Letters Patent</td><td>30 days</td><td>Clause 15, Letters Patent</td></tr>
+                        <tr><td>First Appeal (decree)</td><td>30-90 days</td><td>Order 41 CPC / BNSS</td></tr>
+                        <tr><td>Bail Application (Sessions)</td><td>No limitation</td><td>BNSS Section 483</td></tr>
+                        <tr><td>Consumer Complaint</td><td>2 years from cause of action</td><td>Consumer Protection Act, 2019</td></tr>
+                        <tr><td>MACT Claim</td><td>6 months (condonable)</td><td>MV Act Section 166</td></tr>
+                        <tr><td>Review Petition (SC)</td><td>30 days</td><td>Order 47 CPC</td></tr>
+                        <tr><td>Curative Petition (SC)</td><td>No fixed period</td><td>Rupa Ashok Hurra guidelines</td></tr>
+                        <tr><td>Application u/s 11 (Arbitration)</td><td>3 years</td><td>Limitation Act, Article 137</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- BNS / BNSS Quick Reference -->
+        <div class="res-card">
+            <div class="res-card-header res-header-orange">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <h2>New Criminal Laws — IPC to BNS Map</h2>
+            </div>
+            <div class="res-card-body">
+                <p class="res-note" style="margin-bottom:0.75rem;">Effective 1 July 2024, the three new criminal laws replaced colonial-era statutes.</p>
+                <table class="res-ref-table">
+                    <thead><tr><th>Old Law</th><th>New Law</th><th>Key Change</th></tr></thead>
+                    <tbody>
+                        <tr><td>IPC, 1860</td><td>Bharatiya Nyaya Sanhita (BNS), 2023</td><td>Community service as punishment; new offences for terrorism, mob lynching, organised crime</td></tr>
+                        <tr><td>CrPC, 1973</td><td>Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023</td><td>Mandatory forensics for 7yr+ offences; electronic FIR; timelines for investigation & trial</td></tr>
+                        <tr><td>Evidence Act, 1872</td><td>Bharatiya Sakshya Adhiniyam (BSA), 2023</td><td>Electronic records as primary evidence; expanded definition of documents</td></tr>
+                    </tbody>
+                </table>
+                <table class="res-ref-table" style="margin-top:0.75rem;">
+                    <thead><tr><th>IPC Section (Old)</th><th>BNS Section (New)</th><th>Offence</th></tr></thead>
+                    <tbody>
+                        <tr><td>Section 302</td><td>Section 103</td><td>Murder</td></tr>
+                        <tr><td>Section 304</td><td>Section 105</td><td>Culpable Homicide</td></tr>
+                        <tr><td>Section 376</td><td>Section 65</td><td>Rape</td></tr>
+                        <tr><td>Section 420</td><td>Section 318</td><td>Cheating</td></tr>
+                        <tr><td>Section 498A</td><td>Section 86</td><td>Cruelty by Husband</td></tr>
+                        <tr><td>Section 506</td><td>Section 351</td><td>Criminal Intimidation</td></tr>
+                        <tr><td>Section 354</td><td>Section 74</td><td>Assault on Woman</td></tr>
+                        <tr><td>Section 304B</td><td>Section 80</td><td>Dowry Death</td></tr>
+                        <tr><td>Section 307</td><td>Section 109</td><td>Attempt to Murder</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bar Council & Professional -->
+        <div class="res-card">
+            <div class="res-card-header res-header-teal">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <h2>Bar Councils & Professional Bodies</h2>
+            </div>
+            <div class="res-card-body">
+                <a href="https://www.barcouncilofindia.org/" target="_blank" rel="noopener" class="res-link">
+                    <strong>Bar Council of India</strong>
+                    <span>Enrollment, rules of professional conduct, advocate database</span>
+                </a>
+                <a href="https://www.scba.org.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>Supreme Court Bar Association</strong>
+                    <span>SCBA membership, library, AoR examinations</span>
+                </a>
+                <a href="https://www.livelaw.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>LiveLaw</strong>
+                    <span>Legal news, judgment summaries, case tracker</span>
+                </a>
+                <a href="https://www.barandbench.com/" target="_blank" rel="noopener" class="res-link">
+                    <strong>Bar & Bench</strong>
+                    <span>Legal journalism, court coverage, analysis</span>
+                </a>
+                <a href="https://www.scobserver.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>SC Observer</strong>
+                    <span>Track Constitution Bench cases, judge profiles, analysis</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Arbitration & ADR -->
+        <div class="res-card">
+            <div class="res-card-header res-header-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <h2>Arbitration & ADR</h2>
+            </div>
+            <div class="res-card-body">
+                <a href="https://siac.org.sg/" target="_blank" rel="noopener" class="res-link">
+                    <strong>Singapore International Arbitration Centre (SIAC)</strong>
+                    <span>Rules, schedule of fees, model clauses</span>
+                </a>
+                <a href="https://www.iccwbo.org/dispute-resolution/" target="_blank" rel="noopener" class="res-link">
+                    <strong>ICC International Court of Arbitration</strong>
+                    <span>ICC Rules, cost calculator, model clauses</span>
+                </a>
+                <a href="https://mcia.org.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>Mumbai Centre for Intl. Arbitration (MCIA)</strong>
+                    <span>India's premier international arbitration centre</span>
+                </a>
+                <a href="https://www.nalsa.gov.in/" target="_blank" rel="noopener" class="res-link">
+                    <strong>NALSA — National Legal Services Authority</strong>
+                    <span>Free legal aid, Lok Adalats, legal awareness</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Limitation calculator
+document.getElementById('limPeriod').addEventListener('change', function() {
+    document.getElementById('customDaysRow').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function calcLimitation() {
+    const start = document.getElementById('limStartDate').value;
+    if (!start) { alert('Please select a date'); return; }
+
+    const periodSel = document.getElementById('limPeriod');
+    let days = periodSel.value === 'custom'
+        ? parseInt(document.getElementById('limCustomDays').value)
+        : parseInt(periodSel.value);
+
+    if (!days || days <= 0) { alert('Please enter valid days'); return; }
+
+    const startDate = new Date(start);
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + days);
+
+    // Check if last day is a Sunday or national holiday — extend to next working day
+    while (endDate.getDay() === 0) {
+        endDate.setDate(endDate.getDate() + 1);
+    }
+
+    const today = new Date();
+    const diffDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+
+    const result = document.getElementById('limResult');
+    result.style.display = '';
+    const expired = diffDays < 0;
+    result.className = 'res-calc-result ' + (expired ? 'res-calc-expired' : 'res-calc-valid');
+    result.innerHTML = `
+        <strong>Last Date for Filing:</strong> ${endDate.toLocaleDateString('en-IN', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}
+        <br><strong>Period:</strong> ${days} days from ${startDate.toLocaleDateString('en-IN', {year: 'numeric', month: 'short', day: 'numeric'})}
+        <br>${expired
+            ? `<span class="res-expired-text">EXPIRED ${Math.abs(diffDays)} days ago</span>`
+            : `<span class="res-valid-text">${diffDays} days remaining from today</span>`}
+    `;
+}
+</script>
+{% endblock %}
