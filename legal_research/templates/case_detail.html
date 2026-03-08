@@ -17,6 +17,9 @@
             <span class="badge badge-type">{{ case.case_type }}</span>
             <span class="badge badge-court">{{ case.court_level }}</span>
             <span class="badge badge-year">{{ case.year }}</span>
+            {% if case.bench_size %}
+            <span class="badge" style="background:#f0e6ff;color:#6b46c1;">{{ case.bench_size }}</span>
+            {% endif %}
             {% if case.outcome %}
             <span class="badge badge-outcome-{{ case.outcome }}">{{ case.outcome }}</span>
             {% endif %}
@@ -35,12 +38,18 @@
                 <label>Date Decided</label>
                 <span>{{ case.date_decided or 'N/A' }}</span>
             </div>
+            {% if case.date_filed %}
+            <div class="detail-item">
+                <label>Date Filed</label>
+                <span>{{ case.date_filed }}</span>
+            </div>
+            {% endif %}
             <div class="detail-item">
                 <label>Jurisdiction</label>
                 <span>{{ case.jurisdiction or 'N/A' }}</span>
             </div>
             <div class="detail-item">
-                <label>Judges</label>
+                <label>Judges / Bench</label>
                 <span>{{ case.judges or 'N/A' }}</span>
             </div>
             {% if case.petitioner %}
@@ -55,14 +64,58 @@
                 <span>{{ case.respondent }}</span>
             </div>
             {% endif %}
+            {% if case.advocate_petitioner %}
+            <div class="detail-item">
+                <label>Advocate (Petitioner)</label>
+                <span style="color:var(--primary);font-weight:600;">{{ case.advocate_petitioner }}</span>
+            </div>
+            {% endif %}
+            {% if case.advocate_respondent %}
+            <div class="detail-item">
+                <label>Advocate (Respondent)</label>
+                <span style="color:var(--primary);font-weight:600;">{{ case.advocate_respondent }}</span>
+            </div>
+            {% endif %}
+            {% if case.case_duration_days %}
+            <div class="detail-item">
+                <label>Case Duration</label>
+                <span>{{ case.case_duration_days }} days
+                    {% if case.case_duration_days > 365 %}
+                    (~{{ (case.case_duration_days / 365)|round(1) }} years)
+                    {% endif %}
+                </span>
+            </div>
+            {% endif %}
+            {% if case.hearing_count %}
+            <div class="detail-item">
+                <label>Hearings</label>
+                <span>{{ case.hearing_count }} hearings</span>
+            </div>
+            {% endif %}
         </div>
     </div>
+
+    <!-- Outcome Detail -->
+    {% if case.outcome_detail %}
+    <div class="detail-section" style="border-left: 4px solid {% if case.outcome == 'favor' %}var(--success){% elif case.outcome == 'against' %}var(--danger){% else %}var(--accent){% endif %};">
+        <h2>Outcome</h2>
+        <p>{{ case.outcome_detail }}</p>
+    </div>
+    {% endif %}
 
     <!-- Summary -->
     <div class="detail-section">
         <h2>Summary</h2>
         <p>{{ case.summary }}</p>
     </div>
+
+    <!-- Timeline -->
+    {% if case.timeline_events %}
+    <div class="detail-section" style="background: #f8fafc;">
+        <h2>Case Timeline</h2>
+        <div class="case-timeline" id="caseTimeline"></div>
+    </div>
+    {% endif %}
 
     <!-- Facts -->
     {% if case.facts %}
@@ -80,11 +133,39 @@
     </div>
     {% endif %}
 
+    <!-- Arguments: Petitioner Side -->
+    {% if case.arguments_petitioner %}
+    <div class="detail-section" style="border-left: 4px solid var(--info);">
+        <h2>Arguments — Petitioner{% if case.advocate_petitioner %} ({{ case.advocate_petitioner }}){% endif %}</h2>
+        <p>{{ case.arguments_petitioner }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Arguments: Respondent Side -->
+    {% if case.arguments_respondent %}
+    <div class="detail-section" style="border-left: 4px solid #e53e3e;">
+        <h2>Arguments — Respondent{% if case.advocate_respondent %} ({{ case.advocate_respondent }}){% endif %}</h2>
+        <p>{{ case.arguments_respondent }}</p>
+    </div>
+    {% endif %}
+
     <!-- Legal Reasoning — the most valuable section -->
     {% if case.legal_reasoning %}
     <div class="detail-section" style="border-left: 4px solid var(--accent);">
         <h2>Legal Reasoning & Analysis</h2>
         <p>{{ case.legal_reasoning }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Judge Observations -->
+    {% if case.judge_observations %}
+    <div class="detail-section judge-quotes">
+        <h2>Notable Judicial Observations</h2>
+        {% for quote in case.judge_observations.split('||') %}
+        <blockquote class="judge-quote">
+            {{ quote.strip() }}
+        </blockquote>
+        {% endfor %}
     </div>
     {% endif %}
 
@@ -99,6 +180,14 @@
             </li>
             {% endfor %}
         </ul>
+    </div>
+    {% endif %}
+
+    <!-- Dissenting Opinion -->
+    {% if case.dissenting_opinion %}
+    <div class="detail-section" style="border-left: 4px solid var(--danger); background: #fff5f5;">
+        <h2>Dissenting / Minority Opinion</h2>
+        <p>{{ case.dissenting_opinion }}</p>
     </div>
     {% endif %}
 
@@ -126,6 +215,18 @@
     </div>
     {% endif %}
 
+    <!-- Full Text Link -->
+    {% if case.full_text_url %}
+    <div class="detail-section" style="text-align:center; background:#ebf4ff;">
+        <h2>Official Judgment</h2>
+        <a href="{{ case.full_text_url }}" target="_blank" rel="noopener" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;font-size:1rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Read Full Judgment on Official Site
+        </a>
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-muted);">Opens on government portal (sci.gov.in / ecourts.gov.in)</p>
+    </div>
+    {% endif %}
+
     <!-- Tags -->
     {% if case.tags %}
     <div class="detail-section">
@@ -150,6 +251,7 @@
 
 {% block scripts %}
 <script>
+    // Similar cases
     fetch('/api/cases/{{ case.id }}/similar')
         .then(r => r.json())
         .then(cases => {
@@ -165,5 +267,27 @@
                 </div>
             `).join('');
         });
+
+    // Render timeline
+    {% if case.timeline_events %}
+    (function() {
+        const timelineData = {{ case.timeline_events | safe }};
+        const container = document.getElementById('caseTimeline');
+        if (!timelineData || !timelineData.length) return;
+
+        container.innerHTML = timelineData.map((evt, i) => {
+            const isLeft = i % 2 === 0;
+            return `
+                <div class="tl-item ${isLeft ? 'tl-left' : 'tl-right'}">
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <span class="tl-date">${evt.date}</span>
+                        <p class="tl-event">${evt.event}</p>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    })();
+    {% endif %}
 </script>
 {% endblock %}

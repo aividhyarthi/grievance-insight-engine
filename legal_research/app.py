@@ -61,18 +61,28 @@ def create_app():
     def api_cases():
         query = LegalCase.query
 
-        # Text search
+        # Text search — covers case name, lawyers, judges, case number, and all content
         q = request.args.get("q", "").strip()
         if q:
             search_filter = or_(
                 LegalCase.case_name.ilike(f"%{q}%"),
+                LegalCase.case_number.ilike(f"%{q}%"),
+                LegalCase.judges.ilike(f"%{q}%"),
+                LegalCase.advocate_petitioner.ilike(f"%{q}%"),
+                LegalCase.advocate_respondent.ilike(f"%{q}%"),
+                LegalCase.petitioner.ilike(f"%{q}%"),
+                LegalCase.respondent.ilike(f"%{q}%"),
                 LegalCase.summary.ilike(f"%{q}%"),
                 LegalCase.legal_reasoning.ilike(f"%{q}%"),
+                LegalCase.judge_observations.ilike(f"%{q}%"),
                 LegalCase.key_principles.ilike(f"%{q}%"),
                 LegalCase.tags.ilike(f"%{q}%"),
                 LegalCase.statutes_referenced.ilike(f"%{q}%"),
                 LegalCase.facts.ilike(f"%{q}%"),
                 LegalCase.issues.ilike(f"%{q}%"),
+                LegalCase.arguments_petitioner.ilike(f"%{q}%"),
+                LegalCase.arguments_respondent.ilike(f"%{q}%"),
+                LegalCase.dissenting_opinion.ilike(f"%{q}%"),
             )
             query = query.filter(search_filter)
 
