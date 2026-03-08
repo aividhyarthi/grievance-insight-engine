@@ -13,11 +13,14 @@ def create_app():
 
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
 
-    db_path = os.environ.get(
+    data_dir = os.path.join(os.path.dirname(__file__), "data")
+    os.makedirs(data_dir, exist_ok=True)
+
+    db_url = os.environ.get(
         "DATABASE_URL",
-        f"sqlite:///{os.path.join(os.path.dirname(__file__), 'data', 'legal_research.db')}",
+        f"sqlite:///{os.path.join(data_dir, 'legal_research.db')}",
     )
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_path
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)
@@ -225,6 +228,37 @@ def create_app():
             "template_content": t.template_content,
             "tips": t.tips,
         } for t in templates])
+
+    # ── API: Scraper (fetch from gov open data) ────────────────────
+
+    @app.route("/api/scrape", methods=["POST"])
+    def api_scrape():
+        """Trigger scraping of Indian Supreme Court judgments from gov open data.
+        Source: eCourts (ecourts.gov.in) mirror on AWS Open Data Registry.
+        """
+        from legal_research.scraper import scrape_and_store
+        data = request.get_json() or {}
+        years = data.get("years", list(range(2020, 2026)))
+        max_per_year = data.get("max_per_year", 20)
+        try:
+            added = scrape_and_store(db, years=years, max_per_year=max_per_year)
+            return jsonify({"status": "success", "cases_added": added})
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)}), 500
+
+    @app.route("/api/stats")
+    def api_stats():
+        """Return overall library statistics."""
+        total = LegalCase.query.count()
+        indian = LegalCase.query.filter(LegalCase.jurisdiction == "India").count()
+        types = db.session.query(LegalCase.case_type).distinct().count()
+        courts = db.session.query(LegalCase.court).distinct().count()
+        return jsonify({
+            "total_cases": total,
+            "indian_cases": indian,
+            "case_types": types,
+            "courts": courts,
+        })
 
     return app
 

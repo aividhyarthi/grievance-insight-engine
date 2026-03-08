@@ -754,9 +754,15 @@ BRIEF_TEMPLATES = [
 def seed_database(db):
     """Populate the database with seed data."""
     from legal_research.models import LegalCase, LegalGlossary, CaseBriefTemplate
+    from legal_research.indian_cases import INDIAN_LANDMARK_CASES
 
-    # Seed cases
+    # Seed international landmark cases
     for case_data in LANDMARK_CASES:
+        case = LegalCase(**case_data)
+        db.session.add(case)
+
+    # Seed Indian landmark cases
+    for case_data in INDIAN_LANDMARK_CASES:
         case = LegalCase(**case_data)
         db.session.add(case)
 
@@ -770,5 +776,6 @@ def seed_database(db):
         tmpl = CaseBriefTemplate(**tmpl_data)
         db.session.add(tmpl)
 
+    total_cases = len(LANDMARK_CASES) + len(INDIAN_LANDMARK_CASES)
     db.session.commit()
-    print(f"Seeded {len(LANDMARK_CASES)} cases, {len(GLOSSARY_TERMS)} glossary terms, {len(BRIEF_TEMPLATES)} templates.")
+    print(f"Seeded {total_cases} cases ({len(LANDMARK_CASES)} international + {len(INDIAN_LANDMARK_CASES)} Indian), {len(GLOSSARY_TERMS)} glossary terms, {len(BRIEF_TEMPLATES)} templates.")
