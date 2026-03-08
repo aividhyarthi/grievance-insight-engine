@@ -751,6 +751,275 @@ BRIEF_TEMPLATES = [
 ]
 
 
+def _enrich_indian_cases(cases):
+    """Add extended detail fields (advocates, bench, arguments, quotes, etc.) to Indian cases."""
+    import json
+    enrichment = {
+        "Maneka Gandhi v. Union of India": {
+            "bench_size": "7-judge bench",
+            "advocate_petitioner": "Soli Sorabjee",
+            "advocate_respondent": "Niren De (Attorney General)",
+            "outcome_detail": "The Supreme Court allowed the petition, holding that the right to travel abroad is part of personal liberty under Article 21 and the procedure must be fair, just, and reasonable.",
+            "arguments_petitioner": "The impounding of passport without reasons or hearing violates Articles 14, 19, and 21. Personal liberty includes the right to travel. The procedure established by law must meet the test of reasonableness.",
+            "arguments_respondent": "Article 21 only requires that procedure be established by law, not that it be reasonable. The Passports Act provides sufficient procedure. Executive action on passport is within sovereign power.",
+            "judge_observations": "The expression 'personal liberty' in Article 21 is of the widest amplitude and it covers a variety of rights which go to constitute the personal liberty of man.||No person shall be deprived of his life or personal liberty except according to procedure established by law — but that procedure must be right, just, and fair, and not arbitrary, fanciful, or oppressive.",
+        },
+        "Golaknath v. State of Punjab": {
+            "bench_size": "11-judge bench",
+            "advocate_petitioner": "M.K. Nambyar",
+            "advocate_respondent": "H.N. Sanyal (Advocate General)",
+            "outcome_detail": "By a narrow 6-5 majority, held that Parliament has no power to amend Part III (Fundamental Rights) of the Constitution. Applied the doctrine of prospective overruling.",
+            "arguments_petitioner": "Fundamental rights are sacrosanct and above the amending power of Parliament. Article 368 merely prescribes the procedure for amendment and does not confer substantive power to destroy fundamental rights.",
+            "arguments_respondent": "Parliament has plenary amending power under Article 368 which extends to all provisions of the Constitution including fundamental rights. Democratic sovereignty requires this power.",
+            "judge_observations": "Fundamental rights are given a transcendental position under our Constitution and are kept beyond the reach of Parliament.||The power of amendment under Article 368 does not include the power to abrogate the Constitution or to alter its basic features.",
+        },
+        "S.R. Bommai v. Union of India": {
+            "bench_size": "9-judge bench",
+            "advocate_petitioner": "Rajeev Dhavan, K.K. Venugopal",
+            "advocate_respondent": "Solicitor General Dipankar Gupta",
+            "outcome_detail": "The Court laid down strict guidelines for the use of Article 356, holding that the President's power is subject to judicial review and secularism is part of the basic structure.",
+            "arguments_petitioner": "Dismissal of elected state governments under Article 356 for political reasons is unconstitutional. The power must be subject to judicial review. Federalism is a basic feature of the Constitution.",
+            "arguments_respondent": "The President's satisfaction under Article 356 is subjective and not justiciable. The Union government acted on valid material showing constitutional breakdown in the states.",
+            "judge_observations": "Secularism is a basic feature of the Constitution. The State has no religion. Any government which pursues unsecular policies or unsecular courses of action acts contrary to the constitutional mandate.||The power under Article 356 is a drastic power and should be used sparingly and as a last resort.",
+        },
+        "K.S. Puttaswamy v. Union of India (Right to Privacy)": {
+            "bench_size": "9-judge bench",
+            "advocate_petitioner": "Gopal Subramanium, Shyam Divan, Arvind Datar",
+            "advocate_respondent": "K.K. Venugopal (Attorney General), Rakesh Dwivedi",
+            "outcome_detail": "Unanimously held that the right to privacy is a fundamental right under Article 21 of the Constitution, overruling earlier decisions in M.P. Sharma and Kharak Singh.",
+            "arguments_petitioner": "The right to privacy is implicit in the right to life and personal liberty under Article 21. Aadhaar mandating biometric data collection violates informational privacy. Previous decisions denying privacy as a fundamental right were decided by smaller benches.",
+            "arguments_respondent": "The Constitution does not expressly guarantee a right to privacy. Previous decisions by 6 and 8-judge benches have held privacy is not a fundamental right. Privacy claims must yield to compelling state interests like national security and welfare.",
+            "judge_observations": "Privacy is the constitutional core of human dignity. Privacy has both a normative and descriptive function. At a normative level, privacy sub-serves those eternal values upon which the guarantees of life, liberty and freedom are founded.||The right to privacy is protected as an intrinsic part of the right to life and personal liberty under Article 21 and as a part of the freedoms guaranteed by Part III of the Constitution.",
+            "timeline_events": json.dumps([
+                {"date": "2012", "event": "Aadhaar challenged in Supreme Court"},
+                {"date": "2015", "event": "3-judge bench refers privacy question to larger bench"},
+                {"date": "2017-07-18", "event": "5-day hearing before 9-judge bench begins"},
+                {"date": "2017-08-24", "event": "Unanimous judgment: Privacy is a fundamental right"},
+            ]),
+        },
+        "Navtej Singh Johar v. Union of India": {
+            "bench_size": "5-judge bench",
+            "advocate_petitioner": "Menaka Guruswamy, Arundhati Katju, Anand Grover",
+            "advocate_respondent": "Tushar Mehta (Solicitor General)",
+            "outcome_detail": "Unanimously struck down Section 377 IPC insofar as it criminalized consensual sexual acts between adults, decriminalizing homosexuality in India.",
+            "arguments_petitioner": "Section 377 criminalizes identity, not just acts. Sexual orientation is an integral part of human identity protected by Article 21. The provision is manifestly arbitrary and discriminatory under Article 14. Constitutional morality must prevail over social morality.",
+            "arguments_respondent": "The government left the decision to the wisdom of the Court. The Union did not actively defend Section 377 in its application to consensual adult acts.",
+            "judge_observations": "I am what I am. So take me as I am. An individual's sexuality is a natural trait and innate to a human being. To deny it is to deny the very essence of life.||Constitutional morality requires that all individuals, irrespective of their sexual orientation, are entitled to equal citizenship and protection of the law.",
+            "timeline_events": json.dumps([
+                {"date": "2001", "event": "Naz Foundation files first PIL in Delhi HC"},
+                {"date": "2009", "event": "Delhi HC reads down Section 377"},
+                {"date": "2013-12", "event": "SC reverses Delhi HC in Koushal — re-criminalizes"},
+                {"date": "2016", "event": "Curative petition filed by Johar & others"},
+                {"date": "2018-07", "event": "Constitution bench hearing begins"},
+                {"date": "2018-09-06", "event": "Section 377 struck down unanimously"},
+            ]),
+        },
+        "K.M. Nanavati v. State of Maharashtra": {
+            "bench_size": "3-judge bench",
+            "advocate_petitioner": "Karl Khandalavala",
+            "advocate_respondent": "Y.V. Chandrachud (as Government Pleader)",
+            "outcome_detail": "Conviction upheld for murder. Nanavati was sentenced to life imprisonment but later pardoned by the Governor of Maharashtra.",
+            "arguments_petitioner": "The killing was committed under grave and sudden provocation upon learning of the affair. Nanavati acted in the heat of passion without premeditation. The jury acquittal should be upheld.",
+            "arguments_respondent": "There was sufficient cooling time between learning of the affair and the shooting. Going to the naval base to obtain a revolver demonstrates premeditation. The jury verdict was perverse and influenced by public sympathy.",
+            "judge_observations": "The time-gap between the provocation and the act is not a mere matter of minutes but involves a sequence of deliberate acts which indicate premeditation.||A jury verdict which no reasonable body of men could have returned must be set aside as perverse.",
+        },
+        "Hussainara Khatoon v. Home Secretary, State of Bihar": {
+            "advocate_petitioner": "Pushpa Kapila Hingorani (pioneer of PIL)",
+            "advocate_respondent": "State of Bihar (Government Advocate)",
+            "outcome_detail": "Ordered the immediate release of thousands of undertrial prisoners who had been detained longer than the maximum sentence for their alleged offenses.",
+            "arguments_petitioner": "Thousands of undertrials have been detained for years without trial, some for periods longer than the maximum punishment. This violates Article 21. The State is obligated to provide free legal aid.",
+            "arguments_respondent": "The State faces resource constraints in providing legal aid and speeding up trials. Administrative limitations exist in the criminal justice system.",
+            "judge_observations": "We think that the procedure which keeps such persons in jail without trial so long cannot possibly be regarded as reasonable, just and fair so as to be in conformity with Article 21.||The right to free legal services is an essential ingredient of reasonable, fair, and just procedure for a person accused of an offence.",
+        },
+        "Bachan Singh v. State of Punjab": {
+            "bench_size": "5-judge bench",
+            "advocate_petitioner": "Soli Sorabjee",
+            "advocate_respondent": "O.P. Rana (Advocate General, Punjab)",
+            "outcome_detail": "Upheld the constitutional validity of the death penalty by a 4-1 majority but established the 'rarest of rare' doctrine to restrict its application.",
+            "arguments_petitioner": "The death penalty is inherently cruel and violates Article 21. It serves no penological purpose that cannot be achieved by life imprisonment. There is always a risk of executing the innocent.",
+            "arguments_respondent": "The death penalty serves as a deterrent for the most heinous crimes. Parliament in its wisdom has prescribed it as a punishment. Judicial safeguards ensure fair application.",
+            "judge_observations": "A real and abiding concern for the dignity of human life postulates resistance to taking a life through law's instrumentality. That ought not to be done save in the rarest of rare cases when the alternative option is unquestionably foreclosed.||The question to be answered is not whether the death sentence should be imposed but whether anything other than the death sentence would be inadequate.",
+            "dissenting_opinion": "Justice Bhagwati dissented, holding that the death penalty is violative of Articles 14 and 21. It is irrevocable, irreversible, and disproportionately imposed on the poor and marginalized.",
+        },
+        "D.K. Basu v. State of West Bengal": {
+            "advocate_petitioner": "D.K. Basu (Executive Chairman, Legal Aid Services, West Bengal)",
+            "advocate_respondent": "State of West Bengal",
+            "outcome_detail": "Laid down 11 mandatory requirements that police must follow during arrest and detention to prevent custodial violence.",
+            "arguments_petitioner": "Custodial deaths and torture are rampant in India. The State must be held accountable for deaths in custody. Guidelines are needed to prevent police excesses.",
+            "arguments_respondent": "The State accepted the need for reform and did not strongly oppose the framing of guidelines.",
+            "judge_observations": "Custodial violence is a matter of concern. It is aggravated by the fact that it is committed by persons who are supposed to be the protectors of the citizens.||The right to life includes the right to live with human dignity, free from torture and assault by the State or its functionaries.",
+        },
+        "Olga Tellis v. Bombay Municipal Corporation": {
+            "bench_size": "5-judge bench",
+            "advocate_petitioner": "V.M. Tarkunde, Indira Jaising",
+            "advocate_respondent": "F.S. Nariman (for BMC)",
+            "outcome_detail": "Recognized the right to livelihood as part of the right to life under Article 21. Pavement dwellers cannot be evicted without notice and hearing, though the eviction itself was ultimately upheld.",
+            "arguments_petitioner": "Pavement dwellers live on footpaths because they have no alternative. The right to livelihood is part of the right to life. Eviction without alternative accommodation violates Article 21.",
+            "arguments_respondent": "Encroachment on public property is illegal. The municipality has a duty to keep footpaths and roads clear for public use. No one has a right to encroach on public land.",
+            "judge_observations": "The sweep of the right to life conferred by Article 21 is wide and far-reaching. It does not mean merely that life cannot be extinguished or taken away as, for example, by the imposition and execution of the death sentence, except according to procedure established by law. That is but one aspect of the right to life. An equally important facet of that right is the right to livelihood.",
+        },
+        "M.C. Mehta v. Union of India (Oleum Gas Leak)": {
+            "advocate_petitioner": "M.C. Mehta (in person, as public interest litigant)",
+            "advocate_respondent": "Fali Nariman (for Shriram Industries)",
+            "outcome_detail": "Established the principle of absolute liability for hazardous industries, going beyond the English rule in Rylands v. Fletcher.",
+            "arguments_petitioner": "The oleum gas leak endangered the lives and health of thousands. Industries engaged in hazardous activities must bear absolute liability for harm. The Bhopal tragedy demands stronger legal standards.",
+            "arguments_respondent": "The Rylands v. Fletcher rule with its exceptions should apply. Strict liability with defenses is the appropriate standard. The leak was contained quickly with minimal harm.",
+            "judge_observations": "We in India cannot afford to follow the rule in Rylands v. Fletcher. We have to evolve new principles and lay down new norms which would adequately deal with new problems in the context of the social and economic conditions prevailing in India.||An enterprise which is engaged in a hazardous or inherently dangerous industry owes an absolute and non-delegable duty to the community.",
+        },
+        "M.C. Mehta v. Union of India (Ganga Pollution)": {
+            "advocate_petitioner": "M.C. Mehta (in person)",
+            "advocate_respondent": "Solicitor General of India",
+            "outcome_detail": "Ordered the closure and relocation of polluting tanneries along the Ganga and established the polluter pays principle in Indian environmental law.",
+            "arguments_petitioner": "Industries are discharging untreated effluents into the Ganga, destroying the river and endangering public health. The right to clean water is part of the right to life under Article 21.",
+            "arguments_respondent": "Industries provide employment and contribute to the economy. Closure would cause hardship to workers. Time should be given for compliance with pollution standards.",
+            "judge_observations": "The financial capacity of the tanneries should be considered as irrelevant while requiring them to set up primary treatment plants. Just as an industry which cannot pay minimum wages to its workers cannot be allowed to exist, a tannery which cannot set up a primary treatment plant cannot be permitted to continue to be in existence.",
+        },
+        "Shah Bano Begum v. Mohammed Ahmed Khan": {
+            "bench_size": "5-judge bench",
+            "advocate_petitioner": "Daniel Latifi",
+            "advocate_respondent": "Mohammed Ahmed Khan (in person)",
+            "outcome_detail": "Held that a Muslim woman is entitled to maintenance under Section 125 CrPC even after the iddat period, sparking a major debate on uniform civil code.",
+            "arguments_petitioner": "Section 125 CrPC is a secular provision applicable to all women regardless of religion. Denying maintenance after iddat leaves divorced Muslim women destitute. Personal law cannot override statutory protection.",
+            "arguments_respondent": "Muslim personal law governs maintenance for Muslim women. The husband's obligation ends with mehr and iddat period maintenance. Section 125 should not override personal law.",
+            "judge_observations": "It is a matter of deep regret that Article 44 of the Constitution (Uniform Civil Code) has remained a dead letter. There is no evidence of any official activity for framing a common civil code for the country.||A common Civil Code will help the cause of national integration by removing disparate loyalties to laws which have conflicting ideologies.",
+        },
+        "Shayara Bano v. Union of India (Triple Talaq)": {
+            "bench_size": "5-judge bench",
+            "advocate_petitioner": "Salman Khurshid, V. Mohana",
+            "advocate_respondent": "K.K. Venugopal (Attorney General), Kapil Sibal (for AIMPLB)",
+            "outcome_detail": "By 3-2 majority, struck down the practice of triple talaq (talaq-e-biddat) as unconstitutional, holding it violates Articles 14, 15, and 21.",
+            "arguments_petitioner": "Triple talaq is arbitrary and violates the fundamental rights of Muslim women. It is not an essential religious practice entitled to protection under Article 25. It has been abolished in most Muslim-majority countries.",
+            "arguments_respondent": "Triple talaq is an integral part of Sunni Muslim personal law protected under Article 25. The Court should not interfere with religious personal law. Reform should come through legislation, not judicial intervention.",
+            "judge_observations": "What is held to be bad in the holy Quran cannot be good in Shariat and, in that sense, what is bad in theology is bad in law as well.||An act which is itself impermissible in Islam cannot be raised to the level of an essential practice.",
+            "timeline_events": json.dumps([
+                {"date": "2016-02", "event": "Shayara Bano files writ petition"},
+                {"date": "2017-03", "event": "SC refers matter to 5-judge Constitution bench"},
+                {"date": "2017-05-11", "event": "6-day hearing begins"},
+                {"date": "2017-08-22", "event": "Judgment delivered — triple talaq struck down"},
+                {"date": "2019", "event": "Parliament enacts Muslim Women (Protection of Rights on Marriage) Act"},
+            ]),
+        },
+        "Bandhua Mukti Morcha v. Union of India": {
+            "advocate_petitioner": "Bandhua Mukti Morcha (through Swami Agnivesh)",
+            "advocate_respondent": "Union of India (Government Advocate)",
+            "outcome_detail": "Recognized bonded labour as a violation of Article 23 and directed the government to identify, release, and rehabilitate bonded labourers across India.",
+            "arguments_petitioner": "Bonded labour continues to exist in India despite being outlawed. The workers are kept in inhuman conditions. Article 23 prohibits forced labour. The State has failed to implement the Bonded Labour System (Abolition) Act.",
+            "arguments_respondent": "The government is taking steps to eradicate bonded labour. Implementation challenges exist due to scale and resource constraints.",
+            "judge_observations": "Whenever it is shown that a labourer is made to provide forced labour, the court would raise a presumption that he is required to do so in consideration of an advance or other economic consideration received by him and is therefore a bonded labourer.",
+        },
+        "Indra Sawhney v. Union of India (Mandal Commission)": {
+            "bench_size": "9-judge bench",
+            "advocate_petitioner": "K.K. Venugopal, Arun Jaitley",
+            "advocate_respondent": "K. Parasaran, Kapil Sibal",
+            "outcome_detail": "Upheld 27% reservation for OBCs but imposed a 50% ceiling on total reservations. Introduced the 'creamy layer' concept to exclude affluent members of backward classes.",
+            "arguments_petitioner": "The Mandal Commission recommendations providing 27% OBC reservation violate the right to equality. Caste-based reservations are discriminatory. There should be an economic criterion for backwardness.",
+            "arguments_respondent": "Social backwardness in India is rooted in the caste system. OBCs constitute over 50% of the population but are underrepresented. Reservation is an affirmative action tool recognized by the Constitution.",
+            "judge_observations": "A caste can be and quite often is a social class in India. If it is backward socially, it would be a backward class for the purposes of Article 16(4).||Reservation is not an exception to Article 16(1) but a facet of it — it is a method of ensuring equality.",
+            "dissenting_opinion": "Justice Pandian dissented on the 50% limit, arguing that the quantum of reservation should be commensurate with the population of backward classes and that the ceiling is arbitrary.",
+            "timeline_events": json.dumps([
+                {"date": "1979", "event": "Mandal Commission constituted"},
+                {"date": "1980", "event": "Commission submits report recommending 27% OBC reservation"},
+                {"date": "1990-08", "event": "V.P. Singh government accepts Mandal recommendations"},
+                {"date": "1990-09", "event": "Widespread protests, Indra Sawhney files petition"},
+                {"date": "1992-11-16", "event": "9-judge bench delivers landmark judgment"},
+            ]),
+        },
+        "A.K. Kraipak v. Union of India": {
+            "advocate_petitioner": "V.M. Tarkunde",
+            "advocate_respondent": "Niren De (Attorney General)",
+            "outcome_detail": "Extended the principles of natural justice to administrative and quasi-judicial proceedings, not just judicial proceedings.",
+            "arguments_petitioner": "The selection process was vitiated by bias as one of the selection committee members was himself a candidate. Principles of natural justice must apply.",
+            "arguments_respondent": "The selection committee acted in an administrative capacity, not a judicial one. Natural justice principles apply only to judicial or quasi-judicial proceedings.",
+            "judge_observations": "The dividing line between administrative and quasi-judicial functions is being obliterated. The rules of natural justice operate in areas not covered by any law.||If the purpose of the rules of natural justice is to prevent miscarriage of justice one fails to see why those rules should not be made applicable to administrative proceedings.",
+        },
+        "Mohini Jain v. State of Karnataka": {
+            "advocate_petitioner": "Mohini Jain (in person)",
+            "advocate_respondent": "State of Karnataka, private medical colleges",
+            "outcome_detail": "Held that the right to education is a fundamental right flowing from Article 21 (right to life), and charging capitation fees violates this right.",
+            "arguments_petitioner": "The right to education is essential for human dignity and is implicit in Article 21. Capitation fees are arbitrary and deny education to the poor. The State has an obligation under Article 41.",
+            "arguments_respondent": "Private institutions have a right to fix fees. Running educational institutions requires adequate funding. There is no express fundamental right to education in Part III.",
+            "judge_observations": "The right to education flows directly from the right to life. The right to life under Article 21 and the dignity of an individual cannot be assured unless it is accompanied by the right to education.",
+        },
+        "Unni Krishnan v. State of Andhra Pradesh": {
+            "bench_size": "5-judge bench",
+            "advocate_petitioner": "F.S. Nariman",
+            "advocate_respondent": "K. Parasaran, State Advocate Generals",
+            "outcome_detail": "Partially affirmed Mohini Jain, holding that the right to education is a fundamental right under Article 21 up to the age of 14 years, laying the foundation for Article 21A.",
+            "arguments_petitioner": "Private educational institutions should not be allowed to commercialize education. Some regulation of fees is necessary to ensure access.",
+            "arguments_respondent": "Mohini Jain went too far in declaring all education a fundamental right. Private institutions need autonomy in fee fixation to remain viable.",
+            "judge_observations": "The right to education understood in the context of Articles 45 and 41 means that every child has a right to free education until he completes the age of fourteen years.",
+        },
+        "Vodafone International Holdings v. Union of India": {
+            "bench_size": "3-judge bench",
+            "advocate_petitioner": "Harish Salve, Arvind Datar",
+            "advocate_respondent": "Mohan Parasaran (Solicitor General), Arijit Prasad",
+            "outcome_detail": "Ruled in favor of Vodafone, holding that the offshore transaction was not taxable in India. The Indian tax authorities had no jurisdiction to impose capital gains tax on the deal.",
+            "arguments_petitioner": "The transaction between two foreign entities (Vodafone and Hutchison) took place outside India. India has no territorial jurisdiction. The look-through approach adopted by tax authorities is not supported by law.",
+            "arguments_respondent": "The transaction, though structured offshore, involved transfer of Indian assets (Hutch India). Substance over form requires looking through the corporate structure. The underlying asset was Indian, making it taxable in India.",
+            "judge_observations": "In tax matters, one has to look at the legal nature of the transaction and not be guided by the substance of the transaction. Tax planning is legitimate if within the framework of law.||Every strategic foreign direct investment coming to India would be liable to taxation in India, as an underlying asset is always in India. This is not what the tax law intends.",
+        },
+        "Shreya Singhal v. Union of India": {
+            "advocate_petitioner": "Shreya Singhal (law student), Saurabh Chaudri",
+            "advocate_respondent": "Tushar Mehta (Additional Solicitor General)",
+            "outcome_detail": "Struck down Section 66A of the IT Act as unconstitutional for being vague and overbroad, violating the right to free speech under Article 19(1)(a).",
+            "arguments_petitioner": "Section 66A is vague, with terms like 'grossly offensive' and 'menacing' being undefined. It has a chilling effect on free speech. Multiple cases of misuse show its arbitrary application.",
+            "arguments_respondent": "Section 66A is necessary to prevent cyber harassment, misinformation, and online abuse. The internet requires special regulation given its reach and potential for harm.",
+            "judge_observations": "Section 66A is cast so widely that virtually any opinion on any subject would be covered by it. Such a section which creates an offence on the basis of undefined terms is clearly violative of Article 19(1)(a).||Information that may be grossly offensive or which causes annoyance or inconvenience are undefined terms that do not offer a reasonable standard to guide individuals or the authorities.",
+        },
+        "People's Union for Civil Liberties (PUCL) v. Union of India (NOTA)": {
+            "bench_size": "3-judge bench",
+            "advocate_petitioner": "Prashant Bhushan, Lily Thomas",
+            "advocate_respondent": "Solicitor General Mohan Parasaran",
+            "outcome_detail": "Directed the Election Commission to provide NOTA (None of the Above) option on EVMs, recognizing the voters' right to reject all candidates.",
+            "arguments_petitioner": "The right to vote includes the right to reject all candidates. Voters who find no candidate worthy should not be compelled to choose one. Negative voting is practiced in many democracies.",
+            "arguments_respondent": "NOTA may lead to confusion and instability. The present system of Form 49-O already allows voters to record dissent. Implementing NOTA requires legislative backing.",
+            "judge_observations": "When a voter goes to the polling booth, the voter has the right to decide whether to exercise the right to vote or not. This necessarily includes the right to reject all candidates.||Democracy is about choices and giving the voter the right to reject candidates strengthens democracy.",
+        },
+        "S.P. Gupta v. Union of India (Judges Transfer Case I)": {
+            "bench_size": "7-judge bench",
+            "advocate_petitioner": "S.P. Gupta, Kapil Sibal",
+            "advocate_respondent": "L.N. Sinha (Attorney General)",
+            "outcome_detail": "Held that the executive (Chief Justice's opinion) has primacy in judicial appointments — later overruled by the Second and Third Judges Cases.",
+            "arguments_petitioner": "Judicial independence requires that judges be appointed based on consultation with the Chief Justice. Executive dominance in appointments undermines the judiciary.",
+            "arguments_respondent": "The Constitution vests appointment power in the President. Consultation does not mean concurrence. The executive must have the final say in appointments.",
+            "judge_observations": "The concept of consultation does not mean concurrence. The President has the ultimate power of appointment.||Locus standi should not be confined to those directly affected. Any member of the public acting bona fide can bring a matter of public interest before the court.",
+        },
+        "S.P. Gupta v. Union of India (Right to Know)": {
+            "bench_size": "7-judge bench",
+            "advocate_petitioner": "S.P. Gupta",
+            "advocate_respondent": "Attorney General of India",
+            "outcome_detail": "Established that the right to know is a fundamental right implicit in Article 19(1)(a), laying the constitutional foundation for the Right to Information Act.",
+            "arguments_petitioner": "In a democracy, citizens have a right to know how the government functions. Secrecy in government correspondence regarding judicial appointments must give way to transparency.",
+            "arguments_respondent": "Government correspondence is privileged. Disclosure of internal deliberations would hamper free and frank discussion. Public interest requires some secrecy in administrative decision-making.",
+            "judge_observations": "The concept of an open government is the direct emanation from the right to know which seems to be implicit in the right of free speech and expression guaranteed under Article 19(1)(a).||In a government of responsibility like ours, where all the agents of the public must be responsible for their conduct, there can be but few secrets.",
+        },
+        "BALCO v. Kaiser Aluminium (Bharat Aluminium Co.)": {
+            "bench_size": "5-judge bench",
+            "advocate_petitioner": "C.A. Sundaram, Darius Khambata",
+            "advocate_respondent": "Fali Nariman, Harish Salve",
+            "outcome_detail": "Overruled the Bhatia International principle, holding that Part I of the Arbitration Act does not apply to foreign-seated arbitrations. Indian courts cannot interfere with arbitrations seated outside India.",
+            "arguments_petitioner": "Indian courts should have supervisory jurisdiction over foreign-seated arbitrations involving Indian parties. Bhatia International correctly extended Part I to all arbitrations.",
+            "arguments_respondent": "The seat of arbitration determines jurisdiction under international arbitration law. Bhatia International has created confusion and deterred international arbitration in India.",
+            "judge_observations": "The seat of arbitration is the centre of gravity of the arbitration. It determines which courts have supervisory jurisdiction.||We hold that Part I of the Arbitration Act, 1996 would have no application to international commercial arbitration held outside India.",
+        },
+        "Google India Pvt. Ltd. v. Visakha Industries": {
+            "bench_size": "3-judge bench",
+            "advocate_petitioner": "Neeraj Kishan Kaul, S. Ganesh",
+            "advocate_respondent": "V. Giri (Senior Advocate)",
+            "outcome_detail": "Clarified the intermediary liability framework, holding that internet intermediaries like Google enjoy safe harbor protection under Section 79 when they comply with due diligence and act on receiving actual knowledge of unlawful content.",
+            "arguments_petitioner": "Google acts as a mere intermediary and does not modify third-party content. Safe harbor under Section 79 protects intermediaries who comply with due diligence. Shreya Singhal guidelines on court orders must be followed.",
+            "arguments_respondent": "Google has the ability to control and remove content. Defamatory content was brought to Google's notice but not removed. Intermediaries should be liable when they fail to act on complaints.",
+            "judge_observations": "An intermediary which merely provides a platform and does not modify the content is entitled to protection under Section 79 of the IT Act.||The 'actual knowledge' standard as laid down in Shreya Singhal must be followed — knowledge through a court order, not mere third-party notification.",
+        },
+    }
+
+    for case_data in cases:
+        name = case_data["case_name"]
+        if name in enrichment:
+            case_data.update(enrichment[name])
+    return cases
+
+
 def seed_database(db):
     """Populate the database with seed data."""
     from legal_research.models import LegalCase, LegalGlossary, CaseBriefTemplate
@@ -761,8 +1030,9 @@ def seed_database(db):
         case = LegalCase(**case_data)
         db.session.add(case)
 
-    # Seed Indian landmark cases
-    for case_data in INDIAN_LANDMARK_CASES:
+    # Seed Indian landmark cases — with enrichment
+    enriched = _enrich_indian_cases([dict(c) for c in INDIAN_LANDMARK_CASES])
+    for case_data in enriched:
         case = LegalCase(**case_data)
         db.session.add(case)
 
