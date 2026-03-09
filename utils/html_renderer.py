@@ -61,7 +61,26 @@ def _e(text) -> str:
     return html.escape(str(text))
 
 
-def _img_uri(image_path: str):
+def _img_uri(image_path, dominant_color=None):
+    if image_path is None:
+        # No product photo — build a soft gradient placeholder from the brand colour
+        c = dominant_color or (52, 73, 94)
+        r1, g1, b1 = c
+        r2 = min(r1 + 70, 255); g2 = min(g1 + 70, 255); b2 = min(b1 + 70, 255)
+        gw, gh = 800, 800
+        gimg = Image.new('RGB', (gw, gh))
+        draw = ImageDraw.Draw(gimg)
+        for y in range(gh):
+            t = y / gh
+            draw.line([(0, y), (gw, y)], fill=(
+                int(r1 * (1 - t) + r2 * t),
+                int(g1 * (1 - t) + g2 * t),
+                int(b1 * (1 - t) + b2 * t),
+            ))
+        buf = io.BytesIO()
+        gimg.save(buf, 'PNG')
+        b64 = base64.b64encode(buf.getvalue()).decode()
+        return f'data:image/png;base64,{b64}', gw, gh
     with Image.open(image_path) as img:
         nw, nh = img.size
         img = img.convert('RGBA')
@@ -108,7 +127,7 @@ def render_studio(image_path, name, tagline, brand, cta, colors, size, output_pa
     w, h = size
     acc  = _hex(colors.get('accent',   (220, 200, 140)))
 
-    uri, iw, ih = _img_uri(image_path)
+    uri, iw, ih = _img_uri(image_path, dominant_color=colors.get('dominant'))
 
     nl  = _wrap(name,    18, 2)
     tl  = _wrap(tagline, 28, 2)
@@ -189,7 +208,7 @@ def render_stripe(image_path, name, tagline, brand, cta, colors, size, output_pa
     sc  = _hex(colors.get('dominant', (180, 40, 40)))
     acc = _hex(colors.get('accent',   (240, 190, 50)))
 
-    uri, iw, ih = _img_uri(image_path)
+    uri, iw, ih = _img_uri(image_path, dominant_color=colors.get('dominant'))
 
     sw = int(w * 0.26)
     ix = sw
@@ -266,7 +285,7 @@ def render_frame(image_path, name, tagline, brand, cta, colors, size, output_pat
     pri = _hex(colors.get('dominant', (40, 55, 80)))
     acc = _hex(colors.get('accent',   (210, 60, 50)))
 
-    uri, iw, ih = _img_uri(image_path)
+    uri, iw, ih = _img_uri(image_path, dominant_color=colors.get('dominant'))
 
     ix  = int(w * 0.44)
     iw2 = w - ix

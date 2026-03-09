@@ -131,38 +131,36 @@ def generate():
             platform=platform,
         )
 
-        # ── generate images (only if an image was uploaded) ──────────────────
-        images = []
-        if upload_path:
-            from utils.image_processor import SocialMediaPostGenerator
-            img_gen = SocialMediaPostGenerator()
+        # ── generate images (upload_path may be None → gradient placeholder) ─
+        from utils.image_processor import SocialMediaPostGenerator
+        img_gen = SocialMediaPostGenerator()
 
-            if post_type == 'individual':
-                images = img_gen.create_individual_post(
-                    image_path=upload_path,
-                    product_name=product_name,
-                    tagline=text_content.get('title', tagline or product_name),
-                    brand_name=brand_name,
-                    cta=cta,
-                    style=style,
-                    platform=platform,
-                    creative_direction=creative_direction,
-                    output_dir=session_dir,
-                )
-            else:
-                images = img_gen.create_carousel_posts(
-                    image_path=upload_path,
-                    product_name=product_name,
-                    tagline=text_content.get('title', tagline or product_name),
-                    description=description,
-                    features=text_content.get('features', []),
-                    brand_name=brand_name,
-                    cta=cta,
-                    style=style,
-                    platform=platform,
-                    creative_direction=creative_direction,
-                    output_dir=session_dir,
-                )
+        if post_type == 'individual':
+            images = img_gen.create_individual_post(
+                image_path=upload_path,
+                product_name=product_name,
+                tagline=text_content.get('title', tagline or product_name),
+                brand_name=brand_name,
+                cta=cta,
+                style=style,
+                platform=platform,
+                creative_direction=creative_direction,
+                output_dir=session_dir,
+            )
+        else:
+            images = img_gen.create_carousel_posts(
+                image_path=upload_path,
+                product_name=product_name,
+                tagline=text_content.get('title', tagline or product_name),
+                description=description,
+                features=text_content.get('features', []),
+                brand_name=brand_name,
+                cta=cta,
+                style=style,
+                platform=platform,
+                creative_direction=creative_direction,
+                output_dir=session_dir,
+            )
 
         return jsonify({
             'session_id': session_id,

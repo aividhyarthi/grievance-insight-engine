@@ -85,23 +85,24 @@ def _to_rgba(c: tuple, a: int = 255) -> tuple:
     return (*c[:3], a)
 
 
-def _extract_colors(image_path: str) -> dict[str, Any]:
+def _extract_colors(image_path: str | None) -> dict[str, Any]:
     """Return a palette extracted from the product image."""
-    try:
-        from colorthief import ColorThief
-        ct = ColorThief(image_path)
-        dominant = ct.get_color(quality=1)
-        palette  = ct.get_palette(color_count=5, quality=1)
-        accent   = palette[1] if len(palette) > 1 else dominant
-        return {
-            'dominant': dominant,
-            'accent':   accent,
-            'light':    _lighten(dominant, 0.72),
-            'dark':     _darken(dominant,  0.55),
-            'palette':  palette,
-        }
-    except Exception:
-        pass
+    if image_path:
+        try:
+            from colorthief import ColorThief
+            ct = ColorThief(image_path)
+            dominant = ct.get_color(quality=1)
+            palette  = ct.get_palette(color_count=5, quality=1)
+            accent   = palette[1] if len(palette) > 1 else dominant
+            return {
+                'dominant': dominant,
+                'accent':   accent,
+                'light':    _lighten(dominant, 0.72),
+                'dark':     _darken(dominant,  0.55),
+                'palette':  palette,
+            }
+        except Exception:
+            pass
 
     # sensible fallback
     dom = (52, 73, 94)
@@ -329,7 +330,7 @@ class SocialMediaPostGenerator:
     # ── public API ────────────────────────────────────────────────────────────
 
     def create_individual_post(
-        self, *, image_path: str, product_name: str, tagline: str,
+        self, *, image_path: str | None = None, product_name: str, tagline: str,
         brand_name: str, cta: str, style: str, platform: str, output_dir: str,
         creative_direction: str = '',
     ) -> list[str]:
@@ -361,21 +362,27 @@ class SocialMediaPostGenerator:
             print(f'[svg_renderer] failed ({exc}), falling back to PIL')
 
         # PIL fallback
-        with Image.open(image_path) as raw:
-            prod = raw.convert('RGBA')
-            dispatch = {
-                'minimal':  self._minimal,
-                'bold':     self._bold,
-                'magazine': self._magazine,
-            }
-            canvas = dispatch.get(style, self._minimal)(
-                prod, product_name, tagline, brand_name, cta, size, colors)
+        if image_path:
+            with Image.open(image_path) as raw:
+                prod = raw.convert('RGBA')
+        else:
+            # No product photo — create a solid gradient placeholder
+            r, g, b = colors['dominant']
+            prod = Image.new('RGBA', size, (r, g, b, 255))
+
+        dispatch = {
+            'minimal':  self._minimal,
+            'bold':     self._bold,
+            'magazine': self._magazine,
+        }
+        canvas = dispatch.get(style, self._minimal)(
+            prod, product_name, tagline, brand_name, cta, size, colors)
 
         canvas.convert('RGB').save(out, 'JPEG', quality=95)
         return [out]
 
     def create_carousel_posts(
-        self, *, image_path: str, product_name: str, tagline: str,
+        self, *, image_path: str | None = None, product_name: str, tagline: str,
         description: str, features: list[str], brand_name: str, cta: str,
         style: str, platform: str, output_dir: str,
         creative_direction: str = '',
@@ -399,9 +406,14 @@ class SocialMediaPostGenerator:
                       'card_bg': (255, 255, 255, 250),
                       'band_acc': colors['accent']}
 
-        with Image.open(image_path) as raw:
-            prod = raw.convert('RGBA')
-            slides = [
+        if image_path:
+            with Image.open(image_path) as raw:
+                prod = raw.convert('RGBA')
+        else:
+            r, g, b = colors['dominant']
+            prod = Image.new('RGBA', size, (r, g, b, 255))
+
+        slides = [
                 self._c_cover(prod, product_name, tagline, brand_name, size, colors),
                 self._c_intro(prod, product_name, tagline, description, brand_name, size, colors),
                 self._c_features(features[:3], product_name, brand_name, size, colors, slide=2),

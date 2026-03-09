@@ -211,8 +211,8 @@ function renderResults(data) {
   emptyState.classList.add('hidden');
   resultsWrap.classList.remove('hidden');
 
-  // zip download — only show when there are images
-  dlZipBtn.style.display = data.images && data.images.length ? '' : 'none';
+  // zip download
+  dlZipBtn.style.display = '';
   dlZipBtn.onclick = () => window.location = `/download/${data.session_id}`;
 
   // platform → aspect class
@@ -227,9 +227,6 @@ function renderResults(data) {
 
   // gallery
   imageGallery.innerHTML = '';
-  if (!data.images || !data.images.length) {
-    imageGallery.innerHTML = '<p class="gallery-no-image">No image uploaded — upload a product photo to get designed posts.</p>';
-  }
   data.images.forEach((fname, idx) => {
     const url     = `/outputs/${data.session_id}/${fname}`;
     const label   = fname.replace('.jpg', '').replace(/_/g, ' ');
