@@ -188,17 +188,19 @@ async function generate() {
 
   try {
     const res  = await fetch('/generate', { method: 'POST', body: fd });
-    const data = await res.json();
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch { data = {}; }
 
     if (!res.ok) {
-      showError(data.error || 'Something went wrong. Please try again.');
+      showError(data.error || text || 'Something went wrong. Please try again.');
       return;
     }
 
     currentSessionId = data.session_id;
     renderResults(data);
   } catch (err) {
-    showError('Network error — please check your connection and try again.');
+    showError('Could not reach the server — please try again.');
     console.error(err);
   } finally {
     setLoading(false);
@@ -334,10 +336,12 @@ async function importFromUrl() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ url, api_key: apiKeyInput.value.trim() }),
     });
-    const data = await res.json();
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch { data = {}; }
 
     if (!res.ok) {
-      setUrlStatus('error', data.error || 'Could not import from URL.');
+      setUrlStatus('error', data.error || text || 'Could not import from URL.');
       return;
     }
 
@@ -370,7 +374,7 @@ async function importFromUrl() {
       setUrlStatus('success', '✓ Details imported — add a product image to generate.');
     }
   } catch (err) {
-    setUrlStatus('error', 'Network error — could not reach the URL.');
+    setUrlStatus('error', 'Could not reach the server — please try again.');
     console.error(err);
   } finally {
     urlLoadBtn.disabled = false;

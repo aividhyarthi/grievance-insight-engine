@@ -111,12 +111,13 @@ def generate():
     os.makedirs(session_dir, exist_ok=True)
 
     upload_path = None
-    if has_image:
-        ext = secure_filename(file.filename).rsplit('.', 1)[-1].lower()
-        upload_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{session_id}.{ext}")
-        file.save(upload_path)
 
     try:
+        if has_image:
+            ext = secure_filename(file.filename).rsplit('.', 1)[-1].lower()
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{session_id}.{ext}")
+            file.save(upload_path)
+
         # ── generate text content ────────────────────────────────────────────
         from utils.text_generator import CaptionGenerator
         text_gen = CaptionGenerator(api_key=api_key)

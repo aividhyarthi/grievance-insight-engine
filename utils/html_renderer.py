@@ -15,7 +15,7 @@ import html
 import io
 import textwrap
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 
 def _clamp(v: float) -> int:
