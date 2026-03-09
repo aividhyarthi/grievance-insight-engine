@@ -135,7 +135,7 @@ function handleFile(file) {
 productName.addEventListener('input', checkReady);
 
 function checkReady() {
-  generateBtn.disabled = !(uploadedFile && productName.value.trim());
+  generateBtn.disabled = !productName.value.trim();
 }
 
 // ── post type toggle ──────────────────────────────────────────────────────────
@@ -167,13 +167,13 @@ toggleKey.addEventListener('click', () => {
 generateBtn.addEventListener('click', generate);
 
 async function generate() {
-  if (!uploadedFile || !productName.value.trim()) return;
+  if (!productName.value.trim()) return;
 
   setLoading(true);
   hideError();
 
   const fd = new FormData();
-  fd.append('image',        uploadedFile);
+  if (uploadedFile) fd.append('image', uploadedFile);
   fd.append('product_name', productName.value.trim());
   fd.append('brand_name',   brandName.value.trim());
   fd.append('tagline',      tagline.value.trim());
@@ -211,7 +211,8 @@ function renderResults(data) {
   emptyState.classList.add('hidden');
   resultsWrap.classList.remove('hidden');
 
-  // zip download
+  // zip download — only show when there are images
+  dlZipBtn.style.display = data.images && data.images.length ? '' : 'none';
   dlZipBtn.onclick = () => window.location = `/download/${data.session_id}`;
 
   // platform → aspect class
@@ -226,6 +227,9 @@ function renderResults(data) {
 
   // gallery
   imageGallery.innerHTML = '';
+  if (!data.images || !data.images.length) {
+    imageGallery.innerHTML = '<p class="gallery-no-image">No image uploaded — upload a product photo to get designed posts.</p>';
+  }
   data.images.forEach((fname, idx) => {
     const url     = `/outputs/${data.session_id}/${fname}`;
     const label   = fname.replace('.jpg', '').replace(/_/g, ' ');

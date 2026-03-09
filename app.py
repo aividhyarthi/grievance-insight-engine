@@ -38,15 +38,10 @@ def health():
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    # ── validate image ──────────────────────────────────────────────────────
-    if 'image' not in request.files:
-        return jsonify({'error': 'No image uploaded'}), 400
-
-    file = request.files['image']
-    if not file or file.filename == '':
-        return jsonify({'error': 'No file selected'}), 400
-
-    if not allowed_file(file.filename):
+    # ── validate image (optional) ────────────────────────────────────────────
+    file = request.files.get('image')
+    has_image = file and file.filename and allowed_file(file.filename)
+    if file and file.filename and not has_image:
         return jsonify({'error': 'Unsupported file type. Use PNG, JPG, JPEG, WebP, or GIF.'}), 400
 
     # ── collect form fields ──────────────────────────────────────────────────
@@ -115,9 +110,11 @@ def generate():
     session_dir = os.path.join(app.config['OUTPUT_FOLDER'], session_id)
     os.makedirs(session_dir, exist_ok=True)
 
-    ext = secure_filename(file.filename).rsplit('.', 1)[-1].lower()
-    upload_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{session_id}.{ext}")
-    file.save(upload_path)
+    upload_path = None
+    if has_image:
+        ext = secure_filename(file.filename).rsplit('.', 1)[-1].lower()
+        upload_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{session_id}.{ext}")
+        file.save(upload_path)
 
     try:
         # ── generate text content ────────────────────────────────────────────
@@ -134,36 +131,38 @@ def generate():
             platform=platform,
         )
 
-        # ── generate images ──────────────────────────────────────────────────
-        from utils.image_processor import SocialMediaPostGenerator
-        img_gen = SocialMediaPostGenerator()
+        # ── generate images (only if an image was uploaded) ──────────────────
+        images = []
+        if upload_path:
+            from utils.image_processor import SocialMediaPostGenerator
+            img_gen = SocialMediaPostGenerator()
 
-        if post_type == 'individual':
-            images = img_gen.create_individual_post(
-                image_path=upload_path,
-                product_name=product_name,
-                tagline=text_content.get('title', tagline or product_name),
-                brand_name=brand_name,
-                cta=cta,
-                style=style,
-                platform=platform,
-                creative_direction=creative_direction,
-                output_dir=session_dir,
-            )
-        else:
-            images = img_gen.create_carousel_posts(
-                image_path=upload_path,
-                product_name=product_name,
-                tagline=text_content.get('title', tagline or product_name),
-                description=description,
-                features=text_content.get('features', []),
-                brand_name=brand_name,
-                cta=cta,
-                style=style,
-                platform=platform,
-                creative_direction=creative_direction,
-                output_dir=session_dir,
-            )
+            if post_type == 'individual':
+                images = img_gen.create_individual_post(
+                    image_path=upload_path,
+                    product_name=product_name,
+                    tagline=text_content.get('title', tagline or product_name),
+                    brand_name=brand_name,
+                    cta=cta,
+                    style=style,
+                    platform=platform,
+                    creative_direction=creative_direction,
+                    output_dir=session_dir,
+                )
+            else:
+                images = img_gen.create_carousel_posts(
+                    image_path=upload_path,
+                    product_name=product_name,
+                    tagline=text_content.get('title', tagline or product_name),
+                    description=description,
+                    features=text_content.get('features', []),
+                    brand_name=brand_name,
+                    cta=cta,
+                    style=style,
+                    platform=platform,
+                    creative_direction=creative_direction,
+                    output_dir=session_dir,
+                )
 
         return jsonify({
             'session_id': session_id,
