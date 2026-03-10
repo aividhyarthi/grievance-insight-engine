@@ -1458,12 +1458,263 @@ a:hover { color: var(--accent); }
 
 /* ── Footer ── */
 .footer {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    border-top: 1px solid var(--border);
+    background: var(--primary-dark);
+    color: rgba(255,255,255,0.7);
+    padding: 0;
     margin-top: 3rem;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 1.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.footer-brand h3 {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-brand h3 svg { width: 22px; height: 22px; }
+
+.footer-brand p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+}
+
+.footer-col h4 {
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.82rem;
+    padding: 0.25rem 0;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.footer-col a:hover { color: white; }
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+}
+
+@media (max-width: 768px) {
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+}
+@media (max-width: 480px) {
+    .footer-inner { grid-template-columns: 1fr; }
+}
+
+/* ── Glossary Alphabetical Nav ── */
+.alpha-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.alpha-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.15s;
+    background: var(--bg);
+}
+
+.alpha-link:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.glossary-letter-group { margin-bottom: 1.5rem; }
+
+.glossary-letter-header {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    padding: 0.5rem 0;
+    margin-bottom: 0.75rem;
+    border-bottom: 3px solid var(--accent);
+}
+
+/* ── Court Proceedings Page ── */
+.proceedings-page { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+.proceedings-flow {
+    position: relative;
+    padding: 1rem 0;
+}
+
+.proc-step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.proc-step-num {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+}
+
+.proc-step:not(:last-child) .proc-step-num::after {
+    content: '';
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    width: 3px;
+    height: calc(100% + 1.5rem);
+    background: var(--accent);
+    transform: translateX(-50%);
+}
+
+.proc-step-content {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.proc-step-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.proc-step-content p {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.proc-step-content ul {
+    list-style: disc;
+    margin: 0.5rem 0 0 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.proc-arrow {
+    text-align: center;
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin: -0.5rem 0;
+}
+
+.proc-note {
+    background: #fef9ee;
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-top: 1.5rem;
+    line-height: 1.6;
+}
+
+/* ── Holidays Page ── */
+.holidays-page { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+.holidays-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.holiday-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.holiday-card-header {
+    padding: 0.85rem 1.25rem;
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.hol-sc-header { background: linear-gradient(135deg, #1a365d, #2c5282); }
+.hol-hc-header { background: linear-gradient(135deg, #1a4731, #276749); }
+
+.holiday-list {
+    padding: 0.5rem 1.25rem;
+}
+
+.holiday-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+
+.holiday-item:last-child { border-bottom: none; }
+
+.holiday-name { color: var(--text); font-weight: 500; }
+.holiday-date { color: var(--text-muted); font-size: 0.8rem; }
+
+.holiday-note {
+    padding: 0.75rem 1.25rem;
+    background: var(--bg);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .holidays-grid { grid-template-columns: 1fr; }
+    .proceedings-page { padding: 1rem; }
 }
 
 /* ── Judges Page ── */

@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block title %}Court Proceedings Process — Legal Research{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Court Proceedings: How Cases Move Through Indian Courts</h1>
+    <p>Understanding the hierarchy and process — from filing to final appeal</p>
+</div>
+
+<div class="proceedings-page">
+
+    <h2 style="font-size:1.25rem; font-weight:700; color:var(--primary); margin-bottom:1.5rem;">Indian Court Hierarchy &amp; Flow of Cases</h2>
+
+    <div class="proceedings-flow">
+
+        <div class="proc-step">
+            <div class="proc-step-num">1</div>
+            <div class="proc-step-content">
+                <h3>District Court / Trial Court</h3>
+                <p>This is where most cases begin. District courts are the primary courts of original jurisdiction in India.</p>
+                <ul>
+                    <li><strong>Civil Cases:</strong> Suits filed under the Code of Civil Procedure (CPC). Issues summons, records evidence, passes decree.</li>
+                    <li><strong>Criminal Cases:</strong> FIR &rarr; Investigation &rarr; Charge sheet &rarr; Trial. Magistrate courts handle cases up to 3 years punishment; Sessions courts handle serious offences.</li>
+                    <li><strong>Family Courts:</strong> Divorce, custody, maintenance disputes under the Family Courts Act.</li>
+                    <li><strong>Labour Courts / Tribunals:</strong> Industrial disputes, employment claims.</li>
+                    <li><strong>Consumer Forums:</strong> Consumer complaints at district level (up to Rs. 1 crore).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="proc-step">
+            <div class="proc-step-num">2</div>
+            <div class="proc-step-content">
+                <h3>First Appeal &mdash; Sessions Court / District Judge</h3>
+                <p>The first level of appeal from lower courts within the district.</p>
+                <ul>
+                    <li>Appeals from Magistrate orders go to <strong>Sessions Court</strong></li>
+                    <li>Appeals from Civil Judge (Junior Division) go to <strong>District Judge</strong></li>
+                    <li><strong>First appeal is a right</strong> — the appellate court re-examines facts and law</li>
+                    <li>The appeal must be filed within the limitation period (30-90 days depending on case type)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="proc-step">
+            <div class="proc-step-num">3</div>
+            <div class="proc-step-content">
+                <h3>High Court</h3>
+                <p>Each state has a High Court. There are 25 High Courts in India. They have both original and appellate jurisdiction.</p>
+                <ul>
+                    <li><strong>Original Jurisdiction:</strong> Writ petitions under Article 226 (fundamental rights violations, habeas corpus, mandamus, etc.)</li>
+                    <li><strong>Appellate Jurisdiction:</strong> Second appeals from district courts (only on substantial questions of law — Section 100 CPC)</li>
+                    <li><strong>Criminal Appeals:</strong> Appeals against Sessions Court orders, confirmation of death sentences</li>
+                    <li><strong>Revision:</strong> Under Section 115 CPC — to correct errors of jurisdiction by lower courts</li>
+                    <li><strong>PIL:</strong> Public Interest Litigation can be filed directly in the High Court</li>
+                    <li><strong>Bail Applications:</strong> Regular bail, anticipatory bail (BNSS Section 482)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="proc-step">
+            <div class="proc-step-num">4</div>
+            <div class="proc-step-content">
+                <h3>Supreme Court of India</h3>
+                <p>The apex court and the final court of appeal. Located in New Delhi. Its decisions are binding on all courts (Article 141).</p>
+                <ul>
+                    <li><strong>SLP (Special Leave Petition):</strong> Under Article 136, the most common route — SC can grant leave to appeal against any order of any court/tribunal</li>
+                    <li><strong>Writ Jurisdiction:</strong> Under Article 32 for enforcement of fundamental rights</li>
+                    <li><strong>Appeals:</strong> Constitutional matters (Article 132), civil matters (Article 133), criminal matters (Article 134)</li>
+                    <li><strong>Advisory Jurisdiction:</strong> Under Article 143, the President can seek SC's opinion on legal questions</li>
+                    <li><strong>Review Petition:</strong> Under Article 137, SC can review its own judgment (limited grounds)</li>
+                    <li><strong>Curative Petition:</strong> Last resort after review is dismissed — to prevent abuse of process</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="proc-note">
+        <strong>Key Points for Lawyers Moving Between Courts:</strong><br>
+        &bull; Always check <strong>limitation periods</strong> before filing appeals (Limitation Act, 1963)<br>
+        &bull; An <strong>Advocate-on-Record (AoR)</strong> is required to file cases in the Supreme Court<br>
+        &bull; High Court advocates can appear in any High Court with permission — <strong>Right of Audience</strong> under the Advocates Act<br>
+        &bull; <strong>Certified copies</strong> of the impugned order are mandatory for filing appeals<br>
+        &bull; Consider <strong>ADR (Mediation/Arbitration)</strong> before escalating — courts increasingly encourage it<br>
+        &bull; <strong>e-Filing</strong> is now available in the Supreme Court and most High Courts via ecourts.gov.in
+    </div>
+
+    <h2 style="font-size:1.15rem; font-weight:700; color:var(--primary); margin:2rem 0 1rem;">Typical Timeline of a Case</h2>
+
+    <div style="overflow-x:auto;">
+        <table class="res-ref-table">
+            <thead>
+                <tr>
+                    <th>Stage</th>
+                    <th>Court</th>
+                    <th>Typical Duration</th>
+                    <th>Key Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Filing &amp; Registration</td><td>District Court</td><td>1-2 weeks</td><td>Plaint/FIR filed, case number allotted</td></tr>
+                <tr><td>Summons &amp; Written Statement</td><td>District Court</td><td>1-3 months</td><td>Opposite party responds</td></tr>
+                <tr><td>Framing of Issues</td><td>District Court</td><td>1-2 months</td><td>Court identifies points of dispute</td></tr>
+                <tr><td>Evidence &amp; Arguments</td><td>District Court</td><td>1-3 years</td><td>Witnesses examined, documents exhibited</td></tr>
+                <tr><td>Judgment</td><td>District Court</td><td>1-3 months after arguments</td><td>Decree/Order passed</td></tr>
+                <tr><td>First Appeal</td><td>District/Sessions</td><td>6 months - 2 years</td><td>Appeal on facts + law</td></tr>
+                <tr><td>Second Appeal</td><td>High Court</td><td>1-5 years</td><td>Only substantial questions of law</td></tr>
+                <tr><td>SLP / Appeal</td><td>Supreme Court</td><td>2-10 years</td><td>Final determination</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="proc-note" style="margin-top:1.5rem;">
+        <strong>Official Resources:</strong><br>
+        &bull; <a href="https://ecourts.gov.in/ecourts_home/" target="_blank" rel="noopener">eCourts — Case Status &amp; e-Filing</a><br>
+        &bull; <a href="https://njdg.ecourts.gov.in/" target="_blank" rel="noopener">NJDG — National Judicial Data Grid (Pendency Data)</a><br>
+        &bull; <a href="https://www.sci.gov.in/" target="_blank" rel="noopener">Supreme Court of India — Official Website</a><br>
+        &bull; <a href="https://www.barcouncilofindia.org/" target="_blank" rel="noopener">Bar Council of India — Advocate Registration</a>
+    </div>
+
+</div>
+{% endblock %}

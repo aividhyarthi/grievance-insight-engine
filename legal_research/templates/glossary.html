@@ -4,11 +4,11 @@
 {% block content %}
 <div class="page-header">
     <h1>Legal Glossary</h1>
-    <p>Essential legal terminology with definitions, examples, and context</p>
+    <p>Essential legal terminology with definitions, examples, and context — sorted A to Z</p>
 </div>
 
 <div class="content">
-    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center;">
+    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; align-items: center;">
         <div class="search-container" style="max-width: 400px; flex: 1;">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
@@ -25,10 +25,14 @@
             <option value="Remedy">Remedy</option>
             <option value="Contract">Contract</option>
             <option value="Corporate">Corporate</option>
+            <option value="Property">Property</option>
             <option value="General">General</option>
         </select>
         <span class="glossary-count" id="glossaryCount"></span>
     </div>
+
+    <!-- Alphabetical navigation -->
+    <div class="alpha-nav" id="alphaNav"></div>
 
     <div class="glossary-grid" id="glossaryGrid">
         <div class="loading">Loading glossary...</div>
@@ -41,7 +45,10 @@
     const glossaryGrid = document.getElementById('glossaryGrid');
     const glossarySearch = document.getElementById('glossarySearch');
     const glossaryCategory = document.getElementById('glossaryCategory');
+    const alphaNav = document.getElementById('alphaNav');
+    const glossaryCount = document.getElementById('glossaryCount');
     let debounce;
+    let allTerms = [];
 
     function fetchGlossary() {
         const params = new URLSearchParams();
@@ -52,11 +59,37 @@
         fetch(`/api/glossary?${params}`)
             .then(r => r.json())
             .then(terms => {
+                allTerms = terms;
+                glossaryCount.textContent = terms.length + ' terms';
                 if (terms.length === 0) {
                     glossaryGrid.innerHTML = '<div class="empty-state"><h3>No terms found</h3></div>';
+                    alphaNav.innerHTML = '';
                     return;
                 }
-                glossaryGrid.innerHTML = terms.map(t => `
+                renderAlphaNav(terms);
+                renderGrouped(terms);
+            });
+    }
+
+    function renderAlphaNav(terms) {
+        const letters = [...new Set(terms.map(t => t.term.charAt(0).toUpperCase()))].sort();
+        alphaNav.innerHTML = letters.map(l =>
+            `<a href="#letter-${l}" class="alpha-link">${l}</a>`
+        ).join('');
+    }
+
+    function renderGrouped(terms) {
+        const grouped = {};
+        terms.forEach(t => {
+            const letter = t.term.charAt(0).toUpperCase();
+            if (!grouped[letter]) grouped[letter] = [];
+            grouped[letter].push(t);
+        });
+        const sortedLetters = Object.keys(grouped).sort();
+        glossaryGrid.innerHTML = sortedLetters.map(letter => `
+            <div class="glossary-letter-group" id="letter-${letter}">
+                <div class="glossary-letter-header">${letter}</div>
+                ${grouped[letter].map(t => `
                     <div class="glossary-card">
                         <h3>${t.term}</h3>
                         <div class="category">${t.category || 'General'}</div>
@@ -64,8 +97,9 @@
                         ${t.example_usage ? `<p class="example">"${t.example_usage}"</p>` : ''}
                         ${t.related_terms ? `<p class="related">Related: ${t.related_terms}</p>` : ''}
                     </div>
-                `).join('');
-            });
+                `).join('')}
+            </div>
+        `).join('');
     }
 
     glossarySearch.addEventListener('input', () => {

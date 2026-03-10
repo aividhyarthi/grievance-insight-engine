@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block head %}{% endblock %}
 </head>
@@ -34,7 +35,43 @@
     {% block content %}{% endblock %}
 
     <footer class="footer">
-        Legal Case Research Library &mdash; Built for lawyers, by AI Vidhyarthi &mdash; Educational & Research Tool
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                    LegalResearch
+                </h3>
+                <p>India's open legal case research library. Built for lawyers, law students, judges &amp; senior advocates by AI Vidhyarthi.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Research</h4>
+                <a href="/search">Case Search</a>
+                <a href="/analytics">Analytics</a>
+                <a href="/glossary">Legal Glossary</a>
+                <a href="/toolkit">Case Brief Toolkit</a>
+            </div>
+            <div class="footer-col">
+                <h4>Court Info</h4>
+                <a href="/judges">Current Judges</a>
+                <a href="/proceedings">Court Proceedings</a>
+                <a href="/holidays">Court Holidays</a>
+                <a href="/resources">Lawyer Resources</a>
+            </div>
+            <div class="footer-col">
+                <h4>Official Sources</h4>
+                <a href="https://www.sci.gov.in/" target="_blank" rel="noopener">Supreme Court of India</a>
+                <a href="https://njdg.ecourts.gov.in/" target="_blank" rel="noopener">National Judicial Data Grid</a>
+                <a href="https://www.indiacode.nic.in/" target="_blank" rel="noopener">India Code (Legislation)</a>
+                <a href="https://ecourts.gov.in/" target="_blank" rel="noopener">eCourts Services</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Legal Case Research Library &mdash; AI Vidhyarthi &mdash; Educational &amp; Research Purpose Only. Not legal advice.
+        </div>
     </footer>
 
     {% block scripts %}{% endblock %}

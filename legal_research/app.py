@@ -69,6 +69,14 @@ def create_app():
     def resources_page():
         return render_template("resources.html")
 
+    @app.route("/proceedings")
+    def proceedings_page():
+        return render_template("proceedings.html")
+
+    @app.route("/holidays")
+    def holidays_page():
+        return render_template("holidays.html")
+
     # ── API: Search & Filter ──────────────────────────────────────
 
     @app.route("/api/cases")
@@ -225,7 +233,7 @@ def create_app():
         if category:
             query = query.filter(LegalGlossary.category == category)
 
-        terms = query.order_by(LegalGlossary.term).all()
+        terms = query.order_by(func.lower(LegalGlossary.term)).all()
         return jsonify([{
             "id": t.id,
             "term": t.term,
