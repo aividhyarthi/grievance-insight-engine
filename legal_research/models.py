@@ -17,6 +17,8 @@ class LegalCase(db.Model):
     date_decided = db.Column(db.Date)
     date_filed = db.Column(db.Date)
     jurisdiction = db.Column(db.String(100))
+    state = db.Column(db.String(100))  # Indian state for state-wise filtering
+    personality_tag = db.Column(db.String(200))  # politician, celebrity, businessman, public_servant
     judges = db.Column(db.Text)
     petitioner = db.Column(db.String(500))
     respondent = db.Column(db.String(500))
@@ -62,6 +64,8 @@ class LegalCase(db.Model):
             "date_decided": str(self.date_decided) if self.date_decided else None,
             "date_filed": str(self.date_filed) if self.date_filed else None,
             "jurisdiction": self.jurisdiction,
+            "state": self.state,
+            "personality_tag": self.personality_tag,
             "judges": self.judges,
             "petitioner": self.petitioner,
             "respondent": self.respondent,
