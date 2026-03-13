@@ -202,4 +202,102 @@ def run(page: PageData) -> CategoryReport:
         f.append(Finding("Content", "Content freshness signals", Severity.PASS,
             "Article date signals present (meta or <time> element)."))
 
+    # ── Outbound / external links ─────────────────────────────────────────────
+    import urllib.parse as _up
+    base_netloc = _up.urlparse(page.url).netloc
+    all_links = soup.find_all("a", href=True)
+    external_links = [
+        a for a in all_links
+        if _up.urlparse(a["href"]).netloc
+        and _up.urlparse(a["href"]).netloc != base_netloc
+        and a["href"].startswith(("http://", "https://"))
+    ]
+    if not external_links and word_count > 300:
+        f.append(Finding("Content", "Outbound external links", Severity.INFO,
+            "No outbound links to external sources detected. "
+            "Pages that cite authoritative sources signal credibility to Google "
+            "and improve E-E-A-T (Experience, Expertise, Authoritativeness, Trust).",
+            "Link to 2–5 relevant, authoritative external sources (gov, edu, industry leaders).",
+            impact="Medium", effort="Quick Win"))
+    elif external_links:
+        nofollow_ext = [
+            a for a in external_links
+            if "nofollow" in " ".join(a.get("rel") or [])
+        ]
+        if len(nofollow_ext) == len(external_links):
+            f.append(Finding("Content", "Outbound external links", Severity.INFO,
+                f"{len(external_links)} external link(s) found but all have rel=nofollow — "
+                "nofollow on outbound editorial links is usually unnecessary.",
+                "Remove nofollow from editorial citations; reserve it for sponsored/UGC links.",
+                impact="Low", effort="Quick Win"))
+        else:
+            f.append(Finding("Content", "Outbound external links", Severity.PASS,
+                f"{len(external_links)} outbound external link(s) — good for E-E-A-T signals."))
+
+    # ── FAQ / Q&A section ─────────────────────────────────────────────────────
+    faq_schema = any(
+        '"FAQPage"' in s or '"QAPage"' in s for s in page.structured_data
+    )
+    faq_headings = [
+        h for h in soup.find_all(["h2", "h3", "h4"])
+        if re.search(r"\b(faq|frequently asked|questions?|q&a|q &amp; a)\b", h.get_text(), re.I)
+    ]
+    if faq_schema:
+        f.append(Finding("Content", "FAQ section", Severity.PASS,
+            "FAQPage or QAPage schema detected — eligible for Google FAQ rich results."))
+    elif faq_headings:
+        f.append(Finding("Content", "FAQ section — missing schema", Severity.INFO,
+            f"FAQ-style heading detected ('{faq_headings[0].get_text(strip=True)}') "
+            "but no FAQPage JSON-LD schema.",
+            "Wrap Q&A pairs in FAQPage schema to unlock Google's collapsible FAQ rich results — "
+            "these can double SERP real estate.",
+            impact="High", effort="Quick Win"))
+
+    # ── Table content ─────────────────────────────────────────────────────────
+    tables = soup.find_all("table")
+    if tables:
+        f.append(Finding("Content", "Data tables", Severity.PASS,
+            f"{len(tables)} HTML table(s) found — structured data improves featured snippet "
+            "eligibility for comparison and specification queries."))
+
+    # ── Introduction paragraph (content in first 200 words) ───────────────────
+    first_para = soup.find("p")
+    if first_para:
+        first_para_words = len(first_para.get_text().split())
+        if first_para_words < 20 and word_count > 300:
+            f.append(Finding("Content", "Introduction paragraph", Severity.INFO,
+                f"First <p> is very short ({first_para_words} words). "
+                "Google often uses the opening paragraph as the SERP snippet.",
+                "Write a 40–80 word intro paragraph that includes the primary keyword "
+                "and clearly states what the page covers.",
+                impact="Medium", effort="Quick Win"))
+
+    # ── Keyword stuffing ──────────────────────────────────────────────────────
+    if word_count > 100:
+        freq: dict[str, int] = {}
+        stop = {"the", "and", "for", "with", "this", "that", "are", "was",
+                "but", "not", "from", "have", "has", "its", "our", "your",
+                "you", "can", "will", "all", "been", "they", "their", "more",
+                "also", "than", "into", "about", "when", "which", "what", "how"}
+        for w in words:
+            w_clean = re.sub(r"[^a-z]", "", w.lower())
+            if len(w_clean) > 3 and w_clean not in stop:
+                freq[w_clean] = freq.get(w_clean, 0) + 1
+
+        if freq:
+            top_word, top_count = max(freq.items(), key=lambda x: x[1])
+            density = round(top_count / word_count * 100, 1)
+            if density > 5.0:
+                f.append(Finding("Content", "Keyword stuffing risk", Severity.WARNING,
+                    f"'{top_word}' appears {top_count} times ({density}% density). "
+                    "Keyword densities above 5% look unnatural and trigger spam filters.",
+                    "Reduce to 1–3% density; use synonyms and related phrases instead.",
+                    impact="High", effort="Medium"))
+            elif density > 3.5:
+                f.append(Finding("Content", "Keyword density — borderline", Severity.INFO,
+                    f"'{top_word}' appears {top_count} times ({density}% density). "
+                    "Approaching the level where Google's spam systems take notice.",
+                    "Target 1–3% for the primary keyword; vary language throughout.",
+                    impact="Low", effort="Medium"))
+
     return report

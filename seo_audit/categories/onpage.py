@@ -19,6 +19,29 @@ _TRIVIAL_ALT_PATTERN = re.compile(
     re.I,
 )
 
+# Titles that signal a template was never filled in
+_GENERIC_TITLE_PATTERN = re.compile(
+    r"^(home|index|untitled|welcome|page|default|new page|"
+    r"insert title here|title goes here|site title|"
+    r"website|my website|my site|coming soon|under construction)$",
+    re.I,
+)
+
+# Meta descriptions that signal copy-paste placeholder text
+_GENERIC_DESC_PATTERN = re.compile(
+    r"(description|meta description|add description|insert description|"
+    r"your description here|page description|write a description|"
+    r"no description|lorem ipsum)",
+    re.I,
+)
+
+# Weak action verbs that indicate a meta description has a CTA
+_CTA_VERBS = re.compile(
+    r"\b(learn|discover|explore|get|buy|shop|try|start|find|see|read|"
+    r"download|sign up|contact|call|book|request|order|view)\b",
+    re.I,
+)
+
 
 def _similarity_ratio(a: str, b: str) -> float:
     """Rough character-level overlap ratio."""
@@ -37,11 +60,26 @@ def run(page: PageData) -> CategoryReport:
     f = report.findings
 
     # ── Title ────────────────────────────────────────────────────────────────
+    # Multiple <title> tags — only the first is used, rest confuse crawlers
+    all_titles = page.soup.find_all("title")
+    if len(all_titles) > 1:
+        f.append(Finding("On-Page", "Multiple <title> tags", Severity.CRITICAL,
+            f"{len(all_titles)} <title> tags found — browsers use only the first; "
+            "extras confuse crawlers and often indicate a CMS/template bug.",
+            "Remove all duplicate <title> tags; keep exactly one.",
+            impact="High", effort="Quick Win"))
+
     title = page.title
     if not title:
         f.append(Finding("On-Page", "Title tag", Severity.CRITICAL,
-            "No <title> tag found.",
+            "No <title> tag found — Google cannot display this page in search results correctly.",
             "Add a unique, keyword-rich title (50–60 chars).",
+            impact="High", effort="Quick Win"))
+    elif _GENERIC_TITLE_PATTERN.match(title.strip()):
+        f.append(Finding("On-Page", "Title tag — generic/placeholder", Severity.CRITICAL,
+            f"Title is a generic placeholder: '{title}' — provides no keyword signal and "
+            "destroys click-through rate in search results.",
+            "Replace with a descriptive title: Primary Keyword — Supporting Phrase | Brand Name",
             impact="High", effort="Quick Win"))
     elif len(title) < 30:
         f.append(Finding("On-Page", "Title length", Severity.WARNING,
@@ -56,6 +94,36 @@ def run(page: PageData) -> CategoryReport:
     else:
         f.append(Finding("On-Page", "Title tag", Severity.PASS,
             f"Title OK ({len(title)} chars): '{title}'"))
+
+    # Title keyword front-loading — keyword should appear before any separator
+    if title:
+        separators = ["|", "—", "-", "·", "::", ">>"]
+        for sep in separators:
+            if sep in title:
+                parts = [p.strip() for p in title.split(sep, 1)]
+                # Brand-only in the first part is a weak signal
+                if len(parts[0]) < 10:
+                    f.append(Finding("On-Page", "Title keyword position", Severity.WARNING,
+                        f"Title starts with brand/short prefix before '{sep}': '{title}'. "
+                        "Google weights the beginning of the title most — lead with the keyword.",
+                        "Restructure: Primary Keyword | Brand  (not: Brand | Keyword)",
+                        impact="Medium", effort="Quick Win"))
+                break
+
+    # URL slug keywords — quick check from the URL path
+    import urllib.parse as _urlparse
+    path = _urlparse.urlparse(page.url).path.strip("/")
+    if path and path not in ("", "/"):
+        slug_words = re.split(r"[-_/]+", path.lower())
+        slug_words = [w for w in slug_words if len(w) > 2]
+        if not slug_words:
+            f.append(Finding("On-Page", "URL slug", Severity.WARNING,
+                f"URL path contains no readable keywords: '{page.url}'",
+                "Use descriptive, hyphenated slugs: /best-seo-agency-dubai/ not /page?id=123",
+                impact="Medium", effort="Medium"))
+        else:
+            f.append(Finding("On-Page", "URL slug", Severity.PASS,
+                f"URL contains keyword slugs: {', '.join(slug_words[:4])}."))
 
     # ── Title vs H1 duplication ───────────────────────────────────────────────
     h1s = page.h1_tags
@@ -72,22 +140,36 @@ def run(page: PageData) -> CategoryReport:
     desc = page.meta_description
     if not desc:
         f.append(Finding("On-Page", "Meta description", Severity.CRITICAL,
-            "No meta description found — Google will auto-generate one, often poorly.",
-            "Write a compelling 150–160 char description with a clear call-to-action.",
+            "No meta description — Google auto-generates a snippet, often choosing irrelevant text. "
+            "This directly reduces click-through rate.",
+            "Write a 150–160 char description: keyword + clear benefit + call-to-action.",
+            impact="High", effort="Quick Win"))
+    elif _GENERIC_DESC_PATTERN.search(desc):
+        f.append(Finding("On-Page", "Meta description — placeholder text", Severity.CRITICAL,
+            f"Meta description appears to contain placeholder/template text: '{desc[:80]}…'",
+            "Replace with a real description: include the primary keyword, a unique benefit, and a CTA.",
             impact="High", effort="Quick Win"))
     elif len(desc) < 70:
         f.append(Finding("On-Page", "Meta description length", Severity.WARNING,
-            f"Too short ({len(desc)} chars). Under-utilised SERP real estate — low CTR risk.",
-            "Expand to 150–160 characters with a keyword + benefit + CTA.",
+            f"Too short ({len(desc)} chars) — under-utilised SERP real estate reduces CTR.",
+            "Expand to 150–160 characters: keyword + benefit + CTA.",
             impact="Medium", effort="Quick Win"))
     elif len(desc) > 160:
         f.append(Finding("On-Page", "Meta description length", Severity.WARNING,
-            f"Too long ({len(desc)} chars) — Google truncates after ~160 chars.",
+            f"Too long ({len(desc)} chars) — Google truncates after ~160 chars, cutting off your CTA.",
             "Shorten to ≤160 characters; put the most compelling copy first.",
             impact="Medium", effort="Quick Win"))
     else:
-        f.append(Finding("On-Page", "Meta description", Severity.PASS,
-            f"Meta description OK ({len(desc)} chars)."))
+        has_cta = bool(_CTA_VERBS.search(desc))
+        if not has_cta:
+            f.append(Finding("On-Page", "Meta description — missing CTA", Severity.INFO,
+                f"Meta description ({len(desc)} chars) has no clear call-to-action.",
+                "Add an action phrase (e.g. 'Learn more', 'Get a free quote', 'Shop now') — "
+                "CTAs measurably increase click-through rates from the SERP.",
+                impact="Medium", effort="Quick Win"))
+        else:
+            f.append(Finding("On-Page", "Meta description", Severity.PASS,
+                f"Meta description OK ({len(desc)} chars) with CTA detected."))
 
     # ── H1 ────────────────────────────────────────────────────────────────────
     if not h1s:
@@ -136,16 +218,32 @@ def run(page: PageData) -> CategoryReport:
                 f"{len(h2s)} H2(s) and {len(h3s)} H3(s) — good heading structure."))
 
     # ── Canonical ────────────────────────────────────────────────────────────
+    import urllib.parse as _up
     canon = page.canonical_url
     if not canon:
         f.append(Finding("On-Page", "Canonical URL", Severity.WARNING,
             "No canonical link tag — every URL variation (www/non-www, trailing slash, UTM) "
-            "may be treated as a duplicate.",
-            "Add <link rel='canonical' href='...complete-preferred-URL...'> to all pages.",
+            "may be treated as a duplicate by Google.",
+            "Add <link rel='canonical' href='full-preferred-URL'> to every page.",
             impact="Medium", effort="Quick Win"))
     else:
-        f.append(Finding("On-Page", "Canonical URL", Severity.PASS,
-            f"Canonical set: {canon}"))
+        # Cross-domain canonical — often accidental CMS misconfiguration
+        canon_host = _up.urlparse(canon).netloc
+        page_host = _up.urlparse(page.url).netloc
+        if canon_host and page_host and canon_host != page_host:
+            f.append(Finding("On-Page", "Canonical URL — cross-domain", Severity.CRITICAL,
+                f"Canonical points to a different domain: '{canon}' — "
+                "this surrenders all link equity and indexing to the target domain.",
+                "Verify this is intentional (syndication). If not, fix to point to this page's own URL.",
+                impact="High", effort="Quick Win"))
+        elif not canon.startswith(("http://", "https://")):
+            f.append(Finding("On-Page", "Canonical URL — relative", Severity.WARNING,
+                f"Canonical is a relative URL: '{canon}' — some crawlers may resolve it incorrectly.",
+                "Use an absolute URL including scheme and domain for canonical tags.",
+                impact="Low", effort="Quick Win"))
+        else:
+            f.append(Finding("On-Page", "Canonical URL", Severity.PASS,
+                f"Canonical set: {canon}"))
 
     # ── Robots Meta ──────────────────────────────────────────────────────────
     robots = page.robots_meta.lower()
@@ -180,20 +278,38 @@ def run(page: PageData) -> CategoryReport:
     missing_og = [k for k in required_og if k not in og]
     if missing_og:
         f.append(Finding("On-Page", "Open Graph tags", Severity.WARNING,
-            f"Missing OG tags: {', '.join(missing_og)}.",
-            "Add full OG tags — Facebook, LinkedIn, Slack, and WhatsApp all use these for link previews.",
+            f"Missing OG tags: {', '.join(missing_og)}. "
+            "Facebook, LinkedIn, Slack, and WhatsApp all use these for link previews.",
+            "Add all four core OG tags to every page.",
             impact="Medium", effort="Quick Win"))
     else:
-        # Check OG image is set to something non-trivial
         og_img = og.get("og:image", "")
-        if og_img and len(og_img) > 5:
-            f.append(Finding("On-Page", "Open Graph tags", Severity.PASS,
-                "All core Open Graph tags present including og:image."))
-        else:
-            f.append(Finding("On-Page", "Open Graph tags", Severity.WARNING,
-                "og:image tag present but value appears empty or invalid.",
-                "Set og:image to an absolute URL of a 1200×630 px image for optimal social sharing.",
+        if not og_img or len(og_img) < 5:
+            f.append(Finding("On-Page", "Open Graph tags — og:image empty", Severity.WARNING,
+                "og:image tag present but value is empty or too short.",
+                "Set og:image to a full absolute URL of a 1200×630 px image.",
                 impact="Medium", effort="Quick Win"))
+        elif not og_img.startswith(("http://", "https://")):
+            f.append(Finding("On-Page", "Open Graph tags — og:image relative URL", Severity.WARNING,
+                f"og:image is a relative URL: '{og_img}' — "
+                "social crawlers (Facebook, LinkedIn) cannot resolve relative paths.",
+                "Change og:image to an absolute URL: https://yourdomain.com/image.jpg",
+                impact="Medium", effort="Quick Win"))
+        else:
+            f.append(Finding("On-Page", "Open Graph tags", Severity.PASS,
+                "All core Open Graph tags present with absolute og:image URL."))
+
+    # og:type — often forgotten; defaults to 'website' but should be set explicitly
+    if "og:type" not in og:
+        f.append(Finding("On-Page", "og:type tag", Severity.INFO,
+            "og:type not set. Without it Facebook defaults to 'website', "
+            "which may not match article, product, or video content.",
+            "Add og:type: 'website' for homepages, 'article' for blog posts, "
+            "'product' for product pages.",
+            impact="Low", effort="Quick Win"))
+    else:
+        f.append(Finding("On-Page", "og:type tag", Severity.PASS,
+            f"og:type='{og['og:type']}'."))
 
     # ── Twitter Card ─────────────────────────────────────────────────────────
     tc = page.twitter_card
