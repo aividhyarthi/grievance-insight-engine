@@ -231,4 +231,128 @@ def run(page: PageData) -> CategoryReport:
             f.append(Finding("Technical", "Cache-Control header", Severity.PASS,
                 f"Cache-Control: {cache}"))
 
+    # ── Favicon ───────────────────────────────────────────────────────────────
+    favicon = (
+        page.soup.find("link", rel="icon")
+        or page.soup.find("link", rel="shortcut icon")
+        or page.soup.find("link", rel="apple-touch-icon")
+    )
+    if not favicon:
+        f.append(Finding("Technical", "Favicon", Severity.WARNING,
+            "No favicon found — browsers show a blank tab icon, reducing brand recognition in search results and tabs.",
+            "Add <link rel='icon' href='/favicon.ico'> (or .png/.svg) inside <head>.",
+            impact="Low", effort="Quick Win"))
+    else:
+        f.append(Finding("Technical", "Favicon", Severity.PASS,
+            f"Favicon present: {favicon.get('href', 'set')}."))
+
+    # ── Mixed content (HTTP resources on HTTPS page) ──────────────────────────
+    if page.url.startswith("https://"):
+        http_resources = [
+            tag.get("src") for tag in page.soup.find_all(
+                ["img", "script", "iframe"], src=re.compile(r"^http://", re.I))
+        ] + [
+            tag.get("href") for tag in page.soup.find_all(
+                "link", href=re.compile(r"^http://", re.I))
+        ]
+        http_resources = [r for r in http_resources if r]
+        http_links = [
+            a["href"] for a in page.soup.find_all("a", href=re.compile(r"^http://", re.I))
+        ]
+        if http_resources:
+            f.append(Finding("Technical", "Mixed content", Severity.CRITICAL,
+                f"{len(http_resources)} resource(s) (scripts/images/styles) loaded over HTTP "
+                "on an HTTPS page — browsers block mixed content, breaking functionality.",
+                "Update all resource src/href values to HTTPS or protocol-relative URLs (//).",
+                impact="High", effort="Quick Win"))
+        elif http_links:
+            f.append(Finding("Technical", "Mixed content", Severity.WARNING,
+                f"{len(http_links)} outbound link(s) point to HTTP URLs — may trigger browser security warnings.",
+                "Update outbound links to HTTPS where available.",
+                impact="Low", effort="Medium"))
+        else:
+            f.append(Finding("Technical", "Mixed content", Severity.PASS,
+                "No HTTP resources or links detected — page content is fully served over HTTPS."))
+
+    # ── Content-Security-Policy ───────────────────────────────────────────────
+    csp = page.response_headers.get("Content-Security-Policy", "")
+    if not csp:
+        f.append(Finding("Technical", "Content-Security-Policy (CSP)", Severity.WARNING,
+            "No Content-Security-Policy header — the page has no protection against "
+            "cross-site scripting (XSS) injection attacks.",
+            "Add a CSP header: Content-Security-Policy: default-src 'self'. "
+            "Use csp-evaluator.withgoogle.com to iteratively tighten.",
+            impact="Medium", effort="Long-term"))
+    else:
+        weak = []
+        if "'unsafe-inline'" in csp:
+            weak.append("'unsafe-inline'")
+        if "'unsafe-eval'" in csp:
+            weak.append("'unsafe-eval'")
+        if weak:
+            f.append(Finding("Technical", "Content-Security-Policy (CSP)", Severity.WARNING,
+                f"CSP present but contains {', '.join(weak)} — significantly weakening XSS protection.",
+                "Replace unsafe directives with nonce- or hash-based CSP allowlists.",
+                impact="Medium", effort="Long-term"))
+        else:
+            f.append(Finding("Technical", "Content-Security-Policy (CSP)", Severity.PASS,
+                "CSP header present with no unsafe-inline or unsafe-eval directives."))
+
+    # ── Clickjacking protection ───────────────────────────────────────────────
+    xfo = page.response_headers.get("X-Frame-Options", "")
+    csp_frame_ancestors = "frame-ancestors" in csp.lower() if csp else False
+    if not xfo and not csp_frame_ancestors:
+        f.append(Finding("Technical", "Clickjacking protection (X-Frame-Options)", Severity.WARNING,
+            "No X-Frame-Options header or CSP frame-ancestors directive — "
+            "the page can be embedded in third-party iframes, enabling clickjacking attacks.",
+            "Add: X-Frame-Options: SAMEORIGIN  (or CSP: frame-ancestors 'self')",
+            impact="Medium", effort="Quick Win"))
+    else:
+        protection = xfo or "CSP frame-ancestors"
+        f.append(Finding("Technical", "Clickjacking protection (X-Frame-Options)", Severity.PASS,
+            f"Clickjacking protection in place ({protection})."))
+
+    # ── Cross-Origin-Opener-Policy ────────────────────────────────────────────
+    coop = page.response_headers.get("Cross-Origin-Opener-Policy", "")
+    if not coop:
+        f.append(Finding("Technical", "Cross-Origin-Opener-Policy (COOP)", Severity.INFO,
+            "No COOP header — the browsing context can be shared with cross-origin popups, "
+            "potentially exposing the page to side-channel timing attacks.",
+            "Add: Cross-Origin-Opener-Policy: same-origin",
+            impact="Low", effort="Quick Win"))
+    else:
+        f.append(Finding("Technical", "Cross-Origin-Opener-Policy (COOP)", Severity.PASS,
+            f"COOP header set: {coop}"))
+
+    # ── <head> tag hygiene ────────────────────────────────────────────────────
+    head = page.soup.find("head")
+    if head:
+        if head.find("noscript"):
+            f.append(Finding("Technical", "<noscript> in <head>", Severity.WARNING,
+                "<noscript> tag found inside <head> — can interfere with Googlebot's rendering "
+                "and cause parser errors in strict HTML mode.",
+                "Move all <noscript> tags to <body>.",
+                impact="Low", effort="Quick Win"))
+        else:
+            f.append(Finding("Technical", "<noscript> in <head>", Severity.PASS,
+                "No <noscript> tags inside <head>."))
+
+        _VALID_HEAD_TAGS = {
+            "title", "meta", "link", "script", "style", "base", "noscript", "template",
+        }
+        invalid_in_head = [
+            tag.name for tag in head.find_all(True, recursive=False)
+            if tag.name and tag.name.lower() not in _VALID_HEAD_TAGS
+        ]
+        if invalid_in_head:
+            examples = ", ".join(f"<{t}>" for t in invalid_in_head[:4])
+            f.append(Finding("Technical", "Invalid elements in <head>", Severity.WARNING,
+                f"Non-permitted HTML element(s) found inside <head>: {examples}. "
+                "Browsers silently move these to <body>, causing unpredictable layout.",
+                "Only <title>, <meta>, <link>, <script>, and <style> belong inside <head>.",
+                impact="Low", effort="Quick Win"))
+        else:
+            f.append(Finding("Technical", "Invalid elements in <head>", Severity.PASS,
+                "<head> contains only valid HTML elements."))
+
     return report

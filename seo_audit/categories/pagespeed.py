@@ -176,21 +176,27 @@ def _psi_findings(page: PageData, f: list) -> bool:
 
     # ── Top PSI Opportunities ─────────────────────────────────────────────────
     opportunity_keys = [
-        ("render-blocking-resources", "Eliminate render-blocking resources"),
-        ("uses-optimized-images",     "Properly size/compress images"),
-        ("unused-javascript",         "Remove unused JavaScript"),
-        ("unused-css-rules",          "Remove unused CSS"),
-        ("uses-text-compression",     "Enable text compression (gzip/Brotli)"),
-        ("efficient-animated-content","Use video formats for animated images"),
-        ("uses-long-cache-ttl",       "Serve static assets with long cache TTL"),
-        ("uses-rel-preconnect",       "Preconnect to required origins"),
+        ("render-blocking-resources", "Eliminate render-blocking resources",    "ms"),
+        ("uses-optimized-images",     "Properly size/compress images",          "ms"),
+        ("unused-javascript",         "Remove unused JavaScript",               "ms"),
+        ("unused-css-rules",          "Remove unused CSS",                      "ms"),
+        ("unminified-javascript",     "Minify JavaScript",                      "bytes"),
+        ("unminified-css",            "Minify CSS",                             "bytes"),
+        ("uses-text-compression",     "Enable text compression (gzip/Brotli)",  "ms"),
+        ("efficient-animated-content","Use video formats for animated images",  "ms"),
+        ("uses-long-cache-ttl",       "Serve static assets with long cache TTL","ms"),
+        ("uses-rel-preconnect",       "Preconnect to required origins",         "ms"),
     ]
     opportunities = []
-    for key, label in opportunity_keys:
+    for key, label, unit in opportunity_keys:
         audit = audits.get(key, {})
-        savings = audit.get("details", {}).get("overallSavingsMs")
-        if savings and savings > 250:
-            opportunities.append(f"{label} (~{round(savings)} ms saving)")
+        details = audit.get("details", {})
+        savings_ms = details.get("overallSavingsMs")
+        savings_bytes = details.get("overallSavingsBytes")
+        if unit == "ms" and savings_ms and savings_ms > 250:
+            opportunities.append(f"{label} (~{round(savings_ms)} ms saving)")
+        elif unit == "bytes" and savings_bytes and savings_bytes > 10_240:
+            opportunities.append(f"{label} (~{round(savings_bytes / 1024)} KB saving)")
 
     if opportunities:
         f.append(Finding("Pagespeed", "PSI optimisation opportunities", Severity.WARNING,
@@ -200,6 +206,21 @@ def _psi_findings(page: PageData, f: list) -> bool:
     else:
         f.append(Finding("Pagespeed", "PSI optimisation opportunities", Severity.PASS,
             "No significant optimisation opportunities flagged by Google Lighthouse."))
+
+    # ── DOM size (Lighthouse diagnostic) ─────────────────────────────────────
+    dom_audit = audits.get("dom-size", {})
+    dom_count_val = dom_audit.get("numericValue")
+    if dom_count_val is not None:
+        dom_count_val = int(dom_count_val)
+        if dom_count_val > 1500:
+            f.append(Finding("Pagespeed", "DOM size", Severity.WARNING,
+                f"DOM contains {dom_count_val:,} elements — Google recommends ≤1,500. "
+                "Excessive DOM size slows style recalculation and increases memory usage.",
+                "Remove unnecessary wrapper elements; use virtual rendering for long lists.",
+                impact="Medium", effort="Long-term"))
+        else:
+            f.append(Finding("Pagespeed", "DOM size", Severity.PASS,
+                f"DOM size is acceptable: {dom_count_val:,} elements (threshold: 1,500)."))
 
     return True
 
@@ -419,5 +440,44 @@ def run(page: PageData) -> CategoryReport:
             f"{len(large_inline)} inline <script> block(s) exceed 5 KB — cannot be cached by the browser.",
             "Extract large inline scripts to external files to enable browser caching and parallel loading.",
             impact="Low", effort="Medium"))
+
+    # ── Font display strategy (HTML proxy) ────────────────────────────────────
+    style_tags = soup.find_all("style")
+    has_font_face = any("@font-face" in s.get_text() for s in style_tags)
+    font_face_no_display = has_font_face and any(
+        "@font-face" in s.get_text() and "font-display" not in s.get_text()
+        for s in style_tags
+    )
+    gf_links = soup.find_all("link", href=re.compile(r"fonts\.googleapis\.com"))
+    gf_no_display = bool(gf_links) and any(
+        "display=" not in (l.get("href") or "") for l in gf_links
+    )
+    if font_face_no_display or gf_no_display:
+        f.append(Finding("Pagespeed", "Font display strategy", Severity.WARNING,
+            "Web fonts detected without font-display: swap — text is invisible while fonts load (FOIT), "
+            "increasing perceived load time and potentially worsening CLS.",
+            "Add font-display: swap to @font-face rules; append &display=swap to Google Fonts URLs.",
+            impact="Medium", effort="Quick Win"))
+    elif has_font_face or gf_links:
+        f.append(Finding("Pagespeed", "Font display strategy", Severity.PASS,
+            "Font display strategy is configured — text remains visible during font swap."))
+
+    # ── DOM size (HTML proxy — used when PSI data unavailable) ────────────────
+    if not psi_available:
+        dom_count = len(soup.find_all(True))
+        if dom_count > 1500:
+            f.append(Finding("Pagespeed", "DOM size", Severity.WARNING,
+                f"DOM contains {dom_count:,} elements — Google recommends ≤1,500. "
+                "Large DOMs increase style recalculation time and memory usage.",
+                "Remove unnecessary wrapper divs; consider virtual rendering for long lists.",
+                impact="Medium", effort="Long-term"))
+        elif dom_count > 900:
+            f.append(Finding("Pagespeed", "DOM size", Severity.INFO,
+                f"DOM has {dom_count:,} elements — approaching the 1,500 recommended limit.",
+                "Monitor DOM growth as content scales.",
+                impact="Low", effort="Medium"))
+        else:
+            f.append(Finding("Pagespeed", "DOM size", Severity.PASS,
+                f"DOM size is acceptable: {dom_count:,} elements."))
 
     return report

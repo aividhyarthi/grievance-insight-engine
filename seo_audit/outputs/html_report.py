@@ -111,8 +111,12 @@ def _category_score_table(result: AuditResult) -> str:
 def _findings_section(result: AuditResult) -> str:
     sections = []
     for cr in result.category_reports:
-        rows = []
-        for f in cr.findings:
+        issues = [f for f in cr.findings if f.severity != Severity.PASS]
+        passed = [f for f in cr.findings if f.severity == Severity.PASS]
+
+        # ── Issues table ──────────────────────────────────────────────────────
+        issue_rows = []
+        for f in issues:
             color = _SEV_COLOR[f.severity]
             bg = _SEV_BG[f.severity]
             rec_html = (
@@ -134,7 +138,7 @@ def _findings_section(result: AuditResult) -> str:
                 'padding:1px 6px;border-radius:10px;margin-left:4px;">Needs ext. tool</span>'
                 if f.external_data_needed else ""
             )
-            rows.append(f"""
+            issue_rows.append(f"""
             <tr style="background:{bg};">
               <td style="padding:7px 10px;color:{color};font-weight:600;white-space:nowrap;font-size:0.8rem;">
                 {f.severity.value.upper()}
@@ -143,22 +147,63 @@ def _findings_section(result: AuditResult) -> str:
               <td style="padding:7px 10px;font-size:0.85rem;">{f.detail}{rec_html}</td>
             </tr>""")
 
+        issues_html = ""
+        if issue_rows:
+            issues_html = f"""
+          <div style="margin-bottom:12px;">
+            <div style="font-weight:600;font-size:0.8rem;color:#c53030;text-transform:uppercase;
+                        letter-spacing:0.05em;margin-bottom:6px;">
+              ✗ Issues Found ({len(issues)})
+            </div>
+            <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+              <thead><tr style="background:#edf2f7;">
+                <th style="padding:8px 10px;text-align:left;width:90px;">Severity</th>
+                <th style="padding:8px 10px;text-align:left;width:240px;">Check</th>
+                <th style="padding:8px 10px;text-align:left;">Detail / Recommendation</th>
+              </tr></thead>
+              <tbody>{"".join(issue_rows)}</tbody>
+            </table>
+          </div>"""
+
+        # ── Passed checks collapsible list ────────────────────────────────────
+        passed_html = ""
+        if passed:
+            pass_items = "".join(
+                f'<span style="display:inline-flex;align-items:center;gap:4px;'
+                f'background:#f0fff4;border:1px solid #c6f6d5;border-radius:6px;'
+                f'padding:3px 10px;font-size:0.8rem;color:#276749;margin:3px;">'
+                f'✓ {p.check}</span>'
+                for p in passed
+            )
+            cat_id = cr.name.lower().replace(" ", "-")
+            passed_html = f"""
+          <div style="margin-top:8px;">
+            <button onclick="var el=document.getElementById('pass-{cat_id}');
+                             el.style.display=el.style.display==='none'?'block':'none';
+                             this.textContent=el.style.display==='none'?
+                             '▶ Passed Checks ({len(passed)})':'▼ Passed Checks ({len(passed)})';"
+                    style="background:none;border:none;cursor:pointer;font-size:0.8rem;
+                           color:#38a169;font-weight:600;padding:4px 0;">
+              ▶ Passed Checks ({len(passed)})
+            </button>
+            <div id="pass-{cat_id}" style="display:none;margin-top:6px;line-height:1.8;">
+              {pass_items}
+            </div>
+          </div>"""
+
         sc = _score_color(cr.score)
         sections.append(f"""
-        <div style="margin-bottom:32px;">
-          <h3 style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <div style="margin-bottom:36px;border:1px solid #e2e8f0;border-radius:8px;padding:16px 20px;">
+          <h3 style="display:flex;align-items:center;gap:10px;margin:0 0 4px;">
             {cr.name}
             <span style="font-size:0.9rem;color:{sc};font-weight:700;">{cr.score}/100</span>
+            <span style="font-size:0.75rem;color:#718096;font-weight:400;">
+              {len(issues)} issue(s) · {len(passed)} passed
+            </span>
           </h3>
-          <p style="color:#718096;font-size:0.85rem;margin:0 0 10px;">{cr.description}</p>
-          <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
-            <thead><tr style="background:#edf2f7;">
-              <th style="padding:8px 10px;text-align:left;width:90px;">Severity</th>
-              <th style="padding:8px 10px;text-align:left;width:240px;">Check</th>
-              <th style="padding:8px 10px;text-align:left;">Detail / Recommendation</th>
-            </tr></thead>
-            <tbody>{"".join(rows)}</tbody>
-          </table>
+          <p style="color:#718096;font-size:0.82rem;margin:0 0 14px;">{cr.description}</p>
+          {issues_html}
+          {passed_html}
         </div>""")
     return "".join(sections)
 
