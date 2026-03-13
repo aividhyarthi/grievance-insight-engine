@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from flask import Flask, render_template, request, send_file, redirect, url_for
 
-from seo_audit.crawler import fetch_page, parse_raw_html
+from seo_audit.crawler import fetch_page, parse_raw_html, extract_nav_links
 from seo_audit.engine import run_audit
 from seo_audit.outputs.ai_narratives import generate_all
 from seo_audit.outputs.excel_report import save_excel
@@ -57,6 +57,23 @@ def _audit_competitor(url: str, site_type: str) -> object | None:
         return None
 
 
+def _audit_page(url: str, site_type: str) -> tuple[str, object | None]:
+    """
+    Fetch + audit a single secondary page (skip PSI API for speed).
+    Returns (final_url, AuditResult | None).
+    """
+    try:
+        if not url.startswith(("http://", "https://")):
+            url = "https://" + url
+        page = fetch_page(url, timeout=15)
+        if page.error:
+            return url, None
+        page.skip_psi = True  # Skip slow PSI API for secondary pages
+        return page.url, run_audit(page, site_type=site_type)
+    except Exception:
+        return url, None
+
+
 # ─── Routes ───────────────────────────────────────────────────────────────────
 
 @app.route("/")
@@ -92,8 +109,54 @@ def audit():
             return render_template("index.html", site_types=SITE_TYPE_LABELS,
                                    error=f"Could not reach {url} — {page.error}")
 
-    # ── Run full 12-category audit on main site ───────────────────────────────
+    # ── Run full 13-category audit on main site ───────────────────────────────
     result = run_audit(page, site_type=site_type)
+
+    # ── Collect secondary pages: nav auto-discovery + user-entered extra URLs ─
+    _MAX_SECONDARY = 10
+    nav_urls: list[str] = []
+    if input_mode != "html":  # nav discovery only makes sense for live URLs
+        nav_urls = extract_nav_links(page, limit=_MAX_SECONDARY)
+
+    extra_raw = request.form.get("extra_urls", "").strip()
+    extra_urls = []
+    if extra_raw:
+        for line in extra_raw.splitlines():
+            u = line.strip()
+            if u:
+                if not u.startswith(("http://", "https://")):
+                    u = "https://" + u
+                extra_urls.append(u)
+
+    # Merge: extra_urls first (user intent), then nav links; deduplicate
+    primary_norm = result.url.rstrip("/")
+    secondary_urls: list[str] = []
+    seen_secondary: set[str] = set()
+    for u in extra_urls + nav_urls:
+        norm = u.rstrip("/")
+        if norm != primary_norm and norm not in seen_secondary:
+            seen_secondary.add(norm)
+            secondary_urls.append(u)
+        if len(secondary_urls) >= _MAX_SECONDARY:
+            break
+
+    # Run secondary page audits in parallel (PSI skipped for speed)
+    page_audit_pairs: list[tuple[str, object | None]] = []
+    if secondary_urls:
+        with ThreadPoolExecutor(max_workers=min(len(secondary_urls), 8)) as ex:
+            futures = {ex.submit(_audit_page, u, site_type): u for u in secondary_urls}
+            url_to_result: dict[str, object | None] = {}
+            for fut in as_completed(futures):
+                orig_url = futures[fut]
+                try:
+                    final_url, audit = fut.result()
+                    url_to_result[orig_url] = (final_url, audit)
+                except Exception:
+                    url_to_result[orig_url] = (orig_url, None)
+        # Preserve original order
+        for u in secondary_urls:
+            final_url, audit = url_to_result.get(u, (u, None))
+            page_audit_pairs.append((final_url, audit))
 
     # ── Competitor audits (up to 3, run in parallel) ──────────────────────────
     comp_urls = [
@@ -113,7 +176,7 @@ def audit():
                     ordered[idx] = fut.result()
                 except Exception:
                     ordered[idx] = None
-        comp_results = ordered  # list of AuditResult | None, aligned with comp_urls[0..2]
+        comp_results = ordered
     else:
         comp_results = [None, None, None]
 
@@ -125,6 +188,7 @@ def audit():
     job_id = uuid.uuid4().hex[:10]
     _cache[job_id] = result
     _cache[job_id + "_comps"] = list(zip(comp_urls, comp_results))
+    _cache[job_id + "_pages"] = page_audit_pairs
 
     return render_template(
         "results.html",
@@ -132,7 +196,8 @@ def audit():
         job_id=job_id,
         site_types=SITE_TYPE_LABELS,
         Severity=_Severity,
-        comp_pairs=list(zip(comp_urls, comp_results)),  # [(url, result|None), ...]
+        comp_pairs=list(zip(comp_urls, comp_results)),
+        page_audit_pairs=page_audit_pairs,   # [(url, AuditResult|None), ...]
         input_mode=input_mode,
     )
 

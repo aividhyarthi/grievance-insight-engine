@@ -29,6 +29,7 @@ class PageData:
     soup: BeautifulSoup
     response_headers: dict = field(default_factory=dict)
     error: Optional[str] = None
+    skip_psi: bool = False  # Skip PSI API call for secondary/batch pages
 
     # Convenience properties ─────────────────────────────────────────────────
 
@@ -163,6 +164,81 @@ def parse_raw_html(html: str, url: str = "pasted-html") -> PageData:
         soup=soup,
         response_headers={},
     )
+
+
+_NAV_SKIP_EXTENSIONS = {
+    ".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".pdf", ".zip",
+    ".css", ".js", ".xml", ".txt", ".ico", ".mp4", ".mp3", ".woff", ".woff2",
+}
+_NAV_SKIP_SCHEMES = {"mailto:", "tel:", "javascript:", "#"}
+
+
+def extract_nav_links(page: "PageData", limit: int = 10) -> list[str]:
+    """
+    Extract unique internal page URLs from navigation elements on a page.
+    Looks in <nav>, <header>, and elements with nav/menu class names first,
+    then falls back to all links. Used for automatic multi-page site auditing.
+    """
+    if not page.url or page.url == "pasted-html" or page.error:
+        return []
+
+    base = urllib.parse.urlparse(page.url)
+    if not base.netloc:
+        return []
+
+    primary_clean = urllib.parse.urlunparse(
+        (base.scheme, base.netloc, base.path.rstrip("/") or "/", "", "", "")
+    )
+
+    soup = page.soup
+
+    # Priority: nav/header containers first, then all links as fallback
+    nav_containers = (
+        soup.find_all("nav")
+        + soup.find_all("header")
+        + soup.find_all(class_=lambda c: c and any(
+            kw in " ".join(c if isinstance(c, list) else [c]).lower()
+            for kw in ["nav", "menu", "header", "navbar"]
+        ))
+    )
+    search_scope = nav_containers if nav_containers else [soup]
+
+    seen: set[str] = set()
+    results: list[str] = []
+
+    for container in search_scope:
+        for a in container.find_all("a", href=True):
+            href = a["href"].strip()
+            if not href or any(href.startswith(s) for s in _NAV_SKIP_SCHEMES):
+                continue
+
+            abs_url = urllib.parse.urljoin(page.url, href)
+            parsed = urllib.parse.urlparse(abs_url)
+
+            # Internal links only
+            if parsed.netloc != base.netloc:
+                continue
+
+            # Skip non-HTML file types
+            path_lower = parsed.path.lower()
+            if any(path_lower.endswith(ext) for ext in _NAV_SKIP_EXTENSIONS):
+                continue
+
+            # Normalise: strip query params, fragments, trailing slash
+            clean = urllib.parse.urlunparse(
+                (parsed.scheme, parsed.netloc, parsed.path.rstrip("/") or "/", "", "", "")
+            )
+
+            if clean == primary_clean or clean in seen:
+                continue
+
+            seen.add(clean)
+            results.append(clean)
+
+            if len(results) >= limit:
+                return results
+
+    return results
 
 
 def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:

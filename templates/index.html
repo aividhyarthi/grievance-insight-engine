@@ -171,6 +171,37 @@
         </div>
       </div>
 
+      <!-- Extra pages to audit -->
+      <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+        <button type="button" onclick="togglePages()"
+          class="w-full flex items-center justify-between px-5 py-3.5 text-sm font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-colors">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+            </svg>
+            Also audit these pages
+            <span class="text-slate-400 font-normal">(optional — up to 10 pages)</span>
+          </span>
+          <span id="pagesChevron" class="text-slate-300 transition-transform text-xs">▼</span>
+        </button>
+        <div id="pagesSection" class="comp-section">
+          <div class="px-5 pb-5 border-t border-slate-100 pt-4 space-y-3">
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Enter one URL per line (e.g. /about, /services, /contact). The tool will also
+              <strong class="text-slate-500">automatically discover nav links</strong> from your main URL.
+            </p>
+            <textarea name="extra_urls" id="extraUrls"
+              placeholder="https://yoursite.com/about&#10;https://yoursite.com/services&#10;https://yoursite.com/contact"
+              rows="4"
+              class="input-focus w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-700 placeholder-slate-400 text-sm font-mono resize-y shadow-sm"></textarea>
+            <p class="text-xs text-slate-400">
+              💡 Relative paths like <code class="bg-slate-100 px-1 rounded">/about</code> are also accepted.
+              Results appear in the <strong class="text-slate-500">Site Pages</strong> tab of your report.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <!-- Options row -->
       <div class="flex items-center gap-6 text-sm text-slate-500 px-1">
         <label class="flex items-center gap-2 cursor-pointer">
@@ -277,6 +308,14 @@
       document.getElementById('compChevron').style.transform = compOpen ? 'rotate(180deg)' : '';
     }
 
+    // ── Extra pages toggle ───────────────────────────────────────────────────
+    let pagesOpen = false;
+    function togglePages() {
+      pagesOpen = !pagesOpen;
+      document.getElementById('pagesSection').classList.toggle('open', pagesOpen);
+      document.getElementById('pagesChevron').style.transform = pagesOpen ? 'rotate(180deg)' : '';
+    }
+
     // ── Site type pills ──────────────────────────────────────────────────────
     document.querySelectorAll('.site-type-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -287,10 +326,11 @@
 
     // ── Loading states ───────────────────────────────────────────────────────
     const statuses = [
-      "Fetching page and running 12-category audit…",
+      "Fetching page and running 13-category audit…",
       "Checking On-Page SEO, Technical, and Content…",
       "Analysing Pagespeed, Keywords, and UX signals…",
       "Running AEO, GEO, Product SEO checks…",
+      "Discovering nav links and auditing site pages…",
       "Auditing competitor sites…",
       "Generating AI Proposal, Roadmap, and Traffic Strategy…",
       "Almost done — building your report…",

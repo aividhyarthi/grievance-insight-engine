@@ -74,7 +74,10 @@ def _psi_findings(page: PageData, f: list) -> bool:
     """
     Run PSI API and append real CWV findings.
     Returns True if PSI data was successfully obtained.
+    Skipped when page.skip_psi is True (used for batch/secondary-page audits).
     """
+    if getattr(page, "skip_psi", False):
+        return False
     data = _call_psi(page.url)
     if not data:
         return False
