@@ -1,10 +1,10 @@
-"""Legal Case Research Library — Flask Application."""
+"""BeforeLawyer — Legal Case Research Library — Flask Application."""
 
 import os
 from datetime import date, datetime
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-from legal_research.models import db, LegalCase, LegalGlossary, CaseBriefTemplate
+from beforelawyer.models import db, LegalCase, LegalGlossary, CaseBriefTemplate
 from sqlalchemy import or_, func, extract
 
 
@@ -19,7 +19,7 @@ def create_app():
 
     db_url = os.environ.get(
         "DATABASE_URL",
-        f"sqlite:///{os.path.join(data_dir, 'legal_research.db')}",
+        f"sqlite:///{os.path.join(data_dir, 'beforelawyer.db')}",
     )
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -30,7 +30,7 @@ def create_app():
         db.create_all()
         # Seed if empty
         if LegalCase.query.count() == 0:
-            from legal_research.seed_data import seed_database
+            from beforelawyer.seed_data import seed_database
             seed_database(db)
 
     # ── Pages ──────────────────────────────────────────────────────
@@ -315,7 +315,7 @@ def create_app():
         """Trigger scraping of Indian Supreme Court judgments from gov open data.
         Source: eCourts (ecourts.gov.in) mirror on AWS Open Data Registry.
         """
-        from legal_research.scraper import scrape_and_store
+        from beforelawyer.scraper import scrape_and_store
         data = request.get_json() or {}
         years = data.get("years", list(range(2020, 2026)))
         max_per_year = data.get("max_per_year", 20)

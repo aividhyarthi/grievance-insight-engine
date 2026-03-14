@@ -1,71 +1,48 @@
-# Grievance Insight Engine  
-**AI Vidhyarthi Submission – BigQuery AI Hackathon**
+# BeforeLawyer
+**India's Open Legal Case Research Library**
 
-## 🔍 Project Overview
-India’s universities and local bodies receive thousands of unstructured complaints (text tickets, PDFs, voice notes, images) that often go unread and unresolved.  
-The **Grievance Insight Engine** uses **BigQuery AI multimodal analysis** to transform this data into structured insights for faster resolution, accountability, and trust.
+[![Instagram](https://img.shields.io/badge/@beforelawyer-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/beforelawyer/)
 
-- **Text/PDFs** → Extract issue type, urgency, applicant details
-- **Audio (multi-language)** → Transcribe & categorize
-- **Images** → Caption & classify problems (e.g., broken infrastructure)
-- **Vector search** → Retrieve similar past cases and recommended solutions
-- **Dashboards** → Track trends, sentiment, and bottlenecks
+## About
 
----
+**BeforeLawyer** is an open legal case research library built for lawyers, law students, judges, and senior advocates. It provides:
 
-## 🚀 Why BigQuery AI
-- **ObjectRef** → Register multimodal data (text, PDF, audio, image)
-- **AI.GENERATE_TABLE** → Convert unstructured inputs into structured SQL tables
-- **Vector Search** → Find similar complaints and resolutions
-- **SQL-first workflow** → Minimal engineering overhead, accessible for students
+- **70+ Landmark Cases** — Indian & international, with full case briefs, arguments, judge observations, and timelines
+- **Legal Glossary** — 100+ terms covering criminal, civil, constitutional, and procedural law (updated for BNS/BNSS/BSA)
+- **Analytics Dashboard** — Interactive charts on case types, court distribution, outcomes, and trends
+- **Young Lawyer Toolkit** — Case brief templates for every case type
+- **Court Info** — Current judges (SC & all HCs), court proceedings guide, court holidays
+- **Lawyer Resources** — Curated links to official legal databases and tools
 
----
+## Tech Stack
 
-## 🛠️ Repo Contents
-- `notebooks/` – Demo notebook (Kaggle export)
-- `data/` – Small sample dataset (dummy tickets, PDFs, audio, images)
-- `diagrams/` – Architecture flow diagram
-- `docs/` – Executive summary proposal PDF
-- `requirements.txt` – (Optional) Dependencies
+- **Backend**: Python / Flask / SQLAlchemy
+- **Frontend**: Vanilla HTML/CSS/JS with Chart.js
+- **Database**: SQLite (auto-seeded on first run)
+- **Deployment**: Railway / Heroku / any WSGI server
 
----
+## Quick Start
 
-## 📊 Architecture
-![Architecture Diagram](diagrams/architecture_flow.png)
+```bash
+pip install -r requirements.txt
+python run.py
+# Open http://localhost:5000
+```
 
-**Pipeline:**  
-Data sources → Cloud Storage → BigQuery (ObjectRef) → AI.GENERATE_TABLE → Vector Search → Looker Studio Dashboard
+## Repo Structure
 
----
+- `beforelawyer/` — Flask app, models, seed data, templates, static assets
+- `beforelawyer/indian_cases.py` — 50 curated Indian landmark cases
+- `beforelawyer/seed_data.py` — International cases, glossary, templates, enrichment data
+- `notebooks/` — Demo notebook (Kaggle export)
+- `run.py` — Development server entry point
+- `wsgi.py` — Production WSGI entry point
 
-## 📈 Expected Impact
-- 30% faster grievance resolution in pilot campuses  
-- 85%+ categorization accuracy (labeled sample)  
-- Cost < ₹150 per 1,000 records processed  
-- Scalable across education, health, and governance
+## Team
 
----
+**AI Vidhyarthi** — India's first student-led AI literacy initiative
+Founded by **Rudra Prasad Kasturi**, Chief Strategy & Growth Leader.
 
-## 📚 How to Run
-1. Open `notebooks/grievance_insight_engine_demo.ipynb` in Kaggle or Colab.  
-2. Run all cells to see:  
-   - Data ingestion examples  
-   - BigQuery AI calls (`AI.GENERATE_TABLE`)  
-   - Vector search queries  
-   - Output structured tables  
-3. (Optional) Connect BigQuery tables to Looker Studio to view dashboard.
+## Follow Us
 
----
-
-## 👥 Team
-**AI Vidhyarthi** – India’s first student-led AI literacy initiative  
-Founded by **Rudra Prasad Kasturi**, Chief Strategy & Growth Leader (ex-Google partner, Times Internet, Cars24).
-
----
-
-## 🔗 Project Links
-- Kaggle Notebook: [link]  
-- Looker Studio Dashboard: [link]  
-- Executive Summary (PDF): [docs/executive_summary.pdf](docs/executive_summary.pdf)  
-
----
+- Instagram: [@beforelawyer](https://www.instagram.com/beforelawyer/)

@@ -178,7 +178,7 @@ def scrape_and_store(db, years: list[int] = None, max_per_year: int = 20):
         years: List of years to scrape (default: recent 5 years)
         max_per_year: Max cases to import per year
     """
-    from legal_research.models import LegalCase
+    from beforelawyer.models import LegalCase
 
     if years is None:
         years = list(range(2020, 2026))
@@ -215,7 +215,7 @@ def fetch_ecourts_judgments_page(court_code: str = "1", page: int = 1) -> list[d
     url = "https://judgments.ecourts.gov.in/pdfsearch/"
     try:
         resp = requests.get(url, timeout=30, headers={
-            "User-Agent": "LegalResearchLibrary/1.0 (Educational Tool)",
+            "User-Agent": "BeforeLawyer/1.0 (Educational Tool)",
         })
         if resp.status_code == 200:
             logger.info("eCourts portal accessible")

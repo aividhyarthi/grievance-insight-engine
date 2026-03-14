@@ -1875,8 +1875,8 @@ def _enrich_international_cases(cases):
 
 def seed_database(db):
     """Populate the database with seed data."""
-    from legal_research.models import LegalCase, LegalGlossary, CaseBriefTemplate
-    from legal_research.indian_cases import INDIAN_LANDMARK_CASES
+    from beforelawyer.models import LegalCase, LegalGlossary, CaseBriefTemplate
+    from beforelawyer.indian_cases import INDIAN_LANDMARK_CASES
 
     # Seed international landmark cases
     for case_data in LANDMARK_CASES:
