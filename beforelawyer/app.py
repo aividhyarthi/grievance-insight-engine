@@ -572,7 +572,8 @@ def create_app():
         """High-profile cases with upcoming hearings this month (curated)."""
         today = date.today()
         month_name = today.strftime("%B %Y")
-        hearings = [
+        # Build hearings with links to related cases in our DB
+        hearing_defs = [
             {
                 "case": "DPDP Act Challenge — Internet Freedom Foundation v. Union of India",
                 "court": "Supreme Court of India",
@@ -581,6 +582,8 @@ def create_app():
                 "parties": "Internet Freedom Foundation vs Union of India",
                 "category": "Constitutional",
                 "significance": "Will shape digital privacy for 1.4 billion Indians",
+                "search_query": "Digital Personal Data Protection",
+                "related_search": "privacy",
             },
             {
                 "case": "Delhi Excise Policy Case — Multiple Accused",
@@ -590,6 +593,8 @@ def create_app():
                 "parties": "CBI/ED vs K. Kavitha, Arvind Kejriwal & Others",
                 "category": "Criminal / PMLA",
                 "significance": "Politically sensitive; tests PMLA bail jurisprudence",
+                "search_query": "Sisodia",
+                "related_search": "PMLA bail",
             },
             {
                 "case": "Same-Sex Marriage Review — Supriyo Chakraborty v. Union of India",
@@ -599,6 +604,8 @@ def create_app():
                 "parties": "Supriyo Chakraborty & Others vs Union of India",
                 "category": "Constitutional",
                 "significance": "LGBTQ+ rights and equality under Article 14",
+                "search_query": "Supriyo",
+                "related_search": "Navtej",
             },
             {
                 "case": "Places of Worship Act Challenge",
@@ -608,6 +615,8 @@ def create_app():
                 "parties": "Multiple petitioners vs Union of India",
                 "category": "Constitutional",
                 "significance": "Sensitive religious-secular balance issue",
+                "search_query": "Places of Worship",
+                "related_search": "Article 370",
             },
             {
                 "case": "Adani-Hindenburg Investigation — Vishal Tiwari v. Union of India",
@@ -617,6 +626,8 @@ def create_app():
                 "parties": "Vishal Tiwari & Others vs Union of India",
                 "category": "Securities / Corporate",
                 "significance": "India's biggest corporate governance controversy",
+                "search_query": "SEBI",
+                "related_search": "Sahara",
             },
             {
                 "case": "Chandigarh Mayoral Election — Irregularities",
@@ -626,14 +637,36 @@ def create_app():
                 "parties": "Political parties vs Returning Officer",
                 "category": "Election / Contempt",
                 "significance": "Integrity of electoral process",
+                "search_query": "election",
+                "related_search": "Electoral Bond",
             },
         ]
-        return jsonify({"month": month_name, "hearings": hearings})
+
+        # Try to find matching cases in DB for direct links
+        for h in hearing_defs:
+            match = LegalCase.query.filter(
+                LegalCase.case_name.ilike(f"%{h['search_query']}%")
+            ).first()
+            if match:
+                h["case_id"] = match.id
+                h["case_url"] = f"/case/{match.id}"
+            else:
+                h["case_url"] = f"/search?q={h['search_query']}"
+            # Find related cases for "Read Related" link
+            related = LegalCase.query.filter(
+                or_(
+                    LegalCase.case_name.ilike(f"%{h['related_search']}%"),
+                    LegalCase.tags.ilike(f"%{h['related_search']}%"),
+                )
+            ).limit(3).all()
+            h["related_cases"] = [{"id": c.id, "name": c.case_name, "year": c.year} for c in related]
+
+        return jsonify({"month": month_name, "hearings": hearing_defs})
 
     @app.route("/api/homepage/celebrity-court")
     def api_celebrity_court():
         """Celebrities and notable personalities with court appearances."""
-        appearances = [
+        celebrity_defs = [
             {
                 "name": "Arvind Kejriwal",
                 "role": "Former Chief Minister, Delhi",
@@ -641,6 +674,7 @@ def create_app():
                 "court": "Supreme Court / Rouse Avenue Court",
                 "status": "On bail; regular hearings",
                 "tag": "politician",
+                "search_query": "excise policy",
             },
             {
                 "name": "K. Kavitha",
@@ -649,6 +683,7 @@ def create_app():
                 "court": "Supreme Court / Rouse Avenue Court",
                 "status": "On bail; trial ongoing",
                 "tag": "politician",
+                "search_query": "PMLA bail",
             },
             {
                 "name": "Manish Sisodia",
@@ -657,6 +692,7 @@ def create_app():
                 "court": "Rouse Avenue Court, Delhi",
                 "status": "On bail (granted Aug 2024); trial ongoing",
                 "tag": "politician",
+                "search_query": "Sisodia",
             },
             {
                 "name": "Brij Bhushan Sharan Singh",
@@ -665,6 +701,7 @@ def create_app():
                 "court": "Rouse Avenue Court, Delhi",
                 "status": "Trial ongoing; charges framed",
                 "tag": "sports",
+                "search_query": "Vishaka sexual harassment",
             },
             {
                 "name": "Amanatullah Khan",
@@ -673,6 +710,7 @@ def create_app():
                 "court": "ED Special Court / HC",
                 "status": "On bail; investigation ongoing",
                 "tag": "politician",
+                "search_query": "money laundering",
             },
             {
                 "name": "Hemant Soren",
@@ -681,6 +719,7 @@ def create_app():
                 "court": "Jharkhand High Court",
                 "status": "On bail; case continuing",
                 "tag": "politician",
+                "search_query": "politician",
             },
             {
                 "name": "Adani Group (Gautam Adani)",
@@ -689,6 +728,7 @@ def create_app():
                 "court": "Supreme Court of India",
                 "status": "SEBI investigation; SC monitoring",
                 "tag": "businessman",
+                "search_query": "Sahara SEBI",
             },
             {
                 "name": "Prajwal Revanna",
@@ -697,9 +737,20 @@ def create_app():
                 "court": "Special Court, Bengaluru",
                 "status": "Arrested; trial pending",
                 "tag": "politician",
+                "search_query": "sexual harassment",
             },
         ]
-        return jsonify(appearances)
+        # Link to matching cases or search
+        for p in celebrity_defs:
+            match = LegalCase.query.filter(
+                LegalCase.case_name.ilike(f"%{p['search_query']}%")
+            ).first()
+            if match:
+                p["case_id"] = match.id
+                p["case_url"] = f"/case/{match.id}"
+            else:
+                p["case_url"] = f"/search?q={p['search_query']}"
+        return jsonify(celebrity_defs)
 
     @app.route("/api/homepage/legal-quote")
     def api_legal_quote():

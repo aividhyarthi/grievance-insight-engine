@@ -367,20 +367,28 @@
         .then(data => {
             document.getElementById('hearingsMonth').textContent = data.month;
             const el = document.getElementById('hearingsList');
-            el.innerHTML = data.hearings.map(h => `
-                <div class="hearing-item">
+            el.innerHTML = data.hearings.map(h => {
+                const relatedHtml = (h.related_cases && h.related_cases.length)
+                    ? `<div class="hearing-related">
+                        <span class="hearing-related-label">Read related:</span>
+                        ${h.related_cases.map(rc => `<a href="/case/${rc.id}" class="hearing-related-link">${rc.name} (${rc.year})</a>`).join('')}
+                       </div>`
+                    : '';
+                return `
+                <a href="${h.case_url}" class="hearing-item hearing-item-link">
                     <div class="hearing-top">
                         <span class="hearing-cat">${h.category}</span>
                         <span class="hearing-date">${h.next_date}</span>
                     </div>
-                    <h3>${h.case}</h3>
+                    <h3>${h.case} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></h3>
                     <p class="hearing-desc">${h.description}</p>
                     <div class="hearing-meta">
                         <span class="hearing-court">${h.court}</span>
                         <span class="hearing-significance">${h.significance}</span>
                     </div>
-                </div>
-            `).join('');
+                </a>
+                ${relatedHtml}`;
+            }).join('');
         });
 
     // ── Celebrity / VIP Court ──
@@ -388,9 +396,8 @@
         .then(r => r.json())
         .then(people => {
             const el = document.getElementById('celebrityList');
-            const tagColors = {politician: '#e53e3e', businessman: '#d69e2e', sports: '#38a169', celebrity: '#805ad5'};
             el.innerHTML = people.map(p => `
-                <div class="celeb-item">
+                <a href="${p.case_url}" class="celeb-item celeb-item-link">
                     <div class="celeb-avatar celeb-tag-${p.tag}">${p.name.split(' ').map(w => w[0]).join('').slice(0,2)}</div>
                     <div class="celeb-info">
                         <strong>${p.name}</strong>
@@ -398,7 +405,10 @@
                         <span class="celeb-case">${p.case}</span>
                         <span class="celeb-status">${p.status}</span>
                     </div>
-                </div>
+                    <div class="celeb-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </div>
+                </a>
             `).join('');
         });
 

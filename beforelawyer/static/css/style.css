@@ -2024,6 +2024,65 @@ a:hover { color: var(--accent); }
 
 .hearing-item:last-child { border-bottom: none; }
 
+.hearing-item-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 0 -1rem;
+    transition: background 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+}
+
+.hearing-item-link:hover {
+    background: rgba(49,130,206,0.04);
+    box-shadow: 0 1px 4px rgba(26,54,93,0.08);
+}
+
+.hearing-item-link h3 svg {
+    opacity: 0;
+    transition: opacity 0.15s;
+    vertical-align: middle;
+    margin-left: 0.25rem;
+}
+
+.hearing-item-link:hover h3 svg {
+    opacity: 0.5;
+}
+
+/* Related cases under hearings */
+.hearing-related {
+    padding: 0.4rem 0 0.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.hearing-related-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-right: 0.35rem;
+}
+
+.hearing-related-link {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--info);
+    text-decoration: none;
+    padding: 0.15rem 0.5rem;
+    margin: 0.15rem 0.2rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.15s;
+}
+
+.hearing-related-link:hover {
+    background: var(--info);
+    color: white;
+    border-color: var(--info);
+}
+
 .hearing-top {
     display: flex;
     justify-content: space-between;
@@ -2095,6 +2154,34 @@ a:hover { color: var(--accent); }
 }
 
 .celeb-item:last-child { border-bottom: none; }
+
+.celeb-item-link {
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius);
+    padding: 0.7rem 0.5rem;
+    margin: 0 -0.5rem;
+    transition: background 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+}
+
+.celeb-item-link:hover {
+    background: rgba(128,90,213,0.04);
+    box-shadow: 0 1px 4px rgba(26,54,93,0.06);
+}
+
+.celeb-arrow {
+    flex-shrink: 0;
+    align-self: center;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.15s, transform 0.15s;
+}
+
+.celeb-item-link:hover .celeb-arrow {
+    opacity: 1;
+    transform: translateX(2px);
+}
 
 .celeb-avatar {
     flex-shrink: 0;
