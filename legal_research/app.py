@@ -426,7 +426,7 @@ def create_app():
                 "title": "Digital Personal Data Protection Rules notified",
                 "summary": "The DPDP Act 2023 rules are notified, operationalizing India's data protection framework with consent manager and Data Protection Board provisions.",
                 "category": "Legislation",
-                "date": "03 Jan 2025",
+                "date": "03 Jan 2026",
                 "url": "https://www.meity.gov.in/",
             },
             {
@@ -434,14 +434,14 @@ def create_app():
                 "summary": "National Judicial Data Grid shows 4.5+ crore cases pending. District courts account for 87% of the backlog. SC urges fast-tracking old cases.",
                 "category": "Court Data",
                 "url": "https://njdg.ecourts.gov.in/njdgnew/",
-                "date": "2025",
+                "date": "2026",
             },
             {
                 "title": "e-Courts Phase III: AI tools & live-streaming of court proceedings",
                 "summary": "Supreme Court extends live-streaming to Constitution Bench hearings. E-filing and virtual hearings now standard across all High Courts.",
                 "category": "Digital Courts",
                 "url": "https://ecourts.gov.in/ecourts_home/",
-                "date": "2025",
+                "date": "2026",
             },
             {
                 "title": "Mediation Act 2023 comes into force",

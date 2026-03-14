@@ -10,7 +10,7 @@
             Current Judiciary of India
         </h1>
         <p>Sitting judges of the Supreme Court and Chief Justices of all High Courts with appointment and retirement dates.</p>
-        <p class="judges-disclaimer">Data as of early 2025. Retirement age: SC judges retire at 65, HC judges at 62. For the latest, visit <a href="https://www.sci.gov.in/judges" target="_blank" rel="noopener">sci.gov.in</a>.</p>
+        <p class="judges-disclaimer">Data as of early 2026. Retirement age: SC judges retire at 65, HC judges at 62. For the latest, visit <a href="https://www.sci.gov.in/chief-justice-judges/" target="_blank" rel="noopener">sci.gov.in</a>.</p>
     </div>
 
     <!-- Supreme Court -->
@@ -20,7 +20,7 @@
                 <h2>Supreme Court of India</h2>
                 <p>Sanctioned strength: 34 judges (including CJI)</p>
             </div>
-            <a href="https://www.sci.gov.in/judges" target="_blank" rel="noopener" class="judges-official-link">
+            <a href="https://www.sci.gov.in/chief-justice-judges/" target="_blank" rel="noopener" class="judges-official-link">
                 sci.gov.in/judges
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>
@@ -98,64 +98,68 @@
 <script>
 const today = new Date();
 
-// Supreme Court Judges (as of early 2025)
+// Supreme Court Judges (as of early 2026)
 const scJudges = [
-    { name: "Justice Sanjiv Khanna", designation: "Chief Justice of India (51st)", appointed: "2019-01-18", retirement: "2025-05-13", wiki: "https://en.wikipedia.org/wiki/Sanjiv_Khanna" },
-    { name: "Justice B.R. Gavai", designation: "Senior Judge", appointed: "2019-05-24", retirement: "2025-11-23", wiki: "https://en.wikipedia.org/wiki/Bhushan_Ramkrishna_Gavai" },
-    { name: "Justice Surya Kant", designation: "Judge", appointed: "2019-05-24", retirement: "2025-02-09", wiki: "https://en.wikipedia.org/wiki/Surya_Kant_(judge)" },
-    { name: "Justice Hrishikesh Roy", designation: "Judge", appointed: "2019-09-23", retirement: "2025-09-31", wiki: "https://en.wikipedia.org/wiki/Hrishikesh_Roy" },
-    { name: "Justice Abhay S. Oka", designation: "Judge", appointed: "2021-08-31", retirement: "2025-05-25", wiki: "https://en.wikipedia.org/wiki/Abhay_Shreeniwas_Oka" },
-    { name: "Justice Vikram Nath", designation: "Judge", appointed: "2021-08-31", retirement: "2027-09-23", wiki: "https://en.wikipedia.org/wiki/Vikram_Nath" },
-    { name: "Justice J.K. Maheshwari", designation: "Judge", appointed: "2021-08-31", retirement: "2026-06-29", wiki: "https://en.wikipedia.org/wiki/Jitendra_Kumar_Maheshwari" },
-    { name: "Justice M.M. Sundresh", designation: "Judge", appointed: "2021-08-31", retirement: "2027-08-20", wiki: "https://en.wikipedia.org/wiki/M._M._Sundresh" },
-    { name: "Justice Bela M. Trivedi", designation: "Judge", appointed: "2021-08-31", retirement: "2025-06-19", wiki: "https://en.wikipedia.org/wiki/Bela_Trivedi" },
-    { name: "Justice P.S. Narasimha", designation: "Judge", appointed: "2021-08-31", retirement: "2028-10-06", wiki: "https://en.wikipedia.org/wiki/Pamidighantam_Sri_Narasimha" },
-    { name: "Justice Manoj Misra", designation: "Judge", appointed: "2023-02-06", retirement: "2027-05-30", wiki: "https://en.wikipedia.org/wiki/Manoj_Misra_(judge)" },
-    { name: "Justice Rajesh Bindal", designation: "Judge", appointed: "2023-02-06", retirement: "2026-02-18", wiki: "https://en.wikipedia.org/wiki/Rajesh_Bindal" },
-    { name: "Justice Aravind Kumar", designation: "Judge", appointed: "2023-02-06", retirement: "2025-07-17", wiki: "https://en.wikipedia.org/wiki/Aravind_Kumar_(judge)" },
-    { name: "Justice Ahsanuddin Amanullah", designation: "Judge", appointed: "2023-02-06", retirement: "2028-06-05", wiki: "https://en.wikipedia.org/wiki/Ahsanuddin_Amanullah" },
-    { name: "Justice Prashant Kumar Mishra", designation: "Judge", appointed: "2023-11-09", retirement: "2029-08-11", wiki: "https://en.wikipedia.org/wiki/Prashant_Kumar_Mishra" },
-    { name: "Justice K.V. Viswanathan", designation: "Judge", appointed: "2023-11-09", retirement: "2029-06-30", wiki: "https://en.wikipedia.org/wiki/K._V._Viswanathan" },
-    { name: "Justice Ujjal Bhuyan", designation: "Judge", appointed: "2024-02-05", retirement: "2025-12-22", wiki: "https://en.wikipedia.org/wiki/Ujjal_Bhuyan" },
-    { name: "Justice S.V.N. Bhatti", designation: "Judge", appointed: "2024-02-05", retirement: "2025-08-19", wiki: "https://en.wikipedia.org/wiki/S._Venkatanarayana_Bhatti" },
-    { name: "Justice Dipankar Datta", designation: "Judge", appointed: "2024-02-05", retirement: "2027-02-08", wiki: "https://en.wikipedia.org/wiki/Dipankar_Datta" },
-    { name: "Justice Pankaj Mithal", designation: "Judge", appointed: "2024-02-05", retirement: "2026-06-16", wiki: "https://en.wikipedia.org/wiki/Pankaj_Mithal" },
-    { name: "Justice Sanjay Karol", designation: "Judge", appointed: "2024-02-05", retirement: "2025-11-14", wiki: "https://en.wikipedia.org/wiki/Sanjay_Karol" },
-    { name: "Justice Satish Chandra Sharma", designation: "Judge", appointed: "2024-02-05", retirement: "2025-11-24", wiki: "https://en.wikipedia.org/wiki/Satish_Chandra_Sharma" },
-    { name: "Justice Augustine George Masih", designation: "Judge", appointed: "2024-02-05", retirement: "2028-05-30", wiki: "https://en.wikipedia.org/wiki/Augustine_George_Masih" },
-    { name: "Justice Sandeep Mehta", designation: "Judge", appointed: "2024-02-05", retirement: "2028-01-04", wiki: "https://en.wikipedia.org/wiki/Sandeep_Mehta_(judge)" },
-    { name: "Justice N. Kotiswar Singh", designation: "Judge", appointed: "2024-09-25", retirement: "2030-01-01", wiki: "https://en.wikipedia.org/wiki/N._Kotiswar_Singh" },
-    { name: "Justice R. Mahadevan", designation: "Judge", appointed: "2024-09-25", retirement: "2030-03-15", wiki: "https://en.wikipedia.org/wiki/R._Mahadevan" },
-    { name: "Justice Manmohan", designation: "Judge", appointed: "2024-12-10", retirement: "2028-04-14", wiki: "https://en.wikipedia.org/wiki/Manmohan_(judge)" },
+    { name: "Justice Surya Kant", designation: "Chief Justice of India (53rd)", appointed: "2019-05-24", retirement: "2027-02-09", wiki: "https://en.wikipedia.org/wiki/Surya_Kant_(judge)" },
+    { name: "Justice Vikram Nath", designation: "Senior Judge", appointed: "2021-08-31", retirement: "2027-09-23", wiki: "https://en.wikipedia.org/wiki/Vikram_Nath" },
+    { name: "Justice J.K. Maheshwari", designation: "Judge", appointed: "2021-08-31", retirement: "2026-06-28", wiki: "https://en.wikipedia.org/wiki/Jitendra_Kumar_Maheshwari" },
+    { name: "Justice B.V. Nagarathna", designation: "Judge", appointed: "2021-08-31", retirement: "2027-10-29", wiki: "https://en.wikipedia.org/wiki/B._V._Nagarathna" },
+    { name: "Justice M.M. Sundresh", designation: "Judge", appointed: "2021-08-31", retirement: "2028-05-02", wiki: "https://en.wikipedia.org/wiki/M._M._Sundresh" },
+    { name: "Justice P.S. Narasimha", designation: "Judge", appointed: "2021-08-31", retirement: "2028-05-02", wiki: "https://en.wikipedia.org/wiki/Pamidighantam_Sri_Narasimha" },
+    { name: "Justice J.B. Pardiwala", designation: "Judge", appointed: "2022-05-09", retirement: "2030-08-11", wiki: "https://en.wikipedia.org/wiki/J._B._Pardiwala" },
+    { name: "Justice Dipankar Datta", designation: "Judge", appointed: "2022-12-12", retirement: "2030-02-08", wiki: "https://en.wikipedia.org/wiki/Dipankar_Datta" },
+    { name: "Justice Pankaj Mithal", designation: "Judge", appointed: "2023-02-06", retirement: "2026-06-16", wiki: "https://en.wikipedia.org/wiki/Pankaj_Mithal" },
+    { name: "Justice Sanjay Karol", designation: "Judge", appointed: "2023-02-06", retirement: "2026-08-22", wiki: "https://en.wikipedia.org/wiki/Sanjay_Karol" },
+    { name: "Justice P.V. Sanjay Kumar", designation: "Judge", appointed: "2023-02-06", retirement: "2028-08-13", wiki: "https://en.wikipedia.org/wiki/P._V._Sanjay_Kumar" },
+    { name: "Justice Ahsanuddin Amanullah", designation: "Judge", appointed: "2023-02-06", retirement: "2028-05-10", wiki: "https://en.wikipedia.org/wiki/Ahsanuddin_Amanullah" },
+    { name: "Justice Manoj Misra", designation: "Judge", appointed: "2023-02-06", retirement: "2030-06-01", wiki: "https://en.wikipedia.org/wiki/Manoj_Misra_(judge)" },
+    { name: "Justice Rajesh Bindal", designation: "Judge", appointed: "2023-02-13", retirement: "2026-04-15", wiki: "https://en.wikipedia.org/wiki/Rajesh_Bindal" },
+    { name: "Justice Aravind Kumar", designation: "Judge", appointed: "2023-02-13", retirement: "2027-07-13", wiki: "https://en.wikipedia.org/wiki/Aravind_Kumar_(judge)" },
+    { name: "Justice Prashant Kumar Mishra", designation: "Judge", appointed: "2023-11-09", retirement: "2029-08-28", wiki: "https://en.wikipedia.org/wiki/Prashant_Kumar_Mishra" },
+    { name: "Justice K.V. Viswanathan", designation: "Judge", appointed: "2023-11-09", retirement: "2031-05-25", wiki: "https://en.wikipedia.org/wiki/K._V._Viswanathan" },
+    { name: "Justice Satish Chandra Sharma", designation: "Judge", appointed: "2023-11-09", retirement: "2026-11-29", wiki: "https://en.wikipedia.org/wiki/Satish_Chandra_Sharma" },
+    { name: "Justice Augustine George Masih", designation: "Judge", appointed: "2023-11-09", retirement: "2028-03-11", wiki: "https://en.wikipedia.org/wiki/Augustine_George_Masih" },
+    { name: "Justice Sandeep Mehta", designation: "Judge", appointed: "2023-11-09", retirement: "2028-01-10", wiki: "https://en.wikipedia.org/wiki/Sandeep_Mehta_(judge)" },
+    { name: "Justice Prasanna B. Varale", designation: "Judge", appointed: "2024-01-25", retirement: "2027-06-22", wiki: "https://en.wikipedia.org/wiki/Prasanna_Bhalchandra_Varale" },
+    { name: "Justice N. Kotiswar Singh", designation: "Judge", appointed: "2024-07-18", retirement: "2028-02-28", wiki: "https://en.wikipedia.org/wiki/N._Kotiswar_Singh" },
+    { name: "Justice R. Mahadevan", designation: "Judge", appointed: "2024-07-18", retirement: "2028-06-09", wiki: "https://en.wikipedia.org/wiki/R._Mahadevan" },
+    { name: "Justice Manmohan", designation: "Judge", appointed: "2024-12-05", retirement: "2027-12-16", wiki: "https://en.wikipedia.org/wiki/Manmohan_(judge)" },
+    { name: "Justice K. Vinod Chandran", designation: "Judge", appointed: "2025-03-17", retirement: "2031-10-02", wiki: "https://en.wikipedia.org/wiki/K._Vinod_Chandran" },
+    { name: "Justice Joymalya Bagchi", designation: "Judge", appointed: "2025-03-17", retirement: "2031-10-02", wiki: "https://en.wikipedia.org/wiki/Joymalya_Bagchi" },
+    { name: "Justice N.V. Anjaria", designation: "Judge", appointed: "2025-05-30", retirement: "2030-03-22", wiki: "https://en.wikipedia.org/wiki/Nilay_Vipinchandra_Anjaria" },
+    { name: "Justice Vijay Bishnoi", designation: "Judge", appointed: "2025-05-30", retirement: "2029-03-25", wiki: "https://en.wikipedia.org/wiki/Vijay_Bishnoi_(judge)" },
+    { name: "Justice Atul S. Chandurkar", designation: "Judge", appointed: "2025-05-30", retirement: "2030-04-06", wiki: "https://en.wikipedia.org/wiki/Atul_Sharachchandra_Chandurkar" },
+    { name: "Justice Alok Aradhe", designation: "Judge", appointed: "2025-08-29", retirement: "2029-04-12", wiki: "https://en.wikipedia.org/wiki/Alok_Aradhe" },
+    { name: "Justice Vipul M. Pancholi", designation: "Judge", appointed: "2025-08-29", retirement: "2033-05-27", wiki: "https://en.wikipedia.org/wiki/Vipul_Pancholi" },
 ];
 
-// High Court Chief Justices (as of early 2025)
+// High Court Chief Justices (as of early 2026)
 const hcChiefJustices = [
-    { court: "Allahabad High Court", cj: "Justice Arun Bhansali", appointed: "2024-04-05", retirement: "2025-07-18", wiki: "https://en.wikipedia.org/wiki/Allahabad_High_Court" },
-    { court: "Bombay High Court", cj: "Justice Devendra Kumar Upadhyaya", appointed: "2024-10-28", retirement: "2026-02-23", wiki: "https://en.wikipedia.org/wiki/Bombay_High_Court" },
-    { court: "Calcutta High Court", cj: "Justice T.S. Sivagnanam", appointed: "2024-01-05", retirement: "2025-08-30", wiki: "https://en.wikipedia.org/wiki/Calcutta_High_Court" },
-    { court: "Madras High Court", cj: "Justice K.R. Shriram", appointed: "2024-11-26", retirement: "2025-12-22", wiki: "https://en.wikipedia.org/wiki/Madras_High_Court" },
-    { court: "Karnataka High Court", cj: "Justice N.V. Anjaria", appointed: "2024-01-28", retirement: "2025-06-09", wiki: "https://en.wikipedia.org/wiki/Karnataka_High_Court" },
-    { court: "Delhi High Court", cj: "Justice Manmohan (elevated to SC)", appointed: "2024-02-29", retirement: "2025-12-10", wiki: "https://en.wikipedia.org/wiki/Delhi_High_Court" },
-    { court: "Gujarat High Court", cj: "Justice Sunita Agarwal", appointed: "2024-01-05", retirement: "2026-08-13", wiki: "https://en.wikipedia.org/wiki/Gujarat_High_Court" },
-    { court: "Rajasthan High Court", cj: "Justice Augustine George Masih (elevated to SC)", appointed: "2024-02-05", retirement: "2025-03-01", wiki: "https://en.wikipedia.org/wiki/Rajasthan_High_Court" },
-    { court: "Kerala High Court", cj: "Justice Nitin Madhukar Jamdar", appointed: "2024-09-02", retirement: "2026-05-30", wiki: "https://en.wikipedia.org/wiki/Kerala_High_Court" },
-    { court: "Punjab & Haryana High Court", cj: "Justice Sheel Nagu", appointed: "2024-03-08", retirement: "2025-09-03", wiki: "https://en.wikipedia.org/wiki/Punjab_and_Haryana_High_Court" },
-    { court: "Patna High Court", cj: "Justice K. Vinod Chandran", appointed: "2024-01-05", retirement: "2025-05-24", wiki: "https://en.wikipedia.org/wiki/Patna_High_Court" },
-    { court: "Telangana High Court", cj: "Justice Alok Aradhe", appointed: "2024-01-05", retirement: "2026-12-03", wiki: "https://en.wikipedia.org/wiki/Telangana_High_Court" },
-    { court: "Andhra Pradesh High Court", cj: "Justice Dhiraj Singh Thakur", appointed: "2024-06-17", retirement: "2025-10-12", wiki: "https://en.wikipedia.org/wiki/Andhra_Pradesh_High_Court" },
-    { court: "Chhattisgarh High Court", cj: "Justice Ramesh Sinha", appointed: "2024-08-04", retirement: "2025-11-03", wiki: "https://en.wikipedia.org/wiki/Chhattisgarh_High_Court" },
-    { court: "Jharkhand High Court", cj: "Justice M.S. Ramachandra Rao", appointed: "2024-01-05", retirement: "2025-06-18", wiki: "https://en.wikipedia.org/wiki/Jharkhand_High_Court" },
-    { court: "Orissa High Court", cj: "Justice Chakradhari Sharan Singh", appointed: "2024-01-28", retirement: "2025-08-06", wiki: "https://en.wikipedia.org/wiki/Orissa_High_Court" },
-    { court: "Himachal Pradesh High Court", cj: "Justice M.S. Ramachandra Rao (additional charge)", appointed: "2024-07-01", retirement: "2025-06-18", wiki: "https://en.wikipedia.org/wiki/Himachal_Pradesh_High_Court" },
-    { court: "Uttarakhand High Court", cj: "Justice Ritu Bahri", appointed: "2024-09-13", retirement: "2025-06-28", wiki: "https://en.wikipedia.org/wiki/Uttarakhand_High_Court" },
-    { court: "Gauhati High Court", cj: "Justice Vijay Bishnoi", appointed: "2024-09-17", retirement: "2027-01-12", wiki: "https://en.wikipedia.org/wiki/Gauhati_High_Court" },
-    { court: "Madhya Pradesh High Court", cj: "Justice Suresh Kumar Kait", appointed: "2024-03-11", retirement: "2025-03-24", wiki: "https://en.wikipedia.org/wiki/Madhya_Pradesh_High_Court" },
-    { court: "Tripura High Court", cj: "Justice Aparesh Kumar Singh", appointed: "2024-01-12", retirement: "2026-07-30", wiki: "https://en.wikipedia.org/wiki/Tripura_High_Court" },
-    { court: "Meghalaya High Court", cj: "Justice S. Vaidyanathan", appointed: "2024-05-22", retirement: "2025-08-03", wiki: "https://en.wikipedia.org/wiki/Meghalaya_High_Court" },
-    { court: "Manipur High Court", cj: "Justice Siddharth Mridul", appointed: "2024-01-05", retirement: "2025-07-08", wiki: "https://en.wikipedia.org/wiki/Manipur_High_Court" },
-    { court: "Sikkim High Court", cj: "Justice Biswanath Somadder", appointed: "2024-09-01", retirement: "2026-10-07", wiki: "https://en.wikipedia.org/wiki/Sikkim_High_Court" },
-    { court: "Jammu & Kashmir and Ladakh High Court", cj: "Justice Tashi Rabstan", appointed: "2024-01-05", retirement: "2025-09-21", wiki: "https://en.wikipedia.org/wiki/Jammu_%26_Kashmir_and_Ladakh_High_Court" },
+    { court: "Allahabad High Court", cj: "Justice Arun Bhansali", appointed: "2024-04-05", retirement: "2029-10-14", wiki: "https://en.wikipedia.org/wiki/Allahabad_High_Court" },
+    { court: "Bombay High Court", cj: "Justice Devendra Kumar Upadhyaya", appointed: "2024-10-28", retirement: "2027-06-15", wiki: "https://en.wikipedia.org/wiki/Bombay_High_Court" },
+    { court: "Calcutta High Court", cj: "Justice T.S. Sivagnanam", appointed: "2024-01-05", retirement: "2026-09-15", wiki: "https://en.wikipedia.org/wiki/Calcutta_High_Court" },
+    { court: "Madras High Court", cj: "Justice M.M. Shrivastava", appointed: "2025-01-01", retirement: "2026-03-05", wiki: "https://en.wikipedia.org/wiki/Madras_High_Court" },
+    { court: "Karnataka High Court", cj: "Justice N.V. Anjaria (elevated to SC)", appointed: "2024-06-09", retirement: "2026-03-22", wiki: "https://en.wikipedia.org/wiki/Karnataka_High_Court" },
+    { court: "Delhi High Court", cj: "Justice Devendra Kumar Upadhyaya", appointed: "2025-12-10", retirement: "2027-06-15", wiki: "https://en.wikipedia.org/wiki/Delhi_High_Court" },
+    { court: "Gujarat High Court", cj: "Justice Sunita Agarwal", appointed: "2024-01-05", retirement: "2028-04-29", wiki: "https://en.wikipedia.org/wiki/Gujarat_High_Court" },
+    { court: "Rajasthan High Court", cj: "Justice Sanjeev Prakash Sharma (ACJ)", appointed: "2025-03-01", retirement: "2026-09-26", wiki: "https://en.wikipedia.org/wiki/Rajasthan_High_Court" },
+    { court: "Kerala High Court", cj: "Justice Nitin Madhukar Jamdar", appointed: "2024-09-02", retirement: "2026-01-09", wiki: "https://en.wikipedia.org/wiki/Kerala_High_Court" },
+    { court: "Punjab & Haryana High Court", cj: "Justice Sheel Nagu", appointed: "2024-03-08", retirement: "2026-12-31", wiki: "https://en.wikipedia.org/wiki/Punjab_and_Haryana_High_Court" },
+    { court: "Patna High Court", cj: "Justice Sudhir Singh (ACJ)", appointed: "2025-05-24", retirement: "2027-12-10", wiki: "https://en.wikipedia.org/wiki/Patna_High_Court" },
+    { court: "Telangana High Court", cj: "Justice Aparesh Kumar Singh", appointed: "2025-12-03", retirement: "2027-07-06", wiki: "https://en.wikipedia.org/wiki/Telangana_High_Court" },
+    { court: "Andhra Pradesh High Court", cj: "Justice Dhiraj Singh Thakur", appointed: "2024-06-17", retirement: "2026-04-24", wiki: "https://en.wikipedia.org/wiki/Andhra_Pradesh_High_Court" },
+    { court: "Chhattisgarh High Court", cj: "Justice Ramesh Sinha", appointed: "2024-08-04", retirement: "2026-09-04", wiki: "https://en.wikipedia.org/wiki/Chhattisgarh_High_Court" },
+    { court: "Jharkhand High Court", cj: "Justice M.S. Ramachandra Rao", appointed: "2025-06-18", retirement: "2028-08-06", wiki: "https://en.wikipedia.org/wiki/Jharkhand_High_Court" },
+    { court: "Orissa High Court", cj: "Justice Harish Tandon", appointed: "2025-08-06", retirement: "2026-11-15", wiki: "https://en.wikipedia.org/wiki/Orissa_High_Court" },
+    { court: "Himachal Pradesh High Court", cj: "Justice Gurmeet Singh Sandhawalia", appointed: "2025-06-18", retirement: "2027-10-31", wiki: "https://en.wikipedia.org/wiki/Himachal_Pradesh_High_Court" },
+    { court: "Uttarakhand High Court", cj: "Justice Guhanathan Narendar", appointed: "2025-06-28", retirement: "2026-01-09", wiki: "https://en.wikipedia.org/wiki/Uttarakhand_High_Court" },
+    { court: "Gauhati High Court", cj: "Justice Vijay Bishnoi (elevated to SC)", appointed: "2024-09-17", retirement: "2026-03-25", wiki: "https://en.wikipedia.org/wiki/Gauhati_High_Court" },
+    { court: "Madhya Pradesh High Court", cj: "Justice Sanjeev Sachdeva", appointed: "2025-03-24", retirement: "2026-12-25", wiki: "https://en.wikipedia.org/wiki/Madhya_Pradesh_High_Court" },
+    { court: "Tripura High Court", cj: "Justice Aparesh Kumar Singh", appointed: "2024-01-12", retirement: "2027-07-06", wiki: "https://en.wikipedia.org/wiki/Tripura_High_Court" },
+    { court: "Meghalaya High Court", cj: "Justice Soumen Sen", appointed: "2025-08-03", retirement: "2027-07-27", wiki: "https://en.wikipedia.org/wiki/Meghalaya_High_Court" },
+    { court: "Manipur High Court", cj: "Justice M. Sundar", appointed: "2025-07-08", retirement: "2028-07-18", wiki: "https://en.wikipedia.org/wiki/Manipur_High_Court" },
+    { court: "Sikkim High Court", cj: "Justice Biswanath Somadder", appointed: "2024-09-01", retirement: "2026-07-11", wiki: "https://en.wikipedia.org/wiki/Sikkim_High_Court" },
+    { court: "Jammu & Kashmir and Ladakh High Court", cj: "Justice Arun Palli", appointed: "2025-09-21", retirement: "2026-09-17", wiki: "https://en.wikipedia.org/wiki/Jammu_%26_Kashmir_and_Ladakh_High_Court" },
 ];
 
 function daysLeft(dateStr) {
