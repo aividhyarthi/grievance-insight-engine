@@ -812,7 +812,7 @@ a:hover { color: var(--accent); }
     color: var(--text);
 }
 
-.cd-section > div { flex: 1; min-width: 0; }
+.cd-section > div { flex: 1; min-width: 0; width: 100%; }
 
 .cd-section-icon {
     flex-shrink: 0;
@@ -833,10 +833,16 @@ a:hover { color: var(--accent); }
 .cd-icon-green { background: #f0fff4; color: var(--success); }
 .cd-icon-red { background: #fff5f5; color: var(--danger); }
 
+/* Sections that use full-width title must stack vertically */
+.cd-section:has(.cd-section-title-full) {
+    flex-direction: column;
+}
+
 .cd-section-title-full {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    width: 100%;
     font-size: 0.85rem;
     font-weight: 700;
     color: var(--primary);
