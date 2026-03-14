@@ -865,6 +865,11 @@ def _enrich_indian_cases(cases):
             "arguments_petitioner": "The impounding of passport without reasons or hearing violates Articles 14, 19, and 21. Personal liberty includes the right to travel. The procedure established by law must meet the test of reasonableness.",
             "arguments_respondent": "Article 21 only requires that procedure be established by law, not that it be reasonable. The Passports Act provides sufficient procedure. Executive action on passport is within sovereign power.",
             "judge_observations": "The expression 'personal liberty' in Article 21 is of the widest amplitude and it covers a variety of rights which go to constitute the personal liberty of man.||No person shall be deprived of his life or personal liberty except according to procedure established by law — but that procedure must be right, just, and fair, and not arbitrary, fanciful, or oppressive.",
+            "timeline_events": json.dumps([
+                {"date": "1976", "event": "Maneka Gandhi's passport impounded by government without reasons"},
+                {"date": "1977", "event": "Writ petition filed challenging passport impounding"},
+                {"date": "1978-01-25", "event": "7-judge bench delivers landmark judgment expanding Article 21"},
+            ]),
         },
         "Golaknath v. State of Punjab": {
             "bench_size": "11-judge bench",
@@ -874,6 +879,11 @@ def _enrich_indian_cases(cases):
             "arguments_petitioner": "Fundamental rights are sacrosanct and above the amending power of Parliament. Article 368 merely prescribes the procedure for amendment and does not confer substantive power to destroy fundamental rights.",
             "arguments_respondent": "Parliament has plenary amending power under Article 368 which extends to all provisions of the Constitution including fundamental rights. Democratic sovereignty requires this power.",
             "judge_observations": "Fundamental rights are given a transcendental position under our Constitution and are kept beyond the reach of Parliament.||The power of amendment under Article 368 does not include the power to abrogate the Constitution or to alter its basic features.",
+            "timeline_events": json.dumps([
+                {"date": "1953", "event": "Punjab government acquires surplus land under agrarian reform laws"},
+                {"date": "1962", "event": "Golaknath family challenges 17th Amendment protecting land reform from Article 19"},
+                {"date": "1967-02-27", "event": "11-judge bench delivers 6-5 majority judgment"},
+            ]),
         },
         "S.R. Bommai v. Union of India": {
             "bench_size": "9-judge bench",
@@ -883,6 +893,13 @@ def _enrich_indian_cases(cases):
             "arguments_petitioner": "Dismissal of elected state governments under Article 356 for political reasons is unconstitutional. The power must be subject to judicial review. Federalism is a basic feature of the Constitution.",
             "arguments_respondent": "The President's satisfaction under Article 356 is subjective and not justiciable. The Union government acted on valid material showing constitutional breakdown in the states.",
             "judge_observations": "Secularism is a basic feature of the Constitution. The State has no religion. Any government which pursues unsecular policies or unsecular courses of action acts contrary to the constitutional mandate.||The power under Article 356 is a drastic power and should be used sparingly and as a last resort.",
+            "timeline_events": json.dumps([
+                {"date": "1988-89", "event": "Multiple state governments dismissed under Article 356"},
+                {"date": "1989", "event": "S.R. Bommai's Karnataka government dismissed by Governor"},
+                {"date": "1992", "event": "Babri Masjid demolition; three BJP state governments dismissed"},
+                {"date": "1993", "event": "Cases consolidated, heard by 9-judge bench"},
+                {"date": "1994-03-11", "event": "Landmark judgment delivered with guidelines on Article 356"},
+            ]),
         },
         "K.S. Puttaswamy v. Union of India (Right to Privacy)": {
             "bench_size": "9-judge bench",
@@ -924,6 +941,14 @@ def _enrich_indian_cases(cases):
             "arguments_petitioner": "The killing was committed under grave and sudden provocation upon learning of the affair. Nanavati acted in the heat of passion without premeditation. The jury acquittal should be upheld.",
             "arguments_respondent": "There was sufficient cooling time between learning of the affair and the shooting. Going to the naval base to obtain a revolver demonstrates premeditation. The jury verdict was perverse and influenced by public sympathy.",
             "judge_observations": "The time-gap between the provocation and the act is not a mere matter of minutes but involves a sequence of deliberate acts which indicate premeditation.||A jury verdict which no reasonable body of men could have returned must be set aside as perverse.",
+            "timeline_events": json.dumps([
+                {"date": "1959-04-27", "event": "Commander Nanavati shoots Prem Ahuja after discovering affair"},
+                {"date": "1959-10", "event": "Jury trial — sensational media coverage across India"},
+                {"date": "1959-10-21", "event": "Jury acquits Nanavati 8-1; judge refers to High Court"},
+                {"date": "1960", "event": "Bombay High Court convicts Nanavati for murder"},
+                {"date": "1961-11-24", "event": "Supreme Court upholds conviction; last jury trial in India"},
+                {"date": "1964", "event": "Governor grants pardon after public petition"},
+            ]),
         },
         "Hussainara Khatoon v. Home Secretary, State of Bihar": {
             "advocate_petitioner": "Pushpa Kapila Hingorani (pioneer of PIL)",
@@ -942,6 +967,11 @@ def _enrich_indian_cases(cases):
             "arguments_respondent": "The death penalty serves as a deterrent for the most heinous crimes. Parliament in its wisdom has prescribed it as a punishment. Judicial safeguards ensure fair application.",
             "judge_observations": "A real and abiding concern for the dignity of human life postulates resistance to taking a life through law's instrumentality. That ought not to be done save in the rarest of rare cases when the alternative option is unquestionably foreclosed.||The question to be answered is not whether the death sentence should be imposed but whether anything other than the death sentence would be inadequate.",
             "dissenting_opinion": "Justice Bhagwati dissented, holding that the death penalty is violative of Articles 14 and 21. It is irrevocable, irreversible, and disproportionately imposed on the poor and marginalized.",
+            "timeline_events": json.dumps([
+                {"date": "1979", "event": "Bachan Singh sentenced to death for triple murder"},
+                {"date": "1979", "event": "Constitutional challenge to death penalty reaches Supreme Court"},
+                {"date": "1980-08-09", "event": "5-judge bench upholds death penalty with 'rarest of rare' doctrine"},
+            ]),
         },
         "D.K. Basu v. State of West Bengal": {
             "advocate_petitioner": "D.K. Basu (Executive Chairman, Legal Aid Services, West Bengal)",
@@ -984,6 +1014,14 @@ def _enrich_indian_cases(cases):
             "arguments_petitioner": "Section 125 CrPC is a secular provision applicable to all women regardless of religion. Denying maintenance after iddat leaves divorced Muslim women destitute. Personal law cannot override statutory protection.",
             "arguments_respondent": "Muslim personal law governs maintenance for Muslim women. The husband's obligation ends with mehr and iddat period maintenance. Section 125 should not override personal law.",
             "judge_observations": "It is a matter of deep regret that Article 44 of the Constitution (Uniform Civil Code) has remained a dead letter. There is no evidence of any official activity for framing a common civil code for the country.||A common Civil Code will help the cause of national integration by removing disparate loyalties to laws which have conflicting ideologies.",
+            "timeline_events": json.dumps([
+                {"date": "1975", "event": "Mohammed Ahmed Khan divorces Shah Bano by triple talaq"},
+                {"date": "1978", "event": "Shah Bano files for maintenance under Section 125 CrPC"},
+                {"date": "1980", "event": "Magistrate orders Rs. 25/month maintenance"},
+                {"date": "1981", "event": "High Court increases maintenance to Rs. 179.20/month"},
+                {"date": "1985-04-23", "event": "Supreme Court upholds maintenance rights of Muslim women"},
+                {"date": "1986", "event": "Parliament passes Muslim Women (Protection of Rights on Divorce) Act overriding judgment"},
+            ]),
         },
         "Shayara Bano v. Union of India (Triple Talaq)": {
             "bench_size": "5-judge bench",
@@ -1067,6 +1105,12 @@ def _enrich_indian_cases(cases):
             "arguments_petitioner": "Section 66A is vague, with terms like 'grossly offensive' and 'menacing' being undefined. It has a chilling effect on free speech. Multiple cases of misuse show its arbitrary application.",
             "arguments_respondent": "Section 66A is necessary to prevent cyber harassment, misinformation, and online abuse. The internet requires special regulation given its reach and potential for harm.",
             "judge_observations": "Section 66A is cast so widely that virtually any opinion on any subject would be covered by it. Such a section which creates an offence on the basis of undefined terms is clearly violative of Article 19(1)(a).||Information that may be grossly offensive or which causes annoyance or inconvenience are undefined terms that do not offer a reasonable standard to guide individuals or the authorities.",
+            "timeline_events": json.dumps([
+                {"date": "2012-11", "event": "Two girls arrested in Palghar for Facebook post criticizing Mumbai shutdown — sparks outrage"},
+                {"date": "2012-11", "event": "Shreya Singhal (law student) files PIL challenging Section 66A"},
+                {"date": "2013", "event": "Multiple Section 66A arrests across India draw public attention"},
+                {"date": "2015-03-24", "event": "Supreme Court strikes down Section 66A as unconstitutional"},
+            ]),
         },
         "People's Union for Civil Liberties (PUCL) v. Union of India (NOTA)": {
             "bench_size": "3-judge bench",

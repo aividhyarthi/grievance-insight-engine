@@ -77,6 +77,53 @@ def create_app():
     def holidays_page():
         return render_template("holidays.html")
 
+    # ── API: Search Suggestions ─────────────────────────────────
+
+    @app.route("/api/suggestions")
+    def api_suggestions():
+        q = request.args.get("q", "").strip()
+        if len(q) < 2:
+            return jsonify([])
+        suggestions = []
+        # Case name matches
+        cases = LegalCase.query.filter(
+            LegalCase.case_name.ilike(f"%{q}%")
+        ).order_by(LegalCase.year.desc()).limit(5).all()
+        for c in cases:
+            suggestions.append({
+                "type": "case",
+                "text": c.case_name,
+                "sub": f"{c.court_level.capitalize()} Court · {c.year} · {c.case_type}",
+                "url": f"/case/{c.id}",
+            })
+        # Glossary term matches
+        terms = LegalGlossary.query.filter(
+            LegalGlossary.term.ilike(f"%{q}%")
+        ).order_by(func.lower(LegalGlossary.term)).limit(3).all()
+        for t in terms:
+            suggestions.append({
+                "type": "glossary",
+                "text": t.term,
+                "sub": t.category,
+                "url": f"/glossary?q={t.term}",
+            })
+        # Keyword search fallback — match by tags, statutes, judges
+        if len(suggestions) < 3:
+            extras = LegalCase.query.filter(or_(
+                LegalCase.tags.ilike(f"%{q}%"),
+                LegalCase.statutes_referenced.ilike(f"%{q}%"),
+                LegalCase.judges.ilike(f"%{q}%"),
+            )).limit(3).all()
+            for c in extras:
+                if not any(s["url"] == f"/case/{c.id}" for s in suggestions):
+                    suggestions.append({
+                        "type": "case",
+                        "text": c.case_name,
+                        "sub": f"{c.court_level.capitalize()} Court · {c.year}",
+                        "url": f"/case/{c.id}",
+                    })
+        return jsonify(suggestions[:8])
+
     # ── API: Search & Filter ──────────────────────────────────────
 
     @app.route("/api/cases")

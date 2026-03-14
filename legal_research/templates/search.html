@@ -9,7 +9,8 @@
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
-        <input type="text" class="search-bar" id="searchInput" placeholder="Search cases, principles, statutes, or keywords..." autofocus>
+        <input type="text" class="search-bar" id="searchInput" placeholder="Search cases, principles, statutes, or keywords..." autofocus autocomplete="off">
+        <div class="search-suggestions" id="searchSuggestions"></div>
     </div>
 </section>
 
@@ -134,7 +135,79 @@
         return str.length > len ? str.substring(0, len) + '...' : str;
     }
 
-    // Debounced search
+    // ── Autocomplete ──
+    const suggestionsEl = document.getElementById('searchSuggestions');
+    let suggestTimer;
+    let activeIdx = -1;
+
+    function showSuggestions(items, query) {
+        if (!items.length || !query) {
+            suggestionsEl.classList.remove('show');
+            return;
+        }
+        activeIdx = -1;
+        suggestionsEl.innerHTML = items.map((s, i) => `
+            <a href="${s.url}" class="suggestion-item" data-idx="${i}">
+                <div class="suggestion-icon ${s.type === 'case' ? 'suggestion-icon-case' : 'suggestion-icon-glossary'}">
+                    ${s.type === 'case' ? 'CASE' : 'DEF'}
+                </div>
+                <div class="suggestion-text">
+                    <strong>${highlight(s.text, query)}</strong>
+                    <span>${s.sub}</span>
+                </div>
+            </a>
+        `).join('') + `<div class="suggestion-footer"><a href="/search?q=${encodeURIComponent(query)}">Search all for "${query}"</a></div>`;
+        suggestionsEl.classList.add('show');
+    }
+
+    function highlight(text, query) {
+        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    searchInput.addEventListener('input', () => {
+        const q = searchInput.value.trim();
+        clearTimeout(suggestTimer);
+        if (q.length < 2) {
+            suggestionsEl.classList.remove('show');
+        } else {
+            suggestTimer = setTimeout(() => {
+                fetch(`/api/suggestions?q=${encodeURIComponent(q)}`)
+                    .then(r => r.json())
+                    .then(items => showSuggestions(items, q));
+            }, 200);
+        }
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+        const items = suggestionsEl.querySelectorAll('.suggestion-item');
+        if (!items.length || !suggestionsEl.classList.contains('show')) return;
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIdx = Math.min(activeIdx + 1, items.length - 1);
+            items.forEach((el, i) => el.classList.toggle('active', i === activeIdx));
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIdx = Math.max(activeIdx - 1, 0);
+            items.forEach((el, i) => el.classList.toggle('active', i === activeIdx));
+        } else if (e.key === 'Enter' && activeIdx >= 0) {
+            e.preventDefault();
+            items[activeIdx].click();
+            return;
+        } else if (e.key === 'Escape') {
+            suggestionsEl.classList.remove('show');
+            return;
+        }
+    });
+
+    // Close suggestions on outside click
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+            suggestionsEl.classList.remove('show');
+        }
+    });
+
+    // Debounced search (results grid)
     searchInput.addEventListener('input', () => {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(fetchCases, 300);
