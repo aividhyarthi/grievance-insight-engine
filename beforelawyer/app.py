@@ -28,10 +28,9 @@ def create_app():
 
     with app.app_context():
         db.create_all()
-        # Seed if empty
-        if LegalCase.query.count() == 0:
-            from beforelawyer.seed_data import seed_database
-            seed_database(db)
+        # Seed database (full if empty, incremental if new cases exist)
+        from beforelawyer.seed_data import seed_database
+        seed_database(db)
 
     # ── Pages ──────────────────────────────────────────────────────
 
@@ -582,7 +581,7 @@ def create_app():
                 "parties": "Internet Freedom Foundation vs Union of India",
                 "category": "Constitutional",
                 "significance": "Will shape digital privacy for 1.4 billion Indians",
-                "search_query": "Digital Personal Data Protection",
+                "search_query": "DPDP",
                 "related_search": "privacy",
             },
             {
@@ -593,8 +592,8 @@ def create_app():
                 "parties": "CBI/ED vs K. Kavitha, Arvind Kejriwal & Others",
                 "category": "Criminal / PMLA",
                 "significance": "Politically sensitive; tests PMLA bail jurisprudence",
-                "search_query": "Sisodia",
-                "related_search": "PMLA bail",
+                "search_query": "Excise Policy",
+                "related_search": "Kavitha",
             },
             {
                 "case": "Same-Sex Marriage Review — Supriyo Chakraborty v. Union of India",
@@ -616,7 +615,7 @@ def create_app():
                 "category": "Constitutional",
                 "significance": "Sensitive religious-secular balance issue",
                 "search_query": "Places of Worship",
-                "related_search": "Article 370",
+                "related_search": "Bommai",
             },
             {
                 "case": "Adani-Hindenburg Investigation — Vishal Tiwari v. Union of India",
@@ -626,7 +625,7 @@ def create_app():
                 "parties": "Vishal Tiwari & Others vs Union of India",
                 "category": "Securities / Corporate",
                 "significance": "India's biggest corporate governance controversy",
-                "search_query": "SEBI",
+                "search_query": "Adani-Hindenburg",
                 "related_search": "Sahara",
             },
             {
@@ -637,7 +636,7 @@ def create_app():
                 "parties": "Political parties vs Returning Officer",
                 "category": "Election / Contempt",
                 "significance": "Integrity of electoral process",
-                "search_query": "election",
+                "search_query": "Chandigarh Mayoral",
                 "related_search": "Electoral Bond",
             },
         ]
@@ -674,7 +673,7 @@ def create_app():
                 "court": "Supreme Court / Rouse Avenue Court",
                 "status": "On bail; regular hearings",
                 "tag": "politician",
-                "search_query": "excise policy",
+                "search_query": "Arvind Kejriwal",
             },
             {
                 "name": "K. Kavitha",
@@ -683,7 +682,7 @@ def create_app():
                 "court": "Supreme Court / Rouse Avenue Court",
                 "status": "On bail; trial ongoing",
                 "tag": "politician",
-                "search_query": "PMLA bail",
+                "search_query": "K. Kavitha",
             },
             {
                 "name": "Manish Sisodia",
@@ -692,7 +691,7 @@ def create_app():
                 "court": "Rouse Avenue Court, Delhi",
                 "status": "On bail (granted Aug 2024); trial ongoing",
                 "tag": "politician",
-                "search_query": "Sisodia",
+                "search_query": "Manish Sisodia",
             },
             {
                 "name": "Brij Bhushan Sharan Singh",
@@ -701,7 +700,7 @@ def create_app():
                 "court": "Rouse Avenue Court, Delhi",
                 "status": "Trial ongoing; charges framed",
                 "tag": "sports",
-                "search_query": "Vishaka sexual harassment",
+                "search_query": "Brij Bhushan",
             },
             {
                 "name": "Amanatullah Khan",
@@ -710,7 +709,7 @@ def create_app():
                 "court": "ED Special Court / HC",
                 "status": "On bail; investigation ongoing",
                 "tag": "politician",
-                "search_query": "money laundering",
+                "search_query": "PMLA money laundering",
             },
             {
                 "name": "Hemant Soren",
@@ -719,7 +718,7 @@ def create_app():
                 "court": "Jharkhand High Court",
                 "status": "On bail; case continuing",
                 "tag": "politician",
-                "search_query": "politician",
+                "search_query": "Hemant Soren",
             },
             {
                 "name": "Adani Group (Gautam Adani)",
@@ -728,7 +727,7 @@ def create_app():
                 "court": "Supreme Court of India",
                 "status": "SEBI investigation; SC monitoring",
                 "tag": "businessman",
-                "search_query": "Sahara SEBI",
+                "search_query": "Adani-Hindenburg",
             },
             {
                 "name": "Prajwal Revanna",
@@ -737,7 +736,7 @@ def create_app():
                 "court": "Special Court, Bengaluru",
                 "status": "Arrested; trial pending",
                 "tag": "politician",
-                "search_query": "sexual harassment",
+                "search_query": "Prajwal Revanna",
             },
         ]
         # Link to matching cases or search

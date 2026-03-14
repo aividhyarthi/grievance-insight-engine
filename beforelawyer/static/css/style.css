@@ -2271,10 +2271,25 @@ a:hover { color: var(--accent); }
 }
 
 .cd-statute-hint {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
     margin-top: 0.75rem;
     font-style: italic;
+    clear: both;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}
+
+/* Ensure statute chips don't overflow onto hint */
+.cd-statute-chips {
+    position: relative;
+    z-index: 1;
+}
+
+.cd-statute-link {
+    max-width: 100%;
+    word-break: break-word;
 }
 
 .cd-statute-hint a {

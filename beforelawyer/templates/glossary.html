@@ -108,6 +108,12 @@
     });
     glossaryCategory.addEventListener('change', fetchGlossary);
 
+    // Pre-fill search from URL ?q= parameter (e.g. from statute links on case detail page)
+    const urlQ = new URLSearchParams(window.location.search).get('q');
+    if (urlQ) {
+        glossarySearch.value = urlQ;
+    }
+
     fetchGlossary();
 </script>
 {% endblock %}

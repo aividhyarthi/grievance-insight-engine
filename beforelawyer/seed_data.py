@@ -1958,31 +1958,56 @@ def _enrich_international_cases(cases):
 
 
 def seed_database(db):
-    """Populate the database with seed data."""
+    """Populate the database with seed data (full seed when empty, incremental otherwise)."""
     from beforelawyer.models import LegalCase, LegalGlossary, CaseBriefTemplate
     from beforelawyer.indian_cases import INDIAN_LANDMARK_CASES
 
-    # Seed international landmark cases
-    for case_data in LANDMARK_CASES:
-        case = LegalCase(**case_data)
-        db.session.add(case)
+    existing_count = LegalCase.query.count()
 
-    # Seed Indian landmark cases — with enrichment
-    enriched = _enrich_indian_cases([dict(c) for c in INDIAN_LANDMARK_CASES])
-    for case_data in enriched:
-        case = LegalCase(**case_data)
-        db.session.add(case)
+    if existing_count == 0:
+        # Full seed — first time
+        for case_data in LANDMARK_CASES:
+            case = LegalCase(**case_data)
+            db.session.add(case)
 
-    # Seed glossary
-    for term_data in GLOSSARY_TERMS:
-        term = LegalGlossary(**term_data)
-        db.session.add(term)
+        enriched = _enrich_indian_cases([dict(c) for c in INDIAN_LANDMARK_CASES])
+        for case_data in enriched:
+            case = LegalCase(**case_data)
+            db.session.add(case)
 
-    # Seed templates
-    for tmpl_data in BRIEF_TEMPLATES:
-        tmpl = CaseBriefTemplate(**tmpl_data)
-        db.session.add(tmpl)
+        for term_data in GLOSSARY_TERMS:
+            term = LegalGlossary(**term_data)
+            db.session.add(term)
 
-    total_cases = len(LANDMARK_CASES) + len(INDIAN_LANDMARK_CASES)
-    db.session.commit()
-    print(f"Seeded {total_cases} cases ({len(LANDMARK_CASES)} international + {len(INDIAN_LANDMARK_CASES)} Indian), {len(GLOSSARY_TERMS)} glossary terms, {len(BRIEF_TEMPLATES)} templates.")
+        for tmpl_data in BRIEF_TEMPLATES:
+            tmpl = CaseBriefTemplate(**tmpl_data)
+            db.session.add(tmpl)
+
+        total_cases = len(LANDMARK_CASES) + len(INDIAN_LANDMARK_CASES)
+        db.session.commit()
+        print(f"Seeded {total_cases} cases ({len(LANDMARK_CASES)} international + {len(INDIAN_LANDMARK_CASES)} Indian), {len(GLOSSARY_TERMS)} glossary terms, {len(BRIEF_TEMPLATES)} templates.")
+    else:
+        # Incremental seed — add any new cases not already in DB
+        existing_names = {c.case_name for c in LegalCase.query.with_entities(LegalCase.case_name).all()}
+        new_count = 0
+
+        # Check international cases
+        for case_data in LANDMARK_CASES:
+            if case_data["case_name"] not in existing_names:
+                case = LegalCase(**case_data)
+                db.session.add(case)
+                new_count += 1
+
+        # Check Indian cases
+        enriched = _enrich_indian_cases([dict(c) for c in INDIAN_LANDMARK_CASES])
+        for case_data in enriched:
+            if case_data["case_name"] not in existing_names:
+                case = LegalCase(**case_data)
+                db.session.add(case)
+                new_count += 1
+
+        if new_count > 0:
+            db.session.commit()
+            print(f"Added {new_count} new cases (total now: {existing_count + new_count}).")
+        else:
+            print(f"Database up to date ({existing_count} cases).")
