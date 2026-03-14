@@ -1780,6 +1780,421 @@ a:hover { color: var(--accent); }
 .quick-link-item:hover { color: var(--accent); padding-left: 0.5rem; }
 .quick-link-item svg { color: var(--text-muted); flex-shrink: 0; }
 
+/* ── Daily Legal Quote Bar ── */
+.legal-quote-bar {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+.legal-quote-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255,255,255,0.95);
+}
+
+.quote-icon {
+    flex-shrink: 0;
+    color: var(--accent-light);
+    opacity: 0.7;
+}
+
+.legal-quote-inner blockquote {
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+}
+
+.legal-quote-inner cite {
+    font-size: 0.75rem;
+    font-style: normal;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+[data-theme="dark"] .legal-quote-bar {
+    background: linear-gradient(135deg, #0a1628 0%, #132035 100%);
+}
+
+/* ── Dashboard Card Footer ── */
+.dash-card-footer {
+    padding: 0.5rem 1.25rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.dash-view-all {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--info);
+    text-decoration: none;
+}
+
+.dash-view-all:hover {
+    color: var(--accent);
+}
+
+/* ── New Laws Section ── */
+.dash-new-laws { border-left: 4px solid var(--success); }
+
+.law-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.law-item:last-child { border-bottom: none; }
+
+.law-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+}
+
+.law-item-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.3;
+    margin: 0;
+}
+
+.law-status {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.law-status-active {
+    background: var(--success);
+    color: white;
+}
+
+.law-status-partial {
+    background: var(--warning);
+    color: #1a1a1a;
+}
+
+.law-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+.law-replaces, .law-effective {
+    display: inline-block;
+}
+
+.law-highlights {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0.25rem 0 0.4rem;
+}
+
+.law-source {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--info);
+}
+
+/* ── Upcoming Holidays ── */
+.dash-holidays { border-top: 3px solid var(--success); }
+
+.holiday-dash-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.holiday-dash-item:last-child { border-bottom: none; }
+
+.holiday-today {
+    background: linear-gradient(135deg, rgba(56,161,105,0.08) 0%, rgba(56,161,105,0.02) 100%);
+    margin: 0 -1.25rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    border-radius: var(--radius);
+}
+
+.holiday-vacation {
+    border-left: 3px solid var(--accent);
+    padding-left: calc(1.25rem - 3px);
+}
+
+.holiday-dash-date {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    border-radius: var(--radius);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.holiday-dash-date small {
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.holiday-dash-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.holiday-dash-info strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.3;
+}
+
+.holiday-range, .holiday-day {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.holiday-court-label {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.holiday-dash-badge {
+    flex-shrink: 0;
+}
+
+.holiday-badge-today {
+    font-size: 0.6rem;
+    font-weight: 800;
+    background: var(--success);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+}
+
+.holiday-badge-soon {
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: var(--warning);
+    color: #1a1a1a;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+}
+
+.holiday-badge-days {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ── High-Profile Hearings ── */
+.dash-hearings { border-left: 4px solid var(--danger); }
+
+.hearing-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.hearing-item:last-child { border-bottom: none; }
+
+.hearing-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.35rem;
+}
+
+.hearing-cat {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    background: var(--danger);
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+}
+
+.hearing-date {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.hearing-item h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.3;
+    margin: 0 0 0.3rem;
+}
+
+.hearing-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0 0 0.4rem;
+}
+
+.hearing-meta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.hearing-court {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--info);
+}
+
+.hearing-significance {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent);
+    font-style: italic;
+}
+
+/* ── Celebrity / Who's in Court ── */
+.dash-celebrity { border-top: 3px solid #805ad5; }
+
+.celeb-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.celeb-item:last-child { border-bottom: none; }
+
+.celeb-avatar {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+}
+
+.celeb-tag-politician { background: #e53e3e; }
+.celeb-tag-businessman { background: #d69e2e; }
+.celeb-tag-sports { background: #38a169; }
+.celeb-tag-celebrity { background: #805ad5; }
+
+.celeb-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.celeb-info strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--primary);
+    line-height: 1.3;
+}
+
+.celeb-role {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+}
+
+.celeb-case {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+.celeb-status {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--info);
+    margin-top: 0.15rem;
+}
+
+/* ── Statute Chip Links (Case Detail) ── */
+.cd-statute-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid var(--border);
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    background: var(--bg);
+}
+
+.cd-statute-link:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(26,54,93,0.15);
+}
+
+.cd-statute-link svg {
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.cd-statute-link:hover svg {
+    opacity: 1;
+    color: white;
+}
+
+.cd-statute-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+    font-style: italic;
+}
+
+.cd-statute-hint a {
+    color: var(--info);
+    font-weight: 600;
+}
+
 /* Dashboard responsive */
 @media (max-width: 900px) {
     .home-dashboard {
@@ -1788,11 +2203,16 @@ a:hover { color: var(--accent); }
     }
     .stats-ticker { justify-content: flex-start; overflow-x: auto; }
     .ticker-item { min-width: 90px; padding: 0.75rem 1rem; }
+    .legal-quote-inner { flex-direction: column; gap: 0.5rem; }
+    .legal-quote-inner cite { white-space: normal; }
 }
 
 @media (max-width: 768px) {
     .ticker-num { font-size: 1.2rem; }
     .ticker-item { min-width: 80px; padding: 0.6rem 0.75rem; }
+    .law-item-header { flex-direction: column; gap: 0.3rem; }
+    .law-meta { flex-direction: column; gap: 0.2rem; }
+    .hearing-meta { flex-direction: column; gap: 0.3rem; }
 }
 
 /* ── Footer ── */

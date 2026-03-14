@@ -19,6 +19,15 @@
     </div>
 </section>
 
+<!-- Daily Legal Quote -->
+<section class="legal-quote-bar" id="quoteBar">
+    <div class="legal-quote-inner">
+        <svg class="quote-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 5v3z"/></svg>
+        <blockquote id="quoteText"></blockquote>
+        <cite id="quoteAuthor"></cite>
+    </div>
+</section>
+
 <!-- Stats Ticker -->
 <section class="stats-ticker" id="statsTicker">
     <div class="ticker-item">
@@ -89,10 +98,68 @@
             </div>
         </div>
 
+        <!-- New Laws & Legislation -->
+        <div class="dash-card dash-new-laws">
+            <div class="dash-card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    New Laws &amp; Legislation
+                </h2>
+                <span class="dash-subtitle">Recent Acts, Amendments &amp; Rules</span>
+            </div>
+            <div class="dash-card-body" id="newLawsList">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <!-- High Profile Hearings This Month -->
+        <div class="dash-card dash-hearings">
+            <div class="dash-card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/></svg>
+                    High-Profile Cases &amp; Hearings
+                </h2>
+                <span class="dash-subtitle" id="hearingsMonth">Cases to watch</span>
+            </div>
+            <div class="dash-card-body" id="hearingsList">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Right Sidebar -->
     <div class="dash-sidebar">
+
+        <!-- Upcoming Court Holidays -->
+        <div class="dash-card dash-holidays">
+            <div class="dash-card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Upcoming Court Holidays
+                </h2>
+            </div>
+            <div class="dash-card-body" id="holidaysList">
+                <div class="loading">Loading...</div>
+            </div>
+            <div class="dash-card-footer">
+                <a href="/holidays" class="dash-view-all">View Full Calendar &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Celebrity / VIP Court Appearances -->
+        <div class="dash-card dash-celebrity">
+            <div class="dash-card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Who's in Court
+                </h2>
+                <span class="dash-subtitle">Notable personalities with ongoing cases</span>
+            </div>
+            <div class="dash-card-body" id="celebrityList">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
 
         <!-- Latest Legal News -->
         <div class="dash-card dash-news">
@@ -104,6 +171,9 @@
             </div>
             <div class="dash-card-body" id="newsListBody">
                 <div class="loading">Loading...</div>
+            </div>
+            <div class="dash-card-footer">
+                <a href="https://news.google.com/search?q=india%20supreme%20court%20OR%20high%20court%20OR%20law%20OR%20legal&hl=en-IN&gl=IN" target="_blank" rel="noopener" class="dash-view-all">More Legal News on Google News &rarr;</a>
             </div>
         </div>
 
@@ -149,6 +219,14 @@
 
 {% block scripts %}
 <script>
+    // ── Daily Quote ──
+    fetch('/api/homepage/legal-quote')
+        .then(r => r.json())
+        .then(q => {
+            document.getElementById('quoteText').textContent = q.quote;
+            document.getElementById('quoteAuthor').textContent = '— ' + q.author + (q.source ? ', ' + q.source : '');
+        });
+
     // ── Stats Ticker ──
     fetch('/api/homepage/court-stats')
         .then(r => r.json())
@@ -213,6 +291,27 @@
             }).join('');
         });
 
+    // ── New Laws ──
+    fetch('/api/homepage/new-laws')
+        .then(r => r.json())
+        .then(laws => {
+            const el = document.getElementById('newLawsList');
+            el.innerHTML = laws.map(l => `
+                <div class="law-item">
+                    <div class="law-item-header">
+                        <h3>${l.name}</h3>
+                        <span class="law-status law-status-${l.status === 'In Force' ? 'active' : 'partial'}">${l.status}</span>
+                    </div>
+                    <div class="law-meta">
+                        <span class="law-replaces">Replaces: ${l.replaces}</span>
+                        <span class="law-effective">Effective: ${l.effective}</span>
+                    </div>
+                    <p class="law-highlights">${l.highlights}</p>
+                    <a href="${l.url}" target="_blank" rel="noopener" class="law-source">View on India Code &rarr;</a>
+                </div>
+            `).join('');
+        });
+
     // ── Legal News ──
     fetch('/api/homepage/legal-news')
         .then(r => r.json())
@@ -228,6 +327,78 @@
                     <p>${n.summary}</p>
                     <span class="news-source">${new URL(n.url).hostname} &rarr;</span>
                 </a>
+            `).join('');
+        });
+
+    // ── Upcoming Court Holidays ──
+    fetch('/api/homepage/upcoming-holidays')
+        .then(r => r.json())
+        .then(holidays => {
+            const el = document.getElementById('holidaysList');
+            if (!holidays.length) {
+                el.innerHTML = '<p class="empty-note">No holidays in the next 45 days. Courts in full session!</p>';
+                return;
+            }
+            el.innerHTML = holidays.map(h => `
+                <div class="holiday-dash-item ${h.is_today ? 'holiday-today' : ''} ${h.is_vacation ? 'holiday-vacation' : ''}">
+                    <div class="holiday-dash-left">
+                        <div class="holiday-dash-date">
+                            ${h.date.split(' ')[0]}
+                            <small>${h.date.split(' ')[1]}</small>
+                        </div>
+                    </div>
+                    <div class="holiday-dash-info">
+                        <strong>${h.name}</strong>
+                        ${h.end_date ? '<span class="holiday-range">' + h.date + ' – ' + h.end_date + '</span>' : '<span class="holiday-day">' + h.day_name + '</span>'}
+                        <span class="holiday-court-label">${h.court}</span>
+                    </div>
+                    <div class="holiday-dash-badge">
+                        ${h.is_today ? '<span class="holiday-badge-today">TODAY</span>' :
+                          h.days_away <= 3 ? '<span class="holiday-badge-soon">' + h.days_away + 'd</span>' :
+                          '<span class="holiday-badge-days">' + h.days_away + 'd</span>'}
+                    </div>
+                </div>
+            `).join('');
+        });
+
+    // ── High-Profile Hearings ──
+    fetch('/api/homepage/high-profile-hearings')
+        .then(r => r.json())
+        .then(data => {
+            document.getElementById('hearingsMonth').textContent = data.month;
+            const el = document.getElementById('hearingsList');
+            el.innerHTML = data.hearings.map(h => `
+                <div class="hearing-item">
+                    <div class="hearing-top">
+                        <span class="hearing-cat">${h.category}</span>
+                        <span class="hearing-date">${h.next_date}</span>
+                    </div>
+                    <h3>${h.case}</h3>
+                    <p class="hearing-desc">${h.description}</p>
+                    <div class="hearing-meta">
+                        <span class="hearing-court">${h.court}</span>
+                        <span class="hearing-significance">${h.significance}</span>
+                    </div>
+                </div>
+            `).join('');
+        });
+
+    // ── Celebrity / VIP Court ──
+    fetch('/api/homepage/celebrity-court')
+        .then(r => r.json())
+        .then(people => {
+            const el = document.getElementById('celebrityList');
+            const tagColors = {politician: '#e53e3e', businessman: '#d69e2e', sports: '#38a169', celebrity: '#805ad5'};
+            el.innerHTML = people.map(p => `
+                <div class="celeb-item">
+                    <div class="celeb-avatar celeb-tag-${p.tag}">${p.name.split(' ').map(w => w[0]).join('').slice(0,2)}</div>
+                    <div class="celeb-info">
+                        <strong>${p.name}</strong>
+                        <span class="celeb-role">${p.role}</span>
+                        <span class="celeb-case">${p.case}</span>
+                        <span class="celeb-status">${p.status}</span>
+                    </div>
+                </div>
             `).join('');
         });
 

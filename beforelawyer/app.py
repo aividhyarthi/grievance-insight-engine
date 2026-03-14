@@ -453,6 +453,292 @@ def create_app():
         ]
         return jsonify(news)
 
+    @app.route("/api/homepage/new-laws")
+    def api_new_laws():
+        """Recent and upcoming legislation changes in India."""
+        laws = [
+            {
+                "name": "Bharatiya Nyaya Sanhita (BNS), 2023",
+                "replaces": "Indian Penal Code, 1860",
+                "effective": "01 Jul 2024",
+                "status": "In Force",
+                "highlights": "358 sections replacing 511 IPC sections. New offences: mob lynching, organized crime, terrorism, hit-and-run. Gender-neutral approach to several offences. Community service as punishment for petty offences.",
+                "url": "https://www.indiacode.nic.in/",
+            },
+            {
+                "name": "Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023",
+                "replaces": "Code of Criminal Procedure, 1973",
+                "effective": "01 Jul 2024",
+                "status": "In Force",
+                "highlights": "531 sections replacing 484 CrPC sections. Mandatory forensic investigation for offences with 7+ years punishment. Electronic FIR and e-summons. Mandatory videography of search & seizure. 90-day trial completion for summons cases.",
+                "url": "https://www.indiacode.nic.in/",
+            },
+            {
+                "name": "Bharatiya Sakshya Adhiniyam (BSA), 2023",
+                "replaces": "Indian Evidence Act, 1872",
+                "effective": "01 Jul 2024",
+                "status": "In Force",
+                "highlights": "170 sections replacing 167 sections. Electronic records treated at par with paper records. Enhanced provisions for digital evidence. Video conferencing for witness examination.",
+                "url": "https://www.indiacode.nic.in/",
+            },
+            {
+                "name": "Digital Personal Data Protection Act, 2023",
+                "replaces": "IT Act provisions on data protection",
+                "effective": "Rules notified Jan 2025",
+                "status": "Partially In Force",
+                "highlights": "Consent-based data processing. Data Principal rights: access, correction, erasure, nomination. Data Protection Board for grievance redressal. Penalties up to Rs 250 crore. Children's data needs verifiable parental consent.",
+                "url": "https://www.meity.gov.in/",
+            },
+            {
+                "name": "Mediation Act, 2023",
+                "replaces": "No predecessor (new legislation)",
+                "effective": "09 Oct 2023",
+                "status": "In Force",
+                "highlights": "India's first standalone mediation law. Pre-litigation mediation for civil & commercial disputes. Mediation Council of India established. Mediated settlement agreements are enforceable as court decrees.",
+                "url": "https://www.indiacode.nic.in/",
+            },
+            {
+                "name": "Telecommunications Act, 2023",
+                "replaces": "Indian Telegraph Act, 1885 & Indian Wireless Telegraphy Act, 1933",
+                "effective": "26 Jun 2024 (partial)",
+                "status": "Partially In Force",
+                "highlights": "Spectrum assignment through auction/administrative allocation. Right of way provisions for telecom infrastructure. Biometric verification for SIM cards. Regulatory sandbox provisions.",
+                "url": "https://www.indiacode.nic.in/",
+            },
+            {
+                "name": "Jan Vishwas (Amendment of Provisions) Act, 2023",
+                "replaces": "Amendments to 42 Acts",
+                "effective": "2024 (phased)",
+                "status": "In Force",
+                "highlights": "Decriminalizes 183 offences across 42 Acts. Converts criminal penalties to civil fines. Reduces compliance burden on businesses. Covers IT Act, Environment Act, Agriculture Acts, and more.",
+                "url": "https://www.indiacode.nic.in/",
+            },
+        ]
+        return jsonify(laws)
+
+    @app.route("/api/homepage/upcoming-holidays")
+    def api_upcoming_holidays():
+        """Court holidays coming up in the next 30 days."""
+        import calendar
+        today = date.today()
+        # SC holidays for 2026 with approximate dates
+        sc_holidays = [
+            {"name": "Republic Day", "date": "2026-01-26", "court": "SC & All HCs"},
+            {"name": "Maha Shivaratri", "date": "2026-02-15", "court": "SC & All HCs"},
+            {"name": "Holi Vacation", "date": "2026-03-02", "end_date": "2026-03-07", "court": "Supreme Court"},
+            {"name": "Holi", "date": "2026-03-04", "court": "SC & All HCs"},
+            {"name": "Id-ul-Fitr (Eid)", "date": "2026-03-21", "court": "SC & All HCs"},
+            {"name": "Ram Navami", "date": "2026-03-27", "court": "SC & All HCs"},
+            {"name": "Mahavir Jayanti", "date": "2026-03-31", "court": "SC & All HCs"},
+            {"name": "Good Friday", "date": "2026-04-03", "court": "SC & All HCs"},
+            {"name": "Dr. Ambedkar Jayanti", "date": "2026-04-14", "court": "All HCs"},
+            {"name": "Buddha Purnima", "date": "2026-05-01", "court": "SC & All HCs"},
+            {"name": "Id-ul-Zuha (Bakrid)", "date": "2026-05-27", "court": "SC & All HCs"},
+            {"name": "Summer Vacation", "date": "2026-06-01", "end_date": "2026-07-12", "court": "Supreme Court"},
+            {"name": "Muharram", "date": "2026-06-26", "court": "SC & All HCs"},
+            {"name": "Independence Day", "date": "2026-08-15", "court": "SC & All HCs"},
+            {"name": "Milad-un-Nabi", "date": "2026-08-26", "court": "SC & All HCs"},
+            {"name": "Janmashtami", "date": "2026-09-04", "court": "SC & All HCs"},
+            {"name": "Mahatma Gandhi Jayanti", "date": "2026-10-02", "court": "SC & All HCs"},
+            {"name": "Dussehra", "date": "2026-10-20", "court": "SC & All HCs"},
+            {"name": "Dussehra Vacation", "date": "2026-10-19", "end_date": "2026-10-24", "court": "Supreme Court"},
+            {"name": "Diwali", "date": "2026-11-08", "court": "SC & All HCs"},
+            {"name": "Diwali Vacation", "date": "2026-11-09", "end_date": "2026-11-14", "court": "Supreme Court"},
+            {"name": "Guru Nanak Jayanti", "date": "2026-11-24", "court": "SC & All HCs"},
+            {"name": "Christmas", "date": "2026-12-25", "court": "SC & All HCs"},
+            {"name": "Winter Vacation", "date": "2026-12-25", "end_date": "2027-01-01", "court": "Supreme Court"},
+        ]
+        upcoming = []
+        for h in sc_holidays:
+            hdate = date.fromisoformat(h["date"])
+            end = date.fromisoformat(h["end_date"]) if h.get("end_date") else hdate
+            days_away = (hdate - today).days
+            # Show holidays within next 45 days or ongoing vacations
+            if -1 <= days_away <= 45 or (hdate <= today <= end):
+                upcoming.append({
+                    "name": h["name"],
+                    "date": hdate.strftime("%d %b %Y"),
+                    "end_date": end.strftime("%d %b %Y") if h.get("end_date") else None,
+                    "court": h["court"],
+                    "days_away": max(0, days_away),
+                    "is_today": hdate == today or (hdate <= today <= end),
+                    "is_vacation": h.get("end_date") is not None,
+                    "day_name": hdate.strftime("%A"),
+                })
+        return jsonify(upcoming[:8])
+
+    @app.route("/api/homepage/high-profile-hearings")
+    def api_high_profile_hearings():
+        """High-profile cases with upcoming hearings this month (curated)."""
+        today = date.today()
+        month_name = today.strftime("%B %Y")
+        hearings = [
+            {
+                "case": "DPDP Act Challenge — Internet Freedom Foundation v. Union of India",
+                "court": "Supreme Court of India",
+                "next_date": "Listed for hearing",
+                "description": "Constitutional challenge to Digital Personal Data Protection Rules, 2025. Government exemptions and Data Protection Board independence under scrutiny.",
+                "parties": "Internet Freedom Foundation vs Union of India",
+                "category": "Constitutional",
+                "significance": "Will shape digital privacy for 1.4 billion Indians",
+            },
+            {
+                "case": "Delhi Excise Policy Case — Multiple Accused",
+                "court": "Rouse Avenue District Court / Supreme Court",
+                "next_date": "Regular hearings",
+                "description": "CBI & ED cases against multiple politicians and businesspersons in the Delhi excise policy scam involving alleged irregularities worth thousands of crores.",
+                "parties": "CBI/ED vs K. Kavitha, Arvind Kejriwal & Others",
+                "category": "Criminal / PMLA",
+                "significance": "Politically sensitive; tests PMLA bail jurisprudence",
+            },
+            {
+                "case": "Same-Sex Marriage Review — Supriyo Chakraborty v. Union of India",
+                "court": "Supreme Court of India",
+                "next_date": "Review pending",
+                "description": "Review petitions against the 2023 judgment declining to legalize same-sex marriage. Petitioners seek recognition of civil unions and anti-discrimination protections.",
+                "parties": "Supriyo Chakraborty & Others vs Union of India",
+                "category": "Constitutional",
+                "significance": "LGBTQ+ rights and equality under Article 14",
+            },
+            {
+                "case": "Places of Worship Act Challenge",
+                "court": "Supreme Court of India",
+                "next_date": "Listed for hearing",
+                "description": "Challenge to the constitutionality of the Places of Worship (Special Provisions) Act, 1991 which freezes the religious character of places of worship as on 15 August 1947.",
+                "parties": "Multiple petitioners vs Union of India",
+                "category": "Constitutional",
+                "significance": "Sensitive religious-secular balance issue",
+            },
+            {
+                "case": "Adani-Hindenburg Investigation — Vishal Tiwari v. Union of India",
+                "court": "Supreme Court of India",
+                "next_date": "SEBI investigation status",
+                "description": "SC-monitored SEBI investigation into Hindenburg Research allegations against Adani Group. Expert committee report under consideration.",
+                "parties": "Vishal Tiwari & Others vs Union of India",
+                "category": "Securities / Corporate",
+                "significance": "India's biggest corporate governance controversy",
+            },
+            {
+                "case": "Chandigarh Mayoral Election — Irregularities",
+                "court": "Supreme Court of India",
+                "next_date": "Contempt proceedings",
+                "description": "SC found ballot tampering by the presiding officer in Chandigarh mayoral election. Contempt proceedings and criminal investigation ongoing.",
+                "parties": "Political parties vs Returning Officer",
+                "category": "Election / Contempt",
+                "significance": "Integrity of electoral process",
+            },
+        ]
+        return jsonify({"month": month_name, "hearings": hearings})
+
+    @app.route("/api/homepage/celebrity-court")
+    def api_celebrity_court():
+        """Celebrities and notable personalities with court appearances."""
+        appearances = [
+            {
+                "name": "Arvind Kejriwal",
+                "role": "Former Chief Minister, Delhi",
+                "case": "Delhi Excise Policy Case (PMLA & CBI)",
+                "court": "Supreme Court / Rouse Avenue Court",
+                "status": "On bail; regular hearings",
+                "tag": "politician",
+            },
+            {
+                "name": "K. Kavitha",
+                "role": "MLC & Daughter of former CM K. Chandrashekar Rao",
+                "case": "Delhi Excise Policy Case (PMLA)",
+                "court": "Supreme Court / Rouse Avenue Court",
+                "status": "On bail; trial ongoing",
+                "tag": "politician",
+            },
+            {
+                "name": "Manish Sisodia",
+                "role": "Former Deputy CM, Delhi",
+                "case": "Delhi Excise Policy Case (CBI & PMLA)",
+                "court": "Rouse Avenue Court, Delhi",
+                "status": "On bail (granted Aug 2024); trial ongoing",
+                "tag": "politician",
+            },
+            {
+                "name": "Brij Bhushan Sharan Singh",
+                "role": "Former WFI President & MP",
+                "case": "Sexual Harassment of Women Wrestlers",
+                "court": "Rouse Avenue Court, Delhi",
+                "status": "Trial ongoing; charges framed",
+                "tag": "sports",
+            },
+            {
+                "name": "Amanatullah Khan",
+                "role": "AAP MLA, Okhla",
+                "case": "Delhi Waqf Board irregularities (PMLA)",
+                "court": "ED Special Court / HC",
+                "status": "On bail; investigation ongoing",
+                "tag": "politician",
+            },
+            {
+                "name": "Hemant Soren",
+                "role": "Chief Minister, Jharkhand (reinstated)",
+                "case": "Land fraud & PMLA case",
+                "court": "Jharkhand High Court",
+                "status": "On bail; case continuing",
+                "tag": "politician",
+            },
+            {
+                "name": "Adani Group (Gautam Adani)",
+                "role": "Chairman, Adani Group",
+                "case": "Hindenburg allegations — SEBI probe monitored by SC",
+                "court": "Supreme Court of India",
+                "status": "SEBI investigation; SC monitoring",
+                "tag": "businessman",
+            },
+            {
+                "name": "Prajwal Revanna",
+                "role": "Former MP, Hassan",
+                "case": "Sexual abuse & video scandal",
+                "court": "Special Court, Bengaluru",
+                "status": "Arrested; trial pending",
+                "tag": "politician",
+            },
+        ]
+        return jsonify(appearances)
+
+    @app.route("/api/homepage/legal-quote")
+    def api_legal_quote():
+        """Daily rotating legal quote for inspiration."""
+        quotes = [
+            {"quote": "Be you ever so high, the law is above you.", "author": "Lord Denning", "source": "Master of the Rolls"},
+            {"quote": "The law is reason, free from passion.", "author": "Aristotle", "source": "Politics"},
+            {"quote": "Injustice anywhere is a threat to justice everywhere.", "author": "Martin Luther King Jr.", "source": "Letter from Birmingham Jail, 1963"},
+            {"quote": "The safety of the people shall be the highest law.", "author": "Marcus Tullius Cicero", "source": "De Legibus"},
+            {"quote": "It is emphatically the province and duty of the Judicial Department to say what the law is.", "author": "Chief Justice John Marshall", "source": "Marbury v. Madison (1803)"},
+            {"quote": "Law and order exist for the purpose of establishing justice.", "author": "Martin Luther King Jr.", "source": ""},
+            {"quote": "The right to personal liberty and the right to life are among the most cherished freedoms.", "author": "Justice H.R. Khanna", "source": "ADM Jabalpur dissent (1976)"},
+            {"quote": "Procedure is the handmaid of justice, not its mistress.", "author": "Justice V.R. Krishna Iyer", "source": ""},
+            {"quote": "Rights are not gifts from the state, they are inherent in the dignity of the human person.", "author": "Justice D.Y. Chandrachud", "source": "K.S. Puttaswamy v. Union of India (2017)"},
+            {"quote": "The Constitution is not a mere lawyers' document, it is a vehicle of life.", "author": "Chief Justice Patanjali Sastri", "source": "State of West Bengal v. Subodh Gopal (1954)"},
+            {"quote": "Equal justice under law is not merely a caption on the facade of the Supreme Court building, it is perhaps the most inspiring ideal of our society.", "author": "Justice Lewis F. Powell Jr.", "source": ""},
+            {"quote": "Courts are the last resort for the helpless and the oppressed.", "author": "Justice P.N. Bhagwati", "source": "PIL jurisprudence"},
+        ]
+        today = date.today()
+        idx = today.timetuple().tm_yday % len(quotes)
+        return jsonify(quotes[idx])
+
+    @app.route("/api/glossary/search-statute")
+    def api_glossary_search_statute():
+        """Search glossary for a statute/section reference to link from case detail pages."""
+        q = request.args.get("q", "").strip()
+        if not q:
+            return jsonify([])
+        terms = LegalGlossary.query.filter(or_(
+            LegalGlossary.term.ilike(f"%{q}%"),
+            LegalGlossary.definition.ilike(f"%{q}%"),
+        )).limit(5).all()
+        return jsonify([{
+            "id": t.id,
+            "term": t.term,
+            "category": t.category,
+            "definition": t.definition[:150] + "..." if len(t.definition) > 150 else t.definition,
+        } for t in terms])
+
     return app
 
 
