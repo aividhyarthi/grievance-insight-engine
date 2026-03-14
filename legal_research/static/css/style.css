@@ -1,6 +1,7 @@
 /* ── Legal Case Research Library — Styles ── */
 
-:root {
+:root,
+[data-theme="light"] {
     --primary: #1a365d;
     --primary-light: #2c5282;
     --primary-dark: #0f2440;
@@ -20,6 +21,119 @@
     --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
     --shadow-lg: 0 4px 14px rgba(0,0,0,0.1);
 }
+
+[data-theme="dark"] {
+    --primary: #90b4e0;
+    --primary-light: #6fa0d6;
+    --primary-dark: #0a1628;
+    --accent: #d4af5e;
+    --accent-light: #e8c97a;
+    --bg: #0f1923;
+    --bg-card: #172130;
+    --text: #e2e8f0;
+    --text-light: #a0b4c8;
+    --text-muted: #6b7f96;
+    --border: #2a3a4e;
+    --success: #48bb78;
+    --warning: #ecc94b;
+    --danger: #fc8181;
+    --info: #63b3ed;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-lg: 0 4px 14px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .navbar {
+    background: #0a1628;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .hero,
+[data-theme="dark"] .page-header {
+    background: linear-gradient(135deg, #0a1628 0%, #132035 100%);
+}
+
+[data-theme="dark"] .stats-ticker {
+    background: #060e18;
+}
+
+[data-theme="dark"] .footer {
+    background: #060e18;
+}
+
+[data-theme="dark"] .judges-section,
+[data-theme="dark"] .holiday-card,
+[data-theme="dark"] .res-card {
+    background: var(--bg-card);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .judges-table tr:hover,
+[data-theme="dark"] .otd-case:hover,
+[data-theme="dark"] .imp-case:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+[data-theme="dark"] .news-item-link:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+[data-theme="dark"] .proc-step-content,
+[data-theme="dark"] .tl-content {
+    background: var(--bg-card);
+}
+
+[data-theme="dark"] .proc-note {
+    background: #1a2333;
+    border-left-color: var(--accent);
+}
+
+[data-theme="dark"] .glossary-card .example {
+    border-left-color: var(--border);
+}
+
+[data-theme="dark"] .template-preview {
+    background: var(--bg);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .template-tips {
+    background: #1a2333;
+}
+
+[data-theme="dark"] .search-bar {
+    background: var(--bg-card);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .filter-select {
+    background: var(--bg-card);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .judges-table thead,
+[data-theme="dark"] .res-ref-table thead {
+    background: rgba(255,255,255,0.04);
+}
+
+[data-theme="dark"] .holiday-note {
+    background: rgba(255,255,255,0.03);
+}
+
+[data-theme="dark"] .alpha-nav {
+    background: var(--bg-card);
+}
+
+[data-theme="dark"] .alpha-link {
+    background: var(--bg);
+}
+
+/* Dark mode toggle icon visibility */
+[data-theme="dark"] .icon-sun { display: inline; }
+[data-theme="dark"] .icon-moon { display: none; }
+.icon-sun { display: none; }
+.icon-moon { display: inline; }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -85,6 +199,106 @@ a:hover { color: var(--accent); }
     color: white;
     background: rgba(255,255,255,0.08);
     border-bottom-color: var(--accent);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 0.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.8);
+    transition: all 0.2s;
+}
+
+.dark-mode-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+/* Hamburger Button */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 200;
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Nav */
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+
+    .navbar-links {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--primary-dark);
+        flex-direction: column;
+        height: auto;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        z-index: 150;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    [data-theme="dark"] .navbar-links {
+        background: #060e18;
+    }
+
+    .navbar-links.open {
+        max-height: 500px;
+    }
+
+    .navbar-links a {
+        padding: 0.85rem 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        border-left: 3px solid transparent;
+        height: auto;
+    }
+
+    .navbar-links a:hover,
+    .navbar-links a.active {
+        border-bottom-color: rgba(255,255,255,0.06);
+        border-left-color: var(--accent);
+    }
 }
 
 /* ── Hero Section ── */
