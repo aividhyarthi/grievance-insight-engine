@@ -976,18 +976,44 @@ a:hover { color: var(--accent); }
     border-left: 4px solid var(--success);
 }
 
-/* Statute Chips */
-.cd-statute-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+/* Statute List */
+.cd-statute-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
 
 .cd-statute-chip {
-    display: inline-block;
-    background: #ebf4ff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f7fafc;
     color: var(--primary);
-    padding: 0.35rem 0.85rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: var(--radius);
+    font-size: 0.82rem;
     font-weight: 600;
-    border: 1px solid #bee3f8;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--info);
+    text-decoration: none;
+    transition: all 0.15s;
+    cursor: pointer;
+}
+
+.cd-statute-chip:hover {
+    background: #ebf4ff;
+    border-left-color: var(--primary);
+    transform: translateX(2px);
+    box-shadow: 0 1px 4px rgba(26,54,93,0.08);
+}
+
+.cd-statute-chip svg {
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+.cd-statute-chip:hover svg {
+    opacity: 0.8;
 }
 
 /* Precedent List */
@@ -2236,60 +2262,12 @@ a:hover { color: var(--accent); }
     margin-top: 0.15rem;
 }
 
-/* ── Statute Chip Links (Case Detail) ── */
-.cd-statute-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    text-decoration: none;
-    color: var(--primary);
-    cursor: pointer;
-    transition: all 0.15s;
-    border: 1px solid var(--border);
-    padding: 0.35rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    background: var(--bg);
-}
-
-.cd-statute-link:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(26,54,93,0.15);
-}
-
-.cd-statute-link svg {
-    flex-shrink: 0;
-    opacity: 0.6;
-}
-
-.cd-statute-link:hover svg {
-    opacity: 1;
-    color: white;
-}
-
+/* Statute hint below list */
 .cd-statute-hint {
     font-size: 0.72rem;
     color: var(--text-muted);
-    margin-top: 0.75rem;
+    margin-top: 0.6rem;
     font-style: italic;
-    clear: both;
-    width: 100%;
-    position: relative;
-    z-index: 0;
-}
-
-/* Ensure statute chips don't overflow onto hint */
-.cd-statute-chips {
-    position: relative;
-    z-index: 1;
-}
-
-.cd-statute-link {
-    max-width: 100%;
-    word-break: break-word;
 }
 
 .cd-statute-hint a {
