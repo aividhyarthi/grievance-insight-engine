@@ -108,9 +108,13 @@
     });
     glossaryCategory.addEventListener('change', fetchGlossary);
 
-    // Pre-fill search from URL ?q= parameter (e.g. from statute links on case detail page)
+    // Pre-fill search from URL hash or query param (from statute links on case detail page)
+    // Uses hash (#search=) to avoid proxy/WAF blocking URLs with parentheses
+    const hashMatch = decodeURIComponent(window.location.hash.replace(/^\#search=/, ''));
     const urlQ = new URLSearchParams(window.location.search).get('q');
-    if (urlQ) {
+    if (window.location.hash.startsWith('#search=') && hashMatch) {
+        glossarySearch.value = hashMatch;
+    } else if (urlQ) {
         glossarySearch.value = urlQ;
     }
 
