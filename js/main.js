@@ -2,16 +2,20 @@
    DhvaniAI - Main JavaScript
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Hide preloader
+// Hide preloader immediately when page is ready
+window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            preloader.classList.add('hidden');
-        }, 600);
-    });
-    // Fallback: hide preloader after 3s max
-    setTimeout(() => preloader.classList.add('hidden'), 3000);
+    if (preloader) {
+        setTimeout(() => preloader.classList.add('hidden'), 500);
+    }
+});
+// Fallback: hide preloader after 2s no matter what
+setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.classList.add('hidden');
+}, 2000);
+
+document.addEventListener('DOMContentLoaded', () => {
 
     // Navbar scroll behavior
     const navbar = document.getElementById('navbar');
