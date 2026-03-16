@@ -270,10 +270,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatToggle && chatWindow) {
         // Initial greeting when chat opens
         let chatOpened = false;
+        let chatVisible = false;
+        const chatIcon = chatToggle.querySelector('.chat-icon');
+        const closeIcon = chatToggle.querySelector('.close-icon');
 
         chatToggle.addEventListener('click', () => {
-            chatToggle.classList.toggle('active');
-            chatWindow.classList.toggle('active');
+            chatVisible = !chatVisible;
+            if (chatVisible) {
+                chatWindow.style.display = 'flex';
+                if (chatIcon) chatIcon.style.display = 'none';
+                if (closeIcon) closeIcon.style.display = 'block';
+            } else {
+                chatWindow.style.display = 'none';
+                if (chatIcon) chatIcon.style.display = 'block';
+                if (closeIcon) closeIcon.style.display = 'none';
+            }
 
             if (!chatOpened) {
                 chatOpened = true;
