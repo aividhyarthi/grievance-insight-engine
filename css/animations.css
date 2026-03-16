@@ -1,0 +1,201 @@
+/* ============================================
+   DhvaniAI - Animations & Transitions
+   ============================================ */
+
+/* Fade-in on scroll */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays for grid items */
+.services-grid .service-card:nth-child(1) { transition-delay: 0.05s; }
+.services-grid .service-card:nth-child(2) { transition-delay: 0.1s; }
+.services-grid .service-card:nth-child(3) { transition-delay: 0.15s; }
+.services-grid .service-card:nth-child(4) { transition-delay: 0.2s; }
+.services-grid .service-card:nth-child(5) { transition-delay: 0.25s; }
+.services-grid .service-card:nth-child(6) { transition-delay: 0.3s; }
+.services-grid .service-card:nth-child(7) { transition-delay: 0.35s; }
+.services-grid .service-card:nth-child(8) { transition-delay: 0.4s; }
+.services-grid .service-card:nth-child(9) { transition-delay: 0.45s; }
+.services-grid .service-card:nth-child(10) { transition-delay: 0.5s; }
+
+.results-grid .result-card:nth-child(1) { transition-delay: 0.05s; }
+.results-grid .result-card:nth-child(2) { transition-delay: 0.1s; }
+.results-grid .result-card:nth-child(3) { transition-delay: 0.15s; }
+.results-grid .result-card:nth-child(4) { transition-delay: 0.2s; }
+
+.testimonial-grid .testimonial-card:nth-child(1) { transition-delay: 0.05s; }
+.testimonial-grid .testimonial-card:nth-child(2) { transition-delay: 0.1s; }
+.testimonial-grid .testimonial-card:nth-child(3) { transition-delay: 0.15s; }
+
+/* Hero badge pulse */
+.hero-badge {
+    animation: badge-glow 3s ease-in-out infinite;
+}
+
+@keyframes badge-glow {
+    0%, 100% { box-shadow: 0 0 0 rgba(99, 102, 241, 0); }
+    50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.1); }
+}
+
+/* Service card hover glow */
+.service-card:hover .service-icon {
+    transform: scale(1.05);
+    box-shadow: 0 0 24px rgba(99, 102, 241, 0.2);
+}
+
+.service-icon {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Gradient text shimmer */
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.hero-title .gradient-text {
+    background-size: 200% auto;
+    animation: shimmer 4s linear infinite;
+}
+
+/* About stat cards float */
+.about-stat-card {
+    animation: float-subtle 6s ease-in-out infinite;
+}
+
+.about-stat-card:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.about-stat-card:nth-child(3) {
+    animation-delay: 2s;
+}
+
+@keyframes float-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.about-stat-card:hover {
+    animation-play-state: paused;
+}
+
+/* Result number glow */
+.result-card:hover .result-number {
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
+}
+
+/* Button ripple effect */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Mobile menu animation */
+.mobile-menu {
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Mobile toggle animation */
+.mobile-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Step number hover */
+.process-step:hover .step-number {
+    opacity: 1;
+    transform: scale(1.05);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Smooth section transitions */
+section {
+    position: relative;
+}
+
+/* Contact form focus animation */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    transform: translateY(-1px);
+}
+
+/* Logo hover */
+.logo:hover .logo-icon svg {
+    transform: rotate(10deg);
+    transition: transform 0.3s ease;
+}
+
+/* Client logo hover */
+.client-logo-item:hover .client-name {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Pause logo scroll on hover */
+.client-logos:hover .logo-track {
+    animation-play-state: paused;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .fade-in {
+        opacity: 1;
+        transform: none;
+    }
+
+    .logo-track {
+        animation: none;
+    }
+}
