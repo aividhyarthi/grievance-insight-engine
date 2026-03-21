@@ -1,4 +1,5 @@
-const WP_API_BASE = 'https://blog.rudrakasturi.com/wp-json/wp/v2';
+const WP_SITE = import.meta.env.WP_SITE_URL || 'https://rudrakasturi.wordpress.com';
+const WP_API_BASE = `${WP_SITE}/wp-json/wp/v2`;
 
 export interface WPPost {
   id: number;
