@@ -647,5 +647,9 @@ Set `SERP_PROVIDER` and `SERP_API_KEY` environment variables to switch providers
     )
 
 
-if __name__ == "__main__":
+try:
     main()
+except Exception as _e:
+    import traceback
+    st.error(f"App error: {_e}")
+    st.code(traceback.format_exc())
