@@ -1,14 +1,15 @@
 :root {
-  --color-bg: #0a0a0f;
-  --color-bg-secondary: #12121a;
-  --color-bg-card: #16162a;
-  --color-text: #e0e0e0;
-  --color-text-muted: #9a9ab0;
-  --color-accent: #00d4ff;
-  --color-accent-hover: #00b8d9;
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f7f8fa;
+  --color-bg-card: #ffffff;
+  --color-text: #2d2d3a;
+  --color-text-muted: #6b7280;
+  --color-accent: #4f46e5;
+  --color-accent-hover: #4338ca;
   --color-gradient-start: #667eea;
   --color-gradient-end: #764ba2;
-  --color-gold: #f0c040;
+  --color-gold: #d97706;
+  --color-border: #e5e7eb;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
   --max-width: 1200px;
@@ -73,9 +74,9 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 10, 15, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--color-border);
   padding: 1rem 0;
 }
 
@@ -88,7 +89,7 @@ img {
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #fff;
+  color: #1a1a2e;
   letter-spacing: -0.03em;
 }
 
@@ -127,6 +128,7 @@ img {
   min-height: 85vh;
   display: flex;
   align-items: center;
+  background: linear-gradient(180deg, #f0f2ff 0%, #ffffff 100%);
 }
 
 .hero-bg-effects {
@@ -140,7 +142,7 @@ img {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.3;
+  opacity: 0.15;
   animation: orbFloat 8s ease-in-out infinite;
 }
 
@@ -168,7 +170,7 @@ img {
   background: var(--color-accent);
   top: 40%;
   left: 50%;
-  opacity: 0.15;
+  opacity: 0.08;
   animation-delay: 5s;
 }
 
@@ -182,8 +184,8 @@ img {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
 }
@@ -205,13 +207,13 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(102, 126, 234, 0.12);
-  border: 1px solid rgba(102, 126, 234, 0.25);
+  background: rgba(102, 126, 234, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.2);
   border-radius: 50px;
   padding: 0.4rem 1.2rem;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--color-gradient-start);
+  color: var(--color-accent);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -221,7 +223,7 @@ img {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-gradient-start);
+  background: var(--color-accent);
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -235,7 +237,7 @@ img {
   font-weight: 800;
   line-height: 1.15;
   margin-bottom: 1.5rem;
-  color: #fff;
+  color: #1a1a2e;
 }
 
 .hero-line-1, .hero-line-2, .hero-line-3 {
@@ -269,7 +271,7 @@ img {
 }
 
 .hero-desc strong {
-  color: #fff;
+  color: #1a1a2e;
 }
 
 .hero-buttons {
@@ -280,7 +282,7 @@ img {
 }
 
 .hero-logos {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-border);
   padding-top: 1.5rem;
 }
 
@@ -302,7 +304,7 @@ img {
 .logo-tag {
   display: inline-block;
   padding: 0.3rem 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   font-size: 0.78rem;
   color: var(--color-text-muted);
@@ -322,18 +324,18 @@ img {
 
 .hero-main-image {
   border-radius: 20px;
-  border: 2px solid rgba(102, 126, 234, 0.3);
+  border: 2px solid rgba(102, 126, 234, 0.2);
   box-shadow:
-    0 20px 60px rgba(102, 126, 234, 0.15),
-    0 0 100px rgba(102, 126, 234, 0.08);
+    0 20px 60px rgba(102, 126, 234, 0.1),
+    0 0 100px rgba(102, 126, 234, 0.05);
   transition: transform 0.4s, box-shadow 0.4s;
 }
 
 .hero-main-image:hover {
   transform: scale(1.02) translateY(-4px);
   box-shadow:
-    0 25px 80px rgba(102, 126, 234, 0.25),
-    0 0 120px rgba(102, 126, 234, 0.12);
+    0 25px 80px rgba(102, 126, 234, 0.18),
+    0 0 120px rgba(102, 126, 234, 0.08);
 }
 
 .hero-image-badge {
@@ -347,7 +349,7 @@ img {
   font-weight: 700;
   color: #fff;
   line-height: 1.3;
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
 }
 
 .hero-image-badge span {
@@ -375,7 +377,7 @@ img {
 
 .career-card {
   background: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 1.75rem;
   transition: all 0.3s;
@@ -398,7 +400,7 @@ img {
 .career-card:hover {
   border-color: rgba(102, 126, 234, 0.3);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.08);
 }
 
 .career-card:hover::before {
@@ -417,7 +419,7 @@ img {
 .career-company {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 0.75rem;
 }
 
@@ -428,14 +430,14 @@ img {
 }
 
 .career-advisory {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--color-border);
   padding-top: 2rem;
 }
 
 .career-advisory h3 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 1rem;
 }
 
@@ -449,8 +451,8 @@ img {
 .advisory-tag {
   display: inline-block;
   padding: 0.5rem 1.2rem;
-  border: 1px solid rgba(102, 126, 234, 0.2);
-  background: rgba(102, 126, 234, 0.06);
+  border: 1px solid rgba(102, 126, 234, 0.15);
+  background: rgba(102, 126, 234, 0.04);
   border-radius: 50px;
   font-size: 0.82rem;
   color: var(--color-text);
@@ -486,20 +488,20 @@ img {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
   color: #fff;
 }
 
 .btn-glow {
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
 }
 
 .btn-glow:hover {
-  box-shadow: 0 8px 40px rgba(102, 126, 234, 0.45);
+  box-shadow: 0 8px 40px rgba(102, 126, 234, 0.35);
 }
 
 .btn-outline {
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  border: 2px solid var(--color-border);
   color: var(--color-text);
   background: transparent;
 }
@@ -531,8 +533,8 @@ img {
    ======================================== */
 .credibility-bar {
   background: var(--color-bg-secondary);
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   padding: 2rem 0;
 }
 
@@ -570,7 +572,7 @@ img {
 .cred-divider {
   width: 1px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-border);
 }
 
 /* ========================================
@@ -584,7 +586,7 @@ img {
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  color: #fff;
+  color: #1a1a2e;
 }
 
 .section-subtitle {
@@ -610,14 +612,14 @@ img {
   background: var(--color-bg-card);
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   transition: all 0.4s;
 }
 
 .photo-card:hover {
   transform: translateY(-6px);
   border-color: rgba(102, 126, 234, 0.35);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.1);
 }
 
 .photo-wrapper {
@@ -663,7 +665,7 @@ img {
 .photo-info h3 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 0.4rem;
 }
 
@@ -701,7 +703,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--color-accent);
-  background: rgba(0, 212, 255, 0.08);
+  background: rgba(102, 126, 234, 0.08);
   padding: 0.35rem 1rem;
   border-radius: 50px;
   margin-bottom: 1rem;
@@ -711,7 +713,7 @@ img {
 .about-headline {
   font-size: clamp(1.8rem, 3.5vw, 2.4rem);
   font-weight: 800;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
@@ -729,7 +731,7 @@ img {
 }
 
 .about-content strong {
-  color: #fff;
+  color: #1a1a2e;
 }
 
 .about-highlights {
@@ -739,8 +741,8 @@ img {
 }
 
 .highlight-card {
-  background: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 1.5rem;
   transition: all 0.3s;
@@ -749,7 +751,7 @@ img {
 .highlight-card:hover {
   border-color: rgba(102, 126, 234, 0.3);
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.08);
 }
 
 .highlight-icon {
@@ -759,7 +761,7 @@ img {
 
 .highlight-card h4 {
   font-size: 1rem;
-  color: #fff;
+  color: #1a1a2e;
   font-weight: 700;
   margin-bottom: 0.3rem;
 }
@@ -785,7 +787,7 @@ img {
 
 .founder-card {
   background: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 2rem 1.5rem;
   transition: all 0.4s;
@@ -797,12 +799,12 @@ img {
 .founder-card:hover {
   border-color: rgba(102, 126, 234, 0.35);
   transform: translateY(-6px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 50px rgba(102, 126, 234, 0.1);
 }
 
 .founder-card-accent {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.12), rgba(118, 75, 162, 0.12));
-  border-color: rgba(102, 126, 234, 0.2);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.06), rgba(118, 75, 162, 0.06));
+  border-color: rgba(102, 126, 234, 0.15);
 }
 
 .founder-logo-text {
@@ -830,6 +832,56 @@ img {
 }
 
 /* ========================================
+   FARMER SECTION
+   ======================================== */
+.farmer-section {
+  background: var(--color-bg);
+}
+
+.farmer-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.farmer-image-wrapper {
+  position: relative;
+}
+
+.farmer-image {
+  border-radius: 20px;
+  width: 100%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.farmer-image:hover {
+  transform: scale(1.02) translateY(-4px);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.1);
+}
+
+.farmer-content .section-title {
+  margin-bottom: 1.5rem;
+}
+
+.farmer-lead {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.farmer-content p {
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* ========================================
    SPEAKING SECTION
    ======================================== */
 .speaking-grid {
@@ -841,7 +893,7 @@ img {
 
 .speaking-card {
   background: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   overflow: hidden;
 }
@@ -883,7 +935,7 @@ img {
   justify-content: center;
   font-size: 1.5rem;
   color: #fff;
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
   transition: all 0.3s;
 }
 
@@ -902,7 +954,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-accent);
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(102, 126, 234, 0.08);
   padding: 0.25rem 0.7rem;
   border-radius: 50px;
   margin-bottom: 0.5rem;
@@ -912,7 +964,7 @@ img {
 .speaking-info h3 {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 0.4rem;
 }
 
@@ -934,7 +986,7 @@ img {
   gap: 1rem;
   align-items: flex-start;
   background: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 1.25rem;
   transition: all 0.3s;
@@ -953,7 +1005,7 @@ img {
 .speaking-item h4 {
   font-size: 1rem;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 0.2rem;
 }
 
@@ -978,7 +1030,7 @@ img {
 
 .credential-block {
   background: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 2rem;
 }
@@ -986,7 +1038,7 @@ img {
 .credential-heading {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 0.4rem;
 }
 
@@ -1002,7 +1054,7 @@ img {
 
 .credential-list li {
   padding: 0.75rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1011,7 +1063,7 @@ img {
 }
 
 .credential-list li strong {
-  color: #fff;
+  color: #1a1a2e;
   font-weight: 600;
   font-size: 0.95rem;
 }
@@ -1034,7 +1086,7 @@ img {
   background: var(--color-bg-card);
   border-radius: var(--radius);
   padding: 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   transition: all 0.3s;
   display: flex;
   flex-direction: column;
@@ -1043,7 +1095,7 @@ img {
 .post-card:hover {
   transform: translateY(-4px);
   border-color: rgba(102, 126, 234, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.08);
 }
 
 .post-card .tag {
@@ -1052,7 +1104,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-accent);
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(102, 126, 234, 0.08);
   padding: 0.25rem 0.75rem;
   border-radius: 50px;
   margin-bottom: 0.75rem;
@@ -1062,7 +1114,7 @@ img {
 .post-card h3 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 0.5rem;
   line-height: 1.35;
 }
@@ -1101,8 +1153,8 @@ img {
 }
 
 .contact-card {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.04), rgba(118, 75, 162, 0.04));
+  border: 1px solid rgba(102, 126, 234, 0.15);
   border-radius: 24px;
   padding: 3.5rem;
   display: grid;
@@ -1114,7 +1166,7 @@ img {
 .contact-content h2 {
   font-size: clamp(1.8rem, 3vw, 2.2rem);
   font-weight: 800;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 1rem;
   line-height: 1.2;
 }
@@ -1142,7 +1194,7 @@ img {
 .role-chip {
   display: inline-block;
   padding: 0.5rem 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-border);
   border-radius: 50px;
   font-size: 0.82rem;
   color: var(--color-text-muted);
@@ -1160,7 +1212,7 @@ img {
    FOOTER
    ======================================== */
 .footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--color-border);
   padding: 2rem 0;
   text-align: center;
   color: var(--color-text-muted);
@@ -1178,7 +1230,7 @@ img {
 .page-header h1 {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 0.5rem;
 }
 
@@ -1198,7 +1250,7 @@ img {
 .post-header h1 {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 800;
-  color: #fff;
+  color: #1a1a2e;
   margin-bottom: 1rem;
   line-height: 1.2;
 }
@@ -1221,7 +1273,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-accent);
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(102, 126, 234, 0.08);
   padding: 0.25rem 0.75rem;
   border-radius: 50px;
 }
@@ -1235,14 +1287,14 @@ img {
 .post-content h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: #1a1a2e;
   margin: 2.5rem 0 1rem;
 }
 
 .post-content h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #fff;
+  color: #1a1a2e;
   margin: 2rem 0 0.75rem;
 }
 
@@ -1261,7 +1313,7 @@ img {
 }
 
 .post-content code {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-bg-secondary);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-size: 0.9em;
@@ -1269,7 +1321,7 @@ img {
 
 .post-content pre {
   background: var(--color-bg-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 1.25rem;
   overflow-x: auto;
@@ -1364,6 +1416,16 @@ img {
 
   .career-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .farmer-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .farmer-image-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 
