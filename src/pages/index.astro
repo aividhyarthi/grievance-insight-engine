@@ -6,7 +6,7 @@ let featuredPosts = [];
 let totalPosts = 0;
 
 try {
-  const { posts } = await getPosts(1, 3);
+  const { posts } = await getPosts(1, 6);
   featuredPosts = posts;
   totalPosts = posts.length;
 } catch (e) {
@@ -14,31 +14,335 @@ try {
 }
 ---
 
-<BaseLayout title="Rudra Kasturi — Blog & Portfolio">
+<BaseLayout title="Rudra Kasturi — Search to AI | CGO, CSO, Co-Founder | Global Digital Leader">
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <p class="hero-tagline">Welcome to my corner of the internet</p>
-      <h1>
-        Hi, I'm <span class="gradient-text">Rudra Kasturi</span>.<br />
-        I write about tech & ideas.
-      </h1>
-      <p>
-        Exploring AI, cloud computing, and building things that matter.
-        Sharing what I learn along the way.
-      </p>
-      <div class="hero-buttons">
-        <a href="/blog" class="btn btn-primary">Read the Blog</a>
-        <a href="#about" class="btn btn-outline">About Me</a>
+  <section class="hero-premium">
+    <div class="hero-bg-effects">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-grid-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Global Digital & AI Leader
+        </div>
+        <h1>
+          <span class="hero-line-1">I'm <span class="gradient-text-hero">Rudra Kasturi</span></span>
+          <span class="hero-line-2">From Search to AI.</span>
+          <span class="hero-line-3">From Startups to <span class="gradient-text-hero">Billion-Dollar</span> Companies.</span>
+        </h1>
+        <p class="hero-desc">
+          Chief Growth Officer. Chief Strategy Officer. Co-Founder. Speaker at Google I/O.
+          Scaled products to <strong>500M+ users</strong>. Building the future at the intersection of
+          AI, Search, and Digital Strategy.
+        </p>
+        <div class="hero-buttons">
+          <a href="/blog" class="btn btn-primary btn-glow">Read My Blog</a>
+          <a href="#about" class="btn btn-outline">Discover My Story</a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+        <div class="hero-logos">
+          <span class="hero-logos-label">Featured & Spoken At</span>
+          <div class="logo-strip">
+            <span class="logo-tag">Google I/O</span>
+            <span class="logo-tag">Times of India</span>
+            <span class="logo-tag">INMA</span>
+            <span class="logo-tag">MozCon</span>
+            <span class="logo-tag">CNTI</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-image-wrapper">
+          <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi speaking at Google I/O 2019" class="hero-main-image" />
+          <div class="hero-image-badge">
+            <span>Speaker</span>
+            Google I/O '19
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Posts -->
-  <section class="section">
+  <!-- Credibility Bar -->
+  <section class="credibility-bar">
     <div class="container">
-      <h2 class="section-title">Latest Posts</h2>
-      <p class="section-subtitle">What I've been writing about recently</p>
+      <div class="cred-scroll">
+        <div class="cred-item">
+          <div class="cred-number">500M+</div>
+          <div class="cred-label">Users Scaled</div>
+        </div>
+        <div class="cred-divider"></div>
+        <div class="cred-item">
+          <div class="cred-number">15+</div>
+          <div class="cred-label">Years in Digital</div>
+        </div>
+        <div class="cred-divider"></div>
+        <div class="cred-item">
+          <div class="cred-number">4</div>
+          <div class="cred-label">Companies Founded</div>
+        </div>
+        <div class="cred-divider"></div>
+        <div class="cred-item">
+          <div class="cred-number">CGO</div>
+          <div class="cred-label">Chief Growth Officer</div>
+        </div>
+        <div class="cred-divider"></div>
+        <div class="cred-item">
+          <div class="cred-number">CSO</div>
+          <div class="cred-label">Chief Strategy Officer</div>
+        </div>
+        <div class="cred-divider"></div>
+        <div class="cred-item">
+          <div class="cred-number">3</div>
+          <div class="cred-label">Universities Taught</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery - Flashy -->
+  <section class="section photo-showcase">
+    <div class="container">
+      <h2 class="section-title text-center">In The Arena With Industry Titans</h2>
+      <p class="section-subtitle text-center">Building relationships with the brightest minds in Search, AI, and Digital</p>
+      <div class="photo-grid">
+        <div class="photo-card photo-card-featured">
+          <div class="photo-wrapper">
+            <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi speaking at Google I/O 2019" />
+            <div class="photo-overlay">
+              <span class="photo-tag">Keynote Speaker</span>
+            </div>
+          </div>
+          <div class="photo-info">
+            <h3>Google I/O 2019</h3>
+            <p>Speaking at Google's flagship developer conference — one of the most prestigious stages in tech</p>
+          </div>
+        </div>
+        <div class="photo-card">
+          <div class="photo-wrapper">
+            <img src="/images/rudra-rand-fishkin.jpeg" alt="Rudra Kasturi with Rand Fishkin, founder of Moz and SparkToro" />
+            <div class="photo-overlay">
+              <span class="photo-tag">MozCon</span>
+            </div>
+          </div>
+          <div class="photo-info">
+            <h3>With Rand Fishkin</h3>
+            <p>Founder of Moz & SparkToro — the godfather of modern SEO</p>
+          </div>
+        </div>
+        <div class="photo-card">
+          <div class="photo-wrapper">
+            <img src="/images/rudra-matt.jpeg" alt="Rudra Kasturi with Matt Cutts, former head of Google Webspam" />
+            <div class="photo-overlay">
+              <span class="photo-tag">Google</span>
+            </div>
+          </div>
+          <div class="photo-info">
+            <h3>With Matt Cutts</h3>
+            <p>Former Head of Google Webspam — the legend who shaped search quality</p>
+          </div>
+        </div>
+        <div class="photo-card">
+          <div class="photo-wrapper">
+            <img src="/images/rudra-john.jpeg" alt="Rudra Kasturi with John Mueller, Google Search Advocate" />
+            <div class="photo-overlay">
+              <span class="photo-tag">Google Search</span>
+            </div>
+          </div>
+          <div class="photo-info">
+            <h3>With John Mueller</h3>
+            <p>Google's Senior Search Analyst & Search Advocate — the voice of Google Search</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about-premium" id="about">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-content">
+          <div class="about-badge">About Me</div>
+          <h2 class="about-headline">The Person to Go to —<br/>From <span class="gradient-text">Search to AI</span></h2>
+          <p class="about-lead">
+            I'm Rudra Kasturi — a global digital strategist, growth architect, and AI pioneer
+            who has spent over 15 years building, scaling, and transforming digital businesses
+            from zero to hundreds of millions of users.
+          </p>
+          <p>
+            I've held C-suite positions as <strong>Chief Growth Officer (CGO)</strong>,
+            <strong>Chief Strategy Officer (CSO)</strong>, and <strong>Co-Founder</strong> across
+            startups and billion-dollar enterprises alike. My expertise spans the full spectrum:
+            from organic search and content strategy to AI-powered products, digital transformation,
+            and startup incubation.
+          </p>
+          <p>
+            I've scaled products to <strong>half a billion users and beyond</strong>, led cross-functional
+            teams across continents, and helped companies unlock exponential growth through
+            the power of search, data, and artificial intelligence.
+          </p>
+          <p>
+            Whether it's a scrappy startup finding product-market fit or a Fortune 500 company
+            reimagining its digital strategy — I'm the person who makes it happen.
+          </p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card">
+            <div class="highlight-icon">&#9733;</div>
+            <h4>Executive Leadership</h4>
+            <p>CGO, CSO, Co-Founder — led growth at scale across startups & enterprises</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">&#9775;</div>
+            <h4>Search & AI Pioneer</h4>
+            <p>From SEO to GenAI — pioneering the intersection of search and artificial intelligence</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">&#9889;</div>
+            <h4>500M+ Users Scaled</h4>
+            <p>Built and scaled products reaching half a billion users globally</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">&#127758;</div>
+            <h4>Global Impact</h4>
+            <p>Worked across India, US, and international markets building world-class digital products</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Section -->
+  <section class="section founder-section">
+    <div class="container">
+      <h2 class="section-title text-center">Founder & Builder</h2>
+      <p class="section-subtitle text-center">Building companies that create real impact</p>
+      <div class="founder-grid">
+        <a href="https://aividhyarthi.org" target="_blank" rel="noopener" class="founder-card">
+          <div class="founder-logo-text">AIVidhyaRthi</div>
+          <p>AI-powered education platform — democratizing learning through artificial intelligence</p>
+          <span class="founder-link">aividhyarthi.org &rarr;</span>
+        </a>
+        <a href="https://appstudiox.com" target="_blank" rel="noopener" class="founder-card">
+          <div class="founder-logo-text">AppStudioX</div>
+          <p>Product studio building next-generation apps and digital experiences</p>
+          <span class="founder-link">appstudiox.com &rarr;</span>
+        </a>
+        <a href="https://hermidlife.com" target="_blank" rel="noopener" class="founder-card">
+          <div class="founder-logo-text">HerMidLife</div>
+          <p>Empowering women through content, community, and curated experiences</p>
+          <span class="founder-link">hermidlife.com &rarr;</span>
+        </a>
+        <div class="founder-card founder-card-accent">
+          <div class="founder-logo-text">Rudra Kasturi Inc.</div>
+          <p>Strategic consulting — helping businesses scale from zero to millions through digital, search, and AI</p>
+          <span class="founder-link">Consulting &amp; Advisory</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Speaking & Thought Leadership -->
+  <section class="section speaking-section">
+    <div class="container">
+      <h2 class="section-title text-center">Speaker & Thought Leader</h2>
+      <p class="section-subtitle text-center">Sharing knowledge on the world's biggest stages</p>
+      <div class="speaking-grid">
+        <div class="speaking-card speaking-featured">
+          <div class="speaking-video">
+            <a href="https://www.youtube.com/watch?v=3As9NibdIjk" target="_blank" rel="noopener" class="video-thumb">
+              <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi at Google I/O" />
+              <div class="play-button">&#9654;</div>
+            </a>
+          </div>
+          <div class="speaking-info">
+            <span class="speaking-tag">Featured Talk</span>
+            <h3>Google I/O 2019</h3>
+            <p>Speaking at Google's premier developer conference on search, AI, and the future of digital</p>
+            <a href="https://www.youtube.com/watch?v=3As9NibdIjk" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Watch on YouTube &rarr;</a>
+          </div>
+        </div>
+        <div class="speaking-list">
+          <div class="speaking-item">
+            <div class="speaking-item-icon">&#127911;</div>
+            <div>
+              <h4>Google I/O</h4>
+              <p>Keynote speaker at Google's flagship developer conference</p>
+            </div>
+          </div>
+          <div class="speaking-item">
+            <div class="speaking-item-icon">&#127891;</div>
+            <div>
+              <h4>Industry Conferences</h4>
+              <p>Regular speaker at global search, AI, and digital marketing summits</p>
+            </div>
+          </div>
+          <div class="speaking-item">
+            <div class="speaking-item-icon">&#128218;</div>
+            <div>
+              <h4>University Guest Faculty</h4>
+              <p>Teaching Digital & AI at Times Bennett University, ITMI, and Masters' Union</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaching & Writing -->
+  <section class="section credentials-section">
+    <div class="container">
+      <div class="credentials-grid">
+        <div class="credential-block">
+          <h3 class="credential-heading">Educator & Faculty</h3>
+          <p class="credential-desc">Shaping the next generation of digital leaders</p>
+          <ul class="credential-list">
+            <li>
+              <strong>Times Bennett University</strong>
+              <span>Digital Marketing & AI</span>
+            </li>
+            <li>
+              <strong>ITMI</strong>
+              <span>Media, AI & Digital Strategy</span>
+            </li>
+            <li>
+              <strong>Masters' Union</strong>
+              <span>Generative AI</span>
+            </li>
+          </ul>
+        </div>
+        <div class="credential-block">
+          <h3 class="credential-heading">Writer & Columnist</h3>
+          <p class="credential-desc">Published in leading global media organizations</p>
+          <ul class="credential-list">
+            <li>
+              <strong>INMA</strong>
+              <span>International News Media Association</span>
+            </li>
+            <li>
+              <strong>Times of India</strong>
+              <span>India's largest English daily</span>
+            </li>
+            <li>
+              <strong>CNTI.org</strong>
+              <span>Center for News, Technology & Innovation</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Posts -->
+  <section class="section" id="blog">
+    <div class="container">
+      <h2 class="section-title text-center">Latest From The Blog</h2>
+      <p class="section-subtitle text-center">Insights on AI, Search, Digital Strategy, and Building at Scale</p>
 
       {featuredPosts.length > 0 ? (
         <div class="posts-grid">
@@ -56,53 +360,38 @@ try {
           })}
         </div>
       ) : (
-        <p class="section-subtitle">Posts are loading... Check back soon!</p>
+        <p class="section-subtitle text-center">Posts are loading... Check back soon!</p>
       )}
 
       <div class="view-all">
-        <a href="/blog" class="btn btn-outline" style="margin-top: 1.5rem;">View All Posts &rarr;</a>
+        <a href="/blog" class="btn btn-primary btn-glow" style="margin-top: 2rem;">Read All Posts &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="section" id="about">
+  <!-- Contact Section -->
+  <section class="section contact-section" id="contact">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section-title">About Me</h2>
-          <h3>Builder. Learner. Writer.</h3>
+      <div class="contact-card">
+        <div class="contact-content">
+          <h2>Let's Build Something <span class="gradient-text">Extraordinary</span></h2>
           <p>
-            I'm Rudra Kasturi — passionate about AI, cloud technologies, and
-            solving real-world problems through code. This blog is where I share
-            my thoughts, projects, and things I find interesting.
+            Whether you need a growth strategist, an AI advisor, a keynote speaker, or a co-founder
+            — I'd love to hear from you. Let's connect and create impact together.
           </p>
-          <p>
-            When I'm not coding, you'll find me exploring new tech, contributing
-            to open source, or diving into research papers.
-          </p>
-          <div class="social-links">
-            <a href="https://github.com/aividhyarthi" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://linkedin.com/in/rudrakasturi" target="_blank" rel="noopener">LinkedIn</a>
+          <div class="contact-links">
+            <a href="https://linkedin.com/in/rudrakasturi" target="_blank" rel="noopener" class="btn btn-primary btn-glow">Connect on LinkedIn</a>
+            <a href="https://github.com/aividhyarthi" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+            <a href="https://twitter.com/rudrakasturi" target="_blank" rel="noopener" class="btn btn-outline">Twitter / X</a>
           </div>
         </div>
-        <div class="about-stats">
-          <div class="stat-card">
-            <div class="stat-number">{totalPosts}+</div>
-            <div class="stat-label">Blog Posts</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">AI</div>
-            <div class="stat-label">Focus Area</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">Open</div>
-            <div class="stat-label">Source Contributor</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">&infin;</div>
-            <div class="stat-label">Curiosity</div>
-          </div>
+        <div class="contact-roles">
+          <div class="role-chip">Keynote Speaker</div>
+          <div class="role-chip">AI Strategy Advisor</div>
+          <div class="role-chip">Growth Consulting</div>
+          <div class="role-chip">Digital Transformation</div>
+          <div class="role-chip">Startup Mentorship</div>
+          <div class="role-chip">Guest Faculty</div>
         </div>
       </div>
     </div>
