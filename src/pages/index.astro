@@ -1,14 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getPosts, stripHtml, formatDate, getFirstTag } from '../lib/wordpress';
 
-const allPosts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-const featuredPosts = allPosts.slice(0, 3);
+let featuredPosts = [];
+let totalPosts = 0;
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+try {
+  const { posts } = await getPosts(1, 3);
+  featuredPosts = posts;
+  totalPosts = posts.length;
+} catch (e) {
+  console.error('Failed to fetch posts from WordPress:', e);
 }
 ---
 
@@ -37,16 +39,26 @@ function formatDate(date: Date) {
     <div class="container">
       <h2 class="section-title">Latest Posts</h2>
       <p class="section-subtitle">What I've been writing about recently</p>
-      <div class="posts-grid">
-        {featuredPosts.map((post) => (
-          <article class="post-card">
-            {post.data.tags[0] && <span class="tag">{post.data.tags[0]}</span>}
-            <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
-            <p>{post.data.description}</p>
-            <span class="post-meta">{formatDate(post.data.pubDate)}</span>
-          </article>
-        ))}
-      </div>
+
+      {featuredPosts.length > 0 ? (
+        <div class="posts-grid">
+          {featuredPosts.map((post) => {
+            const tag = getFirstTag(post);
+            const excerpt = stripHtml(post.excerpt.rendered);
+            return (
+              <article class="post-card">
+                {tag && <span class="tag">{tag}</span>}
+                <h3><a href={`/blog/${post.slug}`} set:html={post.title.rendered} /></h3>
+                <p>{excerpt.length > 150 ? excerpt.slice(0, 150) + '...' : excerpt}</p>
+                <span class="post-meta">{formatDate(post.date)}</span>
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <p class="section-subtitle">Posts are loading... Check back soon!</p>
+      )}
+
       <div class="view-all">
         <a href="/blog" class="btn btn-outline" style="margin-top: 1.5rem;">View All Posts &rarr;</a>
       </div>
@@ -76,7 +88,7 @@ function formatDate(date: Date) {
         </div>
         <div class="about-stats">
           <div class="stat-card">
-            <div class="stat-number">{allPosts.length}</div>
+            <div class="stat-number">{totalPosts}+</div>
             <div class="stat-label">Blog Posts</div>
           </div>
           <div class="stat-card">

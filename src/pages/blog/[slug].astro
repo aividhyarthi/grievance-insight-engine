@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPostBySlug, formatDate, getFirstTag, stripHtml } from '../../lib/wordpress';
+
+const { slug } = Astro.params;
+const post = await getPostBySlug(slug!);
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+const tag = getFirstTag(post);
+const description = stripHtml(post.excerpt.rendered).slice(0, 160);
+---
+
+<BaseLayout title={`${stripHtml(post.title.rendered)} — Rudra Kasturi`} description={description}>
+  <div class="container">
+    <div class="post-header">
+      <a href="/blog" class="back-link">&larr; Back to all posts</a>
+      <h1 set:html={post.title.rendered} />
+      <p class="post-meta">
+        Published on {formatDate(post.date)}
+        {post.modified !== post.date && <span> · Updated {formatDate(post.modified)}</span>}
+      </p>
+      {tag && (
+        <div class="post-tags">
+          <span class="tag">{tag}</span>
+        </div>
+      )}
+    </div>
+    <article class="post-content" set:html={post.content.rendered} />
+  </div>
+</BaseLayout>

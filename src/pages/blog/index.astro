@@ -1,13 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getPosts, stripHtml, formatDate, getFirstTag } from '../../lib/wordpress';
 
-const allPosts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const page = Number(Astro.url.searchParams.get('page')) || 1;
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+let allPosts = [];
+let totalPages = 1;
+
+try {
+  const result = await getPosts(page, 12);
+  allPosts = result.posts;
+  totalPages = result.totalPages;
+} catch (e) {
+  console.error('Failed to fetch posts from WordPress:', e);
 }
 ---
 
@@ -17,15 +22,46 @@ function formatDate(date: Date) {
       <h1>Blog</h1>
       <p>All my posts in one place. Thoughts on tech, AI, and building things.</p>
     </div>
-    <div class="posts-grid" style="padding-bottom: 4rem;">
-      {allPosts.map((post) => (
-        <article class="post-card">
-          {post.data.tags[0] && <span class="tag">{post.data.tags[0]}</span>}
-          <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
-          <p>{post.data.description}</p>
-          <span class="post-meta">{formatDate(post.data.pubDate)}</span>
-        </article>
-      ))}
-    </div>
+
+    {allPosts.length > 0 ? (
+      <div class="posts-grid" style="padding-bottom: 2rem;">
+        {allPosts.map((post) => {
+          const tag = getFirstTag(post);
+          const excerpt = stripHtml(post.excerpt.rendered);
+          return (
+            <article class="post-card">
+              {tag && <span class="tag">{tag}</span>}
+              <h3><a href={`/blog/${post.slug}`} set:html={post.title.rendered} /></h3>
+              <p>{excerpt.length > 150 ? excerpt.slice(0, 150) + '...' : excerpt}</p>
+              <span class="post-meta">{formatDate(post.date)}</span>
+            </article>
+          );
+        })}
+      </div>
+    ) : (
+      <p class="section-subtitle" style="text-align:center; padding: 4rem 0;">No posts found. Check back soon!</p>
+    )}
+
+    {totalPages > 1 && (
+      <nav class="pagination">
+        {page > 1 && <a href={`/blog?page=${page - 1}`} class="btn btn-outline">&larr; Newer</a>}
+        <span class="pagination-info">Page {page} of {totalPages}</span>
+        {page < totalPages && <a href={`/blog?page=${page + 1}`} class="btn btn-outline">Older &rarr;</a>}
+      </nav>
+    )}
   </div>
 </BaseLayout>
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 0 4rem;
+  }
+  .pagination-info {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+</style>
