@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const featuredPosts = allPosts.slice(0, 3);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout title="Rudra Kasturi — Blog & Portfolio">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero-tagline">Welcome to my corner of the internet</p>
+      <h1>
+        Hi, I'm <span class="gradient-text">Rudra Kasturi</span>.<br />
+        I write about tech & ideas.
+      </h1>
+      <p>
+        Exploring AI, cloud computing, and building things that matter.
+        Sharing what I learn along the way.
+      </p>
+      <div class="hero-buttons">
+        <a href="/blog" class="btn btn-primary">Read the Blog</a>
+        <a href="#about" class="btn btn-outline">About Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Posts -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Latest Posts</h2>
+      <p class="section-subtitle">What I've been writing about recently</p>
+      <div class="posts-grid">
+        {featuredPosts.map((post) => (
+          <article class="post-card">
+            {post.data.tags[0] && <span class="tag">{post.data.tags[0]}</span>}
+            <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+            <p>{post.data.description}</p>
+            <span class="post-meta">{formatDate(post.data.pubDate)}</span>
+          </article>
+        ))}
+      </div>
+      <div class="view-all">
+        <a href="/blog" class="btn btn-outline" style="margin-top: 1.5rem;">View All Posts &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title">About Me</h2>
+          <h3>Builder. Learner. Writer.</h3>
+          <p>
+            I'm Rudra Kasturi — passionate about AI, cloud technologies, and
+            solving real-world problems through code. This blog is where I share
+            my thoughts, projects, and things I find interesting.
+          </p>
+          <p>
+            When I'm not coding, you'll find me exploring new tech, contributing
+            to open source, or diving into research papers.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com/aividhyarthi" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://linkedin.com/in/rudrakasturi" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number">{allPosts.length}</div>
+            <div class="stat-label">Blog Posts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">AI</div>
+            <div class="stat-label">Focus Area</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">Open</div>
+            <div class="stat-label">Source Contributor</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">&infin;</div>
+            <div class="stat-label">Curiosity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
