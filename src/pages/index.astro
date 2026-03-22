@@ -251,6 +251,40 @@ try {
           <p>
             And I teach. Because the next generation doesn't need theory. It needs operators.
           </p>
+
+          <!-- Infographic Strip -->
+          <div class="infographic-strip">
+            <div class="infographic-item">
+              <div class="infographic-bar" style="--bar-width: 95%">
+                <span class="infographic-label">Search & SEO</span>
+                <span class="infographic-value">20 yrs</span>
+              </div>
+            </div>
+            <div class="infographic-item">
+              <div class="infographic-bar" style="--bar-width: 85%">
+                <span class="infographic-label">AI & ML Strategy</span>
+                <span class="infographic-value">8 yrs</span>
+              </div>
+            </div>
+            <div class="infographic-item">
+              <div class="infographic-bar" style="--bar-width: 90%">
+                <span class="infographic-label">Growth & Scale</span>
+                <span class="infographic-value">500M+ users</span>
+              </div>
+            </div>
+            <div class="infographic-item">
+              <div class="infographic-bar" style="--bar-width: 75%">
+                <span class="infographic-label">Advisory & Consulting</span>
+                <span class="infographic-value">15+ brands</span>
+              </div>
+            </div>
+            <div class="infographic-item">
+              <div class="infographic-bar" style="--bar-width: 70%">
+                <span class="infographic-label">Teaching & EdTech</span>
+                <span class="infographic-value">40K+ students</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="about-highlights">
           <div class="highlight-card">
@@ -286,18 +320,18 @@ try {
       <div class="founder-grid">
         <a href="https://aividhyarthi.org" target="_blank" rel="noopener" class="founder-card">
           <div class="founder-logo-text">AIVidhyaRthi</div>
-          <p>AI-powered education platform. Democratizing learning through artificial intelligence.</p>
+          <p>AI-first EdTech platform training 40,000+ students and working professionals in Generative AI, prompt engineering, and applied machine learning.</p>
           <span class="founder-link">aividhyarthi.org &rarr;</span>
         </a>
         <a href="https://appstudiox.com" target="_blank" rel="noopener" class="founder-card">
           <div class="founder-logo-text">AppStudioX</div>
-          <p>Product studio building next-generation apps and digital experiences.</p>
+          <p>Full-stack product studio that designs, builds, and scales web and mobile apps — from MVP to enterprise-grade digital products.</p>
           <span class="founder-link">appstudiox.com &rarr;</span>
         </a>
-        <a href="https://hermidlife.com" target="_blank" rel="noopener" class="founder-card">
+        <a href="https://hermidlife.com.au" target="_blank" rel="noopener" class="founder-card">
           <div class="founder-logo-text">HerMidLife</div>
-          <p>Empowering women through content, community, and curated experiences.</p>
-          <span class="founder-link">hermidlife.com &rarr;</span>
+          <p>Australia's community platform for women navigating midlife — health, wellness, career pivots, and living boldly after 40.</p>
+          <span class="founder-link">hermidlife.com.au &rarr;</span>
         </a>
         <div class="founder-card founder-card-accent">
           <div class="founder-logo-text">Rudra Kasturi Inc.</div>
@@ -437,7 +471,7 @@ try {
             return (
               <article class="post-card">
                 {tag && <span class="tag">{tag}</span>}
-                <h3><a href={`/blog/${post.slug}`} set:html={post.title.rendered} /></h3>
+                <h3><a href={`https://blog.rudrakasturi.com/blog/${post.slug}`} set:html={post.title.rendered} /></h3>
                 <p>{excerpt.length > 150 ? excerpt.slice(0, 150) + '...' : excerpt}</p>
                 <span class="post-meta">{formatDate(post.date)}</span>
               </article>
@@ -449,7 +483,7 @@ try {
       )}
 
       <div class="view-all">
-        <a href="/blog" class="btn btn-primary btn-glow" style="margin-top: 2rem;">Read All Posts &rarr;</a>
+        <a href="https://blog.rudrakasturi.com/blog" class="btn btn-primary btn-glow" style="margin-top: 2rem;">Read All Posts &rarr;</a>
       </div>
     </div>
   </section>
