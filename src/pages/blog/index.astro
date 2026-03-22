@@ -31,7 +31,7 @@ try {
           return (
             <article class="post-card">
               {tag && <span class="tag">{tag}</span>}
-              <h3><a href={`https://blog.rudrakasturi.com/blog/${post.slug}`} set:html={post.title.rendered} /></h3>
+              <h3><a href={`https://blog.rudrakasturi.com/${post.slug}/`} set:html={post.title.rendered} /></h3>
               <p>{excerpt.length > 150 ? excerpt.slice(0, 150) + '...' : excerpt}</p>
               <span class="post-meta">{formatDate(post.date)}</span>
             </article>
