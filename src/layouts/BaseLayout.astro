@@ -4,7 +4,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Rudra Kasturi | Global Digital & AI Leader | CSO, SVP, Founder | Search, AI & Growth" } = Astro.props;
+const { title, description = "DriveEase India - Premium Doorstep Car Servicing | Pickup, Service & Delivery Across India" } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -23,12 +23,14 @@ const currentPath = Astro.url.pathname;
   <body>
     <nav class="navbar">
       <div class="container">
-        <a href="/" class="navbar-brand">Rudra Kasturi <span>Inc.</span></a>
+        <a href="/" class="navbar-brand">Drive<span>Ease</span></a>
         <ul class="navbar-links">
           <li><a href="/" class:list={[{ active: currentPath === '/' }]}>Home</a></li>
-          <li><a href="/blog" class:list={[{ active: currentPath.startsWith('/blog') }]}>Blog</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/#comparison">Why Us</a></li>
+          <li><a href="/get-quote" class="cta-link">Get Free Quote</a></li>
         </ul>
       </div>
     </nav>
@@ -39,7 +41,44 @@ const currentPath = Astro.url.pathname;
 
     <footer class="footer">
       <div class="container">
-        <p>&copy; {new Date().getFullYear()} Rudra Kasturi. All rights reserved.</p>
+        <div class="footer-grid">
+          <div>
+            <h4>DriveEase India</h4>
+            <p>India's most trusted doorstep car servicing platform. We pick up your car, service it at certified garages, and deliver it back — spotless and on time.</p>
+          </div>
+          <div>
+            <h4>Services</h4>
+            <ul>
+              <li><a href="/#services">Basic Service</a></li>
+              <li><a href="/#services">Full Service</a></li>
+              <li><a href="/#services">AC Service</a></li>
+              <li><a href="/#services">Denting & Painting</a></li>
+              <li><a href="/#services">Insurance Claims</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/#how-it-works">How It Works</a></li>
+              <li><a href="/#comparison">Why DriveEase</a></li>
+              <li><a href="/get-quote">Get a Quote</a></li>
+              <li><a href="/#testimonials">Reviews</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Top Cities</h4>
+            <ul>
+              <li><a href="/#cities">Mumbai</a></li>
+              <li><a href="/#cities">Delhi NCR</a></li>
+              <li><a href="/#cities">Bangalore</a></li>
+              <li><a href="/#cities">Hyderabad</a></li>
+              <li><a href="/#cities">Chennai</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} DriveEase India. All rights reserved. | Trusted by 50,000+ car owners across India</p>
+        </div>
       </div>
     </footer>
   </body>

@@ -1,527 +1,652 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getPosts, stripHtml, formatDate, getFirstTag } from '../lib/wordpress';
-
-let featuredPosts = [];
-let totalPosts = 0;
-
-try {
-  const { posts } = await getPosts(1, 6);
-  featuredPosts = posts;
-  totalPosts = posts.length;
-} catch (e) {
-  console.error('Failed to fetch posts from WordPress:', e);
-}
 ---
 
-<BaseLayout title="Rudra Kasturi | Search, AI & Growth | Ex-Amazon, Yahoo, BYJU's, India Today | CSO">
-  <!-- Hero Section -->
-  <section class="hero-premium">
-    <div class="hero-bg-effects">
-      <div class="hero-orb hero-orb-1"></div>
-      <div class="hero-orb hero-orb-2"></div>
-      <div class="hero-orb hero-orb-3"></div>
-      <div class="hero-grid-overlay"></div>
-    </div>
-    <div class="container hero-content">
-      <div class="hero-left">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Search. Strategy. AI. Growth. Revenue. Coach. Farmer.
-        </div>
-        <h1>
-          <span class="hero-line-1"><span class="gradient-text-hero">Rudra Kasturi</span></span>
-          <span class="hero-line-2">Search, AI & Growth</span>
-          <span class="hero-line-3">Built, Scaled, <span class="gradient-text-hero">Proven.</span></span>
-        </h1>
-        <p class="hero-desc">
-          Twenty years scaling digital businesses to hundreds of millions of users.
-          From building <strong>Amazon India's</strong> search foundation to driving 10X growth at
-          <strong>Times Group</strong> and leading growth at <strong>BYJU's</strong>.
-          <br/><br/>
-          I work on problems where scale, search, and AI decide the outcome.
-        </p>
+<BaseLayout title="DriveEase India | #1 Doorstep Car Servicing - Pickup, Service & Delivery">
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Serving 50+ Cities Across India</div>
+        <h1>Your Car Deserves a <span class="highlight">5-Star Service</span> Without You Leaving Home</h1>
+        <p>We pick up your car from your doorstep, get it serviced at certified garages by expert mechanics, and deliver it back — spotless, on time, and at 40% less than dealership prices.</p>
         <div class="hero-buttons">
-          <a href="/blog" class="btn btn-primary btn-glow">Read My Blog</a>
-          <a href="#about" class="btn btn-outline">Discover My Story</a>
-          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+          <a href="/get-quote" class="btn-primary">Get Free Quote</a>
+          <a href="#how-it-works" class="btn-outline">See How It Works</a>
         </div>
-        <div class="hero-logos">
-          <span class="hero-logos-label">Worked With & Featured At</span>
-          <div class="logo-strip">
-            <span class="logo-tag">Amazon</span>
-            <span class="logo-tag">Yahoo</span>
-            <span class="logo-tag">Google I/O</span>
-            <span class="logo-tag">Times Group</span>
-            <span class="logo-tag">BYJU's</span>
-            <span class="logo-tag">India Today</span>
-            <span class="logo-tag">Tencent</span>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="number">50,000+</span>
+            <span class="label">Cars Serviced</span>
+          </div>
+          <div class="hero-stat">
+            <span class="number">4.8/5</span>
+            <span class="label">Customer Rating</span>
+          </div>
+          <div class="hero-stat">
+            <span class="number">50+</span>
+            <span class="label">Cities</span>
+          </div>
+          <div class="hero-stat">
+            <span class="number">2,000+</span>
+            <span class="label">Expert Mechanics</span>
           </div>
         </div>
       </div>
-      <div class="hero-right">
-        <div class="hero-image-wrapper">
-          <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi speaking at Google I/O 2019" class="hero-main-image" />
-          <div class="hero-image-badge">
-            <span>Speaker</span>
-            Google I/O '19
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Credibility Bar -->
-  <section class="credibility-bar">
-    <div class="container">
-      <div class="cred-scroll">
-        <div class="cred-item">
-          <div class="cred-number">500M+</div>
-          <div class="cred-label">Users Reached</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">20+</div>
-          <div class="cred-label">Years in Digital</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">4</div>
-          <div class="cred-label">Companies Founded</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">CSO</div>
-          <div class="cred-label">Chief Strategy Officer</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">SVP</div>
-          <div class="cred-label">Senior Vice President</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">3</div>
-          <div class="cred-label">Universities Taught</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Career Timeline / Companies -->
-  <section class="section career-section">
-    <div class="container">
-      <h2 class="section-title text-center">The Track Record</h2>
-      <p class="section-subtitle text-center">Every engagement has produced measurable, step-change growth. Here's what that looks like in practice.</p>
-      <div class="career-grid">
-        <div class="career-card">
-          <div class="career-role">Chief Strategy Officer</div>
-          <div class="career-company">India Today Group</div>
-          <p>Driving AI-first transformation across editorial, distribution, and monetisation. Building new revenue streams and restructuring digital infrastructure for scale.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">VP & Head of Audience Growth</div>
-          <div class="career-company">Times Internet (Times Group)</div>
-          <p>Led the largest SEO and audience growth transformation in the company's history. Scaled multiple properties to category-leading positions across comScore rankings.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">Senior Vice President, Growth</div>
-          <div class="career-company">BYJU's</div>
-          <p>Led growth across India and international markets during peak scale phase. Owned acquisition, retention, and expansion strategy.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">SEO Director</div>
-          <div class="career-company">Snapdeal</div>
-          <p>Led organic search strategy during hypergrowth, building scalable SEO systems for one of India's top e-commerce platforms.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">SEO Head</div>
-          <div class="career-company">Amazon India</div>
-          <p>Built Amazon India's organic search presence from the ground up, establishing foundational SEO infrastructure at scale.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">SEO Head, India, SE Asia & Middle East</div>
-          <div class="career-company">Yahoo</div>
-          <p>Led search strategy across three regions, driving visibility and growth for one of the internet's defining platforms.</p>
-        </div>
-      </div>
-      <div class="career-advisory">
-        <h3 class="text-center">Advisory & Consulting</h3>
-        <div class="advisory-strip">
-          <span class="advisory-tag">Tencent Group / Growth Consultant</span>
-          <span class="advisory-tag">CRED / Advisor</span>
-          <span class="advisory-tag">Antler India / Growth Advisor</span>
-          <span class="advisory-tag">Haptik Group / Advisor</span>
-          <span class="advisory-tag">Tasva (Aditya Birla) / Consultant</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Photo Gallery -->
-  <section class="section photo-showcase">
-    <div class="container">
-      <h2 class="section-title text-center">You're Known By The Company You Keep</h2>
-      <p class="section-subtitle text-center">Two decades in the game means knowing the people who built the internet.</p>
-      <div class="photo-grid">
-        <div class="photo-card photo-card-featured">
-          <div class="photo-wrapper">
-            <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi speaking at Google I/O 2019" />
-            <div class="photo-overlay">
-              <span class="photo-tag">Keynote Speaker</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>Google I/O 2019</h3>
-            <p>Featured ET & Gaana for Progressive Web Apps at Google's premier developer conference</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <div class="photo-wrapper">
-            <img src="/images/rudra-rand-fishkin.jpeg" alt="Rudra Kasturi with Rand Fishkin, founder of Moz and SparkToro" />
-            <div class="photo-overlay">
-              <span class="photo-tag">MozCon</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>With Rand Fishkin</h3>
-            <p>Founder of Moz & SparkToro. The godfather of modern SEO.</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <div class="photo-wrapper">
-            <img src="/images/rudra-matt.jpeg" alt="Rudra Kasturi with Matt Cutts, former head of Google Webspam" />
-            <div class="photo-overlay">
-              <span class="photo-tag">Google</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>With Matt Cutts</h3>
-            <p>Former Head of Google Webspam. The legend who shaped search quality.</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <div class="photo-wrapper">
-            <img src="/images/rudra-john.jpeg" alt="Rudra Kasturi with John Mueller, Google Search Advocate" />
-            <div class="photo-overlay">
-              <span class="photo-tag">Google Search</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>With John Mueller</h3>
-            <p>Google's Senior Search Analyst & Search Advocate. The voice of Google Search.</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <div class="photo-wrapper">
-            <img src="/images/farmer-rudra.jpeg" alt="Rudra Kasturi on his farm" />
-            <div class="photo-overlay">
-              <span class="photo-tag">The Farm Life</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>Beyond the Boardroom</h3>
-            <p>When not scaling businesses, farming keeps things real. Patience, soil, and long games.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="section about-premium" id="about">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-content">
-          <div class="about-badge">About</div>
-          <h2 class="about-headline">What I <span class="gradient-text">Actually Do</span></h2>
-          <p class="about-lead">
-            I've spent two decades at the intersection of search, AI, and growth, as the person accountable for results.
-          </p>
-          <p>
-            From building <strong>Amazon India's</strong> organic search from scratch to scaling
-            <strong>Times Group</strong> properties to category-leading positions, to owning growth
-            at <strong>BYJU's</strong>, the mandate has always been the same: identify the ceiling, then remove it.
-          </p>
-          <p>
-            I also advise companies including <strong>Tencent</strong>, <strong>CRED</strong>,
-            <strong>Antler India</strong>, <strong>Haptik</strong>, and
-            <strong>Tasva (Aditya Birla Group)</strong>, across stages from Series A to enterprise scale.
-          </p>
-          <p>
-            And I teach. Because the next generation doesn't need theory. It needs operators.
-          </p>
-
-          <!-- Infographic Strip -->
-          <div class="infographic-strip">
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 95%">
-                <span class="infographic-label">Search & SEO</span>
-                <span class="infographic-value">22 yrs</span>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <h3>How DriveEase Works</h3>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Book Online</h4>
+                <p>Choose your service & schedule pickup</p>
               </div>
             </div>
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 65%">
-                <span class="infographic-label">AI & ML Strategy</span>
-                <span class="infographic-value">3 yrs</span>
+            <div class="process-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>We Pick Up Your Car</h4>
+                <p>Our driver arrives at your doorstep</p>
               </div>
             </div>
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 90%">
-                <span class="infographic-label">Growth & Scale</span>
-                <span class="infographic-value">500M+ users</span>
+            <div class="process-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Expert Service</h4>
+                <p>Serviced at certified partner garages</p>
               </div>
             </div>
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 75%">
-                <span class="infographic-label">Advisory & Consulting</span>
-                <span class="infographic-value">15+ brands</span>
-              </div>
-            </div>
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 70%">
-                <span class="infographic-label">Teaching & EdTech</span>
-                <span class="infographic-value">15K+ students</span>
+            <div class="process-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>Delivered Back</h4>
+                <p>Clean car delivered to your door</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="about-highlights">
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9733;</div>
-            <h4>Operator, Not Advisor</h4>
-            <p>CSO, SVP, and VP roles at companies with hundreds of millions of users. The decisions were mine to make and mine to live with.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9775;</div>
-            <h4>Search & AI, Since the Beginning</h4>
-            <p>From early SEO infrastructure at Amazon and Yahoo to AI strategy at India Today. This has been the work for twenty years.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9889;</div>
-            <h4>500M+ Users, Real Platforms</h4>
-            <p>Media, edtech, e-commerce, and entertainment at scale.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#127758;</div>
-            <h4>Global Footprint</h4>
-            <p>India, Southeast Asia, the Middle East, and the US. Across industries, stages, and market conditions.</p>
-          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TRUST BAR ====== -->
+  <section class="trust-bar">
+    <div class="container">
+      <div class="trust-item">
+        <div class="value">40%</div>
+        <div class="desc">Cheaper Than Dealerships</div>
+      </div>
+      <div class="trust-item">
+        <div class="value">FREE</div>
+        <div class="desc">Doorstep Pickup & Drop</div>
+      </div>
+      <div class="trust-item">
+        <div class="value">100%</div>
+        <div class="desc">Genuine Spare Parts</div>
+      </div>
+      <div class="trust-item">
+        <div class="value">1 Year</div>
+        <div class="desc">Service Warranty</div>
+      </div>
+      <div class="trust-item">
+        <div class="value">Live</div>
+        <div class="desc">Service Tracking</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SERVICES ====== -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Car Services</h2>
+        <p>From basic maintenance to major repairs — all with free doorstep pickup and delivery across India</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">🔧</div>
+          <h3>Basic Service</h3>
+          <p>Oil change, oil filter, air filter, coolant top-up, brake inspection, battery check & 15-point inspection.</p>
+          <span class="price">From ₹2,999</span>
+          <span class="time">4-5 Hours</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">⚙️</div>
+          <h3>Comprehensive Service</h3>
+          <p>Everything in basic + spark plugs, fuel filter, transmission fluid, wheel alignment, AC check & 40-point inspection.</p>
+          <span class="price">From ₹5,499</span>
+          <span class="time">6-8 Hours</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">❄️</div>
+          <h3>AC Service & Repair</h3>
+          <p>AC gas top-up, compressor check, condenser cleaning, cabin filter replacement & complete cooling system diagnosis.</p>
+          <span class="price">From ₹1,999</span>
+          <span class="time">2-3 Hours</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">🎨</div>
+          <h3>Denting & Painting</h3>
+          <p>Scratch removal, dent repair, full body painting, bumper repair with colour-matched paint and clear coat finish.</p>
+          <span class="price">From ₹2,499</span>
+          <span class="time">1-3 Days</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">🛞</div>
+          <h3>Tyres & Wheel Care</h3>
+          <p>Tyre replacement (all brands), wheel alignment, wheel balancing, nitrogen filling & tyre rotation service.</p>
+          <span class="price">From ₹999</span>
+          <span class="time">1-2 Hours</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">🔋</div>
+          <h3>Battery & Electrical</h3>
+          <p>Battery replacement (Amaron, Exide, etc.), alternator check, starter motor repair & complete electrical diagnostics.</p>
+          <span class="price">From ₹3,499</span>
+          <span class="time">1-2 Hours</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">✨</div>
+          <h3>Car Detailing & Wash</h3>
+          <p>Interior deep cleaning, exterior polish, ceramic coating, Teflon coating, underbody anti-rust treatment & PPF.</p>
+          <span class="price">From ₹999</span>
+          <span class="time">3-5 Hours</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">📋</div>
+          <h3>Insurance Claims</h3>
+          <p>Cashless insurance claim processing, accident repair management, RSA & complete paperwork handled by us.</p>
+          <span class="price">Cashless</span>
+          <span class="time">3-7 Days</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Founder Section -->
-  <section class="section founder-section">
+  <!-- ====== HOW IT WORKS ====== -->
+  <section class="section section-alt" id="how-it-works">
     <div class="container">
-      <h2 class="section-title text-center">Founder & Builder</h2>
-      <p class="section-subtitle text-center">Building companies that create real impact</p>
-      <div class="founder-grid">
-        <a href="https://aividhyarthi.org" target="_blank" rel="noopener" class="founder-card">
-          <div class="founder-logo-text">AIVidhyaRthi</div>
-          <div class="founder-tagline">Teaching AI to Every Student in Their Own Language</div>
-          <p>We bring AI education to students and teachers in tier 2 &amp; tier 3 cities across India — empowering them to build projects, create startups, and shape their future with cutting-edge AI tools.</p>
-          <div class="founder-stats-row">
-            <div class="founder-stat"><strong>14,122</strong><span>Students Trained</span></div>
-            <div class="founder-stat"><strong>50+</strong><span>Cities Reached</span></div>
-            <div class="founder-stat"><strong>382</strong><span>Teachers Empowered</span></div>
-          </div>
-          <span class="founder-link">aividhyarthi.org &rarr;</span>
-        </a>
-        <a href="https://appstudiox.com" target="_blank" rel="noopener" class="founder-card">
-          <div class="founder-logo-text">AppStudioX</div>
-          <div class="founder-tagline">Dominate Search. Build Authority. Drive Real Growth.</div>
-          <p>Full-service digital growth agency trusted by India's most iconic brands — from media giants to D2C disruptors. We don't just rank you. We make you the authority your audience turns to first.</p>
-          <span class="founder-link">appstudiox.com &rarr;</span>
-        </a>
-        <a href="https://hermidlife.com.au" target="_blank" rel="noopener" class="founder-card">
-          <div class="founder-logo-text">HerMidLife</div>
-          <div class="founder-tagline">Perimenopause care that actually understands you</div>
-          <p>Because "it's just stress" was never the answer. Expert-led symptom tracking, telehealth with specialist practitioners, and personalised ongoing support — designed for the millions of Australian women navigating perimenopause and menopause.</p>
-          <span class="founder-link">hermidlife.com.au &rarr;</span>
-        </a>
-        <div class="founder-card founder-card-accent">
-          <div class="founder-logo-text">Rudra Kasturi Inc.</div>
-          <p>Strategic consulting for enterprises and startups. From search to AI, zero to scale.</p>
-          <span class="founder-link">Consulting &amp; Advisory</span>
+      <div class="section-header">
+        <h2>How DriveEase Works</h2>
+        <p>Get your car serviced in 4 simple steps — without stepping out of your home</p>
+      </div>
+      <div class="how-it-works-grid">
+        <div class="how-step">
+          <div class="step-icon">📱</div>
+          <h3>Book Online</h3>
+          <p>Select your car, choose a service, and pick a convenient time slot</p>
+        </div>
+        <div class="how-step">
+          <div class="step-icon">🚗</div>
+          <h3>Doorstep Pickup</h3>
+          <p>Our trained driver picks up your car from your home or office</p>
+        </div>
+        <div class="how-step">
+          <div class="step-icon">🔧</div>
+          <h3>Expert Service</h3>
+          <p>Your car is serviced at a certified garage with real-time status updates</p>
+        </div>
+        <div class="how-step">
+          <div class="step-icon">✅</div>
+          <h3>Delivered Clean</h3>
+          <p>Sanitised, washed and delivered back to your doorstep — good as new</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Farmer Section -->
-  <section class="section farmer-section">
+  <!-- ====== PRICING ====== -->
+  <section class="section" id="pricing">
     <div class="container">
-      <div class="farmer-layout">
-        <div class="farmer-image-wrapper">
-          <img src="/images/farmer-rudra.jpeg" alt="Rudra Kasturi on his farm" class="farmer-image" />
-        </div>
-        <div class="farmer-content">
-          <h2 class="section-title">Beyond the Boardroom</h2>
-          <p class="farmer-lead">When I'm not working, I'm on the farm.</p>
-          <p>
-            No dashboards. No decks. Just time, soil, and patience.
-          </p>
-          <p>
-            Farming is a long game. You plant, you tend, you wait. The outcome doesn't negotiate.
-          </p>
-          <p>
-            That discipline carries back into everything I build.
-          </p>
-        </div>
+      <div class="section-header">
+        <h2>Transparent Pricing</h2>
+        <p>No hidden charges. No surprises. What you see is what you pay.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Speaking & Thought Leadership -->
-  <section class="section speaking-section">
-    <div class="container">
-      <h2 class="section-title text-center">Speaker & Thought Leader</h2>
-      <p class="section-subtitle text-center">Sharing knowledge on the world's biggest stages</p>
-      <div class="speaking-grid">
-        <div class="speaking-card speaking-featured">
-          <div class="speaking-video">
-            <a href="https://www.youtube.com/watch?v=3As9NibdIjk" target="_blank" rel="noopener" class="video-thumb">
-              <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi at Google I/O" />
-              <div class="play-button">&#9654;</div>
-            </a>
-          </div>
-          <div class="speaking-info">
-            <span class="speaking-tag">Featured Talk</span>
-            <h3>Google I/O 2019</h3>
-            <p>Featured ET & Gaana for Progressive Web Apps at Google's premier developer conference</p>
-            <a href="https://www.youtube.com/watch?v=3As9NibdIjk" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Watch on YouTube &rarr;</a>
-          </div>
-        </div>
-        <div class="speaking-list">
-          <div class="speaking-item">
-            <div class="speaking-item-icon">&#127911;</div>
-            <div>
-              <h4>Google I/O & AMP Conferences</h4>
-              <p>Seasonal speaker at Google's flagship developer and AMP conferences</p>
-            </div>
-          </div>
-          <div class="speaking-item">
-            <div class="speaking-item-icon">&#127891;</div>
-            <div>
-              <h4>MMA Global & Industry Summits</h4>
-              <p>Speaker at Mobile Marketing Association and global digital marketing summits</p>
-            </div>
-          </div>
-          <div class="speaking-item">
-            <div class="speaking-item-icon">&#128218;</div>
-            <div>
-              <h4>University Guest Faculty</h4>
-              <p>Teaching Digital & AI at Bennett University, ITMI, and Masters' Union</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Teaching & Writing -->
-  <section class="section credentials-section">
-    <div class="container">
-      <div class="credentials-grid">
-        <div class="credential-block">
-          <h3 class="credential-heading">Educator & Guest Faculty</h3>
-          <p class="credential-desc">Shaping the next generation of digital leaders</p>
-          <ul class="credential-list">
-            <li>
-              <strong>Times Bennett University</strong>
-              <span>Digital Marketing & AI</span>
-            </li>
-            <li>
-              <strong>ITMI</strong>
-              <span>Media, AI & Digital Strategy</span>
-            </li>
-            <li>
-              <strong>Masters' Union</strong>
-              <span>Generative AI</span>
-            </li>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Essential Care</h3>
+          <div class="price-amount">₹2,999</div>
+          <div class="price-note">Starting price for hatchbacks</div>
+          <ul class="pricing-features">
+            <li>Engine oil + filter change</li>
+            <li>Air filter cleaning</li>
+            <li>Coolant top-up</li>
+            <li>Brake inspection</li>
+            <li>Battery health check</li>
+            <li>15-point inspection</li>
+            <li>Free pickup & delivery</li>
           </ul>
+          <a href="/get-quote" class="btn-primary" style="width: 100%; text-align: center;">Book Now</a>
         </div>
-        <div class="credential-block">
-          <h3 class="credential-heading">Writer & Columnist</h3>
-          <p class="credential-desc">Published in leading global media organizations</p>
-          <ul class="credential-list">
-            <li>
-              <strong>INMA</strong>
-              <span>International News Media Association</span>
-            </li>
-            <li>
-              <strong>Times of India</strong>
-              <span>India's largest English daily</span>
-            </li>
-            <li>
-              <strong>CNTI.org</strong>
-              <span>Center for News, Technology & Innovation</span>
-            </li>
+        <div class="pricing-card featured">
+          <h3>Complete Care</h3>
+          <div class="price-amount">₹5,499</div>
+          <div class="price-note">Starting price for hatchbacks</div>
+          <ul class="pricing-features">
+            <li>Everything in Essential Care</li>
+            <li>Spark plug replacement</li>
+            <li>Fuel filter service</li>
+            <li>Wheel alignment & balancing</li>
+            <li>AC performance check</li>
+            <li>Transmission fluid top-up</li>
+            <li>40-point inspection</li>
+            <li>Interior vacuuming</li>
+            <li>Exterior wash & wax</li>
           </ul>
+          <a href="/get-quote" class="btn-primary" style="width: 100%; text-align: center;">Book Now</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Premium Care</h3>
+          <div class="price-amount">₹8,999</div>
+          <div class="price-note">Starting price for hatchbacks</div>
+          <ul class="pricing-features">
+            <li>Everything in Complete Care</li>
+            <li>Brake pad replacement</li>
+            <li>Clutch inspection</li>
+            <li>Suspension check</li>
+            <li>AC gas top-up</li>
+            <li>Engine flush treatment</li>
+            <li>Underbody inspection</li>
+            <li>Full interior detailing</li>
+            <li>Ceramic wash</li>
+            <li>60-point inspection</li>
+          </ul>
+          <a href="/get-quote" class="btn-primary" style="width: 100%; text-align: center;">Book Now</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Latest Posts -->
-  <section class="section" id="blog">
+  <!-- ====== COMPETITOR COMPARISON ====== -->
+  <section class="section section-alt" id="comparison">
     <div class="container">
-      <h2 class="section-title text-center">Latest From The Blog</h2>
-      <p class="section-subtitle text-center">Insights on AI, Search, Digital Strategy, and Building at Scale</p>
-
-      {featuredPosts.length > 0 ? (
-        <div class="posts-grid">
-          {featuredPosts.map((post) => {
-            const tag = getFirstTag(post);
-            const excerpt = stripHtml(post.excerpt.rendered);
-            return (
-              <article class="post-card">
-                {tag && <span class="tag">{tag}</span>}
-                <h3><a href={`https://blog.rudrakasturi.com/blog/${post.slug}`} set:html={post.title.rendered} /></h3>
-                <p>{excerpt.length > 150 ? excerpt.slice(0, 150) + '...' : excerpt}</p>
-                <span class="post-meta">{formatDate(post.date)}</span>
-              </article>
-            );
-          })}
-        </div>
-      ) : (
-        <p class="section-subtitle text-center">Posts are loading... Check back soon!</p>
-      )}
-
-      <div class="view-all">
-        <a href="https://blog.rudrakasturi.com/blog" class="btn btn-primary btn-glow" style="margin-top: 2rem;">Read All Posts &rarr;</a>
+      <div class="section-header">
+        <h2>How We Compare</h2>
+        <p>See why 50,000+ car owners switched to DriveEase from other service providers</p>
+      </div>
+      <div class="comparison-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="highlight-col">DriveEase</th>
+              <th>GoMechanic</th>
+              <th>MyTVS</th>
+              <th>Pitstop</th>
+              <th>Authorized Dealers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Basic Service Price</strong></td>
+              <td class="highlight-col">₹2,999</td>
+              <td>₹3,199-₹3,999</td>
+              <td>₹3,499-₹4,499</td>
+              <td>₹2,999-₹3,499</td>
+              <td>₹5,000-₹8,000+</td>
+            </tr>
+            <tr>
+              <td><strong>Free Pickup & Drop</strong></td>
+              <td class="highlight-col"><span class="check">Yes (Always)</span></td>
+              <td><span class="check">Yes</span></td>
+              <td><span class="cross">Limited</span></td>
+              <td><span class="check">Yes</span></td>
+              <td><span class="cross">No / ₹500+</span></td>
+            </tr>
+            <tr>
+              <td><strong>Service Delivery Time</strong></td>
+              <td class="highlight-col">4-6 Hours</td>
+              <td>6-8 Hours</td>
+              <td>1-2 Days</td>
+              <td>6-8 Hours</td>
+              <td>1-3 Days</td>
+            </tr>
+            <tr>
+              <td><strong>Live Service Tracking</strong></td>
+              <td class="highlight-col"><span class="check">Real-time Video</span></td>
+              <td><span class="check">Status updates</span></td>
+              <td><span class="cross">No</span></td>
+              <td><span class="check">Status updates</span></td>
+              <td><span class="cross">No</span></td>
+            </tr>
+            <tr>
+              <td><strong>Service Warranty</strong></td>
+              <td class="highlight-col"><span class="check">1 Year / 10,000 km</span></td>
+              <td>1 Month</td>
+              <td>6 Months</td>
+              <td>1 Month</td>
+              <td>Varies</td>
+            </tr>
+            <tr>
+              <td><strong>Genuine Spare Parts</strong></td>
+              <td class="highlight-col"><span class="check">100% OEM/OES</span></td>
+              <td>Mix of OEM & aftermarket</td>
+              <td>OEM</td>
+              <td>Mix</td>
+              <td>OEM</td>
+            </tr>
+            <tr>
+              <td><strong>Cities Covered</strong></td>
+              <td class="highlight-col">50+ Cities</td>
+              <td>30+ Cities</td>
+              <td>20+ Cities</td>
+              <td>10+ Cities</td>
+              <td>City-specific</td>
+            </tr>
+            <tr>
+              <td><strong>Insurance Claim Help</strong></td>
+              <td class="highlight-col"><span class="check">Full Cashless</span></td>
+              <td><span class="check">Yes</span></td>
+              <td><span class="check">Yes</span></td>
+              <td><span class="cross">Limited</span></td>
+              <td><span class="check">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Post-Service Car Wash</strong></td>
+              <td class="highlight-col"><span class="check">Free (Always)</span></td>
+              <td><span class="check">Free</span></td>
+              <td><span class="cross">Paid</span></td>
+              <td><span class="check">Free</span></td>
+              <td><span class="cross">Paid</span></td>
+            </tr>
+            <tr>
+              <td><strong>Customer Rating</strong></td>
+              <td class="highlight-col">4.8/5</td>
+              <td>4.2/5</td>
+              <td>4.0/5</td>
+              <td>4.3/5</td>
+              <td>3.5/5</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="section contact-section" id="contact">
+  <!-- ====== USPs ====== -->
+  <section class="section section-dark" id="why-us">
     <div class="container">
-      <div class="contact-card">
-        <div class="contact-content">
-          <h2>Let's <span class="gradient-text">Talk</span></h2>
-          <p>
-            If you're working on a problem where search, AI, or growth will determine the outcome, reach out.
-            I take on a limited number of engagements and respond personally to serious inquiries.
-          </p>
-          <div class="contact-links">
-            <a href="https://linkedin.com/in/rudrakasturi" target="_blank" rel="noopener" class="btn btn-primary btn-glow">Connect on LinkedIn</a>
-            <a href="https://github.com/aividhyarthi" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
-            <a href="https://twitter.com/kasturitagore" target="_blank" rel="noopener" class="btn btn-outline">Twitter / X</a>
+      <div class="section-header">
+        <h2>Why 50,000+ Car Owners Trust DriveEase</h2>
+        <p>We're not just another car service aggregator — we're reimagining how India gets its cars serviced</p>
+      </div>
+      <div class="usp-grid">
+        <div class="usp-card">
+          <div class="icon">🎥</div>
+          <h3>Live Video Updates</h3>
+          <p>Watch your car being serviced in real-time through our app. No more wondering what's happening at the garage. Full transparency, zero guesswork.</p>
+        </div>
+        <div class="usp-card">
+          <div class="icon">🏷️</div>
+          <h3>Price Match Guarantee</h3>
+          <p>Found a lower price for the same service? We'll match it and give you an additional 10% off. No questions asked — we stand behind our pricing.</p>
+        </div>
+        <div class="usp-card">
+          <div class="icon">🛡️</div>
+          <h3>1-Year Service Warranty</h3>
+          <p>While competitors offer 30 days, we back every service with a full 1-year or 10,000 km warranty. Industry-leading confidence in our work quality.</p>
+        </div>
+        <div class="usp-card">
+          <div class="icon">🚘</div>
+          <h3>Free Courtesy Car</h3>
+          <p>Need your car for more than a day? We provide a free courtesy car so you're never stranded. The only service provider in India offering this.</p>
+        </div>
+        <div class="usp-card">
+          <div class="icon">📊</div>
+          <h3>Digital Health Report</h3>
+          <p>Receive a detailed digital car health report with photos after every service. Track your car's condition over time. No upselling — just honest assessments.</p>
+        </div>
+        <div class="usp-card">
+          <div class="icon">🌙</div>
+          <h3>Night Owl Service</h3>
+          <p>India's first after-hours car service. Book pickups between 8 PM - 6 AM and wake up to a fully serviced car. Perfect for busy professionals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CITIES ====== -->
+  <section class="section" id="cities">
+    <div class="container">
+      <div class="section-header">
+        <h2>Available Across India</h2>
+        <p>DriveEase operates in 50+ cities and rapidly expanding. Find us in your city.</p>
+      </div>
+      <div class="cities-grid">
+        <div class="city-card">
+          <div class="city-icon">🏙️</div>
+          <h3>Mumbai</h3>
+          <p>200+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🏛️</div>
+          <h3>Delhi NCR</h3>
+          <p>250+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">💻</div>
+          <h3>Bangalore</h3>
+          <p>180+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🏰</div>
+          <h3>Hyderabad</h3>
+          <p>150+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🎭</div>
+          <h3>Chennai</h3>
+          <p>140+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🌆</div>
+          <h3>Pune</h3>
+          <p>120+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🏖️</div>
+          <h3>Kolkata</h3>
+          <p>100+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🏗️</div>
+          <h3>Ahmedabad</h3>
+          <p>90+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🌿</div>
+          <h3>Jaipur</h3>
+          <p>80+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🌊</div>
+          <h3>Kochi</h3>
+          <p>60+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🏔️</div>
+          <h3>Lucknow</h3>
+          <p>70+ garages</p>
+        </div>
+        <div class="city-card">
+          <div class="city-icon">🌾</div>
+          <h3>Chandigarh</h3>
+          <p>50+ garages</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TESTIMONIALS ====== -->
+  <section class="section section-alt" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Car Owners Say</h2>
+        <p>Don't take our word for it — hear from our happy customers</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>Booked a full service for my Honda City. They picked it up at 9 AM from my office and delivered by 4 PM — fully washed and sanitised. The live video updates were a game changer. Saved ₹3,000 vs the Honda dealership!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RK</div>
+            <div>
+              <h4>Rajesh Kumar</h4>
+              <span>Honda City, Mumbai</span>
+            </div>
           </div>
         </div>
-        <div class="contact-roles">
-          <div class="role-chip">Keynote Speaker</div>
-          <div class="role-chip">AI Strategy Advisor</div>
-          <div class="role-chip">Growth Consulting</div>
-          <div class="role-chip">Digital Transformation</div>
-          <div class="role-chip">Startup Mentorship</div>
-          <div class="role-chip">Guest Faculty</div>
-          <div class="role-chip">GTM Strategy</div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>As a working mother, I never had time to take my car for service. DriveEase solved that completely. They picked up my Creta from home, and I could track the entire service on my phone. The courtesy car they provided was a lifesaver!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PS</div>
+            <div>
+              <h4>Priya Sharma</h4>
+              <span>Hyundai Creta, Bangalore</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>I was paying ₹8,000+ at the Maruti dealer for my Brezza service. Tried DriveEase on a friend's recommendation — got better service at ₹4,999 with genuine parts and a 1-year warranty. Switched permanently.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AV</div>
+            <div>
+              <h4>Amit Verma</h4>
+              <span>Maruti Brezza, Delhi NCR</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ====== LEAD FORM ====== -->
+  <section class="lead-section" id="contact">
+    <div class="container">
+      <div class="lead-info">
+        <h2>Get Your Free Service Quote in 60 Seconds</h2>
+        <p>Tell us about your car and we'll give you an instant, no-obligation quote with transparent pricing. No hidden costs, ever.</p>
+        <ul class="lead-benefits">
+          <li>Free doorstep pickup and delivery</li>
+          <li>40% cheaper than authorised dealerships</li>
+          <li>100% genuine OEM spare parts</li>
+          <li>1-year warranty on all services</li>
+          <li>Live video updates during service</li>
+          <li>Free car wash and interior vacuuming</li>
+        </ul>
+      </div>
+      <div class="lead-form-card">
+        <h3>Get Your Free Quote</h3>
+        <p class="subtitle">We'll call you within 15 minutes</p>
+        <form id="quickLeadForm">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit mobile number" required pattern="[0-9]{10}" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City *</label>
+              <select id="city" name="city" required>
+                <option value="">Select City</option>
+                <option>Mumbai</option>
+                <option>Delhi NCR</option>
+                <option>Bangalore</option>
+                <option>Hyderabad</option>
+                <option>Chennai</option>
+                <option>Pune</option>
+                <option>Kolkata</option>
+                <option>Ahmedabad</option>
+                <option>Jaipur</option>
+                <option>Kochi</option>
+                <option>Lucknow</option>
+                <option>Chandigarh</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="carBrand">Car Brand *</label>
+              <select id="carBrand" name="carBrand" required>
+                <option value="">Select Brand</option>
+                <option>Maruti Suzuki</option>
+                <option>Hyundai</option>
+                <option>Tata</option>
+                <option>Mahindra</option>
+                <option>Honda</option>
+                <option>Toyota</option>
+                <option>Kia</option>
+                <option>MG</option>
+                <option>Volkswagen</option>
+                <option>Skoda</option>
+                <option>BMW</option>
+                <option>Mercedes-Benz</option>
+                <option>Audi</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed *</label>
+            <select id="service" name="service" required>
+              <option value="">Select Service</option>
+              <option>Basic Service (₹2,999+)</option>
+              <option>Comprehensive Service (₹5,499+)</option>
+              <option>AC Service & Repair (₹1,999+)</option>
+              <option>Denting & Painting (₹2,499+)</option>
+              <option>Tyres & Wheel Care (₹999+)</option>
+              <option>Battery Replacement (₹3,499+)</option>
+              <option>Car Detailing (₹999+)</option>
+              <option>Insurance Claim</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Get Free Quote Now</button>
+          <p class="form-note">No spam. No obligation. Your data is secure with us.</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✓</div>
+          <h3>Thank You!</h3>
+          <p>Our car service expert will call you within 15 minutes with your personalised quote.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA BANNER ====== -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready to Experience Hassle-Free Car Servicing?</h2>
+      <p>Join 50,000+ happy car owners who save time and money with DriveEase. Book your first service today and get 20% off!</p>
+      <a href="/get-quote" class="btn-white">Book Your Service — Get 20% Off</a>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<script>
+  const form = document.getElementById('quickLeadForm') as HTMLFormElement;
+  const success = document.getElementById('formSuccess') as HTMLElement;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    console.log('Lead captured:', data);
+
+    // Store lead in localStorage
+    const leads = JSON.parse(localStorage.getItem('driveease_leads') || '[]');
+    leads.push({ ...data, timestamp: new Date().toISOString(), source: 'homepage' });
+    localStorage.setItem('driveease_leads', JSON.stringify(leads));
+
+    form.style.display = 'none';
+    success.classList.add('show');
+  });
+</script>
