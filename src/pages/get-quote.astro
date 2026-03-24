@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Get Free Car Service Quote | DriveEase India">
+
+  <!-- ====== PAGE HERO ====== -->
+  <section class="lead-page-hero">
+    <div class="container">
+      <h1>Get Your Free Car Service Quote</h1>
+      <p>Fill in the details below and our car service expert will call you within 15 minutes with a personalised quote — no obligation, no hidden charges.</p>
+    </div>
+  </section>
+
+  <!-- ====== LEAD FORM BODY ====== -->
+  <section class="lead-page-body">
+    <div class="container">
+      <div class="full-lead-form">
+        <h2>Tell Us About Your Car</h2>
+        <p class="subtitle">All fields marked with * are required</p>
+
+        <form id="fullLeadForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Your first name" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Your last name" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" required pattern="[0-9]{10}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City *</label>
+              <select id="city" name="city" required>
+                <option value="">Select your city</option>
+                <option>Mumbai</option>
+                <option>Delhi NCR</option>
+                <option>Bangalore</option>
+                <option>Hyderabad</option>
+                <option>Chennai</option>
+                <option>Pune</option>
+                <option>Kolkata</option>
+                <option>Ahmedabad</option>
+                <option>Jaipur</option>
+                <option>Kochi</option>
+                <option>Lucknow</option>
+                <option>Chandigarh</option>
+                <option>Indore</option>
+                <option>Nagpur</option>
+                <option>Coimbatore</option>
+                <option>Vizag</option>
+                <option>Bhopal</option>
+                <option>Surat</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pincode">Pincode</label>
+              <input type="text" id="pincode" name="pincode" placeholder="Area pincode" pattern="[0-9]{6}" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="carBrand">Car Brand *</label>
+              <select id="carBrand" name="carBrand" required>
+                <option value="">Select brand</option>
+                <option>Maruti Suzuki</option>
+                <option>Hyundai</option>
+                <option>Tata</option>
+                <option>Mahindra</option>
+                <option>Honda</option>
+                <option>Toyota</option>
+                <option>Kia</option>
+                <option>MG</option>
+                <option>Volkswagen</option>
+                <option>Skoda</option>
+                <option>Renault</option>
+                <option>Nissan</option>
+                <option>Ford</option>
+                <option>Jeep</option>
+                <option>Citroen</option>
+                <option>BMW</option>
+                <option>Mercedes-Benz</option>
+                <option>Audi</option>
+                <option>Volvo</option>
+                <option>Jaguar</option>
+                <option>Land Rover</option>
+                <option>Porsche</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="carModel">Car Model *</label>
+              <input type="text" id="carModel" name="carModel" placeholder="e.g. Swift, Creta, Nexon" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="carYear">Manufacturing Year</label>
+              <select id="carYear" name="carYear">
+                <option value="">Select year</option>
+                <option>2026</option>
+                <option>2025</option>
+                <option>2024</option>
+                <option>2023</option>
+                <option>2022</option>
+                <option>2021</option>
+                <option>2020</option>
+                <option>2019</option>
+                <option>2018</option>
+                <option>2017</option>
+                <option>2016</option>
+                <option>2015</option>
+                <option>2014 or older</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fuelType">Fuel Type</label>
+              <select id="fuelType" name="fuelType">
+                <option value="">Select fuel type</option>
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>CNG</option>
+                <option>Electric</option>
+                <option>Hybrid</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="services">Services Needed *</label>
+            <select id="services" name="services" required>
+              <option value="">Select service type</option>
+              <option>Basic Service (₹2,999+)</option>
+              <option>Comprehensive Service (₹5,499+)</option>
+              <option>Premium Service (₹8,999+)</option>
+              <option>AC Service & Repair (₹1,999+)</option>
+              <option>Denting & Painting (₹2,499+)</option>
+              <option>Tyres & Wheel Care (₹999+)</option>
+              <option>Battery Replacement (₹3,499+)</option>
+              <option>Car Detailing & Wash (₹999+)</option>
+              <option>Insurance Claim (Cashless)</option>
+              <option>Clutch & Transmission Repair</option>
+              <option>Engine Repair</option>
+              <option>Suspension & Steering</option>
+              <option>Multiple Services</option>
+              <option>Not Sure — Need Diagnosis</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="preferredDate">Preferred Pickup Date</label>
+            <input type="date" id="preferredDate" name="preferredDate" />
+          </div>
+
+          <div class="form-group">
+            <label for="comments">Additional Details</label>
+            <textarea id="comments" name="comments" rows="3" placeholder="Describe any specific issues with your car, preferred time, or any other details..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="howHeard">How did you hear about us?</label>
+            <select id="howHeard" name="howHeard">
+              <option value="">Select option</option>
+              <option>Google Search</option>
+              <option>Facebook / Instagram</option>
+              <option>YouTube</option>
+              <option>Friend / Family Referral</option>
+              <option>Newspaper / Magazine</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <button type="submit" class="form-submit">Submit & Get Free Quote</button>
+          <p class="form-note">By submitting, you agree to receive a call from our team. No spam, no obligation. Your data is 100% secure.</p>
+        </form>
+
+        <div class="form-success" id="fullFormSuccess">
+          <div class="success-icon">✓</div>
+          <h3>Quote Request Submitted!</h3>
+          <p>Our car service expert will call you within 15 minutes with a personalised quote. Meanwhile, feel free to explore our services.</p>
+          <br />
+          <a href="/" class="btn-primary">Back to Home</a>
+        </div>
+      </div>
+
+      <div class="sidebar-info">
+        <div class="info-card">
+          <h3>Why Choose DriveEase?</h3>
+          <ul>
+            <li>Free doorstep pickup & delivery</li>
+            <li>40% cheaper than dealerships</li>
+            <li>100% genuine OEM spare parts</li>
+            <li>1-year / 10,000 km warranty</li>
+            <li>Real-time video service tracking</li>
+            <li>Free post-service car wash</li>
+            <li>Free courtesy car (if needed)</li>
+            <li>Night owl service available</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Contact Us Directly</h3>
+          <div class="contact-detail">
+            <div class="contact-icon">📞</div>
+            <span>1800-123-DRIVE (toll-free)</span>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">💬</div>
+            <span>WhatsApp: +91 98765 43210</span>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">📧</div>
+            <span>hello@driveease.in</span>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">🕐</div>
+            <span>Available 24/7</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>Service Guarantee</h3>
+          <p>Every service comes with our triple guarantee: genuine parts, trained mechanics, and a 1-year warranty. If you're not 100% satisfied, we'll redo the service at no extra cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA BANNER ====== -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>First-Time User? Get 20% Off!</h2>
+      <p>Join 50,000+ happy car owners across India who trust DriveEase for premium car servicing at honest prices.</p>
+      <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="btn-white">Fill the Form Above</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('fullLeadForm') as HTMLFormElement;
+  const success = document.getElementById('fullFormSuccess') as HTMLElement;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    console.log('Detailed lead captured:', data);
+
+    // Store lead in localStorage
+    const leads = JSON.parse(localStorage.getItem('driveease_leads') || '[]');
+    leads.push({ ...data, timestamp: new Date().toISOString(), source: 'get-quote-page' });
+    localStorage.setItem('driveease_leads', JSON.stringify(leads));
+
+    form.style.display = 'none';
+    success.classList.add('show');
+  });
+</script>
