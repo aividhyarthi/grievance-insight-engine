@@ -10,7 +10,7 @@ from .site_types.profiles import SiteType, get_profile
 from .categories import (
     onpage, technical, content, interlinking, pagespeed,
     keywords, ux_ui, product_seo, aeo, geo, offpage, backlinking,
-    crawlability,
+    crawlability, urlquality,
 )
 from .categories.base import CategoryReport, Finding, Severity
 from .outputs.models import AuditResult
@@ -18,7 +18,7 @@ from .outputs.models import AuditResult
 _ALL_MODULES = [
     onpage, technical, content, interlinking, pagespeed,
     keywords, ux_ui, product_seo, aeo, geo, offpage, backlinking,
-    crawlability,
+    crawlability, urlquality,
 ]
 
 

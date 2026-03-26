@@ -103,6 +103,17 @@ def run(page: PageData) -> CategoryReport:
                 f.append(Finding("Technical", "HSTS header", Severity.PASS,
                     f"HSTS: max-age={max_age:,}s ({round(max_age/86400)} days) — strong setting."))
 
+    # ── Multiple <head> sections (HTML structure bug) ─────────────────────────
+    all_heads = page.soup.find_all("head")
+    if len(all_heads) > 1:
+        f.append(Finding("Technical", "Multiple <head> sections", Severity.CRITICAL,
+            f"{len(all_heads)} <head> sections found in the HTML. "
+            "Browsers only process the first <head> — meta tags, canonical, and schema "
+            "in secondary head sections are invisible to crawlers.",
+            "Merge all <head> content into a single <head> section. "
+            "Usually caused by a CMS template or plugin conflict.",
+            impact="High", effort="Quick Win"))
+
     # ── Structured Data / JSON-LD ─────────────────────────────────────────────
     schemas = page.structured_data
     if not schemas:
@@ -142,6 +153,45 @@ def run(page: PageData) -> CategoryReport:
                 f"Schema field issues detected: {'; '.join(issues)}.",
                 "Fix these to pass Google's Rich Results Test and maintain rich result eligibility.",
                 impact="High", effort="Medium"))
+
+        # ── BreadcrumbList schema ─────────────────────────────────────────────
+        # Only flag if the page has a visible breadcrumb nav but no schema markup
+        schema_text = " ".join(schemas)
+        has_breadcrumb_schema = "BreadcrumbList" in schema_text
+        breadcrumb_nav = (
+            page.soup.find("nav", attrs={"aria-label": re.compile(r"breadcrumb", re.I)})
+            or page.soup.find(attrs={"class": re.compile(r"breadcrumb", re.I)})
+            or page.soup.find(attrs={"id": re.compile(r"breadcrumb", re.I)})
+        )
+        if breadcrumb_nav and not has_breadcrumb_schema:
+            f.append(Finding("Technical", "BreadcrumbList schema missing", Severity.WARNING,
+                "A breadcrumb navigation element was detected but no BreadcrumbList JSON-LD schema found. "
+                "Google uses BreadcrumbList schema to display breadcrumbs in SERPs — "
+                "missing it loses rich result display and site hierarchy signals.",
+                "Add BreadcrumbList JSON-LD schema mirroring the visible breadcrumb nav. "
+                "Each breadcrumb item needs 'name' and 'item' (URL) properties.",
+                impact="Medium", effort="Quick Win"))
+        elif has_breadcrumb_schema:
+            f.append(Finding("Technical", "BreadcrumbList schema", Severity.PASS,
+                "BreadcrumbList JSON-LD schema present."))
+
+        # ── VideoObject schema when video is embedded ─────────────────────────
+        has_video_schema = "VideoObject" in schema_text
+        has_embedded_video = bool(
+            page.soup.find("video")
+            or page.soup.find("iframe", src=re.compile(r"(youtube|vimeo|wistia|loom)", re.I))
+        )
+        if has_embedded_video and not has_video_schema:
+            f.append(Finding("Technical", "VideoObject schema missing", Severity.INFO,
+                "An embedded video (YouTube/Vimeo/HTML5) was found but no VideoObject JSON-LD schema. "
+                "VideoObject schema enables Google Video rich results — thumbnails, duration, "
+                "and video carousels in search.",
+                "Add VideoObject schema with: name, description, thumbnailUrl, uploadDate, "
+                "duration, and embedUrl/contentUrl.",
+                impact="Medium", effort="Quick Win"))
+        elif has_video_schema:
+            f.append(Finding("Technical", "VideoObject schema", Severity.PASS,
+                "VideoObject JSON-LD schema present for embedded video content."))
 
     # ── Viewport Meta ─────────────────────────────────────────────────────────
     viewport = page.soup.find("meta", attrs={"name": "viewport"})

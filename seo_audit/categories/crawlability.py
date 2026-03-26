@@ -165,6 +165,45 @@ def _check_robots(page: PageData, f: list, root: str) -> str:
             f.append(Finding("Crawlability", "robots.txt", Severity.PASS,
                 f"robots.txt present and valid at {robots_url}."))
 
+    # ── robots.txt — CSS/JS blocking (ROBOTS-006) ─────────────────────────────
+    # Google needs to render CSS and JS to properly evaluate pages
+    css_js_blocked = [
+        d for d in wildcard_disallows
+        if re.search(r"\.(css|js)(\*|$)|/(css|js|static|assets|scripts|styles)/", d, re.I)
+    ]
+    if css_js_blocked:
+        f.append(Finding("Crawlability", "robots.txt — CSS/JS blocked", Severity.CRITICAL,
+            f"robots.txt blocks CSS or JS resources from crawlers: {css_js_blocked}. "
+            "Google cannot render the page correctly without access to these files — "
+            "this causes rendering failures and poor page quality scores.",
+            "Remove Disallow rules for CSS/JS files. Only block files that should not be indexed, "
+            "not the assets needed to render pages.",
+            impact="High", effort="Quick Win"))
+
+    # ── robots.txt — syntax typos (ROBOTS-016) ────────────────────────────────
+    robots_lines = robots_text.splitlines()
+    typo_lines = []
+    known_directives = re.compile(
+        r"^(user-agent|disallow|allow|sitemap|crawl-delay|host|noindex):", re.I
+    )
+    for line in robots_lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        # Lines that look like directives but don't match known ones
+        if ":" in stripped:
+            directive = stripped.split(":")[0].strip()
+            if not known_directives.match(stripped) and len(directive) < 25:
+                typo_lines.append(stripped[:60])
+    if typo_lines:
+        f.append(Finding("Crawlability", "robots.txt — unknown directives", Severity.WARNING,
+            f"robots.txt contains unrecognised directives (possible typos): "
+            f"{typo_lines[:3]}. "
+            "Typos like 'Dissalow:' or 'User-Agent:' (with uppercase A) are silently ignored "
+            "by crawlers, meaning intended blocks may not be enforced.",
+            "Fix directive spelling. Valid directives: User-agent, Disallow, Allow, Sitemap, Crawl-delay.",
+            impact="Medium", effort="Quick Win"))
+
     if not has_sitemap_ref:
         f.append(Finding("Crawlability", "robots.txt — sitemap reference", Severity.INFO,
             f"robots.txt at {robots_url} has no 'Sitemap:' directive.",

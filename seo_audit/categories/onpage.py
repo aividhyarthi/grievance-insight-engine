@@ -137,6 +137,15 @@ def run(page: PageData) -> CategoryReport:
                 impact="Low", effort="Quick Win"))
 
     # ── Meta Description ─────────────────────────────────────────────────────
+    # Multiple meta description tags — only first is used; duplicates signal CMS bugs
+    all_meta_descs = page.soup.find_all("meta", attrs={"name": lambda n: n and n.lower() == "description"})
+    if len(all_meta_descs) > 1:
+        f.append(Finding("On-Page", "Multiple meta description tags", Severity.WARNING,
+            f"{len(all_meta_descs)} <meta name='description'> tags found. "
+            "Only the first is used; extras usually mean a plugin or template is injecting a duplicate.",
+            "Remove all duplicate meta description tags — keep exactly one.",
+            impact="Medium", effort="Quick Win"))
+
     desc = page.meta_description
     if not desc:
         f.append(Finding("On-Page", "Meta description", Severity.CRITICAL,
@@ -219,6 +228,28 @@ def run(page: PageData) -> CategoryReport:
 
     # ── Canonical ────────────────────────────────────────────────────────────
     import urllib.parse as _up
+
+    # Multiple canonical tags — any beyond the first are ignored and signal a CMS bug
+    all_canonicals = page.soup.find_all("link", attrs={"rel": lambda r: r and "canonical" in r})
+    if len(all_canonicals) > 1:
+        f.append(Finding("On-Page", "Multiple canonical tags", Severity.CRITICAL,
+            f"{len(all_canonicals)} <link rel='canonical'> tags found. "
+            "Only the first is used by Google; multiple canonicals indicate a template conflict.",
+            "Keep exactly one canonical tag per page.",
+            impact="High", effort="Quick Win"))
+
+    # Canonical in <body> instead of <head> — Google ignores body canonicals
+    head_tag = page.soup.find("head")
+    body_tag = page.soup.find("body")
+    if body_tag:
+        body_canonicals = body_tag.find_all("link", attrs={"rel": lambda r: r and "canonical" in r})
+        if body_canonicals:
+            f.append(Finding("On-Page", "Canonical tag in <body>", Severity.CRITICAL,
+                "A canonical tag was found inside <body> — Google only processes canonical tags "
+                "in <head>. This canonical is effectively invisible to crawlers.",
+                "Move the <link rel='canonical'> tag to inside the <head> section.",
+                impact="High", effort="Quick Win"))
+
     canon = page.canonical_url
     if not canon:
         f.append(Finding("On-Page", "Canonical URL", Severity.WARNING,
@@ -227,7 +258,15 @@ def run(page: PageData) -> CategoryReport:
             "Add <link rel='canonical' href='full-preferred-URL'> to every page.",
             impact="Medium", effort="Quick Win"))
     else:
-        # Cross-domain canonical — often accidental CMS misconfiguration
+        # Fragment (#) in canonical — fragments are not sent to servers and are invalid in canonicals
+        if "#" in canon:
+            f.append(Finding("On-Page", "Canonical URL contains fragment (#)", Severity.WARNING,
+                f"Canonical URL includes a hash fragment: '{canon}'. "
+                "Fragments are client-side only — search engines strip them, making this "
+                "canonical point to a different URL than intended.",
+                "Remove the # and everything after it from the canonical href.",
+                impact="Medium", effort="Quick Win"))
+        # Cross-domain canonical
         canon_host = _up.urlparse(canon).netloc
         page_host = _up.urlparse(page.url).netloc
         if canon_host and page_host and canon_host != page_host:
@@ -260,6 +299,16 @@ def run(page: PageData) -> CategoryReport:
     else:
         f.append(Finding("On-Page", "Indexability", Severity.PASS,
             f"Robots meta: '{page.robots_meta or 'index, follow (default)'}'"))
+
+    # ── noindex + canonical conflict ──────────────────────────────────────────
+    if "noindex" in robots and canon:
+        f.append(Finding("On-Page", "noindex + canonical conflict", Severity.CRITICAL,
+            f"Page has both a noindex directive AND a canonical tag pointing to '{canon}'. "
+            "These are contradictory signals — noindex tells Google to ignore the page, "
+            "while canonical tells Google this is the preferred version to index.",
+            "Choose one: either remove noindex (if the page should be indexed) or "
+            "remove the canonical (if the page should be excluded). Having both confuses crawlers.",
+            impact="High", effort="Quick Win"))
 
     # ── Language ─────────────────────────────────────────────────────────────
     lang = page.lang
