@@ -25,10 +25,31 @@ from bs4 import BeautifulSoup
 
 
 DEFAULT_TIMEOUT = 15  # seconds
+
+# Realistic Chrome browser User-Agent — sites like Nykaa, Flipkart, Amazon
+# detect and block custom bot UAs and serve skeleton HTML or challenge pages.
+# Using a real browser UA ensures we receive the same HTML Google would see.
 USER_AGENT = (
-    "Mozilla/5.0 (compatible; SEOAuditBot/1.0; "
-    "+https://github.com/aividhyarthi/grievance-insight-engine)"
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/124.0.0.0 Safari/537.36"
 )
+
+# Full set of headers a real Chrome browser sends.
+# Missing these causes many sites to return bot-detection pages or skeleton HTML.
+BROWSER_HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Cache-Control": "max-age=0",
+}
 
 # ── Playwright optional import ────────────────────────────────────────────────
 _PLAYWRIGHT_AVAILABLE = False
@@ -59,6 +80,34 @@ _JS_FRAMEWORK_RE = re.compile(
 
 _BODY_WORD_THRESHOLD = 150   # fewer visible words → suspect JS rendering
 _SCRIPT_TAG_THRESHOLD = 8    # more script tags → likely SPA
+
+
+_BOT_BLOCK_RE = re.compile(
+    r"(captcha|robot.check|access.denied|are you a human|"
+    r"security.check|cloudflare|ddos.protection|"
+    r"enable javascript|please enable js|"
+    r"403.forbidden|blocked|unusual.traffic)",
+    re.I,
+)
+
+
+def _is_bot_blocked(html: str, soup: BeautifulSoup, status: int) -> bool:
+    """
+    Returns True when the site appears to have detected us as a bot and
+    returned a challenge/block page instead of the real content.
+    """
+    if status in (403, 429, 503):
+        return True
+    body = soup.find("body")
+    body_text = body.get_text(" ", strip=True) if body else ""
+    # Very short body + block signal words
+    if len(body_text.split()) < 80 and _BOT_BLOCK_RE.search(body_text):
+        return True
+    # Title is a bot challenge
+    title_tag = soup.find("title")
+    if title_tag and _BOT_BLOCK_RE.search(title_tag.get_text()):
+        return True
+    return False
 
 
 def _needs_js_render(html: str, soup: BeautifulSoup) -> bool:
@@ -313,6 +362,11 @@ def _fetch_with_playwright(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData
             ctx = browser.new_context(
                 user_agent=USER_AGENT,
                 viewport={"width": 1280, "height": 900},
+                locale="en-US",
+                extra_http_headers={
+                    "Accept-Language": "en-US,en;q=0.9",
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                },
             )
             page = ctx.new_page()
             start = time.perf_counter()
@@ -359,10 +413,15 @@ def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
 
     Never raises; errors are captured in ``PageData.error``.
     """
-    headers = {"User-Agent": USER_AGENT}
     try:
         start = time.perf_counter()
-        resp = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True)
+        session = requests.Session()
+        resp = session.get(
+            url,
+            headers=BROWSER_HEADERS,
+            timeout=timeout,
+            allow_redirects=True,
+        )
         elapsed_ms = (time.perf_counter() - start) * 1000
         soup = BeautifulSoup(resp.text, "html.parser")
         page_data = PageData(
@@ -379,6 +438,15 @@ def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
             html="", soup=BeautifulSoup("", "html.parser"),
             error=str(exc),
         )
+
+    # ── Bot-block detection ───────────────────────────────────────────────────
+    if _is_bot_blocked(page_data.html, page_data.soup, page_data.status_code):
+        page_data.error = (
+            "BOT_BLOCKED: The site returned a bot-detection challenge or access-denied "
+            "page instead of real content. Results will be inaccurate. "
+            "Use Playwright rendering (PLAYWRIGHT_ENABLED=1) for sites with strict bot protection."
+        )
+        return page_data
 
     # ── JS rendering decision ─────────────────────────────────────────────────
     if _FORCE_REQUESTS:

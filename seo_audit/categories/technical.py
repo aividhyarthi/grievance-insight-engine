@@ -65,10 +65,20 @@ def run(page: PageData) -> CategoryReport:
 
     # ── HTTP Status ───────────────────────────────────────────────────────────
     if page.error:
-        f.append(Finding("Technical", "Reachability", Severity.CRITICAL,
-            f"Page unreachable: {page.error}",
-            "Ensure the URL is publicly accessible without authentication or firewall blocks.",
-            impact="High", effort="Quick Win"))
+        if "BOT_BLOCKED" in (page.error or ""):
+            f.append(Finding("Technical", "Bot protection / access blocked", Severity.CRITICAL,
+                "The site returned a bot-detection challenge (Cloudflare, CAPTCHA, 403/429) "
+                "instead of the real page. All content, title, heading, and meta checks in this "
+                "audit are based on that challenge page — not the actual site content.",
+                "Enable Playwright rendering (set PLAYWRIGHT_ENABLED=1) for a full headless "
+                "browser fetch that bypasses most bot-detection. Alternatively, audit from a "
+                "server with an unblocked IP, or use the 'Paste HTML' input instead.",
+                impact="High", effort="Medium"))
+        else:
+            f.append(Finding("Technical", "Reachability", Severity.CRITICAL,
+                f"Page unreachable: {page.error}",
+                "Ensure the URL is publicly accessible without authentication or firewall blocks.",
+                impact="High", effort="Quick Win"))
         return report
 
     code = page.status_code
