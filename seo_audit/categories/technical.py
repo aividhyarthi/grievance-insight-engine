@@ -45,6 +45,24 @@ def run(page: PageData) -> CategoryReport:
     )
     f = report.findings
 
+    # ── JS Rendering status ───────────────────────────────────────────────────
+    if getattr(page, "js_rendered", False):
+        f.append(Finding("Technical", "JS rendering", Severity.PASS,
+            "Page fetched via headless Playwright browser — full rendered DOM analysed. "
+            "All content visible to users is included in this audit."))
+    elif getattr(page, "js_heavy", False):
+        f.append(Finding("Technical", "JS rendering — content may be incomplete", Severity.CRITICAL,
+            "This page appears to use client-side rendering (React, Next.js, Vue, Angular or similar). "
+            "The audit was run on the raw server HTML, which contains only a skeleton — "
+            "the real content, products, headings, and SEO text are injected by JavaScript "
+            "after page load and were NOT analysed. Word counts, content scores, and "
+            "keyword checks will be significantly under-reported.",
+            "Install Playwright (pip install playwright && playwright install chromium) and "
+            "set PLAYWRIGHT_ENABLED=1 to enable full JS rendering. "
+            "Alternatively, verify the content is server-side rendered (SSR) or statically "
+            "generated so crawlers see the same HTML as users.",
+            impact="High", effort="Medium"))
+
     # ── HTTP Status ───────────────────────────────────────────────────────────
     if page.error:
         f.append(Finding("Technical", "Reachability", Severity.CRITICAL,

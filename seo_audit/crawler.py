@@ -1,9 +1,20 @@
 """
 crawler.py — Fetches page HTML and extracts raw DOM data for SEO analysis.
+
+JS Rendering:
+  When `PLAYWRIGHT_ENABLED=1` is set (or playwright is importable and a
+  browser is installed), pages that look like client-side-rendered SPAs are
+  automatically re-fetched using a headless Chromium browser so that the full
+  rendered DOM is analysed — not just the skeleton HTML.
+
+  Without Playwright the tool still works but will report thin content on
+  React/Next.js/Vue pages and flag the JS rendering gap in the audit.
 """
 
 from __future__ import annotations
 
+import os
+import re
 import time
 import urllib.parse
 from dataclasses import dataclass, field
@@ -19,6 +30,53 @@ USER_AGENT = (
     "+https://github.com/aividhyarthi/grievance-insight-engine)"
 )
 
+# ── Playwright optional import ────────────────────────────────────────────────
+_PLAYWRIGHT_AVAILABLE = False
+try:
+    from playwright.sync_api import sync_playwright  # type: ignore
+    # Quick check that a browser binary is actually installed
+    import subprocess
+    _check = subprocess.run(
+        ["python3", "-m", "playwright", "install", "--dry-run", "chromium"],
+        capture_output=True, timeout=5,
+    )
+    _PLAYWRIGHT_AVAILABLE = True
+except Exception:
+    pass
+
+# Allow explicit opt-in/out via env var
+_FORCE_PLAYWRIGHT = os.environ.get("PLAYWRIGHT_ENABLED", "").lower() in ("1", "true", "yes")
+_FORCE_REQUESTS  = os.environ.get("PLAYWRIGHT_DISABLED", "").lower() in ("1", "true", "yes")
+
+# ── JS framework / SPA detection ──────────────────────────────────────────────
+_JS_FRAMEWORK_RE = re.compile(
+    r'(__NEXT_DATA__|__NUXT__|ng-version|data-reactroot|data-v-app|'
+    r'<div[^>]+id=["\'](__next|app|root|vue-app|angular-app)["\']|'
+    r'window\.__INITIAL_STATE__|window\.__REDUX_STATE__|'
+    r'React\.createElement|ReactDOM\.render)',
+    re.I,
+)
+
+_BODY_WORD_THRESHOLD = 150   # fewer visible words → suspect JS rendering
+_SCRIPT_TAG_THRESHOLD = 8    # more script tags → likely SPA
+
+
+def _needs_js_render(html: str, soup: BeautifulSoup) -> bool:
+    """
+    Returns True if the page looks like it needs JavaScript to show its real
+    content — i.e. the requests-fetched HTML is likely a skeleton.
+    """
+    # Detected JS framework signature
+    if _JS_FRAMEWORK_RE.search(html[:50_000]):
+        # Only flag if visible body text is thin
+        body = soup.find("body")
+        if body:
+            words = body.get_text(" ", strip=True).split()
+            scripts = body.find_all("script")
+            if len(words) < _BODY_WORD_THRESHOLD or len(scripts) > _SCRIPT_TAG_THRESHOLD:
+                return True
+    return False
+
 
 @dataclass
 class PageData:
@@ -30,6 +88,8 @@ class PageData:
     response_headers: dict = field(default_factory=dict)
     error: Optional[str] = None
     skip_psi: bool = False  # Skip PSI API call for secondary/batch pages
+    js_rendered: bool = False    # True when fetched via Playwright headless browser
+    js_heavy: bool = False       # True when JS framework detected but NOT rendered
 
     # Convenience properties ─────────────────────────────────────────────────
 
@@ -241,9 +301,62 @@ def extract_nav_links(page: "PageData", limit: int = 10) -> list[str]:
     return results
 
 
+def _fetch_with_playwright(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
+    """
+    Render the page using Playwright headless Chromium and return fully rendered HTML.
+    Only called when _PLAYWRIGHT_AVAILABLE is True.
+    """
+    try:
+        from playwright.sync_api import sync_playwright  # type: ignore
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(headless=True)
+            ctx = browser.new_context(
+                user_agent=USER_AGENT,
+                viewport={"width": 1280, "height": 900},
+            )
+            page = ctx.new_page()
+            start = time.perf_counter()
+            resp = page.goto(url, wait_until="networkidle", timeout=timeout * 1000)
+            # Extra wait for lazy-loaded content to settle
+            page.wait_for_timeout(1500)
+            html = page.content()
+            elapsed_ms = (time.perf_counter() - start) * 1000
+            final_url = page.url
+            status = resp.status if resp else 200
+            headers = dict(resp.all_headers()) if resp else {}
+            browser.close()
+
+        soup = BeautifulSoup(html, "html.parser")
+        return PageData(
+            url=final_url,
+            status_code=status,
+            load_time_ms=round(elapsed_ms, 1),
+            html=html,
+            soup=soup,
+            response_headers=headers,
+            js_rendered=True,
+        )
+    except Exception as exc:
+        # Playwright failed — fall back to requests
+        return PageData(
+            url=url, status_code=0, load_time_ms=0.0,
+            html="", soup=BeautifulSoup("", "html.parser"),
+            error=f"Playwright render failed: {exc}",
+        )
+
+
 def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
     """
     Fetch *url* and return a :class:`PageData` instance.
+
+    Strategy:
+    1. Always fetch first with requests (fast, cheap).
+    2. If the result looks like a JS-rendered SPA skeleton (thin text, React/
+       Next.js/Vue/Angular detected) AND Playwright is available, re-fetch
+       with a headless browser to get the fully rendered DOM.
+    3. If Playwright is not available and the page is JS-heavy, set
+       PageData.js_heavy=True so the audit can flag the limitation.
+
     Never raises; errors are captured in ``PageData.error``.
     """
     headers = {"User-Agent": USER_AGENT}
@@ -251,10 +364,9 @@ def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
         start = time.perf_counter()
         resp = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True)
         elapsed_ms = (time.perf_counter() - start) * 1000
-
         soup = BeautifulSoup(resp.text, "html.parser")
-        return PageData(
-            url=resp.url,  # final URL after redirects
+        page_data = PageData(
+            url=resp.url,
             status_code=resp.status_code,
             load_time_ms=round(elapsed_ms, 1),
             html=resp.text,
@@ -263,10 +375,23 @@ def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
         )
     except requests.exceptions.RequestException as exc:
         return PageData(
-            url=url,
-            status_code=0,
-            load_time_ms=0.0,
-            html="",
-            soup=BeautifulSoup("", "html.parser"),
+            url=url, status_code=0, load_time_ms=0.0,
+            html="", soup=BeautifulSoup("", "html.parser"),
             error=str(exc),
         )
+
+    # ── JS rendering decision ─────────────────────────────────────────────────
+    if _FORCE_REQUESTS:
+        return page_data
+
+    if _needs_js_render(page_data.html, page_data.soup):
+        if (_PLAYWRIGHT_AVAILABLE or _FORCE_PLAYWRIGHT) and not _FORCE_REQUESTS:
+            # Re-fetch with full headless browser rendering
+            rendered = _fetch_with_playwright(url, timeout)
+            if not rendered.error:
+                return rendered
+            # Playwright failed — fall through to requests result
+        # Mark that JS rendering was needed but not done
+        page_data.js_heavy = True
+
+    return page_data
