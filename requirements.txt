@@ -4,6 +4,9 @@ requests>=2.31.0
 beautifulsoup4>=4.12.0
 anthropic>=0.30.0
 openpyxl>=3.1.0
+# Chrome TLS fingerprint impersonation — bypasses Cloudflare/Nykaa bot detection
+# Replaces plain requests for sites that inspect JA3/JA4 TLS handshake hashes
+curl_cffi>=0.6.0
 # Optional: headless JS rendering for React/Next.js/Vue/Angular pages
 # After installing, run: playwright install chromium
 # Then set env var: PLAYWRIGHT_ENABLED=1

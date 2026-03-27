@@ -1,6 +1,18 @@
 """
 crawler.py — Fetches page HTML and extracts raw DOM data for SEO analysis.
 
+TLS Fingerprint Impersonation:
+  Many sites (Nykaa, Flipkart, etc.) use Cloudflare or similar bot protection
+  that inspects the TLS handshake fingerprint (JA3 hash) — not just headers.
+  The `requests` library has a distinct Python TLS fingerprint regardless of
+  what User-Agent or headers are set.
+
+  When `curl_cffi` is installed, it is used as the primary HTTP client because
+  it impersonates Chrome's exact TLS handshake at the network layer, making
+  requests indistinguishable from a real browser to Cloudflare and similar WAFs.
+
+  Install: pip install curl_cffi
+
 JS Rendering:
   When `PLAYWRIGHT_ENABLED=1` is set (or playwright is importable and a
   browser is installed), pages that look like client-side-rendered SPAs are
@@ -22,6 +34,14 @@ from typing import Optional
 
 import requests
 from bs4 import BeautifulSoup
+
+# ── curl_cffi optional import (Chrome TLS impersonation) ─────────────────────
+_CURL_CFFI_AVAILABLE = False
+try:
+    import curl_cffi.requests as _cffi_requests  # type: ignore
+    _CURL_CFFI_AVAILABLE = True
+except Exception:
+    pass
 
 
 DEFAULT_TIMEOUT = 15  # seconds
@@ -415,13 +435,24 @@ def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
     """
     try:
         start = time.perf_counter()
-        session = requests.Session()
-        resp = session.get(
-            url,
-            headers=BROWSER_HEADERS,
-            timeout=timeout,
-            allow_redirects=True,
-        )
+        if _CURL_CFFI_AVAILABLE:
+            # Use curl_cffi to impersonate Chrome TLS fingerprint — bypasses
+            # Cloudflare JA3/JA4 bot detection that rejects plain requests.
+            resp = _cffi_requests.get(
+                url,
+                impersonate="chrome124",
+                headers=BROWSER_HEADERS,
+                timeout=timeout,
+                allow_redirects=True,
+            )
+        else:
+            session = requests.Session()
+            resp = session.get(
+                url,
+                headers=BROWSER_HEADERS,
+                timeout=timeout,
+                allow_redirects=True,
+            )
         elapsed_ms = (time.perf_counter() - start) * 1000
         soup = BeautifulSoup(resp.text, "html.parser")
         page_data = PageData(
@@ -432,7 +463,7 @@ def fetch_page(url: str, timeout: int = DEFAULT_TIMEOUT) -> PageData:
             soup=soup,
             response_headers=dict(resp.headers),
         )
-    except requests.exceptions.RequestException as exc:
+    except Exception as exc:
         return PageData(
             url=url, status_code=0, load_time_ms=0.0,
             html="", soup=BeautifulSoup("", "html.parser"),
