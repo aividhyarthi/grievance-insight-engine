@@ -1,25 +1,20 @@
 ---
 // The Vault — A 2am companion for men who need to be heard.
-// No therapy. No fixing. Just space.
+// No therapy. No fixing. Just space. Just talk.
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="description" content="A private, anonymous space for men who need to be heard. No therapy. No fixing. Just space." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>The Vault — Say what's on your mind</title>
+    <title>The Vault — Just Talk</title>
     <style>
-      /* ========================================
-         THE VAULT — CSS
-         Dark, minimal, 2am-friendly
-         ======================================== */
-
       *, *::before, *::after {
         box-sizing: border-box;
         margin: 0;
@@ -31,6 +26,8 @@
         --bg-card: #111113;
         --bg-input: #161618;
         --bg-hover: #1a1a1d;
+        --bg-user: #1c1c2e;
+        --bg-echo: #111113;
         --border: #222225;
         --border-focus: #333338;
         --text: #e4e4e7;
@@ -45,16 +42,18 @@
         --danger-dim: rgba(239, 68, 68, 0.1);
         --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-        --radius: 12px;
-        --radius-sm: 8px;
+        --radius: 16px;
+        --radius-sm: 10px;
         --transition: 0.2s ease;
       }
 
-      /* 2AM Mode — softer, warmer */
+      /* 2AM Mode */
       .mode-2am {
         --bg: #08070a;
         --bg-card: #0e0d11;
         --bg-input: #13121a;
+        --bg-user: #17162a;
+        --bg-echo: #0e0d11;
         --border: #1e1d26;
         --accent: #818cf8;
         --accent-dim: rgba(129, 140, 248, 0.12);
@@ -62,33 +61,39 @@
         --text-dim: #6b6b7b;
       }
 
+      html, body {
+        height: 100%;
+        overflow: hidden;
+      }
+
       body {
         font-family: var(--font-sans);
         background: var(--bg);
         color: var(--text);
-        min-height: 100vh;
-        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         transition: background 0.5s ease, color 0.3s ease;
       }
 
-      /* ---- Layout ---- */
-      .vault-container {
-        max-width: 680px;
-        margin: 0 auto;
-        padding: 0 20px;
-        min-height: 100vh;
+      /* ---- Full-screen chat layout ---- */
+      .vault-app {
         display: flex;
         flex-direction: column;
+        height: 100vh;
+        height: 100dvh;
+        max-width: 720px;
+        margin: 0 auto;
       }
 
       /* ---- Header ---- */
       .vault-header {
-        padding: 32px 0 24px;
+        padding: 16px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+        background: var(--bg);
+        z-index: 10;
       }
 
       .vault-logo {
@@ -112,7 +117,7 @@
       }
 
       .vault-logo-text {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 600;
         letter-spacing: -0.02em;
       }
@@ -122,15 +127,25 @@
         font-weight: 400;
       }
 
-      .vault-header-actions {
+      .header-right {
         display: flex;
         align-items: center;
         gap: 8px;
       }
 
-      .vault-btn-icon {
-        width: 36px;
-        height: 36px;
+      .mode-indicator {
+        font-size: 10px;
+        font-family: var(--font-mono);
+        color: var(--text-muted);
+        padding: 3px 8px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+      }
+
+      .btn-icon {
+        width: 34px;
+        height: 34px;
         border-radius: var(--radius-sm);
         border: 1px solid var(--border);
         background: var(--bg-card);
@@ -139,328 +154,454 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
+        font-size: 15px;
         transition: all var(--transition);
       }
 
-      .vault-btn-icon:hover {
+      .btn-icon:hover {
         border-color: var(--border-focus);
         color: var(--text);
-        background: var(--bg-hover);
       }
 
-      .vault-btn-icon.active {
+      .btn-icon.active {
         border-color: var(--accent);
         color: var(--accent);
         background: var(--accent-dim);
       }
 
-      .mode-indicator {
-        font-size: 11px;
-        font-family: var(--font-mono);
-        color: var(--text-muted);
-        padding: 4px 8px;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 4px;
+      /* ---- Chat area ---- */
+      .chat-area {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 20px 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        scroll-behavior: smooth;
       }
 
-      /* ---- Hero / Intro ---- */
-      .vault-hero {
-        padding: 48px 0 32px;
+      /* Welcome message */
+      .welcome {
         text-align: center;
+        padding: 60px 20px 40px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
-      .vault-hero h1 {
-        font-size: 28px;
+      .welcome h1 {
+        font-size: 26px;
         font-weight: 600;
         letter-spacing: -0.03em;
         margin-bottom: 12px;
-        color: var(--text);
       }
 
-      .vault-hero p {
-        font-size: 15px;
+      .welcome p {
+        font-size: 14px;
         color: var(--text-dim);
-        max-width: 440px;
-        margin: 0 auto;
+        max-width: 400px;
         line-height: 1.7;
       }
 
-      .vault-hero .tagline {
+      .welcome .tagline {
         font-family: var(--font-mono);
-        font-size: 12px;
+        font-size: 11px;
         color: var(--text-muted);
         margin-top: 16px;
         letter-spacing: 0.05em;
         text-transform: uppercase;
       }
 
-      /* ---- The Dump (input area) ---- */
-      .dump-section {
-        flex: 1;
-        padding: 24px 0;
+      .welcome .starters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 28px;
+        max-width: 480px;
       }
 
-      .dump-box {
+      .welcome .starter-chip {
+        font-family: var(--font-sans);
+        font-size: 12px;
+        color: var(--text-dim);
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 8px 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all var(--transition);
+        white-space: nowrap;
+      }
+
+      .welcome .starter-chip:hover {
+        border-color: var(--accent);
+        color: var(--text);
+        background: var(--accent-dim);
+      }
+
+      /* Chat bubbles */
+      .msg-row {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .msg-row.user {
+        justify-content: flex-end;
+      }
+
+      .msg-row.echo {
+        justify-content: flex-start;
+      }
+
+      .msg-bubble {
+        max-width: 80%;
+        padding: 12px 16px;
+        font-size: 14px;
+        line-height: 1.7;
+        word-wrap: break-word;
+      }
+
+      .msg-row.user .msg-bubble {
+        background: var(--bg-user);
+        border: 1px solid rgba(99, 102, 241, 0.15);
+        border-radius: var(--radius) var(--radius) 4px var(--radius);
+        color: var(--text);
+      }
+
+      .msg-row.echo .msg-bubble {
+        background: var(--bg-echo);
+        border: 1px solid var(--border);
+        border-radius: var(--radius) var(--radius) var(--radius) 4px;
+        color: var(--text);
+      }
+
+      .msg-row.echo .msg-label {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+        display: block;
+      }
+
+      .msg-feeling {
+        margin-top: 10px;
+        padding: 6px 10px;
+        background: var(--feeling-bg);
+        border: 1px solid var(--feeling-border);
+        border-radius: 6px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--accent);
+        display: inline-block;
+      }
+
+      /* Typing indicator */
+      .typing-row {
+        display: flex;
+        justify-content: flex-start;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .typing-bubble {
+        background: var(--bg-echo);
+        border: 1px solid var(--border);
+        border-radius: var(--radius) var(--radius) var(--radius) 4px;
+        padding: 14px 20px;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      .typing-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--text-muted);
+        border-radius: 50%;
+        animation: typingBounce 1.2s ease-in-out infinite;
+      }
+
+      .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+      .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+      @keyframes typingBounce {
+        0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+        30% { transform: translateY(-4px); opacity: 1; }
+      }
+
+      /* Session divider */
+      .session-divider {
+        text-align: center;
+        padding: 12px 0;
+      }
+
+      .session-divider span {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text-muted);
+        background: var(--bg);
+        padding: 0 12px;
         position: relative;
       }
 
-      .dump-textarea {
-        width: 100%;
-        min-height: 160px;
-        max-height: 400px;
-        padding: 20px;
+      /* ---- Input bar (bottom) ---- */
+      .input-bar {
+        padding: 12px 20px 16px;
+        border-top: 1px solid var(--border);
+        background: var(--bg);
+        flex-shrink: 0;
+      }
+
+      .input-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+      }
+
+      .input-field {
+        flex: 1;
+        padding: 12px 16px;
         font-family: var(--font-sans);
-        font-size: 15px;
-        line-height: 1.7;
+        font-size: 14px;
+        line-height: 1.5;
         color: var(--text);
         background: var(--bg-input);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        resize: vertical;
+        resize: none;
         outline: none;
+        min-height: 44px;
+        max-height: 150px;
+        overflow-y: auto;
         transition: border-color var(--transition), box-shadow var(--transition);
       }
 
-      .dump-textarea::placeholder {
+      .input-field::placeholder {
         color: var(--text-muted);
       }
 
-      .dump-textarea:focus {
+      .input-field:focus {
         border-color: var(--border-focus);
         box-shadow: 0 0 0 3px var(--accent-dim);
       }
 
-      .dump-actions {
+      .send-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-sm);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        margin-top: 12px;
-      }
-
-      .dump-hint {
-        font-size: 12px;
-        font-family: var(--font-mono);
-        color: var(--text-muted);
-      }
-
-      .dump-submit {
-        padding: 10px 24px;
-        font-family: var(--font-sans);
-        font-size: 14px;
-        font-weight: 500;
-        color: #fff;
-        background: var(--accent);
-        border: none;
-        border-radius: var(--radius-sm);
-        cursor: pointer;
+        justify-content: center;
+        font-size: 18px;
         transition: all var(--transition);
-        position: relative;
-        overflow: hidden;
+        flex-shrink: 0;
       }
 
-      .dump-submit:hover {
-        filter: brightness(1.1);
-        box-shadow: 0 0 20px var(--accent-glow);
+      .send-btn:hover {
+        filter: brightness(1.15);
+        box-shadow: 0 0 16px var(--accent-glow);
       }
 
-      .dump-submit:disabled {
-        opacity: 0.5;
+      .send-btn:disabled {
+        opacity: 0.4;
         cursor: not-allowed;
         filter: none;
         box-shadow: none;
       }
 
-      .dump-submit.loading {
-        color: transparent;
-      }
-
-      .dump-submit.loading::after {
-        content: '';
-        position: absolute;
+      .send-btn svg {
         width: 18px;
         height: 18px;
-        top: 50%;
-        left: 50%;
-        margin-top: -9px;
-        margin-left: -9px;
-        border: 2px solid rgba(255,255,255,0.3);
-        border-top-color: #fff;
-        border-radius: 50%;
-        animation: spin 0.6s linear infinite;
+        fill: currentColor;
       }
 
-      @keyframes spin {
-        to { transform: rotate(360deg); }
+      .input-hint {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text-muted);
+        margin-top: 6px;
+        padding: 0 4px;
+        display: flex;
+        justify-content: space-between;
       }
 
-      /* ---- The Echo (AI response) ---- */
-      .echo-section {
-        padding: 0 0 32px;
-        animation: fadeUp 0.4s ease;
+      /* ---- New chat button ---- */
+      .new-chat-btn {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text-muted);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: color var(--transition);
       }
 
-      @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: translateY(0); }
+      .new-chat-btn:hover {
+        color: var(--accent);
       }
 
-      .echo-card {
+      /* ---- Archive sidebar ---- */
+      .archive-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 99;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .archive-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .archive-panel {
+        position: fixed;
+        top: 0;
+        right: -360px;
+        width: 340px;
+        max-width: 85vw;
+        height: 100vh;
         background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 24px;
+        border-left: 1px solid var(--border);
+        z-index: 100;
+        transition: right 0.3s ease;
+        display: flex;
+        flex-direction: column;
       }
 
-      .echo-label {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        color: var(--accent);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 12px;
+      .archive-panel.open {
+        right: 0;
       }
 
-      .echo-text {
-        font-size: 16px;
-        line-height: 1.8;
-        color: var(--text);
-      }
-
-      .echo-feeling {
-        margin-top: 16px;
-        padding: 10px 14px;
-        background: var(--feeling-bg);
-        border: 1px solid var(--feeling-border);
-        border-radius: var(--radius-sm);
-        font-family: var(--font-mono);
-        font-size: 12px;
-        color: var(--accent);
-      }
-
-      .echo-feeling strong {
-        color: var(--text-dim);
-        font-weight: 400;
-        margin-right: 6px;
-      }
-
-      /* ---- Archive ---- */
-      .archive-section {
-        padding: 24px 0 48px;
-        border-top: 1px solid var(--border);
-      }
-
-      .archive-header {
+      .archive-panel-header {
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 20px;
       }
 
-      .archive-title {
+      .archive-panel-title {
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 600;
+      }
+
+      .archive-close {
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: var(--bg);
         color: var(--text-dim);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
       }
 
-      .archive-count {
+      .archive-panel-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+      }
+
+      .archive-session {
+        margin-bottom: 16px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 12px;
+        cursor: pointer;
+        transition: border-color var(--transition);
+      }
+
+      .archive-session:hover {
+        border-color: var(--border-focus);
+      }
+
+      .archive-session-time {
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 10px;
         color: var(--text-muted);
+        margin-bottom: 6px;
       }
 
-      .archive-clear {
+      .archive-session-preview {
+        font-size: 12px;
+        color: var(--text-dim);
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .archive-session-count {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text-muted);
+        margin-top: 6px;
+      }
+
+      .archive-empty {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--text-muted);
+        font-size: 12px;
+        font-family: var(--font-mono);
+      }
+
+      .archive-panel-footer {
+        padding: 12px 16px;
+        border-top: 1px solid var(--border);
+      }
+
+      .archive-clear-btn {
+        width: 100%;
+        padding: 8px;
         font-family: var(--font-mono);
         font-size: 11px;
         color: var(--danger);
         background: var(--danger-dim);
         border: 1px solid rgba(239, 68, 68, 0.2);
-        padding: 4px 10px;
-        border-radius: 4px;
+        border-radius: 6px;
         cursor: pointer;
         transition: all var(--transition);
       }
 
-      .archive-clear:hover {
+      .archive-clear-btn:hover {
         background: rgba(239, 68, 68, 0.15);
       }
 
-      .archive-list {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .archive-item {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        padding: 16px;
-        transition: border-color var(--transition);
-      }
-
-      .archive-item:hover {
-        border-color: var(--border-focus);
-      }
-
-      .archive-item-meta {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 8px;
-      }
-
-      .archive-item-time {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        color: var(--text-muted);
-      }
-
-      .archive-item-feeling {
-        font-family: var(--font-mono);
-        font-size: 10px;
-        color: var(--accent);
-        background: var(--accent-dim);
-        padding: 2px 6px;
-        border-radius: 3px;
-      }
-
-      .archive-item-message {
-        font-size: 13px;
-        color: var(--text-dim);
-        line-height: 1.6;
-        margin-bottom: 8px;
-      }
-
-      .archive-item-echo {
-        font-size: 13px;
-        color: var(--text);
-        line-height: 1.6;
-        padding-left: 12px;
-        border-left: 2px solid var(--accent-dim);
-      }
-
-      .archive-empty {
-        text-align: center;
-        padding: 32px;
-        color: var(--text-muted);
-        font-size: 13px;
-        font-family: var(--font-mono);
-      }
-
-      /* ---- Footer ---- */
+      /* ---- Footer (inside chat) ---- */
       .vault-footer {
-        padding: 24px 0;
-        border-top: 1px solid var(--border);
         text-align: center;
+        padding: 8px 20px 12px;
+        flex-shrink: 0;
       }
 
       .vault-footer p {
-        font-size: 12px;
+        font-size: 10px;
         color: var(--text-muted);
         font-family: var(--font-mono);
-        line-height: 1.8;
+        line-height: 1.6;
       }
 
       .vault-footer a {
@@ -472,38 +613,28 @@
         color: var(--accent);
       }
 
-      .vault-footer .crisis-line {
-        margin-top: 8px;
-        font-size: 11px;
-        color: var(--text-muted);
-      }
-
-      .vault-footer .crisis-line a {
-        color: var(--accent);
-      }
-
       /* ---- Responsive ---- */
       @media (max-width: 600px) {
-        .vault-hero h1 { font-size: 22px; }
-        .vault-hero p { font-size: 14px; }
-        .dump-textarea { min-height: 120px; font-size: 14px; }
-        .echo-text { font-size: 15px; }
-        .vault-header { padding: 20px 0 16px; }
-        .vault-hero { padding: 32px 0 20px; }
+        .welcome h1 { font-size: 22px; }
+        .welcome p { font-size: 13px; }
+        .vault-header { padding: 12px 16px; }
+        .chat-area { padding: 16px 12px 8px; }
+        .input-bar { padding: 10px 12px 12px; }
+        .msg-bubble { max-width: 88%; font-size: 13px; }
+        .archive-panel { width: 300px; }
       }
 
       /* ---- Scrollbar ---- */
-      ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: var(--bg); }
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-track { background: transparent; }
       ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
       ::-webkit-scrollbar-thumb:hover { background: var(--border-focus); }
 
-      /* ---- Hidden utility ---- */
       .hidden { display: none !important; }
     </style>
   </head>
   <body>
-    <div class="vault-container">
+    <div class="vault-app">
 
       <!-- Header -->
       <header class="vault-header">
@@ -511,104 +642,101 @@
           <div class="vault-logo-icon">&#9670;</div>
           <div class="vault-logo-text">The Vault <span>/ just talk</span></div>
         </a>
-        <div class="vault-header-actions">
+        <div class="header-right">
           <span class="mode-indicator" id="modeIndicator">--:--</span>
-          <button class="vault-btn-icon" id="archiveToggle" title="Your Archive" aria-label="Toggle archive">&#9776;</button>
+          <button class="btn-icon" id="archiveToggle" title="Past conversations" aria-label="Open archive">&#9776;</button>
         </div>
       </header>
 
-      <!-- Hero -->
-      <section class="vault-hero" id="heroSection">
-        <h1>Say what's on your mind.</h1>
-        <p>No judgement. No advice unless you want it. No one sees this but you. Just get it out.</p>
-        <div class="tagline">Anonymous. Private. Yours.</div>
-      </section>
+      <!-- Chat area -->
+      <div class="chat-area" id="chatArea">
+        <div class="welcome" id="welcomeScreen">
+          <h1>Say what's on your mind.</h1>
+          <p>No judgement. No fixing. No one sees this but you.<br/>Just talk. I'll listen.</p>
+          <div class="tagline">Anonymous. Private. Yours.</div>
+          <div class="starters">
+            <button class="starter-chip" data-msg="I can't sleep and my mind won't stop">Can't sleep</button>
+            <button class="starter-chip" data-msg="I feel alone even though I'm not physically alone">Feeling alone</button>
+            <button class="starter-chip" data-msg="I don't even know what I'm feeling right now">Don't know what I feel</button>
+            <button class="starter-chip" data-msg="I'm going through a breakup and it's hitting hard">Going through a breakup</button>
+            <button class="starter-chip" data-msg="I keep asking myself... is this it?">Is this it?</button>
+          </div>
+        </div>
+      </div>
 
-      <!-- The Dump -->
-      <section class="dump-section">
-        <div class="dump-box">
+      <!-- Input bar -->
+      <div class="input-bar">
+        <div class="input-row">
           <textarea
-            class="dump-textarea"
-            id="dumpInput"
-            placeholder="Whatever you're feeling right now... just start typing. There's no wrong thing to say here."
-            aria-label="Write what's on your mind"
+            class="input-field"
+            id="chatInput"
+            placeholder="Say anything..."
+            rows="1"
+            aria-label="Type your message"
           ></textarea>
-          <div class="dump-actions">
-            <span class="dump-hint" id="dumpHint">Just you and this box.</span>
-            <button class="dump-submit" id="dumpSubmit">Let it out</button>
-          </div>
+          <button class="send-btn" id="sendBtn" disabled aria-label="Send">
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          </button>
         </div>
-      </section>
-
-      <!-- The Echo (AI Response) -->
-      <section class="echo-section hidden" id="echoSection">
-        <div class="echo-card">
-          <div class="echo-label">&#9672; The Echo</div>
-          <div class="echo-text" id="echoText"></div>
-          <div class="echo-feeling hidden" id="echoFeeling">
-            <strong>This sounds like:</strong>
-            <span id="echoFeelingName"></span>
-          </div>
+        <div class="input-hint">
+          <span id="inputHint">Enter to send &middot; Shift+Enter for new line</span>
+          <button class="new-chat-btn" id="newChatBtn">new chat</button>
         </div>
-      </section>
-
-      <!-- Archive -->
-      <section class="archive-section hidden" id="archiveSection">
-        <div class="archive-header">
-          <div>
-            <span class="archive-title">Your Archive</span>
-            <span class="archive-count" id="archiveCount"></span>
-          </div>
-          <button class="archive-clear hidden" id="archiveClear">Clear All</button>
-        </div>
-        <div class="archive-list" id="archiveList">
-          <div class="archive-empty">Nothing here yet. Your words are waiting.</div>
-        </div>
-      </section>
+      </div>
 
       <!-- Footer -->
       <footer class="vault-footer">
         <p>
-          The Vault is not therapy. It's a space to be heard.<br/>
-          Built by <a href="/">Rudra Kasturi</a> &mdash; because men deserve space too.
-        </p>
-        <p class="crisis-line">
-          If you're in crisis: <a href="tel:988">988 Suicide & Crisis Lifeline</a> (US) &bull;
-          <a href="tel:13 11 14">13 11 14</a> (AU) &bull;
-          <a href="tel:116 123">116 123</a> (UK)
+          Not therapy. Just space. &middot; <a href="/">Rudra Kasturi</a> &middot;
+          Crisis? <a href="tel:988">988</a> (US) &middot; <a href="tel:13 11 14">13 11 14</a> (AU) &middot; <a href="tel:116 123">116 123</a> (UK)
         </p>
       </footer>
     </div>
 
+    <!-- Archive panel -->
+    <div class="archive-overlay" id="archiveOverlay"></div>
+    <div class="archive-panel" id="archivePanel">
+      <div class="archive-panel-header">
+        <span class="archive-panel-title">Past Conversations</span>
+        <button class="archive-close" id="archiveClose">&times;</button>
+      </div>
+      <div class="archive-panel-body" id="archiveBody"></div>
+      <div class="archive-panel-footer">
+        <button class="archive-clear-btn" id="archiveClear">Clear All Conversations</button>
+      </div>
+    </div>
+
     <script>
       // =============================================
-      // THE VAULT — Client-side logic
+      // THE VAULT — Chat Experience
       // =============================================
 
       const $ = (sel) => document.querySelector(sel);
-      const $$ = (sel) => document.querySelectorAll(sel);
-
-      // Elements
       const body = document.body;
-      const input = $('#dumpInput');
-      const submitBtn = $('#dumpSubmit');
-      const hint = $('#dumpHint');
-      const echoSection = $('#echoSection');
-      const echoText = $('#echoText');
-      const echoFeeling = $('#echoFeeling');
-      const echoFeelingName = $('#echoFeelingName');
-      const archiveToggle = $('#archiveToggle');
-      const archiveSection = $('#archiveSection');
-      const archiveList = $('#archiveList');
-      const archiveCount = $('#archiveCount');
-      const archiveClear = $('#archiveClear');
+      const chatArea = $('#chatArea');
+      const welcomeScreen = $('#welcomeScreen');
+      const chatInput = $('#chatInput');
+      const sendBtn = $('#sendBtn');
+      const inputHint = $('#inputHint');
       const modeIndicator = $('#modeIndicator');
-      const heroSection = $('#heroSection');
+      const newChatBtn = $('#newChatBtn');
 
-      // ---- 2AM Mode Detection ----
+      // Archive elements
+      const archiveToggle = $('#archiveToggle');
+      const archiveOverlay = $('#archiveOverlay');
+      const archivePanel = $('#archivePanel');
+      const archiveClose = $('#archiveClose');
+      const archiveBody = $('#archiveBody');
+      const archiveClear = $('#archiveClear');
+
+      // Current conversation
+      let conversation = []; // {role: 'user'|'echo', text, feeling?}
+      let sessionId = Date.now().toString(36);
+
+      // ---- 2AM Mode ----
       function check2amMode() {
         const hour = new Date().getHours();
-        const is2am = hour >= 22 || hour < 5; // 10pm to 5am
+        const is2am = hour >= 22 || hour < 5;
         body.classList.toggle('mode-2am', is2am);
         modeIndicator.textContent = is2am ? '2am mode' : formatTime();
       }
@@ -620,58 +748,104 @@
       }
 
       check2amMode();
-      setInterval(check2amMode, 60000); // check every minute
-      setInterval(() => {
-        if (!body.classList.contains('mode-2am')) {
-          modeIndicator.textContent = formatTime();
+      setInterval(check2amMode, 60000);
+
+      // ---- Auto-resize textarea ----
+      chatInput.addEventListener('input', () => {
+        chatInput.style.height = 'auto';
+        chatInput.style.height = Math.min(chatInput.scrollHeight, 150) + 'px';
+        sendBtn.disabled = !chatInput.value.trim();
+      });
+
+      // ---- Send message ----
+      async function sendMessage(text) {
+        if (!text || !text.trim()) return;
+        text = text.trim();
+
+        // Hide welcome
+        if (welcomeScreen) {
+          welcomeScreen.remove();
         }
-      }, 30000);
 
-      // ---- Archive (localStorage) ----
-      const STORAGE_KEY = 'vault_archive';
+        // Add user bubble
+        addBubble('user', text);
+        conversation.push({ role: 'user', text });
 
-      function getArchive() {
+        // Clear input
+        chatInput.value = '';
+        chatInput.style.height = 'auto';
+        sendBtn.disabled = true;
+
+        // Show typing indicator
+        const typingEl = showTyping();
+
         try {
-          return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        } catch {
-          return [];
+          const res = await fetch('/api/echo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              message: text,
+              conversation: conversation.slice(-10), // send recent context
+            }),
+          });
+
+          const data = await res.json();
+
+          // Remove typing
+          typingEl.remove();
+
+          // Add echo bubble
+          addBubble('echo', data.echo, data.feeling);
+          conversation.push({ role: 'echo', text: data.echo, feeling: data.feeling });
+
+          // Save session
+          saveSession();
+
+        } catch (err) {
+          typingEl.remove();
+          addBubble('echo', "Something went wrong on my end. Try sending that again.");
+          console.error('Echo error:', err);
         }
       }
 
-      function saveToArchive(entry) {
-        const archive = getArchive();
-        archive.unshift(entry);
-        // Keep last 100 entries
-        if (archive.length > 100) archive.length = 100;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(archive));
-      }
+      function addBubble(role, text, feeling) {
+        const row = document.createElement('div');
+        row.className = `msg-row ${role}`;
 
-      function clearArchive() {
-        localStorage.removeItem(STORAGE_KEY);
-        renderArchive();
-      }
-
-      function renderArchive() {
-        const archive = getArchive();
-        archiveCount.textContent = archive.length > 0 ? `(${archive.length})` : '';
-
-        if (archive.length === 0) {
-          archiveList.innerHTML = '<div class="archive-empty">Nothing here yet. Your words are waiting.</div>';
-          archiveClear.classList.add('hidden');
-          return;
+        let html = '<div class="msg-bubble">';
+        if (role === 'echo') {
+          html += '<span class="msg-label">the echo</span>';
         }
+        html += escapeHtml(text);
+        if (feeling) {
+          html += `<div class="msg-feeling">${escapeHtml(feeling)}</div>`;
+        }
+        html += '</div>';
 
-        archiveClear.classList.remove('hidden');
-        archiveList.innerHTML = archive.map(entry => `
-          <div class="archive-item">
-            <div class="archive-item-meta">
-              <span class="archive-item-time">${entry.time}</span>
-              ${entry.feeling ? `<span class="archive-item-feeling">${entry.feeling}</span>` : ''}
-            </div>
-            <div class="archive-item-message">${escapeHtml(entry.message.length > 200 ? entry.message.slice(0, 200) + '...' : entry.message)}</div>
-            <div class="archive-item-echo">${escapeHtml(entry.echo)}</div>
+        row.innerHTML = html;
+        chatArea.appendChild(row);
+        scrollToBottom();
+      }
+
+      function showTyping() {
+        const row = document.createElement('div');
+        row.className = 'typing-row';
+        row.innerHTML = `
+          <div class="typing-bubble">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
           </div>
-        `).join('');
+        `;
+        chatArea.appendChild(row);
+        scrollToBottom();
+        return row;
+      }
+
+      function scrollToBottom() {
+        requestAnimationFrame(() => {
+          chatArea.scrollTop = chatArea.scrollHeight;
+        });
       }
 
       function escapeHtml(text) {
@@ -680,115 +854,164 @@
         return div.innerHTML;
       }
 
-      // ---- Archive Toggle ----
-      let archiveOpen = false;
-      archiveToggle.addEventListener('click', () => {
-        archiveOpen = !archiveOpen;
-        archiveSection.classList.toggle('hidden', !archiveOpen);
-        archiveToggle.classList.toggle('active', archiveOpen);
-        if (archiveOpen) renderArchive();
+      // ---- Event listeners ----
+      sendBtn.addEventListener('click', () => sendMessage(chatInput.value));
+
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage(chatInput.value);
+        }
       });
+
+      // Starter chips
+      document.querySelectorAll('.starter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          sendMessage(chip.dataset.msg);
+        });
+      });
+
+      // New chat
+      newChatBtn.addEventListener('click', () => {
+        if (conversation.length > 0) {
+          saveSession();
+        }
+        conversation = [];
+        sessionId = Date.now().toString(36);
+        chatArea.innerHTML = `
+          <div class="welcome" id="welcomeScreen">
+            <h1>Say what's on your mind.</h1>
+            <p>No judgement. No fixing. No one sees this but you.<br/>Just talk. I'll listen.</p>
+            <div class="tagline">Anonymous. Private. Yours.</div>
+            <div class="starters">
+              <button class="starter-chip" data-msg="I can't sleep and my mind won't stop">Can't sleep</button>
+              <button class="starter-chip" data-msg="I feel alone even though I'm not physically alone">Feeling alone</button>
+              <button class="starter-chip" data-msg="I don't even know what I'm feeling right now">Don't know what I feel</button>
+              <button class="starter-chip" data-msg="I'm going through a breakup and it's hitting hard">Going through a breakup</button>
+              <button class="starter-chip" data-msg="I keep asking myself... is this it?">Is this it?</button>
+            </div>
+          </div>
+        `;
+        // Re-bind starter chips
+        document.querySelectorAll('.starter-chip').forEach(chip => {
+          chip.addEventListener('click', () => sendMessage(chip.dataset.msg));
+        });
+        chatInput.focus();
+      });
+
+      // ---- Archive (localStorage) ----
+      const STORAGE_KEY = 'vault_sessions';
+
+      function getSessions() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        } catch { return []; }
+      }
+
+      function saveSession() {
+        if (conversation.length === 0) return;
+        const sessions = getSessions();
+        // Update existing or create new
+        const idx = sessions.findIndex(s => s.id === sessionId);
+        const sessionData = {
+          id: sessionId,
+          messages: conversation,
+          time: new Date().toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric',
+            hour: '2-digit', minute: '2-digit', hour12: true,
+          }),
+          timestamp: Date.now(),
+          preview: conversation.find(m => m.role === 'user')?.text || '',
+        };
+
+        if (idx >= 0) {
+          sessions[idx] = sessionData;
+        } else {
+          sessions.unshift(sessionData);
+        }
+        // Keep last 50 sessions
+        if (sessions.length > 50) sessions.length = 50;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+      }
+
+      function renderArchive() {
+        const sessions = getSessions();
+        if (sessions.length === 0) {
+          archiveBody.innerHTML = '<div class="archive-empty">No conversations yet.<br/>Your words are waiting.</div>';
+          return;
+        }
+
+        archiveBody.innerHTML = sessions.map(s => `
+          <div class="archive-session" data-id="${s.id}">
+            <div class="archive-session-time">${escapeHtml(s.time)}</div>
+            <div class="archive-session-preview">${escapeHtml(s.preview)}</div>
+            <div class="archive-session-count">${s.messages.length} messages</div>
+          </div>
+        `).join('');
+
+        // Click to load session
+        archiveBody.querySelectorAll('.archive-session').forEach(el => {
+          el.addEventListener('click', () => {
+            const id = el.dataset.id;
+            const session = sessions.find(s => s.id === id);
+            if (session) loadSession(session);
+          });
+        });
+      }
+
+      function loadSession(session) {
+        // Save current session first
+        if (conversation.length > 0) saveSession();
+
+        // Load the selected session
+        sessionId = session.id;
+        conversation = session.messages;
+
+        // Clear chat area and render messages
+        chatArea.innerHTML = '';
+        conversation.forEach(msg => {
+          addBubble(msg.role, msg.text, msg.feeling);
+        });
+
+        closeArchive();
+        scrollToBottom();
+        chatInput.focus();
+      }
+
+      // Archive open/close
+      function openArchive() {
+        renderArchive();
+        archivePanel.classList.add('open');
+        archiveOverlay.classList.add('open');
+        archiveToggle.classList.add('active');
+      }
+
+      function closeArchive() {
+        archivePanel.classList.remove('open');
+        archiveOverlay.classList.remove('open');
+        archiveToggle.classList.remove('active');
+      }
+
+      archiveToggle.addEventListener('click', () => {
+        if (archivePanel.classList.contains('open')) {
+          closeArchive();
+        } else {
+          openArchive();
+        }
+      });
+
+      archiveClose.addEventListener('click', closeArchive);
+      archiveOverlay.addEventListener('click', closeArchive);
 
       archiveClear.addEventListener('click', () => {
-        if (confirm('Clear your entire archive? This cannot be undone.')) {
-          clearArchive();
+        if (confirm('Clear all past conversations? This cannot be undone.')) {
+          localStorage.removeItem(STORAGE_KEY);
+          renderArchive();
         }
       });
-
-      // ---- Submit / The Dump ----
-      async function submitDump() {
-        const message = input.value.trim();
-        if (!message) return;
-
-        // UI: loading state
-        submitBtn.disabled = true;
-        submitBtn.classList.add('loading');
-        hint.textContent = 'Listening...';
-
-        try {
-          const res = await fetch('/api/echo', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message }),
-          });
-
-          const data = await res.json();
-
-          // Show echo
-          echoText.textContent = data.echo;
-          echoSection.classList.remove('hidden');
-
-          if (data.feeling) {
-            echoFeelingName.textContent = data.feeling;
-            echoFeeling.classList.remove('hidden');
-          } else {
-            echoFeeling.classList.add('hidden');
-          }
-
-          // Hide hero after first use
-          heroSection.style.display = 'none';
-
-          // Save to archive
-          const now = new Date();
-          saveToArchive({
-            message,
-            echo: data.echo,
-            feeling: data.feeling || null,
-            time: now.toLocaleDateString('en-US', {
-              month: 'short', day: 'numeric',
-              hour: '2-digit', minute: '2-digit',
-              hour12: true,
-            }),
-            timestamp: now.getTime(),
-          });
-
-          // Update archive count
-          const archive = getArchive();
-          archiveCount.textContent = `(${archive.length})`;
-
-          // Clear input
-          input.value = '';
-          hint.textContent = 'Come back whenever you need.';
-
-          // Scroll to echo
-          echoSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-        } catch (err) {
-          hint.textContent = 'Something went wrong. Try again.';
-          console.error('Echo error:', err);
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('loading');
-        }
-      }
-
-      submitBtn.addEventListener('click', submitDump);
-
-      // Ctrl+Enter / Cmd+Enter to submit
-      input.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-          e.preventDefault();
-          submitDump();
-        }
-      });
-
-      // Update hint based on input
-      input.addEventListener('input', () => {
-        if (input.value.trim().length > 0) {
-          hint.textContent = 'Ctrl+Enter to send';
-        } else {
-          hint.textContent = 'Just you and this box.';
-        }
-      });
-
-      // Auto-focus the textarea on load
-      setTimeout(() => input.focus(), 100);
 
       // ---- Init ----
-      const archive = getArchive();
-      if (archive.length > 0) {
-        archiveCount.textContent = `(${archive.length})`;
-      }
+      chatInput.focus();
     </script>
   </body>
 </html>

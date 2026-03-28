@@ -1,5 +1,11 @@
 import type { APIRoute } from 'astro';
 
+interface ConversationMessage {
+  role: 'user' | 'echo';
+  text: string;
+  feeling?: string | null;
+}
+
 // Empathetic response engine — pattern-matched for now, ready for Claude API integration
 const reflections: { patterns: RegExp[]; responses: string[] }[] = [
   {
@@ -39,7 +45,7 @@ const reflections: { patterns: RegExp[]; responses: string[] }[] = [
     responses: [
       "The nights are the hardest, aren't they? When the world goes quiet, the mind gets loud. You don't need to solve anything right now. Just let it out.",
       "There's something about 2am that strips away all the armour. It's just you and the truth. That's not a bad thing — it means you're ready to face it.",
-      "Can't sleep because the thoughts won't stop. I get it. You don't need to fight them. Just write them down. Get them out of your head and into this box.",
+      "Can't sleep because the thoughts won't stop. I get it. You don't need to fight them. Just write them down. Get them out of your head and into this chat.",
     ],
   },
   {
@@ -92,7 +98,73 @@ const reflections: { patterns: RegExp[]; responses: string[] }[] = [
   },
 ];
 
-// Fallback responses when no pattern matches
+// Follow-up responses — for when the user continues talking within a conversation
+const followUps: { patterns: RegExp[]; responses: string[] }[] = [
+  {
+    patterns: [/yeah|yes|exactly|that's it|right|true|correct/i],
+    responses: [
+      "Yeah. Sometimes just having someone say back what you're feeling makes it more real. Keep going if you need to.",
+      "Sounds like that hit close. What else is in there?",
+      "I hear you. There's no rush — say what comes next when you're ready.",
+    ],
+  },
+  {
+    patterns: [/but|however|thing is|problem is|worst part/i],
+    responses: [
+      "Go on. I'm listening.",
+      "The 'but' is usually where the real thing lives. Take your time.",
+      "Yeah — there's always another layer, isn't there. Let it out.",
+    ],
+  },
+  {
+    patterns: [/i don't know|idk|not sure|confused|no idea/i],
+    responses: [
+      "You don't have to know. Sometimes the feelings show up before the words do. Just keep talking — it'll come.",
+      "Not knowing is okay. You don't need to have it figured out to talk about it.",
+      "That confusion? It's honest. Most people pretend they have the answers. You're being real.",
+    ],
+  },
+  {
+    patterns: [/no one understands|nobody gets it|can't talk to anyone/i],
+    responses: [
+      "That's the loneliest part — being surrounded by people and still feeling like nobody really sees what's going on inside. I get why you came here.",
+      "You're not asking for much. Just someone who listens without making it about them. That's valid.",
+      "The people around you probably care — they just don't know how to reach you. That's not your fault or theirs. It's just hard.",
+    ],
+  },
+  {
+    patterns: [/what do i do|what should i|how do i|any advice/i],
+    responses: [
+      "I'm not going to tell you what to do — you already know more than you think. But I can ask: what does the version of you that's not afraid look like?",
+      "Honest answer? I don't know your life well enough to give advice. But I do know that you're thinking clearly enough to ask the question. That's a start.",
+      "Before advice — what does your gut say? Sometimes we ask others because we're scared of the answer we already have.",
+    ],
+  },
+  {
+    patterns: [/tired|exhausted|done|over it|can't anymore/i],
+    responses: [
+      "Being tired of being tired — that's a specific kind of exhaustion. You don't need to push through right now. Just be here.",
+      "You've been carrying this for a while, haven't you? It's okay to put it down for a minute. Even here, even just in words.",
+      "You're not giving up by saying you're done. You're being honest about where you are. That takes guts.",
+    ],
+  },
+];
+
+// Generic conversation continuers — when nothing specific matches in a follow-up
+const continuers = [
+  "I'm still here. Keep going.",
+  "Take your time. There's no timer on this.",
+  "Say more about that. Whatever comes to mind.",
+  "I'm listening. No need to filter.",
+  "You don't have to make sense. Just let it flow.",
+  "There's more in there, isn't there? Let it out.",
+  "I'm not going anywhere. Say what you need to say.",
+  "And? What else is sitting in there?",
+  "That's real. What else is on your mind?",
+  "Keep talking. This is your space.",
+];
+
+// Fallback responses for first messages
 const fallbacks = [
   "I hear you. You don't need to explain more than you want to. Whatever you're carrying right now — it's real, and it matters.",
   "Sometimes the hardest thing is just putting it into words. You did that. That's more than most people manage.",
@@ -116,6 +188,7 @@ const feelings: { pattern: RegExp; name: string }[] = [
   { pattern: /midlife|crisis|what am i doing|is this it/i, name: "quiet questioning" },
   { pattern: /cry|tears|breaking down/i, name: "emotional release" },
   { pattern: /miss |missing /i, name: "longing" },
+  { pattern: /tired|exhausted|done|over it/i, name: "deep fatigue" },
 ];
 
 function detectFeeling(text: string): string | null {
@@ -125,24 +198,48 @@ function detectFeeling(text: string): string | null {
   return null;
 }
 
-function getResponse(text: string): string {
-  // Try pattern-matched reflections first
-  for (const group of reflections) {
-    for (const pattern of group.patterns) {
-      if (pattern.test(text)) {
-        const pool = group.responses;
-        return pool[Math.floor(Math.random() * pool.length)];
+function pickRandom(arr: string[]): string {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function getResponse(text: string, conversation: ConversationMessage[]): string {
+  const isFollowUp = conversation.filter(m => m.role === 'user').length > 0;
+  const isShortMessage = text.split(/\s+/).length <= 6;
+
+  // For follow-up messages, try follow-up patterns first
+  if (isFollowUp) {
+    for (const group of followUps) {
+      for (const pattern of group.patterns) {
+        if (pattern.test(text)) {
+          return pickRandom(group.responses);
+        }
       }
     }
   }
+
+  // Try main reflections
+  for (const group of reflections) {
+    for (const pattern of group.patterns) {
+      if (pattern.test(text)) {
+        return pickRandom(group.responses);
+      }
+    }
+  }
+
+  // For follow-up messages with no pattern match, use continuers
+  if (isFollowUp && isShortMessage) {
+    return pickRandom(continuers);
+  }
+
   // Fallback
-  return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+  return pickRandom(fallbacks);
 }
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
     const message = body.message?.trim();
+    const conversation: ConversationMessage[] = body.conversation || [];
 
     if (!message) {
       return new Response(JSON.stringify({ error: 'No message provided' }), {
@@ -151,8 +248,10 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const echo = getResponse(message);
-    const feeling = detectFeeling(message);
+    // Only detect feeling on first couple messages or when topic shifts
+    const userMsgCount = conversation.filter(m => m.role === 'user').length;
+    const feeling = userMsgCount <= 2 ? detectFeeling(message) : null;
+    const echo = getResponse(message, conversation);
 
     return new Response(
       JSON.stringify({ echo, feeling }),
