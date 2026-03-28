@@ -283,26 +283,11 @@
         color: var(--text);
       }
 
-      .msg-row.echo .msg-label {
-        font-family: var(--font-mono);
-        font-size: 10px;
-        color: var(--accent);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 6px;
-        display: block;
-      }
-
-      .msg-feeling {
-        margin-top: 10px;
-        padding: 6px 10px;
-        background: var(--feeling-bg);
-        border: 1px solid var(--feeling-border);
-        border-radius: 6px;
-        font-family: var(--font-mono);
+      .msg-sender {
         font-size: 11px;
-        color: var(--accent);
-        display: inline-block;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+        padding: 0 4px;
       }
 
       /* Typing indicator */
@@ -795,8 +780,8 @@
           typingEl.remove();
 
           // Add echo bubble
-          addBubble('echo', data.echo, data.feeling);
-          conversation.push({ role: 'echo', text: data.echo, feeling: data.feeling });
+          addBubble('echo', data.echo);
+          conversation.push({ role: 'echo', text: data.echo });
 
           // Save session
           saveSession();
@@ -808,19 +793,15 @@
         }
       }
 
-      function addBubble(role, text, feeling) {
+      function addBubble(role, text) {
         const row = document.createElement('div');
         row.className = `msg-row ${role}`;
 
-        let html = '<div class="msg-bubble">';
-        if (role === 'echo') {
-          html += '<span class="msg-label">the echo</span>';
-        }
+        const sender = role === 'user' ? 'You' : 'Vault';
+        let html = `<div><div class="msg-sender">${sender}</div>`;
+        html += '<div class="msg-bubble">';
         html += escapeHtml(text);
-        if (feeling) {
-          html += `<div class="msg-feeling">${escapeHtml(feeling)}</div>`;
-        }
-        html += '</div>';
+        html += '</div></div>';
 
         row.innerHTML = html;
         chatArea.appendChild(row);
@@ -970,7 +951,7 @@
         // Clear chat area and render messages
         chatArea.innerHTML = '';
         conversation.forEach(msg => {
-          addBubble(msg.role, msg.text, msg.feeling);
+          addBubble(msg.role, msg.text);
         });
 
         closeArchive();
