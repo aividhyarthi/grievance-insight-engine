@@ -22,6 +22,7 @@ COPY --from=build /app/package.json ./
 
 ENV HOST=0.0.0.0
 ENV PORT=8080
+ENV ANTHROPIC_API_KEY=""
 
 EXPOSE 8080
 
