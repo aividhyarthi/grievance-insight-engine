@@ -8,6 +8,6 @@ export default defineConfig({
     mode: 'standalone',
   }),
   vite: {
-    envPrefix: 'WP_',
+    envPrefix: ['WP_', 'ANTHROPIC_'],
   },
 });

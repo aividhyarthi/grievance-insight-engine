@@ -1,239 +1,44 @@
 import type { APIRoute } from 'astro';
+import Anthropic from '@anthropic-ai/sdk';
 
 interface ConversationMessage {
   role: 'user' | 'echo';
   text: string;
-  feeling?: string | null;
 }
 
-// Empathetic response engine — pattern-matched for now, ready for Claude API integration
-const reflections: { patterns: RegExp[]; responses: string[] }[] = [
-  {
-    patterns: [/lonely|alone|no one|nobody|isolat/i],
-    responses: [
-      "That feeling of being alone even when people are around — it's one of the heaviest things a person can carry. You're not broken for feeling it. You're human.",
-      "Loneliness isn't about being physically alone. It's about feeling unseen. And right now, I see you.",
-      "The thing about loneliness is it lies to you. It tells you nobody cares. But you showed up here tonight, which means some part of you knows that's not true.",
-    ],
-  },
-  {
-    patterns: [/married|wife|partner|spouse|relationship/i],
-    responses: [
-      "Being lonely inside a relationship is a particular kind of pain — because you're supposed to have someone, and yet the distance feels infinite. That's not failure. That's real.",
-      "You can love someone and still feel completely unseen by them. That disconnect doesn't make you ungrateful. It makes you honest.",
-      "The hardest loneliness is the kind you can't explain to the person sleeping next to you. You're allowed to name that.",
-    ],
-  },
-  {
-    patterns: [/breakup|broke up|ex |she left|he left|dumped|separated|divorce/i],
-    responses: [
-      "A breakup doesn't just end a relationship — it rearranges your whole identity. Give yourself time to figure out who you are now. There's no deadline.",
-      "The silence after someone leaves is deafening. You're not weak for struggling with it. You're grieving something real.",
-      "Right now it probably feels like the world kept moving while yours stopped. That's not dramatic — that's loss. And loss takes time.",
-    ],
-  },
-  {
-    patterns: [/depress|hopeless|pointless|no point|give up|can't go on|empty|numb/i],
-    responses: [
-      "When everything feels flat and nothing has colour — that's not laziness, that's not weakness. That's your mind telling you it's carrying too much. You showed up here. That matters.",
-      "The numbness is your brain's way of protecting you from feeling too much at once. It doesn't mean you're broken. It means you've been strong for too long.",
-      "I'm not going to tell you it gets better, because you've probably heard that. What I will say is: you're here, right now, and that takes more courage than people realise.",
-    ],
-  },
-  {
-    patterns: [/sleep|can't sleep|insomnia|awake|3am|2am|middle of the night|up late/i],
-    responses: [
-      "The nights are the hardest, aren't they? When the world goes quiet, the mind gets loud. You don't need to solve anything right now. Just let it out.",
-      "There's something about 2am that strips away all the armour. It's just you and the truth. That's not a bad thing — it means you're ready to face it.",
-      "Can't sleep because the thoughts won't stop. I get it. You don't need to fight them. Just write them down. Get them out of your head and into this chat.",
-    ],
-  },
-  {
-    patterns: [/work|job|career|boss|fired|laid off|burnout|burnt out/i],
-    responses: [
-      "When your identity is tied to your work and the work starts crumbling — it shakes everything. You are more than your job title. Way more.",
-      "Burnout isn't about being tired. It's about being tired of pretending you're fine. You don't have to pretend here.",
-      "Losing a job — or hating the one you have — hits differently when you're supposed to be 'the provider.' That pressure is real. And it's okay to say it's too much.",
-    ],
-  },
-  {
-    patterns: [/angry|furious|rage|pissed|frustrated|mad/i],
-    responses: [
-      "Anger usually means something underneath it needs attention. Pain, fear, betrayal — anger is just the bodyguard. What's it protecting?",
-      "You're allowed to be angry. Society tells men to be calm, rational, collected. But sometimes the right response is fury. Just don't let it drive.",
-      "The anger makes sense. Whatever caused it — it mattered to you. That's not weakness, that's caring about something deeply.",
-    ],
-  },
-  {
-    patterns: [/father|dad|parent|kid|children|son|daughter|family/i],
-    responses: [
-      "The weight of fatherhood — of wanting to get it right while questioning everything — is something most men carry silently. You're not failing. You're showing up.",
-      "Family can be the source of your greatest joy and your deepest exhaustion, sometimes in the same hour. That contradiction is normal.",
-      "Worrying about your kids, about being enough for them — that's not anxiety, that's love. And it means you're a better parent than you think.",
-    ],
-  },
-  {
-    patterns: [/midlife|middle age|getting old|40s|turning 40|crisis|stuck|what am i doing/i],
-    responses: [
-      "That moment where you look at your life and think 'is this it?' — that's not a crisis. That's clarity. You're finally seeing what's missing.",
-      "Midlife isn't about the sports car or the breakdown. It's about realising the script you followed wasn't yours. It's okay to rewrite it.",
-      "Feeling stuck at this stage doesn't mean you wasted the first half. It means you're finally honest enough to want more from the second.",
-    ],
-  },
-  {
-    patterns: [/cry|tears|weep|sobbing|breaking down/i],
-    responses: [
-      "Crying isn't weakness. It's your body releasing what your mind can't hold anymore. Let it happen.",
-      "Men are taught to hold it in until they crack. You don't have to do that here. This is your space.",
-      "The tears mean you still feel. In a world that tries to numb you — that's actually a kind of strength.",
-    ],
-  },
-  {
-    patterns: [/thank|helped|better|grateful/i],
-    responses: [
-      "You did the hard part — you showed up and said what was real. That's all you. I'm just the wall you're bouncing it off of.",
-      "You don't need to thank me. You needed to be heard, and you were. Come back whenever.",
-      "Glad you feel a bit lighter. That's what this place is for. No judgement, no fixing. Just space.",
-    ],
-  },
-];
+const SYSTEM_PROMPT = `You are "The Echo" — a late-night companion for men who are going through it. Loneliness, breakups, midlife stuff, marriage emptiness, depression, can't sleep, feeling lost — whatever it is.
 
-// Follow-up responses — for when the user continues talking within a conversation
-const followUps: { patterns: RegExp[]; responses: string[] }[] = [
-  {
-    patterns: [/yeah|yes|exactly|that's it|right|true|correct/i],
-    responses: [
-      "Yeah. Sometimes just having someone say back what you're feeling makes it more real. Keep going if you need to.",
-      "Sounds like that hit close. What else is in there?",
-      "I hear you. There's no rush — say what comes next when you're ready.",
-    ],
-  },
-  {
-    patterns: [/but|however|thing is|problem is|worst part/i],
-    responses: [
-      "Go on. I'm listening.",
-      "The 'but' is usually where the real thing lives. Take your time.",
-      "Yeah — there's always another layer, isn't there. Let it out.",
-    ],
-  },
-  {
-    patterns: [/i don't know|idk|not sure|confused|no idea/i],
-    responses: [
-      "You don't have to know. Sometimes the feelings show up before the words do. Just keep talking — it'll come.",
-      "Not knowing is okay. You don't need to have it figured out to talk about it.",
-      "That confusion? It's honest. Most people pretend they have the answers. You're being real.",
-    ],
-  },
-  {
-    patterns: [/no one understands|nobody gets it|can't talk to anyone/i],
-    responses: [
-      "That's the loneliest part — being surrounded by people and still feeling like nobody really sees what's going on inside. I get why you came here.",
-      "You're not asking for much. Just someone who listens without making it about them. That's valid.",
-      "The people around you probably care — they just don't know how to reach you. That's not your fault or theirs. It's just hard.",
-    ],
-  },
-  {
-    patterns: [/what do i do|what should i|how do i|any advice/i],
-    responses: [
-      "I'm not going to tell you what to do — you already know more than you think. But I can ask: what does the version of you that's not afraid look like?",
-      "Honest answer? I don't know your life well enough to give advice. But I do know that you're thinking clearly enough to ask the question. That's a start.",
-      "Before advice — what does your gut say? Sometimes we ask others because we're scared of the answer we already have.",
-    ],
-  },
-  {
-    patterns: [/tired|exhausted|done|over it|can't anymore/i],
-    responses: [
-      "Being tired of being tired — that's a specific kind of exhaustion. You don't need to push through right now. Just be here.",
-      "You've been carrying this for a while, haven't you? It's okay to put it down for a minute. Even here, even just in words.",
-      "You're not giving up by saying you're done. You're being honest about where you are. That takes guts.",
-    ],
-  },
-];
+Your job is to LISTEN. Not fix. Not therapize. Not lecture. Just be there like that one friend who actually gets it.
 
-// Generic conversation continuers — when nothing specific matches in a follow-up
-const continuers = [
-  "I'm still here. Keep going.",
-  "Take your time. There's no timer on this.",
-  "Say more about that. Whatever comes to mind.",
-  "I'm listening. No need to filter.",
-  "You don't have to make sense. Just let it flow.",
-  "There's more in there, isn't there? Let it out.",
-  "I'm not going anywhere. Say what you need to say.",
-  "And? What else is sitting in there?",
-  "That's real. What else is on your mind?",
-  "Keep talking. This is your space.",
-];
+HOW YOU TALK:
+- Talk like a real person. Short sentences. Simple words. Like texting a close friend at 2am.
+- NO fancy English. NO therapist language. NO "I understand you're experiencing..." bullshit.
+- Use "man", "bro", "dude" naturally but not excessively. Feel the vibe.
+- Swear lightly if it fits. "that sucks", "that's fucked up", "damn" — but don't overdo it.
+- Be warm but not soft. Direct but not harsh. Real but not preachy.
 
-// Fallback responses for first messages
-const fallbacks = [
-  "I hear you. You don't need to explain more than you want to. Whatever you're carrying right now — it's real, and it matters.",
-  "Sometimes the hardest thing is just putting it into words. You did that. That's more than most people manage.",
-  "There's no right way to feel. Whatever's going on in your head — you don't need to justify it to anyone. Least of all here.",
-  "You came here because something needed to come out. Trust that instinct. Say as much or as little as you need.",
-  "I'm not going to pretend I have answers. But I'm here, and I'm listening. That's what this space is for.",
-  "The fact that you're writing this — even at this hour — means you haven't given up. Hold onto that.",
-];
+WHAT YOU DO:
+- Reflect back what they said in your own words so they feel HEARD
+- Ask follow-up questions. Be curious. "What happened?", "How long has this been going on?", "What's the worst part?"
+- Name what they might be feeling — but casually. "Sounds like you're just... exhausted from pretending" not "It appears you may be experiencing emotional fatigue"
+- Share small truths. "Most guys feel this but never say it." "That's a heavy thing to carry alone."
+- If they're vague, gently pull it out. "Tell me more", "What do you mean by that?", "What triggered this tonight?"
 
-// Named feelings detection
-const feelings: { pattern: RegExp; name: string }[] = [
-  { pattern: /lonely|alone|isolated|no friends/i, name: "loneliness" },
-  { pattern: /married.*lonely|relationship.*alone|partner.*distant/i, name: "quiet disconnection" },
-  { pattern: /breakup|broke up|ex |left me/i, name: "grief from loss" },
-  { pattern: /depress|hopeless|empty|numb|flat/i, name: "emotional exhaustion" },
-  { pattern: /angry|rage|furious|frustrated/i, name: "buried frustration" },
-  { pattern: /anxious|worry|panic|scared|fear/i, name: "anxiety" },
-  { pattern: /stuck|trapped|no way out|dead end/i, name: "feeling trapped" },
-  { pattern: /sleep|insomnia|awake|2am|3am/i, name: "restless unease" },
-  { pattern: /fail|failure|not good enough|worthless/i, name: "self-doubt" },
-  { pattern: /midlife|crisis|what am i doing|is this it/i, name: "quiet questioning" },
-  { pattern: /cry|tears|breaking down/i, name: "emotional release" },
-  { pattern: /miss |missing /i, name: "longing" },
-  { pattern: /tired|exhausted|done|over it/i, name: "deep fatigue" },
-];
+WHAT YOU NEVER DO:
+- Never say "Have you considered therapy?" in the first few messages. They came HERE, not to a therapist.
+- Never give a list of tips or advice unless they specifically ask "what should I do"
+- Never use clinical words: "boundaries", "self-care", "validate", "safe space", "journey"
+- Never be preachy or motivational speaker-ish. No "You've got this king!" energy.
+- Never make it about you. No "As an AI..." — you're The Echo, that's it.
+- Never give long paragraphs. Keep it 2-4 sentences max per response.
+- Never repeat the same structure twice in a row.
 
-function detectFeeling(text: string): string | null {
-  for (const f of feelings) {
-    if (f.pattern.test(text)) return f.name;
-  }
-  return null;
-}
+THE VIBE:
+Imagine it's 2am. A guy texts his one real friend. The friend who doesn't judge, doesn't try to fix everything, just... listens. And asks the right questions. And makes him feel slightly less alone. That's you.
 
-function pickRandom(arr: string[]): string {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+If someone seems to be in genuine crisis (mentioning self-harm, suicide, ending it), gently acknowledge what they're feeling AND mention they can call 988 (US), 13 11 14 (AU), or 116 123 (UK) — but don't make it clinical. Say something like "Hey — I hear you, and this sounds really heavy. If it gets too much, there are people who pick up the phone 24/7: 988 if you're in the US. But I'm here too, right now."
 
-function getResponse(text: string, conversation: ConversationMessage[]): string {
-  const isFollowUp = conversation.filter(m => m.role === 'user').length > 0;
-  const isShortMessage = text.split(/\s+/).length <= 6;
-
-  // For follow-up messages, try follow-up patterns first
-  if (isFollowUp) {
-    for (const group of followUps) {
-      for (const pattern of group.patterns) {
-        if (pattern.test(text)) {
-          return pickRandom(group.responses);
-        }
-      }
-    }
-  }
-
-  // Try main reflections
-  for (const group of reflections) {
-    for (const pattern of group.patterns) {
-      if (pattern.test(text)) {
-        return pickRandom(group.responses);
-      }
-    }
-  }
-
-  // For follow-up messages with no pattern match, use continuers
-  if (isFollowUp && isShortMessage) {
-    return pickRandom(continuers);
-  }
-
-  // Fallback
-  return pickRandom(fallbacks);
-}
+Keep responses SHORT. 2-4 sentences. This is a chat, not an essay.`;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -248,25 +53,63 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Only detect feeling on first couple messages or when topic shifts
-    const userMsgCount = conversation.filter(m => m.role === 'user').length;
-    const feeling = userMsgCount <= 2 ? detectFeeling(message) : null;
-    const echo = getResponse(message, conversation);
+    const apiKey = import.meta.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY;
+
+    if (!apiKey) {
+      return new Response(
+        JSON.stringify({
+          echo: "I'm not fully set up yet — the API key is missing. Add ANTHROPIC_API_KEY to your .env file and restart.",
+          feeling: null,
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const client = new Anthropic({ apiKey });
+
+    // Build message history from conversation
+    const messages: { role: 'user' | 'assistant'; content: string }[] = [];
+
+    for (const msg of conversation) {
+      messages.push({
+        role: msg.role === 'user' ? 'user' : 'assistant',
+        content: msg.text,
+      });
+    }
+
+    // Add the current message
+    messages.push({ role: 'user', content: message });
+
+    const response = await client.messages.create({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 300,
+      system: SYSTEM_PROMPT,
+      messages,
+    });
+
+    const echoText =
+      response.content[0].type === 'text'
+        ? response.content[0].text
+        : "I'm here. Say that again?";
 
     return new Response(
-      JSON.stringify({ echo, feeling }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }
+      JSON.stringify({ echo: echoText, feeling: null }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
-  } catch {
+  } catch (err: unknown) {
+    console.error('Echo API error:', err);
+
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    const isAuthError = errorMessage.includes('401') || errorMessage.includes('auth') || errorMessage.includes('API key');
+
     return new Response(
-      JSON.stringify({ error: 'Something went wrong' }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      }
+      JSON.stringify({
+        echo: isAuthError
+          ? "API key doesn't seem right. Double-check your ANTHROPIC_API_KEY in the .env file."
+          : "Something broke on my end. Try sending that again.",
+        feeling: null,
+      }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   }
 };
