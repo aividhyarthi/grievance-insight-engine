@@ -1,0 +1,208 @@
+---
+import ElectionLayout from '../layouts/ElectionLayout.astro';
+---
+
+<ElectionLayout title="What Matters to You? | Election Pulse 2026">
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <div class="ep-badge">FIND YOUR MATCH</div>
+        <h1 class="ep-section-title" style="margin-top:1rem">What Matters to You?</h1>
+        <p class="ep-section-sub">Pick the issues you care about. We'll show you which parties align with your priorities.</p>
+      </div>
+
+      <!-- Quiz -->
+      <div class="qz-wrap" id="qz-wrap">
+        <div class="qz-step" id="qz-step-1">
+          <h2 class="qz-q">Pick your TOP issues (select 3-5)</h2>
+          <p class="qz-hint">What matters most to YOU? Not your parents. Not the news. You.</p>
+          <div class="qz-issues" id="qz-issues"></div>
+          <button class="ep-btn ep-btn-primary qz-next-btn" id="qz-next" disabled>See My Results</button>
+        </div>
+
+        <div class="qz-step qz-hidden" id="qz-step-2">
+          <h2 class="qz-q">Your Issue Profile</h2>
+          <div class="qz-results" id="qz-results"></div>
+          <div class="qz-party-match" id="qz-party-match"></div>
+          <div class="qz-cta-row">
+            <button class="ep-btn ep-btn-outline" id="qz-restart">Try Again</button>
+            <a href="/compare" class="ep-btn ep-btn-primary">Compare Parties</a>
+            <a href="/promises" class="ep-btn ep-btn-outline">Check Their Promises</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</ElectionLayout>
+
+<script>
+  const issues = [
+    { id: 'jobs', label: 'Jobs & Employment', emoji: '💼', desc: 'Stable income, govt jobs, startup support', partyScores: { BJP: 6, INC: 5, TMC: 5, DMK: 7, 'CPI(M)': 5, AIADMK: 5 } },
+    { id: 'education', label: 'Education Quality', emoji: '🎓', desc: 'NEET, syllabus reform, skill development', partyScores: { BJP: 5, INC: 5, TMC: 6, DMK: 8, 'CPI(M)': 7, AIADMK: 5 } },
+    { id: 'corruption', label: 'Anti-Corruption', emoji: '🔍', desc: 'Clean governance, transparency, accountability', partyScores: { BJP: 5, INC: 4, TMC: 3, DMK: 4, 'CPI(M)': 7, AIADMK: 4 } },
+    { id: 'women', label: 'Women Safety & Rights', emoji: '♀️', desc: 'Safety, equal pay, women empowerment schemes', partyScores: { BJP: 5, INC: 5, TMC: 7, DMK: 7, 'CPI(M)': 6, AIADMK: 5 } },
+    { id: 'health', label: 'Healthcare', emoji: '🏥', desc: 'Affordable treatment, insurance, mental health', partyScores: { BJP: 6, INC: 5, TMC: 6, DMK: 6, 'CPI(M)': 7, AIADMK: 5 } },
+    { id: 'cost', label: 'Cost of Living', emoji: '💸', desc: 'Fuel, rent, food prices, inflation control', partyScores: { BJP: 4, INC: 6, TMC: 5, DMK: 6, 'CPI(M)': 7, AIADMK: 5 } },
+    { id: 'digital', label: 'Digital Freedom', emoji: '📱', desc: 'Internet freedom, creator economy, censorship', partyScores: { BJP: 3, INC: 6, TMC: 4, DMK: 6, 'CPI(M)': 5, AIADMK: 4 } },
+    { id: 'climate', label: 'Climate & Environment', emoji: '🌍', desc: 'Pollution, floods, sustainable development', partyScores: { BJP: 4, INC: 5, TMC: 4, DMK: 5, 'CPI(M)': 6, AIADMK: 4 } },
+    { id: 'caste', label: 'Social Justice & Reservation', emoji: '⚖️', desc: 'OBC/SC/ST rights, caste census, equal opportunity', partyScores: { BJP: 5, INC: 7, TMC: 7, DMK: 9, 'CPI(M)': 8, AIADMK: 6 } },
+    { id: 'infra', label: 'Infrastructure', emoji: '🏗️', desc: 'Roads, metro, housing, smart cities', partyScores: { BJP: 8, INC: 5, TMC: 5, DMK: 6, 'CPI(M)': 5, AIADMK: 5 } },
+    { id: 'religion', label: 'Religious Harmony', emoji: '🕊️', desc: 'Communal peace, secularism, minority rights', partyScores: { BJP: 3, INC: 7, TMC: 7, DMK: 8, 'CPI(M)': 8, AIADMK: 5 } },
+    { id: 'startup', label: 'Startup & Innovation', emoji: '🚀', desc: 'Funding, ease of business, tech ecosystem', partyScores: { BJP: 7, INC: 5, TMC: 4, DMK: 6, 'CPI(M)': 4, AIADMK: 4 } },
+    { id: 'farm', label: 'Farmer Welfare', emoji: '🌾', desc: 'MSP, loan waivers, irrigation, crop insurance', partyScores: { BJP: 5, INC: 7, TMC: 6, DMK: 6, 'CPI(M)': 8, AIADMK: 6 } },
+    { id: 'mental', label: 'Mental Health', emoji: '🧠', desc: 'Awareness, access, workplace wellbeing', partyScores: { BJP: 3, INC: 4, TMC: 3, DMK: 5, 'CPI(M)': 4, AIADMK: 3 } },
+  ];
+
+  const partyColors: Record<string, string> = { BJP: '#ed8936', INC: '#3182ce', TMC: '#38a169', DMK: '#e53e3e', 'CPI(M)': '#e53e3e', AIADMK: '#38a169' };
+  const partyIcons: Record<string, string> = { BJP: '🪷', INC: '✋', TMC: '🌸', DMK: '☀️', 'CPI(M)': '☭', AIADMK: '🍃' };
+
+  const selected = new Set<string>();
+  const issuesDiv = document.getElementById('qz-issues')!;
+  const nextBtn = document.getElementById('qz-next') as HTMLButtonElement;
+  const step1 = document.getElementById('qz-step-1')!;
+  const step2 = document.getElementById('qz-step-2')!;
+  const resultsDiv = document.getElementById('qz-results')!;
+  const matchDiv = document.getElementById('qz-party-match')!;
+  const restartBtn = document.getElementById('qz-restart')!;
+
+  // Render issue cards
+  issuesDiv.innerHTML = issues.map(i => `
+    <button class="qz-issue-btn" data-id="${i.id}">
+      <span class="qz-issue-emoji">${i.emoji}</span>
+      <span class="qz-issue-label">${i.label}</span>
+      <span class="qz-issue-desc">${i.desc}</span>
+    </button>
+  `).join('');
+
+  // Issue selection
+  issuesDiv.querySelectorAll('.qz-issue-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id')!;
+      if (selected.has(id)) {
+        selected.delete(id);
+        btn.classList.remove('qz-issue-selected');
+      } else if (selected.size < 5) {
+        selected.add(id);
+        btn.classList.add('qz-issue-selected');
+      }
+      nextBtn.disabled = selected.size < 3;
+    });
+  });
+
+  // Calculate results
+  nextBtn.addEventListener('click', () => {
+    const selectedIssues = issues.filter(i => selected.has(i.id));
+
+    // Calculate party scores
+    const partyTotals: Record<string, number> = {};
+    const parties = Object.keys(issues[0].partyScores);
+    parties.forEach(p => { partyTotals[p] = 0; });
+
+    selectedIssues.forEach(issue => {
+      parties.forEach(p => {
+        partyTotals[p] += issue.partyScores[p];
+      });
+    });
+
+    const maxScore = selectedIssues.length * 10;
+    const sorted = parties.map(p => ({
+      name: p,
+      score: partyTotals[p],
+      pct: Math.round((partyTotals[p] / maxScore) * 100),
+      color: partyColors[p] || '#718096',
+      icon: partyIcons[p] || '📌'
+    })).sort((a, b) => b.score - a.score);
+
+    // Show selected issues
+    resultsDiv.innerHTML = `
+      <div class="qz-selected-issues">
+        <h3>You care about:</h3>
+        <div class="qz-selected-chips">
+          ${selectedIssues.map(i => `<span class="qz-sel-chip">${i.emoji} ${i.label}</span>`).join('')}
+        </div>
+      </div>
+    `;
+
+    // Show party match
+    matchDiv.innerHTML = `
+      <h3 class="qz-match-title">Party Alignment Score</h3>
+      <p class="qz-match-sub">Based on manifesto promises, track record, and policy positions on your chosen issues</p>
+      <div class="qz-match-list">
+        ${sorted.map((p, i) => `
+          <div class="qz-match-row ${i === 0 ? 'qz-match-top' : ''}">
+            <span class="qz-match-rank">#${i + 1}</span>
+            <span class="qz-match-icon">${p.icon}</span>
+            <span class="qz-match-name">${p.name}</span>
+            <div class="qz-match-bar-track">
+              <div class="qz-match-bar-fill" style="width:${p.pct}%;background:${p.color}"></div>
+            </div>
+            <span class="qz-match-pct" style="color:${p.color}">${p.pct}%</span>
+          </div>
+        `).join('')}
+      </div>
+      <p class="qz-disclaimer">This is a simplified alignment based on publicly stated positions and past actions. Actual governance may differ. Always research independently.</p>
+    `;
+
+    step1.classList.add('qz-hidden');
+    step2.classList.remove('qz-hidden');
+  });
+
+  // Restart
+  restartBtn.addEventListener('click', () => {
+    selected.clear();
+    issuesDiv.querySelectorAll('.qz-issue-btn').forEach(btn => btn.classList.remove('qz-issue-selected'));
+    nextBtn.disabled = true;
+    step2.classList.add('qz-hidden');
+    step1.classList.remove('qz-hidden');
+  });
+</script>
+
+<style>
+.qz-wrap { max-width: 750px; margin: 0 auto; }
+.qz-hidden { display: none !important; }
+.qz-q { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; }
+.qz-hint { color: var(--ep-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+.qz-issues { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.6rem; margin-bottom: 1.5rem; }
+.qz-issue-btn { display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem; padding: 1rem; background: var(--ep-bg-card); border: 2px solid var(--ep-border); border-radius: var(--ep-radius); cursor: pointer; transition: all 0.2s; text-align: left; font-family: var(--ep-font); color: var(--ep-text); }
+.qz-issue-btn:hover { border-color: var(--ep-border-hover); background: var(--ep-bg-card-hover); }
+.qz-issue-selected { border-color: var(--ep-accent) !important; background: rgba(255,107,53,0.08) !important; }
+.qz-issue-emoji { font-size: 1.5rem; }
+.qz-issue-label { font-weight: 700; font-size: 0.9rem; }
+.qz-issue-desc { font-size: 0.7rem; color: var(--ep-text-muted); }
+
+.qz-next-btn { width: 100%; justify-content: center; padding: 1rem; font-size: 1rem; }
+.qz-next-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+/* Results */
+.qz-selected-issues { margin-bottom: 2rem; }
+.qz-selected-issues h3 { font-family: var(--ep-font-display); font-size: 1.1rem; margin-bottom: 0.6rem; }
+.qz-selected-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.qz-sel-chip { font-size: 0.8rem; font-weight: 600; padding: 0.4rem 0.8rem; background: rgba(255,107,53,0.1); color: var(--ep-accent); border: 1px solid rgba(255,107,53,0.25); border-radius: var(--ep-radius-pill); }
+
+.qz-match-title { font-family: var(--ep-font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+.qz-match-sub { font-size: 0.85rem; color: var(--ep-text-muted); margin-bottom: 1.2rem; }
+
+.qz-match-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+.qz-match-row { display: flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); }
+.qz-match-top { border: 2px solid var(--ep-accent); background: rgba(255,107,53,0.05); }
+.qz-match-rank { font-family: var(--ep-font-display); font-weight: 800; color: var(--ep-text-muted); min-width: 2rem; }
+.qz-match-top .qz-match-rank { color: var(--ep-accent); }
+.qz-match-icon { font-size: 1.3rem; }
+.qz-match-name { font-weight: 700; min-width: 60px; }
+.qz-match-bar-track { flex: 1; height: 10px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; }
+.qz-match-bar-fill { height: 100%; border-radius: 10px; }
+.qz-match-pct { font-family: var(--ep-font-display); font-weight: 800; min-width: 3rem; text-align: right; }
+
+.qz-disclaimer { font-size: 0.75rem; color: var(--ep-text-muted); font-style: italic; margin-bottom: 1.5rem; }
+
+.qz-cta-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+@media (max-width: 768px) {
+  .qz-issues { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .qz-issues { grid-template-columns: 1fr; }
+}
+</style>

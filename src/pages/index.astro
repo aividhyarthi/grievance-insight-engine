@@ -168,6 +168,45 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
     </div>
   </section>
 
+  <!-- 30-Second Explainers -->
+  <section class="ep-section ep-explainers-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <h2 class="ep-section-title">Understood in 30 Seconds</h2>
+        <p class="ep-section-sub">Don't have time? Each card = one state battle, simplified.</p>
+      </div>
+      <div class="ep-explainer-grid">
+        {states.map((s) => (
+          <div class="ep-explainer-card" style={`--sc:${s.color}`}>
+            <span class="ep-exp-emoji">{s.mapEmoji}</span>
+            <h3>{s.name}</h3>
+            <p class="ep-exp-tldr">
+              <strong>{s.currentRuling}</strong> defends {s.seats} seats.
+              Main fight: {s.parties[0].name} ({s.parties[0].seats2021}) vs {s.parties[1].name} ({s.parties[1].seats2021}).
+              Key issue: {s.keyIssues[0]}.
+              {s.genZPercent}% voters are Gen Z.
+            </p>
+            <a href={`/states/${s.id}`} class="ep-exp-link">Deep Dive &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiz CTA -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-quiz-cta">
+        <div class="ep-quiz-cta-left">
+          <span class="ep-quiz-icon">🎯</span>
+          <h2>Which party matches YOUR issues?</h2>
+          <p>Pick the issues you care about. We'll show you which parties align. 2 minutes. Zero bias.</p>
+        </div>
+        <a href="/quiz" class="ep-btn ep-btn-primary ep-quiz-btn">Take the Quiz &rarr;</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Explore CTA -->
   <section class="ep-section">
     <div class="ep-container">
@@ -176,7 +215,9 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
         <p>Don't just vote. Know who you're voting for. Explore candidates, their records, their money, their promises.</p>
         <div class="ep-cta-btns">
           <a href="/candidates" class="ep-btn ep-btn-primary">Explore Candidates</a>
-          <a href="/parties" class="ep-btn ep-btn-outline">Party Finances</a>
+          <a href="/compare" class="ep-btn ep-btn-outline">Compare Parties</a>
+          <a href="/promises" class="ep-btn ep-btn-outline">Promise Tracker</a>
+          <a href="/freebies" class="ep-btn ep-btn-outline">Freebies Cost</a>
           <a href="/ask" class="ep-btn ep-btn-outline">Ask Questions</a>
         </div>
       </div>
@@ -287,7 +328,30 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
   .ep-issue-name { min-width: auto; }
   .ep-issue-track { flex-basis: 100%; order: 4; }
 }
+/* 30-Second Explainers */
+.ep-explainers-section { background: var(--ep-bg-surface, rgba(15,15,26,1)); }
+.ep-explainer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.ep-explainer-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-top: 3px solid var(--sc); border-radius: var(--ep-radius); padding: 1.3rem; transition: all 0.2s; }
+.ep-explainer-card:hover { transform: translateY(-4px); background: var(--ep-bg-card-hover); }
+.ep-exp-emoji { font-size: 2rem; }
+.ep-explainer-card h3 { font-family: var(--ep-font-display); font-size: 1.2rem; font-weight: 700; margin: 0.3rem 0 0.6rem; }
+.ep-exp-tldr { font-size: 0.85rem; color: var(--ep-text-secondary); line-height: 1.6; margin-bottom: 0.8rem; }
+.ep-exp-link { font-size: 0.85rem; font-weight: 600; color: var(--sc); }
+
+/* Quiz CTA */
+.ep-quiz-cta { display: flex; align-items: center; justify-content: space-between; gap: 2rem; background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(37,99,235,0.08)); border: 1px solid var(--ep-border); border-radius: 20px; padding: 2rem; }
+.ep-quiz-cta-left { flex: 1; }
+.ep-quiz-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+.ep-quiz-cta h2 { font-family: var(--ep-font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
+.ep-quiz-cta p { font-size: 0.9rem; color: var(--ep-text-muted); }
+.ep-quiz-btn { white-space: nowrap; padding: 1rem 2rem; font-size: 1rem; }
+
+@media (max-width: 768px) {
+  .ep-quiz-cta { flex-direction: column; text-align: center; }
+  .ep-quiz-btn { width: 100%; justify-content: center; }
+}
 @media (max-width: 480px) {
   .ep-hero-stat { min-width: calc(50% - 0.5rem); }
+  .ep-explainer-grid { grid-template-columns: 1fr; }
 }
 </style>
