@@ -1,527 +1,293 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getPosts, stripHtml, formatDate, getFirstTag } from '../lib/wordpress';
+import ElectionLayout from '../layouts/ElectionLayout.astro';
+import electionData from '../data/elections2026.json';
 
-let featuredPosts = [];
-let totalPosts = 0;
-
-try {
-  const { posts } = await getPosts(1, 6);
-  featuredPosts = posts;
-  totalPosts = posts.length;
-} catch (e) {
-  console.error('Failed to fetch posts from WordPress:', e);
-}
+const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electionData;
 ---
 
-<BaseLayout title="Rudra Kasturi | Search, AI & Growth | Ex-Amazon, Yahoo, BYJU's, India Today | CSO">
-  <!-- Hero Section -->
-  <section class="hero-premium">
-    <div class="hero-bg-effects">
-      <div class="hero-orb hero-orb-1"></div>
-      <div class="hero-orb hero-orb-2"></div>
-      <div class="hero-orb hero-orb-3"></div>
-      <div class="hero-grid-overlay"></div>
+<ElectionLayout title="Election Pulse 2026 | India Votes Visually">
+
+  <!-- Hero -->
+  <section class="ep-hero">
+    <div class="ep-hero-bg">
+      <div class="ep-hero-orb ep-hero-orb-1"></div>
+      <div class="ep-hero-orb ep-hero-orb-2"></div>
+      <div class="ep-hero-orb ep-hero-orb-3"></div>
     </div>
-    <div class="container hero-content">
-      <div class="hero-left">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Search. Strategy. AI. Growth. Revenue. Coach. Farmer.
-        </div>
-        <h1>
-          <span class="hero-line-1"><span class="gradient-text-hero">Rudra Kasturi</span></span>
-          <span class="hero-line-2">Search, AI & Growth</span>
-          <span class="hero-line-3">Built, Scaled, <span class="gradient-text-hero">Proven.</span></span>
-        </h1>
-        <p class="hero-desc">
-          Twenty years scaling digital businesses to hundreds of millions of users.
-          From building <strong>Amazon India's</strong> search foundation to driving 10X growth at
-          <strong>Times Group</strong> and leading growth at <strong>BYJU's</strong>.
-          <br/><br/>
-          I work on problems where scale, search, and AI decide the outcome.
-        </p>
-        <div class="hero-buttons">
-          <a href="/blog" class="btn btn-primary btn-glow">Read My Blog</a>
-          <a href="#about" class="btn btn-outline">Discover My Story</a>
-          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
-        </div>
-        <div class="hero-logos">
-          <span class="hero-logos-label">Worked With & Featured At</span>
-          <div class="logo-strip">
-            <span class="logo-tag">Amazon</span>
-            <span class="logo-tag">Yahoo</span>
-            <span class="logo-tag">Google I/O</span>
-            <span class="logo-tag">Times Group</span>
-            <span class="logo-tag">BYJU's</span>
-            <span class="logo-tag">India Today</span>
-            <span class="logo-tag">Tencent</span>
+    <div class="ep-container ep-hero-content">
+      <div class="ep-badge">LIVE ELECTION TRACKER 2026</div>
+      <h1 class="ep-hero-title">
+        Election<br/><span class="ep-hero-gradient">Pulse</span> 2026
+      </h1>
+      <p class="ep-hero-sub">{meta.tagline}</p>
+      <div class="ep-hero-stats">
+        {quickFacts.map((fact) => (
+          <div class="ep-hero-stat">
+            <span class="ep-hero-stat-icon">{fact.icon}</span>
+            <span class="ep-hero-stat-value">{fact.value}</span>
+            <span class="ep-hero-stat-label">{fact.label}</span>
           </div>
-        </div>
+        ))}
       </div>
-      <div class="hero-right">
-        <div class="hero-image-wrapper">
-          <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi speaking at Google I/O 2019" class="hero-main-image" />
-          <div class="hero-image-badge">
-            <span>Speaker</span>
-            Google I/O '19
-          </div>
-        </div>
+      <div class="ep-hero-actions">
+        <a href="/states" class="ep-btn ep-btn-primary">Explore States</a>
+        <a href="/candidates" class="ep-btn ep-btn-outline">Find Candidates</a>
+        <a href="/ask" class="ep-btn ep-btn-outline">Ask Anything</a>
       </div>
     </div>
   </section>
 
-  <!-- Credibility Bar -->
-  <section class="credibility-bar">
-    <div class="container">
-      <div class="cred-scroll">
-        <div class="cred-item">
-          <div class="cred-number">500M+</div>
-          <div class="cred-label">Users Reached</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">20+</div>
-          <div class="cred-label">Years in Digital</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">4</div>
-          <div class="cred-label">Companies Founded</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">CSO</div>
-          <div class="cred-label">Chief Strategy Officer</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">SVP</div>
-          <div class="cred-label">Senior Vice President</div>
-        </div>
-        <div class="cred-divider"></div>
-        <div class="cred-item">
-          <div class="cred-number">3</div>
-          <div class="cred-label">Universities Taught</div>
-        </div>
+  <!-- State Cards Preview -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <h2 class="ep-section-title">5 States. 824 Seats. One Dashboard.</h2>
+        <p class="ep-section-sub">Tap any state to deep-dive into candidates, parties & predictions</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Career Timeline / Companies -->
-  <section class="section career-section">
-    <div class="container">
-      <h2 class="section-title text-center">The Track Record</h2>
-      <p class="section-subtitle text-center">Every engagement has produced measurable, step-change growth. Here's what that looks like in practice.</p>
-      <div class="career-grid">
-        <div class="career-card">
-          <div class="career-role">Chief Strategy Officer</div>
-          <div class="career-company">India Today Group</div>
-          <p>Driving AI-first transformation across editorial, distribution, and monetisation. Building new revenue streams and restructuring digital infrastructure for scale.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">VP & Head of Audience Growth</div>
-          <div class="career-company">Times Internet (Times Group)</div>
-          <p>Led the largest SEO and audience growth transformation in the company's history. Scaled multiple properties to category-leading positions across comScore rankings.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">Senior Vice President, Growth</div>
-          <div class="career-company">BYJU's</div>
-          <p>Led growth across India and international markets during peak scale phase. Owned acquisition, retention, and expansion strategy.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">SEO Director</div>
-          <div class="career-company">Snapdeal</div>
-          <p>Led organic search strategy during hypergrowth, building scalable SEO systems for one of India's top e-commerce platforms.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">SEO Head</div>
-          <div class="career-company">Amazon India</div>
-          <p>Built Amazon India's organic search presence from the ground up, establishing foundational SEO infrastructure at scale.</p>
-        </div>
-        <div class="career-card">
-          <div class="career-role">SEO Head, India, SE Asia & Middle East</div>
-          <div class="career-company">Yahoo</div>
-          <p>Led search strategy across three regions, driving visibility and growth for one of the internet's defining platforms.</p>
-        </div>
-      </div>
-      <div class="career-advisory">
-        <h3 class="text-center">Advisory & Consulting</h3>
-        <div class="advisory-strip">
-          <span class="advisory-tag">Tencent Group / Growth Consultant</span>
-          <span class="advisory-tag">CRED / Advisor</span>
-          <span class="advisory-tag">Antler India / Growth Advisor</span>
-          <span class="advisory-tag">Haptik Group / Advisor</span>
-          <span class="advisory-tag">Tasva (Aditya Birla) / Consultant</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Photo Gallery -->
-  <section class="section photo-showcase">
-    <div class="container">
-      <h2 class="section-title text-center">You're Known By The Company You Keep</h2>
-      <p class="section-subtitle text-center">Two decades in the game means knowing the people who built the internet.</p>
-      <div class="photo-grid">
-        <div class="photo-card photo-card-featured">
-          <div class="photo-wrapper">
-            <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi speaking at Google I/O 2019" />
-            <div class="photo-overlay">
-              <span class="photo-tag">Keynote Speaker</span>
+      <div class="ep-state-grid">
+        {states.map((state) => (
+          <a href={`/states/${state.id}`} class="ep-state-card" style={`--sc: ${state.color}`}>
+            <div class="ep-sc-top">
+              <span class="ep-sc-emoji">{state.mapEmoji}</span>
+              <span class="ep-sc-badge">UPCOMING</span>
             </div>
-          </div>
-          <div class="photo-info">
-            <h3>Google I/O 2019</h3>
-            <p>Featured ET & Gaana for Progressive Web Apps at Google's premier developer conference</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <div class="photo-wrapper">
-            <img src="/images/rudra-rand-fishkin.jpeg" alt="Rudra Kasturi with Rand Fishkin, founder of Moz and SparkToro" />
-            <div class="photo-overlay">
-              <span class="photo-tag">MozCon</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>With Rand Fishkin</h3>
-            <p>Founder of Moz & SparkToro. The godfather of modern SEO.</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <div class="photo-wrapper">
-            <img src="/images/rudra-matt.jpeg" alt="Rudra Kasturi with Matt Cutts, former head of Google Webspam" />
-            <div class="photo-overlay">
-              <span class="photo-tag">Google</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>With Matt Cutts</h3>
-            <p>Former Head of Google Webspam. The legend who shaped search quality.</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <div class="photo-wrapper">
-            <img src="/images/rudra-john.jpeg" alt="Rudra Kasturi with John Mueller, Google Search Advocate" />
-            <div class="photo-overlay">
-              <span class="photo-tag">Google Search</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>With John Mueller</h3>
-            <p>Google's Senior Search Analyst & Search Advocate. The voice of Google Search.</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <div class="photo-wrapper">
-            <img src="/images/farmer-rudra.jpeg" alt="Rudra Kasturi on his farm" />
-            <div class="photo-overlay">
-              <span class="photo-tag">The Farm Life</span>
-            </div>
-          </div>
-          <div class="photo-info">
-            <h3>Beyond the Boardroom</h3>
-            <p>When not scaling businesses, farming keeps things real. Patience, soil, and long games.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="section about-premium" id="about">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-content">
-          <div class="about-badge">About</div>
-          <h2 class="about-headline">What I <span class="gradient-text">Actually Do</span></h2>
-          <p class="about-lead">
-            I've spent two decades at the intersection of search, AI, and growth, as the person accountable for results.
-          </p>
-          <p>
-            From building <strong>Amazon India's</strong> organic search from scratch to scaling
-            <strong>Times Group</strong> properties to category-leading positions, to owning growth
-            at <strong>BYJU's</strong>, the mandate has always been the same: identify the ceiling, then remove it.
-          </p>
-          <p>
-            I also advise companies including <strong>Tencent</strong>, <strong>CRED</strong>,
-            <strong>Antler India</strong>, <strong>Haptik</strong>, and
-            <strong>Tasva (Aditya Birla Group)</strong>, across stages from Series A to enterprise scale.
-          </p>
-          <p>
-            And I teach. Because the next generation doesn't need theory. It needs operators.
-          </p>
-
-          <!-- Infographic Strip -->
-          <div class="infographic-strip">
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 95%">
-                <span class="infographic-label">Search & SEO</span>
-                <span class="infographic-value">22 yrs</span>
+            <h3 class="ep-sc-name">{state.name}</h3>
+            <div class="ep-sc-stats">
+              <div class="ep-sc-stat">
+                <span class="ep-sc-num">{state.seats}</span>
+                <span class="ep-sc-lbl">Seats</span>
+              </div>
+              <div class="ep-sc-stat">
+                <span class="ep-sc-num">{state.voters}</span>
+                <span class="ep-sc-lbl">Voters</span>
+              </div>
+              <div class="ep-sc-stat">
+                <span class="ep-sc-num">{state.genZPercent}%</span>
+                <span class="ep-sc-lbl">Gen Z</span>
               </div>
             </div>
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 65%">
-                <span class="infographic-label">AI & ML Strategy</span>
-                <span class="infographic-value">3 yrs</span>
-              </div>
+            <div class="ep-sc-bar">
+              {state.parties.map((p) => (
+                <div class="ep-sc-seg" style={`width:${(p.seats2021/state.seats)*100}%;background:${p.color}`} title={`${p.name}: ${p.seats2021}`}></div>
+              ))}
             </div>
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 90%">
-                <span class="infographic-label">Growth & Scale</span>
-                <span class="infographic-value">500M+ users</span>
-              </div>
+            <div class="ep-sc-parties">
+              {state.parties.map((p) => (
+                <span class="ep-sc-party">
+                  <span class="ep-sc-dot" style={`background:${p.color}`}></span>
+                  {p.icon} {p.name} <strong>{p.seats2021}</strong>
+                </span>
+              ))}
             </div>
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 75%">
-                <span class="infographic-label">Advisory & Consulting</span>
-                <span class="infographic-value">15+ brands</span>
-              </div>
+            <div class="ep-sc-footer">
+              <span class="ep-sc-date">{state.electionDate}</span>
+              <span class="ep-sc-arrow">→</span>
             </div>
-            <div class="infographic-item">
-              <div class="infographic-bar" style="--bar-width: 70%">
-                <span class="infographic-label">Teaching & EdTech</span>
-                <span class="infographic-value">15K+ students</span>
-              </div>
-            </div>
-          </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Shocking Stats Strip -->
+  <section class="ep-section ep-shock-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <h2 class="ep-section-title">The Numbers They Don't Want You to See</h2>
+        <p class="ep-section-sub">Data from ADR analysis of declared affidavits</p>
+      </div>
+      <div class="ep-shock-grid">
+        <div class="ep-shock-card ep-shock-red">
+          <span class="ep-shock-num">{electionStats.candidatesWithCriminalCases}</span>
+          <span class="ep-shock-label">Candidates with Criminal Cases</span>
+          <span class="ep-shock-icon">🚨</span>
         </div>
-        <div class="about-highlights">
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9733;</div>
-            <h4>Operator, Not Advisor</h4>
-            <p>CSO, SVP, and VP roles at companies with hundreds of millions of users. The decisions were mine to make and mine to live with.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9775;</div>
-            <h4>Search & AI, Since the Beginning</h4>
-            <p>From early SEO infrastructure at Amazon and Yahoo to AI strategy at India Today. This has been the work for twenty years.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#9889;</div>
-            <h4>500M+ Users, Real Platforms</h4>
-            <p>Media, edtech, e-commerce, and entertainment at scale.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">&#127758;</div>
-            <h4>Global Footprint</h4>
-            <p>India, Southeast Asia, the Middle East, and the US. Across industries, stages, and market conditions.</p>
-          </div>
+        <div class="ep-shock-card ep-shock-gold">
+          <span class="ep-shock-num">{electionStats.crorepatiCandidates}</span>
+          <span class="ep-shock-label">Are Crorepatis</span>
+          <span class="ep-shock-icon">💰</span>
+        </div>
+        <div class="ep-shock-card ep-shock-blue">
+          <span class="ep-shock-num">{electionStats.avgWinnerAssets}</span>
+          <span class="ep-shock-label">Avg Winner's Assets</span>
+          <span class="ep-shock-icon">🏆</span>
+        </div>
+        <div class="ep-shock-card ep-shock-pink">
+          <span class="ep-shock-num">{electionStats.womenCandidates}</span>
+          <span class="ep-shock-label">Women Candidates</span>
+          <span class="ep-shock-icon">♀️</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Founder Section -->
-  <section class="section founder-section">
-    <div class="container">
-      <h2 class="section-title text-center">Founder & Builder</h2>
-      <p class="section-subtitle text-center">Building companies that create real impact</p>
-      <div class="founder-grid">
-        <a href="https://aividhyarthi.org" target="_blank" rel="noopener" class="founder-card">
-          <div class="founder-logo-text">AIVidhyaRthi</div>
-          <div class="founder-tagline">Teaching AI to Every Student in Their Own Language</div>
-          <p>We bring AI education to students and teachers in tier 2 &amp; tier 3 cities across India — empowering them to build projects, create startups, and shape their future with cutting-edge AI tools.</p>
-          <div class="founder-stats-row">
-            <div class="founder-stat"><strong>14,122</strong><span>Students Trained</span></div>
-            <div class="founder-stat"><strong>50+</strong><span>Cities Reached</span></div>
-            <div class="founder-stat"><strong>382</strong><span>Teachers Empowered</span></div>
+  <!-- Gen Z Issues -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <h2 class="ep-section-title">What Gen Z Actually Cares About</h2>
+        <p class="ep-section-sub">48M+ young voters. These are their priorities.</p>
+      </div>
+      <div class="ep-issues-wrap">
+        {genZIssues.map((item, idx) => (
+          <div class="ep-issue-row">
+            <span class="ep-issue-rank">#{idx + 1}</span>
+            <span class="ep-issue-name">{item.issue}</span>
+            <div class="ep-issue-track">
+              <div class="ep-issue-fill" style={`width:${item.percent}%;background:${item.color}`}></div>
+            </div>
+            <span class="ep-issue-pct">{item.percent}%</span>
           </div>
-          <span class="founder-link">aividhyarthi.org &rarr;</span>
-        </a>
-        <a href="https://appstudiox.com" target="_blank" rel="noopener" class="founder-card">
-          <div class="founder-logo-text">AppStudioX</div>
-          <div class="founder-tagline">Dominate Search. Build Authority. Drive Real Growth.</div>
-          <p>Full-service digital growth agency trusted by India's most iconic brands — from media giants to D2C disruptors. We don't just rank you. We make you the authority your audience turns to first.</p>
-          <span class="founder-link">appstudiox.com &rarr;</span>
-        </a>
-        <a href="https://hermidlife.com.au" target="_blank" rel="noopener" class="founder-card">
-          <div class="founder-logo-text">HerMidLife</div>
-          <div class="founder-tagline">Perimenopause care that actually understands you</div>
-          <p>Because "it's just stress" was never the answer. Expert-led symptom tracking, telehealth with specialist practitioners, and personalised ongoing support — designed for the millions of Australian women navigating perimenopause and menopause.</p>
-          <span class="founder-link">hermidlife.com.au &rarr;</span>
-        </a>
-        <div class="founder-card founder-card-accent">
-          <div class="founder-logo-text">Rudra Kasturi Inc.</div>
-          <p>Strategic consulting for enterprises and startups. From search to AI, zero to scale.</p>
-          <span class="founder-link">Consulting &amp; Advisory</span>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Farmer Section -->
-  <section class="section farmer-section">
-    <div class="container">
-      <div class="farmer-layout">
-        <div class="farmer-image-wrapper">
-          <img src="/images/farmer-rudra.jpeg" alt="Rudra Kasturi on his farm" class="farmer-image" />
-        </div>
-        <div class="farmer-content">
-          <h2 class="section-title">Beyond the Boardroom</h2>
-          <p class="farmer-lead">When I'm not working, I'm on the farm.</p>
-          <p>
-            No dashboards. No decks. Just time, soil, and patience.
-          </p>
-          <p>
-            Farming is a long game. You plant, you tend, you wait. The outcome doesn't negotiate.
-          </p>
-          <p>
-            That discipline carries back into everything I build.
-          </p>
-        </div>
+  <!-- Timeline -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <h2 class="ep-section-title">Election Timeline</h2>
+        <p class="ep-section-sub">Key milestones from announcement to results</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Speaking & Thought Leadership -->
-  <section class="section speaking-section">
-    <div class="container">
-      <h2 class="section-title text-center">Speaker & Thought Leader</h2>
-      <p class="section-subtitle text-center">Sharing knowledge on the world's biggest stages</p>
-      <div class="speaking-grid">
-        <div class="speaking-card speaking-featured">
-          <div class="speaking-video">
-            <a href="https://www.youtube.com/watch?v=3As9NibdIjk" target="_blank" rel="noopener" class="video-thumb">
-              <img src="/images/rudra-googleio.jpeg" alt="Rudra Kasturi at Google I/O" />
-              <div class="play-button">&#9654;</div>
-            </a>
-          </div>
-          <div class="speaking-info">
-            <span class="speaking-tag">Featured Talk</span>
-            <h3>Google I/O 2019</h3>
-            <p>Featured ET & Gaana for Progressive Web Apps at Google's premier developer conference</p>
-            <a href="https://www.youtube.com/watch?v=3As9NibdIjk" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Watch on YouTube &rarr;</a>
-          </div>
-        </div>
-        <div class="speaking-list">
-          <div class="speaking-item">
-            <div class="speaking-item-icon">&#127911;</div>
-            <div>
-              <h4>Google I/O & AMP Conferences</h4>
-              <p>Seasonal speaker at Google's flagship developer and AMP conferences</p>
+      <div class="ep-timeline">
+        {timeline.map((t, i) => (
+          <div class="ep-tl-item">
+            <div class="ep-tl-dot-col">
+              <span class="ep-tl-icon">{t.icon}</span>
+              {i < timeline.length - 1 && <div class="ep-tl-line"></div>}
+            </div>
+            <div class="ep-tl-content">
+              <span class="ep-tl-month">{t.month}</span>
+              <span class="ep-tl-event">{t.event}</span>
+              <span class="ep-tl-detail">{t.detail}</span>
             </div>
           </div>
-          <div class="speaking-item">
-            <div class="speaking-item-icon">&#127891;</div>
-            <div>
-              <h4>MMA Global & Industry Summits</h4>
-              <p>Speaker at Mobile Marketing Association and global digital marketing summits</p>
-            </div>
-          </div>
-          <div class="speaking-item">
-            <div class="speaking-item-icon">&#128218;</div>
-            <div>
-              <h4>University Guest Faculty</h4>
-              <p>Teaching Digital & AI at Bennett University, ITMI, and Masters' Union</p>
-            </div>
-          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Explore CTA -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-cta-card">
+        <h2>Your Vote. Your Future. Get Informed.</h2>
+        <p>Don't just vote. Know who you're voting for. Explore candidates, their records, their money, their promises.</p>
+        <div class="ep-cta-btns">
+          <a href="/candidates" class="ep-btn ep-btn-primary">Explore Candidates</a>
+          <a href="/parties" class="ep-btn ep-btn-outline">Party Finances</a>
+          <a href="/ask" class="ep-btn ep-btn-outline">Ask Questions</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Teaching & Writing -->
-  <section class="section credentials-section">
-    <div class="container">
-      <div class="credentials-grid">
-        <div class="credential-block">
-          <h3 class="credential-heading">Educator & Guest Faculty</h3>
-          <p class="credential-desc">Shaping the next generation of digital leaders</p>
-          <ul class="credential-list">
-            <li>
-              <strong>Times Bennett University</strong>
-              <span>Digital Marketing & AI</span>
-            </li>
-            <li>
-              <strong>ITMI</strong>
-              <span>Media, AI & Digital Strategy</span>
-            </li>
-            <li>
-              <strong>Masters' Union</strong>
-              <span>Generative AI</span>
-            </li>
-          </ul>
-        </div>
-        <div class="credential-block">
-          <h3 class="credential-heading">Writer & Columnist</h3>
-          <p class="credential-desc">Published in leading global media organizations</p>
-          <ul class="credential-list">
-            <li>
-              <strong>INMA</strong>
-              <span>International News Media Association</span>
-            </li>
-            <li>
-              <strong>Times of India</strong>
-              <span>India's largest English daily</span>
-            </li>
-            <li>
-              <strong>CNTI.org</strong>
-              <span>Center for News, Technology & Innovation</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+</ElectionLayout>
 
-  <!-- Latest Posts -->
-  <section class="section" id="blog">
-    <div class="container">
-      <h2 class="section-title text-center">Latest From The Blog</h2>
-      <p class="section-subtitle text-center">Insights on AI, Search, Digital Strategy, and Building at Scale</p>
+<style>
+/* HERO */
+.ep-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0 4rem;
+  text-align: center;
+}
+.ep-hero-bg { position: absolute; inset: 0; }
+.ep-hero-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.3; animation: ep-pulse 10s ease-in-out infinite; }
+.ep-hero-orb-1 { width: 500px; height: 500px; background: #ff6b35; top: -150px; left: -100px; }
+.ep-hero-orb-2 { width: 400px; height: 400px; background: #138808; bottom: -100px; right: -100px; animation-delay: 3s; }
+.ep-hero-orb-3 { width: 350px; height: 350px; background: #2563eb; top: 40%; left: 50%; transform: translate(-50%,-50%); animation-delay: 6s; }
+@keyframes ep-pulse { 0%,100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.45; transform: scale(1.08); } }
+.ep-hero-content { position: relative; z-index: 2; }
+.ep-hero-title { font-family: var(--ep-font-display); font-size: clamp(3.5rem, 10vw, 7rem); font-weight: 800; line-height: 1; margin: 1.5rem 0 1rem; color: var(--ep-text); }
+.ep-hero-gradient { background: linear-gradient(135deg, #ff6b35, #ff9f1c, #ffcc02); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.ep-hero-sub { font-size: 1.2rem; color: var(--ep-text-muted); margin-bottom: 2.5rem; }
+.ep-hero-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
+.ep-hero-stat { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; background: rgba(255,255,255,0.04); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1rem 1.2rem; min-width: 120px; }
+.ep-hero-stat-icon { font-size: 1.5rem; }
+.ep-hero-stat-value { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 800; }
+.ep-hero-stat-label { font-size: 0.7rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.ep-hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; }
 
-      {featuredPosts.length > 0 ? (
-        <div class="posts-grid">
-          {featuredPosts.map((post) => {
-            const tag = getFirstTag(post);
-            const excerpt = stripHtml(post.excerpt.rendered);
-            return (
-              <article class="post-card">
-                {tag && <span class="tag">{tag}</span>}
-                <h3><a href={`https://blog.rudrakasturi.com/blog/${post.slug}`} set:html={post.title.rendered} /></h3>
-                <p>{excerpt.length > 150 ? excerpt.slice(0, 150) + '...' : excerpt}</p>
-                <span class="post-meta">{formatDate(post.date)}</span>
-              </article>
-            );
-          })}
-        </div>
-      ) : (
-        <p class="section-subtitle text-center">Posts are loading... Check back soon!</p>
-      )}
+/* STATE CARDS */
+.ep-state-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem; }
+.ep-state-card { display: block; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1.5rem; transition: all 0.25s; border-top: 3px solid var(--sc); color: var(--ep-text); }
+.ep-state-card:hover { transform: translateY(-6px); background: var(--ep-bg-card-hover); box-shadow: var(--ep-shadow-lg); color: var(--ep-text); border-color: var(--ep-border-hover); }
+.ep-sc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
+.ep-sc-emoji { font-size: 2rem; }
+.ep-sc-badge { font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; color: var(--sc); background: color-mix(in srgb, var(--sc) 12%, transparent); padding: 0.25rem 0.7rem; border-radius: var(--ep-radius-pill); border: 1px solid color-mix(in srgb, var(--sc) 25%, transparent); }
+.ep-sc-name { font-family: var(--ep-font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
+.ep-sc-stats { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
+.ep-sc-stat { flex: 1; text-align: center; padding: 0.6rem; background: rgba(255,255,255,0.03); border-radius: var(--ep-radius-sm); }
+.ep-sc-num { display: block; font-family: var(--ep-font-display); font-size: 1.15rem; font-weight: 800; }
+.ep-sc-lbl { font-size: 0.65rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.ep-sc-bar { display: flex; height: 24px; border-radius: 6px; overflow: hidden; gap: 2px; margin-bottom: 0.6rem; }
+.ep-sc-seg { min-width: 3px; transition: opacity 0.2s; }
+.ep-sc-seg:hover { opacity: 0.8; }
+.ep-sc-parties { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.8rem; }
+.ep-sc-party { display: flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: var(--ep-text-secondary); }
+.ep-sc-dot { width: 6px; height: 6px; border-radius: 50%; }
+.ep-sc-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.8rem; border-top: 1px solid var(--ep-border); }
+.ep-sc-date { font-size: 0.8rem; color: var(--ep-text-muted); }
+.ep-sc-arrow { font-size: 1.2rem; color: var(--sc); transition: transform 0.2s; }
+.ep-state-card:hover .ep-sc-arrow { transform: translateX(4px); }
 
-      <div class="view-all">
-        <a href="https://blog.rudrakasturi.com/blog" class="btn btn-primary btn-glow" style="margin-top: 2rem;">Read All Posts &rarr;</a>
-      </div>
-    </div>
-  </section>
+/* SHOCK STATS */
+.ep-shock-section { background: var(--ep-bg-surface); }
+.ep-shock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.ep-shock-card { position: relative; overflow: hidden; padding: 2rem 1.5rem; border-radius: var(--ep-radius); text-align: center; border: 1px solid var(--ep-border); transition: transform 0.2s; }
+.ep-shock-card:hover { transform: translateY(-4px); }
+.ep-shock-num { display: block; font-family: var(--ep-font-display); font-size: 2.5rem; font-weight: 900; margin-bottom: 0.3rem; }
+.ep-shock-label { font-size: 0.85rem; color: var(--ep-text-secondary); }
+.ep-shock-icon { position: absolute; top: 12px; right: 16px; font-size: 1.5rem; opacity: 0.5; }
+.ep-shock-red { background: rgba(229,62,62,0.08); }
+.ep-shock-red .ep-shock-num { color: #e53e3e; }
+.ep-shock-gold { background: rgba(237,137,54,0.08); }
+.ep-shock-gold .ep-shock-num { color: #ed8936; }
+.ep-shock-blue { background: rgba(37,99,235,0.08); }
+.ep-shock-blue .ep-shock-num { color: #2563eb; }
+.ep-shock-pink { background: rgba(213,63,140,0.08); }
+.ep-shock-pink .ep-shock-num { color: #d53f8c; }
 
-  <!-- Contact Section -->
-  <section class="section contact-section" id="contact">
-    <div class="container">
-      <div class="contact-card">
-        <div class="contact-content">
-          <h2>Let's <span class="gradient-text">Talk</span></h2>
-          <p>
-            If you're working on a problem where search, AI, or growth will determine the outcome, reach out.
-            I take on a limited number of engagements and respond personally to serious inquiries.
-          </p>
-          <div class="contact-links">
-            <a href="https://linkedin.com/in/rudrakasturi" target="_blank" rel="noopener" class="btn btn-primary btn-glow">Connect on LinkedIn</a>
-            <a href="https://github.com/aividhyarthi" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
-            <a href="https://twitter.com/kasturitagore" target="_blank" rel="noopener" class="btn btn-outline">Twitter / X</a>
-          </div>
-        </div>
-        <div class="contact-roles">
-          <div class="role-chip">Keynote Speaker</div>
-          <div class="role-chip">AI Strategy Advisor</div>
-          <div class="role-chip">Growth Consulting</div>
-          <div class="role-chip">Digital Transformation</div>
-          <div class="role-chip">Startup Mentorship</div>
-          <div class="role-chip">Guest Faculty</div>
-          <div class="role-chip">GTM Strategy</div>
-        </div>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+/* GEN Z ISSUES */
+.ep-issues-wrap { max-width: 750px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.7rem; }
+.ep-issue-row { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); transition: transform 0.2s; }
+.ep-issue-row:hover { transform: translateX(6px); }
+.ep-issue-rank { font-family: var(--ep-font-display); font-weight: 800; color: var(--ep-text-muted); min-width: 2rem; font-size: 0.95rem; }
+.ep-issue-name { font-weight: 600; min-width: 130px; font-size: 0.9rem; }
+.ep-issue-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; }
+.ep-issue-fill { height: 100%; border-radius: 8px; }
+.ep-issue-pct { font-family: var(--ep-font-display); font-weight: 700; min-width: 2.5rem; text-align: right; font-size: 0.95rem; }
+
+/* TIMELINE */
+.ep-timeline { max-width: 600px; margin: 0 auto; }
+.ep-tl-item { display: flex; gap: 1rem; }
+.ep-tl-dot-col { display: flex; flex-direction: column; align-items: center; width: 48px; flex-shrink: 0; }
+.ep-tl-icon { font-size: 1.6rem; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: 50%; }
+.ep-tl-line { width: 2px; flex: 1; min-height: 30px; background: linear-gradient(to bottom, var(--ep-border), transparent); }
+.ep-tl-content { padding: 0.5rem 0 2rem; }
+.ep-tl-month { display: block; font-family: var(--ep-font-display); font-weight: 700; font-size: 1rem; }
+.ep-tl-event { display: block; font-size: 0.9rem; color: var(--ep-text-secondary); }
+.ep-tl-detail { display: block; font-size: 0.8rem; color: var(--ep-text-muted); margin-top: 0.2rem; }
+
+/* CTA */
+.ep-cta-card { background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(37,99,235,0.08)); border: 1px solid var(--ep-border); border-radius: 24px; padding: 3rem 2rem; text-align: center; }
+.ep-cta-card h2 { font-family: var(--ep-font-display); font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; margin-bottom: 0.6rem; }
+.ep-cta-card p { color: var(--ep-text-muted); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.ep-cta-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; }
+
+@media (max-width: 768px) {
+  .ep-hero { padding: 3rem 0 2.5rem; }
+  .ep-hero-stats { gap: 0.5rem; }
+  .ep-hero-stat { min-width: 90px; padding: 0.7rem 0.8rem; }
+  .ep-state-grid { grid-template-columns: 1fr; }
+  .ep-shock-grid { grid-template-columns: repeat(2, 1fr); }
+  .ep-issue-row { flex-wrap: wrap; }
+  .ep-issue-name { min-width: auto; }
+  .ep-issue-track { flex-basis: 100%; order: 4; }
+}
+@media (max-width: 480px) {
+  .ep-hero-stat { min-width: calc(50% - 0.5rem); }
+}
+</style>

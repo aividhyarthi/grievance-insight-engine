@@ -1,0 +1,186 @@
+---
+import ElectionLayout from '../layouts/ElectionLayout.astro';
+import electionData from '../data/elections2026.json';
+const { nationalParties, partyFinancials } = electionData;
+
+// Pre-join party + financial data
+const partiesWithFinancials = nationalParties.map(party => ({
+  ...party,
+  fin: partyFinancials.find(f => f.name === party.name) || null
+}));
+
+const maxAssets = 7669;
+const maxBonds = 6060;
+
+const assetBars = partyFinancials.map(fin => {
+  const party = nationalParties.find(p => p.name === fin.name);
+  const assetsNum = parseFloat(fin.totalAssets.replace(/,/g, '').replace(' Cr', ''));
+  return { ...fin, party, assetsNum, pct: (assetsNum / maxAssets) * 100 };
+});
+
+const bondBars = partyFinancials.map(fin => {
+  const party = nationalParties.find(p => p.name === fin.name);
+  const bondsNum = parseFloat(fin.electoralBonds.replace(/,/g, '').replace(' Cr', ''));
+  return { ...fin, party, bondsNum, pct: (bondsNum / maxBonds) * 100 };
+});
+---
+
+<ElectionLayout title="Party Finances & Overview | Election Pulse 2026">
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <div class="ep-badge">FOLLOW THE MONEY</div>
+        <h1 class="ep-section-title" style="margin-top:1rem">Party Finances & Power</h1>
+        <p class="ep-section-sub">How much do parties own? Where does the money come from? Electoral bonds, donations, assets — all in one view.</p>
+      </div>
+
+      <!-- Party Overview Cards -->
+      <div class="px-party-grid">
+        {partiesWithFinancials.map((party) => (
+            <div class="px-party-card" style={`--pc:${party.color}`}>
+              <div class="px-party-header">
+                <span class="px-party-icon">{party.icon}</span>
+                <div>
+                  <h2 class="px-party-name">{party.name}</h2>
+                  <p class="px-party-full">{party.fullName}</p>
+                </div>
+              </div>
+
+              <div class="px-party-meta">
+                <span class="px-meta-chip">{party.ideology}</span>
+                <span class="px-meta-chip">Est. {party.founded}</span>
+                <span class="px-meta-chip">{party.members} members</span>
+              </div>
+
+              <div class="px-party-info">
+                <div class="px-info-row">
+                  <span class="px-info-label">President</span>
+                  <span class="px-info-value">{party.president}</span>
+                </div>
+                <div class="px-info-row">
+                  <span class="px-info-label">HQ</span>
+                  <span class="px-info-value">{party.hq}</span>
+                </div>
+              </div>
+
+              {party.fin && (
+                <div class="px-finance">
+                  <h3 class="px-fin-title">Finances ({party.fin.yearData})</h3>
+                  <div class="px-fin-grid">
+                    <div class="px-fin-item">
+                      <span class="px-fin-icon">🏦</span>
+                      <span class="px-fin-val">{party.fin.totalAssets}</span>
+                      <span class="px-fin-lbl">Total Assets</span>
+                    </div>
+                    <div class="px-fin-item">
+                      <span class="px-fin-icon">💵</span>
+                      <span class="px-fin-val">{party.fin.annualIncome}</span>
+                      <span class="px-fin-lbl">Annual Income</span>
+                    </div>
+                    <div class="px-fin-item">
+                      <span class="px-fin-icon">📜</span>
+                      <span class="px-fin-val">{party.fin.electoralBonds}</span>
+                      <span class="px-fin-lbl">Electoral Bonds</span>
+                    </div>
+                    <div class="px-fin-item">
+                      <span class="px-fin-icon">🤝</span>
+                      <span class="px-fin-val">{party.fin.donations}</span>
+                      <span class="px-fin-lbl">Donations</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+        ))}
+      </div>
+
+      <!-- Financial Comparison -->
+      <div class="px-compare">
+        <h2 class="px-compare-title">Assets Comparison</h2>
+        <p class="px-compare-sub">Total declared assets of political parties (FY 2022-23)</p>
+        <div class="px-compare-bars">
+          {assetBars.map((item) => (
+              <div class="px-bar-row">
+                <span class="px-bar-party">
+                  <span class="px-bar-icon">{item.party?.icon}</span>
+                  {item.name}
+                </span>
+                <div class="px-bar-track">
+                  <div class="px-bar-fill" style={`width:${item.pct}%;background:${item.party?.color}`}></div>
+                </div>
+                <span class="px-bar-val">{item.totalAssets}</span>
+              </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Electoral Bonds Comparison -->
+      <div class="px-compare">
+        <h2 class="px-compare-title">Electoral Bonds Received</h2>
+        <p class="px-compare-sub">Total electoral bonds encashed by each party</p>
+        <div class="px-compare-bars">
+          {bondBars.map((item) => (
+              <div class="px-bar-row">
+                <span class="px-bar-party">
+                  <span class="px-bar-icon">{item.party?.icon}</span>
+                  {item.name}
+                </span>
+                <div class="px-bar-track">
+                  <div class="px-bar-fill" style={`width:${item.pct}%;background:${item.party?.color}`}></div>
+                </div>
+                <span class="px-bar-val">{item.electoralBonds}</span>
+              </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="px-source">
+        <p>Financial data from ECI filings & ADR analysis. Electoral bond data from Supreme Court-mandated disclosure (2024).</p>
+      </div>
+    </div>
+  </section>
+</ElectionLayout>
+
+<style>
+.px-party-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.2rem; margin-bottom: 3rem; }
+.px-party-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1.5rem; border-top: 3px solid var(--pc); transition: all 0.2s; }
+.px-party-card:hover { background: var(--ep-bg-card-hover); transform: translateY(-3px); }
+.px-party-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.px-party-icon { font-size: 2.5rem; }
+.px-party-name { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 800; }
+.px-party-full { font-size: 0.8rem; color: var(--ep-text-muted); }
+
+.px-party-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+.px-meta-chip { font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: var(--ep-radius-pill); background: rgba(255,255,255,0.05); color: var(--ep-text-secondary); border: 1px solid var(--ep-border); }
+
+.px-party-info { margin-bottom: 1rem; }
+.px-info-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--ep-border); font-size: 0.85rem; }
+.px-info-label { color: var(--ep-text-muted); }
+.px-info-value { font-weight: 600; }
+
+.px-finance { background: rgba(255,255,255,0.02); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); padding: 1rem; }
+.px-fin-title { font-family: var(--ep-font-display); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--ep-accent); }
+.px-fin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+.px-fin-item { text-align: center; padding: 0.6rem; background: rgba(255,255,255,0.03); border-radius: 8px; }
+.px-fin-icon { display: block; font-size: 1.2rem; margin-bottom: 0.2rem; }
+.px-fin-val { display: block; font-family: var(--ep-font-display); font-weight: 800; font-size: 1rem; }
+.px-fin-lbl { display: block; font-size: 0.6rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+.px-compare { margin-bottom: 2.5rem; }
+.px-compare-title { font-family: var(--ep-font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+.px-compare-sub { font-size: 0.85rem; color: var(--ep-text-muted); margin-bottom: 1.2rem; }
+.px-compare-bars { display: flex; flex-direction: column; gap: 0.7rem; max-width: 700px; }
+.px-bar-row { display: flex; align-items: center; gap: 0.8rem; }
+.px-bar-party { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; min-width: 80px; }
+.px-bar-icon { font-size: 1.2rem; }
+.px-bar-track { flex: 1; height: 28px; background: rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden; }
+.px-bar-fill { height: 100%; border-radius: 6px; transition: width 1s ease-out; }
+.px-bar-val { font-family: var(--ep-font-display); font-weight: 700; font-size: 0.85rem; min-width: 80px; text-align: right; }
+
+.px-source { text-align: center; font-size: 0.8rem; color: var(--ep-text-muted); padding: 1.5rem 0; border-top: 1px solid var(--ep-border); }
+
+@media (max-width: 768px) {
+  .px-party-grid { grid-template-columns: 1fr; }
+  .px-bar-party { min-width: 60px; font-size: 0.75rem; }
+}
+</style>

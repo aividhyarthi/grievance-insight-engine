@@ -1,0 +1,247 @@
+---
+import ElectionLayout from '../../layouts/ElectionLayout.astro';
+import electionData from '../../data/elections2026.json';
+
+const { id } = Astro.params;
+const state = electionData.states.find(s => s.id === id);
+
+if (!state) {
+  return Astro.redirect('/states');
+}
+
+const candidates = electionData.sampleCandidates.filter(c => c.state === id);
+const categories = electionData.candidateCategories;
+
+// Pre-compute category info for each candidate to avoid arrow functions in template
+const candidatesWithCats = candidates.map(c => ({
+  ...c,
+  categoryInfos: c.categories
+    .map(catId => categories.find(cc => cc.id === catId))
+    .filter(Boolean)
+}));
+
+const hasCandidates = candidates.length >= 1;
+
+// Pre-compute party data with display flag for seat bar labels
+const partiesWithPct = state.parties.map(p => ({
+  ...p,
+  pctWidth: (p.seats2021 / state.seats) * 100,
+  showLabel: (p.seats2021 / state.seats) * 100 >= 11
+}));
+---
+
+<ElectionLayout title={`${state.name} Elections 2026 | Election Pulse`}>
+  <section class="ep-section">
+    <div class="ep-container">
+
+      <!-- State Header -->
+      <div class="sd-header" style={`--sc:${state.color}`}>
+        <a href="/states" class="sd-back">← All States</a>
+        <div class="sd-title-row">
+          <span class="sd-emoji">{state.mapEmoji}</span>
+          <div>
+            <h1 class="sd-title">{state.name}</h1>
+            <p class="sd-subtitle">{state.electionDate} &middot; {state.seats} Seats &middot; {state.voters} Voters</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Numbers -->
+      <div class="sd-numbers">
+        <div class="sd-num-card">
+          <span class="sd-num-icon">🪑</span>
+          <span class="sd-num-val">{state.seats}</span>
+          <span class="sd-num-lbl">Assembly Seats</span>
+        </div>
+        <div class="sd-num-card">
+          <span class="sd-num-icon">🗳️</span>
+          <span class="sd-num-val">{state.voters}</span>
+          <span class="sd-num-lbl">Total Voters</span>
+        </div>
+        <div class="sd-num-card">
+          <span class="sd-num-icon">⚡</span>
+          <span class="sd-num-val">{state.genZPercent}%</span>
+          <span class="sd-num-lbl">Gen Z Voters</span>
+        </div>
+        <div class="sd-num-card">
+          <span class="sd-num-icon">♀️</span>
+          <span class="sd-num-val">{state.femaleVoterPercent}%</span>
+          <span class="sd-num-lbl">Women Voters</span>
+        </div>
+        <div class="sd-num-card">
+          <span class="sd-num-icon">📚</span>
+          <span class="sd-num-val">{state.literacy}</span>
+          <span class="sd-num-lbl">Literacy Rate</span>
+        </div>
+        <div class="sd-num-card">
+          <span class="sd-num-icon">🏙️</span>
+          <span class="sd-num-val">{state.urbanPercent}%</span>
+          <span class="sd-num-lbl">Urban</span>
+        </div>
+      </div>
+
+      <!-- Current Government -->
+      <div class="sd-current">
+        <h2 class="sd-sec-title">Current Government</h2>
+        <div class="sd-current-card" style={`--sc:${state.color}`}>
+          <span class="sd-cur-ruling">{state.currentRuling}</span>
+          <span class="sd-cur-cm">CM: {state.currentCM}</span>
+        </div>
+      </div>
+
+      <!-- Seat Distribution -->
+      <div class="sd-seats">
+        <h2 class="sd-sec-title">Last Election Results (2021)</h2>
+        <div class="sd-seat-bar" style={`--sc:${state.color}`}>
+          {partiesWithPct.map((p) => (
+            <div class="sd-seg" style={`width:${p.pctWidth}%;background:${p.color}`}>
+              {p.showLabel && <span class="sd-seg-lbl">{p.seats2021}</span>}
+            </div>
+          ))}
+        </div>
+        <div class="sd-party-cards">
+          {state.parties.map((p) => (
+            <div class="sd-party-card" style={`--pc:${p.color}`}>
+              <span class="sd-pc-icon">{p.icon}</span>
+              <span class="sd-pc-name">{p.name}</span>
+              <span class="sd-pc-full">{p.fullName}</span>
+              <div class="sd-pc-stats">
+                <div><strong>{p.seats2021}</strong> seats</div>
+                <div>{p.voteShare2021}% votes</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Key Issues -->
+      <div class="sd-issues-section">
+        <h2 class="sd-sec-title">Key Election Issues</h2>
+        <div class="sd-issues-grid">
+          {state.keyIssues.map((issue, i) => (
+            <div class="sd-issue-card">
+              <span class="sd-issue-num">#{i+1}</span>
+              <span class="sd-issue-text">{issue}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Election History -->
+      <div class="sd-history-section">
+        <h2 class="sd-sec-title">Election History</h2>
+        <div class="sd-history-grid">
+          {state.electionHistory.map((h) => (
+            <div class="sd-history-card">
+              <span class="sd-hist-year">{h.year}</span>
+              <span class="sd-hist-winner">{h.winner}</span>
+              <span class="sd-hist-seats">{h.seats} seats won</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Key Candidates from this State -->
+      {hasCandidates && (
+        <div class="sd-candidates">
+          <h2 class="sd-sec-title">Key Candidates</h2>
+          <div class="sd-cand-grid">
+            {candidatesWithCats.map((c) => (
+              <div class="sd-cand-card" style={`--pc:${c.partyColor}`}>
+                <div class="sd-cand-top">
+                  <div class="sd-cand-avatar">{c.name.charAt(0)}</div>
+                  <div>
+                    <span class="sd-cand-name">{c.name}</span>
+                    <span class="sd-cand-party">{c.party} &middot; {c.constituency}</span>
+                  </div>
+                </div>
+                <p class="sd-cand-bg">{c.background}</p>
+                <div class="sd-cand-stats">
+                  <span>Assets: <strong>{c.assets}</strong></span>
+                  <span>Cases: <strong class:list={[{ 'sd-red': c.criminalCases }]}>{c.criminalCases}</strong></span>
+                  <span>Age: <strong>{c.age}</strong></span>
+                  <span>Terms: <strong>{c.terms}</strong></span>
+                </div>
+                <div class="sd-cand-tags">
+                  {c.categoryInfos.map((catInfo) => (
+                    <span class="sd-cand-tag" style={`--tc:${catInfo.color}`}>{catInfo.emoji} {catInfo.label}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style="text-align:center;margin-top:1.5rem">
+            <a href="/candidates" class="ep-btn ep-btn-outline">See All Candidates &rarr;</a>
+          </div>
+        </div>
+      )}
+
+    </div>
+  </section>
+</ElectionLayout>
+
+<style>
+.sd-header { margin-bottom: 2rem; }
+.sd-back { font-size: 0.85rem; color: var(--ep-text-muted); display: inline-block; margin-bottom: 1rem; }
+.sd-back:hover { color: var(--ep-accent); }
+.sd-title-row { display: flex; align-items: center; gap: 1rem; }
+.sd-emoji { font-size: 3.5rem; }
+.sd-title { font-family: var(--ep-font-display); font-size: 2.5rem; font-weight: 800; }
+.sd-subtitle { color: var(--ep-text-muted); font-size: 1rem; }
+
+.sd-numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin-bottom: 2.5rem; }
+.sd-num-card { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 1.2rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); }
+.sd-num-icon { font-size: 1.5rem; }
+.sd-num-val { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 800; }
+.sd-num-lbl { font-size: 0.7rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+.sd-sec-title { font-family: var(--ep-font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
+
+.sd-current { margin-bottom: 2.5rem; }
+.sd-current-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-left: 4px solid var(--sc); border-radius: var(--ep-radius); padding: 1.2rem 1.5rem; display: flex; gap: 1.5rem; align-items: center; }
+.sd-cur-ruling { font-family: var(--ep-font-display); font-size: 1.3rem; font-weight: 800; }
+.sd-cur-cm { color: var(--ep-text-secondary); }
+
+.sd-seats { margin-bottom: 2.5rem; }
+.sd-seat-bar { display: flex; height: 36px; border-radius: 8px; overflow: hidden; gap: 2px; margin-bottom: 1rem; }
+.sd-seg { display: flex; align-items: center; justify-content: center; }
+.sd-seg-lbl { font-size: 0.75rem; font-weight: 800; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+.sd-party-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
+.sd-party-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-top: 3px solid var(--pc); border-radius: var(--ep-radius); padding: 1.2rem; text-align: center; }
+.sd-pc-icon { font-size: 2rem; display: block; margin-bottom: 0.3rem; }
+.sd-pc-name { display: block; font-family: var(--ep-font-display); font-size: 1.2rem; font-weight: 700; }
+.sd-pc-full { display: block; font-size: 0.75rem; color: var(--ep-text-muted); margin-bottom: 0.6rem; }
+.sd-pc-stats { display: flex; justify-content: center; gap: 1rem; font-size: 0.85rem; color: var(--ep-text-secondary); }
+
+.sd-issues-section { margin-bottom: 2.5rem; }
+.sd-issues-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.sd-issue-card { display: flex; align-items: center; gap: 0.5rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); padding: 0.7rem 1rem; }
+.sd-issue-num { font-family: var(--ep-font-display); font-weight: 800; color: var(--ep-accent); }
+.sd-issue-text { font-size: 0.9rem; font-weight: 500; }
+
+.sd-history-section { margin-bottom: 2.5rem; }
+.sd-history-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem; }
+.sd-history-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); padding: 1rem; text-align: center; }
+.sd-hist-year { display: block; font-family: var(--ep-font-display); font-size: 1.3rem; font-weight: 800; color: var(--ep-accent); }
+.sd-hist-winner { display: block; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.sd-hist-seats { font-size: 0.8rem; color: var(--ep-text-muted); }
+
+.sd-candidates { margin-bottom: 2rem; }
+.sd-cand-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.sd-cand-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1.3rem; border-left: 3px solid var(--pc); }
+.sd-cand-top { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
+.sd-cand-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--pc); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--ep-font-display); font-weight: 800; font-size: 1.2rem; flex-shrink: 0; }
+.sd-cand-name { display: block; font-family: var(--ep-font-display); font-weight: 700; font-size: 1rem; }
+.sd-cand-party { display: block; font-size: 0.75rem; color: var(--ep-text-muted); }
+.sd-cand-bg { font-size: 0.85rem; color: var(--ep-text-secondary); margin-bottom: 0.8rem; line-height: 1.5; }
+.sd-cand-stats { display: flex; flex-wrap: wrap; gap: 0.8rem; font-size: 0.8rem; color: var(--ep-text-muted); margin-bottom: 0.6rem; }
+.sd-red { color: #e53e3e; }
+.sd-cand-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.sd-cand-tag { font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: var(--ep-radius-pill); background: color-mix(in srgb, var(--tc) 12%, transparent); color: var(--tc); border: 1px solid color-mix(in srgb, var(--tc) 25%, transparent); }
+
+@media (max-width: 768px) {
+  .sd-title { font-size: 1.8rem; }
+  .sd-numbers { grid-template-columns: repeat(3, 1fr); }
+  .sd-cand-grid { grid-template-columns: 1fr; }
+}
+</style>

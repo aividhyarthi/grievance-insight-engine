@@ -1,0 +1,289 @@
+---
+import ElectionLayout from '../layouts/ElectionLayout.astro';
+import electionData from '../data/elections2026.json';
+const { states, nationalParties, sampleCandidates, partyFinancials, electionStats, candidateCategories, genZIssues } = electionData;
+---
+
+<ElectionLayout title="Ask About Elections | Election Pulse 2026">
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <div class="ep-badge">ASK ANYTHING</div>
+        <h1 class="ep-section-title" style="margin-top:1rem">Election Explorer</h1>
+        <p class="ep-section-sub">Type a question or pick a topic. Get instant visual answers.</p>
+      </div>
+
+      <!-- Search -->
+      <div class="ax-search-wrap">
+        <input type="text" class="ax-search" id="ax-search" placeholder="Search candidates, states, parties, issues..." autocomplete="off" />
+        <div class="ax-search-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+
+      <!-- Quick Questions -->
+      <div class="ax-quick">
+        <span class="ax-quick-label">Try asking:</span>
+        <div class="ax-quick-grid">
+          <button class="ax-q-btn" data-q="criminal">Which candidates have criminal cases?</button>
+          <button class="ax-q-btn" data-q="richest">Who are the richest candidates?</button>
+          <button class="ax-q-btn" data-q="dynasty">Who are dynasty politicians?</button>
+          <button class="ax-q-btn" data-q="women">Women in the race?</button>
+          <button class="ax-q-btn" data-q="kerala">Tell me about Kerala elections</button>
+          <button class="ax-q-btn" data-q="bengal">West Bengal battle</button>
+          <button class="ax-q-btn" data-q="money">Which party has the most money?</button>
+          <button class="ax-q-btn" data-q="genz">What do Gen Z voters want?</button>
+          <button class="ax-q-btn" data-q="celebrity">Celebrity candidates?</button>
+          <button class="ax-q-btn" data-q="turncoat">Who switched parties?</button>
+        </div>
+      </div>
+
+      <!-- Results Area -->
+      <div class="ax-results" id="ax-results">
+        <div class="ax-empty">
+          <span class="ax-empty-icon">🗳️</span>
+          <p>Ask a question above or pick a topic to explore</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</ElectionLayout>
+
+<script define:vars={{ states, nationalParties, sampleCandidates, partyFinancials, electionStats, candidateCategories, genZIssues }}>
+  const searchInput = document.getElementById('ax-search');
+  const resultsDiv = document.getElementById('ax-results');
+  const quickBtns = document.querySelectorAll('.ax-q-btn');
+
+  function renderCards(html) {
+    resultsDiv.innerHTML = html;
+  }
+
+  function candidateCard(c) {
+    const cats = c.categories.map(catId => {
+      const cat = candidateCategories.find(cc => cc.id === catId);
+      return cat ? `<span class="ax-tag" style="--tc:${cat.color}">${cat.emoji} ${cat.label}</span>` : '';
+    }).join('');
+    const stateInfo = states.find(s => s.id === c.state);
+
+    return `<div class="ax-card" style="--pc:${c.partyColor}">
+      <div class="ax-card-top">
+        <div class="ax-avatar" style="background:${c.partyColor}">${c.name.charAt(0)}</div>
+        <div>
+          <div class="ax-card-name">${c.name}</div>
+          <div class="ax-card-sub">${c.party} · ${stateInfo?.name || ''} · ${c.constituency}</div>
+        </div>
+      </div>
+      <p class="ax-card-bio">${c.background}</p>
+      <div class="ax-card-data">
+        <span>Assets: <strong>${c.assets}</strong></span>
+        <span>Cases: <strong class="${c.criminalCases > 0 ? 'ax-red' : ''}">${c.criminalCases}</strong></span>
+        <span>Age: <strong>${c.age}</strong></span>
+        <span>Terms: <strong>${c.terms}</strong></span>
+      </div>
+      <div class="ax-card-tags">${cats}</div>
+    </div>`;
+  }
+
+  function stateCard(s) {
+    const parties = s.parties.map(p => `<span>${p.icon} ${p.name}: ${p.seats2021}</span>`).join(' · ');
+    return `<div class="ax-state-card" style="--sc:${s.color}">
+      <div class="ax-state-top">
+        <span class="ax-state-emoji">${s.mapEmoji}</span>
+        <div>
+          <h3 class="ax-state-name">${s.name}</h3>
+          <p class="ax-state-sub">${s.seats} seats · ${s.voters} voters · ${s.electionDate}</p>
+        </div>
+      </div>
+      <p class="ax-state-info">CM: ${s.currentCM} (${s.currentRuling}) · Gen Z: ${s.genZPercent}% · Literacy: ${s.literacy}</p>
+      <p class="ax-state-issues">Key Issues: ${s.keyIssues.join(', ')}</p>
+      <p class="ax-state-parties">${parties}</p>
+      <a href="/states/${s.id}" class="ax-state-link">Deep Dive →</a>
+    </div>`;
+  }
+
+  function handleQuery(q) {
+    q = q.toLowerCase().trim();
+    if (!q) {
+      renderCards(`<div class="ax-empty"><span class="ax-empty-icon">🗳️</span><p>Ask a question above or pick a topic to explore</p></div>`);
+      return;
+    }
+
+    // Criminal candidates
+    if (q.includes('criminal') || q.includes('case') || q.includes('crime') || q.includes('police') || q.includes('jail')) {
+      const criminals = sampleCandidates.filter(c => c.criminalCases > 0).sort((a, b) => b.criminalCases - a.criminalCases);
+      renderCards(`<div class="ax-answer-header"><h2>🚨 Candidates with Criminal Cases</h2><p>${electionStats.candidatesWithCriminalCases} of all candidates have declared criminal cases. ${electionStats.candidatesWithSeriousCrimes} have serious crimes (murder, kidnapping, etc.)</p></div><div class="ax-card-grid">${criminals.map(candidateCard).join('')}</div>`);
+      return;
+    }
+
+    // Rich / Crorepati
+    if (q.includes('rich') || q.includes('crorepati') || q.includes('wealth') || q.includes('asset') || q.includes('money') && !q.includes('party')) {
+      const rich = [...sampleCandidates].sort((a, b) => b.assetsNum - a.assetsNum);
+      renderCards(`<div class="ax-answer-header"><h2>💰 Richest Candidates</h2><p>${electionStats.crorepatiCandidates} of all candidates are crorepatis. Average winner has ${electionStats.avgWinnerAssets} in assets.</p></div><div class="ax-card-grid">${rich.map(candidateCard).join('')}</div>`);
+      return;
+    }
+
+    // Dynasty
+    if (q.includes('dynast') || q.includes('family') || q.includes('heritage') || q.includes('son of') || q.includes('daughter')) {
+      const dynasty = sampleCandidates.filter(c => c.categories.includes('dynastic'));
+      renderCards(`<div class="ax-answer-header"><h2>👨‍👩‍👧‍👦 Dynasty Politicians</h2><p>Candidates who entered politics through family connections — sons, daughters, nephews of established leaders.</p></div><div class="ax-card-grid">${dynasty.map(candidateCard).join('')}</div>`);
+      return;
+    }
+
+    // Women
+    if (q.includes('women') || q.includes('female') || q.includes('woman') || q.includes('gender')) {
+      const women = sampleCandidates.filter(c => c.gender === 'F');
+      renderCards(`<div class="ax-answer-header"><h2>♀️ Women Candidates</h2><p>Only ${electionStats.womenCandidates} of candidates are women. Here are some key women leaders in the 2026 elections.</p></div><div class="ax-card-grid">${women.map(candidateCard).join('')}</div>`);
+      return;
+    }
+
+    // Celebrity
+    if (q.includes('celebrity') || q.includes('actor') || q.includes('film') || q.includes('star') || q.includes('cricketer')) {
+      const celebs = sampleCandidates.filter(c => c.categories.includes('celebrity'));
+      renderCards(`<div class="ax-answer-header"><h2>🎬 Celebrity Candidates</h2><p>Film stars, TV personalities, and celebrities who've entered the political arena.</p></div><div class="ax-card-grid">${celebs.map(candidateCard).join('')}</div>`);
+      return;
+    }
+
+    // Party hoppers / turncoats
+    if (q.includes('switch') || q.includes('turncoat') || q.includes('hopper') || q.includes('jump')) {
+      const hoppers = sampleCandidates.filter(c => c.categories.includes('turncoat'));
+      renderCards(`<div class="ax-answer-header"><h2>🔄 Party Hoppers</h2><p>Candidates who switched parties, often right before elections, chasing tickets and power.</p></div><div class="ax-card-grid">${hoppers.map(candidateCard).join('')}</div>`);
+      return;
+    }
+
+    // Gen Z issues
+    if (q.includes('genz') || q.includes('gen z') || q.includes('young') || q.includes('youth') || q.includes('issue') || q.includes('care about')) {
+      const issueHtml = genZIssues.map((item, i) => `<div class="ax-issue-row"><span class="ax-issue-rank">#${i+1}</span><span class="ax-issue-name">${item.issue}</span><div class="ax-issue-track"><div class="ax-issue-fill" style="width:${item.percent}%;background:${item.color}"></div></div><span class="ax-issue-pct">${item.percent}%</span></div>`).join('');
+      renderCards(`<div class="ax-answer-header"><h2>⚡ What Gen Z Cares About</h2><p>48M+ Gen Z voters will shape these elections. Here's what matters to them most.</p></div><div class="ax-issues-wrap">${issueHtml}</div>`);
+      return;
+    }
+
+    // Party money
+    if (q.includes('party') && (q.includes('money') || q.includes('financ') || q.includes('fund') || q.includes('rich') || q.includes('bond'))) {
+      const finHtml = partyFinancials.map(f => {
+        const p = nationalParties.find(pp => pp.name === f.name);
+        return `<div class="ax-fin-card" style="--pc:${p?.color}"><span class="ax-fin-icon">${p?.icon}</span><h3>${f.name}</h3><div class="ax-fin-grid"><div><strong>${f.totalAssets}</strong><span>Assets</span></div><div><strong>${f.annualIncome}</strong><span>Income</span></div><div><strong>${f.electoralBonds}</strong><span>Bonds</span></div><div><strong>${f.donations}</strong><span>Donations</span></div></div></div>`;
+      }).join('');
+      renderCards(`<div class="ax-answer-header"><h2>💰 Party Finances</h2><p>Financial data from ECI filings & ADR analysis (${partyFinancials[0]?.yearData})</p></div><div class="ax-fin-wrap">${finHtml}</div>`);
+      return;
+    }
+
+    // State-specific queries
+    const matchedState = states.find(s =>
+      q.includes(s.name.toLowerCase()) || q.includes(s.id) || q.includes(s.abbr.toLowerCase())
+    );
+    if (matchedState) {
+      const stateCands = sampleCandidates.filter(c => c.state === matchedState.id);
+      const candsHtml = stateCands.length > 0 ? `<h3 style="margin-top:1.5rem;font-family:var(--ep-font-display)">Key Candidates</h3><div class="ax-card-grid">${stateCands.map(candidateCard).join('')}</div>` : '';
+      renderCards(`${stateCard(matchedState)}${candsHtml}`);
+      return;
+    }
+
+    // Candidate name search
+    const nameMatch = sampleCandidates.filter(c => c.name.toLowerCase().includes(q) || c.party.toLowerCase().includes(q));
+    if (nameMatch.length > 0) {
+      renderCards(`<div class="ax-answer-header"><h2>Search Results</h2><p>Found ${nameMatch.length} match${nameMatch.length > 1 ? 'es' : ''}</p></div><div class="ax-card-grid">${nameMatch.map(candidateCard).join('')}</div>`);
+      return;
+    }
+
+    // No results
+    renderCards(`<div class="ax-empty"><span class="ax-empty-icon">🤔</span><p>No results found for "${q}". Try searching for a state name, candidate, party, or topic like "criminal cases" or "richest candidates".</p></div>`);
+  }
+
+  // Search input
+  let timeout;
+  searchInput?.addEventListener('input', (e) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => handleQuery(e.target.value), 300);
+  });
+
+  // Quick buttons
+  quickBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.getAttribute('data-q') || '';
+      const queryMap = {
+        criminal: 'criminal cases',
+        richest: 'richest candidates',
+        dynasty: 'dynasty politicians',
+        women: 'women candidates',
+        kerala: 'Kerala',
+        bengal: 'West Bengal',
+        money: 'party money',
+        genz: 'gen z issues',
+        celebrity: 'celebrity candidates',
+        turncoat: 'switched parties'
+      };
+      const query = queryMap[q] || q;
+      if (searchInput) searchInput.value = query;
+      handleQuery(query);
+    });
+  });
+</script>
+
+<style>
+.ax-search-wrap { position: relative; max-width: 600px; margin: 0 auto 1.5rem; }
+.ax-search { width: 100%; font-family: var(--ep-font); font-size: 1rem; padding: 1rem 1rem 1rem 3rem; background: var(--ep-bg-card); color: var(--ep-text); border: 2px solid var(--ep-border); border-radius: var(--ep-radius); outline: none; transition: border-color 0.2s; }
+.ax-search:focus { border-color: var(--ep-accent); }
+.ax-search::placeholder { color: var(--ep-text-muted); }
+.ax-search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--ep-text-muted); }
+
+.ax-quick { text-align: center; margin-bottom: 2.5rem; }
+.ax-quick-label { display: block; font-size: 0.8rem; color: var(--ep-text-muted); margin-bottom: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.ax-quick-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+.ax-q-btn { font-family: var(--ep-font); font-size: 0.8rem; font-weight: 500; padding: 0.5rem 1rem; border-radius: var(--ep-radius-pill); background: var(--ep-bg-card); color: var(--ep-text-secondary); border: 1px solid var(--ep-border); cursor: pointer; transition: all 0.2s; }
+.ax-q-btn:hover { border-color: var(--ep-accent); color: var(--ep-accent); background: rgba(255,107,53,0.05); }
+
+.ax-results { min-height: 300px; }
+.ax-empty { text-align: center; padding: 4rem 2rem; }
+.ax-empty-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+.ax-empty p { color: var(--ep-text-muted); max-width: 400px; margin: 0 auto; }
+
+.ax-answer-header { margin-bottom: 1.5rem; }
+.ax-answer-header h2 { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; }
+.ax-answer-header p { color: var(--ep-text-secondary); font-size: 0.9rem; }
+
+.ax-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.ax-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1.2rem; border-left: 3px solid var(--pc); }
+.ax-card-top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.6rem; }
+.ax-avatar { width: 42px; height: 42px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--ep-font-display); font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }
+.ax-card-name { font-family: var(--ep-font-display); font-weight: 700; font-size: 1rem; }
+.ax-card-sub { font-size: 0.7rem; color: var(--ep-text-muted); }
+.ax-card-bio { font-size: 0.8rem; color: var(--ep-text-secondary); margin-bottom: 0.7rem; line-height: 1.5; }
+.ax-card-data { display: flex; flex-wrap: wrap; gap: 0.6rem; font-size: 0.75rem; color: var(--ep-text-muted); margin-bottom: 0.5rem; }
+.ax-red { color: #e53e3e; }
+.ax-card-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.ax-tag { font-size: 0.6rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: var(--ep-radius-pill); background: color-mix(in srgb, var(--tc) 12%, transparent); color: var(--tc); border: 1px solid color-mix(in srgb, var(--tc) 25%, transparent); }
+
+.ax-state-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-left: 4px solid var(--sc); border-radius: var(--ep-radius); padding: 1.5rem; margin-bottom: 1rem; }
+.ax-state-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+.ax-state-emoji { font-size: 2.5rem; }
+.ax-state-name { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 700; }
+.ax-state-sub { font-size: 0.8rem; color: var(--ep-text-muted); }
+.ax-state-info, .ax-state-issues, .ax-state-parties { font-size: 0.85rem; color: var(--ep-text-secondary); margin-bottom: 0.4rem; }
+.ax-state-link { display: inline-block; margin-top: 0.5rem; font-size: 0.85rem; font-weight: 600; }
+
+.ax-issues-wrap { max-width: 650px; display: flex; flex-direction: column; gap: 0.6rem; }
+.ax-issue-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 1rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); }
+.ax-issue-rank { font-family: var(--ep-font-display); font-weight: 800; color: var(--ep-text-muted); min-width: 2rem; }
+.ax-issue-name { font-weight: 600; min-width: 120px; font-size: 0.85rem; }
+.ax-issue-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; }
+.ax-issue-fill { height: 100%; border-radius: 8px; }
+.ax-issue-pct { font-family: var(--ep-font-display); font-weight: 700; min-width: 2.5rem; text-align: right; }
+
+.ax-fin-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.ax-fin-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-top: 3px solid var(--pc); border-radius: var(--ep-radius); padding: 1.2rem; text-align: center; }
+.ax-fin-icon { font-size: 2rem; display: block; margin-bottom: 0.3rem; }
+.ax-fin-card h3 { font-family: var(--ep-font-display); font-size: 1.2rem; margin-bottom: 0.8rem; }
+.ax-fin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+.ax-fin-grid > div { padding: 0.5rem; background: rgba(255,255,255,0.03); border-radius: 6px; }
+.ax-fin-grid strong { display: block; font-family: var(--ep-font-display); font-size: 0.95rem; }
+.ax-fin-grid span { font-size: 0.6rem; color: var(--ep-text-muted); text-transform: uppercase; }
+
+@media (max-width: 768px) {
+  .ax-card-grid { grid-template-columns: 1fr; }
+  .ax-fin-wrap { grid-template-columns: 1fr; }
+  .ax-issue-row { flex-wrap: wrap; }
+  .ax-issue-name { min-width: auto; }
+  .ax-issue-track { flex-basis: 100%; order: 4; }
+}
+</style>

@@ -1,0 +1,388 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Election Pulse 2026 — India's visual-first election dashboard for Gen Z. Stats, candidates, parties, money — zero walls of text." } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="theme-color" content="#0f0f1a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="ep-body">
+    <nav class="ep-nav">
+      <div class="ep-nav-inner">
+        <a href="/" class="ep-nav-brand">
+          <span class="ep-nav-logo">EP</span>
+          <span class="ep-nav-title">Election Pulse</span>
+          <span class="ep-nav-year">2026</span>
+        </a>
+        <ul class="ep-nav-links">
+          <li><a href="/" class:list={[{ 'ep-active': currentPath === '/' }]}>Home</a></li>
+          <li><a href="/states" class:list={[{ 'ep-active': currentPath.startsWith('/states') }]}>States</a></li>
+          <li><a href="/candidates" class:list={[{ 'ep-active': currentPath.startsWith('/candidates') }]}>Candidates</a></li>
+          <li><a href="/parties" class:list={[{ 'ep-active': currentPath.startsWith('/parties') }]}>Parties</a></li>
+          <li><a href="/ask" class:list={[{ 'ep-active': currentPath.startsWith('/ask') }]}>Ask</a></li>
+        </ul>
+        <button class="ep-nav-toggle" aria-label="Menu" id="ep-menu-btn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="ep-footer">
+      <div class="ep-footer-inner">
+        <div class="ep-footer-brand">
+          <span class="ep-nav-logo">EP</span>
+          <span>Election Pulse 2026</span>
+        </div>
+        <div class="ep-footer-sources">
+          Data Sources: <a href="https://eci.gov.in" target="_blank" rel="noopener">ECI</a> &middot;
+          <a href="https://adrindia.org" target="_blank" rel="noopener">ADR</a> &middot;
+          <a href="https://myneta.info" target="_blank" rel="noopener">MyNeta</a> &middot;
+          State Election Commissions
+        </div>
+        <p class="ep-footer-note">Built for Gen Z. No walls of text. Just visuals.</p>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById('ep-menu-btn');
+      const nav = document.querySelector('.ep-nav-links');
+      btn?.addEventListener('click', () => {
+        nav?.classList.toggle('ep-nav-open');
+        btn?.classList.toggle('ep-nav-toggle-active');
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+/* ============================================
+   ELECTION PULSE — GLOBAL STYLES
+   Gen Z Visual-First Dark Theme
+   ============================================ */
+
+:root {
+  --ep-bg: #0a0a14;
+  --ep-bg-card: #13131f;
+  --ep-bg-card-hover: #1a1a2e;
+  --ep-bg-surface: #0f0f1a;
+  --ep-text: #e8e8f0;
+  --ep-text-secondary: #9ca3af;
+  --ep-text-muted: #6b7280;
+  --ep-accent: #ff6b35;
+  --ep-accent-2: #ff9f1c;
+  --ep-saffron: #ff9933;
+  --ep-green: #138808;
+  --ep-blue: #2563eb;
+  --ep-border: rgba(255,255,255,0.08);
+  --ep-border-hover: rgba(255,255,255,0.15);
+  --ep-font: 'Inter', system-ui, -apple-system, sans-serif;
+  --ep-font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --ep-max-width: 1200px;
+  --ep-radius: 16px;
+  --ep-radius-sm: 10px;
+  --ep-radius-pill: 50px;
+  --ep-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --ep-shadow-lg: 0 12px 48px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+.ep-body {
+  font-family: var(--ep-font);
+  background: var(--ep-bg);
+  color: var(--ep-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  font-size: 16px;
+}
+
+a { color: var(--ep-accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--ep-accent-2); }
+
+img { max-width: 100%; height: auto; }
+
+.ep-container {
+  max-width: var(--ep-max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ========== NAV ========== */
+.ep-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 20, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--ep-border);
+}
+
+.ep-nav-inner {
+  max-width: var(--ep-max-width);
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ep-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ep-text);
+  font-weight: 700;
+}
+
+.ep-nav-brand:hover { color: var(--ep-text); }
+
+.ep-nav-logo {
+  background: linear-gradient(135deg, var(--ep-saffron), var(--ep-accent));
+  color: #fff;
+  font-family: var(--ep-font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.ep-nav-title {
+  font-family: var(--ep-font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.ep-nav-year {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(255,107,53,0.15);
+  color: var(--ep-accent);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--ep-radius-pill);
+}
+
+.ep-nav-links {
+  display: flex;
+  gap: 0.3rem;
+  list-style: none;
+}
+
+.ep-nav-links a {
+  color: var(--ep-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--ep-radius-sm);
+  transition: all 0.2s;
+}
+
+.ep-nav-links a:hover {
+  color: var(--ep-text);
+  background: rgba(255,255,255,0.05);
+}
+
+.ep-nav-links a.ep-active {
+  color: var(--ep-accent);
+  background: rgba(255,107,53,0.1);
+}
+
+.ep-nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.ep-nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ep-text);
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+/* ========== FOOTER ========== */
+.ep-footer {
+  border-top: 1px solid var(--ep-border);
+  padding: 2.5rem 0;
+  background: var(--ep-bg-surface);
+}
+
+.ep-footer-inner {
+  max-width: var(--ep-max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.ep-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ep-font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ep-text);
+}
+
+.ep-footer-sources {
+  font-size: 0.8rem;
+  color: var(--ep-text-muted);
+}
+
+.ep-footer-sources a {
+  color: var(--ep-text-secondary);
+}
+
+.ep-footer-note {
+  font-size: 0.75rem;
+  color: var(--ep-text-muted);
+}
+
+/* ========== SHARED COMPONENTS ========== */
+.ep-section {
+  padding: 4rem 0;
+}
+
+.ep-section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.ep-section-title {
+  font-family: var(--ep-font-display);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--ep-text);
+  margin-bottom: 0.4rem;
+}
+
+.ep-section-sub {
+  color: var(--ep-text-muted);
+  font-size: 1rem;
+}
+
+.ep-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--ep-radius-pill);
+  background: rgba(255,107,53,0.12);
+  color: var(--ep-accent);
+  border: 1px solid rgba(255,107,53,0.25);
+}
+
+.ep-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--ep-radius-pill);
+  background: rgba(255,255,255,0.06);
+  color: var(--ep-text-secondary);
+  border: 1px solid var(--ep-border);
+}
+
+.ep-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ep-font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--ep-radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ep-btn-primary {
+  background: linear-gradient(135deg, var(--ep-accent), var(--ep-accent-2));
+  color: #fff;
+}
+
+.ep-btn-primary:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,107,53,0.3);
+}
+
+.ep-btn-outline {
+  background: transparent;
+  color: var(--ep-text-secondary);
+  border: 1px solid var(--ep-border);
+}
+
+.ep-btn-outline:hover {
+  color: var(--ep-text);
+  border-color: var(--ep-border-hover);
+  background: rgba(255,255,255,0.04);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .ep-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10,10,20,0.98);
+    flex-direction: column;
+    padding: 1rem;
+    border-bottom: 1px solid var(--ep-border);
+  }
+
+  .ep-nav-links.ep-nav-open { display: flex; }
+
+  .ep-nav-toggle { display: flex; }
+
+  .ep-nav-toggle-active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .ep-nav-toggle-active span:nth-child(2) { opacity: 0; }
+  .ep-nav-toggle-active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+  .ep-section { padding: 2.5rem 0; }
+}
+</style>

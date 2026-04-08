@@ -1,0 +1,109 @@
+---
+import ElectionLayout from '../../layouts/ElectionLayout.astro';
+import electionData from '../../data/elections2026.json';
+const { states } = electionData;
+---
+
+<ElectionLayout title="States Going to Polls | Election Pulse 2026">
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <div class="ep-badge">5 STATES</div>
+        <h1 class="ep-section-title" style="margin-top:1rem">States Going to Polls in 2026</h1>
+        <p class="ep-section-sub">Tap any state to see candidates, constituencies, history & more</p>
+      </div>
+
+      <div class="st-grid">
+        {states.map((state) => (
+          <a href={`/states/${state.id}`} class="st-card" style={`--sc:${state.color}`}>
+            <div class="st-card-header">
+              <span class="st-emoji">{state.mapEmoji}</span>
+              <div>
+                <h2 class="st-name">{state.name}</h2>
+                <span class="st-meta">CM: {state.currentCM} ({state.currentRuling})</span>
+              </div>
+            </div>
+
+            <div class="st-stat-row">
+              <div class="st-stat"><span class="st-stat-v">{state.seats}</span><span class="st-stat-l">Seats</span></div>
+              <div class="st-stat"><span class="st-stat-v">{state.voters}</span><span class="st-stat-l">Voters</span></div>
+              <div class="st-stat"><span class="st-stat-v">{state.genZPercent}%</span><span class="st-stat-l">Gen Z</span></div>
+              <div class="st-stat"><span class="st-stat-v">{state.femaleVoterPercent}%</span><span class="st-stat-l">Women</span></div>
+            </div>
+
+            <div class="st-bar">
+              {state.parties.map((p) => (
+                <div class="st-seg" style={`width:${(p.seats2021/state.seats)*100}%;background:${p.color}`}></div>
+              ))}
+            </div>
+
+            <div class="st-party-list">
+              {state.parties.map((p) => (
+                <div class="st-party-row">
+                  <span class="st-party-dot" style={`background:${p.color}`}></span>
+                  <span class="st-party-icon">{p.icon}</span>
+                  <span class="st-party-name">{p.name}</span>
+                  <span class="st-party-seats">{p.seats2021} seats</span>
+                  <span class="st-party-vs">{p.voteShare2021}%</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="st-issues">
+              {state.keyIssues.map((issue) => (
+                <span class="st-issue-chip">{issue}</span>
+              ))}
+            </div>
+
+            <div class="st-history">
+              <span class="st-history-label">Past Winners:</span>
+              {state.electionHistory.map((h) => (
+                <span class="st-history-item">{h.year}: {h.winner}</span>
+              ))}
+            </div>
+
+            <div class="st-card-footer">
+              <span>{state.electionDate}</span>
+              <span class="st-arrow">Deep Dive →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</ElectionLayout>
+
+<style>
+.st-grid { display: flex; flex-direction: column; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+.st-card { display: block; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1.8rem; transition: all 0.25s; border-left: 4px solid var(--sc); color: var(--ep-text); }
+.st-card:hover { background: var(--ep-bg-card-hover); transform: translateX(6px); box-shadow: var(--ep-shadow-lg); color: var(--ep-text); }
+.st-card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+.st-emoji { font-size: 2.8rem; }
+.st-name { font-family: var(--ep-font-display); font-size: 1.6rem; font-weight: 700; }
+.st-meta { font-size: 0.8rem; color: var(--ep-text-muted); }
+.st-stat-row { display: flex; gap: 0.6rem; margin-bottom: 1.2rem; }
+.st-stat { flex: 1; text-align: center; padding: 0.6rem; background: rgba(255,255,255,0.03); border-radius: var(--ep-radius-sm); }
+.st-stat-v { display: block; font-family: var(--ep-font-display); font-size: 1.1rem; font-weight: 800; }
+.st-stat-l { font-size: 0.6rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.st-bar { display: flex; height: 20px; border-radius: 6px; overflow: hidden; gap: 2px; margin-bottom: 1rem; }
+.st-seg { min-width: 3px; }
+.st-party-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.st-party-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+.st-party-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.st-party-icon { font-size: 1rem; }
+.st-party-name { font-weight: 600; min-width: 80px; }
+.st-party-seats { color: var(--ep-text-secondary); }
+.st-party-vs { margin-left: auto; color: var(--ep-text-muted); font-size: 0.8rem; }
+.st-issues { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+.st-issue-chip { font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: var(--ep-radius-pill); background: rgba(255,255,255,0.05); color: var(--ep-text-secondary); border: 1px solid var(--ep-border); }
+.st-history { font-size: 0.75rem; color: var(--ep-text-muted); display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 1rem; }
+.st-history-label { font-weight: 600; color: var(--ep-text-secondary); }
+.st-history-item { background: rgba(255,255,255,0.04); padding: 0.15rem 0.5rem; border-radius: 4px; }
+.st-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--ep-border); font-size: 0.85rem; color: var(--ep-text-muted); }
+.st-arrow { color: var(--sc); font-weight: 600; transition: transform 0.2s; }
+.st-card:hover .st-arrow { transform: translateX(4px); }
+@media (max-width: 768px) {
+  .st-stat-row { flex-wrap: wrap; }
+  .st-stat { flex: 1 1 calc(50% - 0.3rem); }
+}
+</style>
