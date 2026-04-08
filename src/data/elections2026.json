@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "title": "Election Pulse 2026",
+    "tagline": "India Votes. You Watch. Visually.",
+    "year": 2026,
+    "totalStates": 5,
+    "totalSeats": 824,
+    "totalVoters": "195M+",
+    "genZVoters": "48M+",
+    "electionType": "State Legislative Assembly Elections"
+  },
+  "states": [
+    {
+      "id": "kerala",
+      "name": "Kerala",
+      "seats": 140,
+      "voters": "2.74 Cr",
+      "genZPercent": 22,
+      "electionDate": "April - May 2026",
+      "status": "upcoming",
+      "color": "#e53e3e",
+      "mapEmoji": "🌴",
+      "keyIssue": "Jobs & Development",
+      "currentRuling": "LDF",
+      "parties": [
+        { "name": "LDF", "color": "#e53e3e", "seats2021": 99, "icon": "☭" },
+        { "name": "UDF", "color": "#3182ce", "seats2021": 41, "icon": "✋" },
+        { "name": "NDA", "color": "#ed8936", "seats2021": 0, "icon": "🪷" }
+      ]
+    },
+    {
+      "id": "west-bengal",
+      "name": "West Bengal",
+      "seats": 294,
+      "voters": "6.97 Cr",
+      "genZPercent": 24,
+      "electionDate": "April - May 2026",
+      "status": "upcoming",
+      "color": "#38a169",
+      "mapEmoji": "🐅",
+      "keyIssue": "Employment & Safety",
+      "currentRuling": "TMC",
+      "parties": [
+        { "name": "TMC", "color": "#38a169", "seats2021": 215, "icon": "🌸" },
+        { "name": "BJP", "color": "#ed8936", "seats2021": 77, "icon": "🪷" },
+        { "name": "INC+Left", "color": "#e53e3e", "seats2021": 2, "icon": "✋" }
+      ]
+    },
+    {
+      "id": "assam",
+      "name": "Assam",
+      "seats": 126,
+      "voters": "2.33 Cr",
+      "genZPercent": 26,
+      "electionDate": "March - April 2026",
+      "status": "upcoming",
+      "color": "#ed8936",
+      "mapEmoji": "🦏",
+      "keyIssue": "NRC & Identity",
+      "currentRuling": "BJP+",
+      "parties": [
+        { "name": "BJP+", "color": "#ed8936", "seats2021": 75, "icon": "🪷" },
+        { "name": "INC+", "color": "#3182ce", "seats2021": 50, "icon": "✋" },
+        { "name": "AIUDF", "color": "#805ad5", "seats2021": 1, "icon": "🏛️" }
+      ]
+    },
+    {
+      "id": "tamil-nadu",
+      "name": "Tamil Nadu",
+      "seats": 234,
+      "voters": "6.28 Cr",
+      "genZPercent": 21,
+      "electionDate": "April - May 2026",
+      "status": "upcoming",
+      "color": "#d53f8c",
+      "mapEmoji": "🏛️",
+      "keyIssue": "Dravidian Model",
+      "currentRuling": "DMK+",
+      "parties": [
+        { "name": "DMK+", "color": "#e53e3e", "seats2021": 159, "icon": "☀️" },
+        { "name": "AIADMK+", "color": "#38a169", "seats2021": 66, "icon": "🍃" },
+        { "name": "NTK", "color": "#d53f8c", "seats2021": 0, "icon": "🎯" }
+      ]
+    },
+    {
+      "id": "puducherry",
+      "name": "Puducherry",
+      "seats": 30,
+      "voters": "10.3 L",
+      "genZPercent": 20,
+      "electionDate": "April - May 2026",
+      "status": "upcoming",
+      "color": "#805ad5",
+      "mapEmoji": "🏖️",
+      "keyIssue": "Statehood & Dev",
+      "currentRuling": "NDA",
+      "parties": [
+        { "name": "NDA", "color": "#ed8936", "seats2021": 16, "icon": "🪷" },
+        { "name": "INC+", "color": "#3182ce", "seats2021": 14, "icon": "✋" },
+        { "name": "Others", "color": "#718096", "seats2021": 0, "icon": "📌" }
+      ]
+    }
+  ],
+  "nationalParties": [
+    { "name": "BJP", "fullName": "Bharatiya Janata Party", "color": "#ed8936", "icon": "🪷", "founded": 1980, "ideology": "Centre-Right" },
+    { "name": "INC", "fullName": "Indian National Congress", "color": "#3182ce", "icon": "✋", "founded": 1885, "ideology": "Centre-Left" },
+    { "name": "TMC", "fullName": "All India Trinamool Congress", "color": "#38a169", "icon": "🌸", "founded": 1998, "ideology": "Centre-Left" },
+    { "name": "DMK", "fullName": "Dravida Munnetra Kazhagam", "color": "#e53e3e", "icon": "☀️", "founded": 1949, "ideology": "Social Democracy" },
+    { "name": "CPI(M)", "fullName": "Communist Party of India (Marxist)", "color": "#e53e3e", "icon": "☭", "founded": 1964, "ideology": "Left" },
+    { "name": "AIADMK", "fullName": "All India Anna Dravida Munnetra Kazhagam", "color": "#38a169", "icon": "🍃", "founded": 1972, "ideology": "Populist" }
+  ],
+  "timeline": [
+    { "month": "Jan 2026", "event": "EC announces schedule", "icon": "📋" },
+    { "month": "Feb 2026", "event": "Nominations begin", "icon": "📝" },
+    { "month": "Mar 2026", "event": "Assam Phase 1 voting", "icon": "🗳️" },
+    { "month": "Apr 2026", "event": "Multi-state voting begins", "icon": "🗳️" },
+    { "month": "May 2026", "event": "Results & government formation", "icon": "🏛️" }
+  ],
+  "quickFacts": [
+    { "label": "States Voting", "value": "5", "icon": "🗺️" },
+    { "label": "Total Seats", "value": "824", "icon": "🪑" },
+    { "label": "Total Voters", "value": "195M+", "icon": "🗳️" },
+    { "label": "Gen Z Voters", "value": "48M+", "icon": "⚡" },
+    { "label": "First-Time Voters", "value": "28M+", "icon": "🌟" },
+    { "label": "Polling Booths", "value": "2.1L+", "icon": "📍" }
+  ],
+  "genZIssues": [
+    { "issue": "Unemployment", "percent": 72, "color": "#e53e3e" },
+    { "issue": "Education", "percent": 65, "color": "#3182ce" },
+    { "issue": "Climate Action", "percent": 58, "color": "#38a169" },
+    { "issue": "Digital Rights", "percent": 51, "color": "#805ad5" },
+    { "issue": "Mental Health", "percent": 47, "color": "#d53f8c" },
+    { "issue": "Housing Cost", "percent": 44, "color": "#ed8936" }
+  ]
+}
