@@ -263,14 +263,14 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
   text-align: center;
 }
 .ep-hero-bg { position: absolute; inset: 0; }
-.ep-hero-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.3; animation: ep-pulse 10s ease-in-out infinite; }
-.ep-hero-orb-1 { width: 500px; height: 500px; background: #ff6b35; top: -150px; left: -100px; }
-.ep-hero-orb-2 { width: 400px; height: 400px; background: #138808; bottom: -100px; right: -100px; animation-delay: 3s; }
-.ep-hero-orb-3 { width: 350px; height: 350px; background: #2563eb; top: 40%; left: 50%; transform: translate(-50%,-50%); animation-delay: 6s; }
+.ep-hero-orb { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.4; animation: ep-pulse 10s ease-in-out infinite; }
+.ep-hero-orb-1 { width: 520px; height: 520px; background: #a855f7; top: -160px; left: -120px; }
+.ep-hero-orb-2 { width: 420px; height: 420px; background: #22d3ee; bottom: -120px; right: -120px; animation-delay: 3s; }
+.ep-hero-orb-3 { width: 360px; height: 360px; background: #f472b6; top: 40%; left: 50%; transform: translate(-50%,-50%); animation-delay: 6s; }
 @keyframes ep-pulse { 0%,100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.45; transform: scale(1.08); } }
 .ep-hero-content { position: relative; z-index: 2; }
 .ep-hero-title { font-family: var(--ep-font-display); font-size: clamp(3.5rem, 10vw, 7rem); font-weight: 800; line-height: 1; margin: 1.5rem 0 1rem; color: var(--ep-text); }
-.ep-hero-gradient { background: linear-gradient(135deg, #ff6b35, #ff9f1c, #ffcc02); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.ep-hero-gradient { background: linear-gradient(135deg, #a855f7, #22d3ee, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .ep-hero-sub { font-size: 1.2rem; color: var(--ep-text-muted); margin-bottom: 2.5rem; }
 .ep-hero-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
 .ep-hero-stat { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; background: rgba(255,255,255,0.04); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1rem 1.2rem; min-width: 120px; }
@@ -284,7 +284,7 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
 .ep-do-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
 .ep-do-card { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.3rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); transition: all 0.2s; color: var(--ep-text); }
 .ep-do-card:hover { transform: translateY(-4px); background: var(--ep-bg-card-hover); border-color: var(--ep-border-hover); color: var(--ep-text); box-shadow: var(--ep-shadow); }
-.ep-do-card-hot { border: 1px solid var(--ep-accent); background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,159,28,0.06)); }
+.ep-do-card-hot { border: 1px solid var(--ep-accent); background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(34,211,238,0.10)); }
 .ep-do-card-hot:hover { border-color: var(--ep-accent-2); }
 .ep-do-icon { font-size: 1.8rem; }
 .ep-do-title { font-family: var(--ep-font-display); font-weight: 800; font-size: 1.05rem; }
@@ -326,7 +326,7 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
 .ep-shock-gold { background: rgba(237,137,54,0.08); }
 .ep-shock-gold .ep-shock-num { color: #ed8936; }
 .ep-shock-blue { background: rgba(37,99,235,0.08); }
-.ep-shock-blue .ep-shock-num { color: #2563eb; }
+.ep-shock-blue .ep-shock-num { color: #60a5fa; }
 .ep-shock-pink { background: rgba(213,63,140,0.08); }
 .ep-shock-pink .ep-shock-num { color: #d53f8c; }
 
@@ -352,7 +352,7 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
 .ep-tl-detail { display: block; font-size: 0.8rem; color: var(--ep-text-muted); margin-top: 0.2rem; }
 
 /* CTA */
-.ep-cta-card { background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(37,99,235,0.08)); border: 1px solid var(--ep-border); border-radius: 24px; padding: 3rem 2rem; text-align: center; }
+.ep-cta-card { background: linear-gradient(135deg, rgba(168,85,247,0.14), rgba(34,211,238,0.10)); border: 1px solid var(--ep-border); border-radius: 24px; padding: 3rem 2rem; text-align: center; }
 .ep-cta-card h2 { font-family: var(--ep-font-display); font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; margin-bottom: 0.6rem; }
 .ep-cta-card p { color: var(--ep-text-muted); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
 .ep-cta-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; }
@@ -378,7 +378,7 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
 .ep-exp-link { font-size: 0.85rem; font-weight: 600; color: var(--sc); }
 
 /* Quiz CTA */
-.ep-quiz-cta { display: flex; align-items: center; justify-content: space-between; gap: 2rem; background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(37,99,235,0.08)); border: 1px solid var(--ep-border); border-radius: 20px; padding: 2rem; }
+.ep-quiz-cta { display: flex; align-items: center; justify-content: space-between; gap: 2rem; background: linear-gradient(135deg, rgba(244,114,182,0.12), rgba(168,85,247,0.12)); border: 1px solid var(--ep-border); border-radius: 20px; padding: 2rem; }
 .ep-quiz-cta-left { flex: 1; }
 .ep-quiz-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
 .ep-quiz-cta h2 { font-family: var(--ep-font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }

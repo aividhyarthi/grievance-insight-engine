@@ -86,28 +86,28 @@ const currentPath = Astro.url.pathname;
    ============================================ */
 
 :root {
-  --ep-bg: #0a0a14;
-  --ep-bg-card: #13131f;
-  --ep-bg-card-hover: #1a1a2e;
-  --ep-bg-surface: #0f0f1a;
-  --ep-text: #e8e8f0;
-  --ep-text-secondary: #9ca3af;
-  --ep-text-muted: #6b7280;
-  --ep-accent: #ff6b35;
-  --ep-accent-2: #ff9f1c;
-  --ep-saffron: #ff9933;
-  --ep-green: #138808;
-  --ep-blue: #2563eb;
-  --ep-border: rgba(255,255,255,0.08);
-  --ep-border-hover: rgba(255,255,255,0.15);
+  --ep-bg: #07071a;
+  --ep-bg-card: #111130;
+  --ep-bg-card-hover: #1a1a3e;
+  --ep-bg-surface: #0c0c24;
+  --ep-text: #f2f1fb;
+  --ep-text-secondary: #a8aad0;
+  --ep-text-muted: #7073a0;
+  --ep-accent: #a855f7;
+  --ep-accent-2: #22d3ee;
+  --ep-saffron: #f472b6;
+  --ep-green: #34d399;
+  --ep-blue: #60a5fa;
+  --ep-border: rgba(168,85,247,0.14);
+  --ep-border-hover: rgba(34,211,238,0.35);
   --ep-font: 'Inter', system-ui, -apple-system, sans-serif;
   --ep-font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   --ep-max-width: 1200px;
   --ep-radius: 16px;
   --ep-radius-sm: 10px;
   --ep-radius-pill: 50px;
-  --ep-shadow: 0 4px 24px rgba(0,0,0,0.3);
-  --ep-shadow-lg: 0 12px 48px rgba(0,0,0,0.4);
+  --ep-shadow: 0 4px 24px rgba(168,85,247,0.18);
+  --ep-shadow-lg: 0 12px 48px rgba(34,211,238,0.22);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -165,7 +165,7 @@ img { max-width: 100%; height: auto; }
 .ep-nav-brand:hover { color: var(--ep-text); }
 
 .ep-nav-logo {
-  background: linear-gradient(135deg, var(--ep-saffron), var(--ep-accent));
+  background: linear-gradient(135deg, var(--ep-accent), var(--ep-accent-2));
   color: #fff;
   font-family: var(--ep-font-display);
   font-weight: 800;
