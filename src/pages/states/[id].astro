@@ -260,7 +260,7 @@ const brokenPct = promises ? Math.round((promises.broken / promises.totalPromise
             ))}
           </div>
           <div style="text-align:center;margin-top:1.5rem">
-            <a href="/candidates" class="ep-btn ep-btn-outline">See All Candidates &rarr;</a>
+            <a href={`/candidates?state=${id}`} class="ep-btn ep-btn-outline">See All {state.name} Candidates &rarr;</a>
           </div>
         </div>
       )}

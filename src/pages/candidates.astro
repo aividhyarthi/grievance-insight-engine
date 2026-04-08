@@ -42,8 +42,18 @@ const enrichedCandidates = sampleCandidates.map(c => ({
         </div>
       </div>
 
+      <!-- State Filter -->
+      <div class="cx-state-filters">
+        <span class="cx-filter-lbl">STATE</span>
+        <button class="cx-state-btn cx-state-active" data-state="all">All States</button>
+        {states.map((s) => (
+          <button class="cx-state-btn" data-state={s.id}>{s.mapEmoji} {s.name}</button>
+        ))}
+      </div>
+
       <!-- Filter Tags -->
       <div class="cx-filters">
+        <span class="cx-filter-lbl">TYPE</span>
         <button class="cx-filter-btn cx-filter-active" data-filter="all">All</button>
         {candidateCategories.map((cat) => (
           <button class="cx-filter-btn" data-filter={cat.id} style={`--fc:${cat.color}`}>
@@ -51,6 +61,8 @@ const enrichedCandidates = sampleCandidates.map(c => ({
           </button>
         ))}
       </div>
+
+      <div class="cx-result-count" id="cx-result-count"></div>
 
       <!-- Category Explainers -->
       <div class="cx-categories">
@@ -68,7 +80,7 @@ const enrichedCandidates = sampleCandidates.map(c => ({
       <!-- Candidate Cards -->
       <div class="cx-grid" id="cx-grid">
         {enrichedCandidates.map((c) => (
-            <div class="cx-card" data-categories={c.categories.join(',')} style={`--pc:${c.partyColor}`}>
+            <div class="cx-card" data-categories={c.categories.join(',')} data-state={c.state} style={`--pc:${c.partyColor}`}>
               <div class="cx-card-top">
                 <div class="cx-avatar">{c.name.charAt(0)}</div>
                 <div class="cx-card-info">
@@ -121,25 +133,67 @@ const enrichedCandidates = sampleCandidates.map(c => ({
 </ElectionLayout>
 
 <script>
-  const buttons = document.querySelectorAll('.cx-filter-btn');
+  const catButtons = document.querySelectorAll('.cx-filter-btn');
+  const stateButtons = document.querySelectorAll('.cx-state-btn');
   const cards = document.querySelectorAll('.cx-card');
+  const countEl = document.getElementById('cx-result-count');
 
-  buttons.forEach(btn => {
+  let activeCat = 'all';
+  let activeState = 'all';
+
+  // Read ?state=... from URL on load
+  const urlState = new URLSearchParams(window.location.search).get('state');
+  if (urlState) {
+    activeState = urlState;
+    stateButtons.forEach(b => {
+      b.classList.toggle('cx-state-active', b.getAttribute('data-state') === urlState);
+    });
+  }
+
+  function applyFilters() {
+    let visible = 0;
+    cards.forEach(card => {
+      const cats = card.getAttribute('data-categories') || '';
+      const cState = card.getAttribute('data-state') || '';
+      const catOk = activeCat === 'all' || cats.split(',').includes(activeCat);
+      const stateOk = activeState === 'all' || cState === activeState;
+      if (catOk && stateOk) {
+        (card as HTMLElement).style.display = '';
+        visible++;
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+    if (countEl) {
+      const stateLabel = activeState === 'all' ? 'all states' : (document.querySelector(`.cx-state-btn[data-state="${activeState}"]`)?.textContent?.trim() || activeState);
+      countEl.textContent = `Showing ${visible} candidate${visible === 1 ? '' : 's'} — ${stateLabel}`;
+    }
+  }
+
+  catButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('cx-filter-active'));
+      catButtons.forEach(b => b.classList.remove('cx-filter-active'));
       btn.classList.add('cx-filter-active');
-
-      const filter = btn.getAttribute('data-filter');
-      cards.forEach(card => {
-        const cats = card.getAttribute('data-categories') || '';
-        if (filter === 'all' || cats.split(',').includes(filter)) {
-          (card as HTMLElement).style.display = '';
-        } else {
-          (card as HTMLElement).style.display = 'none';
-        }
-      });
+      activeCat = btn.getAttribute('data-filter') || 'all';
+      applyFilters();
     });
   });
+
+  stateButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      stateButtons.forEach(b => b.classList.remove('cx-state-active'));
+      btn.classList.add('cx-state-active');
+      activeState = btn.getAttribute('data-state') || 'all';
+      // Update URL without reload
+      const url = new URL(window.location.href);
+      if (activeState === 'all') url.searchParams.delete('state');
+      else url.searchParams.set('state', activeState);
+      window.history.replaceState({}, '', url);
+      applyFilters();
+    });
+  });
+
+  applyFilters();
 </script>
 
 <style>
@@ -152,10 +206,18 @@ const enrichedCandidates = sampleCandidates.map(c => ({
 .cx-blue { color: #2563eb; }
 .cx-pink { color: #d53f8c; }
 
-.cx-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; justify-content: center; }
+.cx-state-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; justify-content: center; align-items: center; }
+.cx-state-btn { font-family: var(--ep-font); font-size: 0.8rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: var(--ep-radius-pill); background: var(--ep-bg-card); color: var(--ep-text-secondary); border: 1px solid var(--ep-border); cursor: pointer; transition: all 0.2s; }
+.cx-state-btn:hover { border-color: var(--ep-border-hover); color: var(--ep-text); }
+.cx-state-btn.cx-state-active { background: var(--ep-blue); color: #fff; border-color: var(--ep-blue); }
+.cx-filter-lbl { font-size: 0.65rem; font-weight: 800; letter-spacing: 1.5px; color: var(--ep-text-muted); margin-right: 0.4rem; }
+
+.cx-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; justify-content: center; align-items: center; }
 .cx-filter-btn { font-family: var(--ep-font); font-size: 0.8rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: var(--ep-radius-pill); background: var(--ep-bg-card); color: var(--ep-text-secondary); border: 1px solid var(--ep-border); cursor: pointer; transition: all 0.2s; }
 .cx-filter-btn:hover { border-color: var(--ep-border-hover); color: var(--ep-text); }
 .cx-filter-btn.cx-filter-active { background: var(--ep-accent); color: #fff; border-color: var(--ep-accent); }
+
+.cx-result-count { text-align: center; font-size: 0.8rem; color: var(--ep-text-muted); margin-bottom: 1.5rem; font-weight: 600; }
 
 .cx-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.6rem; margin-bottom: 2.5rem; }
 .cx-cat-card { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); border-left: 3px solid var(--cc); }

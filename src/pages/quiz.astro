@@ -25,9 +25,10 @@ import ElectionLayout from '../layouts/ElectionLayout.astro';
           <div class="qz-results" id="qz-results"></div>
           <div class="qz-party-match" id="qz-party-match"></div>
           <div class="qz-cta-row">
+            <button class="ep-btn ep-btn-primary" id="qz-share">📲 Share My Result</button>
             <button class="ep-btn ep-btn-outline" id="qz-restart">Try Again</button>
-            <a href="/compare" class="ep-btn ep-btn-primary">Compare Parties</a>
-            <a href="/promises" class="ep-btn ep-btn-outline">Check Their Promises</a>
+            <a href="/compare" class="ep-btn ep-btn-outline">Compare Parties</a>
+            <a href="/promises" class="ep-btn ep-btn-outline">Check Promises</a>
           </div>
         </div>
       </div>
@@ -65,6 +66,10 @@ import ElectionLayout from '../layouts/ElectionLayout.astro';
   const resultsDiv = document.getElementById('qz-results')!;
   const matchDiv = document.getElementById('qz-party-match')!;
   const restartBtn = document.getElementById('qz-restart')!;
+  const shareBtn = document.getElementById('qz-share')!;
+  let lastTopParty = '';
+  let lastTopPct = 0;
+  let lastIssues: string[] = [];
 
   // Render issue cards
   issuesDiv.innerHTML = issues.map(i => `
@@ -144,8 +149,27 @@ import ElectionLayout from '../layouts/ElectionLayout.astro';
       <p class="qz-disclaimer">This is a simplified alignment based on publicly stated positions and past actions. Actual governance may differ. Always research independently.</p>
     `;
 
+    lastTopParty = sorted[0].name;
+    lastTopPct = sorted[0].pct;
+    lastIssues = selectedIssues.map(i => i.label);
+
     step1.classList.add('qz-hidden');
     step2.classList.remove('qz-hidden');
+  });
+
+  // Share
+  shareBtn.addEventListener('click', async () => {
+    const text = `🗳️ My Election Pulse 2026 result:\nTop match: ${lastTopParty} (${lastTopPct}%)\nIssues I care about: ${lastIssues.join(', ')}\n\nFind your match → ${window.location.origin}/quiz`;
+    if (navigator.share) {
+      try { await navigator.share({ title: 'My Election Pulse Match', text }); return; } catch {}
+    }
+    try {
+      await navigator.clipboard.writeText(text);
+      shareBtn.textContent = '✓ Copied to clipboard';
+      setTimeout(() => { shareBtn.textContent = '📲 Share My Result'; }, 2000);
+    } catch {
+      alert(text);
+    }
   });
 
   // Restart
@@ -158,7 +182,7 @@ import ElectionLayout from '../layouts/ElectionLayout.astro';
   });
 </script>
 
-<style>
+<style is:global>
 .qz-wrap { max-width: 750px; margin: 0 auto; }
 .qz-hidden { display: none !important; }
 .qz-q { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; }

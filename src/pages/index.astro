@@ -30,9 +30,37 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
         ))}
       </div>
       <div class="ep-hero-actions">
-        <a href="/states" class="ep-btn ep-btn-primary">Explore States</a>
-        <a href="/candidates" class="ep-btn ep-btn-outline">Find Candidates</a>
+        <a href="/quiz" class="ep-btn ep-btn-primary">🎯 Take the 60-sec Quiz</a>
+        <a href="/states" class="ep-btn ep-btn-outline">Explore States</a>
         <a href="/ask" class="ep-btn ep-btn-outline">Ask Anything</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DO Strip — what's in it for me -->
+  <section class="ep-do-strip">
+    <div class="ep-container">
+      <div class="ep-do-grid">
+        <a href="/quiz" class="ep-do-card">
+          <span class="ep-do-icon">🎯</span>
+          <span class="ep-do-title">Match a Party</span>
+          <span class="ep-do-sub">Pick your top issues. See who fits your worldview.</span>
+        </a>
+        <a href="/compare" class="ep-do-card">
+          <span class="ep-do-icon">⚖️</span>
+          <span class="ep-do-title">Compare Parties</span>
+          <span class="ep-do-sub">Money, promises, delivery — side by side.</span>
+        </a>
+        <a href="/promises" class="ep-do-card">
+          <span class="ep-do-icon">✅</span>
+          <span class="ep-do-title">Promise Tracker</span>
+          <span class="ep-do-sub">What they said. What they did. The receipts.</span>
+        </a>
+        <a href="https://voters.eci.gov.in" target="_blank" rel="noopener" class="ep-do-card ep-do-card-hot">
+          <span class="ep-do-icon">🗳️</span>
+          <span class="ep-do-title">Register to Vote</span>
+          <span class="ep-do-sub">Not on the rolls? You can't vote. Fix it in 5 mins.</span>
+        </a>
       </div>
     </div>
   </section>
@@ -250,6 +278,17 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
 .ep-hero-stat-value { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 800; }
 .ep-hero-stat-label { font-size: 0.7rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 1px; }
 .ep-hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; }
+
+/* DO STRIP */
+.ep-do-strip { padding: 2rem 0 1rem; }
+.ep-do-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
+.ep-do-card { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.3rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); transition: all 0.2s; color: var(--ep-text); }
+.ep-do-card:hover { transform: translateY(-4px); background: var(--ep-bg-card-hover); border-color: var(--ep-border-hover); color: var(--ep-text); box-shadow: var(--ep-shadow); }
+.ep-do-card-hot { border: 1px solid var(--ep-accent); background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,159,28,0.06)); }
+.ep-do-card-hot:hover { border-color: var(--ep-accent-2); }
+.ep-do-icon { font-size: 1.8rem; }
+.ep-do-title { font-family: var(--ep-font-display); font-weight: 800; font-size: 1.05rem; }
+.ep-do-sub { font-size: 0.8rem; color: var(--ep-text-muted); line-height: 1.4; }
 
 /* STATE CARDS */
 .ep-state-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem; }
