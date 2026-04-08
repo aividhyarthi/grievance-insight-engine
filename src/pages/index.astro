@@ -15,7 +15,7 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
       <div class="ep-hero-orb ep-hero-orb-3"></div>
     </div>
     <div class="ep-container ep-hero-content">
-      <div class="ep-badge">LIVE ELECTION TRACKER 2026</div>
+      <div class="ep-badge">2026 ELECTION TEA ☕</div>
       <h1 class="ep-hero-title">
         Election<br/><span class="ep-hero-gradient">Pulse</span> 2026
       </h1>
@@ -30,36 +30,96 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
         ))}
       </div>
       <div class="ep-hero-actions">
-        <a href="/quiz" class="ep-btn ep-btn-primary">🎯 Take the 60-sec Quiz</a>
-        <a href="/states" class="ep-btn ep-btn-outline">Explore States</a>
-        <a href="/ask" class="ep-btn ep-btn-outline">Ask Anything</a>
+        <a href="/quiz" class="ep-btn ep-btn-primary">🎯 60-sec Party Match</a>
+        <a href="#start-here" class="ep-btn ep-btn-outline">New here? Start here</a>
       </div>
     </div>
   </section>
 
-  <!-- DO Strip — what's in it for me -->
+  <!-- START HERE — Gen Z 3-step onboarding -->
+  <section class="ep-start-here" id="start-here">
+    <div class="ep-container">
+      <div class="ep-sh-wrap">
+        <div class="ep-sh-title-row">
+          <span class="ep-sh-kicker">new here?</span>
+          <h2 class="ep-sh-title">Figure this out in <span class="ep-hero-gradient">60 seconds</span></h2>
+          <p class="ep-sh-sub">No scrolling. No reading walls of text. Just tap.</p>
+        </div>
+        <ol class="ep-sh-steps">
+          <li class="ep-sh-step">
+            <span class="ep-sh-num">1</span>
+            <div class="ep-sh-body">
+              <h3>Pick your state</h3>
+              <p>Kerala? Bengal? TN? Assam? Puducherry? Start with yours.</p>
+              <a href="/states" class="ep-sh-go">Pick state →</a>
+            </div>
+          </li>
+          <li class="ep-sh-step">
+            <span class="ep-sh-num">2</span>
+            <div class="ep-sh-body">
+              <h3>Find your vibe</h3>
+              <p>Pick 3 issues that actually matter to you. We match you to a party.</p>
+              <a href="/quiz" class="ep-sh-go">Match me →</a>
+            </div>
+          </li>
+          <li class="ep-sh-step">
+            <span class="ep-sh-num">3</span>
+            <div class="ep-sh-body">
+              <h3>Check the receipts</h3>
+              <p>What they promised last time vs what they actually did. No cap.</p>
+              <a href="/promises" class="ep-sh-go">See receipts →</a>
+            </div>
+          </li>
+        </ol>
+        <div class="ep-sh-register">
+          <span class="ep-sh-reg-icon">🗳️</span>
+          <div>
+            <strong>Not registered?</strong>
+            <span>You can't vote if you're not on the rolls. Fix it in 5 mins.</span>
+          </div>
+          <a href="https://voters.eci.gov.in" target="_blank" rel="noopener" class="ep-btn ep-btn-primary ep-sh-reg-btn">Register →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DO Strip — quick tools -->
   <section class="ep-do-strip">
     <div class="ep-container">
+      <div class="ep-section-header ep-do-header">
+        <span class="ep-sh-kicker">the tools</span>
+        <h2 class="ep-section-title">Everything in one scroll</h2>
+      </div>
       <div class="ep-do-grid">
         <a href="/quiz" class="ep-do-card">
           <span class="ep-do-icon">🎯</span>
-          <span class="ep-do-title">Match a Party</span>
-          <span class="ep-do-sub">Pick your top issues. See who fits your worldview.</span>
+          <span class="ep-do-title">Match-a-Party</span>
+          <span class="ep-do-sub">Pick your issues. See who gets you.</span>
         </a>
         <a href="/compare" class="ep-do-card">
           <span class="ep-do-icon">⚖️</span>
-          <span class="ep-do-title">Compare Parties</span>
-          <span class="ep-do-sub">Money, promises, delivery — side by side.</span>
+          <span class="ep-do-title">Head-to-Head</span>
+          <span class="ep-do-sub">Two parties. Every receipt. No spin.</span>
         </a>
         <a href="/promises" class="ep-do-card">
           <span class="ep-do-icon">✅</span>
-          <span class="ep-do-title">Promise Tracker</span>
-          <span class="ep-do-sub">What they said. What they did. The receipts.</span>
+          <span class="ep-do-title">Did They Do It?</span>
+          <span class="ep-do-sub">Last-term promises vs actual delivery.</span>
         </a>
-        <a href="https://voters.eci.gov.in" target="_blank" rel="noopener" class="ep-do-card ep-do-card-hot">
-          <span class="ep-do-icon">🗳️</span>
-          <span class="ep-do-title">Register to Vote</span>
-          <span class="ep-do-sub">Not on the rolls? You can't vote. Fix it in 5 mins.</span>
+        <a href="/candidates" class="ep-do-card">
+          <span class="ep-do-icon">🗣️</span>
+          <span class="ep-do-title">Who's Running?</span>
+          <span class="ep-do-sub">Criminal cases, assets, dynasty — filter it.</span>
+        </a>
+        <a href="/freebies" class="ep-do-card">
+          <span class="ep-do-icon">💸</span>
+          <span class="ep-do-title">Freebie Math</span>
+          <span class="ep-do-sub">Who's promising what. And who pays.</span>
+        </a>
+        <a href="/ask" class="ep-do-card">
+          <span class="ep-do-icon">💬</span>
+          <span class="ep-do-title">Ask Me Anything</span>
+          <span class="ep-do-sub">Type a question. Get the answer.</span>
         </a>
       </div>
     </div>
@@ -69,8 +129,10 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
   <section class="ep-section">
     <div class="ep-container">
       <div class="ep-section-header">
-        <h2 class="ep-section-title">5 States. 824 Seats. One Dashboard.</h2>
-        <p class="ep-section-sub">Tap any state to deep-dive into candidates, parties & predictions</p>
+        <span class="ep-sh-kicker">the battlegrounds</span>
+        <h2 class="ep-section-title">5 states. 824 seats. One scroll.</h2>
+        <p class="ep-section-sub">Tap your state. Get the whole tea.</p>
+        <span class="ep-source-chip">📊 Source: ECI · 2021 assembly results · Updated Apr 2026</span>
       </div>
       <div class="ep-state-grid">
         {states.map((state) => (
@@ -121,8 +183,10 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
   <section class="ep-section ep-shock-section">
     <div class="ep-container">
       <div class="ep-section-header">
-        <h2 class="ep-section-title">The Numbers They Don't Want You to See</h2>
-        <p class="ep-section-sub">Data from ADR analysis of declared affidavits</p>
+        <span class="ep-sh-kicker">the numbers</span>
+        <h2 class="ep-section-title">These hit different 💀</h2>
+        <p class="ep-section-sub">Pulled straight from candidate affidavits. No vibes, just data.</p>
+        <span class="ep-source-chip">📊 Source: <a href="https://adrindia.org" target="_blank" rel="noopener">ADR</a> analysis of ECI affidavits · 2021 cycle</span>
       </div>
       <div class="ep-shock-grid">
         <div class="ep-shock-card ep-shock-red">
@@ -153,8 +217,10 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
   <section class="ep-section">
     <div class="ep-container">
       <div class="ep-section-header">
-        <h2 class="ep-section-title">What Gen Z Actually Cares About</h2>
-        <p class="ep-section-sub">48M+ young voters. These are their priorities.</p>
+        <span class="ep-sh-kicker">what's rent-free in our heads</span>
+        <h2 class="ep-section-title">What we actually care about</h2>
+        <p class="ep-section-sub">48M of us are voting this cycle. Here's what's on the mind.</p>
+        <span class="ep-source-chip">📊 Source: CSDS-Lokniti Youth Survey · 2024 · indicative weights</span>
       </div>
       <div class="ep-issues-wrap">
         {genZIssues.map((item, idx) => (
@@ -175,8 +241,9 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
   <section class="ep-section">
     <div class="ep-container">
       <div class="ep-section-header">
-        <h2 class="ep-section-title">Election Timeline</h2>
-        <p class="ep-section-sub">Key milestones from announcement to results</p>
+        <span class="ep-sh-kicker">the roadmap</span>
+        <h2 class="ep-section-title">Mark your calendar bestie</h2>
+        <p class="ep-section-sub">From announcement to results — the full schedule.</p>
       </div>
       <div class="ep-timeline">
         {timeline.map((t, i) => (
@@ -200,8 +267,9 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
   <section class="ep-section ep-explainers-section">
     <div class="ep-container">
       <div class="ep-section-header">
-        <h2 class="ep-section-title">Understood in 30 Seconds</h2>
-        <p class="ep-section-sub">Don't have time? Each card = one state battle, simplified.</p>
+        <span class="ep-sh-kicker">the 30-sec version</span>
+        <h2 class="ep-section-title">Each state, in one paragraph</h2>
+        <p class="ep-section-sub">No time? Each card = one state, zero fluff.</p>
       </div>
       <div class="ep-explainer-grid">
         {states.map((s) => (
@@ -227,10 +295,10 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
       <div class="ep-quiz-cta">
         <div class="ep-quiz-cta-left">
           <span class="ep-quiz-icon">🎯</span>
-          <h2>Which party matches YOUR issues?</h2>
-          <p>Pick the issues you care about. We'll show you which parties align. 2 minutes. Zero bias.</p>
+          <h2>Which party actually gets you?</h2>
+          <p>Pick 3 issues. Get your match. 60 seconds. Zero bias. Shareable.</p>
         </div>
-        <a href="/quiz" class="ep-btn ep-btn-primary ep-quiz-btn">Take the Quiz &rarr;</a>
+        <a href="/quiz" class="ep-btn ep-btn-primary ep-quiz-btn">Match me &rarr;</a>
       </div>
     </div>
   </section>
@@ -239,14 +307,14 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
   <section class="ep-section">
     <div class="ep-container">
       <div class="ep-cta-card">
-        <h2>Your Vote. Your Future. Get Informed.</h2>
-        <p>Don't just vote. Know who you're voting for. Explore candidates, their records, their money, their promises.</p>
+        <h2>Voting blind is an L.</h2>
+        <p>Know the money, the promises, the receipts — before you tap the button.</p>
         <div class="ep-cta-btns">
-          <a href="/candidates" class="ep-btn ep-btn-primary">Explore Candidates</a>
-          <a href="/compare" class="ep-btn ep-btn-outline">Compare Parties</a>
-          <a href="/promises" class="ep-btn ep-btn-outline">Promise Tracker</a>
-          <a href="/freebies" class="ep-btn ep-btn-outline">Freebies Cost</a>
-          <a href="/ask" class="ep-btn ep-btn-outline">Ask Questions</a>
+          <a href="/candidates" class="ep-btn ep-btn-primary">Meet the Contenders</a>
+          <a href="/compare" class="ep-btn ep-btn-outline">Head-to-Head</a>
+          <a href="/promises" class="ep-btn ep-btn-outline">Did They Do It?</a>
+          <a href="/freebies" class="ep-btn ep-btn-outline">Freebie Math</a>
+          <a href="/ask" class="ep-btn ep-btn-outline">Ask MA</a>
         </div>
       </div>
     </div>
@@ -279,7 +347,44 @@ const { meta, states, quickFacts, genZIssues, timeline, electionStats } = electi
 .ep-hero-stat-label { font-size: 0.7rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 1px; }
 .ep-hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; }
 
+/* KICKER LABEL (shared) */
+.ep-sh-kicker { display: inline-block; font-family: var(--ep-font-display); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: lowercase; color: var(--ep-accent-2); margin-bottom: 0.5rem; padding: 0.3rem 0.8rem; border: 1px solid rgba(34,211,238,0.25); border-radius: var(--ep-radius-pill); background: rgba(34,211,238,0.06); }
+
+/* SOURCE CHIP */
+.ep-source-chip { display: inline-block; margin-top: 0.8rem; font-size: 0.7rem; color: var(--ep-text-muted); padding: 0.35rem 0.8rem; border-radius: var(--ep-radius-pill); background: rgba(255,255,255,0.03); border: 1px solid var(--ep-border); }
+.ep-source-chip a { color: var(--ep-accent-2); font-weight: 600; }
+
+/* START HERE BLOCK */
+.ep-start-here { padding: 1rem 0 2.5rem; scroll-margin-top: 80px; }
+.ep-sh-wrap { background: linear-gradient(135deg, rgba(168,85,247,0.10), rgba(34,211,238,0.08) 50%, rgba(244,114,182,0.08)); border: 1px solid var(--ep-border); border-radius: 28px; padding: 2.5rem 2rem; }
+.ep-sh-title-row { text-align: center; margin-bottom: 2rem; }
+.ep-sh-title { font-family: var(--ep-font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+.ep-sh-sub { color: var(--ep-text-secondary); font-size: 0.95rem; }
+
+.ep-sh-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 0; margin: 0; }
+.ep-sh-step { display: flex; gap: 1rem; padding: 1.3rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); transition: all 0.2s; }
+.ep-sh-step:hover { border-color: var(--ep-border-hover); transform: translateY(-3px); }
+.ep-sh-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--ep-accent), var(--ep-accent-2)); display: flex; align-items: center; justify-content: center; font-family: var(--ep-font-display); font-weight: 900; font-size: 1.1rem; color: #fff; }
+.ep-sh-body { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+.ep-sh-body h3 { font-family: var(--ep-font-display); font-size: 1.05rem; font-weight: 800; }
+.ep-sh-body p { font-size: 0.82rem; color: var(--ep-text-secondary); line-height: 1.45; margin-bottom: 0.3rem; }
+.ep-sh-go { font-size: 0.8rem; font-weight: 700; color: var(--ep-accent-2); margin-top: auto; }
+.ep-sh-go:hover { color: var(--ep-accent); }
+
+.ep-sh-register { display: flex; align-items: center; gap: 1rem; margin-top: 1.8rem; padding: 1.2rem 1.5rem; background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(244,114,182,0.12)); border: 1px solid var(--ep-accent); border-radius: var(--ep-radius); flex-wrap: wrap; }
+.ep-sh-reg-icon { font-size: 2rem; }
+.ep-sh-register > div { flex: 1; display: flex; flex-direction: column; }
+.ep-sh-register strong { font-family: var(--ep-font-display); font-size: 1rem; }
+.ep-sh-register span { font-size: 0.82rem; color: var(--ep-text-secondary); }
+
+@media (max-width: 768px) {
+  .ep-sh-steps { grid-template-columns: 1fr; }
+  .ep-sh-register { flex-direction: column; text-align: center; }
+  .ep-sh-register > div { align-items: center; }
+}
+
 /* DO STRIP */
+.ep-do-header { margin-bottom: 1.5rem; text-align: center; }
 .ep-do-strip { padding: 2rem 0 1rem; }
 .ep-do-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
 .ep-do-card { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.3rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); transition: all 0.2s; color: var(--ep-text); }

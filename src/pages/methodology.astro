@@ -1,0 +1,223 @@
+---
+import ElectionLayout from '../layouts/ElectionLayout.astro';
+
+const lastUpdated = 'April 2026';
+---
+
+<ElectionLayout title="Methodology & Sources | Election Pulse 2026">
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header" style="text-align:center">
+        <div class="ep-badge">EDITORIAL TRANSPARENCY</div>
+        <h1 class="ep-section-title" style="margin-top:1rem">Methodology &amp; Sources</h1>
+        <p class="ep-section-sub">How we get our numbers. What we trust. What's our opinion vs. what's a fact.</p>
+        <span class="ep-source-chip">Last updated: {lastUpdated}</span>
+      </div>
+
+      <!-- TL;DR -->
+      <div class="mth-tldr">
+        <h2>TL;DR for reporters &amp; editors</h2>
+        <ul>
+          <li>Every number on this site has a source link and a date stamp.</li>
+          <li>We publish <strong>only data that's already in the public record</strong> — ECI filings, ADR reports, MyNeta affidavits, RBI/CAG state finances, PRS India legislative analysis.</li>
+          <li>Where we apply editorial judgment (party-match weights, ideology labels), we say so explicitly.</li>
+          <li>Corrections get logged, not silently patched. See <a href="#corrections">Corrections</a>.</li>
+          <li>All tabular data will be downloadable as CSV — see <a href="#data">Data</a>.</li>
+        </ul>
+      </div>
+
+      <!-- SOURCES -->
+      <div class="mth-block" id="sources">
+        <h2>Primary sources</h2>
+        <p class="mth-lede">These are the only sources we use. If a claim here isn't backed by one of them, it shouldn't be on the site — flag it.</p>
+        <div class="mth-sources">
+          <div class="mth-source">
+            <span class="mth-src-tag">Elections &amp; voters</span>
+            <h3><a href="https://eci.gov.in" target="_blank" rel="noopener">Election Commission of India (ECI)</a></h3>
+            <p>Constituencies, electors, schedules, past results, candidate filings, turnout.</p>
+          </div>
+          <div class="mth-source">
+            <span class="mth-src-tag">Candidate affidavits</span>
+            <h3><a href="https://adrindia.org" target="_blank" rel="noopener">Association for Democratic Reforms (ADR)</a></h3>
+            <p>Criminal cases, assets, liabilities, education — all from Form 26 affidavits filed with ECI.</p>
+          </div>
+          <div class="mth-source">
+            <span class="mth-src-tag">Candidate records</span>
+            <h3><a href="https://myneta.info" target="_blank" rel="noopener">MyNeta.info</a></h3>
+            <p>ADR's structured database of every candidate affidavit since 2004.</p>
+          </div>
+          <div class="mth-source">
+            <span class="mth-src-tag">Party financials</span>
+            <h3><a href="https://adrindia.org/content/party-finance" target="_blank" rel="noopener">ADR Party Finance</a></h3>
+            <p>Total assets, annual income, donations, electoral bonds — from party filings with ECI &amp; Income Tax returns.</p>
+          </div>
+          <div class="mth-source">
+            <span class="mth-src-tag">State finances</span>
+            <h3><a href="https://rbi.org.in" target="_blank" rel="noopener">RBI — State Finances</a></h3>
+            <p>GDP, debt-to-GSDP, fiscal deficit, per-capita income, welfare spending.</p>
+          </div>
+          <div class="mth-source">
+            <span class="mth-src-tag">Legislative context</span>
+            <h3><a href="https://prsindia.org" target="_blank" rel="noopener">PRS Legislative Research</a></h3>
+            <p>Bill tracker, manifesto analysis, policy context — non-partisan legislative research.</p>
+          </div>
+          <div class="mth-source">
+            <span class="mth-src-tag">Demographics</span>
+            <h3><a href="https://censusindia.gov.in" target="_blank" rel="noopener">Census of India + NFHS-5</a></h3>
+            <p>Religion, caste, literacy, urban %, gender ratio — latest available cycles.</p>
+          </div>
+          <div class="mth-source">
+            <span class="mth-src-tag">Voter attitudes</span>
+            <h3><a href="https://www.csds.in/lokniti" target="_blank" rel="noopener">CSDS-Lokniti</a></h3>
+            <p>Youth voter surveys, issue salience, Gen Z priority rankings.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- METHODS -->
+      <div class="mth-block">
+        <h2>How we compute the derived numbers</h2>
+
+        <div class="mth-method">
+          <h3>Promise delivery %</h3>
+          <p><strong>Definition:</strong> promises are extracted from the ruling party/alliance's published manifesto for the last assembly cycle. Each is scored manually by our editorial team.</p>
+          <p><strong>States:</strong></p>
+          <ul>
+            <li><strong>Fulfilled</strong> — a verifiable scheme, law, or budget line exists and is operational.</li>
+            <li><strong>Partial</strong> — announced / piloted / partially rolled out, measurable gap from the promise.</li>
+            <li><strong>Not started</strong> — no public action taken.</li>
+            <li><strong>Broken</strong> — reversed, denied, or the promise was materially walked back.</li>
+          </ul>
+          <p><strong>Caveat:</strong> this involves editorial judgment. Every classification links to a published source. Readers can dispute any call — see corrections below.</p>
+        </div>
+
+        <div class="mth-method">
+          <h3>Party-match quiz scores</h3>
+          <p><strong>Definition:</strong> each issue is assigned a 0–10 alignment score per party, based on that party's stated position in its most recent manifesto, CM/leader statements on record, and track record of relevant legislation.</p>
+          <p><strong>Caveat:</strong> these are editorial weights — they are <em>opinions informed by data</em>, not facts. The quiz is a conversation starter, not an endorsement.</p>
+        </div>
+
+        <div class="mth-method">
+          <h3>Ideology labels (Centre-Left, Populist, etc.)</h3>
+          <p>Standard political-science shorthand, cross-referenced with how each party is classified in academic literature (IDEA, V-Dem) and its own party constitution.</p>
+        </div>
+
+        <div class="mth-method">
+          <h3>Criminal cases</h3>
+          <p><strong>Only declared, pending cases</strong> from Form 26 affidavits are counted. Serious cases (IPC sections with 5+ yr sentence) are flagged separately. An affidavit-declared case is <em>not</em> a conviction.</p>
+        </div>
+
+        <div class="mth-method">
+          <h3>Assets &amp; "crorepati" flag</h3>
+          <p>Self-declared movable + immovable assets on Form 26. Currency converted to lakhs/crores. "Crorepati" = declared assets ≥ ₹1 Cr.</p>
+        </div>
+
+        <div class="mth-method">
+          <h3>Freebie cost estimates</h3>
+          <p>Annual outlay figures from state budgets and CAG reports. Where a scheme is only announced, we mark it <em>projected</em> not <em>incurred</em>.</p>
+        </div>
+      </div>
+
+      <!-- LIMITS -->
+      <div class="mth-block">
+        <h2>What we're NOT</h2>
+        <ul class="mth-nots">
+          <li>❌ <strong>We're not a pollster.</strong> We don't publish our own exit polls or predictions.</li>
+          <li>❌ <strong>We're not a news aggregator.</strong> We cite primary sources, not headlines.</li>
+          <li>❌ <strong>We're not anyone's mouthpiece.</strong> Editorial independence is non-negotiable.</li>
+          <li>❌ <strong>We don't take political advertising.</strong> Ever.</li>
+          <li>❌ <strong>We don't do rumors.</strong> If it's not in a filing, budget, law, or on-the-record statement, it's not here.</li>
+        </ul>
+      </div>
+
+      <!-- UPDATE -->
+      <div class="mth-block">
+        <h2>Update cadence</h2>
+        <ul>
+          <li><strong>Candidate data</strong> — refreshed within 48 hours of fresh ECI filings.</li>
+          <li><strong>Party financials</strong> — annual, aligned with ADR publications.</li>
+          <li><strong>State finances</strong> — quarterly, aligned with RBI State Finances releases.</li>
+          <li><strong>Promise delivery</strong> — reviewed before every assembly election cycle.</li>
+        </ul>
+        <p class="mth-timestamp">Last full pass: <strong>{lastUpdated}</strong></p>
+      </div>
+
+      <!-- CORRECTIONS -->
+      <div class="mth-block" id="corrections">
+        <h2>Corrections policy</h2>
+        <p>If we get something wrong, we fix it publicly, not silently.</p>
+        <ul>
+          <li>Factual errors get a dated correction note on the relevant page.</li>
+          <li>Classification changes (e.g. promise moved from "partial" to "fulfilled") are logged with the reason and the source that triggered the change.</li>
+          <li>To report an error: use <a href="/ask">/ask</a> or email the desk (coming soon).</li>
+        </ul>
+      </div>
+
+      <!-- DATA -->
+      <div class="mth-block" id="data">
+        <h2>Data access &amp; reuse</h2>
+        <p>Everything tabular on this site is meant to be reused by reporters, researchers and students.</p>
+        <ul>
+          <li>CSV downloads — coming next: candidates, promise delivery, party financials.</li>
+          <li>Embeddable charts — coming next.</li>
+          <li>All original analysis is licensed <strong>CC BY 4.0</strong>. Credit "Election Pulse 2026" and link back.</li>
+          <li>Primary-source data (ECI, ADR, RBI, etc.) remains under the original publisher's licence.</li>
+        </ul>
+      </div>
+
+      <!-- BYLINE -->
+      <div class="mth-block mth-about">
+        <h2>Who built this</h2>
+        <p>Election Pulse 2026 is an independent data-journalism project focused on the 2026 state assembly elections in India. It exists because election data shouldn't be locked inside PDFs and 300-page affidavits — especially not for the 48M+ young Indians voting this cycle.</p>
+        <p>Editorial standards follow the <a href="https://ipi.media" target="_blank" rel="noopener">IPI</a> and <a href="https://ifcncodeofprinciples.poynter.org" target="_blank" rel="noopener">IFCN</a> codes.</p>
+      </div>
+
+    </div>
+  </section>
+</ElectionLayout>
+
+<style>
+.mth-tldr { background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(34,211,238,0.08)); border: 1px solid var(--ep-accent); border-radius: var(--ep-radius); padding: 1.8rem; margin-bottom: 2.5rem; }
+.mth-tldr h2 { font-family: var(--ep-font-display); font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
+.mth-tldr ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.mth-tldr li { font-size: 0.92rem; line-height: 1.55; color: var(--ep-text-secondary); padding-left: 1.2rem; position: relative; }
+.mth-tldr li::before { content: '→'; position: absolute; left: 0; color: var(--ep-accent-2); font-weight: 800; }
+.mth-tldr a { color: var(--ep-accent-2); font-weight: 600; }
+
+.mth-block { margin-bottom: 2.5rem; scroll-margin-top: 80px; }
+.mth-block h2 { font-family: var(--ep-font-display); font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+.mth-block > p, .mth-block > ul { color: var(--ep-text-secondary); font-size: 0.9rem; line-height: 1.6; }
+.mth-block > ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; padding-left: 0; margin-top: 0.8rem; }
+.mth-block > ul > li { padding-left: 1rem; position: relative; }
+.mth-block > ul > li::before { content: '•'; color: var(--ep-accent-2); position: absolute; left: 0; }
+.mth-block a { color: var(--ep-accent-2); font-weight: 600; }
+.mth-lede { color: var(--ep-text); font-size: 0.95rem; margin-bottom: 1.2rem; }
+
+.mth-sources { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.mth-source { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1.2rem; }
+.mth-source:hover { border-color: var(--ep-border-hover); }
+.mth-src-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: var(--ep-radius-pill); background: rgba(34,211,238,0.1); color: var(--ep-accent-2); border: 1px solid rgba(34,211,238,0.25); margin-bottom: 0.7rem; }
+.mth-source h3 { font-family: var(--ep-font-display); font-size: 1rem; font-weight: 800; margin-bottom: 0.4rem; }
+.mth-source h3 a { color: var(--ep-text); }
+.mth-source h3 a:hover { color: var(--ep-accent-2); }
+.mth-source p { font-size: 0.82rem; color: var(--ep-text-muted); line-height: 1.5; }
+
+.mth-method { background: var(--ep-bg-card); border-left: 3px solid var(--ep-accent); border-radius: var(--ep-radius-sm); padding: 1.2rem 1.4rem; margin-top: 1rem; }
+.mth-method h3 { font-family: var(--ep-font-display); font-size: 1.05rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--ep-accent-2); }
+.mth-method p { font-size: 0.87rem; line-height: 1.55; color: var(--ep-text-secondary); margin-bottom: 0.5rem; }
+.mth-method strong { color: var(--ep-text); }
+.mth-method ul { list-style: none; padding-left: 0; margin: 0.5rem 0; }
+.mth-method li { padding-left: 1rem; position: relative; font-size: 0.87rem; color: var(--ep-text-secondary); line-height: 1.5; }
+.mth-method li::before { content: '›'; position: absolute; left: 0; color: var(--ep-accent-2); font-weight: 800; }
+
+.mth-nots { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; padding-left: 0 !important; }
+.mth-nots li::before { content: '' !important; }
+.mth-nots li { padding-left: 0 !important; font-size: 0.92rem !important; color: var(--ep-text-secondary); }
+.mth-nots strong { color: var(--ep-text); }
+
+.mth-timestamp { margin-top: 1rem; font-size: 0.85rem; color: var(--ep-text-muted); }
+.mth-timestamp strong { color: var(--ep-accent-2); }
+
+.mth-about { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1.5rem; }
+.mth-about p { margin-bottom: 0.7rem; }
+</style>

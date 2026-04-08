@@ -34,12 +34,12 @@ const currentPath = Astro.url.pathname;
         <ul class="ep-nav-links">
           <li><a href="/" class:list={[{ 'ep-active': currentPath === '/' }]}>Home</a></li>
           <li><a href="/states" class:list={[{ 'ep-active': currentPath.startsWith('/states') }]}>States</a></li>
-          <li><a href="/candidates" class:list={[{ 'ep-active': currentPath.startsWith('/candidates') }]}>Candidates</a></li>
+          <li><a href="/candidates" class:list={[{ 'ep-active': currentPath.startsWith('/candidates') }]}>Contenders</a></li>
           <li><a href="/parties" class:list={[{ 'ep-active': currentPath.startsWith('/parties') }]}>Parties</a></li>
-          <li><a href="/promises" class:list={[{ 'ep-active': currentPath.startsWith('/promises') }]}>Promises</a></li>
+          <li><a href="/promises" class:list={[{ 'ep-active': currentPath.startsWith('/promises') }]}>Receipts</a></li>
           <li><a href="/freebies" class:list={[{ 'ep-active': currentPath.startsWith('/freebies') }]}>Freebies</a></li>
-          <li><a href="/compare" class:list={[{ 'ep-active': currentPath.startsWith('/compare') }]}>Compare</a></li>
-          <li><a href="/quiz" class:list={[{ 'ep-active': currentPath.startsWith('/quiz') }]}>Quiz</a></li>
+          <li><a href="/compare" class:list={[{ 'ep-active': currentPath.startsWith('/compare') }]}>vs.</a></li>
+          <li><a href="/quiz" class:list={[{ 'ep-active': currentPath.startsWith('/quiz') }]}>Match</a></li>
           <li><a href="/ask" class:list={[{ 'ep-active': currentPath.startsWith('/ask') }]}>Ask</a></li>
         </ul>
         <button class="ep-nav-toggle" aria-label="Menu" id="ep-menu-btn">
@@ -59,12 +59,18 @@ const currentPath = Astro.url.pathname;
           <span>Election Pulse 2026</span>
         </div>
         <div class="ep-footer-sources">
-          Data Sources: <a href="https://eci.gov.in" target="_blank" rel="noopener">ECI</a> &middot;
+          Sources: <a href="https://eci.gov.in" target="_blank" rel="noopener">ECI</a> &middot;
           <a href="https://adrindia.org" target="_blank" rel="noopener">ADR</a> &middot;
           <a href="https://myneta.info" target="_blank" rel="noopener">MyNeta</a> &middot;
-          State Election Commissions
+          <a href="https://prsindia.org" target="_blank" rel="noopener">PRS India</a> &middot;
+          <a href="https://rbi.org.in" target="_blank" rel="noopener">RBI</a>
         </div>
-        <p class="ep-footer-note">Built for Gen Z. No walls of text. Just visuals.</p>
+        <div class="ep-footer-links">
+          <a href="/methodology">Methodology</a> &middot;
+          <a href="/methodology#sources">Full Sources</a> &middot;
+          <a href="/methodology#corrections">Corrections</a>
+        </div>
+        <p class="ep-footer-note">No spin. No walls of text. Just receipts. Data updated monthly.</p>
       </div>
     </footer>
 
@@ -278,6 +284,16 @@ img { max-width: 100%; height: auto; }
   font-size: 0.75rem;
   color: var(--ep-text-muted);
 }
+
+.ep-footer-links {
+  font-size: 0.78rem;
+  color: var(--ep-text-muted);
+}
+.ep-footer-links a {
+  color: var(--ep-accent-2);
+  font-weight: 600;
+}
+.ep-footer-links a:hover { color: var(--ep-accent); }
 
 /* ========== SHARED COMPONENTS ========== */
 .ep-section {
