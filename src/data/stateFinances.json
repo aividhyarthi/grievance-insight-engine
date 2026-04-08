@@ -1,0 +1,385 @@
+{
+  "stateFinances": {
+    "kerala": {
+      "gdp": "10.3 L Cr",
+      "gdpGrowth": "8.2%",
+      "perCapitaIncome": "2.28 L",
+      "totalDebt": "3.8 L Cr",
+      "debtPerPerson": "1.08 L",
+      "debtToGDP": "37%",
+      "fiscalDeficit": "3.2%",
+      "revenue": "1.12 L Cr",
+      "expenditure": "1.38 L Cr",
+      "revenueDeficit": "26,000 Cr",
+      "unemploymentRate": "7.4%",
+      "povertyRate": "0.7%",
+      "hdi": 0.782,
+      "healthSpendPercent": 5.2,
+      "educationSpendPercent": 14.8,
+      "source": "CAG, RBI State Finances Report 2024-25"
+    },
+    "west-bengal": {
+      "gdp": "15.1 L Cr",
+      "gdpGrowth": "7.8%",
+      "perCapitaIncome": "1.22 L",
+      "totalDebt": "6.5 L Cr",
+      "debtPerPerson": "0.67 L",
+      "debtToGDP": "38.8%",
+      "fiscalDeficit": "3.4%",
+      "revenue": "1.65 L Cr",
+      "expenditure": "2.12 L Cr",
+      "revenueDeficit": "47,000 Cr",
+      "unemploymentRate": "4.5%",
+      "povertyRate": "5.6%",
+      "hdi": 0.637,
+      "healthSpendPercent": 4.1,
+      "educationSpendPercent": 15.3,
+      "source": "CAG, RBI State Finances Report 2024-25"
+    },
+    "assam": {
+      "gdp": "4.9 L Cr",
+      "gdpGrowth": "7.1%",
+      "perCapitaIncome": "1.04 L",
+      "totalDebt": "1.2 L Cr",
+      "debtPerPerson": "0.34 L",
+      "debtToGDP": "24.5%",
+      "fiscalDeficit": "3.0%",
+      "revenue": "0.82 L Cr",
+      "expenditure": "1.01 L Cr",
+      "revenueDeficit": "19,000 Cr",
+      "unemploymentRate": "6.8%",
+      "povertyRate": "4.9%",
+      "hdi": 0.614,
+      "healthSpendPercent": 4.8,
+      "educationSpendPercent": 16.1,
+      "source": "CAG, RBI State Finances Report 2024-25"
+    },
+    "tamil-nadu": {
+      "gdp": "24.8 L Cr",
+      "gdpGrowth": "9.1%",
+      "perCapitaIncome": "2.72 L",
+      "totalDebt": "6.8 L Cr",
+      "debtPerPerson": "0.89 L",
+      "debtToGDP": "27.4%",
+      "fiscalDeficit": "3.6%",
+      "revenue": "2.45 L Cr",
+      "expenditure": "3.02 L Cr",
+      "revenueDeficit": "57,000 Cr",
+      "unemploymentRate": "4.8%",
+      "povertyRate": "1.1%",
+      "hdi": 0.708,
+      "healthSpendPercent": 5.6,
+      "educationSpendPercent": 13.2,
+      "source": "CAG, RBI State Finances Report 2024-25"
+    },
+    "puducherry": {
+      "gdp": "0.42 L Cr",
+      "gdpGrowth": "6.8%",
+      "perCapitaIncome": "2.14 L",
+      "totalDebt": "0.11 L Cr",
+      "debtPerPerson": "0.72 L",
+      "debtToGDP": "26.2%",
+      "fiscalDeficit": "2.8%",
+      "revenue": "0.09 L Cr",
+      "expenditure": "0.12 L Cr",
+      "revenueDeficit": "3,000 Cr",
+      "unemploymentRate": "8.1%",
+      "povertyRate": "1.3%",
+      "hdi": 0.739,
+      "healthSpendPercent": 5.8,
+      "educationSpendPercent": 12.7,
+      "source": "CAG, RBI State Finances Report 2024-25"
+    }
+  },
+  "demographics": {
+    "kerala": {
+      "population": "3.46 Cr",
+      "religions": [
+        { "name": "Hindu", "percent": 54.7, "color": "#ed8936" },
+        { "name": "Muslim", "percent": 26.6, "color": "#38a169" },
+        { "name": "Christian", "percent": 18.4, "color": "#3182ce" },
+        { "name": "Others", "percent": 0.3, "color": "#718096" }
+      ],
+      "casteGroups": [
+        { "name": "OBC", "percent": 52.0, "color": "#ed8936" },
+        { "name": "General", "percent": 24.0, "color": "#3182ce" },
+        { "name": "SC", "percent": 9.1, "color": "#e53e3e" },
+        { "name": "ST", "percent": 1.5, "color": "#38a169" },
+        { "name": "Others", "percent": 13.4, "color": "#718096" }
+      ],
+      "ruralUrban": { "rural": 53, "urban": 47 },
+      "ageGroups": [
+        { "group": "18-25", "percent": 12 },
+        { "group": "26-35", "percent": 18 },
+        { "group": "36-50", "percent": 28 },
+        { "group": "50+", "percent": 42 }
+      ],
+      "keyVotebanks": ["Nair community", "Ezhava community", "Muslim voters", "Christian voters", "Trade unions"],
+      "source": "Census 2011 (projected), NSSO"
+    },
+    "west-bengal": {
+      "population": "10.1 Cr",
+      "religions": [
+        { "name": "Hindu", "percent": 70.5, "color": "#ed8936" },
+        { "name": "Muslim", "percent": 27.0, "color": "#38a169" },
+        { "name": "Christian", "percent": 0.7, "color": "#3182ce" },
+        { "name": "Others", "percent": 1.8, "color": "#718096" }
+      ],
+      "casteGroups": [
+        { "name": "General", "percent": 30.0, "color": "#3182ce" },
+        { "name": "OBC", "percent": 20.0, "color": "#ed8936" },
+        { "name": "SC", "percent": 23.5, "color": "#e53e3e" },
+        { "name": "ST", "percent": 5.8, "color": "#38a169" },
+        { "name": "Others", "percent": 20.7, "color": "#718096" }
+      ],
+      "ruralUrban": { "rural": 68, "urban": 32 },
+      "ageGroups": [
+        { "group": "18-25", "percent": 15 },
+        { "group": "26-35", "percent": 20 },
+        { "group": "36-50", "percent": 30 },
+        { "group": "50+", "percent": 35 }
+      ],
+      "keyVotebanks": ["Matua community", "Muslim voters", "SC voters", "Rajbongshi community", "Trade unions"],
+      "source": "Census 2011 (projected), NSSO"
+    },
+    "assam": {
+      "population": "3.50 Cr",
+      "religions": [
+        { "name": "Hindu", "percent": 61.5, "color": "#ed8936" },
+        { "name": "Muslim", "percent": 34.2, "color": "#38a169" },
+        { "name": "Christian", "percent": 3.7, "color": "#3182ce" },
+        { "name": "Others", "percent": 0.6, "color": "#718096" }
+      ],
+      "casteGroups": [
+        { "name": "General", "percent": 22.0, "color": "#3182ce" },
+        { "name": "OBC", "percent": 28.0, "color": "#ed8936" },
+        { "name": "SC", "percent": 7.2, "color": "#e53e3e" },
+        { "name": "ST", "percent": 12.4, "color": "#38a169" },
+        { "name": "Tea Tribes", "percent": 17.0, "color": "#805ad5" },
+        { "name": "Others", "percent": 13.4, "color": "#718096" }
+      ],
+      "ruralUrban": { "rural": 86, "urban": 14 },
+      "ageGroups": [
+        { "group": "18-25", "percent": 18 },
+        { "group": "26-35", "percent": 22 },
+        { "group": "36-50", "percent": 28 },
+        { "group": "50+", "percent": 32 }
+      ],
+      "keyVotebanks": ["Tea garden workers", "Bengali-origin Muslims", "Indigenous Assamese", "Bodo community", "Koch-Rajbongshi"],
+      "source": "Census 2011 (projected), NSSO"
+    },
+    "tamil-nadu": {
+      "population": "7.72 Cr",
+      "religions": [
+        { "name": "Hindu", "percent": 87.6, "color": "#ed8936" },
+        { "name": "Muslim", "percent": 5.9, "color": "#38a169" },
+        { "name": "Christian", "percent": 6.1, "color": "#3182ce" },
+        { "name": "Others", "percent": 0.4, "color": "#718096" }
+      ],
+      "casteGroups": [
+        { "name": "OBC/MBC", "percent": 68.0, "color": "#ed8936" },
+        { "name": "SC", "percent": 20.0, "color": "#e53e3e" },
+        { "name": "General (FC)", "percent": 9.0, "color": "#3182ce" },
+        { "name": "ST", "percent": 1.1, "color": "#38a169" },
+        { "name": "Others", "percent": 1.9, "color": "#718096" }
+      ],
+      "ruralUrban": { "rural": 52, "urban": 48 },
+      "ageGroups": [
+        { "group": "18-25", "percent": 13 },
+        { "group": "26-35", "percent": 19 },
+        { "group": "36-50", "percent": 30 },
+        { "group": "50+", "percent": 38 }
+      ],
+      "keyVotebanks": ["Vanniyar community", "Thevar community", "Gounder community", "Dalit voters", "Nadar community"],
+      "source": "Census 2011 (projected), NSSO"
+    },
+    "puducherry": {
+      "population": "14.7 L",
+      "religions": [
+        { "name": "Hindu", "percent": 87.3, "color": "#ed8936" },
+        { "name": "Muslim", "percent": 6.1, "color": "#38a169" },
+        { "name": "Christian", "percent": 6.3, "color": "#3182ce" },
+        { "name": "Others", "percent": 0.3, "color": "#718096" }
+      ],
+      "casteGroups": [
+        { "name": "OBC", "percent": 55.0, "color": "#ed8936" },
+        { "name": "SC", "percent": 15.7, "color": "#e53e3e" },
+        { "name": "General", "percent": 28.0, "color": "#3182ce" },
+        { "name": "ST", "percent": 0.3, "color": "#38a169" },
+        { "name": "Others", "percent": 1.0, "color": "#718096" }
+      ],
+      "ruralUrban": { "rural": 32, "urban": 68 },
+      "ageGroups": [
+        { "group": "18-25", "percent": 14 },
+        { "group": "26-35", "percent": 18 },
+        { "group": "36-50", "percent": 29 },
+        { "group": "50+", "percent": 39 }
+      ],
+      "keyVotebanks": ["Tamil-speaking majority", "French-origin communities", "Fishing communities", "SC voters"],
+      "source": "Census 2011 (projected), NSSO"
+    }
+  },
+  "freebies": {
+    "kerala": {
+      "totalFreebiesBill": "18,500 Cr",
+      "freebiesPercentOfRevenue": 16.5,
+      "schemes": [
+        { "name": "Free Rice (35kg/family)", "annualCost": "2,800 Cr", "beneficiaries": "87 L families", "status": "running", "year": 2021 },
+        { "name": "LIFE Mission (Free Housing)", "annualCost": "4,200 Cr", "beneficiaries": "4.5 L houses", "status": "running", "year": 2016 },
+        { "name": "Social Security Pensions", "annualCost": "5,100 Cr", "beneficiaries": "50 L pensioners", "status": "running", "year": 2016 },
+        { "name": "Free Laptop to Students", "annualCost": "600 Cr", "beneficiaries": "3 L students", "status": "partial", "year": 2021 },
+        { "name": "K-FON Free Internet", "annualCost": "1,500 Cr", "beneficiaries": "20 L households", "status": "delayed", "year": 2021 }
+      ]
+    },
+    "west-bengal": {
+      "totalFreebiesBill": "42,000 Cr",
+      "freebiesPercentOfRevenue": 25.5,
+      "schemes": [
+        { "name": "Lakshmir Bhandar (₹500-1000/month to women)", "annualCost": "12,000 Cr", "beneficiaries": "2.1 Cr women", "status": "running", "year": 2021 },
+        { "name": "Swasthya Sathi (Free Health Insurance)", "annualCost": "4,800 Cr", "beneficiaries": "2.2 Cr families", "status": "running", "year": 2021 },
+        { "name": "Kanyashree (Girls Education Stipend)", "annualCost": "1,200 Cr", "beneficiaries": "75 L girls", "status": "running", "year": 2013 },
+        { "name": "Duare Sarkar (Doorstep Govt)", "annualCost": "2,500 Cr", "beneficiaries": "All citizens", "status": "running", "year": 2020 },
+        { "name": "Free Ration (Rice 5kg/person)", "annualCost": "8,500 Cr", "beneficiaries": "10 Cr people", "status": "running", "year": 2021 },
+        { "name": "Student Credit Card (10L loan)", "annualCost": "3,000 Cr", "beneficiaries": "5 L students", "status": "running", "year": 2021 }
+      ]
+    },
+    "assam": {
+      "totalFreebiesBill": "8,200 Cr",
+      "freebiesPercentOfRevenue": 10.0,
+      "schemes": [
+        { "name": "Orunodoi (₹1250/month to women)", "annualCost": "3,600 Cr", "beneficiaries": "27 L women", "status": "running", "year": 2020 },
+        { "name": "Arundhati Gold Scheme (1 tola gold for brides)", "annualCost": "800 Cr", "beneficiaries": "4 L brides", "status": "running", "year": 2019 },
+        { "name": "Free Rice (5kg/person)", "annualCost": "2,100 Cr", "beneficiaries": "55 L families", "status": "running", "year": 2021 },
+        { "name": "Free Scooters for Girls", "annualCost": "400 Cr", "beneficiaries": "1 L girls", "status": "partial", "year": 2021 }
+      ]
+    },
+    "tamil-nadu": {
+      "totalFreebiesBill": "58,000 Cr",
+      "freebiesPercentOfRevenue": 23.7,
+      "schemes": [
+        { "name": "Free Bus for Women", "annualCost": "3,200 Cr", "beneficiaries": "All women", "status": "running", "year": 2021 },
+        { "name": "Kalaignar Magalir Urimai Thogai (₹1000/month)", "annualCost": "7,200 Cr", "beneficiaries": "1.06 Cr women", "status": "running", "year": 2023 },
+        { "name": "Free Laptop to Students", "annualCost": "3,200 Cr", "beneficiaries": "12 L students/yr", "status": "running", "year": 2011 },
+        { "name": "Naan Mudhalvan (Skill Dev)", "annualCost": "1,500 Cr", "beneficiaries": "10 L youth", "status": "running", "year": 2022 },
+        { "name": "Free Ration (Rice/month)", "annualCost": "14,000 Cr", "beneficiaries": "2 Cr families", "status": "running", "year": 1967 },
+        { "name": "Midday Meal Scheme", "annualCost": "1,800 Cr", "beneficiaries": "69 L children", "status": "running", "year": 1982 },
+        { "name": "Free Gas Cylinders (3/yr)", "annualCost": "800 Cr", "beneficiaries": "1 Cr families", "status": "running", "year": 2021 },
+        { "name": "Breakfast Scheme for Govt School Kids", "annualCost": "500 Cr", "beneficiaries": "16 L children", "status": "running", "year": 2022 }
+      ]
+    },
+    "puducherry": {
+      "totalFreebiesBill": "2,800 Cr",
+      "freebiesPercentOfRevenue": 31.1,
+      "schemes": [
+        { "name": "Free Rice (35kg/family)", "annualCost": "500 Cr", "beneficiaries": "3.5 L families", "status": "running", "year": 2016 },
+        { "name": "Marriage Assistance (₹25,000)", "annualCost": "200 Cr", "beneficiaries": "80K families", "status": "running", "year": 2006 },
+        { "name": "Old Age Pension (₹3000/month)", "annualCost": "600 Cr", "beneficiaries": "1.5 L seniors", "status": "running", "year": 2021 },
+        { "name": "Free Laptop to Students", "annualCost": "150 Cr", "beneficiaries": "50K students", "status": "partial", "year": 2021 }
+      ]
+    }
+  },
+  "promiseTracker": {
+    "kerala": {
+      "party": "LDF",
+      "year": 2021,
+      "totalPromises": 40,
+      "fulfilled": 14,
+      "partiallyFulfilled": 12,
+      "notStarted": 8,
+      "broken": 6,
+      "promises": [
+        { "promise": "1 lakh jobs in 100 days", "status": "broken", "detail": "Only ~12,000 jobs created in first 100 days", "category": "employment" },
+        { "promise": "K-FON: Free internet for BPL families", "status": "partial", "detail": "Infrastructure built but full rollout delayed to 2025+", "category": "digital" },
+        { "promise": "Reduce fuel tax", "status": "broken", "detail": "Tax was not reduced; instead increased briefly in 2022", "category": "economy" },
+        { "promise": "LIFE Mission: Housing for all homeless", "status": "partial", "detail": "4.5 lakh houses built, but target was 6 lakh", "category": "housing" },
+        { "promise": "Zero-interest farm loans", "status": "fulfilled", "detail": "Implemented for small farmers through cooperative banks", "category": "agriculture" },
+        { "promise": "Expand social security pensions", "status": "fulfilled", "detail": "Pension amount increased from ₹1300 to ₹1600/month", "category": "welfare" },
+        { "promise": "Industrial corridor (Kochi-Palakkad)", "status": "partial", "detail": "Land acquisition ongoing, project behind schedule", "category": "infrastructure" },
+        { "promise": "Women safety reforms", "status": "fulfilled", "detail": "Pink Police Patrol expanded, women helpline upgraded", "category": "safety" }
+      ]
+    },
+    "west-bengal": {
+      "party": "TMC",
+      "year": 2021,
+      "totalPromises": 35,
+      "fulfilled": 12,
+      "partiallyFulfilled": 10,
+      "notStarted": 7,
+      "broken": 6,
+      "promises": [
+        { "promise": "Lakshmir Bhandar: ₹500/month to every woman", "status": "fulfilled", "detail": "Rolled out to 2.1 Cr women, amount increased to ₹1000 for SC/ST", "category": "welfare" },
+        { "promise": "Student Credit Card: 10 Lakh education loan", "status": "fulfilled", "detail": "Launched in 2021, disbursed to 5 lakh students", "category": "education" },
+        { "promise": "Duare Ration: Doorstep rice delivery", "status": "partial", "detail": "Launched but plagued by leakage complaints", "category": "welfare" },
+        { "promise": "5 lakh jobs in first year", "status": "broken", "detail": "Unemployment remained high, DA-linked protests continued", "category": "employment" },
+        { "promise": "Industry & IT hub in every district", "status": "broken", "detail": "Only 2-3 districts saw meaningful progress", "category": "industry" },
+        { "promise": "Swasthya Sathi: Free health insurance for all", "status": "fulfilled", "detail": "Covers 2.2 Cr families, up to ₹5 Lakh coverage", "category": "health" },
+        { "promise": "Free electric bikes for students", "status": "broken", "detail": "Not implemented", "category": "education" },
+        { "promise": "Jal Swapno: Tap water to every home", "status": "partial", "detail": "60% coverage achieved, target was 100%", "category": "infrastructure" }
+      ]
+    },
+    "assam": {
+      "party": "BJP+",
+      "year": 2021,
+      "totalPromises": 30,
+      "fulfilled": 11,
+      "partiallyFulfilled": 8,
+      "notStarted": 6,
+      "broken": 5,
+      "promises": [
+        { "promise": "Orunodoi: ₹830/month to women (increased)", "status": "fulfilled", "detail": "Increased to ₹1250/month, covers 27 lakh women", "category": "welfare" },
+        { "promise": "Solve flood problem permanently", "status": "broken", "detail": "Floods continue annually, damage in 2022-24 was severe", "category": "infrastructure" },
+        { "promise": "NRC implementation", "status": "partial", "detail": "Supreme Court-mandated NRC done but govt rejected it, no resolution", "category": "identity" },
+        { "promise": "1 lakh govt jobs", "status": "partial", "detail": "~60,000 jobs given, recruitment slowed after 2023", "category": "employment" },
+        { "promise": "Close all liquor shops near temples", "status": "fulfilled", "detail": "Implemented in designated zones", "category": "social" },
+        { "promise": "Convert all madrasas to regular schools", "status": "broken", "detail": "Supreme Court struck down the law", "category": "education" },
+        { "promise": "Tea garden workers' wage hike", "status": "partial", "detail": "Wage increased but below promised amount", "category": "labor" }
+      ]
+    },
+    "tamil-nadu": {
+      "party": "DMK+",
+      "year": 2021,
+      "totalPromises": 505,
+      "fulfilled": 215,
+      "partiallyFulfilled": 140,
+      "notStarted": 80,
+      "broken": 70,
+      "promises": [
+        { "promise": "₹1000/month to women heads of family", "status": "fulfilled", "detail": "Kalaignar Magalir Urimai Thogai launched, 1.06 Cr beneficiaries", "category": "welfare" },
+        { "promise": "Scrap NEET exam for medical admissions", "status": "broken", "detail": "Bill passed but Governor/President has not approved", "category": "education" },
+        { "promise": "Free bus travel for women", "status": "fulfilled", "detail": "Fully implemented across all state transport buses", "category": "transport" },
+        { "promise": "Reduce petrol price by ₹5/litre", "status": "fulfilled", "detail": "Reduced within first week of taking office", "category": "economy" },
+        { "promise": "Breakfast scheme for govt school kids", "status": "fulfilled", "detail": "Launched in 2022, covers 16 lakh children", "category": "education" },
+        { "promise": "New IT corridor in Coimbatore", "status": "partial", "detail": "Land allocated, construction in early stages", "category": "industry" },
+        { "promise": "Repeal CAA at state level", "status": "broken", "detail": "Passed resolution but no legal standing; CAA implemented nationally", "category": "rights" },
+        { "promise": "Fill all govt vacancies (3 lakh)", "status": "partial", "detail": "1.2 lakh filled, 1.8 lakh still pending", "category": "employment" }
+      ]
+    },
+    "puducherry": {
+      "party": "NDA",
+      "year": 2021,
+      "totalPromises": 20,
+      "fulfilled": 6,
+      "partiallyFulfilled": 5,
+      "notStarted": 5,
+      "broken": 4,
+      "promises": [
+        { "promise": "Statehood for Puducherry", "status": "broken", "detail": "No progress on statehood demand at central level", "category": "governance" },
+        { "promise": "Old age pension ₹3000/month", "status": "fulfilled", "detail": "Pension amount increased as promised", "category": "welfare" },
+        { "promise": "Smart City development", "status": "partial", "detail": "Some projects completed, many delayed", "category": "infrastructure" },
+        { "promise": "Free rice 35kg per family", "status": "fulfilled", "detail": "Continued from previous government", "category": "welfare" },
+        { "promise": "New industrial zone", "status": "broken", "detail": "Land identified but no construction started", "category": "industry" }
+      ]
+    }
+  },
+  "manifestoHighlights2026": {
+    "note": "Manifestos for 2026 elections have not been released yet. This section will be updated as parties release their manifestos closer to election dates.",
+    "expectedThemes": [
+      { "theme": "Women-centric welfare", "description": "Cash transfer schemes for women likely to be a central promise across all parties", "icon": "♀️" },
+      { "theme": "Youth employment", "description": "Job creation pledges expected from all parties targeting Gen Z voters", "icon": "💼" },
+      { "theme": "Free/subsidized essentials", "description": "Free rice, gas, electricity — the freebie war will intensify", "icon": "🆓" },
+      { "theme": "Digital infrastructure", "description": "Free WiFi, digital literacy, IT parks", "icon": "📱" },
+      { "theme": "Caste census", "description": "OBC/SC/ST enumeration and reservation expansion demands", "icon": "📊" },
+      { "theme": "Farm loan waivers", "description": "Agricultural debt relief promises", "icon": "🌾" }
+    ]
+  }
+}

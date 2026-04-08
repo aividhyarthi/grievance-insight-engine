@@ -1,0 +1,167 @@
+---
+import ElectionLayout from '../layouts/ElectionLayout.astro';
+import finData from '../data/stateFinances.json';
+import electionData from '../data/elections2026.json';
+
+const { states } = electionData;
+const { promiseTracker } = finData;
+
+const statePromises = states.map(s => {
+  const tracker = promiseTracker[s.id];
+  if (!tracker) return null;
+  const total = tracker.totalPromises;
+  const fulfilledPct = Math.round((tracker.fulfilled / total) * 100);
+  const partialPct = Math.round((tracker.partiallyFulfilled / total) * 100);
+  const brokenPct = Math.round((tracker.broken / total) * 100);
+  const notStartedPct = Math.round((tracker.notStarted / total) * 100);
+  return { ...s, tracker, fulfilledPct, partialPct, brokenPct, notStartedPct };
+}).filter(Boolean);
+---
+
+<ElectionLayout title="Promise Tracker | Election Pulse 2026">
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <div class="ep-badge">PROMISE TRACKER</div>
+        <h1 class="ep-section-title" style="margin-top:1rem">Did They Deliver?</h1>
+        <p class="ep-section-sub">What they promised in 2021. What actually happened. No spin, just facts.</p>
+      </div>
+
+      <!-- Legend -->
+      <div class="pt-legend">
+        <span class="pt-legend-item"><span class="pt-dot pt-dot-green"></span> Fulfilled</span>
+        <span class="pt-legend-item"><span class="pt-dot pt-dot-yellow"></span> Partial</span>
+        <span class="pt-legend-item"><span class="pt-dot pt-dot-gray"></span> Not Started</span>
+        <span class="pt-legend-item"><span class="pt-dot pt-dot-red"></span> Broken</span>
+      </div>
+
+      {statePromises.map((s) => (
+        <div class="pt-state-block" style={`--sc:${s.color}`}>
+          <div class="pt-state-header">
+            <span class="pt-state-emoji">{s.mapEmoji}</span>
+            <div>
+              <h2 class="pt-state-name">{s.name}</h2>
+              <p class="pt-state-sub">{s.tracker.party} &middot; {s.tracker.year} Manifesto &middot; {s.tracker.totalPromises} Promises</p>
+            </div>
+          </div>
+
+          <!-- Score Ring -->
+          <div class="pt-score-row">
+            <div class="pt-score-card pt-score-green">
+              <span class="pt-score-num">{s.tracker.fulfilled}</span>
+              <span class="pt-score-lbl">Fulfilled</span>
+              <span class="pt-score-pct">{s.fulfilledPct}%</span>
+            </div>
+            <div class="pt-score-card pt-score-yellow">
+              <span class="pt-score-num">{s.tracker.partiallyFulfilled}</span>
+              <span class="pt-score-lbl">Partial</span>
+              <span class="pt-score-pct">{s.partialPct}%</span>
+            </div>
+            <div class="pt-score-card pt-score-gray">
+              <span class="pt-score-num">{s.tracker.notStarted}</span>
+              <span class="pt-score-lbl">Not Started</span>
+              <span class="pt-score-pct">{s.notStartedPct}%</span>
+            </div>
+            <div class="pt-score-card pt-score-red">
+              <span class="pt-score-num">{s.tracker.broken}</span>
+              <span class="pt-score-lbl">Broken</span>
+              <span class="pt-score-pct">{s.brokenPct}%</span>
+            </div>
+          </div>
+
+          <!-- Fulfillment Bar -->
+          <div class="pt-bar">
+            <div class="pt-bar-seg pt-bar-green" style={`width:${s.fulfilledPct}%`}></div>
+            <div class="pt-bar-seg pt-bar-yellow" style={`width:${s.partialPct}%`}></div>
+            <div class="pt-bar-seg pt-bar-gray" style={`width:${s.notStartedPct}%`}></div>
+            <div class="pt-bar-seg pt-bar-red" style={`width:${s.brokenPct}%`}></div>
+          </div>
+
+          <!-- Individual Promises -->
+          <div class="pt-promises">
+            {s.tracker.promises.map((p) => (
+              <div class={`pt-promise pt-promise-${p.status === 'partial' ? 'partial' : p.status}`}>
+                <div class="pt-promise-header">
+                  <span class={`pt-status-badge pt-sb-${p.status === 'partial' ? 'partial' : p.status}`}>
+                    {p.status === 'fulfilled' ? 'DONE' : p.status === 'partial' ? 'PARTIAL' : p.status === 'broken' ? 'BROKEN' : 'PENDING'}
+                  </span>
+                  <span class="pt-promise-cat">{p.category}</span>
+                </div>
+                <p class="pt-promise-text">{p.promise}</p>
+                <p class="pt-promise-detail">{p.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <div class="pt-source">
+        <p>Promise tracking based on manifesto analysis, government reports, and media coverage. Data verified against ADR, PRS Legislative Research, and state budget documents.</p>
+      </div>
+    </div>
+  </section>
+</ElectionLayout>
+
+<style>
+.pt-legend { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.pt-legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--ep-text-secondary); }
+.pt-dot { width: 10px; height: 10px; border-radius: 50%; }
+.pt-dot-green { background: #38a169; }
+.pt-dot-yellow { background: #ed8936; }
+.pt-dot-gray { background: #718096; }
+.pt-dot-red { background: #e53e3e; }
+
+.pt-state-block { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--ep-border); }
+.pt-state-block:last-child { border-bottom: none; }
+.pt-state-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.pt-state-emoji { font-size: 2.5rem; }
+.pt-state-name { font-family: var(--ep-font-display); font-size: 1.6rem; font-weight: 700; }
+.pt-state-sub { font-size: 0.85rem; color: var(--ep-text-muted); }
+
+.pt-score-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin-bottom: 1rem; }
+.pt-score-card { text-align: center; padding: 1rem; border-radius: var(--ep-radius); border: 1px solid var(--ep-border); }
+.pt-score-num { display: block; font-family: var(--ep-font-display); font-size: 2rem; font-weight: 900; }
+.pt-score-lbl { display: block; font-size: 0.7rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.pt-score-pct { display: block; font-size: 0.75rem; font-weight: 600; margin-top: 0.2rem; }
+.pt-score-green { background: rgba(56,161,105,0.08); }
+.pt-score-green .pt-score-num, .pt-score-green .pt-score-pct { color: #38a169; }
+.pt-score-yellow { background: rgba(237,137,54,0.08); }
+.pt-score-yellow .pt-score-num, .pt-score-yellow .pt-score-pct { color: #ed8936; }
+.pt-score-gray { background: rgba(113,128,150,0.08); }
+.pt-score-gray .pt-score-num, .pt-score-gray .pt-score-pct { color: #718096; }
+.pt-score-red { background: rgba(229,62,62,0.08); }
+.pt-score-red .pt-score-num, .pt-score-red .pt-score-pct { color: #e53e3e; }
+
+.pt-bar { display: flex; height: 20px; border-radius: 6px; overflow: hidden; gap: 2px; margin-bottom: 1.5rem; }
+.pt-bar-seg { min-width: 3px; }
+.pt-bar-green { background: #38a169; }
+.pt-bar-yellow { background: #ed8936; }
+.pt-bar-gray { background: #718096; }
+.pt-bar-red { background: #e53e3e; }
+
+.pt-promises { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.8rem; }
+.pt-promise { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); padding: 1rem; transition: transform 0.2s; }
+.pt-promise:hover { transform: translateY(-2px); }
+.pt-promise-fulfilled { border-left: 3px solid #38a169; }
+.pt-promise-partial { border-left: 3px solid #ed8936; }
+.pt-promise-broken { border-left: 3px solid #e53e3e; }
+.pt-promise-notStarted { border-left: 3px solid #718096; }
+
+.pt-promise-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.pt-status-badge { font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; padding: 0.2rem 0.6rem; border-radius: var(--ep-radius-pill); }
+.pt-sb-fulfilled { background: rgba(56,161,105,0.15); color: #38a169; }
+.pt-sb-partial { background: rgba(237,137,54,0.15); color: #ed8936; }
+.pt-sb-broken { background: rgba(229,62,62,0.15); color: #e53e3e; }
+.pt-sb-notStarted { background: rgba(113,128,150,0.15); color: #718096; }
+
+.pt-promise-cat { font-size: 0.65rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-left: auto; }
+.pt-promise-text { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.pt-promise-detail { font-size: 0.8rem; color: var(--ep-text-secondary); line-height: 1.5; }
+
+.pt-source { text-align: center; font-size: 0.8rem; color: var(--ep-text-muted); padding: 1.5rem 0; border-top: 1px solid var(--ep-border); margin-top: 1rem; }
+
+@media (max-width: 768px) {
+  .pt-score-row { grid-template-columns: repeat(2, 1fr); }
+  .pt-promises { grid-template-columns: 1fr; }
+}
+</style>

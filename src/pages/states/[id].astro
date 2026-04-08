@@ -1,6 +1,7 @@
 ---
 import ElectionLayout from '../../layouts/ElectionLayout.astro';
 import electionData from '../../data/elections2026.json';
+import finData from '../../data/stateFinances.json';
 
 const { id } = Astro.params;
 const state = electionData.states.find(s => s.id === id);
@@ -12,7 +13,6 @@ if (!state) {
 const candidates = electionData.sampleCandidates.filter(c => c.state === id);
 const categories = electionData.candidateCategories;
 
-// Pre-compute category info for each candidate to avoid arrow functions in template
 const candidatesWithCats = candidates.map(c => ({
   ...c,
   categoryInfos: c.categories
@@ -22,12 +22,21 @@ const candidatesWithCats = candidates.map(c => ({
 
 const hasCandidates = candidates.length >= 1;
 
-// Pre-compute party data with display flag for seat bar labels
 const partiesWithPct = state.parties.map(p => ({
   ...p,
   pctWidth: (p.seats2021 / state.seats) * 100,
   showLabel: (p.seats2021 / state.seats) * 100 >= 11
 }));
+
+// State finances, demographics, freebies, promises
+const fin = finData.stateFinances[id];
+const demo = finData.demographics[id];
+const fb = finData.freebies[id];
+const promises = finData.promiseTracker[id];
+
+const hasPromises = promises && promises.promises.length >= 1;
+const fulfilledPct = promises ? Math.round((promises.fulfilled / promises.totalPromises) * 100) : 0;
+const brokenPct = promises ? Math.round((promises.broken / promises.totalPromises) * 100) : 0;
 ---
 
 <ElectionLayout title={`${state.name} Elections 2026 | Election Pulse`}>
@@ -141,6 +150,86 @@ const partiesWithPct = state.parties.map(p => ({
         </div>
       </div>
 
+      <!-- Demographics -->
+      {demo && (
+        <div class="sd-demo-section">
+          <h2 class="sd-sec-title">Demographics &amp; Votebanks</h2>
+          <div class="sd-demo-grid">
+            <div class="sd-demo-card">
+              <h3 class="sd-demo-subtitle">Religion</h3>
+              <div class="sd-demo-bar">
+                {demo.religions.map((r) => (
+                  <div class="sd-demo-seg" style={`width:${r.percent}%;background:${r.color}`} title={`${r.name}: ${r.percent}%`}></div>
+                ))}
+              </div>
+              <div class="sd-demo-legend">
+                {demo.religions.map((r) => (
+                  <span class="sd-demo-legend-item"><span class="sd-demo-dot" style={`background:${r.color}`}></span>{r.name} {r.percent}%</span>
+                ))}
+              </div>
+            </div>
+            <div class="sd-demo-card">
+              <h3 class="sd-demo-subtitle">Caste Groups</h3>
+              <div class="sd-demo-bar">
+                {demo.casteGroups.map((c) => (
+                  <div class="sd-demo-seg" style={`width:${c.percent}%;background:${c.color}`} title={`${c.name}: ${c.percent}%`}></div>
+                ))}
+              </div>
+              <div class="sd-demo-legend">
+                {demo.casteGroups.map((c) => (
+                  <span class="sd-demo-legend-item"><span class="sd-demo-dot" style={`background:${c.color}`}></span>{c.name} {c.percent}%</span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div class="sd-votebanks">
+            <span class="sd-vb-label">Key Votebanks:</span>
+            {demo.keyVotebanks.map((vb) => (
+              <span class="sd-vb-chip">{vb}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- State Finances -->
+      {fin && (
+        <div class="sd-finance-section">
+          <h2 class="sd-sec-title">State Finances &amp; Economy</h2>
+          <div class="sd-fin-grid">
+            <div class="sd-fin-card"><span class="sd-fin-icon">📈</span><span class="sd-fin-val">{fin.gdp}</span><span class="sd-fin-lbl">GDP</span></div>
+            <div class="sd-fin-card"><span class="sd-fin-icon">💰</span><span class="sd-fin-val">{fin.perCapitaIncome}</span><span class="sd-fin-lbl">Per Capita Income</span></div>
+            <div class="sd-fin-card sd-fin-warn"><span class="sd-fin-icon">🏦</span><span class="sd-fin-val">{fin.totalDebt}</span><span class="sd-fin-lbl">Total Debt</span></div>
+            <div class="sd-fin-card sd-fin-warn"><span class="sd-fin-icon">👤</span><span class="sd-fin-val">{fin.debtPerPerson}</span><span class="sd-fin-lbl">Debt Per Person</span></div>
+            <div class="sd-fin-card"><span class="sd-fin-icon">📊</span><span class="sd-fin-val">{fin.debtToGDP}</span><span class="sd-fin-lbl">Debt/GDP Ratio</span></div>
+            <div class="sd-fin-card"><span class="sd-fin-icon">📉</span><span class="sd-fin-val">{fin.fiscalDeficit}</span><span class="sd-fin-lbl">Fiscal Deficit</span></div>
+            <div class="sd-fin-card"><span class="sd-fin-icon">💵</span><span class="sd-fin-val">{fin.revenue}</span><span class="sd-fin-lbl">Revenue</span></div>
+            <div class="sd-fin-card"><span class="sd-fin-icon">📋</span><span class="sd-fin-val">{fin.unemploymentRate}</span><span class="sd-fin-lbl">Unemployment</span></div>
+          </div>
+          <div class="sd-fin-links">
+            <a href="/freebies" class="ep-btn ep-btn-outline">See Freebies Impact &rarr;</a>
+            <a href="/promises" class="ep-btn ep-btn-outline">See Promise Tracker &rarr;</a>
+          </div>
+        </div>
+      )}
+
+      <!-- Promise Tracker Summary -->
+      {hasPromises && (
+        <div class="sd-promise-section">
+          <h2 class="sd-sec-title">Promise Delivery ({promises.party}, {promises.year})</h2>
+          <div class="sd-promise-bar">
+            <div class="sd-pb-seg sd-pb-green" style={`width:${fulfilledPct}%`}></div>
+            <div class="sd-pb-seg sd-pb-red" style={`width:${brokenPct}%`}></div>
+          </div>
+          <div class="sd-promise-summary">
+            <span class="sd-ps-item sd-ps-green">{promises.fulfilled} Fulfilled</span>
+            <span class="sd-ps-item sd-ps-yellow">{promises.partiallyFulfilled} Partial</span>
+            <span class="sd-ps-item sd-ps-gray">{promises.notStarted} Not Started</span>
+            <span class="sd-ps-item sd-ps-red">{promises.broken} Broken</span>
+          </div>
+          <a href="/promises" class="ep-btn ep-btn-outline" style="margin-top:1rem">Full Promise Tracker &rarr;</a>
+        </div>
+      )}
+
       <!-- Key Candidates from this State -->
       {hasCandidates && (
         <div class="sd-candidates">
@@ -239,9 +328,49 @@ const partiesWithPct = state.parties.map(p => ({
 .sd-cand-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .sd-cand-tag { font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: var(--ep-radius-pill); background: color-mix(in srgb, var(--tc) 12%, transparent); color: var(--tc); border: 1px solid color-mix(in srgb, var(--tc) 25%, transparent); }
 
+/* Demographics */
+.sd-demo-section { margin-bottom: 2.5rem; }
+.sd-demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.sd-demo-card { background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); padding: 1rem; }
+.sd-demo-subtitle { font-family: var(--ep-font-display); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.6rem; }
+.sd-demo-bar { display: flex; height: 20px; border-radius: 6px; overflow: hidden; gap: 1px; margin-bottom: 0.5rem; }
+.sd-demo-seg { min-width: 3px; }
+.sd-demo-legend { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.sd-demo-legend-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: var(--ep-text-secondary); }
+.sd-demo-dot { width: 7px; height: 7px; border-radius: 50%; }
+.sd-votebanks { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.sd-vb-label { font-size: 0.8rem; font-weight: 600; color: var(--ep-text-secondary); }
+.sd-vb-chip { font-size: 0.7rem; padding: 0.25rem 0.6rem; border-radius: var(--ep-radius-pill); background: rgba(255,255,255,0.05); border: 1px solid var(--ep-border); color: var(--ep-text-secondary); }
+
+/* State Finances */
+.sd-finance-section { margin-bottom: 2.5rem; }
+.sd-fin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.6rem; margin-bottom: 1rem; }
+.sd-fin-card { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 0.8rem; background: rgba(255,255,255,0.03); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); }
+.sd-fin-warn { background: rgba(229,62,62,0.05); border-color: rgba(229,62,62,0.15); }
+.sd-fin-warn .sd-fin-val { color: #e53e3e; }
+.sd-fin-icon { font-size: 1.1rem; }
+.sd-fin-val { font-family: var(--ep-font-display); font-size: 1.1rem; font-weight: 800; }
+.sd-fin-lbl { font-size: 0.6rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+.sd-fin-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+/* Promise Summary */
+.sd-promise-section { margin-bottom: 2.5rem; }
+.sd-promise-bar { display: flex; height: 16px; border-radius: 6px; overflow: hidden; gap: 2px; margin-bottom: 0.8rem; background: rgba(255,255,255,0.04); }
+.sd-pb-seg { min-width: 3px; }
+.sd-pb-green { background: #38a169; }
+.sd-pb-red { background: #e53e3e; }
+.sd-promise-summary { display: flex; flex-wrap: wrap; gap: 1rem; }
+.sd-ps-item { font-size: 0.85rem; font-weight: 600; }
+.sd-ps-green { color: #38a169; }
+.sd-ps-yellow { color: #ed8936; }
+.sd-ps-gray { color: #718096; }
+.sd-ps-red { color: #e53e3e; }
+
 @media (max-width: 768px) {
   .sd-title { font-size: 1.8rem; }
   .sd-numbers { grid-template-columns: repeat(3, 1fr); }
   .sd-cand-grid { grid-template-columns: 1fr; }
+  .sd-demo-grid { grid-template-columns: 1fr; }
+  .sd-fin-grid { grid-template-columns: repeat(3, 1fr); }
 }
 </style>

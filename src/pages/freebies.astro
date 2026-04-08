@@ -1,0 +1,208 @@
+---
+import ElectionLayout from '../layouts/ElectionLayout.astro';
+import finData from '../data/stateFinances.json';
+import electionData from '../data/elections2026.json';
+
+const { states } = electionData;
+const { freebies, stateFinances } = finData;
+
+const stateFreebies = states.map(s => {
+  const fb = freebies[s.id];
+  const fin = stateFinances[s.id];
+  if (!fb || !fin) return null;
+  return { ...s, fb, fin };
+}).filter(Boolean);
+
+// Sort by total freebies bill (descending)
+const maxBill = 58000; // TN has the highest
+---
+
+<ElectionLayout title="Freebies & State Debt | Election Pulse 2026">
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-section-header">
+        <div class="ep-badge">FREEBIES CALCULATOR</div>
+        <h1 class="ep-section-title" style="margin-top:1rem">The Real Cost of Free</h1>
+        <p class="ep-section-sub">Every "free" scheme costs money. Here's where it comes from, where it goes, and what debt it creates.</p>
+      </div>
+
+      <!-- Comparison Bar -->
+      <div class="fb-compare">
+        <h3 class="fb-compare-title">Total Annual Freebies Bill by State</h3>
+        {stateFreebies.map((s) => (
+          <div class="fb-compare-row">
+            <span class="fb-compare-name">
+              <span>{s.mapEmoji}</span>
+              {s.name}
+            </span>
+            <div class="fb-compare-track">
+              <div class="fb-compare-fill" style={`width:${(parseFloat(s.fb.totalFreebiesBill.replace(/,/g,'')) / maxBill) * 100}%;background:${s.color}`}></div>
+            </div>
+            <span class="fb-compare-val">{s.fb.totalFreebiesBill}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- State Cards -->
+      {stateFreebies.map((s) => (
+        <div class="fb-state" style={`--sc:${s.color}`}>
+          <div class="fb-state-header">
+            <span class="fb-state-emoji">{s.mapEmoji}</span>
+            <div>
+              <h2 class="fb-state-name">{s.name}</h2>
+              <p class="fb-state-sub">Ruled by {s.currentRuling} &middot; {s.fb.schemes.length} major schemes</p>
+            </div>
+          </div>
+
+          <!-- Financial Overview -->
+          <div class="fb-finance-grid">
+            <div class="fb-fin-card fb-fin-red">
+              <span class="fb-fin-icon">💸</span>
+              <span class="fb-fin-val">{s.fb.totalFreebiesBill}</span>
+              <span class="fb-fin-lbl">Annual Freebies Bill</span>
+            </div>
+            <div class="fb-fin-card">
+              <span class="fb-fin-icon">📊</span>
+              <span class="fb-fin-val">{s.fb.freebiesPercentOfRevenue}%</span>
+              <span class="fb-fin-lbl">of State Revenue</span>
+            </div>
+            <div class="fb-fin-card">
+              <span class="fb-fin-icon">🏦</span>
+              <span class="fb-fin-val">{s.fin.totalDebt}</span>
+              <span class="fb-fin-lbl">Total State Debt</span>
+            </div>
+            <div class="fb-fin-card">
+              <span class="fb-fin-icon">👤</span>
+              <span class="fb-fin-val">{s.fin.debtPerPerson}</span>
+              <span class="fb-fin-lbl">Debt Per Person</span>
+            </div>
+            <div class="fb-fin-card">
+              <span class="fb-fin-icon">📉</span>
+              <span class="fb-fin-val">{s.fin.fiscalDeficit}</span>
+              <span class="fb-fin-lbl">Fiscal Deficit</span>
+            </div>
+            <div class="fb-fin-card">
+              <span class="fb-fin-icon">💰</span>
+              <span class="fb-fin-val">{s.fin.revenue}</span>
+              <span class="fb-fin-lbl">Total Revenue</span>
+            </div>
+          </div>
+
+          <!-- Scheme Cards -->
+          <h3 class="fb-schemes-title">Major Welfare Schemes</h3>
+          <div class="fb-schemes-grid">
+            {s.fb.schemes.map((scheme) => (
+              <div class={`fb-scheme-card fb-scheme-${scheme.status}`}>
+                <div class="fb-scheme-header">
+                  <span class="fb-scheme-name">{scheme.name}</span>
+                  <span class={`fb-scheme-status fb-ss-${scheme.status}`}>
+                    {scheme.status === 'running' ? 'ACTIVE' : scheme.status === 'partial' ? 'PARTIAL' : 'DELAYED'}
+                  </span>
+                </div>
+                <div class="fb-scheme-data">
+                  <div class="fb-scheme-item">
+                    <span class="fb-sd-label">Annual Cost</span>
+                    <span class="fb-sd-value fb-sd-cost">{scheme.annualCost}</span>
+                  </div>
+                  <div class="fb-scheme-item">
+                    <span class="fb-sd-label">Beneficiaries</span>
+                    <span class="fb-sd-value">{scheme.beneficiaries}</span>
+                  </div>
+                  <div class="fb-scheme-item">
+                    <span class="fb-sd-label">Since</span>
+                    <span class="fb-sd-value">{scheme.year}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Debt Context -->
+          <div class="fb-debt-context">
+            <div class="fb-debt-row">
+              <span class="fb-debt-label">State GDP</span>
+              <span class="fb-debt-val">{s.fin.gdp}</span>
+            </div>
+            <div class="fb-debt-row">
+              <span class="fb-debt-label">Debt-to-GDP Ratio</span>
+              <span class="fb-debt-val fb-debt-warn">{s.fin.debtToGDP}</span>
+            </div>
+            <div class="fb-debt-row">
+              <span class="fb-debt-label">Revenue Deficit</span>
+              <span class="fb-debt-val fb-debt-red">{s.fin.revenueDeficit}</span>
+            </div>
+            <div class="fb-debt-row">
+              <span class="fb-debt-label">Unemployment Rate</span>
+              <span class="fb-debt-val">{s.fin.unemploymentRate}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <div class="fb-source">
+        <p>Financial data from CAG reports, RBI State Finances reports, and state budget documents. Scheme costs are estimates based on government announcements and budget allocations.</p>
+      </div>
+    </div>
+  </section>
+</ElectionLayout>
+
+<style>
+.fb-compare { margin-bottom: 3rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); padding: 1.5rem; }
+.fb-compare-title { font-family: var(--ep-font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 1.2rem; }
+.fb-compare-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
+.fb-compare-name { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; min-width: 110px; }
+.fb-compare-track { flex: 1; height: 24px; background: rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden; }
+.fb-compare-fill { height: 100%; border-radius: 6px; }
+.fb-compare-val { font-family: var(--ep-font-display); font-weight: 700; font-size: 0.85rem; min-width: 90px; text-align: right; color: var(--ep-accent); }
+
+.fb-state { margin-bottom: 3rem; padding: 2rem; background: var(--ep-bg-card); border: 1px solid var(--ep-border); border-radius: var(--ep-radius); border-top: 4px solid var(--sc); }
+.fb-state-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.fb-state-emoji { font-size: 2.5rem; }
+.fb-state-name { font-family: var(--ep-font-display); font-size: 1.5rem; font-weight: 700; }
+.fb-state-sub { font-size: 0.8rem; color: var(--ep-text-muted); }
+
+.fb-finance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.7rem; margin-bottom: 1.5rem; }
+.fb-fin-card { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 1rem; background: rgba(255,255,255,0.03); border-radius: var(--ep-radius-sm); border: 1px solid var(--ep-border); }
+.fb-fin-red { background: rgba(229,62,62,0.06); border-color: rgba(229,62,62,0.2); }
+.fb-fin-red .fb-fin-val { color: #e53e3e; }
+.fb-fin-icon { font-size: 1.3rem; }
+.fb-fin-val { font-family: var(--ep-font-display); font-size: 1.3rem; font-weight: 800; }
+.fb-fin-lbl { font-size: 0.65rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+
+.fb-schemes-title { font-family: var(--ep-font-display); font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.fb-schemes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.7rem; margin-bottom: 1.5rem; }
+.fb-scheme-card { background: rgba(255,255,255,0.02); border: 1px solid var(--ep-border); border-radius: var(--ep-radius-sm); padding: 1rem; }
+.fb-scheme-running { border-left: 3px solid #38a169; }
+.fb-scheme-partial { border-left: 3px solid #ed8936; }
+.fb-scheme-delayed { border-left: 3px solid #e53e3e; }
+
+.fb-scheme-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.6rem; }
+.fb-scheme-name { font-weight: 600; font-size: 0.85rem; flex: 1; }
+.fb-scheme-status { font-size: 0.55rem; font-weight: 700; letter-spacing: 1px; padding: 0.15rem 0.5rem; border-radius: var(--ep-radius-pill); flex-shrink: 0; }
+.fb-ss-running { background: rgba(56,161,105,0.15); color: #38a169; }
+.fb-ss-partial { background: rgba(237,137,54,0.15); color: #ed8936; }
+.fb-ss-delayed { background: rgba(229,62,62,0.15); color: #e53e3e; }
+
+.fb-scheme-data { display: flex; gap: 1rem; flex-wrap: wrap; }
+.fb-scheme-item { }
+.fb-sd-label { display: block; font-size: 0.6rem; color: var(--ep-text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.fb-sd-value { font-family: var(--ep-font-display); font-weight: 700; font-size: 0.85rem; }
+.fb-sd-cost { color: var(--ep-accent); }
+
+.fb-debt-context { background: rgba(229,62,62,0.04); border: 1px solid rgba(229,62,62,0.15); border-radius: var(--ep-radius-sm); padding: 1rem; }
+.fb-debt-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--ep-border); font-size: 0.85rem; }
+.fb-debt-row:last-child { border-bottom: none; }
+.fb-debt-label { color: var(--ep-text-secondary); }
+.fb-debt-val { font-family: var(--ep-font-display); font-weight: 700; }
+.fb-debt-warn { color: #ed8936; }
+.fb-debt-red { color: #e53e3e; }
+
+.fb-source { text-align: center; font-size: 0.8rem; color: var(--ep-text-muted); padding: 1.5rem 0; border-top: 1px solid var(--ep-border); margin-top: 1rem; }
+
+@media (max-width: 768px) {
+  .fb-finance-grid { grid-template-columns: repeat(3, 1fr); }
+  .fb-schemes-grid { grid-template-columns: 1fr; }
+  .fb-state { padding: 1.2rem; }
+  .fb-compare-name { min-width: 80px; font-size: 0.75rem; }
+}
+</style>
