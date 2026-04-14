@@ -129,7 +129,9 @@ export default function PerimenopausePointCookEvent() {
 
           <div className="mt-10">
             <a
-              href="mailto:rudra@appstudiox.com?subject=Event%20Registration%20-%20Point%20Cook%2030%20May"
+              href="https://www.eventbrite.com.au/e/her-midlife-tickets-1985653520131?aff=oddtdtcreator"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center justify-center px-10 py-4 rounded-full text-base sm:text-lg font-semibold bg-white text-plum hover:bg-gold-light transition-colors shadow-2xl"
             >
               Reserve Your Free Seat
@@ -388,8 +390,8 @@ export default function PerimenopausePointCookEvent() {
               <div className="flex flex-col items-center">
                 <div className="bg-white rounded-3xl p-6 shadow-2xl">
                   <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=10&data=https%3A%2F%2Fhermidlife-production.up.railway.app%2Fevents%2Fperimenopause-point-cook"
-                    alt="QR code to register for the Point Cook event"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=10&data=https%3A%2F%2Fwww.eventbrite.com.au%2Fe%2Fher-midlife-tickets-1985653520131%3Faff%3Doddtdtcreator"
+                    alt="QR code to register for the Point Cook event on Eventbrite"
                     width={280}
                     height={280}
                     className="w-[260px] h-[260px] block"
@@ -429,7 +431,9 @@ export default function PerimenopausePointCookEvent() {
           </h2>
 
           <a
-            href="mailto:rudra@appstudiox.com?subject=Event%20Registration%20-%20Point%20Cook%2030%20May"
+            href="https://www.eventbrite.com.au/e/her-midlife-tickets-1985653520131?aff=oddtdtcreator"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center justify-center px-10 py-5 rounded-full text-lg font-semibold bg-white text-plum hover:bg-gold-light transition-colors shadow-2xl"
           >
             Claim Your FREE Ticket
