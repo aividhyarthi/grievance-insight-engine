@@ -29,6 +29,7 @@ export default function Footer() {
               <li><a href="/#b2b" className="hover:text-white transition-colors">For Employers</a></li>
               <li><a href="/events/perimenopause-point-cook" className="hover:text-white transition-colors">Events</a></li>
               <li><a href="/investors" className="hover:text-white transition-colors">Investors</a></li>
+              <li><a href="/faq" className="hover:text-white transition-colors">FAQ</a></li>
               <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
@@ -50,9 +51,11 @@ export default function Footer() {
           <p className="text-xs text-white/25">
             &copy; {new Date().getFullYear()} HerMidlife. All rights reserved.
           </p>
-          <p className="text-xs text-white/25">
-            Built with care for Australian women.
-          </p>
+          <div className="flex items-center gap-5 text-xs text-white/25">
+            <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
+            <a href="/terms" className="hover:text-white transition-colors">Terms</a>
+            <a href="/faq" className="hover:text-white transition-colors">FAQ</a>
+          </div>
         </div>
       </div>
     </footer>
