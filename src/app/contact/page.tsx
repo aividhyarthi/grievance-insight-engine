@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -27,6 +27,16 @@ export default function ContactPage() {
   const [inquiry, setInquiry] = useState<Inquiry>("general");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
+
+  // Pre-select inquiry type from ?inquiry= URL param (e.g. /contact?inquiry=investor)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("inquiry");
+    if (q && inquiryOptions.some((o) => o.value === q)) {
+      setInquiry(q as Inquiry);
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

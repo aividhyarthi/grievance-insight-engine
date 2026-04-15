@@ -28,6 +28,7 @@ export default function Footer() {
               <li><a href="/team" className="hover:text-white transition-colors">Our Team</a></li>
               <li><a href="/#b2b" className="hover:text-white transition-colors">For Employers</a></li>
               <li><a href="/events/perimenopause-point-cook" className="hover:text-white transition-colors">Events</a></li>
+              <li><a href="/investors" className="hover:text-white transition-colors">Investors</a></li>
               <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
