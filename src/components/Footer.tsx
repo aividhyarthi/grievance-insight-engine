@@ -16,18 +16,19 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white/60 mb-4 text-sm uppercase tracking-wider">Care</h4>
             <ul className="space-y-3 text-sm text-white/40">
-              <li><a href="#services" className="hover:text-white transition-colors">What We Treat</a></li>
-              <li><a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="#why-us" className="hover:text-white transition-colors">Why HerMidlife</a></li>
+              <li><a href="/#services" className="hover:text-white transition-colors">What We Treat</a></li>
+              <li><a href="/#how-it-works" className="hover:text-white transition-colors">How It Works</a></li>
+              <li><a href="/#why-us" className="hover:text-white transition-colors">Why HerMidlife</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold text-white/60 mb-4 text-sm uppercase tracking-wider">Company</h4>
             <ul className="space-y-3 text-sm text-white/40">
-              <li><a href="#team" className="hover:text-white transition-colors">Our Team</a></li>
-              <li><a href="#b2b" className="hover:text-white transition-colors">For Employers</a></li>
-              <li><a href="#events" className="hover:text-white transition-colors">Events & Education</a></li>
+              <li><a href="/team" className="hover:text-white transition-colors">Our Team</a></li>
+              <li><a href="/#b2b" className="hover:text-white transition-colors">For Employers</a></li>
+              <li><a href="/events/perimenopause-point-cook" className="hover:text-white transition-colors">Events</a></li>
+              <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
 
@@ -35,8 +36,8 @@ export default function Footer() {
             <h4 className="font-semibold text-white/60 mb-4 text-sm uppercase tracking-wider">Get in Touch</h4>
             <ul className="space-y-3 text-sm text-white/40">
               <li>
-                <a href="mailto:rudra@appstudiox.com" className="hover:text-white transition-colors">
-                  rudra@appstudiox.com
+                <a href="mailto:listen@hermidlife.org" className="hover:text-white transition-colors">
+                  listen@hermidlife.org
                 </a>
               </li>
               <li>Melbourne, Australia</li>

@@ -67,6 +67,18 @@ export default function Team() {
             </div>
           ))}
         </div>
+
+        <div className="mt-16 text-center">
+          <a
+            href="/team"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-base font-semibold text-white gradient-cta hover:opacity-90 transition-opacity shadow-lg"
+          >
+            Meet the Full Team
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );

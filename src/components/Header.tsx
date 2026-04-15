@@ -3,13 +3,13 @@
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "What We Treat" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#why-us", label: "Why HerMidlife" },
-  { href: "#team", label: "Our Team" },
+  { href: "/#about", label: "About" },
+  { href: "/#services", label: "What We Treat" },
+  { href: "/#how-it-works", label: "How It Works" },
+  { href: "/team", label: "Team" },
   { href: "/events/perimenopause-point-cook", label: "Events", isNew: true },
-  { href: "#b2b", label: "For Employers" },
+  { href: "/#b2b", label: "For Employers" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
@@ -83,7 +83,7 @@ export default function Header() {
                 </a>
               ))}
               <a
-                href="mailto:rudra@appstudiox.com"
+                href="/contact"
                 className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold text-white gradient-cta hover:opacity-90 transition-opacity shadow-md"
               >
                 Start Your Journey
@@ -124,7 +124,7 @@ export default function Header() {
               ))}
               <div className="px-4 pt-2">
                 <a
-                  href="mailto:rudra@appstudiox.com"
+                  href="/contact"
                   className="block text-center px-6 py-3 rounded-full text-sm font-semibold text-white gradient-cta"
                   onClick={() => setMobileOpen(false)}
                 >
