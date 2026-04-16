@@ -16,9 +16,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white/60 mb-4 text-sm uppercase tracking-wider">Care</h4>
             <ul className="space-y-3 text-sm text-white/40">
-              <li><a href="/#services" className="hover:text-white transition-colors">What We Treat</a></li>
-              <li><a href="/#how-it-works" className="hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="/#why-us" className="hover:text-white transition-colors">Why HerMidlife</a></li>
+              <li><a href="/what-we-treat" className="hover:text-white transition-colors">What We Treat</a></li>
+              <li><a href="/how-it-works" className="hover:text-white transition-colors">How It Works</a></li>
+              <li><a href="/perimenopause" className="hover:text-white transition-colors">Perimenopause</a></li>
+              <li><a href="/for-employers" className="hover:text-white transition-colors">For Employers</a></li>
             </ul>
           </div>
 
@@ -26,7 +27,6 @@ export default function Footer() {
             <h4 className="font-semibold text-white/60 mb-4 text-sm uppercase tracking-wider">Company</h4>
             <ul className="space-y-3 text-sm text-white/40">
               <li><a href="/team" className="hover:text-white transition-colors">Our Team</a></li>
-              <li><a href="/#b2b" className="hover:text-white transition-colors">For Employers</a></li>
               <li><a href="/events/perimenopause-point-cook" className="hover:text-white transition-colors">Events</a></li>
               <li><a href="/investors" className="hover:text-white transition-colors">Investors</a></li>
               <li><a href="/faq" className="hover:text-white transition-colors">FAQ</a></li>

@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "What We Treat" },
-  { href: "/#how-it-works", label: "How It Works" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/what-we-treat", label: "What We Treat" },
+  { href: "/perimenopause", label: "Perimenopause" },
+  { href: "/for-employers", label: "For Employers" },
   { href: "/team", label: "Team" },
   { href: "/events/perimenopause-point-cook", label: "Events", isNew: true },
-  { href: "/#b2b", label: "For Employers" },
   { href: "/contact", label: "Contact" },
 ];
 
