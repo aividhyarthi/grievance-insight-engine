@@ -1,67 +1,45 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getPosts, stripHtml, formatDate, getFirstTag } from '../../lib/wordpress';
-
-const page = Number(Astro.url.searchParams.get('page')) || 1;
-
-let allPosts = [];
-let totalPages = 1;
-
-try {
-  const result = await getPosts(page, 12);
-  allPosts = result.posts;
-  totalPages = result.totalPages;
-} catch (e) {
-  console.error('Failed to fetch posts from WordPress:', e);
-}
 ---
 
-<BaseLayout title="Blog | Rudra Kasturi" description="All blog posts by Rudra Kasturi">
-  <div class="container">
-    <div class="page-header">
-      <h1>Blog</h1>
-      <p>All my posts in one place. Thoughts on tech, AI, and building things.</p>
+<BaseLayout
+  title="Health Blog – QuitDr | Smoking Cessation Tips & Resources"
+  description="Evidence-based articles on quitting smoking, nicotine dependence, and maintaining a smoke-free life. Written with guidance from Australian doctors."
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:rgba(255,255,255,.8); background:rgba(255,255,255,.15); margin-bottom:1rem; display:inline-flex;">Health Resources</span>
+      <h1>Quit Smoking — Tips &amp; Resources</h1>
+      <p>Evidence-based articles and guides to support your smoke-free journey.</p>
     </div>
+  </section>
 
-    {allPosts.length > 0 ? (
-      <div class="posts-grid" style="padding-bottom: 2rem;">
-        {allPosts.map((post) => {
-          const tag = getFirstTag(post);
-          const excerpt = stripHtml(post.excerpt.rendered);
-          return (
-            <article class="post-card">
-              {tag && <span class="tag">{tag}</span>}
-              <h3><a href={`https://blog.rudrakasturi.com/blog/${post.slug}`} set:html={post.title.rendered} /></h3>
-              <p>{excerpt.length > 150 ? excerpt.slice(0, 150) + '...' : excerpt}</p>
-              <span class="post-meta">{formatDate(post.date)}</span>
-            </article>
-          );
-        })}
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        {[
+          { title: "Understanding Nicotine Dependence", tag: "Education", excerpt: "Why quitting is hard — and why doctor-led support makes a measurable difference." },
+          { title: "NRT vs Pharmacotherapy: What's the Difference?", tag: "Treatment", excerpt: "An overview of the treatment options available if clinically appropriate, and how they work." },
+          { title: "The First 72 Hours After Quitting", tag: "Quit Tips", excerpt: "What to expect in the first three days — and how to manage withdrawal symptoms effectively." },
+          { title: "How to Handle Smoking Triggers", tag: "Behavioural Support", excerpt: "Identifying your personal triggers and building strategies to manage cravings without cigarettes." },
+          { title: "Why Most Quit Attempts Fail (And What to Do About It)", tag: "Insight", excerpt: "The evidence on why unassisted quit attempts rarely succeed, and the role structured support plays." },
+        ].map(post => (
+          <div class="card" style="display:flex; flex-direction:column; gap:.75rem;">
+            <span class="pill">{post.tag}</span>
+            <h2 style="font-size:1.15rem; font-weight:700;">{post.title}</h2>
+            <p style="color:var(--clr-text-secondary); font-size:.95rem;">{post.excerpt}</p>
+            <div style="margin-top:.5rem;">
+              <a href="/book" class="btn btn-outline btn-sm">Book a Consult to Learn More</a>
+            </div>
+          </div>
+        ))}
       </div>
-    ) : (
-      <p class="section-subtitle" style="text-align:center; padding: 4rem 0;">No posts found. Check back soon!</p>
-    )}
 
-    {totalPages > 1 && (
-      <nav class="pagination">
-        {page > 1 && <a href={`/blog?page=${page - 1}`} class="btn btn-outline">&larr; Newer</a>}
-        <span class="pagination-info">Page {page} of {totalPages}</span>
-        {page < totalPages && <a href={`/blog?page=${page + 1}`} class="btn btn-outline">Older &rarr;</a>}
-      </nav>
-    )}
-  </div>
+      <div style="text-align:center; margin-top:3rem; padding:2.5rem; background:var(--clr-primary-light); border-radius:var(--radius-lg);">
+        <h3 style="font-weight:700; margin-bottom:.75rem;">Ready to Take Action?</h3>
+        <p style="color:var(--clr-text-secondary); margin-bottom:1.5rem;">Book a $10 doctor consultation and get a personalised quit plan today.</p>
+        <a href="/book" class="btn btn-primary">Book $10 Consult</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 2rem 0 4rem;
-  }
-  .pagination-info {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-  }
-</style>

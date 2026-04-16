@@ -1,10 +1,16 @@
 ---
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
+  ogTitle?: string;
 }
 
-const { title, description = "Rudra Kasturi | Global Digital & AI Leader | CSO, SVP, Founder | Search, AI & Growth" } = Astro.props;
+const {
+  title = 'QuitDr – Doctor-Led Smoking Cessation | Australia',
+  description = 'Quit smoking with doctor-led telehealth support. $10 consult. Personalised quit plan. Discreet medication delivery in 24–48 hrs. Australian-registered doctors.',
+  ogTitle,
+} = Astro.props;
+
 const currentPath = Astro.url.pathname;
 ---
 
@@ -14,22 +20,41 @@ const currentPath = Astro.url.pathname;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={ogTitle || title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
+
+    <!-- Navbar -->
     <nav class="navbar">
-      <div class="container">
-        <a href="/" class="navbar-brand">Rudra Kasturi <span>Inc.</span></a>
-        <ul class="navbar-links">
+      <div class="container navbar-inner">
+        <a href="/" class="navbar-brand">
+          Quit<span class="brand-dr">Dr</span>
+        </a>
+
+        <ul class="navbar-links" id="navbar-links">
           <li><a href="/" class:list={[{ active: currentPath === '/' }]}>Home</a></li>
-          <li><a href="/blog" class:list={[{ active: currentPath.startsWith('/blog') }]}>Blog</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/services" class:list={[{ active: currentPath === '/services' }]}>Services</a></li>
+          <li><a href="/employers" class:list={[{ active: currentPath === '/employers' }]}>For Employers</a></li>
+          <li><a href="/faq" class:list={[{ active: currentPath === '/faq' }]}>FAQ</a></li>
         </ul>
+
+        <a href="/book" class="btn btn-primary navbar-cta">Book $10 Consult</a>
+
+        <button class="navbar-mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
       </div>
     </nav>
 
@@ -37,11 +62,86 @@ const currentPath = Astro.url.pathname;
       <slot />
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <p>&copy; {new Date().getFullYear()} Rudra Kasturi. All rights reserved.</p>
+        <div class="footer-grid">
+          <!-- Brand col -->
+          <div>
+            <div class="footer-brand-name">Quit<span class="brand-dr">Dr</span></div>
+            <p class="footer-tagline">Doctor-led smoking cessation via telehealth. Affordable, discreet, and evidence-based care for Australians ready to quit.</p>
+            <div class="footer-disclaimer">
+              This service provides general medical support for smoking cessation via telehealth. Treatments and outcomes vary between individuals. Medications are prescribed only if clinically appropriate. Please consult a healthcare professional to determine what is right for you. This is a telehealth service. Results vary between individuals.
+            </div>
+          </div>
+
+          <!-- Services col -->
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="/services#consult">$10 Doctor Consult</a></li>
+              <li><a href="/services#program">$299 Quit Program</a></li>
+              <li><a href="/services#pharmacy">Pharmacy Delivery</a></li>
+              <li><a href="/book">Book Now</a></li>
+            </ul>
+          </div>
+
+          <!-- Company col -->
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/employers">For Employers</a></li>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/disclaimer">Medical Disclaimer</a></li>
+              <li><a href="/consent">Telehealth Consent</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal col -->
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms &amp; Conditions</a></li>
+              <li><a href="/disclaimer">Medical Disclaimer</a></li>
+              <li><a href="/consent">Telehealth Consent</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} QuitDr. All rights reserved. Australian-registered telehealth service. Not covered by Medicare.</p>
+          <div class="footer-legal-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/consent">Consent</a>
+          </div>
+        </div>
       </div>
     </footer>
+
+    <!-- Mobile nav toggle -->
+    <script>
+      const toggle = document.getElementById('mobile-toggle');
+      const links = document.getElementById('navbar-links');
+      toggle?.addEventListener('click', () => {
+        links?.classList.toggle('open');
+      });
+    </script>
+
+    <!-- FAQ accordion (if present on page) -->
+    <script>
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item?.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+          if (!isOpen) item?.classList.add('open');
+        });
+      });
+    </script>
+
   </body>
 </html>
 
