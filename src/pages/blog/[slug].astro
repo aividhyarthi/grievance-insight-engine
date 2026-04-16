@@ -1,17 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-// Blog articles are placeholder — redirect unknown slugs to blog index
-export function getStaticPaths() {
-  return [];
-}
+// SSR mode — redirect any unknown blog slugs back to /blog
+return Astro.redirect('/blog', 301);
 ---
 
-<BaseLayout title="Article Not Found – QuitDr">
+<BaseLayout title="QuitDr – Health Resources">
   <section class="page-hero" style="padding:3rem 0;">
     <div class="container">
       <h1>Article Not Found</h1>
-      <p>This article doesn't exist yet.</p>
+      <p>This article doesn't exist.</p>
     </div>
   </section>
   <section class="section">

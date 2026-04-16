@@ -7,9 +7,6 @@ RUN npm ci
 
 COPY . .
 
-ARG WP_SITE_URL=https://rudrakasturi.wordpress.com
-ENV WP_SITE_URL=${WP_SITE_URL}
-
 RUN npm run build
 
 FROM node:20-alpine AS runtime
