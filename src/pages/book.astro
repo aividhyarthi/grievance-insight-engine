@@ -1,0 +1,317 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Read query param on client side via script
+---
+
+<BaseLayout
+  title="Book Your $10 Doctor Consult – QuitDr"
+  description="Book your $10 telehealth consultation with an Australian-registered doctor. Complete a short intake form and start your personalised smoking cessation journey."
+>
+
+  <!-- Page hero -->
+  <section class="page-hero" style="padding: 3rem 0;">
+    <div class="container">
+      <h1>Book Your Consultation</h1>
+      <p>Complete the intake form below. Your doctor will review your responses and contact you to confirm your appointment.</p>
+    </div>
+  </section>
+
+  <!-- Booking section -->
+  <section class="section section-alt" style="padding-top: 3rem;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: start;">
+
+        <!-- Form -->
+        <div style="background:#fff; border-radius:var(--radius-lg); border:1px solid var(--clr-border); padding:2.5rem; box-shadow:var(--shadow-sm);">
+
+          <!-- Plan selector -->
+          <div style="margin-bottom: 2rem;">
+            <div class="form-section-title">Select Your Plan</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;" id="plan-selector">
+              <label class="plan-option" id="plan-consult">
+                <input type="radio" name="plan" value="consult" checked style="display:none;" />
+                <div class="plan-card plan-card-active">
+                  <div style="font-weight:700; font-size:1.05rem; margin-bottom:.25rem;">Doctor Consult</div>
+                  <div style="font-size:1.6rem; font-weight:900; color:var(--clr-cta);">$10</div>
+                  <div style="font-size:.8rem; color:var(--clr-text-muted); margin-top:.25rem;">One-time appointment</div>
+                </div>
+              </label>
+              <label class="plan-option" id="plan-program">
+                <input type="radio" name="plan" value="program" style="display:none;" />
+                <div class="plan-card">
+                  <div style="font-weight:700; font-size:1.05rem; margin-bottom:.25rem;">3-Month Program</div>
+                  <div style="font-size:1.6rem; font-weight:900; color:var(--clr-primary);">$299</div>
+                  <div style="font-size:.8rem; color:var(--clr-text-muted); margin-top:.25rem;">Full structured program</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <form id="booking-form" novalidate>
+            <!-- Personal details -->
+            <div class="form-section-title">Personal Details</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name <span class="required">*</span></label>
+                <input type="text" class="form-input" name="first_name" placeholder="Jane" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name <span class="required">*</span></label>
+                <input type="text" class="form-input" name="last_name" placeholder="Smith" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" class="form-input" name="email" placeholder="jane@example.com" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="tel" class="form-input" name="phone" placeholder="04XX XXX XXX" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Date of Birth <span class="required">*</span></label>
+                <input type="date" class="form-input" name="dob" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">State / Territory <span class="required">*</span></label>
+                <select class="form-select" name="state" required>
+                  <option value="">Select state</option>
+                  <option>NSW</option>
+                  <option>VIC</option>
+                  <option>QLD</option>
+                  <option>WA</option>
+                  <option>SA</option>
+                  <option>TAS</option>
+                  <option>ACT</option>
+                  <option>NT</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Smoking history -->
+            <div class="form-section-title" style="margin-top:.5rem;">Smoking History</div>
+            <div class="form-group">
+              <label class="form-label">How many cigarettes do you smoke per day? <span class="required">*</span></label>
+              <select class="form-select" name="cigarettes_per_day" required>
+                <option value="">Select an option</option>
+                <option>1–5</option>
+                <option>6–10</option>
+                <option>11–20</option>
+                <option>More than 20</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">How long have you been smoking? <span class="required">*</span></label>
+                <select class="form-select" name="years_smoking" required>
+                  <option value="">Select an option</option>
+                  <option>Less than 1 year</option>
+                  <option>1–5 years</option>
+                  <option>5–10 years</option>
+                  <option>10–20 years</option>
+                  <option>More than 20 years</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Have you tried to quit before?</label>
+                <select class="form-select" name="quit_attempts">
+                  <option value="">Select an option</option>
+                  <option>No, this is my first attempt</option>
+                  <option>Yes, once</option>
+                  <option>Yes, 2–5 times</option>
+                  <option>Yes, more than 5 times</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">What motivates you to quit?</label>
+              <textarea class="form-textarea" name="motivation" placeholder="e.g. health concerns, family, cost savings..."></textarea>
+            </div>
+
+            <!-- Medical history -->
+            <div class="form-section-title" style="margin-top:.5rem;">Medical History</div>
+            <div class="form-group">
+              <label class="form-label">Do you have any current medical conditions? <span class="required">*</span></label>
+              <textarea class="form-textarea" name="medical_conditions" placeholder="e.g. heart disease, diabetes, asthma, high blood pressure... or type 'None'" style="min-height:80px;" required></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Are you currently taking any medications?</label>
+              <textarea class="form-textarea" name="current_medications" placeholder="List all current medications, including over-the-counter... or type 'None'" style="min-height:80px;"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Do you have any known allergies?</label>
+              <input type="text" class="form-input" name="allergies" placeholder="e.g. penicillin, latex... or type 'None'" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Are you pregnant or breastfeeding?</label>
+              <select class="form-select" name="pregnancy_status">
+                <option value="">Select an option</option>
+                <option>No</option>
+                <option>Yes, pregnant</option>
+                <option>Yes, breastfeeding</option>
+                <option>Not applicable</option>
+              </select>
+            </div>
+
+            <!-- Consent -->
+            <div class="form-section-title" style="margin-top:.5rem;">Consent &amp; Agreement</div>
+            <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem;">
+              <label style="display:flex; gap:.75rem; align-items:flex-start; cursor:pointer; font-size:.9rem; color:var(--clr-text-secondary);">
+                <input type="checkbox" name="consent_telehealth" required style="margin-top:.2rem; flex-shrink:0; accent-color:var(--clr-primary);" />
+                I consent to receiving telehealth medical services from QuitDr. I understand this is a private telehealth service not covered by Medicare. <a href="/consent" style="color:var(--clr-primary);">Read Telehealth Consent</a>
+              </label>
+              <label style="display:flex; gap:.75rem; align-items:flex-start; cursor:pointer; font-size:.9rem; color:var(--clr-text-secondary);">
+                <input type="checkbox" name="consent_privacy" required style="margin-top:.2rem; flex-shrink:0; accent-color:var(--clr-primary);" />
+                I have read and agree to the <a href="/privacy" style="color:var(--clr-primary);">Privacy Policy</a> and <a href="/terms" style="color:var(--clr-primary);">Terms &amp; Conditions</a>.
+              </label>
+              <label style="display:flex; gap:.75rem; align-items:flex-start; cursor:pointer; font-size:.9rem; color:var(--clr-text-secondary);">
+                <input type="checkbox" name="consent_accurate" required style="margin-top:.2rem; flex-shrink:0; accent-color:var(--clr-primary);" />
+                I confirm the information I have provided is accurate and complete to the best of my knowledge.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">
+              Proceed to Payment — <span id="submit-price">$10</span>
+            </button>
+            <p style="text-align:center; font-size:.8rem; color:var(--clr-text-muted); margin-top:.75rem;">
+              &#128274; Secure payment powered by Stripe. Your information is encrypted and protected.
+            </p>
+          </form>
+        </div>
+
+        <!-- Sidebar -->
+        <div style="position:sticky; top:80px; display:flex; flex-direction:column; gap:1.5rem;">
+          <!-- Summary card -->
+          <div style="background:#fff; border-radius:var(--radius); border:1px solid var(--clr-border); padding:1.75rem;">
+            <h3 style="font-weight:700; font-size:1rem; margin-bottom:1.25rem;">Order Summary</h3>
+            <div id="summary-plan" style="display:flex; justify-content:space-between; margin-bottom:.75rem; font-size:.95rem;">
+              <span>Doctor Consultation</span>
+              <strong>$10</strong>
+            </div>
+            <div style="border-top:1px solid var(--clr-border); padding-top:.75rem; display:flex; justify-content:space-between; font-weight:700;">
+              <span>Total</span>
+              <span id="summary-total" style="color:var(--clr-cta); font-size:1.15rem;">$10</span>
+            </div>
+            <p style="font-size:.75rem; color:var(--clr-text-muted); margin-top:.75rem;">Medication delivery ($15 flat fee) is added at checkout if prescribed.</p>
+          </div>
+
+          <!-- What to expect -->
+          <div style="background:var(--clr-primary-light); border-radius:var(--radius); padding:1.75rem;">
+            <h3 style="font-weight:700; font-size:.95rem; margin-bottom:1rem; color:var(--clr-primary);">What Happens Next</h3>
+            <ol style="padding-left:1.25rem; display:flex; flex-direction:column; gap:.75rem; list-style:decimal;">
+              <li style="font-size:.85rem; color:var(--clr-text-secondary);">Payment confirmed via Stripe</li>
+              <li style="font-size:.85rem; color:var(--clr-text-secondary);">Doctor reviews your intake form</li>
+              <li style="font-size:.85rem; color:var(--clr-text-secondary);">Consult confirmed within 24 hours</li>
+              <li style="font-size:.85rem; color:var(--clr-text-secondary);">Telehealth appointment (if required)</li>
+              <li style="font-size:.85rem; color:var(--clr-text-secondary);">Quit plan &amp; prescription issued</li>
+            </ol>
+          </div>
+
+          <!-- Trust -->
+          <div style="background:var(--clr-bg-section); border-radius:var(--radius); padding:1.5rem; display:flex; flex-direction:column; gap:.75rem;">
+            <div class="trust-item" style="justify-content:flex-start; font-size:.85rem;">
+              <div class="trust-icon" style="width:32px;height:32px;font-size:.9rem;">&#9874;</div>
+              Australian-registered doctors
+            </div>
+            <div class="trust-item" style="justify-content:flex-start; font-size:.85rem;">
+              <div class="trust-icon" style="width:32px;height:32px;font-size:.9rem;">&#128274;</div>
+              Private &amp; confidential
+            </div>
+            <div class="trust-item" style="justify-content:flex-start; font-size:.85rem;">
+              <div class="trust-icon" style="width:32px;height:32px;font-size:.9rem;">&#127891;</div>
+              TGA &amp; AHPRA compliant
+            </div>
+          </div>
+
+          <div class="compliance-box">
+            <span class="icon">&#9888;</span>
+            <span style="font-size:.78rem;">Results vary between individuals. Medications are prescribed only if clinically appropriate. This is a telehealth service.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .plan-card {
+    border: 2px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: all .2s;
+    text-align: center;
+  }
+  .plan-card:hover { border-color: var(--clr-primary); }
+  .plan-card-active {
+    border-color: var(--clr-cta) !important;
+    background: #FFF7ED;
+  }
+  .plan-option { cursor: pointer; }
+
+  @media (max-width: 960px) {
+    section .container > div[style*="grid-template-columns: 1fr 380px"] {
+      grid-template-columns: 1fr !important;
+    }
+    div[style*="position:sticky"] { position: static !important; }
+  }
+  @media (max-width: 640px) {
+    .form-row { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<script>
+  // URL param plan pre-selection
+  const params = new URLSearchParams(window.location.search);
+  const planParam = params.get('plan');
+
+  const consultCard = document.querySelector('#plan-consult .plan-card') as HTMLElement;
+  const programCard = document.querySelector('#plan-program .plan-card') as HTMLElement;
+  const consultRadio = document.querySelector('#plan-consult input') as HTMLInputElement;
+  const programRadio = document.querySelector('#plan-program input') as HTMLInputElement;
+  const submitPrice = document.getElementById('submit-price');
+  const summaryPlan = document.getElementById('summary-plan');
+  const summaryTotal = document.getElementById('summary-total');
+
+  function selectPlan(plan: string) {
+    if (plan === 'program') {
+      consultCard?.classList.remove('plan-card-active');
+      programCard?.classList.add('plan-card-active');
+      if (consultRadio) consultRadio.checked = false;
+      if (programRadio) programRadio.checked = true;
+      if (submitPrice) submitPrice.textContent = '$299';
+      if (summaryTotal) summaryTotal.textContent = '$299';
+      if (summaryPlan) summaryPlan.innerHTML = '<span>3-Month Program</span><strong>$299</strong>';
+    } else {
+      programCard?.classList.remove('plan-card-active');
+      consultCard?.classList.add('plan-card-active');
+      if (consultRadio) consultRadio.checked = true;
+      if (programRadio) programRadio.checked = false;
+      if (submitPrice) submitPrice.textContent = '$10';
+      if (summaryTotal) summaryTotal.textContent = '$10';
+      if (summaryPlan) summaryPlan.innerHTML = '<span>Doctor Consultation</span><strong>$10</strong>';
+    }
+  }
+
+  if (planParam === 'program') selectPlan('program');
+
+  document.querySelector('#plan-consult')?.addEventListener('click', () => selectPlan('consult'));
+  document.querySelector('#plan-program')?.addEventListener('click', () => selectPlan('program'));
+
+  // Form submit handler (demo — real integration uses Stripe)
+  document.getElementById('booking-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    alert('Thank you for booking. In production this would redirect to Stripe checkout. Your doctor will be in touch within 24 hours.');
+  });
+</script>

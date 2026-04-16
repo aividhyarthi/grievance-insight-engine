@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    category: "About the Service",
+    items: [
+      {
+        q: "Is QuitDr a doctor-led service?",
+        a: "Yes. All consultations are conducted by Australian-registered doctors. QuitDr is not a coaching app or chatbot — it is a genuine telehealth medical service."
+      },
+      {
+        q: "Is this service covered by Medicare?",
+        a: "No. QuitDr is a private telehealth service and is not covered by Medicare. All fees are paid directly by you or your employer."
+      },
+      {
+        q: "Is my information secure and confidential?",
+        a: "Yes. QuitDr complies with the Australian Privacy Act 1988 and Australian privacy laws. Your health information is stored securely and shared only with your treating doctor and the dispensing pharmacy."
+      },
+      {
+        q: "Who can use QuitDr?",
+        a: "QuitDr is available to adults aged 18 and over in Australia. If you are pregnant, breastfeeding, or have significant health conditions, please disclose this in your intake form so your doctor can advise appropriately."
+      },
+      {
+        q: "What technology do I need for the telehealth consult?",
+        a: "A smartphone, tablet, or computer with a working camera and microphone is sufficient. You'll need a stable internet connection. Your doctor will send a secure link to join the video consultation."
+      }
+    ]
+  },
+  {
+    category: "Doctor Consultation ($10)",
+    items: [
+      {
+        q: "What happens during the $10 consult?",
+        a: "You'll complete a detailed intake questionnaire online covering your smoking history, medical history, and current medications. Your doctor reviews your responses and — if a call is required — schedules a 10–15 minute telehealth appointment. You'll receive a personalised smoking cessation assessment and quit plan."
+      },
+      {
+        q: "Do I need a GP referral?",
+        a: "No referral is needed. You can book directly with QuitDr."
+      },
+      {
+        q: "How long does the consult take?",
+        a: "The online intake form takes approximately 10–15 minutes. If a video consultation is required, it is typically 10–15 minutes."
+      },
+      {
+        q: "What if I just want a consult without a program?",
+        a: "That's absolutely fine. The $10 consult is a standalone product. You can choose to add the 3-Month Program later if you'd like ongoing structured support."
+      }
+    ]
+  },
+  {
+    category: "3-Month Program ($299)",
+    items: [
+      {
+        q: "What is included in the $299 3-Month Program?",
+        a: "The program includes your initial doctor consultation, weekly and fortnightly follow-up appointments, a structured quitting plan, behavioural coaching, NRT and pharmacotherapy guidance, progress tracking, and prescription management throughout the 3 months."
+      },
+      {
+        q: "Does the program guarantee I will quit smoking?",
+        a: "No. Outcomes vary between individuals. The program is designed to support quitting through evidence-based care and structured doctor-led support, which research shows improves success rates. Consult your doctor to understand what's right for you."
+      },
+      {
+        q: "Can I upgrade from the $10 consult to the $299 program?",
+        a: "Yes. After your initial consultation, your doctor may recommend the 3-Month Program if it suits your situation. You can upgrade at any time."
+      },
+      {
+        q: "How often will I speak with my doctor?",
+        a: "The program includes weekly check-ins in the early weeks, transitioning to fortnightly follow-ups as you progress. Your doctor will tailor the schedule based on your needs."
+      }
+    ]
+  },
+  {
+    category: "Medication & Delivery",
+    items: [
+      {
+        q: "Do you provide medication to help quit smoking?",
+        a: "Doctors may prescribe treatment — including nicotine replacement therapy (NRT) or other pharmacotherapy — if clinically appropriate based on your individual assessment. Medication is not guaranteed and is determined solely by your treating doctor."
+      },
+      {
+        q: "How does medication delivery work?",
+        a: "Once your doctor issues a prescription, it is sent digitally to our partner pharmacy. The pharmacy dispenses your medication and ships it to your specified address in discreet packaging."
+      },
+      {
+        q: "How long does delivery take?",
+        a: "Medication is typically delivered within 24–48 hours of the prescription being processed."
+      },
+      {
+        q: "What does delivery cost?",
+        a: "Delivery is a flat $15 fee. Delivery is free on medication orders over $150."
+      },
+      {
+        q: "What type of medications might be prescribed?",
+        a: "NRT and pharmacotherapy options are available if clinically appropriate. Specific medications are not directly promoted by QuitDr — your doctor will advise on suitable options based on your health history."
+      }
+    ]
+  },
+  {
+    category: "Compliance & Regulation",
+    items: [
+      {
+        q: "Is QuitDr compliant with Australian regulations?",
+        a: "Yes. QuitDr operates in accordance with the Therapeutic Goods Administration (TGA), AHPRA advertising guidelines, and Australian Consumer Law. All doctors are registered with AHPRA."
+      },
+      {
+        q: "Are you AHPRA-registered?",
+        a: "All doctors providing consultations through QuitDr are registered with the Australian Health Practitioner Regulation Agency (AHPRA)."
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="FAQ – QuitDr | Common Questions About Our Telehealth Service"
+  description="Answers to common questions about QuitDr's doctor-led smoking cessation service — consultations, programs, medication delivery, and compliance."
+>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:rgba(255,255,255,.8); background:rgba(255,255,255,.15); margin-bottom:1rem; display:inline-flex;">FAQ</span>
+      <h1>Frequently Asked Questions</h1>
+      <p>Everything you need to know about QuitDr's doctor-led smoking cessation service.</p>
+    </div>
+  </section>
+
+  <!-- FAQ content -->
+  <section class="section">
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto;">
+        {faqs.map((group) => (
+          <div style="margin-bottom: 3rem;">
+            <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--clr-primary); margin-bottom: 1.25rem; padding-bottom: .75rem; border-bottom: 2px solid var(--clr-primary-light);">
+              {group.category}
+            </h2>
+            <div class="faq-list" style="margin-top: 0;">
+              {group.items.map((item) => (
+                <div class="faq-item">
+                  <button class="faq-question">
+                    {item.q}
+                    <span class="faq-arrow">+</span>
+                  </button>
+                  <div class="faq-answer">
+                    {item.a}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- Compliance disclaimer -->
+        <div class="compliance-box" style="margin-top: 2rem;">
+          <span class="icon">&#128274;</span>
+          <span>
+            This service provides general medical support for smoking cessation via telehealth. Treatments and outcomes vary between individuals. Medications are prescribed only if clinically appropriate. Please consult a healthcare professional to determine what is right for you. Results vary between individuals. This is a telehealth service.
+          </span>
+        </div>
+
+        <!-- Still have questions CTA -->
+        <div style="text-align:center; margin-top:3rem; padding:2.5rem; background:var(--clr-primary-light); border-radius:var(--radius-lg);">
+          <h3 style="font-weight:700; margin-bottom:.75rem; color:var(--clr-text);">Still Have Questions?</h3>
+          <p style="color:var(--clr-text-secondary); margin-bottom:1.5rem; font-size:.95rem;">Your doctor can answer any medical questions during your consultation. For general enquiries, contact our support team.</p>
+          <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+            <a href="/book" class="btn btn-primary">Book $10 Consult</a>
+            <a href="mailto:support@quitdr.com.au" class="btn btn-outline">Contact Support</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

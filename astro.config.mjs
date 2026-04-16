@@ -2,12 +2,9 @@ import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 
 export default defineConfig({
-  site: 'https://blog.rudrakasturi.com',
+  site: 'https://quitdr.com.au',
   output: 'server',
   adapter: node({
     mode: 'standalone',
   }),
-  vite: {
-    envPrefix: 'WP_',
-  },
 });

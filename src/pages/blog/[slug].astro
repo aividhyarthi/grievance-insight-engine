@@ -1,33 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getPostBySlug, formatDate, getFirstTag, stripHtml } from '../../lib/wordpress';
-
-const { slug } = Astro.params;
-const post = await getPostBySlug(slug!);
-
-if (!post) {
-  return Astro.redirect('/blog');
-}
-
-const tag = getFirstTag(post);
-const description = stripHtml(post.excerpt.rendered).slice(0, 160);
+// SSR mode — redirect any unknown blog slugs back to /blog
+return Astro.redirect('/blog', 301);
 ---
 
-<BaseLayout title={`${stripHtml(post.title.rendered)} | Rudra Kasturi`} description={description}>
-  <div class="container">
-    <div class="post-header">
-      <a href="/blog" class="back-link">&larr; Back to all posts</a>
-      <h1 set:html={post.title.rendered} />
-      <p class="post-meta">
-        Published on {formatDate(post.date)}
-        {post.modified !== post.date && <span> · Updated {formatDate(post.modified)}</span>}
-      </p>
-      {tag && (
-        <div class="post-tags">
-          <span class="tag">{tag}</span>
-        </div>
-      )}
+<BaseLayout title="QuitDr – Health Resources">
+  <section class="page-hero" style="padding:3rem 0;">
+    <div class="container">
+      <h1>Article Not Found</h1>
+      <p>This article doesn't exist.</p>
     </div>
-    <article class="post-content" set:html={post.content.rendered} />
-  </div>
+  </section>
+  <section class="section">
+    <div class="container" style="text-align:center;">
+      <a href="/blog" class="btn btn-outline">Back to Health Resources</a>
+    </div>
+  </section>
 </BaseLayout>
