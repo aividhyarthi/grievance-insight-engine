@@ -21,14 +21,25 @@ const inquiryOptions: { value: Inquiry; label: string }[] = [
   { value: "investor", label: "Investor enquiry" },
 ];
 
+const timelineOptions = [
+  "As soon as possible",
+  "Within the next month",
+  "In the next 3 months",
+  "Just exploring for now",
+];
+
 export default function ContactPage() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [inquiry, setInquiry] = useState<Inquiry>("general");
+  const [phone, setPhone] = useState("");
+  const [inquiry, setInquiry] = useState<Inquiry>("care");
+  const [challenges, setChallenges] = useState("");
+  const [beta, setBeta] = useState("");
+  const [timeline, setTimeline] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
 
-  // Pre-select inquiry type from ?inquiry= URL param (e.g. /contact?inquiry=investor)
   useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
@@ -42,14 +53,32 @@ export default function ContactPage() {
     e.preventDefault();
     const selectedLabel =
       inquiryOptions.find((o) => o.value === inquiry)?.label ?? "General question";
-    const subject = `[${selectedLabel}] ${name} — HerMidlife contact form`;
-    const body = `Name: ${name}\nEmail: ${email}\nEnquiry type: ${selectedLabel}\n\nMessage:\n${message}`;
+    const fullName = `${firstName} ${lastName}`.trim();
+    const subject = `[Waiting List] ${fullName} — HerMidlife`;
+    const body = [
+      `Name: ${fullName}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      `Enquiry type: ${selectedLabel}`,
+      ``,
+      `Top 3 challenges:`,
+      challenges,
+      ``,
+      `Open to beta group: ${beta}`,
+      `How soon looking for support: ${timeline}`,
+      message ? `\nAdditional message:\n${message}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
     const mailto = `mailto:listen@hermidlife.org?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
     setSent(true);
   };
+
+  const inputClass =
+    "w-full px-5 py-3 rounded-2xl bg-white border border-champagne text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-rose/40 focus:border-rose transition-all";
 
   return (
     <div className="min-h-screen bg-background">
@@ -64,17 +93,17 @@ export default function ContactPage() {
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-rose mb-3">
-            Get in Touch
+            Be the First
           </p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
-            We&apos;d love to
+            Join the
             <br />
-            <span className="text-gradient">hear from you</span>
+            <span className="text-gradient">waiting list</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
-            Whether you&apos;re looking for care, want to partner with us, or are
-            curious about what we&apos;re building — drop us a line and we&apos;ll
-            be in touch.
+            HerMidlife is launching soon. Join our waiting list to be among the
+            first to access doctor-led, personalised midlife care — or reach out
+            about partnerships and investment.
           </p>
         </div>
       </section>
@@ -103,13 +132,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">
-                      Email
-                    </p>
-                    <a
-                      href="mailto:listen@hermidlife.org"
-                      className="font-display text-lg font-bold text-foreground hover:text-rose transition-colors"
-                    >
+                    <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">Email</p>
+                    <a href="mailto:listen@hermidlife.org" className="font-display text-lg font-bold text-foreground hover:text-rose transition-colors">
                       listen@hermidlife.org
                     </a>
                   </div>
@@ -123,12 +147,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">
-                      Based in
-                    </p>
-                    <p className="font-display text-lg font-bold text-foreground">
-                      Melbourne, Australia
-                    </p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">Based in</p>
+                    <p className="font-display text-lg font-bold text-foreground">Melbourne, Australia</p>
                     <p className="text-sm text-foreground/50">Serving women across Australia</p>
                   </div>
                 </div>
@@ -140,12 +160,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">
-                      Response time
-                    </p>
-                    <p className="font-display text-lg font-bold text-foreground">
-                      Within 2 business days
-                    </p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">Response time</p>
+                    <p className="font-display text-lg font-bold text-foreground">Within 2 business days</p>
                     <p className="text-sm text-foreground/50">Mon–Fri, Melbourne time</p>
                   </div>
                 </div>
@@ -168,19 +184,35 @@ export default function ContactPage() {
                 onSubmit={handleSubmit}
                 className="bg-cream rounded-3xl p-8 sm:p-10 border border-champagne/40 shadow-sm space-y-6"
               >
-                <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
-                    Your name
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Jane Smith"
-                    className="w-full px-5 py-3 rounded-2xl bg-white border border-champagne text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-rose/40 focus:border-rose transition-all"
-                  />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-semibold text-foreground mb-2">
+                      First name
+                    </label>
+                    <input
+                      id="firstName"
+                      type="text"
+                      required
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="Jane"
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-semibold text-foreground mb-2">
+                      Last name
+                    </label>
+                    <input
+                      id="lastName"
+                      type="text"
+                      required
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Smith"
+                      className={inputClass}
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -194,7 +226,22 @@ export default function ContactPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="jane@example.com"
-                    className="w-full px-5 py-3 rounded-2xl bg-white border border-champagne text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-rose/40 focus:border-rose transition-all"
+                    className={inputClass}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">
+                    Contact number
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="04XX XXX XXX"
+                    className={inputClass}
                   />
                 </div>
 
@@ -206,7 +253,7 @@ export default function ContactPage() {
                     id="inquiry"
                     value={inquiry}
                     onChange={(e) => setInquiry(e.target.value as Inquiry)}
-                    className="w-full px-5 py-3 rounded-2xl bg-white border border-champagne text-foreground focus:outline-none focus:ring-2 focus:ring-rose/40 focus:border-rose transition-all"
+                    className={inputClass}
                   >
                     {inquiryOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>
@@ -217,17 +264,70 @@ export default function ContactPage() {
                 </div>
 
                 <div>
+                  <label htmlFor="challenges" className="block text-sm font-semibold text-foreground mb-2">
+                    What are your top 3 challenges right now?
+                  </label>
+                  <textarea
+                    id="challenges"
+                    required
+                    value={challenges}
+                    onChange={(e) => setChallenges(e.target.value)}
+                    rows={3}
+                    placeholder="e.g. sleep disruption, weight gain, anxiety, brain fog..."
+                    className={`${inputClass} resize-none`}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="beta" className="block text-sm font-semibold text-foreground mb-2">
+                    Would you be open to joining our beta group of menopause trailblazers?
+                  </label>
+                  <select
+                    id="beta"
+                    required
+                    value={beta}
+                    onChange={(e) => setBeta(e.target.value)}
+                    className={inputClass}
+                  >
+                    <option value="" disabled>Select an option</option>
+                    <option value="Yes, absolutely!">Yes, absolutely!</option>
+                    <option value="Maybe — tell me more">Maybe — tell me more</option>
+                    <option value="Not right now">Not right now</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="timeline" className="block text-sm font-semibold text-foreground mb-2">
+                    How soon are you looking for support?
+                  </label>
+                  <select
+                    id="timeline"
+                    required
+                    value={timeline}
+                    onChange={(e) => setTimeline(e.target.value)}
+                    className={inputClass}
+                  >
+                    <option value="" disabled>Select a timeline</option>
+                    {timelineOptions.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
                   <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
-                    Your message
+                    Anything else you&apos;d like to share?{" "}
+                    <span className="font-normal text-foreground/40">(optional)</span>
                   </label>
                   <textarea
                     id="message"
-                    required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    rows={6}
-                    placeholder="Tell us a bit about what you're looking for..."
-                    className="w-full px-5 py-3 rounded-2xl bg-white border border-champagne text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-rose/40 focus:border-rose transition-all resize-none"
+                    rows={3}
+                    placeholder="Tell us anything else on your mind..."
+                    className={`${inputClass} resize-none`}
                   />
                 </div>
 
@@ -235,7 +335,7 @@ export default function ContactPage() {
                   type="submit"
                   className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white gradient-cta hover:opacity-90 transition-opacity shadow-lg"
                 >
-                  Send Message
+                  Join the Waiting List
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -243,12 +343,9 @@ export default function ContactPage() {
 
                 {sent && (
                   <div className="rounded-2xl p-4 bg-sage-light/60 border border-sage/30 text-sage-dark text-sm">
-                    Your email app should have opened with your message ready to send.
+                    Your email app should have opened with your details ready to send.
                     If it didn&apos;t, please write to{" "}
-                    <a
-                      href="mailto:listen@hermidlife.org"
-                      className="font-semibold underline"
-                    >
+                    <a href="mailto:listen@hermidlife.org" className="font-semibold underline">
                       listen@hermidlife.org
                     </a>{" "}
                     directly.
@@ -256,8 +353,8 @@ export default function ContactPage() {
                 )}
 
                 <p className="text-xs text-foreground/40 text-center">
-                  By sending a message you agree to HerMidlife contacting you about your
-                  enquiry. We&apos;ll never share your details.
+                  By joining the waiting list you agree to HerMidlife contacting you.
+                  We&apos;ll never share your details.
                 </p>
               </form>
             </div>

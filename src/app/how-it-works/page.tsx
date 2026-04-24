@@ -265,7 +265,7 @@ export default function HowItWorksPage() {
               href="/contact"
               className="group inline-flex items-center justify-center px-10 py-5 rounded-full text-lg font-semibold bg-white text-rose-dark hover:bg-cream transition-colors shadow-xl"
             >
-              Start Your Care Journey
+              Join the Waiting List
               <svg
                 className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
                 fill="none"

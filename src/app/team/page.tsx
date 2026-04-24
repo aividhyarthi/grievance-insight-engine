@@ -4,9 +4,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Our Team — HerMidlife Founders",
+  title: "Our Team — HerMidlife",
   description:
-    "Meet the founders of HerMidlife — Dr Archana Singh, Dr Padma Gadiyar, and Rudra Kasturi. A team united by a shared belief that every Australian woman deserves expert midlife care.",
+    "Meet the team behind HerMidlife — Dr Archana Singh, Dr Padma Gadiyar, Rudra Kasturi, Dr Naguesh Gaunekar, and Dr Sanay Gadiyar. United by a shared belief that every Australian woman deserves expert midlife care.",
 };
 
 type Founder = {
@@ -24,39 +24,39 @@ type Founder = {
 const founders: Founder[] = [
   {
     name: "Dr Archana Singh",
-    role: "CEO & Co-Founder",
+    role: "CEO & Founder",
     title: "Chief Executive Officer",
     photo: "/dr-archana.jpeg",
     initials: "AS",
     gradient: "from-rose via-rose-dark to-plum",
     linkedin: "https://www.linkedin.com/in/dr-archana-singh-19a62361/",
     bio: [
-      "Dr Archana Singh is the visionary founder of HerMidlife, setting the strategic direction for Australia's first fully integrated midlife care platform. With years of clinical experience in women's health, Archana has seen first-hand how perimenopause and menopause are repeatedly dismissed, misdiagnosed, or quietly endured — and she's rebuilding the experience from the ground up.",
+      "Dr Archana Singh is a visionary founder setting leadership and strategic direction at Her Midlife — Australia’s first holistic, fully integrated menopausal care platform. With years of clinical experience and practice ownership in dental care, she is now rebuilding a women’s health digital platform to redefine perimenopausal and menopausal care for better accessibility and personalisation.",
       "Her mission is simple: every Australian woman over 35 deserves to walk into a consult and feel heard, not hurried. Under her leadership, HerMidlife combines evidence-based medical care, emotional understanding, and continuous digital support into one seamless journey.",
     ],
     focus: [
       "Clinical leadership & care model",
       "Women's health advocacy",
       "Evidence-based protocols",
-      "Doctor-led product design",
+      "Patient centric approach",
     ],
   },
   {
     name: "Dr Padma Gadiyar",
-    role: "CBO & Co-Founder",
-    title: "Chief Business Officer",
+    role: "Chief Strategic Advisor",
+    title: "Chief Strategic Advisor",
     photo: "/dr-padma.jpeg",
     initials: "PG",
     gradient: "from-sage via-sage-dark to-plum",
     linkedin: "https://www.linkedin.com/in/drpadmagadiyar/",
     bio: [
-      "Dr Padma Gadiyar leads business growth, partnerships, and go-to-market strategy at HerMidlife. A qualified doctor with a deep commercial instinct, Padma bridges the worlds of clinical care and business — translating medical insight into sustainable, scalable operations.",
-      "She is responsible for building HerMidlife's partner network of clinicians, allied health professionals, corporate wellness programs, and community organisations across Australia. Padma believes midlife women's health is not a niche — it's one of the largest, most underserved markets in healthcare today.",
+      "Dr Padma Gadiyar brings years of clinical experience, business expertise, and proven ability in scaling tech-driven healthcare digital platforms. Known for her operational and growth-driven approach, she provides strategic advice on commercial partnerships, growth, and go-to-market strategy for Her Midlife — helping build sustainable and scalable operations.",
+      "Padma believes women’s health is not a niche — but one of the largest, most underserved, and least understood areas in healthcare. Dr Gadiyar manages clinician and allied healthcare providers onboarding and oversees clinical care and protocols at Her Midlife.",
     ],
     focus: [
-      "Partnerships & clinician network",
-      "Corporate wellness programs",
-      "Go-to-market & growth",
+      "Commercial partnerships & growth",
+      "Go-to-market strategy",
+      "Clinician onboarding & protocols",
       "Operational excellence",
     ],
   },
@@ -69,7 +69,7 @@ const founders: Founder[] = [
     gradient: "from-gold via-terracotta to-rose-dark",
     linkedin: "https://www.linkedin.com/in/rudrakasturi",
     bio: [
-      "Rudra Kasturi shapes the strategic direction and technology foundation that powers HerMidlife's AI-driven care platform. A seasoned technology leader and entrepreneur, Rudra brings deep experience in building digital products at scale — and an obsession with using technology to make healthcare more human, not less.",
+      "Rudra Kasturi shapes the strategic direction and technology foundation that powers HerMidlife’s AI-driven care platform. A seasoned technology leader and entrepreneur, Rudra brings deep experience in building digital products at scale — and an obsession with using technology to make healthcare more human, not less.",
       "At HerMidlife, Rudra leads product, engineering, and AI strategy — ensuring every feature the team ships is grounded in real clinical workflows and designed to give women faster, clearer, more compassionate care.",
     ],
     focus: [
@@ -77,6 +77,44 @@ const founders: Founder[] = [
       "AI and data strategy",
       "Technology architecture",
       "Investor & partner relations",
+    ],
+  },
+  {
+    name: "Dr Naguesh Gaunekar",
+    role: "Chief Medical Officer",
+    title: "Chief Medical Officer",
+    photo: "/dr-naguesh.jpeg",
+    initials: "NG",
+    gradient: "from-plum via-lavender to-rose",
+    linkedin: "",
+    bio: [
+      "Dr Naguesh Gaunekar is a highly experienced obstetrician, gynaecologist, and fertility specialist, and the director of NG GyneHealth Care. He has over 20 years of clinical experience in women’s health and holds qualifications including MBBS, MD, FRANZCOG, and a Diploma in Diagnostic Ultrasonography (DDU). He completed his specialist training at the Women’s and Children’s Hospital in Adelaide and gained Australian specialist accreditation in 2004.",
+      "As the Chief Medical Officer at Her Midlife, Dr Gaunekar is responsible for clinical protocols, training all clinicians on evidence-based care, and overseeing clinical management. His clinical expertise focuses on minimally invasive gynaecological surgery, fertility medicine, and women’s ultrasound, with particular interest in PCOS, menopausal care, and male infertility. He is known for a holistic, patient-focused approach, emphasising clear communication and personalised care.",
+    ],
+    focus: [
+      "Clinical protocols & training",
+      "Obstetrics & gynaecology",
+      "Fertility medicine",
+      "Evidence-based care oversight",
+    ],
+  },
+  {
+    name: "Dr Sanay Gadiyar",
+    role: "General Practitioner",
+    title: "General Practitioner",
+    photo: "/dr-sanay.jpeg",
+    initials: "SG",
+    gradient: "from-sage via-gold to-terracotta",
+    linkedin: "",
+    bio: [
+      "Dr Sanay Gadiyar is an experienced General Practitioner based at Sandgate Doctors in Queensland. He is a Fellow of the Royal Australian College of General Practitioners (FRACGP) and has worked in both Great Britain and rural Queensland, giving him a broad international and regional clinical background.",
+      "Dr Gadiyar has a wide scope of practice, combining traditional family medicine with procedural and evidence-based care. He is known for offering comprehensive care across all age groups, from children’s health and women’s health to chronic disease management, while also providing specialised in-clinic procedures.",
+    ],
+    focus: [
+      "General practice & family medicine",
+      "Women's health",
+      "Chronic disease management",
+      "Procedural & evidence-based care",
     ],
   },
 ];

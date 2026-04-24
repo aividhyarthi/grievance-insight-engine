@@ -53,7 +53,7 @@ export default function Home() {
                     href="/contact"
                     className="group inline-flex items-center justify-center px-10 py-4 rounded-full text-lg font-semibold text-white gradient-cta hover:opacity-90 transition-all shadow-xl shadow-rose/20 hover:shadow-2xl hover:shadow-rose/25 hover:-translate-y-0.5"
                   >
-                    Start Your Care Journey
+                    Join the Waiting List
                     <svg
                       className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
                       fill="none"
@@ -305,7 +305,7 @@ export default function Home() {
                 href="/contact"
                 className="group inline-flex items-center justify-center mt-10 px-10 py-5 rounded-full text-lg font-semibold bg-white text-rose-dark hover:bg-cream transition-colors shadow-xl"
               >
-                Start Your Care Journey
+                Join the Waiting List
                 <svg
                   className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
                   fill="none"

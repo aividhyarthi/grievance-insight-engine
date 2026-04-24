@@ -86,7 +86,7 @@ export default function Header() {
                 href="/contact"
                 className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold text-white gradient-cta hover:opacity-90 transition-opacity shadow-md"
               >
-                Start Your Journey
+                Join the Waiting List
               </a>
             </nav>
 
@@ -128,7 +128,7 @@ export default function Header() {
                   className="block text-center px-6 py-3 rounded-full text-sm font-semibold text-white gradient-cta"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Start Your Journey
+                  Join the Waiting List
                 </a>
               </div>
             </nav>

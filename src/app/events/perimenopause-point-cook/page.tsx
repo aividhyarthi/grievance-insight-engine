@@ -218,51 +218,118 @@ export default function PerimenopausePointCookEvent() {
         </div>
       </section>
 
-      {/* Expert Panel */}
+      {/* Expert Panel — Speakers */}
       <section className="py-20 sm:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-gold mb-3">
-            Expert Panel of Guest Speakers
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
-            Learn from experienced
-            <br />
-            <span className="text-gradient">doctors & practitioners</span>
-          </h2>
-          <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto mb-10">
-            Doctors, women&apos;s health experts, clinical practitioners and
-            entrepreneurs with <strong className="text-foreground">15+ years</strong>{" "}
-            in midlife health and hormonal balance — sharing practical strategies to
-            help you thrive with clarity and confidence.
-          </p>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-sm font-semibold uppercase tracking-wider text-gold mb-3">
+              Expert Panel of Guest Speakers
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
+              Learn from experienced
+              <br />
+              <span className="text-gradient">doctors & practitioners</span>
+            </h2>
+            <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto">
+              Doctors, women&apos;s health experts, clinical practitioners and
+              community leaders — sharing practical strategies to help you thrive
+              with clarity and confidence.
+            </p>
+          </div>
 
-          <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
               {
-                label: "Doctors",
-                icon: "M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z",
+                name: "Dr. Preeti Khillan",
+                role: "Director & Senior Obstetrician-Gynaecologist",
+                gradient: "from-rose to-rose-dark",
+                initials: "PK",
               },
               {
-                label: "Women's Health Experts",
-                icon: "M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z",
+                name: "Dr. Magdalena Simonis",
+                role: "Associate Professor, GP & Health Policy Advisor",
+                gradient: "from-plum to-lavender",
+                initials: "MS",
               },
               {
-                label: "Clinical Practitioners",
-                icon: "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z",
+                name: "Dr. Jyoti Sharma",
+                role: "Obstetrician & Gynaecologist",
+                gradient: "from-sage-dark to-sage",
+                initials: "JS",
               },
-            ].map((item) => (
+              {
+                name: "Jasmine Hill",
+                role: "Community Advocate",
+                gradient: "from-gold to-terracotta",
+                initials: "JH",
+              },
+              {
+                name: "Susan McIntyre",
+                role: "Wyndham City Councillor",
+                gradient: "from-lavender to-plum",
+                initials: "SM",
+              },
+              {
+                name: "Narindeep Kaur",
+                role: "Leadership Coach",
+                gradient: "from-terracotta to-rose-dark",
+                initials: "NK",
+              },
+              {
+                name: "Poornima Peri",
+                role: "Global Keynote Speaker & Hormonal Coach",
+                gradient: "from-rose to-plum",
+                initials: "PP",
+              },
+              {
+                name: "Joanna Wood",
+                role: "Counsellor & Midlife Coach",
+                gradient: "from-sage to-sage-dark",
+                initials: "JW",
+              },
+              {
+                name: "Megan Martin",
+                role: "Nutritionist & Health Coach",
+                gradient: "from-gold to-gold",
+                initials: "MM",
+              },
+            ].map((speaker) => (
               <div
-                key={item.label}
-                className="bg-lavender-light/50 rounded-3xl p-8 border border-lavender/40"
+                key={speaker.name}
+                className="bg-lavender-light/40 rounded-3xl p-6 border border-lavender/30 text-center"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white text-plum flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
-                  </svg>
+                <div
+                  className={`w-16 h-16 rounded-full bg-gradient-to-br ${speaker.gradient} text-white flex items-center justify-center mx-auto mb-4 text-lg font-bold shadow-lg`}
+                >
+                  {speaker.initials}
                 </div>
-                <p className="font-display text-base font-bold text-foreground">{item.label}</p>
+                <p className="font-display text-base font-bold text-foreground">
+                  {speaker.name}
+                </p>
+                <p className="text-sm text-foreground/60 mt-1">{speaker.role}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-10 grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+            <div className="bg-rose/5 rounded-3xl p-6 border border-rose-light/40 text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rose via-rose-dark to-plum text-white flex items-center justify-center mx-auto mb-4 text-lg font-bold shadow-lg">
+                AS
+              </div>
+              <p className="font-display text-base font-bold text-foreground">
+                Dr. Archana Singh
+              </p>
+              <p className="text-sm text-rose-dark font-semibold mt-1">Organiser</p>
+            </div>
+            <div className="bg-sage/5 rounded-3xl p-6 border border-sage/30 text-center">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-sage via-sage-dark to-plum text-white flex items-center justify-center mx-auto mb-4 text-lg font-bold shadow-lg">
+                PG
+              </div>
+              <p className="font-display text-base font-bold text-foreground">
+                Dr. Padma Gadiyar
+              </p>
+              <p className="text-sm text-sage-dark font-semibold mt-1">Moderator</p>
+            </div>
           </div>
         </div>
       </section>

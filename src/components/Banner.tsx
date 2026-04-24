@@ -27,10 +27,10 @@ export default function Banner() {
             medical expertise, emotional understanding, and continuous support.
           </p>
           <a
-            href="mailto:rudra@appstudiox.com"
+            href="/contact"
             className="group inline-flex items-center justify-center mt-10 px-10 py-5 rounded-full text-lg font-semibold bg-white text-rose-dark hover:bg-cream transition-colors shadow-xl"
           >
-            Start Your Care Journey
+            Join the Waiting List
             <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

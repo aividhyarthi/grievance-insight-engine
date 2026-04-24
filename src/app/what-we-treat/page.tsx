@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "What We Treat",
   description:
-    "HerMidlife provides whole-health care for the whole of midlife — perimenopause, menopause, HRT, mental health, weight, sleep, heart and bone health, thyroid, and more.",
+    "HerMidlife provides holistic care for the whole of midlife — perimenopause, menopause, HRT, mental health, weight, sleep, heart and bone health, thyroid, and more.",
 };
 
 const conditions = [
@@ -108,7 +108,7 @@ export default function WhatWeTreatPage() {
             What We Treat
           </p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
-            Whole-health care for
+            Holistic care for
             <br />
             <span className="text-gradient">the whole of midlife</span>
           </h1>
