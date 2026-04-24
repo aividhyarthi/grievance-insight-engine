@@ -146,6 +146,17 @@ export default function PerimenopausePointCookEvent() {
         </div>
       </section>
 
+      {/* Event Flyer */}
+      <section className="bg-white py-14 sm:py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <img
+            src="/event-flyer.jpeg"
+            alt="HerMidlife — Why Your Body Feels Different After 35 event flyer, Point Cook 30 May"
+            className="w-full rounded-3xl shadow-2xl border border-champagne/40"
+          />
+        </div>
+      </section>
+
       {/* What you'll learn */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
