@@ -1,5 +1,5 @@
 {
-  "name": "blog-rudrakasturi",
+  "name": "youtube-metadata-optimizer",
   "type": "module",
   "version": "1.0.0",
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "astro": "^4.16.0",
-    "@astrojs/node": "^8.3.0"
+    "@astrojs/node": "^8.3.0",
+    "@anthropic-ai/sdk": "^0.36.3"
   }
 }
