@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0",
     "@astrojs/node": "^8.3.0",
     "@distube/ytdl-core": "^4.16.12",
     "astro": "^4.16.0"

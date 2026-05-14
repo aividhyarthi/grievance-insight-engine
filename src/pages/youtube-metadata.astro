@@ -3,14 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="YouTube Metadata Extractor | QuitDr Tools"
-  description="Extract title, description, keywords, and hashtags from any YouTube video URL instantly."
+  title="YouTube Metadata Extractor & SEO Recommender | QuitDr Tools"
+  description="Extract YouTube video metadata and get AI-powered SEO recommendations for title, description, keywords, and hashtags."
 >
   <section class="yt-tool">
     <div class="container">
       <div class="yt-header">
-        <h1>YouTube Metadata Extractor</h1>
-        <p class="yt-subtitle">Paste a YouTube video URL to extract its title, description, keywords, and hashtags.</p>
+        <h1>YouTube SEO Analyser</h1>
+        <p class="yt-subtitle">
+          Paste a YouTube URL to extract current metadata <strong>and get AI-powered SEO recommendations</strong>
+          your team can review and apply.
+        </p>
       </div>
 
       <div class="yt-form-card">
@@ -25,18 +28,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               class="yt-input"
             />
             <button type="submit" class="btn btn-primary yt-btn" id="yt-submit">
-              Extract
+              Analyse
             </button>
           </div>
-          <p class="yt-hint">Supports youtube.com and youtu.be links</p>
+          <p class="yt-hint">Supports youtube.com and youtu.be links · Analysis takes ~10–20 seconds</p>
         </form>
       </div>
 
       <div id="yt-error" class="yt-error" style="display:none"></div>
-      <div id="yt-loading" class="yt-loading" style="display:none">Fetching metadata...</div>
 
-      <div id="yt-result" class="yt-result" style="display:none">
-        <!-- Thumbnail + basics -->
+      <div id="yt-loading" class="yt-loading" style="display:none">
+        <div class="yt-loading-inner">
+          <div class="yt-spinner"></div>
+          <div>
+            <p class="yt-loading-title">Fetching metadata &amp; running SEO analysis…</p>
+            <p class="yt-loading-sub">Claude is reviewing your video — usually 10–20 seconds</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="yt-result" style="display:none">
+
+        <!-- Overview bar -->
         <div class="yt-overview">
           <img id="yt-thumb" src="" alt="Thumbnail" class="yt-thumb" />
           <div class="yt-basics">
@@ -50,44 +63,119 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </div>
 
-        <!-- Sections -->
-        <div class="yt-sections">
-
-          <div class="yt-section">
-            <div class="yt-section-header">
-              <span class="yt-section-title">Description</span>
-              <button class="yt-copy-btn" data-target="yt-desc-text">Copy</button>
-            </div>
-            <pre id="yt-desc-text" class="yt-pre"></pre>
+        <!-- Overall analysis -->
+        <div class="yt-analysis-card">
+          <div class="yt-analysis-icon">✦</div>
+          <div>
+            <p class="yt-analysis-label">SEO Analysis Summary</p>
+            <p id="yt-overall-analysis" class="yt-analysis-text"></p>
           </div>
-
-          <div class="yt-section" id="yt-kw-section">
-            <div class="yt-section-header">
-              <span class="yt-section-title">Keywords <span id="yt-kw-count" class="yt-count"></span></span>
-              <button class="yt-copy-btn" data-target="yt-kw-text">Copy</button>
-            </div>
-            <pre id="yt-kw-text" class="yt-pre"></pre>
-            <div id="yt-kw-pills" class="yt-pills"></div>
-          </div>
-
-          <div class="yt-section" id="yt-ht-section">
-            <div class="yt-section-header">
-              <span class="yt-section-title">Hashtags found in content</span>
-              <button class="yt-copy-btn" data-target="yt-ht-text">Copy</button>
-            </div>
-            <pre id="yt-ht-text" class="yt-pre yt-pre-sm"></pre>
-          </div>
-
-          <div class="yt-section" id="yt-sht-section">
-            <div class="yt-section-header">
-              <span class="yt-section-title">Suggested hashtags (from keywords)</span>
-              <button class="yt-copy-btn" data-target="yt-sht-text">Copy</button>
-            </div>
-            <pre id="yt-sht-text" class="yt-pre yt-pre-sm"></pre>
-          </div>
-
         </div>
-      </div>
+
+        <!-- Comparison sections -->
+        <div class="yt-compare-grid">
+
+          <!-- Title -->
+          <div class="yt-compare-section">
+            <div class="yt-compare-header">
+              <span class="yt-compare-icon">Aa</span>
+              <span class="yt-compare-title">Title</span>
+            </div>
+            <div class="yt-compare-cols">
+              <div class="yt-col yt-col-current">
+                <div class="yt-col-label">Current</div>
+                <p id="curr-title" class="yt-col-text"></p>
+                <button class="yt-copy-btn" data-target="curr-title">Copy</button>
+              </div>
+              <div class="yt-divider"></div>
+              <div class="yt-col yt-col-rec">
+                <div class="yt-col-label">
+                  <span class="ai-badge">AI Recommended</span>
+                </div>
+                <p id="rec-title" class="yt-col-text yt-col-text-rec"></p>
+                <p id="rec-title-rationale" class="yt-rationale"></p>
+                <button class="yt-copy-btn yt-copy-btn-rec" data-target="rec-title">Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="yt-compare-section">
+            <div class="yt-compare-header">
+              <span class="yt-compare-icon">¶</span>
+              <span class="yt-compare-title">Description</span>
+            </div>
+            <div class="yt-compare-cols">
+              <div class="yt-col yt-col-current">
+                <div class="yt-col-label">Current</div>
+                <pre id="curr-desc" class="yt-pre"></pre>
+                <button class="yt-copy-btn" data-target="curr-desc">Copy</button>
+              </div>
+              <div class="yt-divider"></div>
+              <div class="yt-col yt-col-rec">
+                <div class="yt-col-label">
+                  <span class="ai-badge">AI Recommended</span>
+                </div>
+                <pre id="rec-desc" class="yt-pre yt-pre-rec"></pre>
+                <p id="rec-desc-rationale" class="yt-rationale"></p>
+                <button class="yt-copy-btn yt-copy-btn-rec" data-target="rec-desc">Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Keywords -->
+          <div class="yt-compare-section">
+            <div class="yt-compare-header">
+              <span class="yt-compare-icon">#</span>
+              <span class="yt-compare-title">Keywords</span>
+            </div>
+            <div class="yt-compare-cols">
+              <div class="yt-col yt-col-current">
+                <div class="yt-col-label">Current <span id="curr-kw-count" class="yt-count"></span></div>
+                <pre id="curr-kw" class="yt-pre yt-pre-sm"></pre>
+                <div id="curr-kw-pills" class="yt-pills"></div>
+                <button class="yt-copy-btn" data-target="curr-kw">Copy all</button>
+              </div>
+              <div class="yt-divider"></div>
+              <div class="yt-col yt-col-rec">
+                <div class="yt-col-label">
+                  <span class="ai-badge">AI Recommended</span>
+                  <span id="rec-kw-count" class="yt-count"></span>
+                </div>
+                <pre id="rec-kw" class="yt-pre yt-pre-sm yt-pre-rec"></pre>
+                <div id="rec-kw-pills" class="yt-pills"></div>
+                <p id="rec-kw-rationale" class="yt-rationale"></p>
+                <button class="yt-copy-btn yt-copy-btn-rec" data-target="rec-kw">Copy all</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hashtags -->
+          <div class="yt-compare-section">
+            <div class="yt-compare-header">
+              <span class="yt-compare-icon">⌗</span>
+              <span class="yt-compare-title">Hashtags</span>
+            </div>
+            <div class="yt-compare-cols">
+              <div class="yt-col yt-col-current">
+                <div class="yt-col-label">Current (found in content)</div>
+                <pre id="curr-ht" class="yt-pre yt-pre-sm"></pre>
+                <button class="yt-copy-btn" data-target="curr-ht">Copy</button>
+              </div>
+              <div class="yt-divider"></div>
+              <div class="yt-col yt-col-rec">
+                <div class="yt-col-label">
+                  <span class="ai-badge">AI Recommended</span>
+                </div>
+                <pre id="rec-ht" class="yt-pre yt-pre-sm yt-pre-rec"></pre>
+                <p id="rec-ht-rationale" class="yt-rationale"></p>
+                <button class="yt-copy-btn yt-copy-btn-rec" data-target="rec-ht">Copy</button>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /compare-grid -->
+      </div><!-- /result -->
     </div>
   </section>
 </BaseLayout>
@@ -110,6 +198,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .yt-subtitle {
     color: #555;
     font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
   }
 
   .yt-form-card {
@@ -121,10 +212,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin: 0 auto 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
-  .yt-input-row {
-    display: flex;
-    gap: 0.75rem;
-  }
+  .yt-input-row { display: flex; gap: 0.75rem; }
   .yt-input {
     flex: 1;
     padding: 0.75rem 1rem;
@@ -135,18 +223,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     transition: border-color 0.2s;
     font-family: inherit;
   }
-  .yt-input:focus {
-    border-color: #e74c3c;
-  }
-  .yt-btn {
-    white-space: nowrap;
-    min-width: 100px;
-  }
-  .yt-hint {
-    margin: 0.5rem 0 0;
-    font-size: 0.8rem;
-    color: #9ca3af;
-  }
+  .yt-input:focus { border-color: #e74c3c; }
+  .yt-btn { white-space: nowrap; min-width: 110px; }
+  .yt-hint { margin: 0.5rem 0 0; font-size: 0.8rem; color: #9ca3af; }
 
   .yt-error {
     max-width: 700px;
@@ -158,18 +237,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: 0.75rem 1rem;
     font-size: 0.9rem;
   }
-  .yt-loading {
-    text-align: center;
-    color: #555;
-    padding: 1.5rem 0;
-    font-size: 0.95rem;
-  }
 
-  /* Result */
-  .yt-result {
-    max-width: 860px;
-    margin: 0 auto;
+  /* Loading */
+  .yt-loading {
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
   }
+  .yt-loading-inner { display: flex; align-items: center; gap: 1rem; }
+  .yt-spinner {
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    border: 3px solid #bae6fd;
+    border-top-color: #0ea5e9;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .yt-loading-title { font-weight: 600; color: #0c4a6e; margin: 0 0 0.2rem; font-size: 0.95rem; }
+  .yt-loading-sub { color: #0369a1; margin: 0; font-size: 0.82rem; }
+
+  /* Overview */
   .yt-overview {
     display: flex;
     gap: 1.25rem;
@@ -177,34 +269,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border: 1px solid #e5e7eb;
     border-radius: 12px;
     padding: 1.25rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     align-items: flex-start;
   }
   .yt-thumb {
-    width: 180px;
-    min-width: 180px;
+    width: 160px;
+    min-width: 160px;
     border-radius: 8px;
     object-fit: cover;
     aspect-ratio: 16/9;
   }
-  .yt-basics {
-    flex: 1;
-    min-width: 0;
-  }
+  .yt-basics { flex: 1; min-width: 0; }
   .yt-video-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #1a1a2e;
     margin-bottom: 0.75rem;
     line-height: 1.4;
     word-break: break-word;
   }
-  .yt-meta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
+  .yt-meta-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .yt-badge {
     background: #e74c3c;
     color: #fff;
@@ -213,46 +298,163 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 0.78rem;
     font-weight: 600;
   }
-  .yt-badge-alt {
-    background: #f3f4f6;
-    color: #374151;
+  .yt-badge-alt { background: #f3f4f6; color: #374151; }
+
+  /* Analysis card */
+  .yt-analysis-card {
+    display: flex;
+    gap: 1rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 100%);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+    align-items: flex-start;
+  }
+  .yt-analysis-icon {
+    font-size: 1.4rem;
+    color: #fbbf24;
+    min-width: 28px;
+    margin-top: 2px;
+  }
+  .yt-analysis-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a5b4fc;
+    margin: 0 0 0.35rem;
+  }
+  .yt-analysis-text {
+    color: #e0e7ff;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
   }
 
-  /* Sections */
-  .yt-sections {
+  /* Compare grid */
+  .yt-compare-grid {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-  .yt-section {
+  .yt-compare-section {
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
-    padding: 1.25rem;
+    overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
-  .yt-section-header {
+  .yt-compare-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
+    gap: 0.6rem;
+    padding: 0.75rem 1.25rem;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
   }
-  .yt-section-title {
+  .yt-compare-icon {
+    font-size: 1rem;
+    color: #6b7280;
     font-weight: 700;
-    font-size: 0.95rem;
+    width: 22px;
+    text-align: center;
+  }
+  .yt-compare-title {
+    font-weight: 700;
+    font-size: 0.9rem;
     color: #1a1a2e;
   }
-  .yt-count {
-    font-weight: 400;
-    color: #6b7280;
-    font-size: 0.85rem;
+
+  .yt-compare-cols {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
   }
+  .yt-divider {
+    background: #e5e7eb;
+    width: 1px;
+  }
+  .yt-col {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .yt-col-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9ca3af;
+  }
+  .yt-col-current { background: #fafafa; }
+  .yt-col-rec { background: #fefce8; }
+
+  .ai-badge {
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    color: #fff;
+    border-radius: 20px;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: none;
+  }
+
+  .yt-col-text {
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.5;
+    margin: 0;
+    word-break: break-word;
+  }
+  .yt-col-text-rec {
+    color: #1a1a2e;
+    font-weight: 600;
+  }
+
+  .yt-pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: #374151;
+    background: #f3f4f6;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+  .yt-pre-rec {
+    background: #fef9c3;
+    color: #1a1a2e;
+  }
+  .yt-pre-sm { max-height: 120px; }
+
+  .yt-rationale {
+    font-size: 0.78rem;
+    color: #7c3aed;
+    background: #f5f3ff;
+    border-left: 3px solid #7c3aed;
+    border-radius: 0 4px 4px 0;
+    padding: 0.4rem 0.6rem;
+    margin: 0;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
   .yt-copy-btn {
+    align-self: flex-start;
     background: #f3f4f6;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     padding: 0.3rem 0.75rem;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     cursor: pointer;
     color: #374151;
     font-family: inherit;
@@ -260,52 +462,45 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   .yt-copy-btn:hover { background: #e5e7eb; }
   .yt-copy-btn.copied { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
-
-  .yt-pre {
-    white-space: pre-wrap;
-    word-break: break-word;
-    font-family: inherit;
-    font-size: 0.875rem;
-    color: #374151;
-    background: #f9fafb;
-    border-radius: 6px;
-    padding: 0.75rem;
-    margin: 0;
-    max-height: 200px;
-    overflow-y: auto;
-    line-height: 1.6;
+  .yt-copy-btn-rec {
+    background: #ede9fe;
+    border-color: #c4b5fd;
+    color: #5b21b6;
   }
-  .yt-pre-sm { max-height: 100px; }
+  .yt-copy-btn-rec:hover { background: #ddd6fe; }
 
-  .yt-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.6rem;
-  }
+  .yt-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; }
   .yt-pill {
     background: #eff6ff;
     color: #1d4ed8;
     border: 1px solid #bfdbfe;
     border-radius: 20px;
-    padding: 0.2rem 0.65rem;
-    font-size: 0.78rem;
+    padding: 0.18rem 0.55rem;
+    font-size: 0.75rem;
     cursor: pointer;
     transition: background 0.15s;
   }
   .yt-pill:hover { background: #dbeafe; }
+  .yt-pill-rec {
+    background: #f5f3ff;
+    color: #6d28d9;
+    border-color: #c4b5fd;
+  }
+  .yt-pill-rec:hover { background: #ede9fe; }
 
-  @media (max-width: 600px) {
+  .yt-count { font-weight: 400; color: #9ca3af; font-size: 0.78rem; }
+
+  @media (max-width: 700px) {
     .yt-input-row { flex-direction: column; }
     .yt-overview { flex-direction: column; }
     .yt-thumb { width: 100%; min-width: unset; }
+    .yt-compare-cols { grid-template-columns: 1fr; }
+    .yt-divider { width: 100%; height: 1px; }
   }
 </style>
 
 <script>
-  function fmtNum(n: string) {
-    return parseInt(n, 10).toLocaleString();
-  }
+  function fmtNum(n: string) { return parseInt(n, 10).toLocaleString(); }
   function fmtDuration(secs: string) {
     const s = parseInt(secs, 10);
     const m = Math.floor(s / 60);
@@ -318,6 +513,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   function fmtDate(d: string) {
     if (!d) return '';
     return new Date(d).toLocaleDateString('en-AU', { year:'numeric', month:'short', day:'numeric' });
+  }
+  function setText(id: string, text: string) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+  function setPills(containerId: string, items: string[], isRec = false) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = items.map(k =>
+      `<span class="yt-pill${isRec ? ' yt-pill-rec' : ''}" data-kw="${k}">${k}</span>`
+    ).join('');
   }
 
   const form = document.getElementById('yt-form') as HTMLFormElement;
@@ -333,17 +539,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     loading.style.display = 'none';
     result.style.display = 'none';
   }
-  function hideError() {
-    errorBox.style.display = 'none';
-  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    hideError();
+    errorBox.style.display = 'none';
     result.style.display = 'none';
     loading.style.display = 'block';
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Loading...';
+    submitBtn.textContent = 'Analysing…';
 
     try {
       const res = await fetch('/api/youtube-metadata', {
@@ -353,35 +556,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
       const data = await res.json();
 
-      if (!res.ok) {
-        showError(data.error ?? 'Something went wrong.');
-        return;
-      }
+      if (!res.ok) { showError(data.error ?? 'Something went wrong.'); return; }
 
-      // Populate result
-      (document.getElementById('yt-thumb') as HTMLImageElement).src = data.thumbnail;
-      (document.getElementById('yt-title') as HTMLElement).textContent = data.title;
-      (document.getElementById('yt-channel') as HTMLElement).textContent = data.channel;
-      (document.getElementById('yt-views') as HTMLElement).textContent = `${fmtNum(data.viewCount)} views`;
-      (document.getElementById('yt-date') as HTMLElement).textContent = fmtDate(data.publishDate);
-      (document.getElementById('yt-duration') as HTMLElement).textContent = fmtDuration(data.duration);
+      const { current: c, recommendations: r } = data;
 
-      (document.getElementById('yt-desc-text') as HTMLElement).textContent = data.description || '(no description)';
+      // Overview
+      (document.getElementById('yt-thumb') as HTMLImageElement).src = c.thumbnail;
+      setText('yt-title', c.title);
+      setText('yt-channel', c.channel);
+      setText('yt-views', `${fmtNum(c.viewCount)} views`);
+      setText('yt-date', fmtDate(c.publishDate));
+      setText('yt-duration', fmtDuration(c.duration));
 
-      const kwText = document.getElementById('yt-kw-text') as HTMLElement;
-      const kwPills = document.getElementById('yt-kw-pills') as HTMLElement;
-      const kwCount = document.getElementById('yt-kw-count') as HTMLElement;
-      kwCount.textContent = `(${data.keywords.length})`;
-      kwText.textContent = data.keywords.join(', ') || '(none)';
-      kwPills.innerHTML = data.keywords.map((k: string) =>
-        `<span class="yt-pill" title="click to copy" data-kw="${k}">${k}</span>`
-      ).join('');
+      // Overall analysis
+      setText('yt-overall-analysis', r.overallAnalysis);
 
-      const htText = document.getElementById('yt-ht-text') as HTMLElement;
-      htText.textContent = data.hashtags.join('  ') || '(none found)';
+      // Title
+      setText('curr-title', c.title);
+      setText('rec-title', r.title);
+      setText('rec-title-rationale', r.titleRationale);
 
-      const shtText = document.getElementById('yt-sht-text') as HTMLElement;
-      shtText.textContent = data.suggestedHashtags.join('  ') || '(none)';
+      // Description
+      setText('curr-desc', c.description || '(no description)');
+      setText('rec-desc', r.description);
+      setText('rec-desc-rationale', r.descriptionRationale);
+
+      // Keywords
+      const currKwEl = document.getElementById('curr-kw') as HTMLElement;
+      const recKwEl = document.getElementById('rec-kw') as HTMLElement;
+      const currKwCountEl = document.getElementById('curr-kw-count') as HTMLElement;
+      const recKwCountEl = document.getElementById('rec-kw-count') as HTMLElement;
+
+      currKwCountEl.textContent = `(${c.keywords.length})`;
+      recKwCountEl.textContent = `(${r.keywords.length})`;
+      currKwEl.textContent = c.keywords.join(', ') || '(none)';
+      recKwEl.textContent = r.keywords.join(', ') || '(none)';
+      setPills('curr-kw-pills', c.keywords, false);
+      setPills('rec-kw-pills', r.keywords, true);
+      setText('rec-kw-rationale', r.keywordsRationale);
+
+      // Hashtags
+      setText('curr-ht', c.hashtags.join('  ') || '(none found in content)');
+      setText('rec-ht', r.hashtags.join('  '));
+      setText('rec-ht-rationale', r.hashtagsRationale);
 
       loading.style.display = 'none';
       result.style.display = 'block';
@@ -389,7 +606,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       showError('Network error — please try again.');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Extract';
+      submitBtn.textContent = 'Analyse';
     }
   });
 
@@ -398,22 +615,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const btn = (e.target as HTMLElement).closest('.yt-copy-btn') as HTMLButtonElement | null;
     if (btn) {
       const targetId = btn.dataset.target!;
-      const text = (document.getElementById(targetId) as HTMLElement).textContent ?? '';
+      const text = (document.getElementById(targetId) as HTMLElement)?.textContent ?? '';
       navigator.clipboard.writeText(text).then(() => {
         btn.textContent = 'Copied!';
         btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+        setTimeout(() => {
+          btn.textContent = 'Copy' + (btn.classList.contains('yt-copy-btn-rec') ? '' : '');
+          btn.textContent = targetId.includes('kw') ? 'Copy all' : 'Copy';
+          btn.classList.remove('copied');
+        }, 1800);
       });
     }
 
-    // Keyword pill click to copy individual kw
+    // Pill click
     const pill = (e.target as HTMLElement).closest('.yt-pill') as HTMLElement | null;
     if (pill) {
       const kw = pill.dataset.kw ?? pill.textContent ?? '';
       navigator.clipboard.writeText(kw).then(() => {
         const orig = pill.textContent;
-        pill.textContent = 'Copied!';
-        setTimeout(() => { pill.textContent = orig; }, 1000);
+        pill.textContent = '✓';
+        setTimeout(() => { pill.textContent = orig; }, 900);
       });
     }
   });
