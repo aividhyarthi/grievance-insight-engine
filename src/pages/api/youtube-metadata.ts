@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import ytdl from '@distube/ytdl-core';
 import Anthropic from '@anthropic-ai/sdk';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY ?? '' });
 
 interface SEORecommendations {
   title: string;
@@ -81,6 +81,13 @@ Return ONLY the JSON object, no markdown, no extra text.`;
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return new Response(JSON.stringify({ error: 'ANTHROPIC_API_KEY is not configured on the server. Add it in your Railway environment variables.' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   let url: string;
   try {
     const body = await request.json();
