@@ -1,0 +1,420 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="YouTube Metadata Extractor | QuitDr Tools"
+  description="Extract title, description, keywords, and hashtags from any YouTube video URL instantly."
+>
+  <section class="yt-tool">
+    <div class="container">
+      <div class="yt-header">
+        <h1>YouTube Metadata Extractor</h1>
+        <p class="yt-subtitle">Paste a YouTube video URL to extract its title, description, keywords, and hashtags.</p>
+      </div>
+
+      <div class="yt-form-card">
+        <form id="yt-form" autocomplete="off">
+          <div class="yt-input-row">
+            <input
+              type="url"
+              id="yt-url"
+              name="url"
+              placeholder="https://www.youtube.com/watch?v=..."
+              required
+              class="yt-input"
+            />
+            <button type="submit" class="btn btn-primary yt-btn" id="yt-submit">
+              Extract
+            </button>
+          </div>
+          <p class="yt-hint">Supports youtube.com and youtu.be links</p>
+        </form>
+      </div>
+
+      <div id="yt-error" class="yt-error" style="display:none"></div>
+      <div id="yt-loading" class="yt-loading" style="display:none">Fetching metadata...</div>
+
+      <div id="yt-result" class="yt-result" style="display:none">
+        <!-- Thumbnail + basics -->
+        <div class="yt-overview">
+          <img id="yt-thumb" src="" alt="Thumbnail" class="yt-thumb" />
+          <div class="yt-basics">
+            <h2 id="yt-title" class="yt-video-title"></h2>
+            <div class="yt-meta-row">
+              <span class="yt-badge" id="yt-channel"></span>
+              <span class="yt-badge yt-badge-alt" id="yt-views"></span>
+              <span class="yt-badge yt-badge-alt" id="yt-date"></span>
+              <span class="yt-badge yt-badge-alt" id="yt-duration"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sections -->
+        <div class="yt-sections">
+
+          <div class="yt-section">
+            <div class="yt-section-header">
+              <span class="yt-section-title">Description</span>
+              <button class="yt-copy-btn" data-target="yt-desc-text">Copy</button>
+            </div>
+            <pre id="yt-desc-text" class="yt-pre"></pre>
+          </div>
+
+          <div class="yt-section" id="yt-kw-section">
+            <div class="yt-section-header">
+              <span class="yt-section-title">Keywords <span id="yt-kw-count" class="yt-count"></span></span>
+              <button class="yt-copy-btn" data-target="yt-kw-text">Copy</button>
+            </div>
+            <pre id="yt-kw-text" class="yt-pre"></pre>
+            <div id="yt-kw-pills" class="yt-pills"></div>
+          </div>
+
+          <div class="yt-section" id="yt-ht-section">
+            <div class="yt-section-header">
+              <span class="yt-section-title">Hashtags found in content</span>
+              <button class="yt-copy-btn" data-target="yt-ht-text">Copy</button>
+            </div>
+            <pre id="yt-ht-text" class="yt-pre yt-pre-sm"></pre>
+          </div>
+
+          <div class="yt-section" id="yt-sht-section">
+            <div class="yt-section-header">
+              <span class="yt-section-title">Suggested hashtags (from keywords)</span>
+              <button class="yt-copy-btn" data-target="yt-sht-text">Copy</button>
+            </div>
+            <pre id="yt-sht-text" class="yt-pre yt-pre-sm"></pre>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .yt-tool {
+    padding: 3rem 0 5rem;
+    min-height: 80vh;
+  }
+  .yt-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .yt-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+  .yt-subtitle {
+    color: #555;
+    font-size: 1rem;
+  }
+
+  .yt-form-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .yt-input-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .yt-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: inherit;
+  }
+  .yt-input:focus {
+    border-color: #e74c3c;
+  }
+  .yt-btn {
+    white-space: nowrap;
+    min-width: 100px;
+  }
+  .yt-hint {
+    margin: 0.5rem 0 0;
+    font-size: 0.8rem;
+    color: #9ca3af;
+  }
+
+  .yt-error {
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  .yt-loading {
+    text-align: center;
+    color: #555;
+    padding: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  /* Result */
+  .yt-result {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .yt-overview {
+    display: flex;
+    gap: 1.25rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    align-items: flex-start;
+  }
+  .yt-thumb {
+    width: 180px;
+    min-width: 180px;
+    border-radius: 8px;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+  .yt-basics {
+    flex: 1;
+    min-width: 0;
+  }
+  .yt-video-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+  .yt-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .yt-badge {
+    background: #e74c3c;
+    color: #fff;
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .yt-badge-alt {
+    background: #f3f4f6;
+    color: #374151;
+  }
+
+  /* Sections */
+  .yt-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .yt-section {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .yt-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  .yt-section-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #1a1a2e;
+  }
+  .yt-count {
+    font-weight: 400;
+    color: #6b7280;
+    font-size: 0.85rem;
+  }
+  .yt-copy-btn {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #374151;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .yt-copy-btn:hover { background: #e5e7eb; }
+  .yt-copy-btn.copied { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+
+  .yt-pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: #374151;
+    background: #f9fafb;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    line-height: 1.6;
+  }
+  .yt-pre-sm { max-height: 100px; }
+
+  .yt-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+  }
+  .yt-pill {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    border-radius: 20px;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .yt-pill:hover { background: #dbeafe; }
+
+  @media (max-width: 600px) {
+    .yt-input-row { flex-direction: column; }
+    .yt-overview { flex-direction: column; }
+    .yt-thumb { width: 100%; min-width: unset; }
+  }
+</style>
+
+<script>
+  function fmtNum(n: string) {
+    return parseInt(n, 10).toLocaleString();
+  }
+  function fmtDuration(secs: string) {
+    const s = parseInt(secs, 10);
+    const m = Math.floor(s / 60);
+    const h = Math.floor(m / 60);
+    const mm = m % 60;
+    const ss = s % 60;
+    if (h > 0) return `${h}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+    return `${m}:${String(ss).padStart(2,'0')}`;
+  }
+  function fmtDate(d: string) {
+    if (!d) return '';
+    return new Date(d).toLocaleDateString('en-AU', { year:'numeric', month:'short', day:'numeric' });
+  }
+
+  const form = document.getElementById('yt-form') as HTMLFormElement;
+  const input = document.getElementById('yt-url') as HTMLInputElement;
+  const submitBtn = document.getElementById('yt-submit') as HTMLButtonElement;
+  const errorBox = document.getElementById('yt-error') as HTMLDivElement;
+  const loading = document.getElementById('yt-loading') as HTMLDivElement;
+  const result = document.getElementById('yt-result') as HTMLDivElement;
+
+  function showError(msg: string) {
+    errorBox.textContent = msg;
+    errorBox.style.display = 'block';
+    loading.style.display = 'none';
+    result.style.display = 'none';
+  }
+  function hideError() {
+    errorBox.style.display = 'none';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideError();
+    result.style.display = 'none';
+    loading.style.display = 'block';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Loading...';
+
+    try {
+      const res = await fetch('/api/youtube-metadata', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: input.value.trim() }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        showError(data.error ?? 'Something went wrong.');
+        return;
+      }
+
+      // Populate result
+      (document.getElementById('yt-thumb') as HTMLImageElement).src = data.thumbnail;
+      (document.getElementById('yt-title') as HTMLElement).textContent = data.title;
+      (document.getElementById('yt-channel') as HTMLElement).textContent = data.channel;
+      (document.getElementById('yt-views') as HTMLElement).textContent = `${fmtNum(data.viewCount)} views`;
+      (document.getElementById('yt-date') as HTMLElement).textContent = fmtDate(data.publishDate);
+      (document.getElementById('yt-duration') as HTMLElement).textContent = fmtDuration(data.duration);
+
+      (document.getElementById('yt-desc-text') as HTMLElement).textContent = data.description || '(no description)';
+
+      const kwText = document.getElementById('yt-kw-text') as HTMLElement;
+      const kwPills = document.getElementById('yt-kw-pills') as HTMLElement;
+      const kwCount = document.getElementById('yt-kw-count') as HTMLElement;
+      kwCount.textContent = `(${data.keywords.length})`;
+      kwText.textContent = data.keywords.join(', ') || '(none)';
+      kwPills.innerHTML = data.keywords.map((k: string) =>
+        `<span class="yt-pill" title="click to copy" data-kw="${k}">${k}</span>`
+      ).join('');
+
+      const htText = document.getElementById('yt-ht-text') as HTMLElement;
+      htText.textContent = data.hashtags.join('  ') || '(none found)';
+
+      const shtText = document.getElementById('yt-sht-text') as HTMLElement;
+      shtText.textContent = data.suggestedHashtags.join('  ') || '(none)';
+
+      loading.style.display = 'none';
+      result.style.display = 'block';
+    } catch {
+      showError('Network error — please try again.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Extract';
+    }
+  });
+
+  // Copy buttons
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('.yt-copy-btn') as HTMLButtonElement | null;
+    if (btn) {
+      const targetId = btn.dataset.target!;
+      const text = (document.getElementById(targetId) as HTMLElement).textContent ?? '';
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+      });
+    }
+
+    // Keyword pill click to copy individual kw
+    const pill = (e.target as HTMLElement).closest('.yt-pill') as HTMLElement | null;
+    if (pill) {
+      const kw = pill.dataset.kw ?? pill.textContent ?? '';
+      navigator.clipboard.writeText(kw).then(() => {
+        const orig = pill.textContent;
+        pill.textContent = 'Copied!';
+        setTimeout(() => { pill.textContent = orig; }, 1000);
+      });
+    }
+  });
+</script>
