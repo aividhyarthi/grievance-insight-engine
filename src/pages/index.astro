@@ -1,314 +1,131 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+const title = 'YouTube SEO Analyser';
 ---
-
-<BaseLayout
-  title="QuitDr – Quit Smoking with Doctor-Led Support | Australia"
-  description="Book a $10 telehealth consult with an Australian-registered doctor. Get a personalised smoking cessation plan and discreet medication delivery in 24–48 hours."
->
-
-  <!-- Hero -->
-  <section class="hero">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:#f8fafc;color:#0f172a;min-height:100vh}
+    .container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+    header{background:#fff;border-bottom:1px solid #e2e8f0;padding:1rem 0}
+    .brand{font-size:1.2rem;font-weight:800;color:#7c3aed}
+    main{padding:3rem 0 5rem}
+    h1{font-size:2rem;font-weight:800;color:#1a1a2e;text-align:center;margin-bottom:.5rem}
+    .subtitle{color:#555;font-size:1rem;max-width:600px;margin:0 auto 2rem;text-align:center;line-height:1.5}
+    .form-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem;max-width:700px;margin:0 auto 1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    .input-row{display:flex;gap:.75rem}
+    input{flex:1;padding:.75rem 1rem;border:1.5px solid #d1d5db;border-radius:8px;font-size:.95rem;outline:none;font-family:inherit}
+    input:focus{border-color:#7c3aed}
+    .btn{padding:.75rem 1.75rem;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-weight:600;font-size:.95rem;cursor:pointer;font-family:inherit;min-width:110px}
+    .btn:hover{background:#6d28d9}
+    .hint{margin:.5rem 0 0;font-size:.8rem;color:#9ca3af}
+    .error{display:none;max-width:700px;margin:0 auto 1rem;background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;border-radius:8px;padding:.75rem 1rem;font-size:.9rem}
+    .loading{display:none;max-width:700px;margin:0 auto 1rem;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:12px;padding:1.25rem 1.5rem}
+    .loading-inner{display:flex;align-items:center;gap:1rem}
+    .spinner{width:28px;min-width:28px;height:28px;border:3px solid #ddd6fe;border-top-color:#7c3aed;border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loading-title{font-weight:600;color:#4c1d95;margin:0 0 .2rem}
+    .loading-sub{color:#6d28d9;margin:0;font-size:.82rem}
+    .result{display:none}
+    .overview{display:flex;gap:1.25rem;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;margin-bottom:1rem;align-items:flex-start}
+    .thumb{width:160px;min-width:160px;border-radius:8px;aspect-ratio:16/9;object-fit:cover}
+    .meta{flex:1;min-width:0}
+    .video-title{font-size:1.05rem;font-weight:700;color:#1a1a2e;margin-bottom:.75rem;line-height:1.4;word-break:break-word}
+    .badges{display:flex;flex-wrap:wrap;gap:.4rem}
+    .badge{background:#7c3aed;color:#fff;border-radius:20px;padding:.25rem .75rem;font-size:.78rem;font-weight:600}
+    .badge-alt{background:#f3f4f6;color:#374151}
+    .analysis-card{display:flex;gap:1rem;background:linear-gradient(135deg,#1a1a2e,#2d1b69);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.25rem;align-items:flex-start}
+    .analysis-icon{font-size:1.4rem;color:#fbbf24;min-width:28px}
+    .analysis-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#a5b4fc;margin:0 0 .35rem}
+    .analysis-text{color:#e0e7ff;font-size:.9rem;line-height:1.6;margin:0}
+    .grid{display:flex;flex-direction:column;gap:1rem}
+    .section{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
+    .section-header{display:flex;align-items:center;gap:.6rem;padding:.75rem 1.25rem;background:#f9fafb;border-bottom:1px solid #e5e7eb}
+    .section-icon{font-weight:700;color:#6b7280;width:22px;text-align:center}
+    .section-title{font-weight:700;font-size:.9rem;color:#1a1a2e}
+    .cols{display:grid;grid-template-columns:1fr 1px 1fr}
+    .divider{background:#e5e7eb}
+    .col{padding:1rem 1.25rem;display:flex;flex-direction:column;gap:.6rem}
+    .col-current{background:#fafafa}
+    .col-rec{background:#fefce8}
+    .col-label{font-size:.75rem;font-weight:700;text-transform:uppercase;color:#9ca3af;display:flex;align-items:center;gap:.4rem}
+    .ai-badge{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border-radius:20px;padding:.15rem .6rem;font-size:.7rem;font-weight:700}
+    .col-text{font-size:.9rem;color:#374151;line-height:1.5;margin:0;word-break:break-word}
+    .col-text-rec{color:#1a1a2e;font-weight:600}
+    pre.col-pre{white-space:pre-wrap;word-break:break-word;font-family:inherit;font-size:.85rem;color:#374151;background:#f3f4f6;border-radius:6px;padding:.75rem;margin:0;max-height:200px;overflow-y:auto;line-height:1.6}
+    pre.col-pre-rec{background:#fef9c3;color:#1a1a2e}
+    .rationale{font-size:.78rem;color:#7c3aed;background:#f5f3ff;border-left:3px solid #7c3aed;border-radius:0 4px 4px 0;padding:.4rem .6rem;margin:0;line-height:1.5;font-style:italic}
+    .copy-btn{align-self:flex-start;background:#f3f4f6;border:1px solid #d1d5db;border-radius:6px;padding:.3rem .75rem;font-size:.78rem;cursor:pointer;color:#374151;font-family:inherit}
+    .copy-btn-rec{background:#ede9fe;border-color:#c4b5fd;color:#5b21b6}
+    footer{background:#fff;border-top:1px solid #e2e8f0;padding:1.25rem 0;text-align:center;font-size:.82rem;color:#94a3b8}
+    @media(max-width:700px){.input-row{flex-direction:column}.overview{flex-direction:column}.thumb{width:100%;min-width:unset}.cols{grid-template-columns:1fr}.divider{width:100%;height:1px}}
+  </style>
+</head>
+<body>
+  <header><div class="container"><span class="brand">&#9654; YouTube SEO Tool</span></div></header>
+  <main>
     <div class="container">
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="hero-eyebrow">
-            <span class="dot"></span>
-            Australian-Registered Doctors
+      <h1>YouTube SEO Analyser</h1>
+      <p class="subtitle">Paste a YouTube URL to extract current metadata <strong>and get AI-powered SEO recommendations</strong> your team can review and apply.</p>
+      <div class="form-card">
+        <form id="form">
+          <div class="input-row">
+            <input type="url" id="url" placeholder="https://www.youtube.com/watch?v=..." required />
+            <button type="submit" class="btn" id="btn">Analyse</button>
           </div>
-          <h1>Quit Smoking with<br/><em>Doctor-Led</em> Support</h1>
-          <p class="hero-desc">
-            Affordable, evidence-based care with discreet medication delivery.
-            Start your quit journey with a $10 consult — no GP referral needed.
-          </p>
-          <div class="hero-actions">
-            <a href="/book" class="btn btn-primary btn-lg">Book $10 Consult</a>
-            <a href="/services#program" class="btn btn-outline-white btn-lg">Start 3-Month Program</a>
-          </div>
-          <div class="hero-trust">
-            <span class="hero-trust-item"><span class="tick">&#10003;</span> Australian-registered doctors</span>
-            <span class="hero-trust-item"><span class="tick">&#10003;</span> Evidence-based care</span>
-            <span class="hero-trust-item"><span class="tick">&#10003;</span> Private &amp; confidential</span>
-          </div>
-        </div>
-
-        <div class="hero-visual">
-          <div class="hero-card">
-            <div class="hero-card-title"><span class="dot"></span>Your Quit Plan</div>
-            <div class="offer-row">
-              <span class="offer-label">&#128203; Doctor Consult</span>
-              <span class="offer-price">$10</span>
-            </div>
-            <div class="offer-row">
-              <span class="offer-label">&#127919; 3-Month Program</span>
-              <span class="offer-price">$299</span>
-            </div>
-            <div class="offer-row">
-              <span class="offer-label">&#128230; Medication Delivery</span>
-              <span class="offer-price">$15 flat</span>
-            </div>
-            <hr class="hero-card-divider"/>
-            <p class="hero-card-note">Medications prescribed only if clinically appropriate. Results vary between individuals.</p>
-          </div>
-        </div>
+          <p class="hint">Supports youtube.com and youtu.be links &middot; Takes ~10&ndash;20 seconds</p>
+        </form>
+      </div>
+      <div id="err" class="error"></div>
+      <div id="load" class="loading"><div class="loading-inner"><div class="spinner"></div><div><p class="loading-title">Fetching metadata &amp; running SEO analysis&hellip;</p><p class="loading-sub">Claude AI is reviewing your video &mdash; usually 10&ndash;20 seconds</p></div></div></div>
+      <div id="res" class="result">
+        <div class="overview"><img id="thumb" src="" alt="" class="thumb" /><div class="meta"><h2 id="vtitle" class="video-title"></h2><div class="badges"><span id="channel" class="badge"></span><span id="views" class="badge badge-alt"></span><span id="vdate" class="badge badge-alt"></span><span id="vdur" class="badge badge-alt"></span></div></div></div>
+        <div class="analysis-card"><div class="analysis-icon">&#10022;</div><div><p class="analysis-label">SEO Analysis Summary</p><p id="analysis" class="analysis-text"></p></div></div>
+        <div class="grid" id="grid"></div>
       </div>
     </div>
-  </section>
-
-  <!-- Trust bar -->
-  <section class="section-sm" style="border-bottom: 1px solid var(--clr-border);">
-    <div class="container">
-      <div class="trust-bar">
-        <div class="trust-item">
-          <div class="trust-icon">&#9874;</div>
-          Australian-Registered Doctors
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon">&#128203;</div>
-          Evidence-Based Care
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon">&#128274;</div>
-          Private &amp; Confidential
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon">&#128230;</div>
-          Discreet Fast Delivery
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon">&#127891;</div>
-          TGA-Compliant
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section class="section section-alt" id="how-it-works">
-    <div class="container">
-      <div class="text-center" style="margin-bottom: 1rem;">
-        <span class="section-label">How It Works</span>
-        <h2 class="section-title">Simple, Doctor-Led, End-to-End</h2>
-        <p class="section-subtitle">From your first consult to medication at your door — everything is handled.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <div class="step-icon">&#128203;</div>
-          <h3 class="step-title">Book $10 Consult</h3>
-          <p class="step-desc">Complete a short intake questionnaire online. Book your telehealth appointment in minutes.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <div class="step-icon">&#128105;&#8205;&#9877;</div>
-          <h3 class="step-title">Speak with a Doctor</h3>
-          <p class="step-desc">A 10–15 minute telehealth consultation with an Australian-registered doctor. No GP referral needed.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <div class="step-icon">&#127919;</div>
-          <h3 class="step-title">Get Your Quit Plan</h3>
-          <p class="step-desc">Receive a personalised smoking cessation strategy tailored to your history, triggers, and goals.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">4</div>
-          <div class="step-icon">&#128230;</div>
-          <h3 class="step-title">Medication Delivered</h3>
-          <p class="step-desc">If clinically appropriate, your prescription is sent to our partner pharmacy. Discreet delivery in 24–48 hrs.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Programs -->
-  <section class="section" id="programs">
-    <div class="container">
-      <div class="text-center" style="margin-bottom: 1rem;">
-        <span class="section-label">Programs</span>
-        <h2 class="section-title">Choose Your Quit Journey</h2>
-        <p class="section-subtitle">Whether you want to start with a single consult or commit to a full structured program, we have a path for you.</p>
-      </div>
-      <div class="pricing-grid">
-        <!-- $10 consult -->
-        <div class="pricing-card">
-          <div class="pricing-badge orange">Entry Point</div>
-          <div class="pricing-name">Doctor Consultation</div>
-          <div class="pricing-price"><sup>$</sup>10</div>
-          <div class="pricing-period">One-time telehealth appointment</div>
-          <ul class="pricing-features">
-            <li><span class="check">&#10003;</span> Online intake questionnaire</li>
-            <li><span class="check">&#10003;</span> 10–15 min telehealth consult (if required)</li>
-            <li><span class="check">&#10003;</span> Smoking history &amp; health review</li>
-            <li><span class="check">&#10003;</span> Personalised quit strategy</li>
-            <li><span class="check">&#10003;</span> Prescription if clinically appropriate</li>
-            <li><span class="check">&#10003;</span> Australian-registered doctor</li>
-          </ul>
-          <a href="/book" class="btn btn-primary pricing-cta">Book Now — $10</a>
-        </div>
-
-        <!-- $299 program -->
-        <div class="pricing-card featured">
-          <div class="pricing-badge">Most Popular</div>
-          <div class="pricing-name">3-Month Cessation Program</div>
-          <div class="pricing-price"><sup>$</sup>299</div>
-          <div class="pricing-period">Full 3-month structured support</div>
-          <ul class="pricing-features">
-            <li><span class="check">&#10003;</span> Initial doctor consultation</li>
-            <li><span class="check">&#10003;</span> Weekly / fortnightly follow-up appointments</li>
-            <li><span class="check">&#10003;</span> Structured quitting plan</li>
-            <li><span class="check">&#10003;</span> Behavioural coaching &amp; support</li>
-            <li><span class="check">&#10003;</span> NRT &amp; pharmacotherapy guidance</li>
-            <li><span class="check">&#10003;</span> Progress tracking</li>
-            <li><span class="check">&#10003;</span> Prescription management</li>
-            <li><span class="check">&#10003;</span> Priority doctor access</li>
-          </ul>
-          <a href="/book?plan=program" class="btn btn-blue pricing-cta">Start 3-Month Program</a>
-        </div>
-      </div>
-
-      <!-- Compliance note -->
-      <div class="compliance-box" style="margin-top: 2rem; max-width: 760px; margin-left: auto; margin-right: auto;">
-        <span class="icon">&#128274;</span>
-        <span>This service is designed to support quitting, based on evidence-based care. Outcomes vary between individuals. Medications are prescribed only if clinically appropriate by an Australian-registered doctor. This is a telehealth service — not covered by Medicare.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Delivery highlight -->
-  <section class="section section-alt" id="delivery">
-    <div class="container">
-      <div class="text-center" style="margin-bottom: 1rem;">
-        <span class="section-label">Pharmacy &amp; Delivery</span>
-        <h2 class="section-title">Discreet Medication Delivery</h2>
-        <p class="section-subtitle">Doctor prescribes. Partner pharmacy fulfils. Your door in 24–48 hours — discreetly packaged.</p>
-      </div>
-      <div class="delivery-grid">
-        <div class="delivery-card">
-          <div class="delivery-icon">&#128274;</div>
-          <div class="delivery-title">Discreet Packaging</div>
-          <div class="delivery-desc">Plain packaging with no identifying health content on the outside.</div>
-        </div>
-        <div class="delivery-card">
-          <div class="delivery-icon">&#9889;</div>
-          <div class="delivery-title">24–48 Hour Delivery</div>
-          <div class="delivery-desc">Fast fulfilment via our trusted partner pharmacy network.</div>
-        </div>
-        <div class="delivery-card">
-          <div class="delivery-icon">&#128176;</div>
-          <div class="delivery-title">$15 Flat Fee</div>
-          <div class="delivery-desc">Simple flat delivery rate. Free on orders over $150.</div>
-        </div>
-        <div class="delivery-card">
-          <div class="delivery-icon">&#128203;</div>
-          <div class="delivery-title">Digital Prescription</div>
-          <div class="delivery-desc">Doctor sends the prescription directly to the pharmacy — no paperwork.</div>
-        </div>
-        <div class="delivery-card">
-          <div class="delivery-icon">&#128269;</div>
-          <div class="delivery-title">Track Your Order</div>
-          <div class="delivery-desc">Real-time delivery tracking so you always know where your medication is.</div>
-        </div>
-        <div class="delivery-card">
-          <div class="delivery-icon">&#127891;</div>
-          <div class="delivery-title">TGA-Compliant</div>
-          <div class="delivery-desc">All medications dispensed under Australian regulatory standards.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why QuitDr -->
-  <section class="section">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-        <div>
-          <span class="section-label">Why QuitDr</span>
-          <h2 class="section-title">Doctor-Led. Affordable. End-to-End.</h2>
-          <p style="color: var(--clr-text-secondary); margin-bottom: 1.75rem; line-height: 1.8;">
-            Most quit programs rely on coaches or apps. QuitDr puts a real, Australian-registered doctor at the centre of your care — from first consult to prescription to delivery. All in one place.
-          </p>
-          <div class="stats-row">
-            <div class="stat-item">
-              <div class="stat-num">$10</div>
-              <div class="stat-label">Entry consultation</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-num">24–48h</div>
-              <div class="stat-label">Medication delivery</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-num">3 months</div>
-              <div class="stat-label">Structured support</div>
-            </div>
-          </div>
-          <div style="margin-top: 2rem;">
-            <a href="/book" class="btn btn-primary btn-lg">Book $10 Consult</a>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-          <div class="card" style="display: flex; gap: 1rem; align-items: flex-start;">
-            <div class="trust-icon" style="flex-shrink:0;">&#9874;</div>
-            <div>
-              <strong>Doctor-Led (Not Coach-Only)</strong>
-              <p style="font-size:.9rem; color:var(--clr-text-secondary); margin-top:.25rem;">All consultations conducted by Australian-registered doctors. Real medical oversight — not just app guidance.</p>
-            </div>
-          </div>
-          <div class="card" style="display: flex; gap: 1rem; align-items: flex-start;">
-            <div class="trust-icon" style="flex-shrink:0;">&#128176;</div>
-            <div>
-              <strong>Affordable Entry Point</strong>
-              <p style="font-size:.9rem; color:var(--clr-text-secondary); margin-top:.25rem;">Start for just $10. No expensive membership or upfront commitment to get professional medical advice.</p>
-            </div>
-          </div>
-          <div class="card" style="display: flex; gap: 1rem; align-items: flex-start;">
-            <div class="trust-icon" style="flex-shrink:0;">&#128230;</div>
-            <div>
-              <strong>End-to-End Care</strong>
-              <p style="font-size:.9rem; color:var(--clr-text-secondary); margin-top:.25rem;">Consult, prescription, and discreet delivery — everything managed in one platform. No running around.</p>
-            </div>
-          </div>
-          <div class="card" style="display: flex; gap: 1rem; align-items: flex-start;">
-            <div class="trust-icon" style="flex-shrink:0;">&#128274;</div>
-            <div>
-              <strong>Private &amp; Confidential</strong>
-              <p style="font-size:.9rem; color:var(--clr-text-secondary); margin-top:.25rem;">Your health information is handled with full compliance with Australian privacy laws. Discreet delivery.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- For Employers CTA -->
-  <section class="section section-dark">
-    <div class="container text-center">
-      <span class="section-label" style="color: rgba(255,255,255,.7); background: rgba(255,255,255,.1);">For Employers</span>
-      <h2 class="section-title light" style="margin-top: .5rem;">Workplace Smoking Cessation Program</h2>
-      <p class="section-subtitle light" style="margin: 0 auto 2rem;">Reduce absenteeism, improve productivity, and support your workforce with a fully managed, doctor-led quit program. Minimal HR burden.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="/employers" class="btn btn-primary btn-lg">Learn About Employer Programs</a>
-        <a href="/employers#contact" class="btn btn-outline-white btn-lg">Request a Demo</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="section section-blue">
-    <div class="container text-center">
-      <h2 class="section-title light">Ready to Quit Smoking?</h2>
-      <p class="section-subtitle light" style="margin: 0 auto 2.5rem;">Book your $10 doctor consultation today. Evidence-based support designed to help you quit — your way.</p>
-      <a href="/book" class="btn btn-primary btn-lg" style="background:#fff; color:var(--clr-cta); border-color:#fff;">Book $10 Consult Now</a>
-      <p style="margin-top: 1.5rem; font-size: .8rem; color: rgba(255,255,255,.6);">Results vary between individuals. Consult a healthcare professional. This is a telehealth service.</p>
-    </div>
-  </section>
-
-</BaseLayout>
-
-<style>
-  @media (max-width: 900px) {
-    .section div[style*="grid-template-columns: 1fr 1fr"] {
-      grid-template-columns: 1fr !important;
+  </main>
+  <footer><div class="container">AI-powered YouTube SEO analysis &middot; Recommendations only</div></footer>
+  <script>
+    function t(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+    function dur(s){s=parseInt(s);const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60;return h?`${h}:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`:`${m}:${String(ss).padStart(2,'0')}`;}
+    function card(label,icon,cid,rid,ratid,pre){
+      const tag=pre?'pre':'p',cs=pre?'col-pre':'col-text',rs=pre?'col-pre col-pre-rec':'col-text col-text-rec';
+      return `<div class="section"><div class="section-header"><span class="section-icon">${icon}</span><span class="section-title">${label}</span></div><div class="cols"><div class="col col-current"><div class="col-label">Current</div><${tag} id="${cid}" class="${cs}"></${tag}><button class="copy-btn" data-t="${cid}">Copy</button></div><div class="divider"></div><div class="col col-rec"><div class="col-label"><span class="ai-badge">AI Recommended</span></div><${tag} id="${rid}" class="${rs}"></${tag}><p id="${ratid}" class="rationale"></p><button class="copy-btn copy-btn-rec" data-t="${rid}">Copy</button></div></div></div>`;
     }
-  }
-</style>
+    const form=document.getElementById('form'),urlInput=document.getElementById('url'),btn=document.getElementById('btn'),err=document.getElementById('err'),load=document.getElementById('load'),res=document.getElementById('res');
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();err.style.display='none';res.style.display='none';load.style.display='block';btn.disabled=true;btn.textContent='Analysing…';
+      try{
+        const r=await fetch('/api/youtube-metadata',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:urlInput.value.trim()})});
+        const d=await r.json();
+        if(!r.ok){err.textContent=d.error||'Something went wrong.';err.style.display='block';load.style.display='none';return;}
+        const{current:c,recommendations:rec}=d;
+        document.getElementById('thumb').src=c.thumbnail;
+        t('vtitle',c.title);t('channel',c.channel);
+        t('views',parseInt(c.viewCount,10).toLocaleString()+' views');
+        t('vdate',c.publishDate?new Date(c.publishDate).toLocaleDateString('en-AU',{year:'numeric',month:'short',day:'numeric'}):'');
+        t('vdur',dur(c.duration));
+        t('analysis',rec.overallAnalysis);
+        document.getElementById('grid').innerHTML=card('Title','Aa','c-title','r-title','r-title-rat',false)+card('Description','&para;','c-desc','r-desc','r-desc-rat',true)+card('Keywords','#','c-kw','r-kw','r-kw-rat',true)+card('Hashtags','&numero;','c-ht','r-ht','r-ht-rat',true);
+        t('c-title',c.title);t('r-title',rec.title);t('r-title-rat',rec.titleRationale);
+        t('c-desc',c.description||'(none)');t('r-desc',rec.description);t('r-desc-rat',rec.descriptionRationale);
+        t('c-kw',c.keywords.join(', ')||'(none)');t('r-kw',rec.keywords.join(', ')||'(none)');t('r-kw-rat',rec.keywordsRationale);
+        t('c-ht',c.hashtags.join(' ')||'(none)');t('r-ht',rec.hashtags.join(' '));t('r-ht-rat',rec.hashtagsRationale);
+        load.style.display='none';res.style.display='block';
+      }catch(ex){err.textContent='Error: '+ex.message;err.style.display='block';load.style.display='none';}
+      finally{btn.disabled=false;btn.textContent='Analyse';}
+    });
+    document.addEventListener('click',e=>{
+      const b=e.target.closest('.copy-btn');
+      if(b){const txt=document.getElementById(b.dataset.t)?.textContent||'';navigator.clipboard.writeText(txt).then(()=>{const o=b.textContent;b.textContent='Copied!';setTimeout(()=>b.textContent=o,1800);});}
+    });
+  </script>
+</body>
+</html>
