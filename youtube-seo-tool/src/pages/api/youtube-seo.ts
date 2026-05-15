@@ -29,39 +29,33 @@ async function fetchVideoInfo(url: string): Promise<{ title: string; thumbnail: 
   }
 }
 
+const json = (data: unknown, status = 200) =>
+  new Response(JSON.stringify(data), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = import.meta.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY || import.meta.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'ANTHROPIC_API_KEY is not configured.' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ error: 'ANTHROPIC_API_KEY is not configured on the server.' }, 500);
   }
 
   let body: { url?: string; context?: string };
   try {
     body = await request.json();
   } catch {
-    return new Response(JSON.stringify({ error: 'Invalid JSON body.' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ error: 'Invalid request body.' }, 400);
   }
 
   const { url, context } = body;
   if (!url || !url.trim()) {
-    return new Response(JSON.stringify({ error: 'YouTube URL is required.' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ error: 'YouTube URL is required.' }, 400);
   }
 
   const videoId = extractVideoId(url.trim());
   if (!videoId) {
-    return new Response(JSON.stringify({ error: 'Could not extract a valid YouTube video ID from the URL.' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ error: 'Could not find a valid YouTube video ID in that URL. Please paste the full YouTube link.' }, 400);
   }
 
   const videoInfo = await fetchVideoInfo(url.trim());
@@ -112,28 +106,19 @@ Rules:
     const rawText = message.content[0].type === 'text' ? message.content[0].text : '';
     const jsonMatch = rawText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      return new Response(JSON.stringify({ error: 'AI returned unexpected format.' }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return json({ error: 'AI returned an unexpected format. Please try again.' }, 500);
     }
 
     const seo = JSON.parse(jsonMatch[0]);
 
-    return new Response(
-      JSON.stringify({
-        videoInfo: videoInfo
-          ? { ...videoInfo, id: videoId }
-          : { id: videoId, title: '', thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`, author: '' },
-        seo,
-      }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : 'Unknown error';
-    return new Response(JSON.stringify({ error: `AI generation failed: ${message}` }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
+    return json({
+      videoInfo: videoInfo
+        ? { ...videoInfo, id: videoId }
+        : { id: videoId, title: '', thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`, author: '' },
+      seo,
     });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return json({ error: `AI generation failed: ${msg}` }, 500);
   }
 };

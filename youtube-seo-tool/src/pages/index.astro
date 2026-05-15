@@ -688,10 +688,16 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
           body: JSON.stringify({ url, context: contextInput.value.trim() }),
         });
 
-        const data = await res.json();
+        let data;
+        try {
+          data = await res.json();
+        } catch {
+          showError(`Server error (status ${res.status}). The API key may not be configured correctly in Railway — check your ANTHROPIC_API_KEY variable.`);
+          return;
+        }
 
         if (!res.ok) {
-          showError(data.error || 'Something went wrong. Please try again.');
+          showError(data.error || `Server error (${res.status}). Please try again.`);
           return;
         }
 
@@ -720,7 +726,7 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
         results.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
       } catch (err) {
-        showError('Network error — please check your connection and try again.');
+        showError('Could not reach the server. Please refresh the page and try again.');
       } finally {
         setLoading(false);
       }
