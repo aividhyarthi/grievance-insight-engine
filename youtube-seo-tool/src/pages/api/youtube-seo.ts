@@ -66,12 +66,12 @@ export const POST: APIRoute = async ({ request }) => {
     context ? `Additional context about the video: ${context}` : '',
   ].filter(Boolean).join('\n');
 
-  const prompt = `You are a YouTube SEO expert. Your task is to generate optimized SEO content for a YouTube video.
+  const prompt = `You are a YouTube SEO and content expert. Generate optimized SEO content AND thumbnail recommendations for a YouTube video.
 
 ${videoContext || 'No video metadata available — use the URL context.'}
 Video URL: ${url.trim()}
 
-Generate comprehensive YouTube SEO content in the following JSON format exactly:
+Return ONLY valid JSON in this exact format, no markdown, no explanation:
 {
   "titles": [
     "Title option 1 (highly clickable, keyword-rich, under 60 chars)",
@@ -84,22 +84,55 @@ Generate comprehensive YouTube SEO content in the following JSON format exactly:
   "chapters": "0:00 Introduction\n1:30 [Section 2]\n...",
   "keywords": ["primary keyword 1", "primary keyword 2"],
   "cardText": "Suggested end screen / card call-to-action text (2-3 sentences)",
-  "pinnedComment": "Suggested pinned comment text to boost engagement (2-3 sentences with emojis)"
+  "pinnedComment": "Suggested pinned comment text to boost engagement (2-3 sentences with emojis)",
+  "thumbnails": [
+    {
+      "concept": "Concept name (e.g. Bold Reaction, Before & After, Question Hook)",
+      "headline": "Big bold text to overlay on thumbnail (max 5 words, all caps)",
+      "subtext": "Supporting line below headline (max 8 words)",
+      "colors": {
+        "background": "Color description (e.g. Deep red #c0392b)",
+        "text": "Color description (e.g. White #ffffff)",
+        "accent": "Color description (e.g. Yellow #f1c40f)"
+      },
+      "composition": "Layout description — where to place face, text, objects (2 sentences)",
+      "expression": "If person appears: facial expression and body language tip (1 sentence)",
+      "canvaTip": "Specific Canva tip for recreating this (1 sentence)"
+    },
+    {
+      "concept": "Second concept (different style from first)",
+      "headline": "...",
+      "subtext": "...",
+      "colors": { "background": "...", "text": "...", "accent": "..." },
+      "composition": "...",
+      "expression": "...",
+      "canvaTip": "..."
+    },
+    {
+      "concept": "Third concept (another distinct approach)",
+      "headline": "...",
+      "subtext": "...",
+      "colors": { "background": "...", "text": "...", "accent": "..." },
+      "composition": "...",
+      "expression": "...",
+      "canvaTip": "..."
+    }
+  ]
 }
 
 Rules:
 - hashtags: 20-25 hashtags, mix of broad and niche
 - tags: 30-40 YouTube tags (single words and short phrases), no #
 - chapters: 6-10 chapters with realistic timestamps
-- All content must be SEO-optimized for YouTube search
-- Return ONLY valid JSON, no markdown, no explanation`;
+- thumbnails: 3 distinct concepts with different visual styles
+- All content must be SEO-optimized for YouTube search`;
 
   const client = new Anthropic({ apiKey });
 
   try {
     const message = await client.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 2048,
+      max_tokens: 3500,
       messages: [{ role: 'user', content: prompt }],
     });
 

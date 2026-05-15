@@ -387,6 +387,126 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
       white-space: pre-wrap;
     }
 
+    /* ── Thumbnail cards ── */
+    .thumb-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .thumb-card {
+      background: var(--bg3);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .thumb-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .thumb-concept {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--yt-red);
+    }
+    .thumb-num {
+      background: var(--yt-red);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .thumb-body {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .thumb-preview {
+      grid-column: 1 / -1;
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      text-align: center;
+      gap: 0.4rem;
+    }
+    .thumb-preview-headline {
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .thumb-preview-sub {
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+    .thumb-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .thumb-field-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .thumb-field-value {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .thumb-colors {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .color-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.78rem;
+    }
+    .color-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.15);
+      flex-shrink: 0;
+    }
+    .thumb-canva {
+      grid-column: 1 / -1;
+      background: rgba(62,166,255,0.07);
+      border: 1px solid rgba(62,166,255,0.2);
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.84rem;
+      color: #3ea6ff;
+    }
+    .thumb-canva::before {
+      content: '💡 Canva tip: ';
+      font-weight: 700;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .url-row { flex-direction: column; }
@@ -557,6 +677,14 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
         </div>
       </div>
 
+      <!-- Thumbnail Recommendations -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title-row"><span class="section-icon">🖼️</span> Thumbnail Recommendations</div>
+        </div>
+        <div class="section-body" id="thumbnails-body"></div>
+      </div>
+
     </div>
   </main>
 
@@ -637,6 +765,53 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
 
     function renderText(id, text) {
       document.getElementById(id + '-body').textContent = text;
+    }
+
+    function extractHexColor(str) {
+      const match = str.match(/#([0-9a-fA-F]{3,6})/);
+      return match ? match[0] : null;
+    }
+
+    function renderThumbnails(thumbnails) {
+      const body = document.getElementById('thumbnails-body');
+      if (!thumbnails || !thumbnails.length) { body.innerHTML = '<p style="color:var(--text-muted);font-size:.9rem;">No thumbnail data returned.</p>'; return; }
+      body.innerHTML = '<div class="thumb-grid">' + thumbnails.map((t, i) => {
+        const bgHex = extractHexColor(t.colors?.background || '') || '#c0392b';
+        const txtHex = extractHexColor(t.colors?.text || '') || '#ffffff';
+        const accentHex = extractHexColor(t.colors?.accent || '') || '#f1c40f';
+        return `
+          <div class="thumb-card">
+            <div class="thumb-card-header">
+              <div style="display:flex;align-items:center;gap:.6rem;">
+                <div class="thumb-num">${i + 1}</div>
+                <span class="thumb-concept">${escHtml(t.concept || 'Concept ' + (i+1))}</span>
+              </div>
+            </div>
+            <div class="thumb-body">
+              <div class="thumb-preview" style="background:${bgHex};color:${txtHex};">
+                <div class="thumb-preview-headline" style="color:${txtHex};">${escHtml(t.headline || '')}</div>
+                ${t.subtext ? `<div class="thumb-preview-sub" style="color:${accentHex};">${escHtml(t.subtext)}</div>` : ''}
+              </div>
+              <div class="thumb-field">
+                <div class="thumb-field-label">Colors</div>
+                <div class="thumb-colors">
+                  <div class="color-chip"><div class="color-swatch" style="background:${bgHex};"></div>${escHtml(t.colors?.background || '')}</div>
+                  <div class="color-chip"><div class="color-swatch" style="background:${txtHex};"></div>${escHtml(t.colors?.text || '')}</div>
+                  <div class="color-chip"><div class="color-swatch" style="background:${accentHex};"></div>${escHtml(t.colors?.accent || '')}</div>
+                </div>
+              </div>
+              <div class="thumb-field">
+                <div class="thumb-field-label">Composition</div>
+                <div class="thumb-field-value">${escHtml(t.composition || '')}</div>
+              </div>
+              <div class="thumb-field">
+                <div class="thumb-field-label">Expression / Body Language</div>
+                <div class="thumb-field-value">${escHtml(t.expression || '')}</div>
+              </div>
+              <div class="thumb-canva">${escHtml(t.canvaTip || '')}</div>
+            </div>
+          </div>`;
+      }).join('') + '</div>';
     }
 
     function escHtml(str) {
@@ -721,6 +896,7 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
         renderKeywords(seoData.keywords || []);
         renderText('cardText', seoData.cardText || '');
         renderText('pinnedComment', seoData.pinnedComment || '');
+        renderThumbnails(seoData.thumbnails || []);
 
         results.style.display = 'block';
         results.scrollIntoView({ behavior: 'smooth', block: 'start' });
