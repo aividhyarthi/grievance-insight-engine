@@ -144,6 +144,80 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
     .lang-select:focus { border-color: var(--yt-red); }
     .lang-select option { background: var(--bg2); }
 
+    /* ── Audit toggle ── */
+    .audit-toggle-row { margin-top: 1rem; }
+    .audit-toggle-btn {
+      background: transparent;
+      border: 1.5px dashed var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .audit-toggle-btn:hover { border-color: var(--yt-red); color: var(--text); }
+    .audit-optional {
+      font-size: 0.72rem;
+      font-weight: 400;
+      background: var(--bg3);
+      border-radius: 99px;
+      padding: 0.1rem 0.5rem;
+      margin-left: 0.4rem;
+      color: var(--text-muted);
+    }
+    .audit-inputs { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .audit-hint { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+
+    /* ── Score card ── */
+    .score-overall {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .score-big {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .score-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .score-verdict { font-size: 1rem; font-weight: 700; }
+    .score-verdict-sub { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+    .score-rows { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg3);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .score-row-icon { font-size: 1rem; flex-shrink: 0; width: 20px; text-align: center; }
+    .score-row-label { font-size: 0.85rem; font-weight: 600; width: 110px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg2); border-radius: 99px; height: 8px; overflow: hidden; }
+    .score-bar-fill { height: 100%; border-radius: 99px; transition: width 0.6s ease; }
+    .score-row-num { font-size: 0.85rem; font-weight: 700; width: 46px; text-align: right; flex-shrink: 0; }
+    .score-row-feedback { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; width: 100%; padding-left: calc(20px + 110px + 0.75rem + 0.75rem); }
+
+    .score-fixes {
+      background: rgba(255,200,0,0.06);
+      border: 1px solid rgba(255,200,0,0.2);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+    .score-fixes-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #f1c40f; margin-bottom: 0.6rem; }
+    .score-fix-item { display: flex; gap: 0.6rem; font-size: 0.87rem; color: var(--text); margin-bottom: 0.4rem; line-height: 1.5; }
+    .score-fix-num { color: #f1c40f; font-weight: 700; flex-shrink: 0; }
+
     .btn-export {
       background: #1a5c2a;
       color: #fff;
@@ -622,6 +696,20 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
         ></textarea>
       </div>
 
+      <!-- Audit section -->
+      <div class="audit-toggle-row">
+        <button class="audit-toggle-btn" id="audit-toggle">
+          <span id="audit-toggle-icon">＋</span> Audit my current SEO <span class="audit-optional">optional</span>
+        </button>
+      </div>
+      <div class="audit-inputs" id="audit-inputs" style="display:none;">
+        <p class="audit-hint">Paste your existing description and tags below — we'll score them and show exactly what to fix.</p>
+        <label class="input-label" for="current-desc">Current Description</label>
+        <textarea id="current-desc" class="context-input" style="min-height:100px;" placeholder="Paste your current YouTube description here..."></textarea>
+        <label class="input-label" style="margin-top:.75rem;" for="current-tags">Current Tags <span style="color:#555;font-weight:400;text-transform:none;">(comma separated)</span></label>
+        <textarea id="current-tags" class="context-input" style="min-height:55px;" placeholder="e.g. sourdough, bread recipe, beginner baking, homemade bread..."></textarea>
+      </div>
+
       <div class="loading-bar" id="loading-bar"><div class="loading-bar-inner"></div></div>
       <div class="loading-text" id="loading-text">Analysing video and generating SEO content...</div>
       <div class="error-box" id="error-box"></div>
@@ -642,6 +730,14 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
       <!-- Export bar -->
       <div style="display:flex;justify-content:flex-end;margin-bottom:1rem;">
         <button class="btn-export" id="export-btn">⬇ Export to Excel</button>
+      </div>
+
+      <!-- SEO Audit Score -->
+      <div class="section-card" id="audit-result-card" style="display:none;">
+        <div class="section-header">
+          <div class="section-title-row"><span class="section-icon">📊</span> Your Current SEO Score</div>
+        </div>
+        <div class="section-body" id="audit-result-body"></div>
       </div>
 
       <!-- Titles -->
@@ -753,6 +849,17 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
     const urlInput = document.getElementById('yt-url');
     const contextInput = document.getElementById('yt-context');
     const langSelect = document.getElementById('yt-language');
+    const currentDescInput = document.getElementById('current-desc');
+    const currentTagsInput = document.getElementById('current-tags');
+
+    // Audit toggle
+    document.getElementById('audit-toggle').addEventListener('click', () => {
+      const panel = document.getElementById('audit-inputs');
+      const icon = document.getElementById('audit-toggle-icon');
+      const open = panel.style.display !== 'none';
+      panel.style.display = open ? 'none' : 'flex';
+      icon.textContent = open ? '＋' : '－';
+    });
     const generateBtn = document.getElementById('generate-btn');
     const btnLabel = document.getElementById('btn-label');
     const spinner = document.getElementById('spinner');
@@ -817,6 +924,71 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
       body.innerHTML = keywords.map(k =>
         `<span class="keyword-chip">${escHtml(k)}</span>`
       ).join('');
+    }
+
+    function scoreColor(s) {
+      if (s >= 75) return '#00c853';
+      if (s >= 50) return '#f1c40f';
+      return '#ff4444';
+    }
+    function scoreLabel(s) {
+      if (s >= 75) return 'Good';
+      if (s >= 50) return 'Needs Work';
+      return 'Poor';
+    }
+
+    function renderAudit(audit) {
+      const card = document.getElementById('audit-result-card');
+      const body = document.getElementById('audit-result-body');
+      if (!audit) { card.style.display = 'none'; return; }
+      card.style.display = 'block';
+
+      const overall = audit.overall || 0;
+      const col = scoreColor(overall);
+      const categories = [
+        { icon: '📌', label: 'Title', key: 'title' },
+        { icon: '📝', label: 'Description', key: 'description' },
+        { icon: '🏷️', label: 'Tags', key: 'tags' },
+        { icon: '#', label: 'Hashtags', key: 'hashtags' },
+      ];
+
+      const rowsHtml = categories.map(c => {
+        const item = audit[c.key] || {};
+        const s = item.score ?? null;
+        const notProvided = s === null || s === undefined;
+        const barColor = notProvided ? '#444' : scoreColor(s);
+        const barWidth = notProvided ? 0 : s;
+        const scoreText = notProvided ? 'N/A' : `${s}/100`;
+        return `
+          <div>
+            <div class="score-row">
+              <span class="score-row-icon">${c.icon}</span>
+              <span class="score-row-label">${c.label}</span>
+              <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${barWidth}%;background:${barColor};"></div></div>
+              <span class="score-row-num" style="color:${barColor};">${scoreText}</span>
+            </div>
+            ${item.feedback ? `<div class="score-row-feedback">${escHtml(item.feedback)}</div>` : ''}
+          </div>`;
+      }).join('');
+
+      const fixesHtml = (audit.topFixes || []).map((f, i) =>
+        `<div class="score-fix-item"><span class="score-fix-num">${i + 1}.</span><span>${escHtml(f)}</span></div>`
+      ).join('');
+
+      body.innerHTML = `
+        <div class="score-overall" style="background:${col}18;border:1px solid ${col}33;">
+          <div>
+            <div class="score-big" style="color:${col};">${overall}</div>
+            <div class="score-label">out of 100</div>
+          </div>
+          <div>
+            <div class="score-verdict">${scoreLabel(overall)} SEO</div>
+            <div class="score-verdict-sub">${audit.summary || 'See breakdown below for what to fix.'}</div>
+          </div>
+        </div>
+        <div class="score-rows">${rowsHtml}</div>
+        ${fixesHtml ? `<div class="score-fixes"><div class="score-fixes-title">⚡ Top Fixes — Do These First</div>${fixesHtml}</div>` : ''}
+      `;
     }
 
     function renderText(id, text) {
@@ -916,7 +1088,13 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
         const res = await fetch('/api/youtube-seo', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url, context: contextInput.value.trim(), language: langSelect.value }),
+          body: JSON.stringify({
+            url,
+            context: contextInput.value.trim(),
+            language: langSelect.value,
+            currentDescription: currentDescInput.value.trim(),
+            currentTags: currentTagsInput.value.trim(),
+          }),
         });
 
         let data;
@@ -954,6 +1132,7 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
         renderText('cardText', seoData.cardText || '');
         renderText('pinnedComment', seoData.pinnedComment || '');
         renderThumbnails(seoData.thumbnails || []);
+        renderAudit(data.audit || null);
 
         results.style.display = 'block';
         results.scrollIntoView({ behavior: 'smooth', block: 'start' });

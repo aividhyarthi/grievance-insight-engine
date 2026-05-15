@@ -41,14 +41,14 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ error: 'ANTHROPIC_API_KEY is not configured on the server.' }, 500);
   }
 
-  let body: { url?: string; context?: string; language?: string };
+  let body: { url?: string; context?: string; language?: string; currentDescription?: string; currentTags?: string };
   try {
     body = await request.json();
   } catch {
     return json({ error: 'Invalid request body.' }, 400);
   }
 
-  const { url, context, language = 'English' } = body;
+  const { url, context, language = 'English', currentDescription = '', currentTags = '' } = body;
   if (!url || !url.trim()) {
     return json({ error: 'YouTube URL is required.' }, 400);
   }
@@ -66,15 +66,32 @@ export const POST: APIRoute = async ({ request }) => {
     context ? `Additional context about the video: ${context}` : '',
   ].filter(Boolean).join('\n');
 
-  const prompt = `You are a YouTube SEO and content expert. Generate optimized SEO content AND thumbnail recommendations for a YouTube video.
+  const auditContext = [
+    currentDescription ? `Current description:\n${currentDescription}` : '',
+    currentTags ? `Current tags: ${currentTags}` : '',
+  ].filter(Boolean).join('\n\n');
 
-IMPORTANT: Generate ALL text content (titles, description, hashtags, tags, keywords, cardText, pinnedComment, thumbnail concepts) in ${language}. If the language is not English, write everything natively in ${language} script — do not transliterate.
+  const prompt = `You are a YouTube SEO and content expert. Do two things:
+1. Score the EXISTING SEO content provided.
+2. Generate fully optimized NEW SEO content and thumbnail recommendations.
 
-${videoContext || 'No video metadata available — use the URL context.'}
+IMPORTANT: Generate ALL new text content in ${language}. If not English, write natively in ${language} script.
+
+${videoContext || 'No video metadata available.'}
 Video URL: ${url.trim()}
+${auditContext ? `\n--- EXISTING SEO TO AUDIT ---\n${auditContext}\n---` : '\n(No existing description/tags provided — score description and tags/hashtags as null)'}
 
 Return ONLY valid JSON in this exact format, no markdown, no explanation:
 {
+  "audit": {
+    "overall": <0-100 integer>,
+    "summary": "One sentence verdict on the current SEO quality",
+    "title": { "score": <0-100>, "feedback": "Specific issue with current title in plain English" },
+    "description": { "score": <0-100 or null if not provided>, "feedback": "Specific issue or 'Not provided'" },
+    "tags": { "score": <0-100 or null if not provided>, "feedback": "Specific issue or 'Not provided'" },
+    "hashtags": { "score": <0-100 or null if not provided>, "feedback": "Specific issue or 'Not provided'" },
+    "topFixes": ["Fix 1 — specific actionable instruction", "Fix 2", "Fix 3"]
+  },
   "titles": [
     "Title option 1 (highly clickable, keyword-rich, under 60 chars)",
     "Title option 2 (different angle, emotional hook)",
@@ -134,7 +151,7 @@ Rules:
   try {
     const message = await client.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 3500,
+      max_tokens: 4096,
       messages: [{ role: 'user', content: prompt }],
     });
 
@@ -144,12 +161,14 @@ Rules:
       return json({ error: 'AI returned an unexpected format. Please try again.' }, 500);
     }
 
-    const seo = JSON.parse(jsonMatch[0]);
+    const parsed = JSON.parse(jsonMatch[0]);
+    const { audit, ...seo } = parsed;
 
     return json({
       videoInfo: videoInfo
         ? { ...videoInfo, id: videoId }
         : { id: videoId, title: '', thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`, author: '' },
+      audit: audit || null,
       seo,
     });
   } catch (err: unknown) {
