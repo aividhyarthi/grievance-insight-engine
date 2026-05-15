@@ -1,6 +1,27 @@
 import type { APIRoute } from 'astro';
 import Anthropic from '@anthropic-ai/sdk';
 
+// Escape unescaped control characters inside JSON string values only
+function repairJson(raw: string): string {
+  let result = '';
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < raw.length; i++) {
+    const ch = raw[i];
+    if (escaped) { result += ch; escaped = false; continue; }
+    if (ch === '\\' && inString) { result += ch; escaped = true; continue; }
+    if (ch === '"') { inString = !inString; result += ch; continue; }
+    if (inString) {
+      if (ch === '\n') { result += '\\n'; continue; }
+      if (ch === '\r') { result += '\\r'; continue; }
+      if (ch === '\t') { result += '\\t'; continue; }
+      if (ch.charCodeAt(0) < 0x20) continue;
+    }
+    result += ch;
+  }
+  return result;
+}
+
 function extractVideoId(url: string): string | null {
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)([a-zA-Z0-9_-]{11})/,
@@ -161,7 +182,12 @@ Rules:
       return json({ error: 'AI returned an unexpected format. Please try again.' }, 500);
     }
 
-    const parsed = JSON.parse(jsonMatch[0]);
+    let parsed: Record<string, unknown>;
+    try {
+      parsed = JSON.parse(jsonMatch[0]);
+    } catch {
+      parsed = JSON.parse(repairJson(jsonMatch[0]));
+    }
     const { audit, ...seo } = parsed;
 
     return json({
