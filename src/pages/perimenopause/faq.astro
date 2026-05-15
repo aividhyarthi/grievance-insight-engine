@@ -1,0 +1,109 @@
+---
+import PerimenopauseLayout from '../../layouts/PerimenopauseLayout.astro';
+
+const faqs = [
+  {
+    q: "How do I know if I'm in perimenopause?",
+    a: "There is no single test that diagnoses perimenopause. It is a clinical diagnosis based on your age, symptoms, and menstrual changes. Blood tests (FSH, oestradiol) can be done but are often inconclusive because hormone levels fluctuate so much during this time. If you're in your 40s and experiencing symptoms like irregular periods, sleep disruption, hot flushes, or mood changes, perimenopause is a likely explanation. Your GP can help you make sense of what you're experiencing.",
+  },
+  {
+    q: "Can perimenopause start in my 30s?",
+    a: "Yes. While the average onset is in the mid-to-late 40s, perimenopause can begin in the late 30s for some women. If you experience regular menstrual cycle changes, early symptoms, or have a family history of early menopause, it's worth discussing with your GP. Premature Ovarian Insufficiency (POI) — menopause before age 40 — affects around 1 in 100 women and is a separate, diagnosable condition.",
+  },
+  {
+    q: "How long does perimenopause last?",
+    a: "On average, 4 to 10 years — though it varies significantly between individuals. Some women transition relatively quickly (2–3 years); for others it can extend beyond a decade. The transition is complete when you have gone 12 consecutive months without a period, at which point you are considered to have reached menopause.",
+  },
+  {
+    q: "Can I still get pregnant during perimenopause?",
+    a: "Yes. Ovulation is irregular, not absent, during perimenopause. You can still conceive, sometimes unpredictably. If you do not wish to become pregnant, contraception is recommended until you have had 12 consecutive months without a period (if you are over 50) or 24 months (if you are under 50). Discuss contraception options that are also appropriate during this life stage with your GP.",
+  },
+  {
+    q: "What is the difference between perimenopause and menopause?",
+    a: "Perimenopause is the transitional phase during which your hormones fluctuate and symptoms occur — it can last years. Menopause is a specific point in time: the moment you have gone 12 consecutive months without a period. Most of what women experience symptomatically happens during perimenopause, not after menopause. Post-menopause refers to all years after that 12-month point.",
+  },
+  {
+    q: "Is HRT (hormone replacement therapy) safe?",
+    a: "For most healthy women under 60 and within 10 years of their last period, the current evidence suggests that MHT (Menopausal Hormone Therapy — the current Australian term) has benefits that outweigh risks. The major concerns raised by the 2002 WHI study have been substantially revised. The type, dose, and form of MHT matters — body-identical hormones and transdermal (patch or gel) oestrogen carry a different risk profile than older oral formulations. Your GP can advise based on your individual health history.",
+  },
+  {
+    q: "Are my hot flushes actually dangerous?",
+    a: "Hot flushes are not dangerous in themselves, but they can be extremely disruptive to quality of life and sleep. Frequent, severe hot flushes are associated with increased cardiovascular risk long-term — which is one of the reasons treating significant symptoms is considered beneficial, not just for comfort. If hot flushes are significantly impacting your life, they are worth treating.",
+  },
+  {
+    q: "Is the brain fog I'm experiencing normal in perimenopause?",
+    a: "Yes, cognitive changes — difficulty concentrating, word-finding difficulties, and memory lapses — are very common and genuinely reported by a large proportion of women in perimenopause. They are linked to hormonal fluctuations and, significantly, to sleep deprivation. For most women, cognitive function improves after menopause. If symptoms are severe or progressing rapidly, it's worth discussing with your GP to rule out other causes.",
+  },
+  {
+    q: "I feel anxious in a way I never have before. Is that perimenopause?",
+    a: `Very possibly, yes. New-onset anxiety — particularly around the late 30s to mid-40s — is often connected to perimenopause, especially when other symptoms are present. Oestrogen influences serotonin and GABA pathways, and fluctuating levels can destabilise the nervous system. This is not "just stress" — it has a biological basis. It is also treatable. Please don't dismiss it or wait it out without support.`,
+  },
+  {
+    q: "My doctor doesn't seem to take my symptoms seriously. What should I do?",
+    a: `Unfortunately, this is a common experience. Some practical approaches: come to your appointment with a written list of symptoms and how they're affecting your daily life; ask specifically whether perimenopause could be contributing; request a longer appointment so there's time to discuss properly; and ask for a referral to a gynaecologist or menopause specialist if you feel your concerns aren't being addressed. The Australasian Menopause Society (ams.asn.au) has a directory of doctors with specific menopause training.`,
+  },
+  {
+    q: "What's the difference between perimenopause symptoms and thyroid problems?",
+    a: "Several perimenopause symptoms overlap with thyroid conditions — particularly fatigue, brain fog, weight changes, mood changes, and irregular periods. Because thyroid problems are more common in women in this age group, your GP may want to check your thyroid function with a blood test. This is a good idea — it's simple to rule out and important if it's contributing to your symptoms.",
+  },
+  {
+    q: "Can lifestyle changes really make a difference to symptoms?",
+    a: "Yes, meaningfully so for many symptoms — though the degree varies between individuals and symptoms. Strength training is particularly well-evidenced for mood, bone density, metabolic function, and sleep. Reducing alcohol can significantly improve sleep quality, hot flush frequency, and mood. Consistent sleep habits help enormously. These are not replacements for medical treatment in severe cases, but they're powerful additions at any level of symptom burden.",
+  },
+];
+---
+
+<PerimenopauseLayout
+  title="Perimenopause FAQs – hermidlife"
+  description="Answers to the most common questions about perimenopause — what it is, how long it lasts, symptoms, HRT, and navigating healthcare in Australia."
+>
+
+  <!-- Page hero -->
+  <section style="background: linear-gradient(135deg, #5A1D35 0%, #9D4E6E 100%); color:#fff; padding: 4rem 0;">
+    <div class="container">
+      <span class="hml-eyebrow">&#10067; Frequently Asked Questions</span>
+      <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight:900; letter-spacing:-.02em; margin:.75rem 0; color:#fff;">
+        Questions we hear most often
+      </h1>
+      <p style="font-size:1.05rem; color:rgba(255,255,255,.85); max-width:560px; line-height:1.7;">
+        Straightforward answers to the questions women ask most about perimenopause, hormones, and healthcare in Australia.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ list -->
+  <section class="section hml-page">
+    <div class="container">
+      <div class="faq-list" style="max-width:760px;">
+        {faqs.map(f => (
+          <div class="faq-item">
+            <button class="faq-question">
+              {f.q}
+              <span class="faq-arrow">+</span>
+            </button>
+            <div class="faq-answer">{f.a}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="hml-info-box" style="max-width:760px; margin:2.5rem auto 0;">
+        <strong>Important:</strong> These answers are general information only. Your circumstances are individual. Always speak to your GP or a qualified healthcare professional for advice specific to your situation.
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom nav -->
+  <section class="section-sm" style="background:#fff; border-top:1px solid var(--hml-border);">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div style="font-weight:700; font-size:1.05rem; margin-bottom:.25rem;">Still have questions?</div>
+        <div style="font-size:.9rem; color:var(--clr-text-secondary);">Check our symptom library or find out how to talk to your GP.</div>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="/perimenopause/library" class="btn" style="background:var(--hml-primary); color:#fff; border-color:var(--hml-primary);">Symptom Library</a>
+        <a href="/perimenopause/talk-to-gp" class="btn btn-outline" style="color:var(--hml-primary); border-color:var(--hml-primary);">Talk to Your GP</a>
+      </div>
+    </div>
+  </section>
+
+</PerimenopauseLayout>

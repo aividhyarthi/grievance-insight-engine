@@ -1,0 +1,155 @@
+---
+import PerimenopauseLayout from '../../layouts/PerimenopauseLayout.astro';
+---
+
+<PerimenopauseLayout
+  title="Perimenopause Guide – hermidlife | Your Pocket Guide"
+  description="Understand perimenopause in plain language. What it is, when it starts, and what's happening in your body — with Australian context throughout."
+>
+
+  <!-- Hero -->
+  <section class="hml-hero">
+    <div class="container">
+      <div class="hml-hero-inner">
+        <div class="hml-eyebrow">&#127795; Your perimenopause pocket guide</div>
+        <h1>What's happening<br/>in your body — and<br/><em>why it makes sense</em></h1>
+        <p class="hml-hero-desc">
+          Perimenopause can start in your early 40s — or even late 30s — and it's different for every woman.
+          This guide gives you clear, honest information about what's changing and why, without the medical jargon.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;">
+          <a href="/perimenopause/library" class="btn" style="background:#fff; color:#9D4E6E; font-weight:700; border:2px solid #fff;">Browse Symptoms</a>
+          <a href="/perimenopause/guides" class="btn btn-outline-white">Read the Guides</a>
+        </div>
+        <div class="hml-disclaimer-strip">
+          &#128274; Information only — always talk to your GP about your personal health.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is perimenopause -->
+  <section class="section hml-page">
+    <div class="container">
+      <div style="max-width: 720px; margin: 0 auto;">
+        <span class="hml-label">The basics</span>
+        <h2 class="section-title">What is perimenopause?</h2>
+        <p style="color: var(--clr-text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 1.25rem;">
+          Perimenopause is the transitional phase leading up to menopause — the point when your periods stop permanently.
+          During this time, your oestrogen and progesterone levels fluctuate and gradually decline, and your body goes through significant changes.
+        </p>
+        <p style="color: var(--clr-text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 1.25rem;">
+          In Australia, the average age of menopause is 51–52, which means perimenopause often starts in the mid-to-late 40s.
+          But it can begin as early as the mid-30s for some women, and it typically lasts between 4 and 10 years.
+        </p>
+        <p style="color: var(--clr-text-secondary); font-size: 1.02rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          Many women don't realise they're in perimenopause because symptoms like disrupted sleep, mood changes, or irregular periods
+          are often attributed to stress, ageing, or other causes — not hormones. Knowing what's happening can make an enormous difference.
+        </p>
+
+        <div class="hml-info-box">
+          <strong>You are not in menopause until</strong> you have gone 12 consecutive months without a period. Everything before that point is perimenopause.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key stats -->
+  <section class="section-sm" style="background:#fff; border-top: 1px solid var(--hml-border); border-bottom: 1px solid var(--hml-border);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center;">
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--hml-primary); letter-spacing: -.02em;">4–10</div>
+          <div style="font-size: .88rem; color: var(--clr-text-muted); font-weight: 500; margin-top: .25rem;">years perimenopause lasts on average</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--hml-primary); letter-spacing: -.02em;">30+</div>
+          <div style="font-size: .88rem; color: var(--clr-text-muted); font-weight: 500; margin-top: .25rem;">recognised symptoms of perimenopause</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--hml-primary); letter-spacing: -.02em;">51–52</div>
+          <div style="font-size: .88rem; color: var(--clr-text-muted); font-weight: 500; margin-top: .25rem;">average age of menopause in Australia</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--hml-primary); letter-spacing: -.02em;">1 in 100</div>
+          <div style="font-size: .88rem; color: var(--clr-text-muted); font-weight: 500; margin-top: .25rem;">women experience menopause before age 40</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common symptoms preview -->
+  <section class="section" style="background: var(--hml-warm-bg);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 1rem;">
+        <span class="hml-label">Common experiences</span>
+        <h2 class="section-title">Symptoms women talk about most</h2>
+        <p class="section-subtitle">You might have a few, or many. Some are well-known; others surprise women completely.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2.5rem;">
+        {[
+          { icon: '🔥', name: 'Hot flushes', desc: 'Sudden waves of heat, often with sweating and flushing.' },
+          { icon: '🌙', name: 'Night sweats', desc: 'Waking drenched in sweat, often disrupting sleep severely.' },
+          { icon: '🧠', name: 'Brain fog', desc: 'Difficulty concentrating, forgetfulness, feeling mentally slower.' },
+          { icon: '😤', name: 'Mood changes', desc: 'Irritability, low mood, or anxiety that feels out of character.' },
+          { icon: '💤', name: 'Sleep disruption', desc: 'Trouble falling or staying asleep, often linked to night sweats.' },
+          { icon: '📅', name: 'Irregular periods', desc: 'Cycles getting shorter, longer, heavier, or more unpredictable.' },
+        ].map(s => (
+          <div style="background:#fff; border:1.5px solid var(--hml-border); border-radius: var(--radius); padding:1.5rem;">
+            <div style="font-size:1.75rem; margin-bottom:.6rem;">{s.icon}</div>
+            <div style="font-weight:700; margin-bottom:.35rem; font-size:.98rem;">{s.name}</div>
+            <div style="font-size:.87rem; color:var(--clr-text-secondary); line-height:1.6;">{s.desc}</div>
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a href="/perimenopause/library" class="btn" style="background:var(--hml-primary); color:#fff; border-color:var(--hml-primary);">See the full Symptom Library →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide preview -->
+  <section class="section" style="background:#fff;">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 1rem;">
+        <span class="hml-label">Go deeper</span>
+        <h2 class="section-title">Topic guides to help you understand</h2>
+        <p class="section-subtitle">Six guides covering the areas women ask about most — from hormones to healthcare navigation.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem;">
+        {[
+          { icon: '🔬', title: 'Hormones 101', desc: 'What oestrogen and progesterone actually do, and what happens as they change.' },
+          { icon: '📅', title: 'Your Periods', desc: "What changes in your cycle mean, and how to track what's happening." },
+          { icon: '💙', title: 'Mental Health & Mood', desc: 'The connection between hormones and anxiety, depression, and emotional wellbeing.' },
+          { icon: '😴', title: 'Sleep', desc: 'Why perimenopause disrupts sleep and practical strategies that actually help.' },
+          { icon: '🏃‍♀️', title: 'Lifestyle & Self-Care', desc: 'Evidence-based lifestyle adjustments that can ease perimenopause symptoms.' },
+          { icon: '🩺', title: 'Healthcare in Australia', desc: 'How to navigate your GP, what questions to ask, and what treatments exist.' },
+        ].map(g => (
+          <div style="background:var(--hml-warm-bg); border:1.5px solid var(--hml-border); border-radius:var(--radius); padding:1.75rem;">
+            <div style="font-size:1.75rem; margin-bottom:.75rem;">{g.icon}</div>
+            <div style="font-weight:700; font-size:1rem; margin-bottom:.4rem;">{g.title}</div>
+            <div style="font-size:.87rem; color:var(--clr-text-secondary); line-height:1.6;">{g.desc}</div>
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a href="/perimenopause/guides" class="btn" style="background:var(--hml-primary); color:#fff; border-color:var(--hml-primary);">Read the Topic Guides →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Talk to GP CTA -->
+  <section class="section" style="background: linear-gradient(135deg, #5A1D35 0%, #9D4E6E 100%); color:#fff;">
+    <div class="container text-center">
+      <h2 class="section-title light">Ready to talk to someone?</h2>
+      <p class="section-subtitle light" style="margin: 0 auto 2rem;">
+        This guide gives you information — but your GP can give you personal medical advice.
+        We'll help you prepare for that conversation.
+      </p>
+      <a href="/perimenopause/talk-to-gp" class="btn" style="background:#fff; color:#9D4E6E; font-weight:700; border:2px solid #fff; font-size:1.05rem; padding:1rem 2.25rem;">
+        How to Talk to Your GP →
+      </a>
+    </div>
+  </section>
+
+</PerimenopauseLayout>

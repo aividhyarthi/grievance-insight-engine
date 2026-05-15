@@ -44,6 +44,7 @@ const currentPath = Astro.url.pathname;
           <li><a href="/services" class:list={[{ active: currentPath === '/services' }]}>Services</a></li>
           <li><a href="/employers" class:list={[{ active: currentPath === '/employers' }]}>For Employers</a></li>
           <li><a href="/faq" class:list={[{ active: currentPath === '/faq' }]}>FAQ</a></li>
+          <li><a href="/perimenopause" class:list={[{ active: currentPath.startsWith('/perimenopause') }]} style="color: #9D4E6E; font-weight: 600;">Perimenopause Guide</a></li>
         </ul>
 
         <a href="/book" class="btn btn-primary navbar-cta">Book $10 Consult</a>
