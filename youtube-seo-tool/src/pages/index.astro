@@ -128,6 +128,36 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
     .context-row {
       margin-top: 1rem;
     }
+    .lang-select {
+      width: 100%;
+      background: var(--bg3);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 0.65rem 1rem;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .lang-select:focus { border-color: var(--yt-red); }
+    .lang-select option { background: var(--bg2); }
+
+    .btn-export {
+      background: #1a5c2a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.6rem 1.25rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-export:hover { background: #145222; }
+
     .context-input {
       width: 100%;
       background: var(--bg3);
@@ -564,6 +594,24 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
       </div>
 
       <div class="context-row">
+        <label class="input-label" for="yt-language" style="margin-top:1rem;">
+          Output Language
+        </label>
+        <select id="yt-language" class="lang-select">
+          <option value="English">🇬🇧 English</option>
+          <option value="Hindi">🇮🇳 Hindi</option>
+          <option value="Tamil">🇮🇳 Tamil</option>
+          <option value="Telugu">🇮🇳 Telugu</option>
+          <option value="Kannada">🇮🇳 Kannada</option>
+          <option value="Malayalam">🇮🇳 Malayalam</option>
+          <option value="Bengali">🇮🇳 Bengali</option>
+          <option value="Marathi">🇮🇳 Marathi</option>
+          <option value="Gujarati">🇮🇳 Gujarati</option>
+          <option value="Punjabi">🇮🇳 Punjabi</option>
+        </select>
+      </div>
+
+      <div class="context-row">
         <label class="input-label" for="yt-context" style="margin-top:1rem;">
           Additional context <span style="color:#555;font-weight:400;text-transform:none;">(optional — describe your video topic, audience, or goals)</span>
         </label>
@@ -590,6 +638,11 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
 
     <!-- Results -->
     <div class="results" id="results">
+
+      <!-- Export bar -->
+      <div style="display:flex;justify-content:flex-end;margin-bottom:1rem;">
+        <button class="btn-export" id="export-btn">⬇ Export to Excel</button>
+      </div>
 
       <!-- Titles -->
       <div class="section-card">
@@ -692,11 +745,14 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
     YouTube SEO Generator by Pranita &nbsp;|&nbsp; Paste a link, get ready-to-use SEO content
   </footer>
 
+  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
   <script>
     let seoData = null;
+    let videoTitle = '';
 
     const urlInput = document.getElementById('yt-url');
     const contextInput = document.getElementById('yt-context');
+    const langSelect = document.getElementById('yt-language');
     const generateBtn = document.getElementById('generate-btn');
     const btnLabel = document.getElementById('btn-label');
     const spinner = document.getElementById('spinner');
@@ -860,7 +916,7 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
         const res = await fetch('/api/youtube-seo', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url, context: contextInput.value.trim() }),
+          body: JSON.stringify({ url, context: contextInput.value.trim(), language: langSelect.value }),
         });
 
         let data;
@@ -882,7 +938,8 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
         if (data.videoInfo) {
           const info = data.videoInfo;
           document.getElementById('preview-thumb').src = info.thumbnail || `https://img.youtube.com/vi/${info.id}/hqdefault.jpg`;
-          document.getElementById('preview-title').textContent = info.title || 'YouTube Video';
+          videoTitle = info.title || 'YouTube Video';
+          document.getElementById('preview-title').textContent = videoTitle;
           document.getElementById('preview-author').textContent = info.author ? `by ${info.author}` : '';
           videoPreview.style.display = 'flex';
         }
@@ -908,6 +965,67 @@ const description = 'Paste any YouTube link and get AI-generated SEO-optimized t
       }
     }
 
+    function exportToExcel() {
+      if (!seoData) return;
+      const wb = XLSX.utils.book_new();
+
+      // Sheet 1 — SEO Content
+      const seoRows = [
+        ['YouTube SEO Generator by Pranita'],
+        ['Video', videoTitle || urlInput.value],
+        ['Language', langSelect.value],
+        [''],
+        ['TITLES'],
+        ...(seoData.titles || []).map((t, i) => [`Option ${i + 1}`, t]),
+        [''],
+        ['DESCRIPTION'],
+        [seoData.description || ''],
+        [''],
+        ['CHAPTERS'],
+        [seoData.chapters || ''],
+        [''],
+        ['END SCREEN / CARD TEXT'],
+        [seoData.cardText || ''],
+        [''],
+        ['PINNED COMMENT'],
+        [seoData.pinnedComment || ''],
+      ];
+      const ws1 = XLSX.utils.aoa_to_sheet(seoRows);
+      ws1['!cols'] = [{ wch: 20 }, { wch: 90 }];
+      XLSX.utils.book_append_sheet(wb, ws1, 'SEO Content');
+
+      // Sheet 2 — Hashtags & Tags
+      const maxLen = Math.max((seoData.hashtags || []).length, (seoData.tags || []).length, (seoData.keywords || []).length);
+      const tagRows = [['Hashtags', 'YouTube Tags', 'Keywords']];
+      for (let i = 0; i < maxLen; i++) {
+        tagRows.push([
+          seoData.hashtags?.[i] || '',
+          seoData.tags?.[i] || '',
+          seoData.keywords?.[i] || '',
+        ]);
+      }
+      const ws2 = XLSX.utils.aoa_to_sheet(tagRows);
+      ws2['!cols'] = [{ wch: 30 }, { wch: 30 }, { wch: 30 }];
+      XLSX.utils.book_append_sheet(wb, ws2, 'Hashtags & Tags');
+
+      // Sheet 3 — Thumbnail Recommendations
+      const thumbRows = [['Concept', 'Headline', 'Subtext', 'Background', 'Text Colour', 'Accent', 'Composition', 'Expression', 'Canva Tip']];
+      (seoData.thumbnails || []).forEach(t => {
+        thumbRows.push([
+          t.concept || '', t.headline || '', t.subtext || '',
+          t.colors?.background || '', t.colors?.text || '', t.colors?.accent || '',
+          t.composition || '', t.expression || '', t.canvaTip || '',
+        ]);
+      });
+      const ws3 = XLSX.utils.aoa_to_sheet(thumbRows);
+      ws3['!cols'] = [{ wch: 22 }, { wch: 22 }, { wch: 22 }, { wch: 22 }, { wch: 16 }, { wch: 16 }, { wch: 40 }, { wch: 35 }, { wch: 40 }];
+      XLSX.utils.book_append_sheet(wb, ws3, 'Thumbnails');
+
+      const filename = `youtube-seo-${(videoTitle || 'video').replace(/[^a-z0-9]/gi, '-').toLowerCase().slice(0, 40)}.xlsx`;
+      XLSX.writeFile(wb, filename);
+    }
+
+    document.getElementById('export-btn').addEventListener('click', exportToExcel);
     generateBtn.addEventListener('click', generate);
     urlInput.addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
   </script>

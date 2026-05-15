@@ -41,14 +41,14 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ error: 'ANTHROPIC_API_KEY is not configured on the server.' }, 500);
   }
 
-  let body: { url?: string; context?: string };
+  let body: { url?: string; context?: string; language?: string };
   try {
     body = await request.json();
   } catch {
     return json({ error: 'Invalid request body.' }, 400);
   }
 
-  const { url, context } = body;
+  const { url, context, language = 'English' } = body;
   if (!url || !url.trim()) {
     return json({ error: 'YouTube URL is required.' }, 400);
   }
@@ -67,6 +67,8 @@ export const POST: APIRoute = async ({ request }) => {
   ].filter(Boolean).join('\n');
 
   const prompt = `You are a YouTube SEO and content expert. Generate optimized SEO content AND thumbnail recommendations for a YouTube video.
+
+IMPORTANT: Generate ALL text content (titles, description, hashtags, tags, keywords, cardText, pinnedComment, thumbnail concepts) in ${language}. If the language is not English, write everything natively in ${language} script — do not transliterate.
 
 ${videoContext || 'No video metadata available — use the URL context.'}
 Video URL: ${url.trim()}
