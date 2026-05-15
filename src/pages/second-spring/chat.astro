@@ -1,0 +1,509 @@
+---
+import SecondSpringLayout from '../../layouts/SecondSpringLayout.astro';
+---
+
+<SecondSpringLayout
+  title="Chat – The Second Spring"
+  description="Ask anything about perimenopause. Your private companion listens with empathy, explains in plain language, and helps you understand what's happening."
+>
+
+  <!-- Page header -->
+  <section class="ss-chat-header">
+    <div class="ss-container">
+      <div class="ss-chat-header-inner">
+        <div>
+          <div class="ss-eyebrow-inline">&#127807; Private companion</div>
+          <h1>How are you feeling lately?</h1>
+          <p>
+            Ask anything. Your companion listens first, then explains in plain language — no jargon, no judgement,
+            no sign-up required.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <div class="ss-chat-disclaimer-bar">
+    <div class="ss-container ss-chat-disclaimer-inner">
+      <span>&#128274;</span>
+      <span>
+        <strong>Information only — not medical advice.</strong>
+        This companion helps you understand perimenopause but cannot diagnose or treat.
+        Always consult your GP. In an emergency call <strong>000</strong>.
+      </span>
+    </div>
+  </div>
+
+  <!-- Chat layout -->
+  <section class="ss-chat-section">
+    <div class="ss-container">
+      <div class="ss-chat-layout">
+
+        <!-- Sidebar -->
+        <aside class="ss-chat-sidebar">
+          <div class="ss-sidebar-box">
+            <div class="ss-sidebar-title">What's on your mind?</div>
+            <p class="ss-sidebar-desc">Choose a topic to start, or type your own question.</p>
+
+            <div class="ss-starters" id="ss-starters">
+              {[
+                { emoji: '😤', label: 'Mood & anger',         msg: "I've been feeling irritable and angry lately, more than usual. Could this be perimenopause?" },
+                { emoji: '💤', label: 'Sleep problems',        msg: "I'm waking up in the night and can't get back to sleep. It's affecting everything. What's going on?" },
+                { emoji: '🔥', label: 'Hot flushes',           msg: "I keep getting sudden waves of heat, especially at night. Are these hot flushes? What can I do?" },
+                { emoji: '🧠', label: 'Brain fog',             msg: "My memory and concentration have changed. I forget words mid-sentence. Is this normal in perimenopause?" },
+                { emoji: '📅', label: 'Irregular periods',     msg: "My periods have become unpredictable — sometimes heavier, sometimes skipped. What does this mean?" },
+                { emoji: '😔', label: 'Anxiety & low mood',    msg: "I feel anxious and low for no obvious reason. I didn't used to be like this. Could hormones be causing this?" },
+                { emoji: '💑', label: 'My wife / partner',     msg: "My wife seems emotionally different lately. She's exhausted, irritable, and not herself. Could this be perimenopause?" },
+                { emoji: '👩‍👧', label: 'My mum has changed',   msg: "My mother has changed a lot in the last year — moody, forgetful, not sleeping. Could she be in perimenopause?" },
+              ].map(s => (
+                <button class="ss-starter-btn" data-msg={s.msg}>
+                  <span class="ss-starter-emoji">{s.emoji}</span>
+                  <span>{s.label}</span>
+                </button>
+              ))}
+            </div>
+
+            <div class="ss-sidebar-sep"></div>
+
+            <div class="ss-consult-box">
+              <div class="ss-consult-icon">&#128101;</div>
+              <div class="ss-consult-title">Want to talk to a person?</div>
+              <p class="ss-consult-desc">Book an introductory consult with a women's health specialist.</p>
+              <a href="/book" class="ss-btn ss-btn-primary" style="font-size:.86rem; padding:.6rem 1.1rem; display:block; text-align:center; margin-top:.75rem;">
+                Book a Consult →
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Chat window -->
+        <div class="ss-chat-window">
+          <div class="ss-chat-messages" id="ss-chat-messages">
+            <!-- Welcome -->
+            <div class="ss-msg ss-msg-assistant" id="ss-welcome">
+              <div class="ss-msg-avatar">&#127807;</div>
+              <div class="ss-msg-bubble">
+                <p>Hello, I'm your <strong>Second Spring companion</strong> — a warm, private space to ask anything about perimenopause.</p>
+                <p style="margin-top:.6rem;">
+                  Whether you're dealing with sleep changes, mood shifts, hot flushes, brain fog, or something you can't quite name —
+                  I'm here to listen and help you understand what might be happening.
+                </p>
+                <p style="margin-top:.6rem; font-size:.87rem; color: var(--ss-text-muted);">
+                  Choose a topic on the left, or type your question below. Everything is private.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input -->
+          <div class="ss-chat-input-area">
+            <div class="ss-input-row">
+              <textarea
+                id="ss-input"
+                class="ss-textarea"
+                placeholder="Type your question here — or choose a topic on the left"
+                rows="2"
+                maxlength="1000"
+              ></textarea>
+              <button id="ss-send" class="ss-send-btn" aria-label="Send message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
+            <div class="ss-input-footer">
+              <span id="ss-char-count" class="ss-char-count">0 / 1000</span>
+              <span class="ss-input-note">Not medical advice — always see your GP for personal health decisions</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</SecondSpringLayout>
+
+<style>
+  /* ── Page header ── */
+  .ss-chat-header {
+    background: linear-gradient(145deg, #1A3D2B 0%, #2A5C45 55%, #3D7A5F 100%);
+    color: #fff;
+    padding: 3.5rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .ss-chat-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 55% 60% at 90% 30%, rgba(212,132,90,.2) 0%, transparent 65%);
+  }
+  .ss-chat-header-inner { position: relative; z-index: 1; max-width: 600px; }
+  .ss-eyebrow-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.7);
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.18);
+    padding: .3rem .85rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+  .ss-chat-header h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    letter-spacing: -.025em;
+    margin-bottom: .75rem;
+    color: #fff;
+  }
+  .ss-chat-header p {
+    font-size: .97rem;
+    color: rgba(255,255,255,.8);
+    line-height: 1.7;
+  }
+
+  /* ── Disclaimer bar ── */
+  .ss-chat-disclaimer-bar {
+    background: var(--ss-green-light);
+    border-bottom: 1.5px solid var(--ss-border);
+    padding: .85rem 0;
+    font-size: .84rem;
+    color: var(--ss-text-secondary);
+  }
+  .ss-chat-disclaimer-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: .65rem;
+    max-width: 900px;
+  }
+
+  /* ── Chat section ── */
+  .ss-chat-section {
+    padding: 2.5rem 0 5rem;
+    background: var(--ss-cream);
+  }
+  .ss-chat-layout {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    gap: 2rem;
+    align-items: start;
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  /* ── Sidebar ── */
+  .ss-sidebar-box {
+    background: #fff;
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    position: sticky;
+    top: 86px;
+  }
+  .ss-sidebar-title { font-size: .94rem; font-weight: 700; margin-bottom: .3rem; }
+  .ss-sidebar-desc  { font-size: .81rem; color: var(--ss-text-muted); margin-bottom: 1rem; line-height: 1.5; }
+  .ss-starters { display: flex; flex-direction: column; gap: .35rem; }
+  .ss-starter-btn {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    background: var(--ss-cream-mid);
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius-sm);
+    padding: .5rem .8rem;
+    font-size: .82rem;
+    color: var(--ss-text);
+    cursor: pointer;
+    text-align: left;
+    transition: all .18s;
+    font-family: inherit;
+    font-weight: 500;
+  }
+  .ss-starter-btn:hover {
+    border-color: var(--ss-green);
+    background: var(--ss-green-light);
+    color: var(--ss-green-dark);
+  }
+  .ss-starter-emoji { font-size: .95rem; flex-shrink: 0; }
+  .ss-sidebar-sep { border: none; border-top: 1px solid var(--ss-border); margin: 1.25rem 0; }
+  .ss-consult-box {
+    background: var(--ss-green-light);
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+  }
+  .ss-consult-icon  { font-size: 1.4rem; margin-bottom: .35rem; }
+  .ss-consult-title { font-weight: 700; font-size: .88rem; margin-bottom: .2rem; }
+  .ss-consult-desc  { font-size: .79rem; color: var(--ss-text-secondary); line-height: 1.5; }
+
+  /* ── Chat window ── */
+  .ss-chat-window {
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(61,122,95,.07);
+  }
+  .ss-chat-messages {
+    flex: 1;
+    padding: 1.75rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 480px;
+    max-height: 540px;
+  }
+
+  /* ── Messages ── */
+  .ss-msg {
+    display: flex;
+    gap: .7rem;
+    align-items: flex-start;
+  }
+  .ss-msg-user { flex-direction: row-reverse; }
+  .ss-msg-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--ss-green-light);
+    border: 1.5px solid var(--ss-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+  .ss-msg-user .ss-msg-avatar {
+    background: var(--ss-peach-light);
+    border-color: #F0C9B0;
+  }
+  .ss-msg-bubble {
+    max-width: 78%;
+    background: var(--ss-cream-mid);
+    border: 1.5px solid var(--ss-border);
+    border-radius: 0 var(--radius) var(--radius) var(--radius);
+    padding: 1rem 1.25rem;
+    font-size: .92rem;
+    line-height: 1.7;
+    color: var(--ss-text);
+  }
+  .ss-msg-bubble p { margin: 0; }
+  .ss-msg-bubble p + p { margin-top: .5rem; }
+  .ss-msg-user .ss-msg-bubble {
+    background: var(--ss-green);
+    border-color: var(--ss-green-dark);
+    border-radius: var(--radius) 0 var(--radius) var(--radius);
+    color: #fff;
+  }
+  .ss-msg-typing .ss-msg-bubble { color: var(--ss-text-muted); font-style: italic; }
+
+  /* Streaming cursor */
+  .ss-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--ss-green);
+    vertical-align: middle;
+    margin-left: 1px;
+    animation: ss-blink .7s steps(1) infinite;
+  }
+  @keyframes ss-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* ── Input ── */
+  .ss-chat-input-area {
+    border-top: 1.5px solid var(--ss-border);
+    padding: 1rem 1.25rem;
+    background: var(--ss-cream-mid);
+  }
+  .ss-input-row {
+    display: flex;
+    gap: .6rem;
+    align-items: flex-end;
+  }
+  .ss-textarea {
+    flex: 1;
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius-sm);
+    padding: .75rem 1rem;
+    font-size: .93rem;
+    font-family: inherit;
+    resize: none;
+    line-height: 1.5;
+    color: var(--ss-text);
+    background: #fff;
+    transition: border-color .18s, box-shadow .18s;
+    outline: none;
+  }
+  .ss-textarea:focus {
+    border-color: var(--ss-green);
+    box-shadow: 0 0 0 3px rgba(61,122,95,.1);
+  }
+  .ss-send-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ss-green);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .18s, transform .15s;
+  }
+  .ss-send-btn:hover { background: var(--ss-green-dark); }
+  .ss-send-btn:active { transform: scale(.93); }
+  .ss-send-btn:disabled { background: var(--ss-text-muted); cursor: not-allowed; transform: none; }
+  .ss-input-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .5rem;
+  }
+  .ss-char-count  { font-size: .75rem; color: var(--ss-text-muted); }
+  .ss-input-note  { font-size: .73rem; color: var(--ss-text-muted); text-align: right; }
+
+  /* ── Responsive ── */
+  @media (max-width: 800px) {
+    .ss-chat-layout { grid-template-columns: 1fr; }
+    .ss-sidebar-box { position: static; }
+    .ss-starters { display: grid; grid-template-columns: 1fr 1fr; }
+    .ss-chat-messages { max-height: 380px; }
+  }
+  @media (max-width: 480px) {
+    .ss-starters { grid-template-columns: 1fr; }
+    .ss-msg-bubble { max-width: 92%; }
+  }
+</style>
+
+<script>
+  const messagesEl = document.getElementById('ss-chat-messages') as HTMLDivElement;
+  const inputEl    = document.getElementById('ss-input')         as HTMLTextAreaElement;
+  const sendBtn    = document.getElementById('ss-send')          as HTMLButtonElement;
+  const charCount  = document.getElementById('ss-char-count')    as HTMLSpanElement;
+  const starters   = document.querySelectorAll('.ss-starter-btn') as NodeListOf<HTMLButtonElement>;
+
+  type Message = { role: 'user' | 'assistant'; content: string };
+  const history: Message[] = [];
+  let isStreaming = false;
+
+  inputEl.addEventListener('input', () => {
+    charCount.textContent = `${inputEl.value.length} / 1000`;
+    autoResize();
+  });
+  inputEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(inputEl.value.trim()); }
+  });
+  sendBtn.addEventListener('click', () => send(inputEl.value.trim()));
+  starters.forEach(btn => btn.addEventListener('click', () => send(btn.getAttribute('data-msg') || '')));
+
+  function autoResize() {
+    inputEl.style.height = 'auto';
+    inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
+  }
+  function scrollBottom() { messagesEl.scrollTop = messagesEl.scrollHeight; }
+
+  function appendUser(text: string) {
+    const div = document.createElement('div');
+    div.className = 'ss-msg ss-msg-user';
+    div.innerHTML = `<div class="ss-msg-avatar">&#128100;</div><div class="ss-msg-bubble"><p>${esc(text)}</p></div>`;
+    messagesEl.appendChild(div);
+    scrollBottom();
+  }
+
+  function createAssistantEl(): HTMLDivElement {
+    const div = document.createElement('div');
+    div.className = 'ss-msg ss-msg-assistant ss-msg-typing';
+    div.innerHTML = `<div class="ss-msg-avatar">&#127807;</div><div class="ss-msg-bubble"><p><span class="ss-cursor"></span></p></div>`;
+    messagesEl.appendChild(div);
+    scrollBottom();
+    return div;
+  }
+
+  function esc(s: string) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  }
+
+  function fmt(raw: string) {
+    return raw.split(/\n\n+/).map(p => `<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+  }
+
+  async function send(text: string) {
+    if (!text || isStreaming) return;
+    isStreaming = true;
+    sendBtn.disabled = true;
+    inputEl.value = '';
+    charCount.textContent = '0 / 1000';
+    inputEl.style.height = 'auto';
+
+    appendUser(text);
+    history.push({ role: 'user', content: text });
+
+    const msgEl = createAssistantEl();
+    const bubble = msgEl.querySelector('.ss-msg-bubble') as HTMLDivElement;
+    let accumulated = '';
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+      if (!res.ok || !res.body) throw new Error('Request failed');
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const data = line.slice(6).trim();
+          if (data === '[DONE]') break;
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed.text) {
+              accumulated += parsed.text;
+              bubble.innerHTML = fmt(accumulated) + '<span class="ss-cursor"></span>';
+              scrollBottom();
+            }
+            if (parsed.error) throw new Error(parsed.error);
+          } catch { /* ignore partial chunk parse errors */ }
+        }
+      }
+
+      bubble.innerHTML = fmt(accumulated);
+      msgEl.classList.remove('ss-msg-typing');
+      history.push({ role: 'assistant', content: accumulated });
+
+    } catch {
+      bubble.innerHTML = '<p style="color:#b94a48;">Something went wrong. Please try again.</p>';
+      msgEl.classList.remove('ss-msg-typing');
+      history.pop();
+    }
+
+    isStreaming = false;
+    sendBtn.disabled = false;
+    inputEl.focus();
+    scrollBottom();
+  }
+</script>

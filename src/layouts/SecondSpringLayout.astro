@@ -1,0 +1,395 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'The Second Spring – Your Perimenopause Companion',
+  description = 'A compassionate companion for women navigating perimenopause. Ask freely, understand deeply, and find your path forward — privately and without judgement.',
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+const nav = [
+  { label: 'Home',    href: '/second-spring' },
+  { label: 'Chat',    href: '/second-spring/chat' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="ss-body">
+
+    <nav class="ss-navbar">
+      <div class="ss-container ss-navbar-inner">
+        <a href="/second-spring" class="ss-brand">
+          <span class="ss-brand-the">The</span>
+          <span class="ss-brand-second">Second</span>
+          <span class="ss-brand-spring">Spring</span>
+        </a>
+
+        <ul class="ss-nav-links" id="ss-nav-links">
+          {nav.map(item => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[{
+                  'ss-nav-active':
+                    item.href === '/second-spring'
+                      ? currentPath === '/second-spring' || currentPath === '/second-spring/'
+                      : currentPath.startsWith(item.href)
+                }]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div class="ss-navbar-right">
+          <a href="/second-spring/chat" class="ss-btn ss-btn-primary ss-navbar-cta">Start Chatting</a>
+          <button class="ss-mobile-toggle" id="ss-mobile-toggle" aria-label="Toggle menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="ss-footer">
+      <div class="ss-container">
+        <div class="ss-footer-grid">
+          <div>
+            <div class="ss-footer-brand">
+              <span style="color: #7FB89A;">The</span>
+              <span style="color: #fff;"> Second </span>
+              <span style="color: #D4845A;">Spring</span>
+            </div>
+            <p class="ss-footer-tagline">
+              A private, compassionate companion for women navigating perimenopause.
+              Information and support — not medical advice.
+            </p>
+            <div class="ss-footer-disclaimer">
+              This service provides general health information only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your GP or a qualified healthcare professional about your personal health.
+            </div>
+          </div>
+          <div>
+            <h4>The Second Spring</h4>
+            <ul>
+              <li><a href="/second-spring">Home</a></li>
+              <li><a href="/second-spring/chat">Chat with us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Also from us</h4>
+            <ul>
+              <li><a href="/">QuitDr</a></li>
+              <li><a href="/perimenopause">Perimenopause Guide</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms &amp; Conditions</a></li>
+              <li><a href="/disclaimer">Medical Disclaimer</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ss-footer-bottom">
+          <p>&copy; {new Date().getFullYear()} The Second Spring. General health information only — not medical advice.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.getElementById('ss-mobile-toggle');
+      const links = document.getElementById('ss-nav-links');
+      toggle?.addEventListener('click', () => links?.classList.toggle('ss-open'));
+
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item?.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+          if (!isOpen) item?.classList.add('open');
+        });
+      });
+    </script>
+
+  </body>
+</html>
+
+<style is:global>
+  /* ── Second Spring design tokens ── */
+  :root {
+    --ss-green:         #3D7A5F;
+    --ss-green-dark:    #2A5C45;
+    --ss-green-mid:     #4E9070;
+    --ss-green-light:   #EEF7F2;
+    --ss-peach:         #D4845A;
+    --ss-peach-dark:    #B8693F;
+    --ss-peach-light:   #FDF2EC;
+    --ss-lavender:      #8B7FAD;
+    --ss-lavender-light:#F4F2F9;
+    --ss-cream:         #FAFDF8;
+    --ss-cream-mid:     #F2F9F4;
+    --ss-border:        #C8E0D2;
+    --ss-border-light:  #E0F0E8;
+    --ss-text:          #1A2E22;
+    --ss-text-secondary:#3A5444;
+    --ss-text-muted:    #6B8A76;
+
+    --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+    --radius-sm:    8px;
+    --radius:       14px;
+    --radius-lg:    22px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  .ss-body {
+    font-family: var(--font-body);
+    background: var(--ss-cream);
+    color: var(--ss-text);
+    line-height: 1.7;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--ss-green); text-decoration: none; transition: color .2s; }
+
+  .ss-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── Navbar ── */
+  .ss-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 253, 248, 0.96);
+    border-bottom: 1.5px solid var(--ss-border);
+    backdrop-filter: blur(12px);
+  }
+  .ss-navbar-inner {
+    display: flex;
+    align-items: center;
+    height: 66px;
+    gap: 1.5rem;
+  }
+  .ss-brand {
+    display: flex;
+    align-items: baseline;
+    gap: .25rem;
+    text-decoration: none;
+    flex-shrink: 0;
+    letter-spacing: -.01em;
+  }
+  .ss-brand-the    { font-size: .85rem; font-weight: 500; color: var(--ss-text-muted); font-style: italic; }
+  .ss-brand-second { font-size: 1.25rem; font-weight: 800; color: var(--ss-green-dark); }
+  .ss-brand-spring { font-size: 1.25rem; font-weight: 800; color: var(--ss-peach); }
+
+  .ss-nav-links {
+    display: flex;
+    align-items: center;
+    gap: .15rem;
+    list-style: none;
+    flex: 1;
+  }
+  .ss-nav-links a {
+    color: var(--ss-text-secondary);
+    font-size: .92rem;
+    font-weight: 500;
+    padding: .4rem .85rem;
+    border-radius: 8px;
+    transition: all .18s;
+    text-decoration: none;
+  }
+  .ss-nav-links a:hover,
+  .ss-nav-links a.ss-nav-active {
+    background: var(--ss-green-light);
+    color: var(--ss-green-dark);
+  }
+
+  .ss-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-left: auto;
+  }
+
+  /* ── Buttons ── */
+  .ss-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .7rem 1.6rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: .92rem;
+    transition: all .2s;
+    cursor: pointer;
+    border: 2px solid transparent;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .ss-btn-primary {
+    background: var(--ss-green);
+    color: #fff;
+    border-color: var(--ss-green);
+  }
+  .ss-btn-primary:hover {
+    background: var(--ss-green-dark);
+    border-color: var(--ss-green-dark);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(61,122,95,.28);
+  }
+  .ss-btn-peach {
+    background: var(--ss-peach);
+    color: #fff;
+    border-color: var(--ss-peach);
+  }
+  .ss-btn-peach:hover {
+    background: var(--ss-peach-dark);
+    border-color: var(--ss-peach-dark);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .ss-btn-outline {
+    background: transparent;
+    color: var(--ss-green);
+    border-color: var(--ss-green);
+  }
+  .ss-btn-outline:hover {
+    background: var(--ss-green-light);
+  }
+  .ss-btn-outline-white {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,.55);
+  }
+  .ss-btn-outline-white:hover {
+    background: rgba(255,255,255,.12);
+    color: #fff;
+  }
+  .ss-btn-lg { padding: .95rem 2.25rem; font-size: 1.05rem; }
+
+  /* ── Mobile toggle ── */
+  .ss-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: .35rem;
+    color: var(--ss-green-dark);
+  }
+  .ss-navbar-cta { display: inline-flex; }
+
+  /* ── Footer ── */
+  .ss-footer {
+    background: #1A2E22;
+    color: #8BAF98;
+    padding: 3.5rem 0 2rem;
+    margin-top: 5rem;
+  }
+  .ss-footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid #253D2E;
+  }
+  .ss-footer-brand {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    margin-bottom: .75rem;
+  }
+  .ss-footer-tagline {
+    font-size: .9rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+  .ss-footer-disclaimer {
+    font-size: .78rem;
+    line-height: 1.65;
+    color: #5A7A68;
+    padding: 1rem;
+    background: #253D2E;
+    border-radius: 8px;
+    border-left: 3px solid var(--ss-green);
+  }
+  .ss-footer h4 {
+    color: #C8E0D2;
+    font-size: .82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    margin-bottom: .85rem;
+  }
+  .ss-footer ul { list-style: none; }
+  .ss-footer ul li { margin-bottom: .45rem; }
+  .ss-footer ul li a { color: #8BAF98; font-size: .88rem; transition: color .18s; }
+  .ss-footer ul li a:hover { color: #C8E0D2; }
+  .ss-footer-bottom {
+    padding-top: 1.5rem;
+    font-size: .82rem;
+    color: #5A7A68;
+    text-align: center;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 800px) {
+    .ss-nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 66px;
+      left: 0;
+      right: 0;
+      background: var(--ss-cream);
+      padding: .75rem 1.5rem 1.25rem;
+      border-bottom: 1.5px solid var(--ss-border);
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+      z-index: 99;
+      align-items: flex-start;
+      gap: .2rem;
+    }
+    .ss-nav-links.ss-open { display: flex; }
+    .ss-mobile-toggle { display: block; }
+    .ss-navbar-cta { display: none; }
+    .ss-navbar-inner { position: relative; }
+    .ss-footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 540px) {
+    .ss-footer-grid { grid-template-columns: 1fr; }
+  }
+</style>

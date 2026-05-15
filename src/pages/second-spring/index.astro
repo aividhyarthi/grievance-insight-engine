@@ -1,0 +1,510 @@
+---
+import SecondSpringLayout from '../../layouts/SecondSpringLayout.astro';
+---
+
+<SecondSpringLayout
+  title="The Second Spring – Your Perimenopause Companion"
+  description="A private, compassionate companion for women navigating perimenopause. Ask freely, understand deeply, and find your path forward — no judgement, no jargon."
+>
+
+  <!-- Hero -->
+  <section class="ss-hero">
+    <div class="ss-container">
+      <div class="ss-hero-inner">
+        <div class="ss-eyebrow">&#127807; A new beginning, not an ending</div>
+        <h1>
+          Something's changing.<br/>
+          <em>You're not alone in it.</em>
+        </h1>
+        <p class="ss-hero-desc">
+          Perimenopause can feel confusing, isolating, and invisible — especially when no one around you seems to understand.
+          The Second Spring is a private companion where you can ask anything, understand what's happening, and find your way forward.
+        </p>
+        <div class="ss-hero-actions">
+          <a href="/second-spring/chat" class="ss-btn ss-btn-primary ss-btn-lg">Start Chatting — it's free</a>
+          <a href="#how-it-works" class="ss-btn ss-btn-outline-white">How it works</a>
+        </div>
+        <div class="ss-hero-trust">
+          <span><span class="ss-tick">✓</span> Anonymous &amp; private</span>
+          <span><span class="ss-tick">✓</span> No judgement, no jargon</span>
+          <span><span class="ss-tick">✓</span> Available any time</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer strip -->
+  <div class="ss-strip">
+    <div class="ss-container">
+      &#128274;&nbsp; Information and support only — not medical advice. Always see your GP for personal health decisions.
+    </div>
+  </div>
+
+  <!-- What is perimenopause -->
+  <section class="ss-section" style="background: #fff;">
+    <div class="ss-container">
+      <div class="ss-two-col">
+        <div>
+          <span class="ss-label">Why now?</span>
+          <h2 class="ss-section-title">The years nobody talks about</h2>
+          <p class="ss-body-text">
+            Perimenopause often starts in the late 30s or early 40s — years before most women expect it.
+            Suddenly you're sleeping differently, feeling different, reacting differently.
+            And nobody warned you.
+          </p>
+          <p class="ss-body-text">
+            Women come to us with questions like:
+          </p>
+          <ul class="ss-question-list">
+            <li>"Why am I so angry lately?"</li>
+            <li>"Why can't I sleep through the night?"</li>
+            <li>"Why do I feel anxious for no reason?"</li>
+            <li>"My memory has changed — is that normal?"</li>
+            <li>"My wife has completely changed. What's happening to her?"</li>
+          </ul>
+          <p class="ss-body-text" style="margin-top: 1.25rem;">
+            These are real, valid, important questions. And they deserve real answers — in plain language, with empathy.
+          </p>
+        </div>
+        <div class="ss-stat-panel">
+          <div class="ss-stat-item">
+            <div class="ss-stat-num">4–10</div>
+            <div class="ss-stat-label">years perimenopause typically lasts</div>
+          </div>
+          <div class="ss-stat-divider"></div>
+          <div class="ss-stat-item">
+            <div class="ss-stat-num">30+</div>
+            <div class="ss-stat-label">recognised perimenopause symptoms</div>
+          </div>
+          <div class="ss-stat-divider"></div>
+          <div class="ss-stat-item">
+            <div class="ss-stat-num">Late 30s</div>
+            <div class="ss-stat-label">when perimenopause can begin</div>
+          </div>
+          <div class="ss-stat-divider"></div>
+          <div class="ss-stat-item">
+            <div class="ss-stat-num">Most</div>
+            <div class="ss-stat-label">women are not warned it's coming</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="ss-section" id="how-it-works" style="background: var(--ss-cream-mid);">
+    <div class="ss-container">
+      <div class="ss-section-header">
+        <span class="ss-label">How it works</span>
+        <h2 class="ss-section-title">A companion, not a chatbot</h2>
+        <p class="ss-section-subtitle">
+          The Second Spring is designed to listen first, then help you understand — and connect you with real support when you're ready.
+        </p>
+      </div>
+      <div class="ss-steps">
+        {[
+          {
+            num: '1',
+            icon: '💬',
+            title: 'You share what you\'re feeling',
+            desc: 'Choose a topic that resonates — sleep, mood, anxiety, periods, hot flushes — or just type what\'s on your mind. There\'s no wrong way to start.',
+          },
+          {
+            num: '2',
+            icon: '🌿',
+            title: 'We listen and explain',
+            desc: 'Your companion responds with empathy first, then clear explanation. Plain language, no jargon. You feel heard — not lectured.',
+          },
+          {
+            num: '3',
+            icon: '🌸',
+            title: 'You find your next step',
+            desc: 'Whether that\'s understanding your symptoms better, knowing what to say to your GP, or connecting with a specialist — we help you get there.',
+          },
+        ].map(step => (
+          <div class="ss-step-card">
+            <div class="ss-step-num">{step.num}</div>
+            <div class="ss-step-icon">{step.icon}</div>
+            <div class="ss-step-title">{step.title}</div>
+            <p class="ss-step-desc">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Symptom quick-start -->
+  <section class="ss-section" style="background: #fff;">
+    <div class="ss-container">
+      <div class="ss-section-header">
+        <span class="ss-label">Common experiences</span>
+        <h2 class="ss-section-title">What are you going through?</h2>
+        <p class="ss-section-subtitle">Pick what resonates and we'll start there — or open the chat and type what's on your mind.</p>
+      </div>
+      <div class="ss-symptom-grid">
+        {[
+          { emoji: '😤', label: 'Anger & irritability',   desc: 'Feeling short-fused or unlike yourself' },
+          { emoji: '💤', label: 'Sleep problems',          desc: 'Waking in the night, exhausted by day' },
+          { emoji: '🔥', label: 'Hot flushes',             desc: 'Sudden waves of heat, often at night' },
+          { emoji: '🧠', label: 'Brain fog',               desc: 'Forgetting words, struggling to focus' },
+          { emoji: '📅', label: 'Irregular periods',       desc: 'Cycles changing, skipping, or heavier' },
+          { emoji: '😔', label: 'Anxiety & low mood',      desc: 'Unexplained sadness or nervousness' },
+          { emoji: '💑', label: 'Supporting my partner',   desc: 'Understanding what she\'s going through' },
+          { emoji: '👩‍👧', label: 'Worried about my mum',    desc: 'She seems different — could it be this?' },
+        ].map(s => (
+          <a href="/second-spring/chat" class="ss-symptom-card">
+            <span class="ss-symptom-emoji">{s.emoji}</span>
+            <span class="ss-symptom-label">{s.label}</span>
+            <span class="ss-symptom-desc">{s.desc}</span>
+            <span class="ss-symptom-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="ss-section" style="background: var(--ss-green-light);">
+    <div class="ss-container">
+      <div class="ss-section-header">
+        <span class="ss-label">Who it's for</span>
+        <h2 class="ss-section-title">This is for you, whoever you are</h2>
+      </div>
+      <div class="ss-who-grid">
+        {[
+          {
+            emoji: '👩',
+            title: 'Women in their late 30s, 40s, or 50s',
+            desc: 'Noticing changes and trying to understand what\'s happening in your body — with no judgement and full privacy.',
+          },
+          {
+            emoji: '💑',
+            title: 'Partners & husbands',
+            desc: 'Your wife or partner seems different. You want to understand and support her, not get it wrong.',
+          },
+          {
+            emoji: '👩‍👧',
+            title: 'Adult daughters',
+            desc: 'Your mum has changed — moody, forgetful, not herself. You want to understand what she might be going through.',
+          },
+        ].map(w => (
+          <div class="ss-who-card">
+            <div class="ss-who-emoji">{w.emoji}</div>
+            <div class="ss-who-title">{w.title}</div>
+            <p class="ss-who-desc">{w.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="ss-cta-section">
+    <div class="ss-container ss-cta-inner">
+      <div>
+        <h2 class="ss-cta-title">Ready to begin your Second Spring?</h2>
+        <p class="ss-cta-desc">Private. Free. No sign-up required. Start with whatever's on your mind.</p>
+      </div>
+      <div class="ss-cta-actions">
+        <a href="/second-spring/chat" class="ss-btn ss-btn-primary ss-btn-lg">Open the Companion</a>
+        <div class="ss-cta-note">Anonymous • Available anytime • Not medical advice</div>
+      </div>
+    </div>
+  </section>
+
+</SecondSpringLayout>
+
+<style>
+  /* ── Hero ── */
+  .ss-hero {
+    background: linear-gradient(145deg, #1A3D2B 0%, #2A5C45 45%, #3D7A5F 100%);
+    color: #fff;
+    padding: 6rem 0 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .ss-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 50% at 85% 30%, rgba(212,132,90,.25) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 60% at 5% 80%, rgba(139,127,173,.15) 0%, transparent 60%);
+  }
+  .ss-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+  .ss-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.75);
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    padding: .35rem .9rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .ss-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -.03em;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  .ss-hero h1 em { font-style: normal; color: #FBBF81; }
+  .ss-hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,.85);
+    line-height: 1.75;
+    margin-bottom: 2.25rem;
+    max-width: 560px;
+  }
+  .ss-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .ss-hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: .87rem;
+    color: rgba(255,255,255,.72);
+  }
+  .ss-tick { color: #7EE8A2; margin-right: .2rem; }
+
+  /* ── Disclaimer strip ── */
+  .ss-strip {
+    background: var(--ss-green-light);
+    border-bottom: 1.5px solid var(--ss-border);
+    padding: .85rem 0;
+    font-size: .84rem;
+    color: var(--ss-text-secondary);
+    text-align: center;
+  }
+
+  /* ── Sections ── */
+  .ss-section { padding: 5rem 0; }
+  .ss-section-header { text-align: center; margin-bottom: 3rem; }
+  .ss-label {
+    display: inline-flex;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ss-green);
+    background: var(--ss-green-light);
+    padding: .3rem .85rem;
+    border-radius: 100px;
+    margin-bottom: .85rem;
+  }
+  .ss-section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    color: var(--ss-text);
+    margin-bottom: .75rem;
+    line-height: 1.2;
+  }
+  .ss-section-subtitle {
+    font-size: 1.05rem;
+    color: var(--ss-text-secondary);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .ss-body-text {
+    font-size: .97rem;
+    color: var(--ss-text-secondary);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Two-col layout ── */
+  .ss-two-col {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: center;
+  }
+  .ss-question-list {
+    list-style: none;
+    margin: .5rem 0 0;
+  }
+  .ss-question-list li {
+    font-size: .95rem;
+    color: var(--ss-text-secondary);
+    padding: .5rem 0 .5rem 1.5rem;
+    border-bottom: 1px solid var(--ss-border-light);
+    position: relative;
+    font-style: italic;
+  }
+  .ss-question-list li::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    color: var(--ss-peach);
+    font-size: 1.2rem;
+    font-style: normal;
+  }
+  .ss-question-list li:last-child { border-bottom: none; }
+
+  /* Stat panel */
+  .ss-stat-panel {
+    background: var(--ss-green-light);
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+  .ss-stat-item { text-align: center; padding: 1rem 0; }
+  .ss-stat-num {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--ss-green);
+    letter-spacing: -.02em;
+    line-height: 1;
+    margin-bottom: .25rem;
+  }
+  .ss-stat-label { font-size: .85rem; color: var(--ss-text-muted); font-weight: 500; line-height: 1.4; }
+  .ss-stat-divider { border: none; border-top: 1px solid var(--ss-border); margin: .25rem 0; }
+
+  /* ── Steps ── */
+  .ss-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .ss-step-card {
+    background: #fff;
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+  }
+  .ss-step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--ss-green);
+    color: #fff;
+    font-weight: 800;
+    font-size: .92rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .ss-step-icon { font-size: 1.75rem; margin-bottom: .75rem; }
+  .ss-step-title { font-weight: 700; font-size: 1rem; margin-bottom: .5rem; color: var(--ss-text); }
+  .ss-step-desc { font-size: .88rem; color: var(--ss-text-secondary); line-height: 1.65; }
+
+  /* ── Symptom grid ── */
+  .ss-symptom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+  .ss-symptom-card {
+    background: var(--ss-cream-mid);
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    text-decoration: none;
+    transition: all .2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .ss-symptom-card:hover {
+    border-color: var(--ss-green);
+    background: var(--ss-green-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61,122,95,.12);
+  }
+  .ss-symptom-emoji { font-size: 1.75rem; margin-bottom: .25rem; }
+  .ss-symptom-label { font-weight: 700; font-size: .96rem; color: var(--ss-text); }
+  .ss-symptom-desc { font-size: .83rem; color: var(--ss-text-secondary); line-height: 1.5; }
+  .ss-symptom-arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: var(--ss-green);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity .2s, transform .2s;
+  }
+  .ss-symptom-card:hover .ss-symptom-arrow { opacity: 1; transform: translateX(3px); }
+
+  /* ── Who grid ── */
+  .ss-who-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .ss-who-card {
+    background: #fff;
+    border: 1.5px solid var(--ss-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+  .ss-who-emoji { font-size: 2.25rem; margin-bottom: .85rem; }
+  .ss-who-title { font-weight: 700; font-size: 1.02rem; margin-bottom: .5rem; color: var(--ss-text); }
+  .ss-who-desc { font-size: .88rem; color: var(--ss-text-secondary); line-height: 1.65; }
+
+  /* ── CTA section ── */
+  .ss-cta-section {
+    background: linear-gradient(135deg, #1A3D2B 0%, #3D7A5F 100%);
+    padding: 5rem 0;
+    color: #fff;
+  }
+  .ss-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .ss-cta-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    margin-bottom: .5rem;
+    color: #fff;
+  }
+  .ss-cta-desc { font-size: 1rem; color: rgba(255,255,255,.75); }
+  .ss-cta-actions { display: flex; flex-direction: column; gap: .75rem; align-items: flex-start; flex-shrink: 0; }
+  .ss-cta-note { font-size: .78rem; color: rgba(255,255,255,.55); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .ss-two-col { grid-template-columns: 1fr; }
+    .ss-stat-panel { display: grid; grid-template-columns: 1fr 1fr; }
+    .ss-stat-divider { display: none; }
+    .ss-steps { grid-template-columns: 1fr; }
+    .ss-who-grid { grid-template-columns: 1fr; }
+    .ss-cta-inner { flex-direction: column; text-align: center; }
+    .ss-cta-actions { align-items: center; }
+  }
+  @media (max-width: 600px) {
+    .ss-hero { padding: 4rem 0 3.5rem; }
+    .ss-section { padding: 3.5rem 0; }
+    .ss-symptom-grid { grid-template-columns: 1fr 1fr; }
+    .ss-stat-panel { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 400px) {
+    .ss-symptom-grid { grid-template-columns: 1fr; }
+  }
+</style>
