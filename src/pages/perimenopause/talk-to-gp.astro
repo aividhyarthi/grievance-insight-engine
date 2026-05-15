@@ -1,0 +1,193 @@
+---
+import PerimenopauseLayout from '../../layouts/PerimenopauseLayout.astro';
+---
+
+<PerimenopauseLayout
+  title="Talk to Your GP About Perimenopause – hermidlife"
+  description="How to have a productive conversation with your GP about perimenopause — what to say, what to ask, and how to find a doctor with menopause expertise in Australia."
+>
+
+  <!-- Page hero -->
+  <section style="background: linear-gradient(135deg, #5A1D35 0%, #9D4E6E 100%); color:#fff; padding: 4rem 0;">
+    <div class="container">
+      <span class="hml-eyebrow">&#128138; Talk to Your GP</span>
+      <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight:900; letter-spacing:-.02em; margin:.75rem 0; color:#fff;">
+        How to have a better conversation with your doctor
+      </h1>
+      <p style="font-size:1.05rem; color:rgba(255,255,255,.85); max-width:580px; line-height:1.7;">
+        Many women leave GP appointments feeling unheard about perimenopause. Being prepared makes an enormous difference.
+        Here's how to get the most from your next appointment.
+      </p>
+    </div>
+  </section>
+
+  <section class="section hml-page">
+    <div class="container" style="max-width:860px; margin:0 auto;">
+
+      <!-- Disclaimer -->
+      <div class="hml-info-box" style="margin-bottom:2.5rem;">
+        <strong>This guide is informational only.</strong> It is designed to help you prepare for a conversation with a qualified healthcare professional — not to replace that conversation. Your GP knows your full health history; this guide does not.
+      </div>
+
+      <!-- Before your appointment -->
+      <div style="margin-bottom:3rem;">
+        <span class="hml-label">Step 1</span>
+        <h2 class="section-title" style="margin-top:.5rem;">Before your appointment</h2>
+        <p style="color:var(--clr-text-secondary); font-size:.97rem; line-height:1.8; margin-bottom:1.25rem;">
+          GPs in Australia have limited appointment time — often 10–15 minutes. Arriving prepared means you use that time well.
+        </p>
+
+        <div class="hml-gp-grid">
+          <div class="hml-gp-card">
+            <div class="hml-gp-card-icon">📝</div>
+            <div class="hml-gp-card-title">Write down your symptoms</div>
+            <div class="hml-gp-card-desc">List everything you've noticed, including things that seem unrelated. Include when they started, how frequent they are, and how much they affect your daily life. Be specific — "I wake 3–4 times per night drenched in sweat" is more useful than "I sleep badly."</div>
+          </div>
+          <div class="hml-gp-card">
+            <div class="hml-gp-card-icon">📅</div>
+            <div class="hml-gp-card-title">Track your cycle first</div>
+            <div class="hml-gp-card-desc">If your periods have become irregular, note the dates and flow of your last 3–6 cycles if you can. This helps your GP assess where you might be in the transition. Apps like Clue or a simple diary are fine.</div>
+          </div>
+          <div class="hml-gp-card">
+            <div class="hml-gp-card-icon">🕐</div>
+            <div class="hml-gp-card-title">Book a longer appointment</div>
+            <div class="hml-gp-card-desc">Call ahead and ask for a 20–30 minute appointment. Let reception know you want to discuss perimenopause specifically. Many practices have a longer item number for this. You deserve enough time to be heard.</div>
+          </div>
+          <div class="hml-gp-card">
+            <div class="hml-gp-card-icon">👨‍👩‍👧</div>
+            <div class="hml-gp-card-title">Know your family history</div>
+            <div class="hml-gp-card-desc">If you know the age at which your mother or sisters reached menopause, it's useful to mention. Family history of early menopause, breast cancer, heart disease, or osteoporosis is relevant to treatment decisions.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What to say -->
+      <div style="margin-bottom:3rem;">
+        <span class="hml-label">Step 2</span>
+        <h2 class="section-title" style="margin-top:.5rem;">What to say when you walk in</h2>
+        <p style="color:var(--clr-text-secondary); font-size:.97rem; line-height:1.8; margin-bottom:1.5rem;">
+          Many women feel awkward raising perimenopause directly. You don't need to. Here are some ways to open the conversation:
+        </p>
+
+        {[
+          { label: "If you think it might be perimenopause", text: `"I've been experiencing [symptoms] and I'm wondering if this could be perimenopause. I'd like to understand what's happening and what my options are."` },
+          { label: "If you've been dismissed before", text: `"I've been struggling with [symptoms] for [time period] and I'd really like to properly explore whether hormones could be contributing. I'd like to have a thorough conversation about this today."` },
+          { label: "If you want to discuss HRT/MHT", text: `"I've been reading about Menopausal Hormone Therapy and I'd like to know if it might be appropriate for me, given my symptoms and health history. Can we discuss the options?"` },
+          { label: "If you're unsure what's wrong", text: `"I haven't been feeling like myself — I'm experiencing [symptoms]. I'd like to check whether perimenopause could be contributing, and also whether we should rule out anything else like thyroid issues."` },
+        ].map(item => (
+          <div style="background:#fff; border:1.5px solid var(--hml-border); border-radius:var(--radius-sm); padding:1.5rem; margin-bottom:1rem;">
+            <div style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--hml-primary); margin-bottom:.75rem;">{item.label}</div>
+            <div style="background:var(--hml-primary-light); border-radius:6px; padding:1rem 1.25rem; font-size:.95rem; color:#5A3045; line-height:1.7; font-style:italic;">
+              {item.text}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Questions to ask -->
+      <div style="margin-bottom:3rem;">
+        <span class="hml-label">Step 3</span>
+        <h2 class="section-title" style="margin-top:.5rem;">Questions worth asking</h2>
+        <p style="color:var(--clr-text-secondary); font-size:.97rem; line-height:1.8; margin-bottom:1.5rem;">
+          Print this list or save it to your phone and take it with you.
+        </p>
+        <div style="background:#fff; border:1.5px solid var(--hml-border); border-radius:var(--radius); padding:2rem;">
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:.6rem;">
+            {[
+              "Do you think I could be in perimenopause?",
+              "Are there any tests you'd recommend — and what will they or won't they tell us?",
+              "What are my treatment options for [your main symptom]?",
+              "Can you explain the benefits and risks of MHT for someone in my situation?",
+              "Are there non-hormonal options I should know about?",
+              "Is there anything in my health history that affects which options are appropriate for me?",
+              "Should I track my symptoms between now and my next appointment? What should I note?",
+              "Is there a menopause specialist or gynaecologist you'd recommend if I need a referral?",
+              "Are there any tests you'd recommend to rule out other causes (thyroid, iron, etc.)?",
+              "When should I come back to review how things are going?",
+            ].map(q => (
+              <li style="display:flex; align-items:flex-start; gap:.75rem; padding:.5rem 0; border-bottom:1px solid var(--hml-border); font-size:.93rem; color:var(--clr-text-secondary); line-height:1.6;">
+                <span style="color:var(--hml-primary); font-weight:700; flex-shrink:0; margin-top:.1rem;">&#10003;</span>
+                {q}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- If not being heard -->
+      <div style="margin-bottom:3rem;">
+        <span class="hml-label">If you feel dismissed</span>
+        <h2 class="section-title" style="margin-top:.5rem;">You have options</h2>
+        <p style="color:var(--clr-text-secondary); font-size:.97rem; line-height:1.8; margin-bottom:1.5rem;">
+          Unfortunately, many women report feeling unheard about perimenopause symptoms. If this happens to you:
+        </p>
+        <div class="hml-gp-grid">
+          <div class="hml-gp-card">
+            <div class="hml-gp-card-icon">🔄</div>
+            <div class="hml-gp-card-title">Seek a second opinion</div>
+            <div class="hml-gp-card-desc">You are always entitled to see another GP. If your concerns aren't being heard, it's reasonable to seek a second opinion — especially for something as significant as perimenopause management.</div>
+          </div>
+          <div class="hml-gp-card">
+            <div class="hml-gp-card-icon">🎯</div>
+            <div class="hml-gp-card-title">Ask for a specialist referral</div>
+            <div class="hml-gp-card-desc">You can ask your GP for a referral to a gynaecologist or a doctor with specific menopause training. This is a reasonable request, not an unusual one.</div>
+          </div>
+          <div class="hml-gp-card">
+            <div class="hml-gp-card-icon">🔍</div>
+            <div class="hml-gp-card-title">Find a menopause-trained GP</div>
+            <div class="hml-gp-card-desc">The Australasian Menopause Society has a "Find a Doctor" tool at ams.asn.au. These doctors have completed specific menopause training and are typically well-equipped to help.</div>
+          </div>
+          <div class="hml-gp-card">
+            <div class="hml-gp-card-icon">📱</div>
+            <div class="hml-gp-card-title">Telehealth options</div>
+            <div class="hml-gp-card-desc">Several telehealth services offer GP consultations with doctors experienced in women's health and menopause — useful if you're in a regional area or prefer the convenience.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Australian resources -->
+      <div style="margin-bottom:2rem;">
+        <span class="hml-label">Australian resources</span>
+        <h2 class="section-title" style="margin-top:.5rem;">Trusted organisations</h2>
+        <p style="color:var(--clr-text-secondary); font-size:.97rem; line-height:1.8; margin-bottom:1.5rem;">
+          These organisations provide evidence-based, peer-reviewed information on menopause and perimenopause in the Australian context.
+        </p>
+        <div class="hml-gp-grid">
+          {[
+            { icon: '🏛️', name: 'Australasian Menopause Society', note: 'ams.asn.au — find a menopause-trained doctor, read position statements, and access patient resources.' },
+            { icon: '💊', name: "Jean Hailes for Women's Health", note: "jeanhailes.org.au — comprehensive women's health information with a strong focus on midlife health." },
+            { icon: '🏥', name: 'RANZCOG', note: 'ranzcog.edu.au — The Royal Australian and New Zealand College of Obstetricians and Gynaecologists, for finding a specialist.' },
+            { icon: '📞', name: 'Healthdirect', note: 'healthdirect.gov.au — government health information and the nurse advice line (1800 022 222) for after-hours guidance.' },
+          ].map(r => (
+            <div class="hml-gp-card">
+              <div class="hml-gp-card-icon">{r.icon}</div>
+              <div class="hml-gp-card-title">{r.name}</div>
+              <div class="hml-gp-card-desc">{r.note}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Final disclaimer -->
+      <div class="hml-info-box">
+        <strong>Remember:</strong> this guide helps you prepare for a medical conversation — it does not give medical advice. Your GP is the right person to diagnose, investigate, and recommend treatment for your individual situation. Please use this as a starting point, not an endpoint.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm" style="background:#fff; border-top:1px solid var(--hml-border);">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div style="font-weight:700; font-size:1.05rem; margin-bottom:.25rem;">Want to learn more first?</div>
+        <div style="font-size:.9rem; color:var(--clr-text-secondary);">Our symptom library and topic guides will help you go into that appointment well-informed.</div>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="/perimenopause/library" class="btn" style="background:var(--hml-primary); color:#fff; border-color:var(--hml-primary);">Symptom Library</a>
+        <a href="/perimenopause/guides" class="btn btn-outline" style="color:var(--hml-primary); border-color:var(--hml-primary);">Topic Guides</a>
+      </div>
+    </div>
+  </section>
+
+</PerimenopauseLayout>

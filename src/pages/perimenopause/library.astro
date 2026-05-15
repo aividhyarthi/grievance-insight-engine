@@ -1,0 +1,216 @@
+---
+import PerimenopauseLayout from '../../layouts/PerimenopauseLayout.astro';
+
+const symptoms = [
+  {
+    icon: '🔥',
+    name: 'Hot Flushes',
+    tag: 'hormonal',
+    tagLabel: 'Hormonal',
+    why: "Caused by fluctuating oestrogen affecting the hypothalamus — your brain's thermostat. It misreads your body temperature and triggers a heat response.",
+    whatHelps: 'Dressing in layers, avoiding triggers (alcohol, spicy food, caffeine), staying cool, and speaking to your GP about HRT or other options.',
+    seeGP: 'If hot flushes are disrupting your daily life or sleep significantly.',
+  },
+  {
+    icon: '🌙',
+    name: 'Night Sweats',
+    tag: 'hormonal',
+    tagLabel: 'Hormonal',
+    why: 'The same mechanism as hot flushes — but occurring during sleep. Can cause you to wake drenched in sweat repeatedly through the night.',
+    whatHelps: 'Cooling bedding, sleeping in layers, keeping your room cool, and reducing evening alcohol. Some women find a cool damp cloth helpful.',
+    seeGP: 'If night sweats are happening regularly and disrupting your sleep — this is very treatable.',
+  },
+  {
+    icon: '📅',
+    name: 'Irregular Periods',
+    tag: 'hormonal',
+    tagLabel: 'Hormonal',
+    why: 'As ovulation becomes less predictable, cycles become irregular. They may become shorter, longer, heavier, lighter, or skip entirely.',
+    whatHelps: 'Tracking your cycle helps you understand your pattern. Apps like Clue or a simple diary work well.',
+    seeGP: 'If bleeding is extremely heavy, if you bleed between periods, or if you have any pain. Always check unusual bleeding with your GP.',
+  },
+  {
+    icon: '🧠',
+    name: 'Brain Fog',
+    tag: 'mental',
+    tagLabel: 'Cognitive',
+    why: 'Oestrogen plays a role in brain function and memory. As levels fluctuate, many women experience difficulty concentrating, word-finding difficulties, or feeling mentally sluggish.',
+    whatHelps: 'Sleep is the biggest lever — poor sleep worsens brain fog significantly. Regular exercise, reducing alcohol, and stress management also help.',
+    seeGP: 'If cognitive changes feel severe or are affecting your work and relationships.',
+  },
+  {
+    icon: '😤',
+    name: 'Mood Swings & Irritability',
+    tag: 'mental',
+    tagLabel: 'Emotional',
+    why: 'Oestrogen and progesterone influence serotonin and other mood-regulating chemicals. As they fluctuate, emotional regulation becomes harder — often feeling out of character.',
+    whatHelps: 'Naming the connection to hormones is powerful. Regular exercise, good sleep, and reducing stimulants all help. Therapy or counselling can be valuable too.',
+    seeGP: "If mood changes are severe, persistent, or you're feeling low in a way that concerns you or those around you.",
+  },
+  {
+    icon: '😰',
+    name: 'Anxiety',
+    tag: 'mental',
+    tagLabel: 'Emotional',
+    why: 'New or worsening anxiety during perimenopause is very common and directly linked to hormonal changes. Women who never previously experienced anxiety are often surprised by it.',
+    whatHelps: `Understanding the hormonal link is the first step. Breathwork, mindfulness, reducing caffeine, and physical activity can all help. Don't dismiss it as "just stress".`,
+    seeGP: 'If anxiety is impacting your daily life — there are good treatment options available.',
+  },
+  {
+    icon: '💤',
+    name: 'Sleep Disruption',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: 'Oestrogen and progesterone both support sleep quality. Declining levels, combined with night sweats, can make it very hard to get deep, restorative sleep.',
+    whatHelps: 'Good sleep hygiene is essential: consistent bed/wake times, a cool dark room, no screens before bed, limiting alcohol. Treating night sweats often helps significantly.',
+    seeGP: 'If sleep disruption is persistent and affecting your health and functioning.',
+  },
+  {
+    icon: '😓',
+    name: 'Fatigue',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: "A combination of poor sleep, hormonal changes, and the metabolic impact of oestrogen decline can lead to persistent tiredness that rest doesn't fully fix.",
+    whatHelps: 'Prioritising sleep, regular (but not excessive) exercise, iron-rich foods if periods are heavy, and managing stress.',
+    seeGP: 'If fatigue is severe — your GP may want to rule out thyroid issues, anaemia, or vitamin deficiencies.',
+  },
+  {
+    icon: '💔',
+    name: 'Heart Palpitations',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: "Oestrogen plays a protective role in cardiovascular function. Fluctuating levels can cause the heart to feel like it's racing, fluttering, or skipping beats — particularly around hot flushes.",
+    whatHelps: 'Avoiding caffeine and alcohol, managing stress, and staying hydrated can all reduce frequency.',
+    seeGP: "Always mention palpitations to your GP, especially if they're frequent, accompanied by chest pain, or cause you to feel faint.",
+  },
+  {
+    icon: '🦴',
+    name: 'Joint & Muscle Aches',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: 'Oestrogen has an anti-inflammatory effect on joints and muscles. As levels fall, many women notice new or worsening aches — particularly in the knees, hips, and hands.',
+    whatHelps: 'Low-impact exercise (swimming, walking, yoga), anti-inflammatory foods, maintaining a healthy weight, and staying hydrated.',
+    seeGP: 'If joint pain is severe, is localised to one joint, or comes with swelling or redness.',
+  },
+  {
+    icon: '⚖️',
+    name: 'Weight Changes',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: 'Metabolic rate slows and fat distribution shifts — often from hips to abdomen — as oestrogen declines. This is a physiological change, not simply a lifestyle issue.',
+    whatHelps: 'Strength training (which maintains muscle mass and metabolic rate), a protein-rich diet, reducing processed foods and alcohol, and adequate sleep.',
+    seeGP: "If weight gain is rapid or unexpected, it's worth checking in to rule out thyroid or metabolic causes.",
+  },
+  {
+    icon: '🌸',
+    name: 'Vaginal Dryness',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: 'Oestrogen keeps vaginal tissues lubricated and elastic. As levels fall, the vaginal wall thins and dries — causing discomfort, particularly during sex.',
+    whatHelps: 'Over-the-counter vaginal moisturisers (used regularly, not just during sex) and lubricants can help significantly. Localised oestrogen therapy is very effective and can be prescribed by your GP.',
+    seeGP: "This is very treatable — don't put up with it. Bring it up with your GP.",
+  },
+  {
+    icon: '🫦',
+    name: 'Reduced Libido',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: 'Testosterone (yes, women have it too) declines during perimenopause and can reduce sexual desire. Vaginal dryness, fatigue, mood changes, and relationship factors compound this.',
+    whatHelps: 'Addressing contributing factors (sleep, mood, vaginal comfort) often helps. Open communication with your partner and with your GP matters.',
+    seeGP: 'If reduced libido is affecting your relationship or your sense of self — your GP can discuss options including testosterone therapy for women.',
+  },
+  {
+    icon: '💇‍♀️',
+    name: 'Hair & Skin Changes',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: 'Oestrogen supports hair growth and skin elasticity. As levels fall, some women notice hair thinning, increased facial hair, or skin becoming drier and less elastic.',
+    whatHelps: 'Gentle hair care, a diet rich in protein and iron, and good skincare. Discuss with your GP if hair loss feels significant.',
+    seeGP: 'If hair loss is rapid or patchy — worth checking thyroid and iron levels too.',
+  },
+  {
+    icon: '🤕',
+    name: 'Headaches & Migraines',
+    tag: 'physical',
+    tagLabel: 'Physical',
+    why: 'Many women who experienced menstrual migraines find they worsen during perimenopause due to oestrogen fluctuations. Others experience new headaches for the first time.',
+    whatHelps: 'Staying hydrated, consistent sleep, identifying and avoiding personal triggers, and managing stress.',
+    seeGP: 'If headaches are severe, frequent, or changing in character — especially if accompanied by neurological symptoms.',
+  },
+];
+---
+
+<PerimenopauseLayout
+  title="Perimenopause Symptom Library – hermidlife"
+  description="A plain-language guide to 15 common perimenopause symptoms — what causes them, what helps, and when to see your GP."
+>
+
+  <!-- Page hero -->
+  <section style="background: linear-gradient(135deg, #5A1D35 0%, #9D4E6E 100%); color:#fff; padding: 4rem 0;">
+    <div class="container">
+      <span class="hml-eyebrow">&#128218; Symptom Library</span>
+      <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight:900; letter-spacing:-.02em; margin-bottom:.75rem; margin-top:.75rem; color:#fff;">
+        What you might be feeling — and why
+      </h1>
+      <p style="font-size:1.05rem; color:rgba(255,255,255,.85); max-width:560px; line-height:1.7; margin-bottom:1.5rem;">
+        Perimenopause has over 30 recognised symptoms. Here are 15 of the most common, explained in plain language.
+      </p>
+      <div class="hml-disclaimer-strip">
+        &#128274; This is general information — not a diagnosis. Always talk to your GP about your symptoms.
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter legend -->
+  <div style="background:#fff; border-bottom:1px solid var(--hml-border); padding:.75rem 0;">
+    <div class="container" style="display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; font-size:.85rem; color:var(--clr-text-muted);">
+      <span style="font-weight:600; color:var(--clr-text);">Categories:</span>
+      <span class="hml-symptom-tag hormonal">Hormonal</span>
+      <span class="hml-symptom-tag mental">Cognitive / Emotional</span>
+      <span class="hml-symptom-tag physical">Physical</span>
+    </div>
+  </div>
+
+  <!-- Symptom grid -->
+  <section class="section hml-page">
+    <div class="container">
+      <div class="hml-symptoms-grid">
+        {symptoms.map(s => (
+          <div class="hml-symptom-card">
+            <div class="hml-symptom-icon">{s.icon}</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:.5rem; flex-wrap:wrap; gap:.5rem;">
+              <div class="hml-symptom-name">{s.name}</div>
+              <span class={`hml-symptom-tag ${s.tag}`}>{s.tagLabel}</span>
+            </div>
+            <div class="hml-symptom-why" style="margin-bottom:.75rem;">
+              <strong style="color:var(--hml-primary); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em;">Why it happens</strong><br/>
+              {s.why}
+            </div>
+            <div class="hml-symptom-why" style="margin-bottom:.75rem;">
+              <strong style="color:var(--hml-accent); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em;">What may help</strong><br/>
+              {s.whatHelps}
+            </div>
+            <div style="background:var(--hml-primary-light); border-radius:6px; padding:.6rem .85rem; font-size:.82rem; color:#5A3045; line-height:1.55;">
+              <strong>See your GP if:</strong> {s.seeGP}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="section-sm" style="background:#fff; border-top:1px solid var(--hml-border);">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div style="font-weight:700; font-size:1.05rem; margin-bottom:.25rem;">Want to understand more?</div>
+        <div style="font-size:.9rem; color:var(--clr-text-secondary);">Our topic guides go deeper on the areas that matter most.</div>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="/perimenopause/guides" class="btn" style="background:var(--hml-primary); color:#fff; border-color:var(--hml-primary);">Topic Guides</a>
+        <a href="/perimenopause/talk-to-gp" class="btn btn-outline" style="color:var(--hml-primary); border-color:var(--hml-primary);">Talk to Your GP</a>
+      </div>
+    </div>
+  </section>
+
+</PerimenopauseLayout>

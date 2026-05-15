@@ -1,0 +1,210 @@
+---
+import PerimenopauseLayout from '../../layouts/PerimenopauseLayout.astro';
+
+const guides = [
+  {
+    num: '01',
+    icon: '🔬',
+    title: 'Hormones 101',
+    desc: 'Oestrogen and progesterone explained — what they actually do in your body, and what happens when they start to change.',
+    topics: [
+      'What oestrogen does beyond reproduction',
+      'How progesterone balances the system',
+      'Why levels fluctuate (rather than just decline)',
+      'What the perimenopause hormone "rollercoaster" looks like',
+      'The difference between perimenopause and menopause',
+    ],
+    detail: `Oestrogen is not just a "reproductive hormone." It affects your brain, bones, cardiovascular system, skin, joints, and mood. When it starts to fluctuate — and that fluctuation is the key word in perimenopause — the whole body notices.
+
+Progesterone declines earlier and more steeply than oestrogen in many women. It's the hormone most associated with calm and sleep quality, which is why sleep is often the first casualty of perimenopause.
+
+The transition isn't linear. Oestrogen can spike unpredictably high before falling, which is why some women experience both symptoms of oestrogen excess (breast tenderness, bloating, heavy periods) and oestrogen deficiency (hot flushes, dryness) at different times — or even simultaneously.`,
+  },
+  {
+    num: '02',
+    icon: '📅',
+    title: "Your Periods — What's Changing",
+    desc: "Cycles getting shorter, longer, heavier, or unpredictable? Here's what's happening and what to watch out for.",
+    topics: [
+      'Why cycles become irregular during perimenopause',
+      'What "normal" variation looks like',
+      'Heavy or flooding periods — when to act',
+      'Spotting and bleeding between periods',
+      'How to track your cycle effectively',
+    ],
+    detail: `As ovulation becomes less predictable, the menstrual cycle loses its regularity. Cycles may shorten to 21 days or extend to 45+. Periods may become lighter and shorter, or dramatically heavier with clotting.
+
+Heavy periods (also called menorrhagia) are very common in perimenopause and can lead to iron deficiency and exhaustion. A period that requires changing a pad or tampon every hour for two or more consecutive hours, or that contains large clots, warrants a GP visit.
+
+Bleeding between periods, after sex, or after 12 months of no periods (post-menopause) should always be discussed with your GP — these are symptoms that need to be evaluated, not assumed to be perimenopause.`,
+  },
+  {
+    num: '03',
+    icon: '💙',
+    title: 'Mental Health & Mood',
+    desc: 'The direct link between hormones and anxiety, low mood, and emotional sensitivity — and why this is often missed.',
+    topics: [
+      'How oestrogen affects serotonin and mood',
+      'Anxiety that appears "from nowhere"',
+      'Low mood vs clinical depression',
+      'Rage, irritability, and emotional sensitivity',
+      'When to seek mental health support',
+    ],
+    detail: `Oestrogen influences the production and metabolism of serotonin, dopamine, and GABA — the brain chemicals that regulate mood, calm, and pleasure. When oestrogen fluctuates, these systems are destabilised.
+
+This is why perimenopause can bring on anxiety, low mood, or emotional reactivity in women who have never experienced these things before. It's biological, not a character flaw or weakness.
+
+The "perimenopausal rage" that many women describe — a sudden, disproportionate response to things that previously didn't bother them — is a recognised phenomenon linked to hormonal volatility and sleep deprivation.
+
+If low mood persists for more than two weeks, or anxiety is significantly impacting your life, please speak to your GP. Perimenopause is associated with increased risk of depression, and there are effective treatments available.`,
+  },
+  {
+    num: '04',
+    icon: '😴',
+    title: "Sleep — Why It's Disrupted",
+    desc: 'The hormonal reasons behind poor sleep in perimenopause, and practical strategies grounded in evidence.',
+    topics: [
+      'Why progesterone decline affects sleep first',
+      'The night sweats → poor sleep → everything else cycle',
+      'Sleep hygiene that actually makes a difference',
+      'The role of alcohol and caffeine',
+      'When to discuss sleep with your GP',
+    ],
+    detail: `Progesterone has a sedative quality — it helps you fall into deep sleep. As it declines in perimenopause, many women notice they begin waking at 3am or find it hard to reach deep, restorative sleep, even before other symptoms appear.
+
+Add night sweats to the mix and you have a perfect storm. The chronic sleep deprivation that results compounds every other perimenopause symptom: it worsens brain fog, mood instability, fatigue, and metabolic function.
+
+Evidence-based sleep strategies that help: consistent wake time (even on weekends), keeping your bedroom below 18°C, no alcohol within 3 hours of bed (alcohol fragments sleep architecture), limiting caffeine after 2pm, and not lying in bed awake for more than 20 minutes.
+
+If sleep disruption is severe, your GP can discuss options including addressing night sweats directly, or referring you to a sleep specialist.`,
+  },
+  {
+    num: '05',
+    icon: '🏃‍♀️',
+    title: 'Lifestyle & Self-Care',
+    desc: 'Evidence-based changes that genuinely make a difference to perimenopause symptoms — and the myths to ignore.',
+    topics: [
+      'Exercise: what type matters and why',
+      'Nutrition and the metabolic shift',
+      'Alcohol — the underestimated contributor',
+      'Stress and cortisol in perimenopause',
+      'What actually works vs popular myths',
+    ],
+    detail: `Exercise is one of the most powerful tools in perimenopause. Strength training in particular — 2–3 times per week — helps preserve muscle mass, support bone density, regulate mood, improve sleep, and manage weight. Cardiovascular exercise supports heart health. Yoga and pilates can help with stress and pelvic floor function.
+
+Nutrition shifts matter: protein becomes more important for muscle maintenance, and many women find that refined carbohydrates and alcohol amplify symptoms. Phytoestrogens (found in soy, flaxseed, legumes) may help some women with mild symptoms — evidence is mixed, but they're safe.
+
+Alcohol is worth an honest look. It fragments sleep, triggers hot flushes, and contributes to anxiety and low mood — three areas already under pressure in perimenopause.
+
+Stress management matters more than ever. Elevated cortisol (the stress hormone) competes with progesterone and can worsen the hormonal imbalance of perimenopause. Even simple breathwork practices have measurable effects.`,
+  },
+  {
+    num: '06',
+    icon: '🩺',
+    title: 'Navigating Healthcare in Australia',
+    desc: 'How to work with your GP, what to ask about, and what treatment options are available in the Australian context.',
+    topics: [
+      'How to raise perimenopause with your GP',
+      'Hormone Replacement Therapy (HRT) — the current evidence',
+      'Non-hormonal treatment options',
+      'The Menopause Management consultation (Medicare)',
+      'Finding a menopause specialist',
+    ],
+    detail: `Many GPs are knowledgeable about perimenopause — but many women still report being dismissed or undertreated. Being informed and specific about your symptoms before your appointment makes a significant difference.
+
+Hormone Replacement Therapy (HRT), now more commonly called Menopausal Hormone Therapy (MHT) in Australia, has undergone a major rehabilitation in the evidence base since the 2002 WHI study that caused widespread concern. For most healthy women under 60 and within 10 years of menopause, the benefits outweigh the risks. Your GP can advise based on your individual health profile.
+
+Non-hormonal options including antidepressants (SNRIs/SSRIs), clonidine, and gabapentin have evidence for specific symptoms, particularly hot flushes and mood.
+
+Under Medicare, GPs can claim a specific perimenopause/menopause management item number for longer consultations focused on this topic. It's worth asking your GP if this applies to your appointment.
+
+The Australasian Menopause Society (ams.asn.au) has a "Find a Doctor" tool to locate GPs and specialists with specific menopause training.`,
+  },
+];
+---
+
+<PerimenopauseLayout
+  title="Perimenopause Topic Guides – hermidlife"
+  description="Six in-depth guides covering hormones, periods, mental health, sleep, lifestyle, and navigating Australian healthcare during perimenopause."
+>
+
+  <!-- Page hero -->
+  <section style="background: linear-gradient(135deg, #5A1D35 0%, #9D4E6E 100%); color:#fff; padding: 4rem 0;">
+    <div class="container">
+      <span class="hml-eyebrow">&#128218; Topic Guides</span>
+      <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight:900; letter-spacing:-.02em; margin:.75rem 0; color:#fff;">
+        Go deeper on what matters to you
+      </h1>
+      <p style="font-size:1.05rem; color:rgba(255,255,255,.85); max-width:560px; line-height:1.7;">
+        Six guides written in plain language — covering the topics women ask about most during perimenopause.
+      </p>
+    </div>
+  </section>
+
+  <!-- Guides -->
+  <section class="section hml-page">
+    <div class="container">
+      <div style="display: flex; flex-direction: column; gap: 3rem;">
+        {guides.map(g => (
+          <div style="background:#fff; border:1.5px solid var(--hml-border); border-radius:var(--radius-lg); padding:2.5rem; box-shadow:var(--shadow-sm);">
+            <div style="display:flex; align-items:flex-start; gap:1.5rem; flex-wrap:wrap;">
+              <div>
+                <div style="width:56px; height:56px; border-radius:50%; background:var(--hml-primary-light); display:flex; align-items:center; justify-content:center; font-size:1.75rem;">{g.icon}</div>
+              </div>
+              <div style="flex:1; min-width:240px;">
+                <div style="font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--hml-primary); margin-bottom:.35rem;">Guide {g.num}</div>
+                <h2 style="font-size:1.4rem; font-weight:800; letter-spacing:-.01em; margin-bottom:.5rem; color:var(--clr-text);">{g.title}</h2>
+                <p style="font-size:.95rem; color:var(--clr-text-secondary); line-height:1.7; margin-bottom:1.5rem;">{g.desc}</p>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+                  <div>
+                    <div style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--hml-primary); margin-bottom:.75rem;">What this guide covers</div>
+                    <ul style="list-style:none; display:flex; flex-direction:column; gap:.4rem;">
+                      {g.topics.map(t => (
+                        <li style="font-size:.88rem; color:var(--clr-text-secondary); display:flex; align-items:flex-start; gap:.5rem; line-height:1.5;">
+                          <span style="color:var(--hml-primary); flex-shrink:0; margin-top:.1rem;">→</span>
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div style="background:var(--hml-warm-bg); border-radius:var(--radius-sm); padding:1.25rem; border:1px solid var(--hml-border);">
+                    <div style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--hml-accent); margin-bottom:.75rem;">Key information</div>
+                    <p style="font-size:.87rem; color:var(--clr-text-secondary); line-height:1.7; white-space:pre-line;">{g.detail.split('\n\n')[0]}</p>
+                  </div>
+                </div>
+
+                {g.detail.split('\n\n').slice(1).map(para => (
+                  <p style="font-size:.92rem; color:var(--clr-text-secondary); line-height:1.75; margin-bottom:1rem;">{para}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm" style="background:#fff; border-top:1px solid var(--hml-border);">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div style="font-weight:700; font-size:1.05rem; margin-bottom:.25rem;">Have a specific question?</div>
+        <div style="font-size:.9rem; color:var(--clr-text-secondary);">Check our FAQs or find out how to raise these topics with your GP.</div>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="/perimenopause/faq" class="btn" style="background:var(--hml-primary); color:#fff; border-color:var(--hml-primary);">FAQs</a>
+        <a href="/perimenopause/talk-to-gp" class="btn btn-outline" style="color:var(--hml-primary); border-color:var(--hml-primary);">Talk to Your GP</a>
+      </div>
+    </div>
+  </section>
+
+</PerimenopauseLayout>
+
+<style>
+  @media (max-width: 640px) {
+    div[style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
