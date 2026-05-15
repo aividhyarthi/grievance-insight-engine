@@ -1,0 +1,794 @@
+---
+const title = 'NEET Chemistry Concept Guide — Understand, Don\'t Memorise';
+const description = 'Type any NEET chemistry topic and get a clear explanation, real-life analogy, exam thinking strategy, and a practice question — built to help you understand, not cram.';
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-light: #eff6ff;
+      --green: #16a34a;
+      --green-light: #f0fdf4;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
+      --red: #dc2626;
+      --red-light: #fef2f2;
+      --purple: #7c3aed;
+      --purple-light: #f5f3ff;
+      --teal: #0d9488;
+      --teal-light: #f0fdfa;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --radius: 14px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--blue);
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .header-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .header-sub {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      font-weight: 400;
+    }
+
+    /* ── Main ── */
+    .main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ── Chips (popular topics) ── */
+    .chips-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .chip {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--text);
+      font-family: inherit;
+    }
+    .chip:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    /* ── Input card ── */
+    .input-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .input-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+    .input-row {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .topic-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .topic-input:focus { border-color: var(--blue); }
+    .topic-input::placeholder { color: #94a3b8; }
+
+    .btn-explain {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-explain:hover { background: var(--blue-dark); }
+    .btn-explain:active { transform: scale(0.97); }
+    .btn-explain:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── Spinner ── */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Loading ── */
+    .loading-wrap {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .loading-atom {
+      font-size: 3rem;
+      animation: pulse 1.2s ease-in-out infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.12); opacity: 0.7; } }
+    .loading-wrap p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .loading-wrap strong { color: var(--blue); }
+
+    /* ── Error ── */
+    .error-box {
+      display: none;
+      background: var(--red-light);
+      border: 1px solid #fca5a5;
+      border-radius: 10px;
+      color: var(--red);
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    /* ── Results ── */
+    .results { display: none; }
+
+    .result-topic-header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .result-topic-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+    .result-topic-header h2 span { color: var(--blue); }
+    .result-topic-header p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Section cards ── */
+    .guide-grid {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .guide-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .guide-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1.5px solid var(--border);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .guide-card-icon { font-size: 1.15rem; }
+    .guide-card-body {
+      padding: 1.1rem 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    /* colour accents per card */
+    .card-concept .guide-card-header { background: var(--blue-light); color: var(--blue-dark); border-color: #bfdbfe; }
+    .card-why .guide-card-header { background: var(--purple-light); color: var(--purple); border-color: #ddd6fe; }
+    .card-analogy .guide-card-header { background: var(--amber-light); color: var(--amber); border-color: #fde68a; }
+    .card-thinking .guide-card-header { background: var(--teal-light); color: var(--teal); border-color: #99f6e4; }
+    .card-misconceptions .guide-card-header { background: var(--red-light); color: var(--red); border-color: #fca5a5; }
+    .card-hook .guide-card-header { background: var(--green-light); color: var(--green); border-color: #bbf7d0; }
+
+    /* Steps inside exam thinking */
+    .steps p { margin-bottom: 0.5rem; }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-right: 0.4rem;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+
+    /* Misconceptions list */
+    .misconception-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.65rem;
+    }
+    .misconception-item:last-child { margin-bottom: 0; }
+    .misconception-x {
+      background: var(--red);
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Memory hook */
+    .hook-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-light);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--green);
+    }
+
+    /* Practice question card */
+    .card-question {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .card-question .guide-card-header {
+      background: #1e293b;
+      color: #f8fafc;
+      border-color: #334155;
+    }
+    .card-question .guide-card-body { color: #e2e8f0; }
+
+    .question-text {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+      color: #f1f5f9;
+    }
+    .options { margin-bottom: 1.1rem; }
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.4rem;
+      font-size: 0.92rem;
+      border: 1.5px solid #334155;
+      color: #cbd5e1;
+      cursor: default;
+      transition: all 0.2s;
+    }
+    .option.correct {
+      background: rgba(22,163,74,0.15);
+      border-color: var(--green);
+      color: #4ade80;
+      font-weight: 600;
+    }
+    .option-letter {
+      font-weight: 700;
+      flex-shrink: 0;
+      min-width: 18px;
+    }
+
+    .show-answer-btn {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 1.1rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-bottom: 1rem;
+    }
+    .show-answer-btn:hover { background: var(--blue-dark); }
+
+    .answer-reveal {
+      display: none;
+    }
+    .answer-reveal.visible { display: block; }
+
+    .answer-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .answer-explanation {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #94a3b8;
+    }
+
+    /* ── Try another ── */
+    .try-another {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .btn-reset {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.65rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-reset:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 580px) {
+      .input-row { flex-direction: column; }
+      .btn-explain { width: 100%; justify-content: center; }
+      .chips { gap: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div>
+      <div class="header-logo">&#x269B;&#xFE0F; NEET Chemistry Guide</div>
+      <div class="header-sub">Understand concepts — don't just memorise them</div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <div class="hero">
+      <h1>Learn to <span>Think</span>, Not Just Remember</h1>
+      <p>Type any NEET chemistry topic below. Get a clear explanation, a real-life analogy, and a step-by-step way to approach exam questions.</p>
+    </div>
+
+    <!-- Popular topics -->
+    <div class="chips-label">Popular NEET topics — click to try</div>
+    <div class="chips" id="chips">
+      <button class="chip" data-topic="Hybridisation">Hybridisation</button>
+      <button class="chip" data-topic="Periodic trends in atomic radius">Atomic Radius Trends</button>
+      <button class="chip" data-topic="Le Chatelier's Principle">Le Chatelier's Principle</button>
+      <button class="chip" data-topic="Electronegativity">Electronegativity</button>
+      <button class="chip" data-topic="Oxidation and Reduction">Redox Reactions</button>
+      <button class="chip" data-topic="Chemical Bonding - ionic vs covalent">Ionic vs Covalent Bond</button>
+      <button class="chip" data-topic="Mole Concept">Mole Concept</button>
+      <button class="chip" data-topic="Enthalpy and Entropy">Enthalpy & Entropy</button>
+      <button class="chip" data-topic="p-Block elements">p-Block Elements</button>
+      <button class="chip" data-topic="Coordination compounds">Coordination Compounds</button>
+    </div>
+
+    <!-- Input -->
+    <div class="input-card">
+      <label class="input-label" for="topic-input">Enter a Chemistry Topic</label>
+      <div class="input-row">
+        <input
+          id="topic-input"
+          class="topic-input"
+          type="text"
+          placeholder="e.g. Hybridisation, Le Chatelier's Principle, Mole Concept..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button class="btn-explain" id="explain-btn">
+          <div class="spinner" id="spinner"></div>
+          <span id="btn-label">Explain It</span>
+        </button>
+      </div>
+      <div class="error-box" id="error-box"></div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-wrap" id="loading-wrap">
+      <div class="loading-atom">&#x269B;&#xFE0F;</div>
+      <p>Building your concept guide for <strong id="loading-topic"></strong>...</p>
+      <p style="font-size:0.82rem;margin-top:0.5rem;">Finding the best analogy and exam strategy for you</p>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="results">
+
+      <div class="result-topic-header">
+        <h2>Understanding: <span id="result-topic-name"></span></h2>
+        <p>Here's everything you need to truly get this — no cramming required.</p>
+      </div>
+
+      <div class="guide-grid">
+
+        <!-- 1. Core Concept -->
+        <div class="guide-card card-concept">
+          <div class="guide-card-header">
+            <span class="guide-card-icon">&#128161;</span>
+            What is it, simply?
+          </div>
+          <div class="guide-card-body" id="section-concept"></div>
+        </div>
+
+        <!-- 2. Why it works -->
+        <div class="guide-card card-why">
+          <div class="guide-card-header">
+            <span class="guide-card-icon">&#129300;</span>
+            Why does it work this way?
+          </div>
+          <div class="guide-card-body" id="section-why"></div>
+        </div>
+
+        <!-- 3. Analogy -->
+        <div class="guide-card card-analogy">
+          <div class="guide-card-header">
+            <span class="guide-card-icon">&#127759;</span>
+            Think of it like this (real-life analogy)
+          </div>
+          <div class="guide-card-body" id="section-analogy"></div>
+        </div>
+
+        <!-- 4. Exam thinking -->
+        <div class="guide-card card-thinking">
+          <div class="guide-card-header">
+            <span class="guide-card-icon">&#129504;</span>
+            How to think through NEET questions on this
+          </div>
+          <div class="guide-card-body steps" id="section-thinking"></div>
+        </div>
+
+        <!-- 5. Misconceptions -->
+        <div class="guide-card card-misconceptions">
+          <div class="guide-card-header">
+            <span class="guide-card-icon">&#9888;&#65039;</span>
+            Watch out — common mistakes
+          </div>
+          <div class="guide-card-body" id="section-misconceptions"></div>
+        </div>
+
+        <!-- 6. Memory hook -->
+        <div class="guide-card card-hook">
+          <div class="guide-card-header">
+            <span class="guide-card-icon">&#128205;</span>
+            The one thing to never forget
+          </div>
+          <div class="guide-card-body">
+            <div class="hook-text" id="section-hook"></div>
+          </div>
+        </div>
+
+        <!-- 7. Practice question -->
+        <div class="guide-card card-question">
+          <div class="guide-card-header">
+            <span class="guide-card-icon">&#128221;</span>
+            Practice — NEET-style question
+          </div>
+          <div class="guide-card-body">
+            <div class="question-text" id="q-text"></div>
+            <div class="options" id="q-options"></div>
+            <button class="show-answer-btn" id="show-answer-btn">Show Answer & Explanation</button>
+            <div class="answer-reveal" id="answer-reveal">
+              <div class="answer-label">Correct Answer</div>
+              <div class="answer-explanation" id="q-explanation"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="try-another">
+        <button class="btn-reset" id="reset-btn">&#8592; Try Another Topic</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    NEET Chemistry Guide — Powered by Claude AI &nbsp;|&nbsp; Understand deeply, score confidently
+  </footer>
+
+  <script>
+    const topicInput = document.getElementById('topic-input');
+    const explainBtn = document.getElementById('explain-btn');
+    const btnLabel = document.getElementById('btn-label');
+    const spinner = document.getElementById('spinner');
+    const errorBox = document.getElementById('error-box');
+    const loadingWrap = document.getElementById('loading-wrap');
+    const loadingTopic = document.getElementById('loading-topic');
+    const results = document.getElementById('results');
+    const showAnswerBtn = document.getElementById('show-answer-btn');
+    const answerReveal = document.getElementById('answer-reveal');
+
+    function setLoading(on) {
+      explainBtn.disabled = on;
+      spinner.style.display = on ? 'block' : 'none';
+      btnLabel.textContent = on ? 'Thinking...' : 'Explain It';
+      loadingWrap.style.display = on ? 'block' : 'none';
+      if (on) results.style.display = 'none';
+    }
+
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.style.display = 'block';
+    }
+
+    function hideError() {
+      errorBox.style.display = 'none';
+    }
+
+    function renderGuide(guide, topic) {
+      document.getElementById('result-topic-name').textContent = topic;
+
+      // Concept
+      document.getElementById('section-concept').textContent = guide.concept || '';
+
+      // Why
+      document.getElementById('section-why').textContent = guide.why_it_works || '';
+
+      // Analogy
+      document.getElementById('section-analogy').textContent = guide.analogy || '';
+
+      // Exam thinking — split on Step patterns
+      const thinkingEl = document.getElementById('section-thinking');
+      const thinkingText = guide.exam_thinking || '';
+      // Try to split by "Step N:" pattern
+      const stepParts = thinkingText.split(/(?=Step\s*\d+[:\.])/i);
+      if (stepParts.length > 1) {
+        thinkingEl.innerHTML = stepParts.map((part, i) => {
+          const clean = part.replace(/^Step\s*\d+[:.]\s*/i, '').trim();
+          if (!clean) return '';
+          return `<p><span class="step-num">${i + 1}</span> ${escHtml(clean)}</p>`;
+        }).filter(Boolean).join('');
+      } else {
+        thinkingEl.textContent = thinkingText;
+      }
+
+      // Misconceptions
+      const miscEl = document.getElementById('section-misconceptions');
+      const misconceptions = guide.misconceptions || [];
+      if (misconceptions.length) {
+        miscEl.innerHTML = misconceptions.map(m =>
+          `<div class="misconception-item"><span class="misconception-x">WRONG</span><span>${escHtml(m)}</span></div>`
+        ).join('');
+      } else {
+        miscEl.textContent = 'None noted for this topic.';
+      }
+
+      // Hook
+      document.getElementById('section-hook').textContent = guide.memory_hook || '';
+
+      // Practice question
+      const neet = guide.neet_example || {};
+      document.getElementById('q-text').textContent = neet.question || '';
+
+      const optionsEl = document.getElementById('q-options');
+      const correctLetter = (neet.answer || '').trim().toUpperCase();
+      const questionText = neet.question || '';
+
+      // Extract options from question text if they appear inline, else use placeholders
+      const optionLetters = ['A', 'B', 'C', 'D'];
+      const optionMatches = questionText.match(/\b([A-D])[)\.\s]+([^\n]+)/g);
+
+      let optionsHtml = '';
+      if (optionMatches && optionMatches.length >= 2) {
+        // Options are embedded in the question text — re-render question without them
+        const qWithoutOptions = questionText.replace(/\b[A-D][)\.\s]+[^\n]+/g, '').trim();
+        document.getElementById('q-text').textContent = qWithoutOptions;
+        optionsHtml = optionMatches.map(m => {
+          const letter = m.match(/^([A-D])/)?.[1] || '';
+          const text = m.replace(/^[A-D][)\.\s]+/, '').trim();
+          const isCorrect = letter === correctLetter;
+          return `<div class="option ${isCorrect ? 'correct' : ''}">
+            <span class="option-letter">${letter})</span>
+            <span>${escHtml(text)}</span>
+          </div>`;
+        }).join('');
+      } else {
+        // Options not parseable — show a simple placeholder
+        optionsHtml = optionLetters.map(l =>
+          `<div class="option ${l === correctLetter ? 'correct' : ''}">
+            <span class="option-letter">${l})</span>
+            <span>${l === correctLetter ? '(See explanation below)' : '—'}</span>
+          </div>`
+        ).join('');
+      }
+      optionsEl.innerHTML = optionsHtml;
+
+      // Answer
+      document.getElementById('q-explanation').textContent =
+        `Correct answer: ${correctLetter}. ${neet.explanation || ''}`;
+
+      // Reset answer reveal
+      answerReveal.classList.remove('visible');
+      showAnswerBtn.style.display = 'block';
+
+      results.style.display = 'block';
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    async function explainTopic(topic) {
+      hideError();
+      loadingTopic.textContent = topic;
+      setLoading(true);
+
+      try {
+        const res = await fetch('/api/chemistry-guide', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ topic }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          showError(data.error || 'Something went wrong. Please try again.');
+          return;
+        }
+
+        renderGuide(data.guide, topic);
+
+      } catch {
+        showError('Network error — please check your connection and try again.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    explainBtn.addEventListener('click', () => {
+      const topic = topicInput.value.trim();
+      if (!topic) { showError('Please enter a chemistry topic.'); return; }
+      explainTopic(topic);
+    });
+
+    topicInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') explainBtn.click();
+    });
+
+    // Chip clicks
+    document.getElementById('chips').addEventListener('click', e => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      const topic = chip.dataset.topic;
+      topicInput.value = topic;
+      explainTopic(topic);
+    });
+
+    // Show answer
+    showAnswerBtn.addEventListener('click', () => {
+      answerReveal.classList.add('visible');
+      showAnswerBtn.style.display = 'none';
+    });
+
+    // Reset
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      results.style.display = 'none';
+      topicInput.value = '';
+      topicInput.focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>
