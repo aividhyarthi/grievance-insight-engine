@@ -39,6 +39,53 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- ── WOMEN PHOTO STRIP ── -->
+  <section class="women-strip">
+    <div class="container">
+      <div class="women-strip-inner">
+        <div class="women-intro">
+          <span class="ws-label">Real women. Real experiences.</span>
+          <h2>They thought it was stress.<br/>It wasn't.</h2>
+          <p>Millions of Indian women are navigating perimenopause right now — silently, alone, and often misunderstood. This is for all of them.</p>
+          <a href="/chat" class="btn btn-peach">Talk to someone who gets it →</a>
+        </div>
+        <div class="women-photos">
+          <div class="wp-card wp-card-1">
+            <!-- To add a real photo: place image at /public/women1.jpg and replace the div below with <img src="/women1.jpg" alt="..." /> -->
+            <div class="wp-photo wp-photo-1">
+              <div class="wp-initials">P</div>
+            </div>
+            <div class="wp-info">
+              <span class="wp-name">Priya, 44</span>
+              <span class="wp-city">Bengaluru</span>
+              <p class="wp-quote">"I finally have a name for what I've been going through."</p>
+            </div>
+          </div>
+          <div class="wp-card wp-card-2">
+            <div class="wp-photo wp-photo-2">
+              <div class="wp-initials">M</div>
+            </div>
+            <div class="wp-info">
+              <span class="wp-name">Meena, 47</span>
+              <span class="wp-city">Mumbai</span>
+              <p class="wp-quote">"My husband finally understands why I've been so different."</p>
+            </div>
+          </div>
+          <div class="wp-card wp-card-3">
+            <div class="wp-photo wp-photo-3">
+              <div class="wp-initials">S</div>
+            </div>
+            <div class="wp-info">
+              <span class="wp-name">Sunita, 41</span>
+              <span class="wp-city">Delhi</span>
+              <p class="wp-quote">"I stopped blaming myself the day I understood this was hormonal."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── STATS STRIP ── -->
   <div class="stats-strip">
     <div class="container">
@@ -424,6 +471,69 @@ import Layout from '../layouts/Layout.astro';
     font-size: .86rem;
     color: rgba(255,255,255,.6);
   }
+
+  /* ── WOMEN STRIP ── */
+  .women-strip {
+    background: #fff;
+    padding: 5rem 0;
+    border-bottom: 1.5px solid var(--border-light);
+  }
+  .women-strip-inner {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .ws-label {
+    display: inline-flex;
+    font-size: .76rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--peach);
+    background: var(--peach-light);
+    padding: .3rem .85rem; border-radius: 100px; margin-bottom: 1rem;
+  }
+  .women-intro h2 {
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 900; letter-spacing: -.025em;
+    color: var(--text); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .women-intro p {
+    font-size: .97rem; color: var(--text-secondary);
+    line-height: 1.75; margin-bottom: 1.75rem;
+  }
+  .women-photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .wp-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .wp-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(61,122,95,.14); }
+  .wp-card-1 { margin-top: 0; }
+  .wp-card-2 { margin-top: 1.5rem; }
+  .wp-card-3 { margin-top: -.5rem; }
+
+  .wp-photo {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .wp-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .wp-photo-1 { background: linear-gradient(145deg, #C94B4B 0%, #E8956D 100%); }
+  .wp-photo-2 { background: linear-gradient(145deg, #1A3D2B 0%, #4E9070 100%); }
+  .wp-photo-3 { background: linear-gradient(145deg, #7B4F3A 0%, #D4845A 100%); }
+  .wp-initials {
+    font-size: 3.5rem; font-weight: 900;
+    color: rgba(255,255,255,.35);
+    font-family: Georgia, serif; line-height: 1;
+  }
+  .wp-info { background: #fff; padding: 1rem 1.25rem; }
+  .wp-name { display: block; font-weight: 700; font-size: .9rem; color: var(--text); }
+  .wp-city { display: block; font-size: .76rem; color: var(--text-muted); margin-bottom: .5rem; }
+  .wp-quote { font-size: .82rem; color: var(--text-secondary); line-height: 1.6; font-style: italic; }
 
   /* ── STATS STRIP ── */
   .stats-strip {
@@ -905,6 +1015,9 @@ import Layout from '../layouts/Layout.astro';
 
   /* ── RESPONSIVE ── */
   @media (max-width: 960px) {
+    .women-strip-inner { grid-template-columns: 1fr; }
+    .women-photos      { grid-template-columns: repeat(3, 1fr); }
+    .wp-card-2, .wp-card-3 { margin-top: 0; }
     .silence-inner     { grid-template-columns: 1fr; gap: 3rem; }
     .what-inner        { grid-template-columns: 1fr; }
     .timeline-card     { position: static; }
