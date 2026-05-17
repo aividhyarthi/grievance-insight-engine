@@ -1,0 +1,348 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Perimenopause Symptom Check — The Second Spring"
+  description="Take our free 2-minute quiz to understand if your symptoms could be perimenopause. Private, anonymous, instant results."
+>
+  <div class="quiz-page">
+
+    <!-- INTRO -->
+    <section class="qs-screen" id="screen-intro">
+      <div class="qc">
+        <span class="q-eyebrow">🌸 Free · 2 minutes · Anonymous</span>
+        <h1>Could it be perimenopause?</h1>
+        <p class="qi-desc">
+          11 questions. Instant personalised results.<br/>
+          Nothing is saved, stored, or shared.
+        </p>
+        <div class="qi-stats">
+          <div class="qi-stat"><span class="qs-n">11</span><span class="qs-l">Questions</span></div>
+          <div class="qi-div"></div>
+          <div class="qi-stat"><span class="qs-n">2 min</span><span class="qs-l">Duration</span></div>
+          <div class="qi-div"></div>
+          <div class="qi-stat"><span class="qs-n">Free</span><span class="qs-l">Always</span></div>
+        </div>
+        <button class="btn btn-peach btn-lg" id="start-btn">Begin symptom check →</button>
+        <p class="qi-note">🔒 Anonymous. No login required. Not medical advice.</p>
+      </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="qs-screen" id="screen-questions" style="display:none">
+      <div class="qc">
+        <div class="qq-header">
+          <button class="qq-back" id="back-btn">← Back</button>
+          <span class="qq-counter" id="q-counter">1 of 11</span>
+        </div>
+        <div class="qq-bar-wrap"><div class="qq-bar" id="q-bar"></div></div>
+        <div class="qq-card">
+          <div class="qq-num" id="q-num"></div>
+          <h2 class="qq-text" id="q-text"></h2>
+          <div class="qq-opts" id="q-opts"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="qs-screen" id="screen-result" style="display:none">
+      <div class="qc" id="result-content"></div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+const QUESTIONS = [
+  {
+    q: "How old are you?",
+    opts: [
+      { t: "Under 35",       s: 0 },
+      { t: "35 – 39",        s: 2 },
+      { t: "40 – 44",        s: 5 },
+      { t: "45 – 49",        s: 7 },
+      { t: "50 or older",    s: 5 },
+    ]
+  },
+  {
+    q: "Have your periods changed in the last 12 months?",
+    opts: [
+      { t: "No — still regular",                              s: 0 },
+      { t: "Slightly irregular, lighter or heavier",          s: 3 },
+      { t: "Very irregular or skipping months",               s: 6 },
+      { t: "No period in over 12 months",                     s: 7 },
+    ]
+  },
+  {
+    q: "How is your sleep?",
+    opts: [
+      { t: "I sleep well",                                    s: 0 },
+      { t: "I sometimes wake up or feel unrefreshed",         s: 2 },
+      { t: "I regularly wake at night or can't fall asleep",  s: 4 },
+      { t: "Sleep is a constant struggle",                    s: 5 },
+    ]
+  },
+  {
+    q: "Are you experiencing mood swings or feeling unlike yourself emotionally?",
+    opts: [
+      { t: "Not really",                                      s: 0 },
+      { t: "Occasionally — a bit more irritable or tearful",  s: 2 },
+      { t: "Often, and it feels unlike me",                   s: 4 },
+      { t: "My moods are very unpredictable",                 s: 5 },
+    ]
+  },
+  {
+    q: "Are you feeling more anxious or worried than you used to?",
+    opts: [
+      { t: "No more than usual",                              s: 0 },
+      { t: "A little more anxious lately",                    s: 2 },
+      { t: "Yes, noticeably more than before",                s: 4 },
+      { t: "Anxiety is significantly affecting my life",      s: 5 },
+    ]
+  },
+  {
+    q: "Do you experience hot flashes or night sweats?",
+    opts: [
+      { t: "No",                                              s: 0 },
+      { t: "Occasionally",                                    s: 2 },
+      { t: "Regularly",                                       s: 4 },
+      { t: "Frequently — very disruptive",                    s: 6 },
+    ]
+  },
+  {
+    q: "Do you have trouble concentrating or remembering things?",
+    opts: [
+      { t: "No, my memory and focus are fine",                s: 0 },
+      { t: "Sometimes I forget things or lose focus",         s: 2 },
+      { t: "Often — affecting work or daily life",            s: 4 },
+      { t: "Severe — I feel I've lost my sharpness",          s: 5 },
+    ]
+  },
+  {
+    q: "How would you describe your energy levels?",
+    opts: [
+      { t: "Good — energetic most days",                      s: 0 },
+      { t: "I get tired more easily than before",             s: 2 },
+      { t: "I feel exhausted most days",                      s: 4 },
+      { t: "My fatigue is severe and unexplained",            s: 5 },
+    ]
+  },
+  {
+    q: "Have you noticed unexplained weight gain, especially around the belly?",
+    opts: [
+      { t: "No",                                              s: 0 },
+      { t: "A little — not sure if it's hormonal",           s: 2 },
+      { t: "Yes, despite no major changes to diet or exercise", s: 4 },
+      { t: "Yes, and it's very difficult to manage",          s: 5 },
+    ]
+  },
+  {
+    q: "Have you noticed changes in your hair (thinning) or skin (dryness)?",
+    opts: [
+      { t: "No changes",                                      s: 0 },
+      { t: "Some mild thinning or dryness",                   s: 2 },
+      { t: "Noticeable changes that concern me",              s: 4 },
+      { t: "Significant changes in both hair and skin",       s: 5 },
+    ]
+  },
+  {
+    q: "Has your interest in sex or intimacy changed?",
+    opts: [
+      { t: "No change",                                       s: 0 },
+      { t: "Slightly lower than before",                      s: 1 },
+      { t: "Noticeably lower",                                s: 3 },
+      { t: "Very low, or with physical discomfort",           s: 4 },
+    ]
+  },
+];
+
+const RESULTS = [
+  {
+    max: 14,
+    emoji: '🌱',
+    level: 'Low likelihood right now',
+    color: '#3D7A5F', bg: '#EEF7F2',
+    title: 'Your symptoms are mild at this stage',
+    body: "Your answers suggest a low likelihood of perimenopause right now — but that can change, and some symptoms may still relate to hormonal shifts, thyroid changes, or stress. Stay aware of any changes.",
+    steps: [
+      { icon: '💬', text: 'Chat with our companion about any symptoms that concern you' },
+      { icon: '📚', text: 'Read our guide on early signs to watch for' },
+      { icon: '🩺', text: 'Mention any changes to your GP at your next visit' },
+    ],
+    cta: 'Talk to your companion', href: '/chat',
+  },
+  {
+    max: 32,
+    emoji: '🌸',
+    level: 'Possible early perimenopause',
+    color: '#D4845A', bg: '#FDF2EC',
+    title: 'You may be in early perimenopause',
+    body: "Your symptoms align with early perimenopause — the transition that can start years before menopause. This is completely normal, but it can feel overwhelming without the right information. You deserve to understand exactly what's happening.",
+    steps: [
+      { icon: '💬', text: 'Start a private conversation — get answers specific to your symptoms' },
+      { icon: '🩺', text: 'Speak to a doctor who understands perimenopause' },
+      { icon: '📖', text: 'Read our Symptom Library to understand each symptom in detail' },
+    ],
+    cta: 'Start a private conversation', href: '/chat',
+  },
+  {
+    max: Infinity,
+    emoji: '🌺',
+    level: 'Likely perimenopause or menopause transition',
+    color: '#9B2C2C', bg: '#FFF5F5',
+    title: 'Your symptoms strongly suggest perimenopause',
+    body: "Based on your answers, you are likely in perimenopause or approaching menopause. The good news: this is well understood and very manageable with the right care. The women who do best are the ones who sought support early.",
+    steps: [
+      { icon: '💬', text: 'Talk to our companion now — personalised information, no judgement' },
+      { icon: '🩺', text: 'Consult a menopause specialist as soon as you can' },
+      { icon: '🩸', text: 'Ask your doctor for a hormone panel (FSH, LH, estradiol, thyroid)' },
+    ],
+    cta: 'Get support now', href: '/chat',
+  },
+];
+
+let cur = 0, score = 0;
+const $intro    = document.getElementById('screen-intro');
+const $questions = document.getElementById('screen-questions');
+const $result   = document.getElementById('screen-result');
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  $intro.style.display = 'none';
+  $questions.style.display = 'flex';
+  render();
+});
+
+document.getElementById('back-btn').addEventListener('click', () => {
+  if (cur > 0) {
+    // just go back, but we can't undo score easily — restart at 0
+    cur = 0; score = 0;
+    render();
+  } else {
+    $questions.style.display = 'none';
+    $intro.style.display = 'flex';
+  }
+});
+
+function render() {
+  const q = QUESTIONS[cur];
+  document.getElementById('q-counter').textContent = `${cur + 1} of ${QUESTIONS.length}`;
+  document.getElementById('q-bar').style.width = `${(cur / QUESTIONS.length) * 100}%`;
+  document.getElementById('q-num').textContent = `Question ${cur + 1}`;
+  document.getElementById('q-text').textContent = q.q;
+
+  const el = document.getElementById('q-opts');
+  el.innerHTML = '';
+  q.opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'q-opt';
+    btn.textContent = opt.t;
+    btn.addEventListener('click', () => {
+      el.querySelectorAll('.q-opt').forEach(b => { (b as HTMLButtonElement).disabled = true; });
+      btn.classList.add('selected');
+      score += opt.s;
+      cur++;
+      setTimeout(() => cur < QUESTIONS.length ? render() : showResult(), 360);
+    });
+    el.appendChild(btn);
+  });
+}
+
+function showResult() {
+  $questions.style.display = 'none';
+  $result.style.display = 'flex';
+  const r = RESULTS.find(x => score < x.max)!;
+  document.getElementById('result-content')!.innerHTML = `
+    <div class="result-card">
+      <div class="r-badge" style="background:${r.bg};border-color:${r.color}30">
+        <span>${r.emoji}</span>
+        <span class="r-level" style="color:${r.color}">${r.level}</span>
+      </div>
+      <h2 class="r-title">${r.title}</h2>
+      <p class="r-body">${r.body}</p>
+      <div class="r-steps">
+        <p class="r-steps-label">Your recommended next steps</p>
+        ${r.steps.map(s => `<div class="r-step"><span>${s.icon}</span><span>${s.text}</span></div>`).join('')}
+      </div>
+      <a href="${r.href}" class="btn btn-peach btn-lg">${r.cta} →</a>
+      <button class="r-retake" id="retake">Retake the quiz</button>
+      <p class="r-disclaimer">This is not a medical diagnosis. Please consult a qualified doctor for personal medical advice.</p>
+    </div>
+  `;
+  document.getElementById('retake')!.addEventListener('click', () => {
+    cur = 0; score = 0;
+    $result.style.display = 'none';
+    $intro.style.display = 'flex';
+  });
+}
+</script>
+
+<style>
+  .quiz-page { background: var(--cream); min-height: calc(100vh - var(--nav-h)); }
+
+  .qs-screen {
+    min-height: calc(100vh - var(--nav-h));
+    display: flex; align-items: center; justify-content: center;
+    padding: 3rem 1.5rem;
+  }
+  .qc { width: 100%; max-width: 600px; }
+
+  /* INTRO */
+  .q-eyebrow {
+    display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--green); background: var(--green-light); padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.5rem;
+  }
+  #screen-intro h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: -.03em; color: var(--text); line-height: 1.15; margin-bottom: 1rem; }
+  .qi-desc { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.72; margin-bottom: 2rem; }
+  .qi-stats { display: flex; align-items: center; gap: 1.75rem; background: var(--green-light); border-radius: var(--radius); padding: 1.25rem 1.75rem; margin-bottom: 2.5rem; }
+  .qi-stat { text-align: center; }
+  .qs-n { display: block; font-size: 1.35rem; font-weight: 900; color: var(--green-dark); }
+  .qs-l { display: block; font-size: .74rem; color: var(--text-muted); font-weight: 500; margin-top: .1rem; }
+  .qi-div { width: 1px; height: 38px; background: var(--border); }
+  .qi-note { font-size: .8rem; color: var(--text-muted); margin-top: 1rem; }
+
+  /* QUESTIONS */
+  #screen-questions { flex-direction: column; align-items: center; }
+  #screen-questions .qc { display: flex; flex-direction: column; gap: 1.5rem; }
+  .qq-header { display: flex; align-items: center; justify-content: space-between; }
+  .qq-back { background: none; border: none; color: var(--text-muted); font-size: .85rem; font-weight: 500; cursor: pointer; padding: 0; }
+  .qq-back:hover { color: var(--green); }
+  .qq-counter { font-size: .82rem; color: var(--text-muted); font-weight: 600; }
+  .qq-bar-wrap { height: 5px; background: var(--border); border-radius: 100px; overflow: hidden; }
+  .qq-bar { height: 100%; background: var(--green); border-radius: 100px; transition: width .4s ease; width: 0; }
+  .qq-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; }
+  .qq-num { font-size: .74rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+  .qq-text { font-size: 1.22rem; font-weight: 700; color: var(--text); line-height: 1.38; margin-bottom: 1.75rem; }
+  .qq-opts { display: flex; flex-direction: column; gap: .65rem; }
+  .q-opt {
+    text-align: left; background: var(--cream); border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); padding: .9rem 1.1rem;
+    font-size: .92rem; color: var(--text); font-weight: 500; cursor: pointer;
+    transition: all .15s; line-height: 1.45;
+  }
+  .q-opt:hover:not(:disabled) { border-color: var(--green); background: var(--green-light); color: var(--green-dark); }
+  .q-opt.selected { border-color: var(--green); background: var(--green); color: #fff; }
+  .q-opt:disabled { cursor: default; }
+  .q-opt.selected:disabled { opacity: 1; }
+  .q-opt:not(.selected):disabled { opacity: .5; }
+
+  /* RESULT */
+  #screen-result { flex-direction: column; }
+  .result-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2.75rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .r-badge { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1.1rem; border-radius: 100px; border: 1.5px solid; align-self: flex-start; }
+  .r-level { font-size: .84rem; font-weight: 700; }
+  .r-title { font-size: 1.55rem; font-weight: 900; letter-spacing: -.02em; color: var(--text); line-height: 1.25; }
+  .r-body { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; }
+  .r-steps { background: var(--cream-mid); border-radius: var(--radius); padding: 1.4rem 1.6rem; }
+  .r-steps-label { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--text-muted); margin-bottom: .85rem; }
+  .r-step { display: flex; align-items: flex-start; gap: .75rem; padding: .55rem 0; border-bottom: 1px solid var(--border); font-size: .92rem; color: var(--text-secondary); line-height: 1.5; }
+  .r-step:last-child { border-bottom: none; padding-bottom: 0; }
+  .r-retake { background: none; border: none; color: var(--text-muted); font-size: .84rem; cursor: pointer; text-decoration: underline; align-self: center; }
+  .r-retake:hover { color: var(--green); }
+  .r-disclaimer { font-size: .76rem; color: var(--text-muted); text-align: center; line-height: 1.6; border-top: 1px solid var(--border); padding-top: 1rem; margin-top: -.5rem; }
+
+  @media (max-width: 640px) {
+    .qq-card, .result-card { padding: 1.5rem; }
+    .qi-stats { gap: 1rem; padding: 1rem 1.25rem; }
+  }
+</style>

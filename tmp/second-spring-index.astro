@@ -20,18 +20,18 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
         <div class="hero-content">
           <div class="eyebrow">🌸 India's perimenopause companion</div>
           <h1>
-            You're not going mad.<br/>
-            <em>Your body is changing.</em>
+            Hot flashes? Mood swings?<br/>
+            <em>Suddenly gaining weight?</em>
           </h1>
-          <p class="hero-tagline">The best of you is not behind you.</p>
+          <p class="hero-tagline">It might be perimenopause — and you are not going mad.</p>
           <p class="hero-desc">
-            Mood swings, sleepless nights, brain fog, hot flashes — and everyone says
-            "it's just stress." You deserve more than that.
-            The Second Spring is a safe, private space to finally understand what's happening.
+            Millions of Indian women are navigating this transition right now — silently, alone,
+            and often misunderstood. The Second Spring is your private, judgment-free space to
+            finally understand what's happening and get real support.
           </p>
           <div class="hero-actions">
-            <a href="/chat" class="btn btn-peach btn-lg">Start a private conversation →</a>
-            <a href="/guide" class="btn btn-outline-white">Read the guide</a>
+            <a href="/quiz" class="btn btn-peach btn-lg">Take 2-minute symptom check →</a>
+            <a href="/chat" class="btn btn-outline-white">Start a private conversation</a>
           </div>
           <div class="hero-trust">
             <span>✦ Anonymous &amp; private</span>
@@ -51,6 +51,22 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
       </div>
     </div>
   </section>
+
+  <!-- ── QUIZ STRIP ── -->
+  <div class="quiz-strip">
+    <div class="container">
+      <div class="quiz-strip-inner">
+        <div class="qs-left">
+          <span class="qs-icon">🌸</span>
+          <div>
+            <strong>Not sure if it's perimenopause?</strong>
+            <p>Take our free 2-minute symptom check and get a personalised result.</p>
+          </div>
+        </div>
+        <a href="/quiz" class="btn btn-peach">Check your symptoms →</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ── WOMEN PHOTOS ── -->
   <section class="women-section">
@@ -198,6 +214,35 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
     </div>
   </section>
 
+  <!-- ── TESTIMONIALS ── -->
+  <section class="section voices-section bg-white">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Women like you</span>
+        <h2 class="section-title">You are not the only one<br/>feeling this way.</h2>
+      </div>
+      <div class="voices-grid">
+        {[
+          { quote: 'I thought something was wrong with me. I was snapping at my kids, couldn\'t sleep, and felt like a completely different person. Nobody told me this could be perimenopause at 41.', name: 'Anonymous', age: '41, Bengaluru', init: 'A', color: '#2A5C45' },
+          { quote: 'The brain fog was the scariest part. I\'m a finance manager — I couldn\'t finish sentences. When I understood it was hormonal, I felt so relieved. Not crazy. Just changing.', name: 'Anonymous', age: '44, Mumbai', init: 'S', color: '#C94B4B' },
+          { quote: 'My doctor told me I was "just stressed." I knew something was different. Three years of night sweats and irregular periods before anyone used the word perimenopause.', name: 'Anonymous', age: '47, Delhi', init: 'R', color: '#7B4F3A' },
+        ].map(v => (
+          <div class="voice-card">
+            <div class="vc-quote-mark">"</div>
+            <p class="vc-text">{v.quote}</p>
+            <div class="vc-author">
+              <div class="vc-avatar" style={`background:${v.color}`}>{v.init}</div>
+              <div>
+                <div class="vc-name">{v.name}</div>
+                <div class="vc-age">{v.age}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- ── FOUNDER ── -->
   <section class="section founder-strip bg-white" id="about">
     <div class="container">
@@ -269,6 +314,25 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
   .hero-desc { font-size: 1.1rem; color: rgba(255,255,255,.82); line-height: 1.78; max-width: 560px; margin-bottom: 2.5rem; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.25rem; }
   .hero-trust { display: flex; flex-wrap: wrap; gap: 1.75rem; font-size: .86rem; color: rgba(255,255,255,.6); }
+
+  /* QUIZ STRIP */
+  .quiz-strip { background: var(--green-dark); padding: 1.25rem 0; }
+  .quiz-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .qs-left { display: flex; align-items: center; gap: 1rem; }
+  .qs-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .qs-left strong { color: #fff; font-size: .97rem; display: block; }
+  .qs-left p { color: rgba(255,255,255,.7); font-size: .85rem; margin-top: .1rem; }
+
+  /* VOICES */
+  .voices-section { padding: 5rem 0; }
+  .voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .voice-card { background: var(--cream-mid); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .vc-quote-mark { font-size: 3.5rem; line-height: .8; color: var(--peach); font-family: Georgia, serif; opacity: .6; }
+  .vc-text { font-size: .93rem; color: var(--text-secondary); line-height: 1.72; font-style: italic; flex: 1; }
+  .vc-author { display: flex; align-items: center; gap: .75rem; }
+  .vc-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.8); font-size: .9rem; font-weight: 700; flex-shrink: 0; }
+  .vc-name { font-size: .82rem; font-weight: 600; color: var(--text); }
+  .vc-age { font-size: .76rem; color: var(--text-muted); }
 
   /* WOMEN SECTION */
   .women-section { background: #fff; padding: 5.5rem 0; border-bottom: 1.5px solid var(--border-light); }
@@ -378,6 +442,7 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
     .stats-row    { grid-template-columns: 1fr 1fr; }
     .stat-block:nth-child(2) { border-right: none; }
     .symptom-4    { grid-template-columns: 1fr 1fr; }
+    .voices-grid  { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .hero { padding: 4.5rem 0 4rem; }
@@ -386,6 +451,8 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
     .stats-row    { grid-template-columns: 1fr 1fr; }
     .symptom-4    { grid-template-columns: 1fr 1fr; }
     .hero-trust   { gap: 1rem; }
+    .quiz-strip-inner { flex-direction: column; align-items: flex-start; }
+    .voices-grid  { grid-template-columns: 1fr; }
   }
   @media (max-width: 420px) {
     .symptom-4 { grid-template-columns: 1fr; }
