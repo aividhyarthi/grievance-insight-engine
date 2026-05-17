@@ -1,18 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main';
 ---
 
 <Layout
   title="The Second Spring – Perimenopause Support for Indian Women"
-  description="India's first private companion for women navigating perimenopause. Ask anything, understand what's happening, and find real support — in a language that feels like home."
+  description="India's first private companion for women navigating perimenopause. Ask anything, understand what's happening, and find real support."
 >
 
   <!-- ── HERO ── -->
   <section class="hero">
-    <div class="hero-bg-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
+    <div class="hero-shapes">
+      <div class="hs hs-1"></div>
+      <div class="hs hs-2"></div>
     </div>
     <div class="container">
       <div class="hero-inner">
@@ -22,65 +23,53 @@ import Layout from '../layouts/Layout.astro';
           <em>Your body is changing.</em>
         </h1>
         <p class="hero-desc">
-          Mood swings, sleepless nights, brain fog, hot flashes — and everyone around you says
-          "it's just stress" or "you're getting older." You deserve more than that.
+          Mood swings, sleepless nights, brain fog, hot flashes — and everyone says
+          "it's just stress." You deserve more than that.
           The Second Spring is a safe, private space to finally understand what's happening.
         </p>
         <div class="hero-actions">
           <a href="/chat" class="btn btn-peach btn-lg">Start a private conversation →</a>
-          <a href="#about" class="btn btn-outline-white">Our story</a>
+          <a href="/guide" class="btn btn-outline-white">Read the guide</a>
         </div>
         <div class="hero-trust">
           <span>✦ Anonymous &amp; private</span>
           <span>✦ No login required</span>
-          <span>✦ Indian women understood here</span>
+          <span>✦ Built for Indian women</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── WOMEN PHOTO STRIP ── -->
-  <section class="women-strip">
+  <!-- ── WOMEN PHOTOS ── -->
+  <section class="women-section">
     <div class="container">
-      <div class="women-strip-inner">
-        <div class="women-intro">
-          <span class="ws-label">Real women. Real experiences.</span>
+      <div class="women-inner">
+        <div class="women-text">
+          <span class="w-label">Real women. Real experiences.</span>
           <h2>They thought it was stress.<br/>It wasn't.</h2>
-          <p>Millions of Indian women are navigating perimenopause right now — silently, alone, and often misunderstood. This is for all of them.</p>
+          <p>
+            Millions of Indian women are navigating perimenopause right now —
+            silently, alone, and often misunderstood. This is for all of them.
+          </p>
           <a href="/chat" class="btn btn-peach">Talk to someone who gets it →</a>
         </div>
-        <div class="women-photos">
-          <div class="wp-card wp-card-1">
-            <!-- To add a real photo: place image at /public/women1.jpg and replace the div below with <img src="/women1.jpg" alt="..." /> -->
-            <div class="wp-photo wp-photo-1">
-              <div class="wp-initials">P</div>
+        <div class="women-cards">
+          {[
+            { src: `${RAW}/women1.jpg`, name: 'Priya, 44', city: 'Bengaluru', quote: '"I finally have a name for what I\'ve been going through."', color: '#C94B4B', init: 'P' },
+            { src: `${RAW}/women2.jpg`, name: 'Meena, 47', city: 'Mumbai',    quote: '"My husband finally understands why I\'ve been so different."', color: '#2A5C45', init: 'M' },
+            { src: `${RAW}/women3.jpg`, name: 'Sunita, 41', city: 'Delhi',   quote: '"I stopped blaming myself the day I understood this was hormonal."', color: '#7B4F3A', init: 'S' },
+          ].map((w, i) => (
+            <div class={`wc wc-${i + 1}`}>
+              <div class="wc-photo">
+                <img src={w.src} alt={w.name} onerror={`this.style.display='none';this.nextElementSibling.style.display='flex'`} />
+                <div class="wc-fallback" style={`background:${w.color};display:none`}>{w.init}</div>
+              </div>
+              <div class="wc-info">
+                <div class="wc-meta"><strong>{w.name}</strong><span>{w.city}</span></div>
+                <p class="wc-quote">{w.quote}</p>
+              </div>
             </div>
-            <div class="wp-info">
-              <span class="wp-name">Priya, 44</span>
-              <span class="wp-city">Bengaluru</span>
-              <p class="wp-quote">"I finally have a name for what I've been going through."</p>
-            </div>
-          </div>
-          <div class="wp-card wp-card-2">
-            <div class="wp-photo wp-photo-2">
-              <div class="wp-initials">M</div>
-            </div>
-            <div class="wp-info">
-              <span class="wp-name">Meena, 47</span>
-              <span class="wp-city">Mumbai</span>
-              <p class="wp-quote">"My husband finally understands why I've been so different."</p>
-            </div>
-          </div>
-          <div class="wp-card wp-card-3">
-            <div class="wp-photo wp-photo-3">
-              <div class="wp-initials">S</div>
-            </div>
-            <div class="wp-info">
-              <span class="wp-name">Sunita, 41</span>
-              <span class="wp-city">Delhi</span>
-              <p class="wp-quote">"I stopped blaming myself the day I understood this was hormonal."</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -92,12 +81,15 @@ import Layout from '../layouts/Layout.astro';
       <div class="stats-row">
         {[
           { num: '46.2', unit: 'yrs', label: 'Average menopause age for Indian women — earlier than most expect' },
-          { num: '30M+', unit: '', label: 'Indian women entering this transition every year' },
+          { num: '30M+', unit: '',    label: 'Indian women entering this transition every year' },
           { num: '8–10', unit: 'yrs', label: 'How long perimenopause can last before menopause arrives' },
-          { num: '<30%', unit: '', label: 'Of Indian women who can name even one perimenopause symptom' },
+          { num: '<30%', unit: '',    label: 'Of Indian women who can name even one perimenopause symptom' },
         ].map(s => (
           <div class="stat-block">
-            <div class="stat-big"><span class="stat-n">{s.num}</span>{s.unit && <span class="stat-u">{s.unit}</span>}</div>
+            <div class="stat-big">
+              <span class="stat-n">{s.num}</span>
+              {s.unit && <span class="stat-u">{s.unit}</span>}
+            </div>
             <div class="stat-l">{s.label}</div>
           </div>
         ))}
@@ -130,271 +122,112 @@ import Layout from '../layouts/Layout.astro';
           <p class="silence-call">
             <strong>The Second Spring exists to break that silence.</strong>
           </p>
+          <a href="/perimenopause" class="silence-link">Learn what perimenopause actually is →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── WHAT IS PERIMENOPAUSE ── -->
-  <section class="section white" id="what-is-this">
+  <!-- ── QUICK SYMPTOMS ── -->
+  <section class="section bg-cream" id="symptoms">
     <div class="container">
-      <div class="what-inner">
-        <div class="what-text">
-          <span class="label">What is this?</span>
-          <h2 class="section-title">Perimenopause — the chapter no one prepared you for</h2>
-          <p class="body-text">
-            Perimenopause is the years leading up to menopause — when your hormones begin to shift.
-            It can start as early as your <strong>late 30s</strong> and last anywhere from 4 to 12 years.
-          </p>
-          <p class="body-text">
-            It's not menopause. It's the transition. And it's real, it's physical, and it affects
-            nearly every system in your body — your sleep, your mood, your memory, your periods,
-            your skin, your heart.
-          </p>
-          <p class="body-text">
-            This is not stress. This is not "ageing gracefully." This is biology — and you deserve
-            to understand it.
-          </p>
-          <div class="what-facts">
-            {[
-              { num: '1 in 2', text: 'women experience significant perimenopause symptoms' },
-              { num: '47', text: 'average age perimenopause is in full effect — but it can start at 35' },
-              { num: '34+', text: 'recognised symptoms — many you\'d never connect to hormones' },
-            ].map(f => (
-              <div class="fact-row">
-                <div class="fact-num">{f.num}</div>
-                <div class="fact-text">{f.text}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div class="what-visual">
-          <div class="timeline-card">
-            <div class="timeline-title">Your hormonal journey</div>
-            {[
-              { phase: 'Reproductive years', range: '20s – late 30s', active: false },
-              { phase: 'Perimenopause', range: 'Late 30s – early 50s', active: true, note: '← You might be here' },
-              { phase: 'Menopause', range: '12 months without a period', active: false },
-              { phase: 'Postmenopause', range: 'The rest of your life', active: false },
-            ].map(t => (
-              <div class={`timeline-item ${t.active ? 'active' : ''}`}>
-                <div class="timeline-phase">{t.phase}</div>
-                <div class="timeline-range">{t.range}</div>
-                {t.note && <div class="timeline-note">{t.note}</div>}
-              </div>
-            ))}
-          </div>
-        </div>
+      <div class="section-header center">
+        <span class="section-label">Does this feel familiar?</span>
+        <h2 class="section-title">These are not personality flaws.<br/>They are symptoms.</h2>
       </div>
-    </div>
-  </section>
-
-  <!-- ── SYMPTOMS ── -->
-  <section class="section cream" id="symptoms">
-    <div class="container">
-      <div class="section-header">
-        <span class="label">Common experiences</span>
-        <h2 class="section-title">Does any of this feel familiar?</h2>
-        <p class="section-subtitle">
-          These are not personality flaws. Not laziness. Not weakness. They are symptoms —
-          and they have a name.
-        </p>
-      </div>
-      <div class="symptom-grid">
+      <div class="symptom-4">
         {[
-          { emoji: '😤', label: 'Sudden anger & irritability',   desc: 'Snapping at people you love. Feeling unlike yourself. Wondering what is wrong with you.' },
-          { emoji: '🌙', label: 'Sleepless nights',              desc: 'Waking at 2am, 3am, 4am — mind racing, body restless, exhausted all day.' },
-          { emoji: '🔥', label: 'Hot flashes & night sweats',    desc: 'Waves of heat that soak through you — sometimes in the middle of meetings or meals.' },
-          { emoji: '🧠', label: 'Brain fog & forgetfulness',     desc: 'Forgetting words. Losing your train of thought. Feeling like your mind isn\'t your own.' },
-          { emoji: '📅', label: 'Irregular or heavy periods',    desc: 'Cycles changing, becoming unpredictable, heavier, lighter, or disappearing altogether.' },
-          { emoji: '💔', label: 'Anxiety & low mood',            desc: 'A heaviness that has no clear cause. Worrying more. Crying more. Feeling disconnected.' },
-          { emoji: '🤝', label: 'Relationship changes',          desc: 'Distance with your partner, feeling unseen, or struggling with intimacy in new ways.' },
-          { emoji: '⚡', label: 'Low energy & joint pain',       desc: 'Tired despite sleeping. Aching joints. Feeling decades older than you should.' },
+          { emoji: '😤', label: 'Anger & irritability',  desc: 'Snapping at people you love. Feeling completely unlike yourself.' },
+          { emoji: '🌙', label: 'Sleepless nights',      desc: 'Waking at 2, 3, 4am — mind racing, exhausted all day.' },
+          { emoji: '🧠', label: 'Brain fog',             desc: 'Forgetting words mid-sentence. Struggling to focus.' },
+          { emoji: '💔', label: 'Anxiety & low mood',   desc: 'A heaviness with no clear cause. Worrying more. Feeling disconnected.' },
         ].map(s => (
-          <a href="/chat" class="symptom-card">
-            <span class="symptom-emoji">{s.emoji}</span>
-            <span class="symptom-label">{s.label}</span>
-            <span class="symptom-desc">{s.desc}</span>
-            <span class="symptom-cta">Talk about this →</span>
+          <a href="/guide/symptoms" class="s4-card">
+            <span class="s4-emoji">{s.emoji}</span>
+            <span class="s4-label">{s.label}</span>
+            <span class="s4-desc">{s.desc}</span>
           </a>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- ── WHO IT'S FOR ── -->
-  <section class="section white" id="who">
-    <div class="container">
-      <div class="section-header">
-        <span class="label">Who is The Second Spring for?</span>
-        <h2 class="section-title">This space was made for you</h2>
-      </div>
-      <div class="who-grid">
-        {[
-          {
-            emoji: '🌸',
-            title: 'Indian women in their 30s, 40s, and 50s',
-            desc: 'You\'ve noticed something shifting — in your body, your mind, your emotions. You\'ve googled it at midnight. You\'ve wondered if you\'re alone in this. You\'re not.',
-            cta: 'Start talking →',
-          },
-          {
-            emoji: '💑',
-            title: 'Husbands and partners',
-            desc: 'The woman you love seems different. You want to support her but you don\'t know how. Understanding what she\'s going through is the most loving thing you can do right now.',
-            cta: 'Understand her experience →',
-          },
-          {
-            emoji: '👩‍👧',
-            title: 'Adult daughters',
-            desc: 'Your mother has changed — she\'s more emotional, forgetful, or withdrawn. You want to understand her and be there for her, but you don\'t know where to start.',
-            cta: 'Understand your mum →',
-          },
-        ].map(w => (
-          <div class="who-card">
-            <div class="who-emoji">{w.emoji}</div>
-            <h3 class="who-title">{w.title}</h3>
-            <p class="who-desc">{w.desc}</p>
-            <a href="/chat" class="who-link">{w.cta}</a>
-          </div>
-        ))}
+      <div class="symptom-cta">
+        <a href="/guide/symptoms" class="btn btn-outline">See all 10 symptoms in detail →</a>
       </div>
     </div>
   </section>
 
   <!-- ── HOW IT WORKS ── -->
-  <section class="section green-section" id="how-it-works">
+  <section class="section how-section">
     <div class="container">
-      <div class="section-header light">
-        <span class="label-light">Simple, private, warm</span>
-        <h2 class="section-title light-text">How The Second Spring works</h2>
-        <p class="section-subtitle light-sub">No forms. No login. No judgement. Just a conversation.</p>
+      <div class="section-header center light">
+        <span class="label-light">Simple. Private. Warm.</span>
+        <h2 class="section-title" style="color:#fff;">How The Second Spring works</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.72);">No forms. No login. No judgement.</p>
       </div>
-      <div class="steps-row">
+      <div class="steps-3">
         {[
-          {
-            icon: '💬',
-            step: '01',
-            title: 'You share what\'s on your mind',
-            desc: 'Choose from common experiences, or just type what you\'re feeling. There\'s no wrong way to begin.',
-          },
-          {
-            icon: '🌿',
-            step: '02',
-            title: 'Your companion listens first',
-            desc: 'Before explaining anything, your companion makes you feel heard. Warm, real, no medical jargon.',
-          },
-          {
-            icon: '🌸',
-            step: '03',
-            title: 'You get clarity — and a next step',
-            desc: 'Understand what\'s happening, what to ask your doctor, or connect with a specialist when you\'re ready.',
-          },
+          { n: '01', icon: '💬', title: 'You share what\'s on your mind', desc: 'Choose a topic or just type what you\'re feeling. No wrong way to begin.' },
+          { n: '02', icon: '🌿', title: 'Your companion listens first',   desc: 'Acknowledged before anything is explained. Warm, real, no jargon.' },
+          { n: '03', icon: '🌸', title: 'You get clarity and a next step', desc: 'Understand what\'s happening — and connect with a specialist when ready.' },
         ].map(s => (
-          <div class="step-card">
+          <div class="step-box">
             <div class="step-top">
-              <span class="step-number">{s.step}</span>
-              <span class="step-icon-text">{s.icon}</span>
+              <span class="step-n">{s.n}</span>
+              <span class="step-icon">{s.icon}</span>
             </div>
             <h3 class="step-title">{s.title}</h3>
             <p class="step-desc">{s.desc}</p>
           </div>
         ))}
       </div>
-      <div class="steps-cta">
+      <div class="how-cta">
         <a href="/chat" class="btn btn-peach btn-lg">Open your companion →</a>
-        <p class="steps-note">Free · Private · No sign-up · Available right now</p>
+        <a href="/how-it-works" class="btn btn-outline-white">Learn more</a>
       </div>
     </div>
   </section>
 
-  <!-- ── VOICES ── -->
-  <section class="section cream voices-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="label">You are not alone</span>
-        <h2 class="section-title">What Indian women are saying</h2>
-      </div>
-      <div class="voices-grid">
-        {[
-          { quote: "I thought I was going mad. I cried for no reason, couldn't sleep, forgot words mid-sentence. My doctor said it was stress. It wasn't — it was perimenopause.", name: "Priya, 44", city: "Bengaluru" },
-          { quote: "Nobody in my family had ever used the word 'perimenopause'. I didn't even know it existed until I was already two years into it.", name: "Kavitha, 47", city: "Chennai" },
-          { quote: "My husband thought I had become 'difficult'. I thought so too. Having a place to finally understand what was happening changed everything.", name: "Meena, 43", city: "Mumbai" },
-        ].map(v => (
-          <div class="voice-card">
-            <div class="voice-quote-mark">"</div>
-            <p class="voice-text">{v.quote}</p>
-            <div class="voice-attr">
-              <span class="voice-name">{v.name}</span>
-              <span class="voice-city">{v.city}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-      <p class="voices-note">These reflect common experiences shared with us. Names changed for privacy.</p>
-    </div>
-  </section>
-
-  <!-- ── ABOUT / FOUNDER ── -->
-  <section class="section white founder-section" id="about">
+  <!-- ── FOUNDER ── -->
+  <section class="section founder-strip bg-white" id="about">
     <div class="container">
       <div class="founder-inner">
-        <div class="founder-photo-col">
-          <div class="founder-photo">
-            <img src="/rudra.jpg" alt="Rudra Kasturi — Founder, The Second Spring" />
-          </div>
-          <div class="founder-badge">Founder</div>
+        <div class="founder-photo-wrap">
+          <img src="/rudra.jpg" alt="Rudra Kasturi — Founder, The Second Spring" />
+        </div>
+        <div class="founder-text-wrap">
+          <span class="section-label">The person behind this</span>
+          <h2 class="section-title">Rudra Kasturi</h2>
+          <p class="body-text">
+            Watching the women closest to him navigate perimenopause with no language, no support,
+            and no recognition of what they were experiencing — that became the reason The Second Spring exists.
+          </p>
+          <p class="body-text">
+            Rudra leads product, engineering, and AI strategy — building technology that makes healthcare
+            more human, not less.
+          </p>
           <div class="founder-links">
             <a href="https://linkedin.com/in/rudrakasturi" target="_blank" rel="noopener" class="founder-link">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn
             </a>
             <a href="https://www.rudrakasturi.com" target="_blank" rel="noopener" class="founder-link">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               Website
             </a>
           </div>
         </div>
-        <div class="founder-content">
-          <span class="label">The person behind this</span>
-          <h2 class="section-title">Rudra Kasturi</h2>
-          <p class="founder-text">
-            Rudra shapes the strategic direction and technology foundation that powers The Second Spring.
-            A seasoned technology leader and entrepreneur, he brings deep experience in building digital
-            products at scale — and a conviction that technology should make healthcare more human, not less.
-          </p>
-          <p class="founder-text">
-            At The Second Spring, Rudra leads product, engineering, and AI strategy — ensuring every feature
-            is grounded in real clinical understanding and designed to give women faster, clearer,
-            and more compassionate care.
-          </p>
-          <p class="founder-text">
-            The idea was personal. Watching the women closest to him navigate perimenopause with no language,
-            no support, and no recognition of what they were experiencing — that became the reason this exists.
-          </p>
-          <div class="founder-name">
-            <strong>Rudra Kasturi</strong>
-            <span>Founder &amp; CEO, The Second Spring</span>
-          </div>
-          <a href="mailto:hello@thesecondspring.com" class="btn btn-primary">Get in touch</a>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── FINAL CTA ── -->
+  <!-- ── CTA ── -->
   <section class="cta-section">
     <div class="container">
       <div class="cta-inner">
         <div class="cta-leaf">🌿</div>
-        <h2 class="cta-title">
-          You don't have to figure this out alone.
-        </h2>
-        <p class="cta-desc">
-          Thousands of Indian women are going through exactly what you're experiencing right now.
-          Start a private conversation — no login, no judgement, no cost.
-        </p>
+        <h2 class="cta-title">You don't have to figure this out alone.</h2>
+        <p class="cta-desc">Start a private conversation — no login, no judgement, no cost.</p>
         <a href="/chat" class="btn btn-primary btn-lg">Begin your Second Spring →</a>
-        <p class="cta-fine">Information only — not medical advice. Always consult your doctor for personal health decisions.</p>
+        <p class="cta-fine">Information only — not medical advice. Always consult your doctor.</p>
       </div>
     </div>
   </section>
@@ -402,646 +235,140 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     background: linear-gradient(150deg, #0F2A1A 0%, #1A3D2B 40%, #2A5C45 100%);
-    color: #fff;
-    padding: 7rem 0 6rem;
-    position: relative;
-    overflow: hidden;
+    color: #fff; padding: 7rem 0 6rem; position: relative; overflow: hidden;
   }
-  .hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
-  .shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: .12;
-  }
-  .shape-1 {
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, #D4845A, transparent);
-    right: -150px; top: -150px;
-  }
-  .shape-2 {
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, #7FB89A, transparent);
-    left: -100px; bottom: -100px;
-  }
-  .shape-3 {
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, #FBBF81, transparent);
-    left: 55%; top: 60%;
-  }
-  .hero-inner { position: relative; z-index: 1; max-width: 700px; }
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.8);
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.2);
-    padding: .4rem 1rem;
-    border-radius: 100px;
-    margin-bottom: 1.75rem;
-  }
-  .hero h1 {
-    font-size: clamp(2.6rem, 5.5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.12;
-    letter-spacing: -.035em;
-    color: #fff;
-    margin-bottom: 1.75rem;
-  }
+  .hero-shapes { position: absolute; inset: 0; pointer-events: none; }
+  .hs { position: absolute; border-radius: 50%; opacity: .12; }
+  .hs-1 { width: 600px; height: 600px; background: radial-gradient(circle, #D4845A, transparent); right: -150px; top: -150px; }
+  .hs-2 { width: 400px; height: 400px; background: radial-gradient(circle, #7FB89A, transparent); left: -100px; bottom: -100px; }
+  .hero-inner { position: relative; z-index: 1; max-width: 680px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem; }
+  .hero h1 { font-size: clamp(2.6rem, 5.5vw, 4rem); font-weight: 900; line-height: 1.12; letter-spacing: -.035em; color: #fff; margin-bottom: 1.75rem; }
   .hero h1 em { font-style: normal; color: #FBBF81; }
-  .hero-desc {
-    font-size: 1.12rem;
-    color: rgba(255,255,255,.82);
-    line-height: 1.78;
-    max-width: 580px;
-    margin-bottom: 2.5rem;
-  }
+  .hero-desc { font-size: 1.1rem; color: rgba(255,255,255,.82); line-height: 1.78; max-width: 560px; margin-bottom: 2.5rem; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.25rem; }
-  .hero-trust {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.75rem;
-    font-size: .86rem;
-    color: rgba(255,255,255,.6);
-  }
+  .hero-trust { display: flex; flex-wrap: wrap; gap: 1.75rem; font-size: .86rem; color: rgba(255,255,255,.6); }
 
-  /* ── WOMEN STRIP ── */
-  .women-strip {
-    background: #fff;
-    padding: 5rem 0;
-    border-bottom: 1.5px solid var(--border-light);
-  }
-  .women-strip-inner {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-  .ws-label {
-    display: inline-flex;
-    font-size: .76rem; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--peach);
-    background: var(--peach-light);
-    padding: .3rem .85rem; border-radius: 100px; margin-bottom: 1rem;
-  }
-  .women-intro h2 {
-    font-size: clamp(1.7rem, 3vw, 2.2rem);
-    font-weight: 900; letter-spacing: -.025em;
-    color: var(--text); line-height: 1.2; margin-bottom: 1rem;
-  }
-  .women-intro p {
-    font-size: .97rem; color: var(--text-secondary);
-    line-height: 1.75; margin-bottom: 1.75rem;
-  }
-  .women-photos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-  .wp-card {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1.5px solid var(--border);
-    transition: transform .2s, box-shadow .2s;
-  }
-  .wp-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(61,122,95,.14); }
-  .wp-card-1 { margin-top: 0; }
-  .wp-card-2 { margin-top: 1.5rem; }
-  .wp-card-3 { margin-top: -.5rem; }
+  /* WOMEN SECTION */
+  .women-section { background: #fff; padding: 5.5rem 0; border-bottom: 1.5px solid var(--border-light); }
+  .women-inner { display: grid; grid-template-columns: 340px 1fr; gap: 4.5rem; align-items: center; }
+  .w-label { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--peach); background: var(--peach-light); padding: .3rem .85rem; border-radius: 100px; margin-bottom: 1rem; }
+  .women-text h2 { font-size: clamp(1.7rem, 2.8vw, 2.2rem); font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.2; margin-bottom: 1rem; }
+  .women-text p { font-size: .97rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.75rem; }
+  .women-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .wc { border-radius: var(--radius-lg); overflow: hidden; border: 1.5px solid var(--border); transition: transform .2s, box-shadow .2s; }
+  .wc:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(61,122,95,.15); }
+  .wc-1 { margin-top: 0; }
+  .wc-2 { margin-top: 1.75rem; }
+  .wc-3 { margin-top: -.75rem; }
+  .wc-photo { height: 200px; position: relative; overflow: hidden; }
+  .wc-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .wc-fallback { width: 100%; height: 100%; align-items: center; justify-content: center; font-size: 4rem; font-weight: 900; color: rgba(255,255,255,.35); font-family: Georgia, serif; }
+  .wc-info { background: #fff; padding: 1rem 1.2rem 1.25rem; }
+  .wc-meta { display: flex; align-items: baseline; gap: .5rem; margin-bottom: .4rem; }
+  .wc-meta strong { font-size: .9rem; color: var(--text); }
+  .wc-meta span { font-size: .76rem; color: var(--text-muted); }
+  .wc-quote { font-size: .82rem; color: var(--text-secondary); line-height: 1.6; font-style: italic; }
 
-  .wp-photo {
-    height: 180px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .wp-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  .wp-photo-1 { background: linear-gradient(145deg, #C94B4B 0%, #E8956D 100%); }
-  .wp-photo-2 { background: linear-gradient(145deg, #1A3D2B 0%, #4E9070 100%); }
-  .wp-photo-3 { background: linear-gradient(145deg, #7B4F3A 0%, #D4845A 100%); }
-  .wp-initials {
-    font-size: 3.5rem; font-weight: 900;
-    color: rgba(255,255,255,.35);
-    font-family: Georgia, serif; line-height: 1;
-  }
-  .wp-info { background: #fff; padding: 1rem 1.25rem; }
-  .wp-name { display: block; font-weight: 700; font-size: .9rem; color: var(--text); }
-  .wp-city { display: block; font-size: .76rem; color: var(--text-muted); margin-bottom: .5rem; }
-  .wp-quote { font-size: .82rem; color: var(--text-secondary); line-height: 1.6; font-style: italic; }
-
-  /* ── STATS STRIP ── */
-  .stats-strip {
-    background: #0F2A1A;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    padding: 2.5rem 0;
-  }
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-  }
-  .stat-block {
-    padding: 1.25rem 2rem;
-    border-right: 1px solid rgba(255,255,255,.1);
-    text-align: center;
-  }
+  /* STATS */
+  .stats-strip { background: #0F2A1A; border-bottom: 1px solid rgba(255,255,255,.06); padding: 2.5rem 0; }
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-block { padding: 1.25rem 2rem; border-right: 1px solid rgba(255,255,255,.1); text-align: center; }
   .stat-block:last-child { border-right: none; }
-  .stat-big {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: .2rem;
-    margin-bottom: .4rem;
-  }
-  .stat-n {
-    font-size: 2.4rem;
-    font-weight: 900;
-    color: var(--peach);
-    letter-spacing: -.03em;
-    line-height: 1;
-  }
-  .stat-u {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--peach);
-    opacity: .8;
-  }
-  .stat-l {
-    font-size: .78rem;
-    color: rgba(255,255,255,.55);
-    line-height: 1.5;
-    max-width: 160px;
-    margin: 0 auto;
-  }
+  .stat-big { display: flex; align-items: baseline; justify-content: center; gap: .2rem; margin-bottom: .4rem; }
+  .stat-n { font-size: 2.4rem; font-weight: 900; color: var(--peach); letter-spacing: -.03em; line-height: 1; }
+  .stat-u { font-size: 1rem; font-weight: 700; color: var(--peach); opacity: .8; }
+  .stat-l { font-size: .78rem; color: rgba(255,255,255,.55); line-height: 1.5; max-width: 160px; margin: 0 auto; }
 
-  /* ── VOICES ── */
-  .voices-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-  }
-  .voice-card {
-    background: #fff;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    position: relative;
-  }
-  .voice-quote-mark {
-    font-size: 4rem;
-    line-height: .8;
-    color: var(--peach);
-    font-family: Georgia, serif;
-    opacity: .4;
-    margin-bottom: .5rem;
-  }
-  .voice-text {
-    font-size: .94rem;
-    color: var(--text-secondary);
-    line-height: 1.75;
-    font-style: italic;
-    margin-bottom: 1.25rem;
-  }
-  .voice-attr {
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-light);
-  }
-  .voice-name { font-weight: 700; font-size: .88rem; color: var(--text); }
-  .voice-city { font-size: .82rem; color: var(--text-muted); }
-  .voices-note {
-    text-align: center;
-    font-size: .78rem;
-    color: var(--text-muted);
-    margin-top: 1.75rem;
-    font-style: italic;
-  }
+  /* SILENCE */
+  .silence-section { background: #0F2A1A; padding: 5rem 0; }
+  .silence-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
+  .silence-quote-block { padding: 2.5rem; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); }
+  .quote-mark { font-size: 5rem; line-height: 1; color: var(--peach); font-family: Georgia, serif; margin-bottom: -.5rem; opacity: .7; }
+  blockquote { font-size: 1.3rem; font-style: italic; color: rgba(255,255,255,.88); line-height: 1.65; margin-bottom: 1rem; }
+  cite { font-size: .85rem; color: rgba(255,255,255,.45); font-style: normal; }
+  .label-dark { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--peach); background: rgba(212,132,90,.15); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
+  .silence-content h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; letter-spacing: -.025em; color: #fff; line-height: 1.2; margin-bottom: 1.5rem; }
+  .silence-content p { font-size: .97rem; line-height: 1.78; color: rgba(255,255,255,.7); margin-bottom: 1rem; }
+  .silence-call { color: rgba(255,255,255,.9) !important; font-size: 1.05rem !important; }
+  .silence-link { display: inline-flex; margin-top: 1rem; color: #FBBF81; font-size: .9rem; font-weight: 600; transition: gap .2s; gap: .25rem; }
+  .silence-link:hover { color: #fff; }
 
-  /* ── FOUNDER LINKS ── */
-  .founder-links {
-    display: flex;
-    gap: .75rem;
-    margin-top: .25rem;
-  }
-  .founder-link {
-    display: inline-flex;
-    align-items: center;
-    gap: .4rem;
-    font-size: .82rem;
-    font-weight: 600;
-    color: var(--green);
-    background: var(--green-light);
-    border: 1.5px solid var(--border);
-    padding: .4rem .85rem;
-    border-radius: 100px;
-    transition: all .18s;
-  }
-  .founder-link:hover {
-    background: var(--green);
-    color: #fff;
-    border-color: var(--green);
-  }
+  /* QUICK SYMPTOMS */
+  .symptom-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 2rem; }
+  .s4-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: .35rem; text-decoration: none; color: var(--text); transition: all .2s; }
+  .s4-card:hover { border-color: var(--peach); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(212,132,90,.13); }
+  .s4-emoji { font-size: 1.8rem; margin-bottom: .15rem; }
+  .s4-label { font-weight: 700; font-size: .92rem; }
+  .s4-desc  { font-size: .81rem; color: var(--text-secondary); line-height: 1.55; }
+  .symptom-cta { text-align: center; }
 
-  /* ── SILENCE SECTION ── */
-  .silence-section {
-    background: #0F2A1A;
-    padding: 5rem 0;
-  }
-  .silence-inner {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 5rem;
-    align-items: center;
-  }
-  .silence-quote-block {
-    position: relative;
-    padding: 2.5rem;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: var(--radius-lg);
-  }
-  .quote-mark {
-    font-size: 5rem;
-    line-height: 1;
-    color: var(--peach);
-    font-family: Georgia, serif;
-    margin-bottom: -.5rem;
-    opacity: .7;
-  }
-  blockquote {
-    font-size: 1.35rem;
-    font-style: italic;
-    color: rgba(255,255,255,.88);
-    line-height: 1.65;
-    font-weight: 400;
-    margin-bottom: 1rem;
-  }
-  cite {
-    font-size: .85rem;
-    color: rgba(255,255,255,.45);
-    font-style: normal;
-  }
-  .silence-content { color: rgba(255,255,255,.85); }
-  .label-dark {
-    display: inline-flex;
-    font-size: .76rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--peach);
-    background: rgba(212,132,90,.15);
-    padding: .3rem .85rem;
-    border-radius: 100px;
-    margin-bottom: .85rem;
-  }
-  .silence-content h2 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    font-weight: 900;
-    letter-spacing: -.025em;
-    color: #fff;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-  }
-  .silence-content p {
-    font-size: .97rem;
-    line-height: 1.78;
-    color: rgba(255,255,255,.7);
-    margin-bottom: 1rem;
-  }
-  .silence-call {
-    color: rgba(255,255,255,.9) !important;
-    font-size: 1.05rem !important;
-    padding-top: .5rem;
-  }
+  /* HOW IT WORKS */
+  .how-section { background: linear-gradient(150deg, #1A3D2B 0%, #2A5C45 100%); padding: 5.5rem 0; }
+  .label-light { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.7); background: rgba(255,255,255,.1); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
+  .section-header.light .section-sub { color: rgba(255,255,255,.7); }
+  .steps-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-bottom: 3rem; }
+  .step-box { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-lg); padding: 2rem; }
+  .step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+  .step-n { font-size: .78rem; font-weight: 800; color: var(--peach); letter-spacing: .05em; }
+  .step-icon { font-size: 1.75rem; }
+  .step-title { font-weight: 700; font-size: 1rem; color: #fff; line-height: 1.35; margin-bottom: .6rem; }
+  .step-desc  { font-size: .87rem; color: rgba(255,255,255,.7); line-height: 1.7; }
+  .how-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 
-  /* ── WHAT IS THIS ── */
-  .what-inner {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 4rem;
-    align-items: start;
-  }
-  .body-text { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; margin-bottom: 1.1rem; }
-  .what-facts { margin-top: 2rem; display: flex; flex-direction: column; gap: 0; }
-  .fact-row {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border-light);
-  }
-  .fact-row:last-child { border-bottom: none; }
-  .fact-num {
-    font-size: 1.7rem;
-    font-weight: 900;
-    color: var(--peach);
-    white-space: nowrap;
-    min-width: 80px;
-    letter-spacing: -.02em;
-  }
-  .fact-text { font-size: .88rem; color: var(--text-secondary); line-height: 1.5; }
+  /* FOUNDER STRIP */
+  .founder-strip { padding: 5rem 0; }
+  .founder-inner { display: grid; grid-template-columns: 280px 1fr; gap: 5rem; align-items: center; }
+  .founder-photo-wrap { width: 220px; height: 260px; border-radius: 20px; overflow: hidden; border: 3px solid var(--border); box-shadow: 0 12px 40px rgba(61,122,95,.15); flex-shrink: 0; }
+  .founder-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .founder-links { display: flex; gap: .75rem; margin-top: 1.5rem; }
+  .founder-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .82rem; font-weight: 600; color: var(--green); background: var(--green-light); border: 1.5px solid var(--border); padding: .4rem .85rem; border-radius: 100px; transition: all .18s; }
+  .founder-link:hover { background: var(--green); color: #fff; border-color: var(--green); }
 
-  .timeline-card {
-    background: var(--green-light);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem;
-    position: sticky;
-    top: 86px;
-  }
-  .timeline-title {
-    font-size: .78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    color: var(--text-muted);
-    margin-bottom: 1.25rem;
-  }
-  .timeline-item {
-    padding: .9rem 1rem;
-    border-radius: var(--radius-sm);
-    margin-bottom: .5rem;
-    border: 1.5px solid transparent;
-  }
-  .timeline-item.active {
-    background: var(--green);
-    border-color: var(--green-dark);
-  }
-  .timeline-phase {
-    font-weight: 700;
-    font-size: .92rem;
-    color: var(--text);
-    margin-bottom: .15rem;
-  }
-  .timeline-item.active .timeline-phase { color: #fff; }
-  .timeline-range { font-size: .8rem; color: var(--text-muted); }
-  .timeline-item.active .timeline-range { color: rgba(255,255,255,.75); }
-  .timeline-note {
-    font-size: .76rem;
-    color: #FBBF81;
-    font-weight: 600;
-    margin-top: .25rem;
-  }
-
-  /* ── SYMPTOMS ── */
-  .symptom-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.25rem;
-  }
-  .symptom-card {
-    background: #fff;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.6rem;
-    display: flex;
-    flex-direction: column;
-    gap: .35rem;
-    text-decoration: none;
-    color: var(--text);
-    transition: all .2s;
-    cursor: pointer;
-  }
-  .symptom-card:hover {
-    border-color: var(--peach);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 28px rgba(212,132,90,.14);
-  }
-  .symptom-emoji { font-size: 1.9rem; margin-bottom: .2rem; }
-  .symptom-label { font-weight: 700; font-size: .95rem; }
-  .symptom-desc  { font-size: .83rem; color: var(--text-secondary); line-height: 1.55; flex: 1; }
-  .symptom-cta   { font-size: .8rem; color: var(--peach); font-weight: 600; margin-top: .25rem; opacity: 0; transition: opacity .2s; }
-  .symptom-card:hover .symptom-cta { opacity: 1; }
-
-  /* ── WHO IT'S FOR ── */
-  .who-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-  .who-card {
-    background: var(--cream-mid);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 2.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-  }
-  .who-emoji { font-size: 2.5rem; margin-bottom: .5rem; }
-  .who-title { font-weight: 800; font-size: 1.05rem; color: var(--text); line-height: 1.3; }
-  .who-desc  { font-size: .88rem; color: var(--text-secondary); line-height: 1.7; flex: 1; margin-top: .25rem; }
-  .who-link  {
-    display: inline-flex;
-    align-items: center;
-    font-size: .87rem;
-    font-weight: 700;
-    color: var(--green);
-    margin-top: .75rem;
-    transition: gap .2s;
-    gap: .35rem;
-  }
-  .who-link:hover { color: var(--green-dark); gap: .6rem; }
-
-  /* ── HOW IT WORKS ── */
-  .green-section {
-    background: linear-gradient(150deg, #1A3D2B 0%, #2A5C45 100%);
-    padding: 5rem 0;
-  }
-  .label-light {
-    display: inline-flex;
-    font-size: .76rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.7);
-    background: rgba(255,255,255,.1);
-    padding: .3rem .85rem;
-    border-radius: 100px;
-    margin-bottom: .85rem;
-  }
-  .light-text { color: #fff !important; }
-  .light-sub  { color: rgba(255,255,255,.7) !important; }
-  .section-header.light { text-align: center; margin-bottom: 3rem; }
-  .steps-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-    margin-bottom: 3rem;
-  }
-  .step-card {
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    color: #fff;
-  }
-  .step-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.25rem;
-  }
-  .step-number {
-    font-size: .78rem;
-    font-weight: 800;
-    color: var(--peach);
-    letter-spacing: .05em;
-  }
-  .step-icon-text { font-size: 1.75rem; }
-  .step-title { font-weight: 700; font-size: 1rem; margin-bottom: .6rem; color: #fff; line-height: 1.35; }
-  .step-desc  { font-size: .87rem; color: rgba(255,255,255,.72); line-height: 1.7; }
-  .steps-cta  { text-align: center; display: flex; flex-direction: column; align-items: center; gap: .85rem; }
-  .steps-note { font-size: .82rem; color: rgba(255,255,255,.55); }
-
-  /* ── FOUNDER ── */
-  .founder-section { padding: 6rem 0; }
-  .founder-inner {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-  .founder-photo-col { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-  .founder-photo {
-    width: 240px;
-    height: 280px;
-    border-radius: 24px;
-    overflow: hidden;
-    border: 3px solid var(--border);
-    box-shadow: 0 12px 40px rgba(61,122,95,.15);
-  }
-  .founder-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .founder-photo-placeholder {
-    width: 100%;
-    height: 100%;
-    background: var(--green-light);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: .75rem;
-    color: var(--text-muted);
-  }
-  .placeholder-icon { font-size: 2.5rem; }
-  .placeholder-text { font-size: .82rem; font-weight: 500; text-align: center; padding: 0 1rem; }
-  .founder-badge {
-    background: var(--peach);
-    color: #fff;
-    font-size: .76rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    padding: .3rem 1rem;
-    border-radius: 100px;
-  }
-  .founder-text {
-    font-size: 1.02rem;
-    color: var(--text-secondary);
-    line-height: 1.85;
-    margin-bottom: 1.1rem;
-  }
-  .founder-name {
-    display: flex;
-    flex-direction: column;
-    gap: .2rem;
-    margin: 1.75rem 0;
-    padding-left: 1.25rem;
-    border-left: 3px solid var(--peach);
-  }
-  .founder-name strong { color: var(--text); font-size: 1rem; }
-  .founder-name span   { font-size: .85rem; color: var(--text-muted); }
-
-  /* ── CTA SECTION ── */
-  .cta-section {
-    background: var(--peach-light);
-    border-top: 2px solid #F0C9B0;
-    padding: 6rem 0;
-    text-align: center;
-  }
-  .cta-inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; max-width: 680px; margin: 0 auto; }
+  /* CTA */
+  .cta-section { background: var(--peach-light); border-top: 2px solid #F0C9B0; padding: 6rem 0; text-align: center; }
+  .cta-inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; max-width: 640px; margin: 0 auto; }
   .cta-leaf  { font-size: 3rem; }
-  .cta-title {
-    font-size: clamp(1.9rem, 4vw, 2.8rem);
-    font-weight: 900;
-    letter-spacing: -.03em;
-    color: var(--text);
-    line-height: 1.2;
-  }
-  .cta-desc  { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.72; max-width: 540px; }
-  .cta-fine  { font-size: .78rem; color: var(--text-muted); margin-top: .5rem; }
+  .cta-title { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -.03em; color: var(--text); line-height: 1.2; }
+  .cta-desc  { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.72; }
+  .cta-fine  { font-size: .78rem; color: var(--text-muted); }
 
-  /* ── SHARED ── */
+  /* SHARED */
   .section { padding: 5.5rem 0; }
-  .white      { background: #fff; }
-  .cream      { background: var(--cream-mid); }
+  .bg-white  { background: #fff; }
+  .bg-cream  { background: var(--cream-mid); }
+  .section-header { margin-bottom: 3rem; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+  .section-label { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
+  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.18; margin-bottom: .75rem; }
+  .body-text { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; margin-bottom: 1rem; }
 
-  .section-header { text-align: center; margin-bottom: 3.5rem; }
-  .label {
-    display: inline-flex;
-    font-size: .76rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--green);
-    background: var(--green-light);
-    padding: .3rem .85rem;
-    border-radius: 100px;
-    margin-bottom: .85rem;
-  }
-  .section-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    font-weight: 900;
-    letter-spacing: -.025em;
-    color: var(--text);
-    line-height: 1.18;
-    margin-bottom: .75rem;
-  }
-  .section-subtitle {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    max-width: 580px;
-    margin: 0 auto;
-    line-height: 1.72;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 960px) {
-    .women-strip-inner { grid-template-columns: 1fr; }
-    .women-photos      { grid-template-columns: repeat(3, 1fr); }
-    .wp-card-2, .wp-card-3 { margin-top: 0; }
-    .silence-inner     { grid-template-columns: 1fr; gap: 3rem; }
-    .what-inner        { grid-template-columns: 1fr; }
-    .timeline-card     { position: static; }
-    .who-grid          { grid-template-columns: 1fr; }
-    .steps-row         { grid-template-columns: 1fr; }
-    .founder-inner     { grid-template-columns: 1fr; }
-    .founder-photo-col { flex-direction: row; gap: 1.5rem; align-items: center; }
-    .founder-photo     { width: 120px; height: 140px; flex-shrink: 0; }
-    .voices-grid       { grid-template-columns: 1fr; }
-    .stats-row         { grid-template-columns: 1fr 1fr; }
+  /* RESPONSIVE */
+  @media (max-width: 1000px) {
+    .women-inner  { grid-template-columns: 1fr; }
+    .women-cards  { grid-template-columns: repeat(3, 1fr); }
+    .wc-2, .wc-3  { margin-top: 0; }
+    .silence-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .steps-3      { grid-template-columns: 1fr; }
+    .founder-inner { grid-template-columns: 1fr; }
+    .stats-row    { grid-template-columns: 1fr 1fr; }
     .stat-block:nth-child(2) { border-right: none; }
+    .symptom-4    { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 640px) {
-    .hero    { padding: 4.5rem 0 4rem; }
+    .hero { padding: 4.5rem 0 4rem; }
     .section { padding: 3.5rem 0; }
-    .symptom-grid { grid-template-columns: 1fr 1fr; }
-    .hero-trust   { gap: 1rem; }
-    .founder-photo-col { flex-direction: column; }
+    .women-cards  { grid-template-columns: 1fr; }
     .stats-row    { grid-template-columns: 1fr 1fr; }
-    .stat-block   { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
-    .stat-block:last-child { border-bottom: none; }
+    .symptom-4    { grid-template-columns: 1fr 1fr; }
+    .hero-trust   { gap: 1rem; }
   }
-  @media (max-width: 400px) {
-    .symptom-grid { grid-template-columns: 1fr; }
-    .stats-row    { grid-template-columns: 1fr; }
+  @media (max-width: 420px) {
+    .symptom-4 { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
   }
 </style>
