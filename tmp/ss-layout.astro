@@ -26,6 +26,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
@@ -34,6 +35,18 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
       <div class="container navbar-inner">
 
         <a href="/" class="brand">
+          <svg class="brand-icon" width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="7" fill="#1A3D2B"/>
+            <g transform="translate(16,16)">
+              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9"/>
+              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(60)"/>
+              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(120)"/>
+              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(180)"/>
+              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(240)"/>
+              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(300)"/>
+              <circle r="3.8" fill="#FBBF81"/>
+            </g>
+          </svg>
           <span class="brand-the">The</span>
           <span class="brand-second">Second</span>
           <span class="brand-spring">Spring</span>
@@ -121,6 +134,9 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
               <span style="color:#D4845A;">Spring</span>
             </div>
             <p class="footer-tagline">
+              The best of you is not behind you.
+            </p>
+            <p class="footer-sub-tagline">
               India's first private companion for women navigating perimenopause.
               Information and support — not medical advice.
             </p>
@@ -272,6 +288,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     text-decoration: none; flex-shrink: 0; letter-spacing: -.01em;
     margin-right: 1.5rem;
   }
+  .brand-icon { flex-shrink: 0; border-radius: 6px; }
   .brand-the    { font-size: .82rem; font-weight: 500; color: var(--text-muted); font-style: italic; }
   .brand-second { font-size: 1.22rem; font-weight: 800; color: var(--green-dark); }
   .brand-spring { font-size: 1.22rem; font-weight: 800; color: var(--peach); }
@@ -341,7 +358,8 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     border-bottom: 1px solid #253D2E;
   }
   .footer-brand { font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: .75rem; }
-  .footer-tagline { font-size: .9rem; line-height: 1.65; margin-bottom: 1.25rem; }
+  .footer-tagline { font-size: 1rem; font-weight: 600; color: #C8E0D2; line-height: 1.4; margin-bottom: .5rem; font-style: italic; }
+  .footer-sub-tagline { font-size: .88rem; line-height: 1.65; margin-bottom: 1.25rem; color: #8BAF98; }
   .footer-disclaimer { font-size: .78rem; line-height: 1.65; color: #5A7A68; padding: 1rem; background: #253D2E; border-radius: 8px; border-left: 3px solid var(--green); }
   .footer h4 { color: #C8E0D2; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
   .footer ul { list-style: none; }
