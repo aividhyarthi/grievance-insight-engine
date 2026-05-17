@@ -1,0 +1,357 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stats = [
+  { num: '1 in 4', label: 'Working women between 40–55 reports that perimenopause significantly affects their work performance' },
+  { num: '10%', label: 'Of women have left a job due to menopausal symptoms — the majority without telling their employer why' },
+  { num: '3.5 yrs', label: 'Average duration of significant symptoms that affect day-to-day functioning during perimenopause' },
+  { num: '₹900B+', label: 'Estimated annual productivity loss in India from unaddressed women\'s health issues in the workplace' },
+];
+
+const actions = [
+  {
+    icon: '📚',
+    title: 'Educate managers and HR',
+    desc: 'Train people managers to recognise when a valued employee may be struggling with health changes — and how to respond with empathy rather than performance management.',
+  },
+  {
+    icon: '💬',
+    title: 'Create safe spaces to speak',
+    desc: 'Establish confidential channels — a trusted HR contact, a women\'s health resource person — where employees can disclose health challenges without fear of stigma or career consequences.',
+  },
+  {
+    icon: '🏢',
+    title: 'Adjust the environment',
+    desc: 'Temperature control, flexible break scheduling, quiet spaces, and hybrid working are low-cost adjustments that significantly support women managing symptoms.',
+  },
+  {
+    icon: '🌐',
+    title: 'Provide access to resources',
+    desc: 'Give employees access to evidence-based, India-specific perimenopause information and support — like The Second Spring — as part of your women\'s health benefits.',
+  },
+];
+
+const benefits = [
+  {
+    icon: '🏆',
+    title: 'Retain experienced talent',
+    desc: 'Women in their 40s and 50s are among the most experienced, skilled members of your workforce. Supporting them through perimenopause is far less costly than losing them.',
+  },
+  {
+    icon: '📈',
+    title: 'Maintain productivity',
+    desc: 'Addressing the health factors that cause cognitive difficulty, fatigue, and absenteeism directly improves the output and consistency of your affected employees.',
+  },
+  {
+    icon: '🌟',
+    title: 'Strengthen culture & trust',
+    desc: 'Organisations that visibly support women\'s health across all life stages build deeper loyalty, stronger inclusion cultures, and more attractive employer brands.',
+  },
+  {
+    icon: '💡',
+    title: 'Lead in India\'s corporate landscape',
+    desc: 'Menopause policies and women\'s health benefits are still rare in Indian companies. Being an early adopter positions you as a true leader in gender equity and employee welfare.',
+  },
+];
+
+const offering = [
+  {
+    title: 'Private employee access',
+    desc: 'Your employees get access to The Second Spring companion — completely private, no data shared with the employer, no login required. They can ask questions, understand symptoms, and find support without disclosure.',
+  },
+  {
+    title: 'Educational resources',
+    desc: 'Curated educational materials for HR teams and people managers — covering what perimenopause is, how it presents at work, and how to have supportive conversations.',
+  },
+  {
+    title: 'Awareness sessions',
+    desc: 'Optional live or recorded sessions for employees and managers — warm, non-clinical, designed for the Indian workplace. Normalising the conversation is the first step.',
+  },
+  {
+    title: 'Custom integration',
+    desc: 'For organisations wanting deeper integration — co-branded resources, benefits portal inclusion, or tailored programming — we can discuss bespoke arrangements.',
+  },
+];
+---
+
+<Layout
+  title="For Employers – The Second Spring"
+  description="How The Second Spring supports Indian companies in retaining and supporting women through perimenopause — with private resources, education, and employee access."
+>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-eyebrow">🏢 For employers</div>
+        <h1>Supporting women through perimenopause at work</h1>
+        <p>One in four of your female employees between 40 and 55 is significantly affected by perimenopause. Most are suffering in silence. Here's what you can do.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business case stats -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">The business case</span>
+        <h2 class="section-title">The impact you're not seeing</h2>
+        <p class="section-sub">Perimenopause in the workplace is a largely invisible issue — but its effects on productivity, absenteeism, and talent retention are very real.</p>
+      </div>
+
+      <div class="stats-grid">
+        {stats.map(s => (
+          <div class="stat-card">
+            <div class="stat-num">{s.num}</div>
+            <div class="stat-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="case-body">
+        <p class="body-text">
+          The women affected are not junior employees — they are managers, senior contributors, domain experts, and future leaders. They are in the prime of their career relevance, yet managing symptoms that can affect concentration, memory, sleep, mood, and physical comfort. And because perimenopause is still a taboo subject in most Indian workplaces, almost none of them will tell you about it.
+        </p>
+        <p class="body-text">
+          The cost to organisations is significant: reduced productivity, increased sick leave, disengagement, and ultimately attrition. The cost to individuals — in career impact, financial insecurity, and erosion of confidence — is far higher.
+        </p>
+        <p class="body-text">
+          The good news: relatively simple interventions make a substantial difference. Supporting women through this transition doesn't require large budgets. It requires awareness, empathy, and a willingness to see the whole person.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What companies can do -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Taking action</span>
+        <h2 class="section-title">What Indian companies can do</h2>
+        <p class="section-sub">Practical, achievable steps to create a workplace where women feel supported through perimenopause.</p>
+      </div>
+
+      <div class="actions-grid">
+        {actions.map(a => (
+          <div class="action-card">
+            <div class="action-icon">{a.icon}</div>
+            <h3 class="action-title">{a.title}</h3>
+            <p class="action-desc">{a.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What we offer -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="offering-layout">
+        <div>
+          <span class="section-label">Our offering</span>
+          <h2 class="section-title">What The Second Spring offers employers</h2>
+          <p class="section-sub">Flexible, private, and designed for the Indian workplace context.</p>
+        </div>
+        <div class="offering-cards">
+          {offering.map(o => (
+            <div class="offering-card">
+              <h3 class="offering-title">{o.title}</h3>
+              <p class="offering-desc">{o.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Why it matters</span>
+        <h2 class="section-title">The benefits of supporting your people</h2>
+      </div>
+
+      <div class="benefits-grid">
+        {benefits.map(b => (
+          <div class="benefit-card">
+            <div class="benefit-icon">{b.icon}</div>
+            <h3 class="benefit-title">{b.title}</h3>
+            <p class="benefit-desc">{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section bg-green-dark-cta">
+    <div class="container">
+      <div class="employer-cta">
+        <div>
+          <h2 class="employer-cta-title">Let's talk about how we can work together</h2>
+          <p class="employer-cta-sub">Whether you're looking to provide access for employees, run an awareness session, or develop a full menopause support policy — we'd love to hear from you.</p>
+        </div>
+        <div class="employer-cta-actions">
+          <a href="mailto:hello@thesecondspring.com" class="btn btn-peach btn-lg">Email us to get started →</a>
+          <div class="employer-cta-email">hello@thesecondspring.com</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: var(--green-light);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.5rem;
+    border: 1.5px solid var(--border);
+  }
+
+  .stat-num {
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: var(--green-dark);
+    letter-spacing: -.04em;
+    line-height: 1.1;
+    margin-bottom: .6rem;
+  }
+
+  .stat-label {
+    font-size: .85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .case-body { max-width: 760px; }
+
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .action-card {
+    background: #fff;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+
+  .action-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .action-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+  .action-desc { font-size: .9rem; color: var(--text-secondary); line-height: 1.7; }
+
+  .offering-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .offering-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .offering-card {
+    background: var(--cream-mid);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+  }
+
+  .offering-title {
+    font-size: .97rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .4rem;
+  }
+
+  .offering-desc { font-size: .9rem; color: var(--text-secondary); line-height: 1.68; }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    background: #fff;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: box-shadow .2s;
+  }
+
+  .benefit-card:hover { box-shadow: 0 6px 22px rgba(61,122,95,.1); }
+
+  .benefit-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .benefit-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+  .benefit-desc { font-size: .9rem; color: var(--text-secondary); line-height: 1.7; }
+
+  .bg-green-dark-cta {
+    background: linear-gradient(135deg, #1A3D2B 0%, #2A5C45 100%);
+    margin-top: 0;
+  }
+
+  .employer-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+  }
+
+  .employer-cta-title {
+    font-size: 1.65rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -.025em;
+    margin-bottom: .6rem;
+    line-height: 1.25;
+  }
+
+  .employer-cta-sub {
+    font-size: .95rem;
+    color: rgba(255,255,255,.75);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .employer-cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .employer-cta-email {
+    font-size: .88rem;
+    color: rgba(255,255,255,.6);
+  }
+
+  @media (max-width: 900px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .actions-grid { grid-template-columns: 1fr; }
+    .offering-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .employer-cta { flex-direction: column; }
+    .employer-cta-actions { align-items: flex-start; }
+  }
+
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,240 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Perimenopause Guide — The Second Spring"
+  description="Your complete perimenopause guide designed for Indian women. Understand symptoms, get answers to your questions, and learn how to talk to your doctor."
+>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <span class="page-eyebrow">📖 The Guide</span>
+        <h1>Your perimenopause guide</h1>
+        <p>Everything you need to understand what's happening — in plain language, designed for Indian women.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide Section Cards -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Where would you like to start?</span>
+        <h2 class="section-title">Explore the guide</h2>
+        <p class="section-sub">Each section is written with the Indian woman in mind — our bodies, our lives, and the questions we often can't ask out loud.</p>
+      </div>
+      <div class="guide-cards">
+        <a href="/guide/symptoms" class="guide-card">
+          <span class="guide-card-icon">🔍</span>
+          <div>
+            <h3>Symptom Library</h3>
+            <p>Hot flashes, mood swings, brain fog — every symptom explained clearly, with the hormonal reason behind it and what might help.</p>
+            <span class="guide-card-link">Explore symptoms →</span>
+          </div>
+        </a>
+        <a href="/guide/topics" class="guide-card">
+          <span class="guide-card-icon">📚</span>
+          <div>
+            <h3>Topic Guides</h3>
+            <p>Deep dives on sleep, nutrition, hormones, relationships, Ayurveda, and more — written in accessible, jargon-free language.</p>
+            <span class="guide-card-link">Browse topics →</span>
+          </div>
+        </a>
+        <a href="/guide/faqs" class="guide-card">
+          <span class="guide-card-icon">💬</span>
+          <div>
+            <h3>Frequently Asked Questions</h3>
+            <p>The questions Indian women most often ask about perimenopause, answered honestly and without judgment.</p>
+            <span class="guide-card-link">Read FAQs →</span>
+          </div>
+        </a>
+        <a href="/guide/talk-to-doctor" class="guide-card">
+          <span class="guide-card-icon">🩺</span>
+          <div>
+            <h3>Talk to Your Doctor</h3>
+            <p>How to prepare for your appointment, what questions to ask, and what to do if you feel dismissed.</p>
+            <span class="guide-card-link">Get prepared →</span>
+          </div>
+        </a>
+        <a href="/perimenopause" class="guide-card">
+          <span class="guide-card-icon">🌿</span>
+          <div>
+            <h3>What is Perimenopause?</h3>
+            <p>A clear, compassionate explanation of what perimenopause is, the hormonal changes involved, and the Indian context.</p>
+            <span class="guide-card-link">Learn the basics →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Start with the basics -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="basics-layout">
+        <div class="basics-header">
+          <span class="section-label">Start here</span>
+          <h2 class="section-title">What is perimenopause, exactly?</h2>
+        </div>
+        <div class="basics-body">
+          <p class="body-text">
+            Perimenopause is the natural transition your body makes in the years leading up to your final menstrual period. It typically begins in your 40s — though for many Indian women, it can start as early as the late 30s. During this time, the ovaries gradually produce less oestrogen and progesterone, and these hormonal shifts ripple through almost every system in your body.
+          </p>
+          <p class="body-text">
+            What makes perimenopause so disorienting is that it doesn't arrive with a clear announcement. Your periods might become unpredictable. You might feel unlike yourself — more anxious, more irritable, or struggling to sleep in ways you never did before. You might notice hot flashes, joint aches, or a strange new brain fog. These aren't signs that something is wrong with you. They're signs that your body is changing.
+          </p>
+          <p class="body-text">
+            In India, this transition is rarely talked about openly. There's no language for it at the family dinner table. Doctors often dismiss concerns as "just stress" or "just age." That silence is one of the reasons so many women spend years wondering what's happening to them. The Second Spring exists to change that — to give you real information, a safe space to ask questions, and the confidence to seek the care you deserve.
+          </p>
+          <div class="basics-stats">
+            <div class="stat-item">
+              <span class="stat-number">47</span>
+              <span class="stat-label">Average age perimenopause begins in India (vs 51 globally)</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">4–10</span>
+              <span class="stat-label">Years perimenopause typically lasts</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">34+</span>
+              <span class="stat-label">Recognised symptoms of perimenopause</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm bg-green">
+    <div class="container">
+      <div class="cta-block">
+        <div>
+          <h2 class="section-title">Have a question right now?</h2>
+          <p class="section-sub">Our AI companion is available any time — no appointment needed, completely private.</p>
+        </div>
+        <a href="/chat" class="btn btn-primary btn-lg">Chat with our companion →</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .guide-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .guide-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: #fff;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.22s;
+  }
+
+  .guide-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 8px 28px rgba(61, 122, 95, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .guide-card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .guide-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .guide-card p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 0.85rem;
+  }
+
+  .guide-card-link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--green);
+  }
+
+  .guide-card:hover .guide-card-link {
+    color: var(--green-dark);
+  }
+
+  .basics-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .basics-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1.5px solid var(--border-light);
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 1.25rem;
+    background: var(--green-light);
+    border-radius: var(--radius);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--green-dark);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .cta-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .basics-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .basics-stats {
+      grid-template-columns: 1fr;
+    }
+    .cta-block {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

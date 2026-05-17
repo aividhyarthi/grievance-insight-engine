@@ -1,0 +1,473 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const prepTips = [
+  {
+    num: '01',
+    title: 'Track your symptoms beforehand',
+    desc: 'Keep a diary for 2–4 weeks before your appointment. Note which symptoms you experience, how often, and how disruptive they are. This transforms a vague complaint into specific, useful data.',
+  },
+  {
+    num: '02',
+    title: 'Write down your questions',
+    desc: 'In the anxiety of a consultation, it\'s easy to forget what you meant to ask. Write your questions down in order of priority — in case time runs out, you\'ll have covered what matters most.',
+  },
+  {
+    num: '03',
+    title: 'Note your cycle pattern',
+    desc: 'Track when your last several periods were, how long they lasted, and how heavy they were. Irregularity is a key diagnostic indicator — concrete data helps.',
+  },
+  {
+    num: '04',
+    title: 'Know your family history',
+    desc: 'When did your mother or older sisters reach menopause? A family history of early menopause or osteoporosis is clinically relevant and may affect your management plan.',
+  },
+  {
+    num: '05',
+    title: 'Bring a support person if helpful',
+    desc: 'A trusted friend or partner can help you remember what was said, advocate alongside you, and provide emotional support if the consultation is difficult.',
+  },
+];
+
+const questionsToAsk = [
+  'Could my symptoms be related to perimenopause?',
+  'What tests, if any, would help clarify my hormonal status?',
+  'Are my periods — their frequency, duration, and heaviness — within the normal range for my stage?',
+  'What non-hormonal options are available to help with my symptoms?',
+  'Am I a candidate for HRT/MHT? What are the benefits and risks for someone with my health history?',
+  'How will my bone health be affected, and what should I be doing about it now?',
+  'Should I be concerned about my cardiovascular health at this stage?',
+  'Are there any specialists or a menopause clinic you would recommend referring me to?',
+  'What should I watch out for — symptoms that warrant an urgent follow-up?',
+  'When should I come back, and what would you want to review at that visit?',
+];
+
+const trackItems = [
+  { label: 'Symptoms', items: ['Hot flashes (number per day, severity 1–10)', 'Night sweats (how many times waking)', 'Mood changes (note particularly low or difficult days)', 'Brain fog or memory lapses', 'Joint pain or fatigue levels', 'Any other new or unusual symptoms'] },
+  { label: 'Cycle', items: ['Date period started', 'Date period ended', 'Flow: light / medium / heavy / very heavy', 'Any spotting between periods', 'Any missed periods'] },
+  { label: 'Sleep', items: ['Approximate time fell asleep', 'Number of night wakings', 'Overall quality (1–10)', 'Note if woken by night sweats or anxiety'] },
+  { label: 'Mood & energy', items: ['Overall mood (1–10)', 'Anxiety level if present (1–10)', 'Energy levels (1–10)', 'Note anything that seems to trigger low mood or anxiety'] },
+];
+---
+
+<Layout
+  title="How to Talk to Your Doctor About Perimenopause – The Second Spring"
+  description="Scripts, preparation strategies, and questions to ask your GP or gynaecologist about perimenopause. Advice for Indian women navigating the healthcare system."
+>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-eyebrow">🩺 Guide</div>
+        <h1>How to Talk to Your Doctor</h1>
+        <p>Prepare for your appointment, ask the right questions, and advocate for yourself — even if you've been dismissed before.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it's hard -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="content-layout">
+        <div class="content-header">
+          <span class="section-label">The reality</span>
+          <h2 class="section-title">Why this conversation is so difficult</h2>
+        </div>
+        <div class="content-body">
+          <p class="body-text">
+            For many Indian women, talking to a doctor about perimenopausal symptoms is an experience full of obstacles — even before they reach the consulting room.
+          </p>
+
+          <div class="barrier-cards">
+            <div class="barrier-card">
+              <span class="barrier-icon">⏱️</span>
+              <div>
+                <h3>Time pressure</h3>
+                <p>Most GP appointments in India are 5–10 minutes. Describing months of complex, overlapping symptoms — mood changes, sleep disruption, irregular periods, brain fog — in that window is almost impossible. Many women leave feeling unheard and incomplete.</p>
+              </div>
+            </div>
+            <div class="barrier-card">
+              <span class="barrier-icon">🙅‍♀️</span>
+              <div>
+                <h3>Dismissal</h3>
+                <p>"It's just stress." "It's part of getting older." "Let's just wait and see." Dismissal is a widespread experience — partly because perimenopause education is still limited in many Indian medical schools, and partly because women's health concerns have historically been undervalued.</p>
+              </div>
+            </div>
+            <div class="barrier-card">
+              <span class="barrier-icon">🤫</span>
+              <div>
+                <h3>Cultural shame and taboo</h3>
+                <p>Talking about your periods, libido, or emotional state to a doctor — who may be male, or someone from your social circle — can feel deeply uncomfortable. Cultural norms around modesty and not burdening others mean many women minimise their symptoms or don't disclose them fully.</p>
+              </div>
+            </div>
+            <div class="barrier-card">
+              <span class="barrier-icon">❓</span>
+              <div>
+                <h3>Not knowing what to ask</h3>
+                <p>If you don't have the language for perimenopause — the vocabulary, the medical context, the treatment options — it's hard to drive the conversation. Many women simply don't know what questions to ask, and so leave without the information they need.</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="body-text" style="margin-top:1.5rem;">
+            None of this is your fault. But with some preparation, you can walk into that room more confident — and leave with more.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before your appointment -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Before you go</span>
+        <h2 class="section-title">Preparing for your appointment</h2>
+        <p class="section-sub">A few simple steps before your appointment can transform the quality of the conversation.</p>
+      </div>
+
+      <div class="prep-steps">
+        {prepTips.map(tip => (
+          <div class="prep-step">
+            <div class="prep-num">{tip.num}</div>
+            <div>
+              <h3 class="prep-title">{tip.title}</h3>
+              <p class="prep-desc">{tip.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Questions to ask -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="content-layout">
+        <div class="content-header">
+          <span class="section-label">In the room</span>
+          <h2 class="section-title">Questions to ask your doctor</h2>
+          <p class="section-sub">Print this list or save it on your phone. You don't need to ask all of them — prioritise the ones most relevant to you.</p>
+        </div>
+        <div class="content-body">
+          <ol class="question-list">
+            {questionsToAsk.map(q => (
+              <li class="question-item">{q}</li>
+            ))}
+          </ol>
+          <div class="tip-box">
+            <span class="tip-icon">💡</span>
+            <p><strong>Tip:</strong> Start your appointment by saying: <em>"I'd like to specifically discuss whether my symptoms could be related to perimenopause, and to understand my options."</em> This sets the frame immediately and makes it harder for the consultation to drift toward a more superficial discussion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tracking checklist -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Track it</span>
+        <h2 class="section-title">What to track before going</h2>
+        <p class="section-sub">Two to four weeks of tracking gives you data — and data is persuasive. Even a simple notebook works.</p>
+      </div>
+
+      <div class="track-grid">
+        {trackItems.map(cat => (
+          <div class="track-card">
+            <h3 class="track-cat">{cat.label}</h3>
+            <ul class="track-items">
+              {cat.items.map(item => (
+                <li class="track-item">
+                  <span class="track-check" aria-hidden="true">□</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- If dismissed -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="content-layout">
+        <div class="content-header">
+          <span class="section-label">If it goes wrong</span>
+          <h2 class="section-title">What to do if you're dismissed</h2>
+        </div>
+        <div class="content-body">
+          <p class="body-text">
+            Dismissal is common, but it is not acceptable — and you have options. Here are scripts for advocating for yourself in the moment.
+          </p>
+
+          <div class="script-cards">
+            <div class="script-card">
+              <div class="script-situation">If told "It's just stress"</div>
+              <div class="script-quote">
+                <em>"I understand stress can cause some of these symptoms, but I'd like to rule out perimenopause given my age and the pattern I'm describing. Could we explore that possibility before attributing it to stress?"</em>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-situation">If told "It's too early to be perimenopause"</div>
+              <div class="script-quote">
+                <em>"I know it can start earlier than people expect — especially for Indian women. Could we do some basic hormone tests, and could you tell me what you'd want to see before taking this further?"</em>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-situation">If HRT is brushed off without discussion</div>
+              <div class="script-quote">
+                <em>"I've read that current guidance suggests HRT is appropriate for many women. Could you walk me through whether I'd be a candidate, and what the risks and benefits look like specifically for me?"</em>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-situation">If you leave feeling unheard</div>
+              <div class="script-quote">
+                <em>Ask for a second opinion or a referral to a gynaecologist. You can say: "I'd like to be referred to a specialist who has experience in perimenopause management — can you help me with that?" This is your right.</em>
+              </div>
+            </div>
+          </div>
+
+          <div class="remember-box">
+            <span>🌟</span>
+            <p>You are not being difficult. You are advocating for your health. A good doctor will welcome specific, informed questions — and if they don't, that tells you something important about whether this is the right doctor for you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm bg-green">
+    <div class="container">
+      <div class="cta-block">
+        <div>
+          <h2 class="section-title">Want to practise what to say?</h2>
+          <p class="section-sub">Our companion can help you prepare for your appointment — role-play the conversation, refine your questions, or simply feel more ready.</p>
+        </div>
+        <a href="/chat" class="btn btn-primary btn-lg">Talk to our companion →</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .content-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .content-header { position: sticky; top: calc(var(--nav-h) + 2rem); }
+
+  .barrier-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .barrier-card {
+    display: flex;
+    align-items: flex-start;
+    gap: .85rem;
+    background: var(--green-light);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+
+  .barrier-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .barrier-card h3 { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+  .barrier-card p { font-size: .87rem; color: var(--text-secondary); line-height: 1.65; }
+
+  .prep-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 760px;
+  }
+
+  .prep-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: #fff;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .prep-num {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--green-light);
+    background: var(--green);
+    min-width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: .85rem;
+    letter-spacing: .05em;
+  }
+
+  .prep-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+  .prep-desc { font-size: .9rem; color: var(--text-secondary); line-height: 1.68; }
+
+  .question-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    counter-reset: q-counter;
+  }
+
+  .question-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: .93rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    background: var(--green-light);
+    border-radius: var(--radius-sm);
+    padding: .85rem 1rem;
+    counter-increment: q-counter;
+  }
+
+  .question-item::before {
+    content: counter(q-counter, decimal-leading-zero);
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--green);
+    flex-shrink: 0;
+    margin-top: .15rem;
+  }
+
+  .tip-box {
+    display: flex;
+    gap: .85rem;
+    align-items: flex-start;
+    background: var(--peach-light);
+    border: 1.5px solid #EDD0BF;
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .tip-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .tip-box p { font-size: .9rem; color: var(--text-secondary); line-height: 1.68; }
+  .tip-box em { color: var(--text); font-style: italic; }
+
+  .track-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .track-card {
+    background: #fff;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .track-cat {
+    font-size: .8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--green);
+    margin-bottom: 1rem;
+    padding-bottom: .75rem;
+    border-bottom: 1.5px solid var(--border-light);
+  }
+
+  .track-items { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+
+  .track-item {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    font-size: .87rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .track-check {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    font-size: .9rem;
+    margin-top: .05rem;
+  }
+
+  .script-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: .5rem;
+  }
+
+  .script-card {
+    background: var(--green-light);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--green);
+    padding: 1.1rem 1.25rem;
+  }
+
+  .script-situation {
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--green-dark);
+    margin-bottom: .5rem;
+  }
+
+  .script-quote {
+    font-size: .91rem;
+    color: var(--text-secondary);
+    line-height: 1.68;
+  }
+
+  .script-quote em { color: var(--text); font-style: italic; }
+
+  .remember-box {
+    display: flex;
+    gap: .85rem;
+    align-items: flex-start;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .remember-box span { font-size: 1.3rem; flex-shrink: 0; }
+  .remember-box p { font-size: .92rem; color: var(--text-secondary); line-height: 1.7; }
+
+  .cta-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .content-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .content-header { position: static; }
+    .barrier-cards { grid-template-columns: 1fr; }
+    .cta-block { flex-direction: column; }
+  }
+</style>

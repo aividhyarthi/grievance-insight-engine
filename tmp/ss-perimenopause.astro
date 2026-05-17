@@ -1,0 +1,475 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stages = [
+  {
+    name: 'Reproductive years',
+    age: 'Teens – late 30s',
+    desc: 'Regular menstrual cycles, stable oestrogen and progesterone, ovulation each month.',
+    current: false,
+  },
+  {
+    name: 'Perimenopause',
+    age: 'Late 30s – mid 40s+',
+    desc: 'Hormones begin fluctuating. Cycles become irregular. Symptoms may appear. This phase lasts 4–10 years.',
+    current: true,
+  },
+  {
+    name: 'Menopause',
+    age: '12 months after last period',
+    desc: 'The point — a single day in retrospect — when you have gone 12 consecutive months without a period.',
+    current: false,
+  },
+  {
+    name: 'Postmenopause',
+    age: 'After menopause',
+    desc: 'Hormone levels stabilise at a new, lower baseline. Many symptoms ease; bone and heart health require attention.',
+    current: false,
+  },
+];
+
+const hormones = [
+  {
+    name: 'Oestrogen',
+    emoji: '🌊',
+    role: 'The most influential female hormone. Oestrogen regulates your menstrual cycle, maintains bone density, supports cardiovascular health, influences brain chemistry (mood, memory, sleep), keeps vaginal and urinary tissues healthy, and affects skin, hair, and joints.',
+    what: 'During perimenopause, oestrogen doesn\'t simply fall — it fluctuates erratically, sometimes surging higher than ever before suddenly dropping. This unpredictability is what drives many of the most disorienting symptoms: mood swings, hot flashes, heavy periods followed by light ones, anxiety.',
+  },
+  {
+    name: 'Progesterone',
+    emoji: '🌙',
+    role: 'The "calming" hormone. Progesterone has a sedative effect on the brain, promotes sleep, reduces anxiety, and counterbalances oestrogen\'s stimulating effects. It also prepares the uterine lining for a potential pregnancy.',
+    what: 'Progesterone typically begins to fall earlier and more steadily than oestrogen during perimenopause. Its decline contributes significantly to sleep disruption, anxiety, heavy or erratic periods, and the general sense of feeling "wired but tired."',
+  },
+  {
+    name: 'Testosterone',
+    emoji: '⚡',
+    role: 'Often thought of as a "male hormone," testosterone is present in women at lower levels and plays a key role in sexual desire, energy, muscle maintenance, and mood.',
+    what: 'Testosterone gradually declines over the reproductive years and into perimenopause. Its fall contributes to reduced libido, lower energy, and changes in body composition. Testosterone replacement is increasingly recognised as an important part of hormonal management for some women.',
+  },
+];
+---
+
+<Layout
+  title="Understanding Perimenopause – The Second Spring"
+  description="A plain-language guide to what perimenopause is, the hormonal changes involved, how it presents in Indian women, and when to seek help."
+>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-eyebrow">🌿 Understanding perimenopause</div>
+        <h1>Understanding perimenopause</h1>
+        <p>What's happening in your body, why it matters, and what the Indian context means for your experience of this transition.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What it is -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="section-label">The basics</span>
+          <h2 class="section-title">What is perimenopause?</h2>
+        </div>
+        <div>
+          <p class="body-text">
+            Perimenopause — from the Greek <em>peri</em>, meaning "around" — is the transitional phase that occurs in the years leading up to your final menstrual period. It is a natural, biological process, not a disease. But it is also, for many women, a profoundly disorienting experience that can affect almost every aspect of life.
+          </p>
+          <p class="body-text">
+            During perimenopause, the ovaries gradually produce decreasing amounts of oestrogen and progesterone. But this decline is not smooth or linear — the hormones fluctuate unpredictably, sometimes surging, sometimes plummeting, before eventually settling at lower postmenopausal levels. It is this hormonal turbulence, rather than simply the fall itself, that drives most perimenopausal symptoms.
+          </p>
+          <p class="body-text">
+            Perimenopause typically begins in the mid-40s, though for many Indian women, it starts earlier — sometimes in the late 30s. It lasts on average 4–8 years, ending at menopause: the point at which you have gone 12 consecutive months without a period. What happens before that point is perimenopause. What comes after is postmenopause.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline / stages -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">The stages</span>
+        <h2 class="section-title">Your hormonal journey</h2>
+        <p class="section-sub">A single continuum — from regular cycles to postmenopause — with perimenopause as the pivotal transition.</p>
+      </div>
+
+      <div class="timeline">
+        {stages.map((stage, i) => (
+          <div class:list={['timeline-item', { 'timeline-item--current': stage.current }]}>
+            <div class="timeline-connector">
+              <div class="timeline-dot" />
+              {i < stages.length - 1 && <div class="timeline-line" />}
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-age">{stage.age}</div>
+              <h3 class="timeline-stage">{stage.name}</h3>
+              <p class="timeline-desc">{stage.desc}</p>
+              {stage.current && <div class="timeline-badge">You may be here</div>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Hormones explained -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">The science, simply</span>
+        <h2 class="section-title">Hormones explained</h2>
+        <p class="section-sub">Three hormones. Enormous influence. Here's what they do — and what happens when they change.</p>
+      </div>
+
+      <div class="hormones-grid">
+        {hormones.map(h => (
+          <div class="hormone-card">
+            <div class="hormone-top">
+              <span class="hormone-emoji">{h.emoji}</span>
+              <h3 class="hormone-name">{h.name}</h3>
+            </div>
+            <div class="hormone-section">
+              <div class="hormone-label">What it does</div>
+              <p class="hormone-text">{h.role}</p>
+            </div>
+            <div class="hormone-section">
+              <div class="hormone-label">What changes in perimenopause</div>
+              <p class="hormone-text">{h.what}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Indian context -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="section-label">Indian context</span>
+          <h2 class="section-title">Perimenopause in India</h2>
+        </div>
+        <div>
+          <p class="body-text">
+            Multiple studies have confirmed that Indian women, on average, reach menopause around age 46–47 — four to five years earlier than the global average of 51–52. This means perimenopause in India typically begins in the early-to-mid 40s — and for women with a family history of early menopause, symptoms may begin in their late 30s.
+          </p>
+          <p class="body-text">
+            Factors that may contribute to earlier onset in India include nutritional factors (lower BMI, lower fat reserves), socioeconomic stress, reproductive history, and genetic predisposition. This earlier transition has implications for bone health and cardiovascular health that Indian women — and their doctors — should be aware of.
+          </p>
+          <p class="body-text">
+            Despite this, perimenopause remains deeply under-discussed in India. Cultural norms around discussing women's bodies, ageing, and the reproductive transition mean that many women go through this phase in silence — without information, without language for what they're experiencing, and often without effective medical support. A 2019 survey found that fewer than 30% of Indian women could identify even one perimenopausal symptom.
+          </p>
+          <div class="india-callout">
+            <span class="india-callout-icon">🇮🇳</span>
+            <div>
+              <strong>The gap is real — but closing</strong>
+              <p>Awareness is growing. More gynaecologists are pursuing specialist training in menopause. Platforms like The Second Spring exist to fill the information gap. You are not alone in navigating this — and you don't have to navigate it without support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- When to seek help -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Taking action</span>
+        <h2 class="section-title">When to seek help</h2>
+        <p class="section-sub">Not all symptoms require urgent medical attention — but some do. Here's a guide to when to act.</p>
+      </div>
+
+      <div class="help-grid">
+        <div class="help-card help-card--go">
+          <div class="help-card-header">
+            <span class="help-icon">🚨</span>
+            <h3>Seek prompt attention for:</h3>
+          </div>
+          <ul class="help-list">
+            <li>Bleeding after 12 months of no periods</li>
+            <li>Extremely heavy periods (soaking a pad in under an hour)</li>
+            <li>Bleeding between periods that recurs</li>
+            <li>Symptoms beginning before age 40</li>
+            <li>Chest pain accompanying palpitations</li>
+            <li>Severe depression, suicidal thoughts, or inability to function</li>
+          </ul>
+        </div>
+
+        <div class="help-card help-card--consider">
+          <div class="help-card-header">
+            <span class="help-icon">🩺</span>
+            <h3>Book an appointment when:</h3>
+          </div>
+          <ul class="help-list">
+            <li>Symptoms are significantly affecting your quality of life</li>
+            <li>You have questions about HRT or treatment options</li>
+            <li>You want to check your bone density, thyroid, or vitamin levels</li>
+            <li>You've been dismissed before and want to try again</li>
+            <li>You'd like to discuss contraception during perimenopause</li>
+            <li>You simply want to understand what's happening</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm bg-green">
+    <div class="container">
+      <div class="cta-double">
+        <div class="cta-double-inner">
+          <h2 class="section-title">Want to learn more?</h2>
+          <p class="section-sub">Explore our guide or start a private conversation — no judgement, no waiting.</p>
+          <div class="cta-double-btns">
+            <a href="/guide" class="btn btn-outline">Read the guide →</a>
+            <a href="/chat" class="btn btn-primary btn-lg">Chat with our companion →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .timeline {
+    display: flex;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+    padding-bottom: .5rem;
+  }
+
+  .timeline-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 180px;
+  }
+
+  .timeline-connector {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    border: 2.5px solid #fff;
+    box-shadow: 0 0 0 2px var(--border);
+    z-index: 1;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+  }
+
+  .timeline-item--current .timeline-dot {
+    background: var(--green);
+    box-shadow: 0 0 0 2px var(--green);
+    width: 22px;
+    height: 22px;
+  }
+
+  .timeline-line {
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    margin-left: -8px;
+  }
+
+  .timeline-content {
+    text-align: center;
+    padding: 0 .75rem;
+  }
+
+  .timeline-age {
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--text-muted);
+    margin-bottom: .35rem;
+  }
+
+  .timeline-stage {
+    font-size: .97rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: .5rem;
+  }
+
+  .timeline-item--current .timeline-stage { color: var(--green-dark); }
+
+  .timeline-desc {
+    font-size: .82rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .timeline-badge {
+    display: inline-block;
+    margin-top: .65rem;
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    background: var(--green);
+    color: #fff;
+    padding: .2rem .65rem;
+    border-radius: 100px;
+  }
+
+  .hormones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hormone-card {
+    background: var(--cream-mid);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+
+  .hormone-top {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1.5px solid var(--border-light);
+  }
+
+  .hormone-emoji { font-size: 1.75rem; }
+  .hormone-name { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+
+  .hormone-section { margin-bottom: 1rem; }
+
+  .hormone-label {
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--green);
+    margin-bottom: .4rem;
+  }
+
+  .hormone-text { font-size: .88rem; color: var(--text-secondary); line-height: 1.7; }
+
+  .india-callout {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--green-light);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    border-left: 3px solid var(--green);
+  }
+
+  .india-callout-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .india-callout strong { display: block; font-size: .93rem; font-weight: 700; color: var(--text); margin-bottom: .35rem; }
+  .india-callout p { font-size: .88rem; color: var(--text-secondary); line-height: 1.65; }
+
+  .help-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 900px;
+  }
+
+  .help-card {
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    border: 1.5px solid;
+  }
+
+  .help-card--go {
+    background: #FEF2F2;
+    border-color: #FCA5A5;
+  }
+
+  .help-card--consider {
+    background: var(--green-light);
+    border-color: var(--border);
+  }
+
+  .help-card-header {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .help-icon { font-size: 1.5rem; }
+
+  .help-card h3 {
+    font-size: .97rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .help-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+
+  .help-list li {
+    font-size: .9rem;
+    color: var(--text-secondary);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .help-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .help-card--go .help-list li::before { color: #DC2626; }
+
+  .cta-double-inner {
+    max-width: 600px;
+  }
+
+  .cta-double-btns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hormones-grid { grid-template-columns: 1fr; }
+    .help-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; }
+    .timeline-item { flex-direction: row; align-items: flex-start; min-width: auto; }
+    .timeline-connector { flex-direction: column; width: auto; margin-bottom: 0; margin-right: 1rem; }
+    .timeline-dot { margin-left: 0; transform: none; }
+    .timeline-line { flex: 1; width: 2px; height: auto; margin-left: 0; margin-top: -8px; }
+    .timeline-content { text-align: left; padding: 0; }
+  }
+</style>

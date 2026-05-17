@@ -1,0 +1,439 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'The Second Spring – Perimenopause Support for Indian Women',
+  description = 'India\'s first private companion for women navigating perimenopause. Ask anything, understand what\'s happening, and find real support.',
+} = Astro.props;
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+
+    <nav class="navbar" id="navbar">
+      <div class="container navbar-inner">
+
+        <a href="/" class="brand">
+          <span class="brand-the">The</span>
+          <span class="brand-second">Second</span>
+          <span class="brand-spring">Spring</span>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/" class:list={[{ active: isActive('/') && path === '/' }]}>Home</a></li>
+          <li><a href="/how-it-works" class:list={[{ active: isActive('/how-it-works') }]}>How It Works</a></li>
+
+          <!-- Guide dropdown -->
+          <li class="has-dropdown">
+            <a href="/guide" class:list={[{ active: isActive('/guide') }]}>
+              Guide
+              <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-inner">
+                <a href="/guide" class="dropdown-item">
+                  <span class="di-icon">📖</span>
+                  <span>
+                    <span class="di-title">Overview</span>
+                    <span class="di-desc">Start your learning journey</span>
+                  </span>
+                </a>
+                <a href="/guide/symptoms" class="dropdown-item">
+                  <span class="di-icon">🔍</span>
+                  <span>
+                    <span class="di-title">Symptom Library</span>
+                    <span class="di-desc">Every symptom, clearly explained</span>
+                  </span>
+                </a>
+                <a href="/guide/topics" class="dropdown-item">
+                  <span class="di-icon">📚</span>
+                  <span>
+                    <span class="di-title">Topic Guides</span>
+                    <span class="di-desc">Deep dives by subject</span>
+                  </span>
+                </a>
+                <a href="/guide/faqs" class="dropdown-item">
+                  <span class="di-icon">💬</span>
+                  <span>
+                    <span class="di-title">FAQs</span>
+                    <span class="di-desc">Common questions answered</span>
+                  </span>
+                </a>
+                <a href="/guide/talk-to-doctor" class="dropdown-item">
+                  <span class="di-icon">🩺</span>
+                  <span>
+                    <span class="di-title">Talk to Your Doctor</span>
+                    <span class="di-desc">What to say and how to prepare</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li><a href="/perimenopause" class:list={[{ active: isActive('/perimenopause') }]}>Perimenopause</a></li>
+          <li><a href="/for-employers" class:list={[{ active: isActive('/for-employers') }]}>For Employers</a></li>
+          <li><a href="/team" class:list={[{ active: isActive('/team') }]}>Team</a></li>
+          <li>
+            <a href="/events" class:list={[{ active: isActive('/events') }]}>
+              Events <span class="nav-badge">New</span>
+            </a>
+          </li>
+          <li><a href="/contact" class:list={[{ active: isActive('/contact') }]}>Contact</a></li>
+        </ul>
+
+        <div class="navbar-right">
+          <a href="/chat" class="btn btn-primary navbar-cta">Start Chatting</a>
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+            <svg id="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <div class="footer-brand">
+              <span style="color:#7FB89A;">The</span>
+              <span style="color:#fff;"> Second </span>
+              <span style="color:#D4845A;">Spring</span>
+            </div>
+            <p class="footer-tagline">
+              India's first private companion for women navigating perimenopause.
+              Information and support — not medical advice.
+            </p>
+            <div class="footer-disclaimer">
+              This service provides general health information only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your GP or a qualified healthcare professional.
+            </div>
+          </div>
+
+          <div>
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/how-it-works">How It Works</a></li>
+              <li><a href="/perimenopause">Perimenopause</a></li>
+              <li><a href="/for-employers">For Employers</a></li>
+              <li><a href="/team">Team</a></li>
+              <li><a href="/events">Events</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Guide</h4>
+            <ul>
+              <li><a href="/guide">Overview</a></li>
+              <li><a href="/guide/symptoms">Symptom Library</a></li>
+              <li><a href="/guide/topics">Topic Guides</a></li>
+              <li><a href="/guide/faqs">FAQs</a></li>
+              <li><a href="/guide/talk-to-doctor">Talk to Your Doctor</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Talk to Us</h4>
+            <ul>
+              <li><a href="/chat">Chat with Companion</a></li>
+              <li><a href="mailto:hello@thesecondspring.com">hello@thesecondspring.com</a></li>
+            </ul>
+            <h4 style="margin-top:1.5rem;">Legal</h4>
+            <ul>
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms &amp; Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} The Second Spring. General health information only — not medical advice.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle   = document.getElementById('mobile-toggle')!;
+      const links    = document.getElementById('nav-links')!;
+      const iconMenu  = document.getElementById('icon-menu')!;
+      const iconClose = document.getElementById('icon-close')!;
+
+      toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        iconMenu.style.display  = open ? 'none'  : 'block';
+        iconClose.style.display = open ? 'block' : 'none';
+      });
+
+      // close on outside click
+      document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target as Node) && !links.contains(e.target as Node)) {
+          links.classList.remove('open');
+          iconMenu.style.display  = 'block';
+          iconClose.style.display = 'none';
+        }
+      });
+    </script>
+
+  </body>
+</html>
+
+<style is:global>
+  /* ── Design tokens ── */
+  :root {
+    --green:          #3D7A5F;
+    --green-dark:     #2A5C45;
+    --green-mid:      #4E9070;
+    --green-light:    #EEF7F2;
+    --peach:          #D4845A;
+    --peach-dark:     #B8693F;
+    --peach-light:    #FDF2EC;
+    --cream:          #FAFDF8;
+    --cream-mid:      #F2F9F4;
+    --border:         #C8E0D2;
+    --border-light:   #E0F0E8;
+    --text:           #1A2E22;
+    --text-secondary: #3A5444;
+    --text-muted:     #6B8A76;
+    --radius-sm:      8px;
+    --radius:         14px;
+    --radius-lg:      22px;
+    --nav-h:          68px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--green); text-decoration: none; transition: color .2s; }
+
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .72rem 1.65rem; border-radius: var(--radius-sm);
+    font-weight: 600; font-size: .93rem; transition: all .2s;
+    cursor: pointer; border: 2px solid transparent;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn-primary { background: var(--green); color: #fff; border-color: var(--green); }
+  .btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); color: #fff; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(61,122,95,.28); }
+  .btn-peach   { background: var(--peach); color: #fff; border-color: var(--peach); }
+  .btn-peach:hover { background: var(--peach-dark); border-color: var(--peach-dark); color: #fff; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--green); border-color: var(--green); }
+  .btn-outline:hover { background: var(--green-light); }
+  .btn-outline-white { background: transparent; color: #fff; border-color: rgba(255,255,255,.55); }
+  .btn-outline-white:hover { background: rgba(255,255,255,.12); color: #fff; }
+  .btn-lg { padding: .95rem 2.25rem; font-size: 1.05rem; }
+
+  /* ── Navbar ── */
+  .navbar {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(250,253,248,.97);
+    border-bottom: 1.5px solid var(--border);
+    backdrop-filter: blur(14px);
+  }
+  .navbar-inner {
+    display: flex; align-items: center; height: var(--nav-h); gap: 0;
+  }
+  .brand {
+    display: flex; align-items: baseline; gap: .22rem;
+    text-decoration: none; flex-shrink: 0; letter-spacing: -.01em;
+    margin-right: 1.5rem;
+  }
+  .brand-the    { font-size: .82rem; font-weight: 500; color: var(--text-muted); font-style: italic; }
+  .brand-second { font-size: 1.22rem; font-weight: 800; color: var(--green-dark); }
+  .brand-spring { font-size: 1.22rem; font-weight: 800; color: var(--peach); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: .05rem;
+    list-style: none; flex: 1;
+  }
+  .nav-links > li { position: relative; }
+  .nav-links > li > a {
+    display: flex; align-items: center; gap: .25rem;
+    color: var(--text-secondary); font-size: .86rem; font-weight: 500;
+    padding: .4rem .7rem; border-radius: 8px; transition: all .18s;
+    white-space: nowrap;
+  }
+  .nav-links > li > a:hover,
+  .nav-links > li > a.active {
+    background: var(--green-light); color: var(--green-dark);
+  }
+  .nav-badge {
+    font-size: .65rem; font-weight: 700; letter-spacing: .05em;
+    background: var(--peach); color: #fff;
+    padding: .15rem .45rem; border-radius: 100px;
+    text-transform: uppercase;
+  }
+  .chevron { transition: transform .2s; flex-shrink: 0; }
+
+  /* Dropdown */
+  .has-dropdown { position: relative; }
+  .dropdown {
+    position: absolute; top: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    min-width: 280px; background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 16px 40px rgba(26,46,34,.12);
+    opacity: 0; visibility: hidden;
+    transition: opacity .2s, transform .2s, visibility .2s;
+    z-index: 300; padding: .5rem;
+  }
+  .has-dropdown:hover .dropdown,
+  .has-dropdown:focus-within .dropdown {
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+  }
+  .has-dropdown:hover .chevron { transform: rotate(180deg); }
+  .dropdown-item {
+    display: flex; align-items: flex-start; gap: .85rem;
+    padding: .75rem .9rem; border-radius: var(--radius-sm);
+    text-decoration: none; color: var(--text); transition: background .15s;
+  }
+  .dropdown-item:hover { background: var(--green-light); }
+  .di-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .1rem; }
+  .di-title { display: block; font-weight: 600; font-size: .88rem; color: var(--text); }
+  .di-desc  { display: block; font-size: .78rem; color: var(--text-muted); margin-top: .1rem; }
+
+  .navbar-right { display: flex; align-items: center; gap: .75rem; margin-left: auto; }
+  .mobile-toggle {
+    display: none; background: none; border: none;
+    cursor: pointer; padding: .35rem; color: var(--green-dark);
+  }
+
+  /* ── Footer ── */
+  .footer { background: #1A2E22; color: #8BAF98; padding: 4rem 0 2rem; margin-top: 5rem; }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid #253D2E;
+  }
+  .footer-brand { font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: .75rem; }
+  .footer-tagline { font-size: .9rem; line-height: 1.65; margin-bottom: 1.25rem; }
+  .footer-disclaimer { font-size: .78rem; line-height: 1.65; color: #5A7A68; padding: 1rem; background: #253D2E; border-radius: 8px; border-left: 3px solid var(--green); }
+  .footer h4 { color: #C8E0D2; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
+  .footer ul { list-style: none; }
+  .footer ul li { margin-bottom: .4rem; }
+  .footer ul li a { color: #8BAF98; font-size: .87rem; transition: color .18s; }
+  .footer ul li a:hover { color: #C8E0D2; }
+  .footer-bottom { padding-top: 1.5rem; font-size: .82rem; color: #5A7A68; text-align: center; }
+
+  /* ── Shared page styles ── */
+  .page-hero {
+    background: linear-gradient(145deg, #1A3D2B 0%, #2A5C45 55%, #3D7A5F 100%);
+    color: #fff; padding: 5rem 0 4rem; position: relative; overflow: hidden;
+  }
+  .page-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 55% at 90% 30%, rgba(212,132,90,.22) 0%, transparent 65%);
+  }
+  .page-hero-inner { position: relative; z-index: 1; max-width: 680px; }
+  .page-eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: rgba(255,255,255,.75); background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2); padding: .35rem .9rem;
+    border-radius: 100px; margin-bottom: 1.25rem;
+  }
+  .page-hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900;
+    letter-spacing: -.03em; color: #fff; line-height: 1.15; margin-bottom: 1rem;
+  }
+  .page-hero p { font-size: 1.05rem; color: rgba(255,255,255,.8); line-height: 1.72; max-width: 560px; }
+
+  .section { padding: 5rem 0; }
+  .section-sm { padding: 3.5rem 0; }
+  .bg-white  { background: #fff; }
+  .bg-cream  { background: var(--cream-mid); }
+  .bg-green  { background: var(--green-light); }
+
+  .section-label {
+    display: inline-flex; font-size: .76rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--green); background: var(--green-light);
+    padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem;
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 900;
+    letter-spacing: -.025em; color: var(--text); line-height: 1.18; margin-bottom: .75rem;
+  }
+  .section-sub {
+    font-size: 1.02rem; color: var(--text-secondary);
+    max-width: 580px; line-height: 1.72;
+  }
+  .section-header { margin-bottom: 3rem; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+
+  .body-text { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; margin-bottom: 1.1rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .nav-links > li > a { padding: .4rem .55rem; font-size: .83rem; }
+  }
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; flex-direction: column; align-items: flex-start;
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      background: var(--cream); padding: .75rem 1.5rem 1.5rem;
+      border-bottom: 1.5px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,.08); z-index: 99;
+      max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links > li { width: 100%; }
+    .nav-links > li > a { width: 100%; padding: .65rem .75rem; }
+    .dropdown {
+      position: static; transform: none; opacity: 1; visibility: visible;
+      box-shadow: none; border: none; background: var(--green-light);
+      border-radius: var(--radius); margin: .25rem 0 .5rem 1rem;
+      padding: .25rem;
+    }
+    .has-dropdown:hover .dropdown { transform: none; }
+    .mobile-toggle { display: block; }
+    .navbar-cta { display: none; }
+    .navbar-inner { position: relative; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>

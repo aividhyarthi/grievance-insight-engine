@@ -1,0 +1,323 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const categories = [
+  {
+    title: 'Understanding perimenopause',
+    icon: '🌿',
+    faqs: [
+      {
+        q: 'What exactly is perimenopause, and how is it different from menopause?',
+        a: 'Perimenopause is the transitional phase in the years before your periods stop permanently. During this time, your ovaries gradually produce less oestrogen and progesterone, leading to hormonal fluctuations that cause a wide range of symptoms. Menopause is a specific moment in time — the point at which you have gone 12 consecutive months without a menstrual period. Postmenopause is everything after that. So perimenopause is the journey; menopause is a milestone along the way. The transition typically takes 4–10 years.',
+      },
+      {
+        q: 'At what age does perimenopause usually begin for Indian women?',
+        a: 'Research suggests that Indian women, on average, reach menopause around age 46–47 — approximately 4–5 years earlier than Western averages. This means perimenopause often begins in the early-to-mid 40s, and for some women, symptoms may be noticeable from the late 30s. Factors including genetics, nutrition, stress levels, and whether you have ever smoked can all influence the timing. If you\'re under 40 and experiencing symptoms, speak to your doctor — this is called premature ovarian insufficiency (POI) and deserves prompt attention.',
+      },
+      {
+        q: 'How will I know if I\'m in perimenopause? Is there a test?',
+        a: 'There is no single definitive test for perimenopause. Doctors may check FSH (follicle-stimulating hormone) levels, but these fluctuate significantly and a single reading is not reliable. Diagnosis is usually clinical — based on your age, symptoms, and menstrual pattern. If you are over 45 with typical symptoms and irregular periods, most guidelines suggest a clinical diagnosis without blood tests. If you are under 45, blood tests are more useful. In India, a gynaecologist experienced in menopause is your best resource — many hospitals in major cities now have dedicated menopause or women\'s wellness clinics.',
+      },
+      {
+        q: 'Why don\'t more people talk about perimenopause in India?',
+        a: 'Perimenopause has historically been considered a private, even shameful topic — associated with ageing, loss of femininity, and a kind of invisibility that many cultures impose on women past their reproductive years. In India, this is compounded by cultural norms around not discussing bodily changes openly, limited awareness among both women and many doctors, and a lack of Indian-specific research and resources. The result is that millions of Indian women go through this transition without information, support, or the language to describe what they\'re experiencing. This is precisely why spaces like The Second Spring exist.',
+      },
+      {
+        q: 'Can perimenopause be confused with other conditions?',
+        a: 'Yes, and this is a significant problem. Many perimenopausal symptoms overlap with thyroid disorders (particularly hypothyroidism), anaemia, depression, anxiety disorders, and even conditions like PCOS. This is why some women spend years being misdiagnosed or told their symptoms are "just stress." A thorough GP or gynaecologist assessment should include ruling out thyroid issues, a blood count, and vitamin D and B12 levels — deficiencies that are extremely common in Indian women and can significantly worsen fatigue, mood, and cognitive symptoms.',
+      },
+    ],
+  },
+  {
+    title: 'Symptoms & what to expect',
+    icon: '🔍',
+    faqs: [
+      {
+        q: 'Are hot flashes and night sweats really that common?',
+        a: 'Yes — vasomotor symptoms (hot flashes and night sweats) affect around 75–80% of women during perimenopause. They occur because the hypothalamus — your brain\'s internal thermostat — becomes hypersensitive to small changes in core body temperature as oestrogen falls. The result is a sudden, dramatic "cooling response": intense heat, flushing, and sweating, followed often by a chill. For many women, these episodes are mild and manageable. For others, they are frequent, drenching, and severely disruptive to sleep and daily life. If night sweats are affecting your sleep regularly, this is worth treating — speak to your doctor.',
+      },
+      {
+        q: 'I\'m only 38. Can I really be in perimenopause?',
+        a: 'Yes, it is possible — though if symptoms begin before 40, your doctor should investigate more carefully. Perimenopause in your late 30s is less common but does occur, and for Indian women with a family history of early menopause, it may be more likely. What\'s more important to rule out is premature ovarian insufficiency (POI), which occurs when the ovaries stop functioning normally before age 40. POI has different implications for bone health, cardiovascular health, and fertility, and warrants specific management. Please don\'t dismiss your symptoms because you feel "too young" — take them to a doctor who will listen.',
+      },
+      {
+        q: 'How long will perimenopause last?',
+        a: 'The average length of perimenopause is 4–8 years, though it can be shorter (1–2 years) or longer (up to 10 years). It ends when you reach menopause — 12 consecutive months without a period. After that, many symptoms (especially hot flashes) gradually reduce, though some women continue to experience them for years postmenopause. Vaginal and urinary symptoms often persist and may worsen without treatment after menopause. There is no way to predict exactly how long your transition will last, but tracking your symptoms and cycle gives you useful information over time.',
+      },
+      {
+        q: 'My periods have become very heavy. Is this normal?',
+        a: 'Heavy periods are extremely common during perimenopause, particularly in the earlier stages when oestrogen levels can surge unpredictably. This can cause the uterine lining to build up more than usual, resulting in heavier, longer, or clottier periods. However, heavy bleeding should not simply be dismissed as "normal perimenopause." Soaking through a pad or tampon in under an hour, passing clots larger than a 50-paise coin, or bleeding that significantly affects your quality of life all warrant a medical review. Your doctor should examine you, check for fibroids (which become more common in perimenopause), polyps, or other causes, and discuss treatment options including hormonal and non-hormonal approaches.',
+      },
+      {
+        q: 'I\'m experiencing anxiety I\'ve never had before. Is this perimenopause?',
+        a: 'It absolutely can be. New or worsening anxiety is one of the most underrecognised symptoms of perimenopause. Oestrogen and progesterone both modulate the activity of GABA — the brain\'s primary calming neurotransmitter — as well as serotonin and dopamine. As these hormones fluctuate and fall, many women experience heightened anxiety, a sense of dread, low mood, and even panic attacks for the first time in their lives. This can be particularly distressing because it feels psychological, not hormonal — and many women (and some doctors) may reach for antidepressants or anxiety medication when the underlying hormonal cause is being missed. If anxiety or low mood is new for you and is happening alongside other perimenopausal symptoms, mention this to your gynaecologist.',
+      },
+    ],
+  },
+  {
+    title: 'Getting help & next steps',
+    icon: '🩺',
+    faqs: [
+      {
+        q: 'Should I see a gynaecologist or my GP first?',
+        a: 'Either can be a good starting point, but your experience will depend greatly on the individual doctor. GPs (general practitioners) in India vary widely in their awareness of perimenopause — some are excellent; others may dismiss symptoms or have limited knowledge of current evidence-based management. A gynaecologist is often the better first port of call for hormonal symptoms. In large cities, there are also dedicated menopause clinics and specialists — these are worth seeking out if your symptoms are significantly affecting your quality of life. When you go, be specific about your symptoms, their frequency, and how they\'re affecting you. Bring a list if it helps. See our guide on <a href="/guide/talk-to-doctor">talking to your doctor</a>.',
+      },
+      {
+        q: 'What is HRT and should I consider it?',
+        a: 'HRT — Hormone Replacement Therapy, now often called MHT (Menopausal Hormone Therapy) — involves taking hormones (usually oestrogen, with progesterone if you have a uterus) to replace those your ovaries are no longer producing. Modern HRT is very different from what was studied in the early 2000s and unfairly demonised. For most women under 60 who start HRT within 10 years of menopause, the benefits outweigh the risks. HRT can dramatically reduce hot flashes, improve sleep, stabilise mood, protect bone density, and improve vaginal health. The risk picture depends on the type of HRT, your age, and your health history — which is why discussing it with a knowledgeable doctor is essential. Don\'t let fear (or a dismissive doctor) prevent you from exploring an option that might genuinely improve your quality of life.',
+      },
+      {
+        q: 'Are there effective alternatives to HRT?',
+        a: 'Yes, and the range is broader than many people realise. For hot flashes, non-hormonal options include certain antidepressants (SSRIs/SNRIs used at low doses for this purpose), gabapentin, and newer options like fezolinetant, which specifically targets the brain\'s heat-regulation pathway. For mood and anxiety, CBT (cognitive behavioural therapy) has strong evidence, as does regular aerobic exercise. For vaginal dryness, topical vaginal oestrogen is safe for almost everyone (including most women with a history of breast cancer) and is not the same as systemic HRT. Lifestyle modifications — particularly exercise, dietary improvements, stress reduction, and sleep hygiene — genuinely make a difference. Ayurvedic and herbal options have varying quality of evidence; discuss any supplements with your doctor.',
+      },
+      {
+        q: 'My doctor dismissed my concerns. What should I do?',
+        a: 'First: your experience is valid, and dismissal is unfortunately common. You have options. You can ask for a second opinion — this is your right. You can specifically request a referral to a gynaecologist or a menopause specialist. You can bring written information to your appointment (evidence-based summaries from organisations like the British Menopause Society or the Menopause Society are freely available online). You can bring a trusted person with you for support. You can use language like "I would like to formally discuss my symptoms and treatment options" rather than asking for reassurance. Most importantly, don\'t let dismissal be the end of your journey — keep advocating for yourself. Our <a href="/guide/talk-to-doctor">Talk to Your Doctor</a> guide has specific scripts and strategies.',
+      },
+      {
+        q: 'Does perimenopause affect bone health? Should I be worried?',
+        a: 'Yes — bone health is one of the most important longer-term considerations during perimenopause, and it\'s often overlooked. Oestrogen plays a critical role in maintaining bone density. As oestrogen falls during perimenopause and menopause, bone loss accelerates — most significantly in the first 5–10 years after menopause. Indian women may be at additional risk due to widespread vitamin D deficiency, lower average calcium intake, and potentially lower peak bone density. There is no need to panic, but there is a need to act: get your vitamin D and calcium intake assessed, incorporate weight-bearing exercise and strength training, and speak to your doctor about a DEXA scan (bone density scan) if you have risk factors. HRT also has well-established bone-protective effects.',
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Frequently Asked Questions – The Second Spring"
+  description="Honest, detailed answers to the questions Indian women ask most about perimenopause — from symptoms and timing to treatment and doctor conversations."
+>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-eyebrow">💬 Guide</div>
+        <h1>Frequently Asked Questions</h1>
+        <p>Honest, detailed answers to the questions Indian women ask most about perimenopause — without judgment, without jargon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ categories -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="faq-layout">
+        <!-- Sticky sidebar nav -->
+        <nav class="faq-nav">
+          {categories.map((cat, i) => (
+            <a href={`#cat-${i}`} class="faq-nav-item">
+              <span>{cat.icon}</span>
+              <span>{cat.title}</span>
+            </a>
+          ))}
+          <a href="/chat" class="faq-nav-cta">Ask a different question →</a>
+        </nav>
+
+        <!-- FAQ content -->
+        <div class="faq-content">
+          {categories.map((cat, ci) => (
+            <div class="faq-category" id={`cat-${ci}`}>
+              <div class="faq-category-header">
+                <span class="faq-category-icon">{cat.icon}</span>
+                <h2 class="faq-category-title">{cat.title}</h2>
+              </div>
+
+              <div class="faq-list">
+                {cat.faqs.map((faq, fi) => (
+                  <details class="faq-item">
+                    <summary class="faq-question">
+                      <span class="faq-q-text">{faq.q}</span>
+                      <span class="faq-chevron" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                      </span>
+                    </summary>
+                    <div class="faq-answer" set:html={faq.a} />
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm bg-green">
+    <div class="container">
+      <div class="cta-block">
+        <div>
+          <h2 class="section-title">Your question not here?</h2>
+          <p class="section-sub">Ask our private companion anything — no question is too small or too personal.</p>
+        </div>
+        <a href="/chat" class="btn btn-primary btn-lg">Ask our companion →</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .faq-nav {
+    position: sticky;
+    top: calc(var(--nav-h) + 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .faq-nav-item {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .65rem .85rem;
+    border-radius: var(--radius-sm);
+    font-size: .88rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all .18s;
+    border: 1.5px solid transparent;
+  }
+
+  .faq-nav-item:hover {
+    background: var(--green-light);
+    border-color: var(--border);
+    color: var(--green-dark);
+  }
+
+  .faq-nav-cta {
+    margin-top: .75rem;
+    padding: .65rem .85rem;
+    border-radius: var(--radius-sm);
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--green);
+    text-decoration: none;
+    border: 1.5px solid var(--green);
+    text-align: center;
+    transition: all .18s;
+  }
+
+  .faq-nav-cta:hover {
+    background: var(--green);
+    color: #fff;
+  }
+
+  .faq-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .faq-category-header {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-category-icon { font-size: 1.75rem; }
+
+  .faq-category-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -.02em;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  .faq-item {
+    background: #fff;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+
+  .faq-item[open] {
+    border-color: var(--green);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: .97rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+    transition: background .18s;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+
+  .faq-question:hover {
+    background: var(--green-light);
+  }
+
+  .faq-item[open] .faq-question {
+    background: var(--green-light);
+    color: var(--green-dark);
+    border-bottom: 1.5px solid var(--border);
+  }
+
+  .faq-q-text { flex: 1; }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--green);
+    transition: transform .22s;
+    display: flex;
+    align-items: center;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 1.1rem 1.25rem 1.25rem;
+    font-size: .92rem;
+    color: var(--text-secondary);
+    line-height: 1.78;
+  }
+
+  .faq-answer a {
+    color: var(--green);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .cta-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .faq-layout { grid-template-columns: 1fr; }
+    .faq-nav { position: static; flex-direction: row; flex-wrap: wrap; }
+    .faq-nav-item { font-size: .82rem; }
+    .cta-block { flex-direction: column; }
+  }
+</style>

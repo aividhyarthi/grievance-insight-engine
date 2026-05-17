@@ -1,0 +1,366 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Our Team – The Second Spring"
+  description="Meet the people behind The Second Spring — India's first private perimenopause companion for Indian women."
+>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-eyebrow">👥 Our team</div>
+        <h1>The people behind The Second Spring</h1>
+        <p>Built with care, purpose, and a belief that every Indian woman deserves access to information about her own body.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Founding team</span>
+        <h2 class="section-title">Who we are</h2>
+      </div>
+
+      <div class="founder-card">
+        <div class="founder-photo-wrap">
+          <img
+            src="https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main/Rudra%20Kasturi%20Photo.jpg"
+            alt="Rudra Kasturi, Founder & CEO of The Second Spring"
+            class="founder-photo"
+          />
+        </div>
+        <div class="founder-info">
+          <div class="founder-meta">
+            <h2 class="founder-name">Rudra Kasturi</h2>
+            <div class="founder-title">Founder &amp; CEO</div>
+          </div>
+
+          <p class="founder-bio">
+            Rudra is a technology leader with deep experience across product, engineering, and AI strategy. He has spent his career building products that solve real human problems — and The Second Spring represents his most personal mission yet: using technology to make healthcare more human, more accessible, and more empathetic.
+          </p>
+          <p class="founder-bio">
+            The Second Spring was born from witnessing women in his life navigate perimenopause without information, language, or support — and from a conviction that this was a solvable problem. The combination of AI capability, genuine empathy, and India-specific context creates something that hasn't existed before.
+          </p>
+          <p class="founder-bio">
+            Rudra believes that the best products are built when deep technical capability meets a genuine understanding of the human experience. The Second Spring is his attempt to do exactly that — for millions of Indian women who deserve better.
+          </p>
+
+          <div class="founder-links">
+            <a href="https://linkedin.com/in/rudrakasturi" class="founder-link" target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://www.rudrakasturi.com" class="founder-link" target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              rudrakasturi.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission section -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="mission-layout">
+        <div>
+          <span class="section-label">Our mission</span>
+          <h2 class="section-title">Why we built this</h2>
+        </div>
+        <div>
+          <p class="body-text">
+            The Second Spring exists because perimenopause has been invisible for too long in India. Millions of women go through this transition without knowing what's happening to them, without language to describe their experience, and without finding healthcare providers who take them seriously.
+          </p>
+          <p class="body-text">
+            We believe that accurate, empathetic information — available privately, on your own terms — can be transformative. Not as a replacement for medical care, but as the bridge that gets you there. The bridge that helps you understand your body, find your voice, and walk into the doctor's office prepared.
+          </p>
+          <div class="mission-quote">
+            <blockquote>
+              "Every Indian woman navigating perimenopause deserves to feel seen, informed, and supported. The Second Spring is our small contribution to making that a reality."
+            </blockquote>
+            <cite>— Rudra Kasturi</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">What we stand for</span>
+        <h2 class="section-title">Our values</h2>
+      </div>
+      <div class="values-grid">
+        {[
+          { icon: '🔒', title: 'Privacy first', desc: 'Your questions, your conversations, your body — entirely your own. We will never compromise on privacy.' },
+          { icon: '🌸', title: 'Indian women, always', desc: 'Everything we build is shaped by the realities of Indian women\'s lives, bodies, and healthcare contexts.' },
+          { icon: '💛', title: 'Empathy before everything', desc: 'We lead with warmth, validation, and care — because that\'s what this transition demands.' },
+          { icon: '🔬', title: 'Evidence, not fear', desc: 'We provide accurate, evidence-based information — cutting through the outdated fears and myths that have silenced women for decades.' },
+        ].map(v => (
+          <div class="value-card">
+            <div class="value-icon">{v.icon}</div>
+            <h3 class="value-title">{v.title}</h3>
+            <p class="value-desc">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Join us -->
+  <section class="section bg-green">
+    <div class="container">
+      <div class="join-layout">
+        <div>
+          <span class="section-label">Join us</span>
+          <h2 class="section-title">We're growing</h2>
+          <p class="body-text">
+            The Second Spring is in its early stages — and we're looking for people who care deeply about women's health, Indian healthcare, and building technology with empathy.
+          </p>
+          <p class="body-text">
+            Whether you're a clinician, a technologist, a communicator, or someone who simply believes in this mission — we'd love to hear from you.
+          </p>
+          <p class="body-text">
+            We're particularly interested in connecting with:
+          </p>
+          <ul class="join-list">
+            <li>Gynaecologists and menopause specialists interested in a clinical advisory role</li>
+            <li>Medical writers and health communicators</li>
+            <li>Engineers and product designers passionate about health technology</li>
+            <li>Investors and strategic partners aligned with our mission</li>
+          </ul>
+          <a href="mailto:hello@thesecondspring.com" class="btn btn-primary btn-lg" style="margin-top:1.5rem;">Reach out to us →</a>
+        </div>
+        <div class="join-image-block">
+          <div class="join-stat">
+            <div class="join-stat-num">30M+</div>
+            <div class="join-stat-label">Indian women entering perimenopause every year</div>
+          </div>
+          <div class="join-stat">
+            <div class="join-stat-num">1</div>
+            <div class="join-stat-label">Platform built specifically for them</div>
+          </div>
+          <div class="join-stat join-stat--highlight">
+            <div class="join-stat-num">You?</div>
+            <div class="join-stat-label">Join us in building something that matters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .founder-card {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3.5rem;
+    align-items: start;
+    background: var(--cream-mid);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+  }
+
+  .founder-photo-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: var(--green-light);
+  }
+
+  .founder-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .founder-meta {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1.5px solid var(--border-light);
+  }
+
+  .founder-name {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: -.03em;
+    margin-bottom: .35rem;
+  }
+
+  .founder-title {
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  .founder-bio {
+    font-size: .95rem;
+    color: var(--text-secondary);
+    line-height: 1.78;
+    margin-bottom: 1rem;
+  }
+
+  .founder-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .founder-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--green);
+    padding: .55rem 1.1rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all .18s;
+    background: #fff;
+  }
+
+  .founder-link:hover {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+  }
+
+  .mission-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .mission-quote {
+    margin-top: 1.75rem;
+    border-left: 3px solid var(--green);
+    padding-left: 1.25rem;
+  }
+
+  .mission-quote blockquote {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: .5rem;
+  }
+
+  .mission-quote cite {
+    font-size: .85rem;
+    color: var(--text-muted);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .value-card {
+    background: var(--green-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border: 1.5px solid var(--border);
+  }
+
+  .value-icon { font-size: 1.75rem; margin-bottom: .85rem; }
+  .value-title { font-size: .97rem; font-weight: 700; color: var(--text); margin-bottom: .45rem; }
+  .value-desc { font-size: .87rem; color: var(--text-secondary); line-height: 1.65; }
+
+  .join-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .join-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    margin-top: .5rem;
+  }
+
+  .join-list li {
+    font-size: .9rem;
+    color: var(--text-secondary);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .join-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-size: .8rem;
+  }
+
+  .join-image-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .join-stat {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border: 1.5px solid var(--border-light);
+  }
+
+  .join-stat--highlight {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .join-stat--highlight .join-stat-num { color: #fff; }
+  .join-stat--highlight .join-stat-label { color: rgba(255,255,255,.8); }
+
+  .join-stat-num {
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: var(--green-dark);
+    letter-spacing: -.04em;
+    margin-bottom: .35rem;
+  }
+
+  .join-stat-label {
+    font-size: .88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .founder-card { grid-template-columns: 1fr; }
+    .founder-photo-wrap { max-width: 280px; }
+    .mission-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .join-layout { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .values-grid { grid-template-columns: 1fr; }
+  }
+</style>
