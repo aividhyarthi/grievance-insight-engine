@@ -377,6 +377,12 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse 50% 55% at 90% 30%, rgba(212,132,90,.22) 0%, transparent 65%);
   }
+  .page-hero::after {
+    content: ''; position: absolute; right: 10%; top: 50%; transform: translateY(-50%);
+    width: 280px; height: 280px;
+    background: url('/favicon.svg') center/contain no-repeat;
+    opacity: .18; pointer-events: none;
+  }
   .page-hero-inner { position: relative; z-index: 1; max-width: 680px; }
   .page-eyebrow {
     display: inline-flex; align-items: center; gap: .5rem;
