@@ -162,7 +162,8 @@ const RESULTS = [
     max: 14,
     emoji: '🌱',
     level: 'Low likelihood right now',
-    color: '#3D7A5F', bg: '#EEF7F2',
+    topBg: 'linear-gradient(135deg,#EEF7F2 0%,#C8E6D4 100%)',
+    color: '#3D7A5F',
     title: 'Your symptoms are mild at this stage',
     body: "Your answers suggest a low likelihood of perimenopause right now — but that can change, and some symptoms may still relate to hormonal shifts, thyroid changes, or stress. Stay aware of any changes.",
     steps: [
@@ -176,7 +177,8 @@ const RESULTS = [
     max: 32,
     emoji: '🌸',
     level: 'Possible early perimenopause',
-    color: '#D4845A', bg: '#FDF2EC',
+    topBg: 'linear-gradient(135deg,#FDF2EC 0%,#F5D4BA 100%)',
+    color: '#C06030',
     title: 'You may be in early perimenopause',
     body: "Your symptoms align with early perimenopause — the transition that can start years before menopause. This is completely normal, but it can feel overwhelming without the right information. You deserve to understand exactly what's happening.",
     steps: [
@@ -190,7 +192,8 @@ const RESULTS = [
     max: Infinity,
     emoji: '🌺',
     level: 'Likely perimenopause or menopause transition',
-    color: '#9B2C2C', bg: '#FFF5F5',
+    topBg: 'linear-gradient(135deg,#FFF5F5 0%,#F9D0D0 100%)',
+    color: '#9B2C2C',
     title: 'Your symptoms strongly suggest perimenopause',
     body: "Based on your answers, you are likely in perimenopause or approaching menopause. The good news: this is well understood and very manageable with the right care. The women who do best are the ones who sought support early.",
     steps: [
@@ -254,19 +257,31 @@ function showResult() {
   const r = RESULTS.find(x => score < x.max)!;
   document.getElementById('result-content')!.innerHTML = `
     <div class="result-card">
-      <div class="r-badge" style="background:${r.bg};border-color:${r.color}30">
-        <span>${r.emoji}</span>
-        <span class="r-level" style="color:${r.color}">${r.level}</span>
+      <div class="result-top" style="background:${r.topBg}">
+        <div class="rt-emoji">${r.emoji}</div>
+        <div class="rt-tag" style="background:${r.color};color:#fff">${r.level}</div>
+        <h2 class="rt-title">${r.title}</h2>
       </div>
-      <h2 class="r-title">${r.title}</h2>
-      <p class="r-body">${r.body}</p>
-      <div class="r-steps">
-        <p class="r-steps-label">Your recommended next steps</p>
-        ${r.steps.map(s => `<div class="r-step"><span>${s.icon}</span><span>${s.text}</span></div>`).join('')}
+      <div class="result-body">
+        <p class="rb-lead">${r.body}</p>
+        <div class="rb-steps">
+          <p class="rbs-label">Your personalised next steps</p>
+          ${r.steps.map(s => `
+            <div class="rbs-item">
+              <span class="rbs-icon">${s.icon}</span>
+              <span>${s.text}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="rb-cta-wrap">
+          <a href="${r.href}" class="btn btn-peach btn-lg">${r.cta} →</a>
+          <p class="rb-private">🔒 Private · Confidential · Judgment-free</p>
+        </div>
+        <div class="rb-footer">
+          <button id="retake" class="rb-retake">← Retake the quiz</button>
+          <p class="rb-disc">This is not a medical diagnosis. Always consult a qualified doctor for personal medical advice.</p>
+        </div>
       </div>
-      <a href="${r.href}" class="btn btn-peach btn-lg">${r.cta} →</a>
-      <button class="r-retake" id="retake">Retake the quiz</button>
-      <p class="r-disclaimer">This is not a medical diagnosis. Please consult a qualified doctor for personal medical advice.</p>
     </div>
   `;
   document.getElementById('retake')!.addEventListener('click', () => {
@@ -327,22 +342,29 @@ function showResult() {
   .q-opt:not(.selected):disabled { opacity: .5; }
 
   /* RESULT */
-  #screen-result { flex-direction: column; }
-  .result-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2.75rem; display: flex; flex-direction: column; gap: 1.5rem; }
-  .r-badge { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1.1rem; border-radius: 100px; border: 1.5px solid; align-self: flex-start; }
-  .r-level { font-size: .84rem; font-weight: 700; }
-  .r-title { font-size: 1.55rem; font-weight: 900; letter-spacing: -.02em; color: var(--text); line-height: 1.25; }
-  .r-body { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; }
-  .r-steps { background: var(--cream-mid); border-radius: var(--radius); padding: 1.4rem 1.6rem; }
-  .r-steps-label { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--text-muted); margin-bottom: .85rem; }
-  .r-step { display: flex; align-items: flex-start; gap: .75rem; padding: .55rem 0; border-bottom: 1px solid var(--border); font-size: .92rem; color: var(--text-secondary); line-height: 1.5; }
-  .r-step:last-child { border-bottom: none; padding-bottom: 0; }
-  .r-retake { background: none; border: none; color: var(--text-muted); font-size: .84rem; cursor: pointer; text-decoration: underline; align-self: center; }
-  .r-retake:hover { color: var(--green); }
-  .r-disclaimer { font-size: .76rem; color: var(--text-muted); text-align: center; line-height: 1.6; border-top: 1px solid var(--border); padding-top: 1rem; margin-top: -.5rem; }
+  #screen-result { flex-direction: column; padding: 2rem 1.5rem; }
+  .result-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .result-top { padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+  .rt-emoji { font-size: 3rem; line-height: 1; }
+  .rt-tag { display: inline-flex; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 100px; }
+  .rt-title { font-size: 1.5rem; font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.25; }
+  .result-body { padding: 2rem 2.5rem 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .rb-lead { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; }
+  .rb-steps { background: var(--cream-mid); border-radius: var(--radius); padding: 1.4rem 1.6rem; }
+  .rbs-label { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: .9rem; }
+  .rbs-item { display: flex; align-items: flex-start; gap: .8rem; padding: .6rem 0; border-bottom: 1px solid var(--border); font-size: .92rem; color: var(--text-secondary); line-height: 1.5; }
+  .rbs-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .rbs-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
+  .rb-cta-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; }
+  .rb-private { font-size: .78rem; color: var(--text-muted); }
+  .rb-footer { display: flex; flex-direction: column; align-items: center; gap: .75rem; border-top: 1px solid var(--border); padding-top: 1.25rem; }
+  .rb-retake { background: none; border: none; color: var(--text-muted); font-size: .84rem; cursor: pointer; text-decoration: underline; padding: 0; }
+  .rb-retake:hover { color: var(--green); }
+  .rb-disc { font-size: .74rem; color: var(--text-muted); text-align: center; line-height: 1.6; }
 
   @media (max-width: 640px) {
-    .qq-card, .result-card { padding: 1.5rem; }
+    .qq-card { padding: 1.5rem; }
+    .result-top, .result-body { padding: 1.5rem; }
     .qi-stats { gap: 1rem; padding: 1rem 1.25rem; }
   }
 </style>

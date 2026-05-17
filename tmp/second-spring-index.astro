@@ -23,12 +23,18 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
             Hot flashes? Mood swings?<br/>
             <em>Suddenly gaining weight?</em>
           </h1>
-          <p class="hero-tagline">It might be perimenopause — and you are not going mad.</p>
-          <p class="hero-desc">
-            Millions of Indian women are navigating this transition right now — silently, alone,
-            and often misunderstood. The Second Spring is your private, judgment-free space to
-            finally understand what's happening and get real support.
-          </p>
+          <div class="hero-check">
+            <p class="hc-label">Are you feeling…</p>
+            <div class="hc-grid">
+              <span>✓ Sudden mood swings</span>
+              <span>✓ Anxiety or irritability</span>
+              <span>✓ Poor sleep or waking at 3am</span>
+              <span>✓ Brain fog or memory lapses</span>
+              <span>✓ Weight gain around the belly</span>
+              <span>✓ Irregular or changing periods</span>
+            </div>
+          </div>
+          <p class="hero-tagline">It may not be stress. It could be perimenopause.</p>
           <div class="hero-actions">
             <a href="/quiz" class="btn btn-peach btn-lg">Take 2-minute symptom check →</a>
             <a href="/chat" class="btn btn-outline-white">Start a private conversation</a>
@@ -183,6 +189,18 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
     </div>
   </section>
 
+  <!-- ── TRUST STRIP ── -->
+  <div class="trust-strip">
+    <div class="container">
+      <span class="ts-headline">Why women trust The Second Spring</span>
+      <div class="ts-items">
+        {['Science-backed information', 'Perimenopause-focused', '100% Private & Confidential', 'No judgment. Ever.', 'Designed for Indian women'].map(t => (
+          <span class="ts-item">✓ {t}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+
   <!-- ── HOW IT WORKS ── -->
   <section class="section how-section">
     <div class="container">
@@ -310,7 +328,11 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
   .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem; }
   .hero h1 { font-size: clamp(2.6rem, 5.5vw, 4rem); font-weight: 900; line-height: 1.12; letter-spacing: -.035em; color: #fff; margin-bottom: 1.75rem; }
   .hero h1 em { font-style: normal; color: #FBBF81; }
-  .hero-tagline { font-size: 1.25rem; font-style: italic; color: #FBBF81; font-weight: 500; margin-bottom: 1.25rem; letter-spacing: .01em; }
+  .hero-check { background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.18); border-radius: var(--radius); padding: 1.1rem 1.4rem; margin-bottom: 1.25rem; }
+  .hc-label { font-size: .78rem; color: rgba(255,255,255,.55); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .65rem; }
+  .hc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem .5rem; }
+  .hc-grid span { font-size: .88rem; color: rgba(255,255,255,.88); font-weight: 500; }
+  .hero-tagline { font-size: 1.15rem; font-style: italic; color: #FBBF81; font-weight: 500; margin-bottom: 1.5rem; letter-spacing: .01em; }
   .hero-desc { font-size: 1.1rem; color: rgba(255,255,255,.82); line-height: 1.78; max-width: 560px; margin-bottom: 2.5rem; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.25rem; }
   .hero-trust { display: flex; flex-wrap: wrap; gap: 1.75rem; font-size: .86rem; color: rgba(255,255,255,.6); }
@@ -387,6 +409,13 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
   .s4-label { font-weight: 700; font-size: .92rem; }
   .s4-desc  { font-size: .81rem; color: var(--text-secondary); line-height: 1.55; }
   .symptom-cta { text-align: center; }
+
+  /* TRUST STRIP */
+  .trust-strip { background: var(--green-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
+  .trust-strip .container { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+  .ts-headline { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green-dark); white-space: nowrap; flex-shrink: 0; }
+  .ts-items { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+  .ts-item { font-size: .84rem; color: var(--text-secondary); font-weight: 500; white-space: nowrap; }
 
   /* HOW IT WORKS */
   .how-section { background: linear-gradient(150deg, #1A3D2B 0%, #2A5C45 100%); padding: 5.5rem 0; }
