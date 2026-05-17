@@ -1,0 +1,435 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="The Second Spring – Perimenopause Support for Indian Women"
+  description="India's first private companion for women navigating perimenopause. Ask anything, understand what's happening, and find real support — in a language that feels like home."
+>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">🌸 India's perimenopause companion</div>
+        <h1>
+          You're not going mad.<br/>
+          <em>Your body is changing.</em>
+        </h1>
+        <p class="hero-desc">
+          Mood swings, sleepless nights, brain fog, hot flashes — and everyone around you says
+          “it's just stress” or “you're getting older.” You deserve more than that.
+          The Second Spring is a safe, private space to finally understand what's happening.
+        </p>
+        <div class="hero-actions">
+          <a href="/chat" class="btn btn-peach btn-lg">Start a private conversation →</a>
+          <a href="#about" class="btn btn-outline-white">Our story</a>
+        </div>
+        <div class="hero-trust">
+          <span>✦ Anonymous &amp; private</span>
+          <span>✦ No login required</span>
+          <span>✦ Indian women understood here</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE SILENCE IN INDIA ── -->
+  <section class="silence-section">
+    <div class="container">
+      <div class="silence-inner">
+        <div class="silence-quote-block">
+          <div class="quote-mark">“</div>
+          <blockquote>
+            Beta, it's just your age. Everyone goes through it. Don't make it a big deal.
+          </blockquote>
+          <cite>— What too many Indian women are told</cite>
+        </div>
+        <div class="silence-content">
+          <span class="label-dark">The reality in India</span>
+          <h2>We don't talk about this.<br/>And that has a cost.</h2>
+          <p>
+            In India, perimenopause is invisible. There's barely a word for it in most of our languages.
+            Women suffer through it — often for <strong>5 to 10 years</strong> — thinking they are depressed,
+            “difficult,” or simply falling apart.
+          </p>
+          <p>
+            Doctors dismiss it. Families don't understand it. Women feel too ashamed to even name it.
+          </p>
+          <p class="silence-call">
+            <strong>The Second Spring exists to break that silence.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHAT IS PERIMENOPAUSE ── -->
+  <section class="section white" id="what-is-this">
+    <div class="container">
+      <div class="what-inner">
+        <div class="what-text">
+          <span class="label">What is this?</span>
+          <h2 class="section-title">Perimenopause — the chapter no one prepared you for</h2>
+          <p class="body-text">
+            Perimenopause is the years leading up to menopause — when your hormones begin to shift.
+            It can start as early as your <strong>late 30s</strong> and last anywhere from 4 to 12 years.
+          </p>
+          <p class="body-text">
+            It's not menopause. It's the transition. And it's real, it's physical, and it affects
+            nearly every system in your body — your sleep, your mood, your memory, your periods,
+            your skin, your heart.
+          </p>
+          <p class="body-text">
+            This is not stress. This is not “ageing gracefully.” This is biology — and you deserve
+            to understand it.
+          </p>
+          <div class="what-facts">
+            {[
+              { num: '1 in 2', text: 'women experience significant perimenopause symptoms' },
+              { num: '47', text: 'average age perimenopause is in full effect — but it can start at 35' },
+              { num: '34+', text: 'recognised symptoms — many you\'d never connect to hormones' },
+            ].map(f => (
+              <div class="fact-row">
+                <div class="fact-num">{f.num}</div>
+                <div class="fact-text">{f.text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="what-visual">
+          <div class="timeline-card">
+            <div class="timeline-title">Your hormonal journey</div>
+            {[
+              { phase: 'Reproductive years', range: '20s – late 30s', active: false },
+              { phase: 'Perimenopause', range: 'Late 30s – early 50s', active: true, note: '← You might be here' },
+              { phase: 'Menopause', range: '12 months without a period', active: false },
+              { phase: 'Postmenopause', range: 'The rest of your life', active: false },
+            ].map(t => (
+              <div class={`timeline-item ${t.active ? 'active' : ''}`}>
+                <div class="timeline-phase">{t.phase}</div>
+                <div class="timeline-range">{t.range}</div>
+                {t.note && <div class="timeline-note">{t.note}</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SYMPTOMS ── -->
+  <section class="section cream" id="symptoms">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Common experiences</span>
+        <h2 class="section-title">Does any of this feel familiar?</h2>
+        <p class="section-subtitle">
+          These are not personality flaws. Not laziness. Not weakness. They are symptoms —
+          and they have a name.
+        </p>
+      </div>
+      <div class="symptom-grid">
+        {[
+          { emoji: '😤', label: 'Sudden anger & irritability',   desc: 'Snapping at people you love. Feeling unlike yourself. Wondering what is wrong with you.' },
+          { emoji: '🌙', label: 'Sleepless nights',              desc: 'Waking at 2am, 3am, 4am — mind racing, body restless, exhausted all day.' },
+          { emoji: '🔥', label: 'Hot flashes & night sweats',    desc: 'Waves of heat that soak through you — sometimes in the middle of meetings or meals.' },
+          { emoji: '🧠', label: 'Brain fog & forgetfulness',     desc: 'Forgetting words. Losing your train of thought. Feeling like your mind isn\'t your own.' },
+          { emoji: '📅', label: 'Irregular or heavy periods',    desc: 'Cycles changing, becoming unpredictable, heavier, lighter, or disappearing altogether.' },
+          { emoji: '💔', label: 'Anxiety & low mood',            desc: 'A heaviness that has no clear cause. Worrying more. Crying more. Feeling disconnected.' },
+          { emoji: '🤝', label: 'Relationship changes',          desc: 'Distance with your partner, feeling unseen, or struggling with intimacy in new ways.' },
+          { emoji: '⚡', label: 'Low energy & joint pain',       desc: 'Tired despite sleeping. Aching joints. Feeling decades older than you should.' },
+        ].map(s => (
+          <a href="/chat" class="symptom-card">
+            <span class="symptom-emoji">{s.emoji}</span>
+            <span class="symptom-label">{s.label}</span>
+            <span class="symptom-desc">{s.desc}</span>
+            <span class="symptom-cta">Talk about this →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHO IT'S FOR ── -->
+  <section class="section white" id="who">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Who is The Second Spring for?</span>
+        <h2 class="section-title">This space was made for you</h2>
+      </div>
+      <div class="who-grid">
+        {[
+          {
+            emoji: '🌸',
+            title: 'Indian women in their 30s, 40s, and 50s',
+            desc: 'You\'ve noticed something shifting — in your body, your mind, your emotions. You\'ve googled it at midnight. You\'ve wondered if you\'re alone in this. You\'re not.',
+            cta: 'Start talking →',
+          },
+          {
+            emoji: '💑',
+            title: 'Husbands and partners',
+            desc: 'The woman you love seems different. You want to support her but you don\'t know how. Understanding what she\'s going through is the most loving thing you can do right now.',
+            cta: 'Understand her experience →',
+          },
+          {
+            emoji: '👩‍👧',
+            title: 'Adult daughters',
+            desc: 'Your mother has changed — she\'s more emotional, forgetful, or withdrawn. You want to understand her and be there for her, but you don\'t know where to start.',
+            cta: 'Understand your mum →',
+          },
+        ].map(w => (
+          <div class="who-card">
+            <div class="who-emoji">{w.emoji}</div>
+            <h3 class="who-title">{w.title}</h3>
+            <p class="who-desc">{w.desc}</p>
+            <a href="/chat" class="who-link">{w.cta}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="section green-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header light">
+        <span class="label-light">Simple, private, warm</span>
+        <h2 class="section-title light-text">How The Second Spring works</h2>
+        <p class="section-subtitle light-sub">No forms. No login. No judgement. Just a conversation.</p>
+      </div>
+      <div class="steps-row">
+        {[
+          {
+            icon: '💬',
+            step: '01',
+            title: 'You share what\'s on your mind',
+            desc: 'Choose from common experiences, or just type what you\'re feeling. There\'s no wrong way to begin.',
+          },
+          {
+            icon: '🌿',
+            step: '02',
+            title: 'Your companion listens first',
+            desc: 'Before explaining anything, your companion makes you feel heard. Warm, real, no medical jargon.',
+          },
+          {
+            icon: '🌸',
+            step: '03',
+            title: 'You get clarity — and a next step',
+            desc: 'Understand what\'s happening, what to ask your doctor, or connect with a specialist when you\'re ready.',
+          },
+        ].map(s => (
+          <div class="step-card">
+            <div class="step-top">
+              <span class="step-number">{s.step}</span>
+              <span class="step-icon-text">{s.icon}</span>
+            </div>
+            <h3 class="step-title">{s.title}</h3>
+            <p class="step-desc">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="steps-cta">
+        <a href="/chat" class="btn btn-peach btn-lg">Open your companion →</a>
+        <p class="steps-note">Free · Private · No sign-up · Available right now</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT / FOUNDER ── -->
+  <section class="section white founder-section" id="about">
+    <div class="container">
+      <div class="founder-inner">
+        <div class="founder-photo-col">
+          <div class="founder-photo">
+            <div class="founder-photo-placeholder">
+              <span class="placeholder-icon">🌸</span>
+              <span class="placeholder-text">Add your photo here</span>
+            </div>
+          </div>
+          <div class="founder-badge">Founder</div>
+        </div>
+        <div class="founder-content">
+          <span class="label">Our story</span>
+          <h2 class="section-title">Why I built The Second Spring</h2>
+          <p class="founder-text">
+            I watched the women around me — my mother, my aunts, my friends — go through something
+            enormous, completely alone. Their bodies were changing. Their minds were changing.
+            And everyone around them called it stress, old age, or drama.
+          </p>
+          <p class="founder-text">
+            Nobody gave them a name for what was happening. Nobody gave them a safe space to ask questions.
+            Nobody told them they were normal.
+          </p>
+          <p class="founder-text">
+            The Second Spring was built because every Indian woman deserves what those women never got —
+            warmth, honesty, and the simple reassurance that she is not going mad.
+            She is changing. And that is not the end. It is a beginning.
+          </p>
+          <div class="founder-name">
+            <strong>— Add your name here</strong>
+            <span>Founder, The Second Spring</span>
+          </div>
+          <a href="mailto:hello@thesecondspring.com" class="btn btn-primary">Get in touch with us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-leaf">🌿</div>
+        <h2 class="cta-title">
+          You don’t have to figure this out alone.
+        </h2>
+        <p class="cta-desc">
+          Thousands of Indian women are going through exactly what you’re experiencing right now.
+          Start a private conversation — no login, no judgement, no cost.
+        </p>
+        <a href="/chat" class="btn btn-primary btn-lg">Begin your Second Spring →</a>
+        <p class="cta-fine">Information only — not medical advice. Always consult your doctor for personal health decisions.</p>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .hero {
+    background: linear-gradient(150deg, #0F2A1A 0%, #1A3D2B 40%, #2A5C45 100%);
+    color: #fff;
+    padding: 7rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+  .shape { position: absolute; border-radius: 50%; opacity: .12; }
+  .shape-1 { width: 600px; height: 600px; background: radial-gradient(circle, #D4845A, transparent); right: -150px; top: -150px; }
+  .shape-2 { width: 400px; height: 400px; background: radial-gradient(circle, #7FB89A, transparent); left: -100px; bottom: -100px; }
+  .shape-3 { width: 200px; height: 200px; background: radial-gradient(circle, #FBBF81, transparent); left: 55%; top: 60%; }
+  .hero-inner { position: relative; z-index: 1; max-width: 700px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem; }
+  .hero h1 { font-size: clamp(2.6rem, 5.5vw, 4rem); font-weight: 900; line-height: 1.12; letter-spacing: -.035em; color: #fff; margin-bottom: 1.75rem; }
+  .hero h1 em { font-style: normal; color: #FBBF81; }
+  .hero-desc { font-size: 1.12rem; color: rgba(255,255,255,.82); line-height: 1.78; max-width: 580px; margin-bottom: 2.5rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.25rem; }
+  .hero-trust { display: flex; flex-wrap: wrap; gap: 1.75rem; font-size: .86rem; color: rgba(255,255,255,.6); }
+
+  .silence-section { background: #0F2A1A; padding: 5rem 0; }
+  .silence-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
+  .silence-quote-block { position: relative; padding: 2.5rem; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); }
+  .quote-mark { font-size: 5rem; line-height: 1; color: var(--peach); font-family: Georgia, serif; margin-bottom: -.5rem; opacity: .7; }
+  blockquote { font-size: 1.35rem; font-style: italic; color: rgba(255,255,255,.88); line-height: 1.65; font-weight: 400; margin-bottom: 1rem; }
+  cite { font-size: .85rem; color: rgba(255,255,255,.45); font-style: normal; }
+  .silence-content { color: rgba(255,255,255,.85); }
+  .label-dark { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--peach); background: rgba(212,132,90,.15); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
+  .silence-content h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; letter-spacing: -.025em; color: #fff; line-height: 1.2; margin-bottom: 1.5rem; }
+  .silence-content p { font-size: .97rem; line-height: 1.78; color: rgba(255,255,255,.7); margin-bottom: 1rem; }
+  .silence-call { color: rgba(255,255,255,.9) !important; font-size: 1.05rem !important; padding-top: .5rem; }
+
+  .what-inner { display: grid; grid-template-columns: 1fr 340px; gap: 4rem; align-items: start; }
+  .body-text { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; margin-bottom: 1.1rem; }
+  .what-facts { margin-top: 2rem; display: flex; flex-direction: column; gap: 0; }
+  .fact-row { display: flex; align-items: center; gap: 1.25rem; padding: 1rem 0; border-bottom: 1px solid var(--border-light); }
+  .fact-row:last-child { border-bottom: none; }
+  .fact-num { font-size: 1.7rem; font-weight: 900; color: var(--peach); white-space: nowrap; min-width: 80px; letter-spacing: -.02em; }
+  .fact-text { font-size: .88rem; color: var(--text-secondary); line-height: 1.5; }
+  .timeline-card { background: var(--green-light); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; position: sticky; top: 86px; }
+  .timeline-title { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .timeline-item { padding: .9rem 1rem; border-radius: var(--radius-sm); margin-bottom: .5rem; border: 1.5px solid transparent; }
+  .timeline-item.active { background: var(--green); border-color: var(--green-dark); }
+  .timeline-phase { font-weight: 700; font-size: .92rem; color: var(--text); margin-bottom: .15rem; }
+  .timeline-item.active .timeline-phase { color: #fff; }
+  .timeline-range { font-size: .8rem; color: var(--text-muted); }
+  .timeline-item.active .timeline-range { color: rgba(255,255,255,.75); }
+  .timeline-note { font-size: .76rem; color: #FBBF81; font-weight: 600; margin-top: .25rem; }
+
+  .symptom-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.25rem; }
+  .symptom-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1.6rem; display: flex; flex-direction: column; gap: .35rem; text-decoration: none; color: var(--text); transition: all .2s; cursor: pointer; }
+  .symptom-card:hover { border-color: var(--peach); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(212,132,90,.14); }
+  .symptom-emoji { font-size: 1.9rem; margin-bottom: .2rem; }
+  .symptom-label { font-weight: 700; font-size: .95rem; }
+  .symptom-desc  { font-size: .83rem; color: var(--text-secondary); line-height: 1.55; flex: 1; }
+  .symptom-cta   { font-size: .8rem; color: var(--peach); font-weight: 600; margin-top: .25rem; opacity: 0; transition: opacity .2s; }
+  .symptom-card:hover .symptom-cta { opacity: 1; }
+
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .who-card { background: var(--cream-mid); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2.25rem; display: flex; flex-direction: column; gap: .5rem; }
+  .who-emoji { font-size: 2.5rem; margin-bottom: .5rem; }
+  .who-title { font-weight: 800; font-size: 1.05rem; color: var(--text); line-height: 1.3; }
+  .who-desc  { font-size: .88rem; color: var(--text-secondary); line-height: 1.7; flex: 1; margin-top: .25rem; }
+  .who-link  { display: inline-flex; align-items: center; font-size: .87rem; font-weight: 700; color: var(--green); margin-top: .75rem; transition: gap .2s; gap: .35rem; }
+  .who-link:hover { color: var(--green-dark); gap: .6rem; }
+
+  .green-section { background: linear-gradient(150deg, #1A3D2B 0%, #2A5C45 100%); padding: 5rem 0; }
+  .label-light { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.7); background: rgba(255,255,255,.1); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
+  .light-text { color: #fff !important; }
+  .light-sub  { color: rgba(255,255,255,.7) !important; }
+  .section-header.light { text-align: center; margin-bottom: 3rem; }
+  .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-bottom: 3rem; }
+  .step-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius-lg); padding: 2rem; color: #fff; }
+  .step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+  .step-number { font-size: .78rem; font-weight: 800; color: var(--peach); letter-spacing: .05em; }
+  .step-icon-text { font-size: 1.75rem; }
+  .step-title { font-weight: 700; font-size: 1rem; margin-bottom: .6rem; color: #fff; line-height: 1.35; }
+  .step-desc  { font-size: .87rem; color: rgba(255,255,255,.72); line-height: 1.7; }
+  .steps-cta  { text-align: center; display: flex; flex-direction: column; align-items: center; gap: .85rem; }
+  .steps-note { font-size: .82rem; color: rgba(255,255,255,.55); }
+
+  .founder-section { padding: 6rem 0; }
+  .founder-inner { display: grid; grid-template-columns: 300px 1fr; gap: 5rem; align-items: start; }
+  .founder-photo-col { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .founder-photo { width: 240px; height: 280px; border-radius: 24px; overflow: hidden; border: 3px solid var(--border); box-shadow: 0 12px 40px rgba(61,122,95,.15); }
+  .founder-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .founder-photo-placeholder { width: 100%; height: 100%; background: var(--green-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; color: var(--text-muted); }
+  .placeholder-icon { font-size: 2.5rem; }
+  .placeholder-text { font-size: .82rem; font-weight: 500; text-align: center; padding: 0 1rem; }
+  .founder-badge { background: var(--peach); color: #fff; font-size: .76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem 1rem; border-radius: 100px; }
+  .founder-text { font-size: 1.02rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.1rem; }
+  .founder-name { display: flex; flex-direction: column; gap: .2rem; margin: 1.75rem 0; padding-left: 1.25rem; border-left: 3px solid var(--peach); }
+  .founder-name strong { color: var(--text); font-size: 1rem; }
+  .founder-name span   { font-size: .85rem; color: var(--text-muted); }
+
+  .cta-section { background: var(--peach-light); border-top: 2px solid #F0C9B0; padding: 6rem 0; text-align: center; }
+  .cta-inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; max-width: 680px; margin: 0 auto; }
+  .cta-leaf  { font-size: 3rem; }
+  .cta-title { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -.03em; color: var(--text); line-height: 1.2; }
+  .cta-desc  { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.72; max-width: 540px; }
+  .cta-fine  { font-size: .78rem; color: var(--text-muted); margin-top: .5rem; }
+
+  .section { padding: 5.5rem 0; }
+  .white    { background: #fff; }
+  .cream    { background: var(--cream-mid); }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .label { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
+  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.18; margin-bottom: .75rem; }
+  .section-subtitle { font-size: 1.05rem; color: var(--text-secondary); max-width: 580px; margin: 0 auto; line-height: 1.72; }
+
+  @media (max-width: 960px) {
+    .silence-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .what-inner    { grid-template-columns: 1fr; }
+    .timeline-card { position: static; }
+    .who-grid      { grid-template-columns: 1fr; }
+    .steps-row     { grid-template-columns: 1fr; }
+    .founder-inner { grid-template-columns: 1fr; }
+    .founder-photo-col { flex-direction: row; gap: 1.5rem; align-items: center; }
+    .founder-photo     { width: 120px; height: 140px; flex-shrink: 0; }
+  }
+  @media (max-width: 640px) {
+    .hero    { padding: 4.5rem 0 4rem; }
+    .section { padding: 3.5rem 0; }
+    .symptom-grid { grid-template-columns: 1fr 1fr; }
+    .hero-trust   { gap: 1rem; }
+    .founder-photo-col { flex-direction: column; }
+  }
+  @media (max-width: 400px) {
+    .symptom-grid { grid-template-columns: 1fr; }
+  }
+</style>
