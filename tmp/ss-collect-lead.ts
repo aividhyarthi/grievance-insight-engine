@@ -11,31 +11,27 @@ export const POST: APIRoute = async ({ request }) => {
   const scriptUrl = process.env.APPS_SCRIPT_URL;
 
   if (!scriptUrl) {
-    console.warn('[collect-lead] APPS_SCRIPT_URL env var is not set — lead not saved');
+    console.warn('[collect-lead] APPS_SCRIPT_URL is not set');
     return new Response(JSON.stringify({ ok: false, error: 'no script url' }), { status: 200 });
   }
 
-  const payload = {
-    email: String(body.email || ''),
-    phone: String(body.phone || ''),
-    age:   String(body.age   || ''),
-    score: String(body.score ?? ''),
-    level: String(body.level || ''),
-  };
+  // Send as GET query params — reliable with GAS (POST body gets dropped on redirect)
+  const url = new URL(scriptUrl);
+  url.searchParams.set('email', String(body.email || ''));
+  url.searchParams.set('phone', String(body.phone || ''));
+  url.searchParams.set('age',   String(body.age   || ''));
+  url.searchParams.set('score', String(body.score ?? ''));
+  url.searchParams.set('level', String(body.level || ''));
 
-  console.log('[collect-lead] sending lead →', payload);
+  console.log('[collect-lead] sending →', url.search);
 
   try {
-    // GAS web apps return a 302; use redirect:'manual' so we don't lose the POST body
-    const res = await fetch(scriptUrl, {
-      method: 'POST',
-      redirect: 'manual',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    console.log('[collect-lead] GAS response status:', res.status);
+    const res = await fetch(url.toString(), { method: 'GET' });
+    console.log('[collect-lead] GAS status:', res.status);
+    const text = await res.text().catch(() => '');
+    console.log('[collect-lead] GAS response:', text);
   } catch (err) {
-    console.error('[collect-lead] fetch to GAS failed:', err);
+    console.error('[collect-lead] fetch failed:', err);
   }
 
   return new Response(JSON.stringify({ ok: true }), {
