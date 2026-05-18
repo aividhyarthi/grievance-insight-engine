@@ -14,29 +14,38 @@ function formatDate(d: Date) {
   return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-// Related posts (same tags, exclude current)
 const related = posts
   .filter(p => p.slug !== slug && p.data.tags.some(t => post.data.tags.includes(t)))
   .slice(0, 2);
 ---
 
-<Layout title={`${post.data.title} — The Second Spring`} description={post.data.description}>
+<Layout
+  title={`${post.data.title} — The Second Spring Journal`}
+  description={post.data.description}
+  image={post.data.image}
+>
 
-  <!-- Article hero -->
-  <section class="post-hero">
-    <div class="container">
+  <!-- Full-bleed feature image hero -->
+  <section class="post-hero" class:list={[{ 'post-hero-img': !!post.data.image }]}>
+    {post.data.image && (
+      <div class="post-hero-bg">
+        <img src={post.data.image} alt={post.data.imageAlt || post.data.title} />
+        <div class="post-hero-overlay"></div>
+      </div>
+    )}
+    <div class="container post-hero-content">
       <a href="/blog" class="back-link">← Back to Journal</a>
       <div class="post-tags">
-        {post.data.tags.slice(0,3).map(t => <span class="tag">{t}</span>)}
+        {post.data.tags.slice(0,3).map(t => <span class="ptag">{t}</span>)}
       </div>
       <h1 class="post-title">{post.data.title}</h1>
       <p class="post-desc">{post.data.description}</p>
-      <div class="post-meta">
-        <span>{post.data.author}</span>
-        <span>·</span>
-        <span>{formatDate(post.data.pubDate)}</span>
-        <span>·</span>
-        <span>{post.data.readTime}</span>
+      <div class="post-byline">
+        <div class="author-avatar">J</div>
+        <div class="author-info">
+          <span class="author-name">{post.data.author}</span>
+          <span class="author-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</span>
+        </div>
       </div>
     </div>
   </section>
@@ -51,36 +60,66 @@ const related = posts
 
         <!-- Sidebar -->
         <aside class="post-sidebar">
-          <div class="sidebar-card">
-            <p class="sidebar-eyebrow">Have questions?</p>
-            <h3 class="sidebar-title">Talk to our private companion</h3>
-            <p class="sidebar-body">Ask anything about what you're experiencing — anonymously, any time.</p>
-            <a href="/chat" class="btn btn-peach sidebar-btn">Start chatting →</a>
+          <div class="sidebar-card sidebar-chat">
+            <div class="sc-icon">💬</div>
+            <p class="sc-eyebrow">Have questions?</p>
+            <h3 class="sc-title">Talk to our private companion</h3>
+            <p class="sc-body">Ask anything about what you're experiencing — anonymously, any time.</p>
+            <a href="/chat" class="btn btn-peach sc-btn">Start chatting →</a>
           </div>
           <div class="sidebar-card sidebar-quiz">
-            <p class="sidebar-eyebrow">Not sure if it's perimenopause?</p>
-            <h3 class="sidebar-title">Take the free symptom check</h3>
-            <p class="sidebar-body">2 minutes. Instant personalised results.</p>
-            <a href="/quiz" class="btn btn-outline sidebar-btn">Check my symptoms →</a>
+            <div class="sc-icon">✅</div>
+            <p class="sc-eyebrow">Not sure if it's perimenopause?</p>
+            <h3 class="sc-title">Free symptom check</h3>
+            <p class="sc-body">2 minutes. Instant personalised results.</p>
+            <a href="/quiz" class="btn btn-outline sc-btn">Check my symptoms →</a>
+          </div>
+          <!-- Tags -->
+          <div class="sidebar-tags">
+            <p class="st-label">Topics in this journal</p>
+            <div class="st-list">
+              {post.data.tags.map(t => <span class="st-tag">{t}</span>)}
+            </div>
           </div>
         </aside>
+      </div>
+
+      <!-- Article footer -->
+      <div class="post-footer">
+        <div class="pf-author">
+          <div class="pfa-avatar">J</div>
+          <div>
+            <p class="pfa-name">{post.data.author}</p>
+            <p class="pfa-bio">The Second Spring Journal publishes evidence-based articles on perimenopause and women's midlife health, written for Indian women.</p>
+          </div>
+        </div>
+        <div class="pf-disclaimer">
+          <p>⚕️ <strong>Medical disclaimer:</strong> This article is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare professional for personal medical guidance.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Related posts -->
+  <!-- Related journals -->
   {related.length > 0 && (
     <section class="related-section">
       <div class="container">
-        <p class="related-label">Keep reading</p>
+        <p class="related-label">You might also like</p>
         <div class="related-grid">
           {related.map(p => (
             <a href={`/blog/${p.slug}`} class="related-card">
-              <div class="related-tags">
-                {p.data.tags.slice(0,1).map(t => <span class="tag">{t}</span>)}
+              {p.data.image && (
+                <div class="related-image">
+                  <img src={p.data.image} alt={p.data.imageAlt || p.data.title} loading="lazy" />
+                </div>
+              )}
+              <div class="related-body">
+                <div class="related-tags">
+                  {p.data.tags.slice(0,1).map(t => <span class="rtag">{t}</span>)}
+                </div>
+                <h3 class="related-title">{p.data.title}</h3>
+                <p class="related-meta">{p.data.author} · {p.data.readTime}</p>
               </div>
-              <h3 class="related-title">{p.data.title}</h3>
-              <p class="related-meta">{p.data.readTime}</p>
             </a>
           ))}
         </div>
@@ -91,60 +130,97 @@ const related = posts
 </Layout>
 
 <style>
-  .post-hero {
-    background: linear-gradient(150deg, #0F2A1A 0%, #1A3D2B 100%);
-    padding: 4rem 0 3.5rem;
-  }
-  .back-link { font-size: .85rem; color: rgba(255,255,255,.6); text-decoration: none; font-weight: 500; display: inline-flex; margin-bottom: 1.5rem; transition: color .15s; }
+  /* ── HERO ── */
+  .post-hero { background: linear-gradient(150deg, #0F2A1A 0%, #1A3D2B 100%); padding: 3.5rem 0 4rem; position: relative; overflow: hidden; }
+  .post-hero-img { padding: 5rem 0 4.5rem; min-height: 480px; display: flex; align-items: flex-end; }
+  .post-hero-bg { position: absolute; inset: 0; }
+  .post-hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  .post-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,20,12,.92) 0%, rgba(6,20,12,.65) 50%, rgba(6,20,12,.35) 100%); }
+  .post-hero-content { position: relative; z-index: 2; max-width: 760px; }
+  .back-link { font-size: .84rem; color: rgba(255,255,255,.55); text-decoration: none; font-weight: 500; display: inline-flex; margin-bottom: 1.75rem; transition: color .15s; }
   .back-link:hover { color: rgba(255,255,255,.9); }
   .post-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-  .tag { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--green-light); background: rgba(255,255,255,.12); padding: .2rem .65rem; border-radius: 100px; }
-  .post-title { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -.03em; color: #fff; line-height: 1.18; margin-bottom: 1rem; max-width: 760px; }
-  .post-desc  { font-size: 1.05rem; color: rgba(255,255,255,.72); line-height: 1.72; max-width: 640px; margin-bottom: 1.25rem; }
-  .post-meta  { font-size: .82rem; color: rgba(255,255,255,.5); display: flex; gap: .5rem; flex-wrap: wrap; }
+  .ptag { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: rgba(255,255,255,.9); background: rgba(255,255,255,.15); backdrop-filter: blur(6px); padding: .25rem .75rem; border-radius: 100px; border: 1px solid rgba(255,255,255,.2); }
+  .post-title { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 900; letter-spacing: -.03em; color: #fff; line-height: 1.18; margin-bottom: 1rem; }
+  .post-desc  { font-size: 1.05rem; color: rgba(255,255,255,.75); line-height: 1.72; margin-bottom: 1.5rem; }
+  .post-byline { display: flex; align-items: center; gap: .85rem; }
+  .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--peach); color: #fff; font-size: 1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid rgba(255,255,255,.3); }
+  .author-info { display: flex; flex-direction: column; gap: .15rem; }
+  .author-name { font-size: .88rem; font-weight: 700; color: #fff; }
+  .author-meta { font-size: .78rem; color: rgba(255,255,255,.55); }
 
+  /* ── ARTICLE LAYOUT ── */
   .post-body-section { padding: 4rem 0 5rem; background: #fff; }
-  .post-layout { display: grid; grid-template-columns: 1fr 280px; gap: 4rem; align-items: start; }
+  .post-layout { display: grid; grid-template-columns: 1fr 300px; gap: 4.5rem; align-items: start; }
 
-  /* Prose styles */
-  .prose { max-width: 680px; font-size: 1.02rem; line-height: 1.82; color: var(--text-secondary); }
-  .prose :global(h2) { font-size: 1.45rem; font-weight: 800; color: var(--text); letter-spacing: -.025em; line-height: 1.25; margin: 2.5rem 0 .85rem; }
-  .prose :global(h3) { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 1.75rem 0 .6rem; }
-  .prose :global(p)  { margin-bottom: 1.2rem; }
+  /* ── PROSE ── */
+  .prose { font-size: 1.04rem; line-height: 1.85; color: var(--text-secondary); }
+  .prose :global(h2) {
+    font-size: 1.5rem; font-weight: 800; color: var(--text); letter-spacing: -.025em;
+    line-height: 1.25; margin: 2.75rem 0 .9rem; padding-top: .5rem;
+    border-top: 2px solid var(--border-light);
+  }
+  .prose :global(h3) { font-size: 1.12rem; font-weight: 700; color: var(--text); margin: 2rem 0 .65rem; }
+  .prose :global(p)  { margin-bottom: 1.35rem; }
   .prose :global(strong) { color: var(--text); font-weight: 700; }
-  .prose :global(em) { font-style: italic; }
-  .prose :global(ul), .prose :global(ol) { padding-left: 1.5rem; margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: .4rem; }
-  .prose :global(li) { margin-bottom: .2rem; }
-  .prose :global(a)  { color: var(--green); text-decoration: underline; font-weight: 500; }
+  .prose :global(em)     { font-style: italic; color: var(--text); }
+  .prose :global(ul)  { padding-left: 0; margin-bottom: 1.35rem; display: flex; flex-direction: column; gap: .5rem; list-style: none; }
+  .prose :global(ul li) { padding-left: 1.5rem; position: relative; }
+  .prose :global(ul li)::before { content: '→'; position: absolute; left: 0; color: var(--peach); font-weight: 700; }
+  .prose :global(ol)  { padding-left: 1.5rem; margin-bottom: 1.35rem; display: flex; flex-direction: column; gap: .5rem; }
+  .prose :global(a)   { color: var(--green); text-decoration: underline; font-weight: 600; }
   .prose :global(a:hover) { color: var(--green-dark); }
-  .prose :global(blockquote) { border-left: 3px solid var(--peach); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; color: var(--text-secondary); }
-  .prose :global(hr) { border: none; border-top: 1.5px solid var(--border); margin: 2.5rem 0; }
+  .prose :global(blockquote) { border-left: 4px solid var(--peach); background: var(--peach-light); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text); font-size: 1.05rem; line-height: 1.75; }
+  .prose :global(hr) { border: none; border-top: 2px solid var(--border); margin: 3rem 0; }
 
-  /* Sidebar */
+  /* ── SIDEBAR ── */
   .post-sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: calc(var(--nav-h) + 1.5rem); }
-  .sidebar-card { background: var(--cream-mid); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; display: flex; flex-direction: column; gap: .6rem; }
-  .sidebar-quiz { background: var(--green-light); }
-  .sidebar-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); }
-  .sidebar-title { font-size: 1rem; font-weight: 800; color: var(--text); line-height: 1.3; }
-  .sidebar-body  { font-size: .84rem; color: var(--text-secondary); line-height: 1.6; }
-  .sidebar-btn   { width: 100%; justify-content: center; margin-top: .25rem; }
+  .sidebar-card { border-radius: var(--radius-lg); padding: 1.5rem; display: flex; flex-direction: column; gap: .6rem; border: 1.5px solid var(--border); }
+  .sidebar-chat { background: linear-gradient(135deg, #EEF7F2, #C8E6D4); border-color: var(--border); }
+  .sidebar-quiz { background: var(--peach-light); border-color: #F0C9B0; }
+  .sc-icon   { font-size: 1.75rem; }
+  .sc-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); }
+  .sc-title  { font-size: 1rem; font-weight: 800; color: var(--text); line-height: 1.3; }
+  .sc-body   { font-size: .83rem; color: var(--text-secondary); line-height: 1.6; }
+  .sc-btn    { width: 100%; justify-content: center; margin-top: .25rem; font-size: .9rem; }
+  .sidebar-tags { background: var(--cream-mid); border-radius: var(--radius); padding: 1.1rem 1.25rem; border: 1.5px solid var(--border); }
+  .st-label  { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: .6rem; }
+  .st-list   { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .st-tag    { font-size: .74rem; font-weight: 600; color: var(--green-dark); background: var(--green-light); padding: .25rem .7rem; border-radius: 100px; }
 
-  /* Related */
+  /* ── POST FOOTER ── */
+  .post-footer { margin-top: 4rem; padding-top: 2.5rem; border-top: 2px solid var(--border); display: flex; flex-direction: column; gap: 1.5rem; max-width: 680px; }
+  .pf-author  { display: flex; align-items: flex-start; gap: 1rem; }
+  .pfa-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--peach); color: #fff; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pfa-name   { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+  .pfa-bio    { font-size: .84rem; color: var(--text-secondary); line-height: 1.65; }
+  .pf-disclaimer { background: var(--cream-mid); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: .82rem; color: var(--text-secondary); line-height: 1.65; }
+  .pf-disclaimer strong { color: var(--text); }
+
+  /* ── RELATED ── */
   .related-section { background: var(--cream-mid); padding: 3.5rem 0; }
-  .related-label   { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .related-label   { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 1.5rem; }
   .related-grid    { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-  .related-card    { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: .5rem; transition: all .18s; }
-  .related-card:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(61,122,95,.1); }
-  .related-tags  { display: flex; gap: .4rem; }
-  .related-title { font-size: .97rem; font-weight: 700; color: var(--text); line-height: 1.35; }
-  .related-meta  { font-size: .76rem; color: var(--text-muted); }
+  .related-card    { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: all .18s; }
+  .related-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(61,122,95,.1); }
+  .related-image   { height: 140px; overflow: hidden; flex-shrink: 0; }
+  .related-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; display: block; }
+  .related-card:hover .related-image img { transform: scale(1.05); }
+  .related-body    { padding: 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+  .related-tags    { display: flex; gap: .4rem; }
+  .rtag { font-size: .68rem; font-weight: 700; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: .2rem .6rem; border-radius: 100px; }
+  .related-title   { font-size: .97rem; font-weight: 700; color: var(--text); line-height: 1.35; }
+  .related-meta    { font-size: .75rem; color: var(--text-muted); }
 
-  @media (max-width: 900px) {
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
     .post-layout { grid-template-columns: 1fr; }
-    .post-sidebar { position: static; flex-direction: row; }
+    .post-sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .sidebar-tags { grid-column: 1 / -1; }
     .related-grid { grid-template-columns: 1fr; }
   }
-  @media (max-width: 600px) {
-    .post-sidebar { flex-direction: column; }
+  @media (max-width: 580px) {
+    .post-sidebar { grid-template-columns: 1fr; }
+    .post-hero-img { min-height: 380px; }
   }
 </style>

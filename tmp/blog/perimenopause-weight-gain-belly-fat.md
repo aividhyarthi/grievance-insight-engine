@@ -2,9 +2,12 @@
 title: "Why You're Gaining Belly Fat During Perimenopause — And What Actually Helps"
 description: "You haven't changed what you eat. You're exercising. But the weight keeps coming, especially around your middle. This is what's happening — and what you can do."
 pubDate: 2025-05-15
+author: "Journal Desk"
 tags: ["weight gain", "belly fat", "metabolism", "diet", "exercise"]
 readTime: "8 min read"
 featured: false
+image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Woman focused on health and wellbeing during midlife transition"
 ---
 
 You've been eating the same way for years. Your exercise routine hasn't changed. But somewhere in your 40s, your body started changing anyway — and the weight is now gathering in a place it never used to: your belly.

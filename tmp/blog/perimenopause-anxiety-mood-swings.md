@@ -2,9 +2,12 @@
 title: "Why Perimenopause Causes Anxiety and Mood Swings — And What to Do"
 description: "Sudden anxiety, rage, crying for no reason — perimenopause can feel like a mental health crisis. It isn't. Here's what's driving the mood changes and how to cope."
 pubDate: 2025-05-08
+author: "Journal Desk"
 tags: ["anxiety", "mood swings", "mental health", "hormones"]
 readTime: "7 min read"
 featured: true
+image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Woman looking contemplative, representing emotional changes during perimenopause"
 ---
 
 You've never had anxiety before. You're a calm, capable person. And then, somewhere in your 40s, you start waking at 3am with your heart racing. You feel irritable for no reason. You cry at advertisements. You snap at your husband over something trivial and then feel a wave of shame.

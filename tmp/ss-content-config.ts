@@ -6,10 +6,12 @@ const blog = defineCollection({
     title:       z.string(),
     description: z.string(),
     pubDate:     z.date(),
-    author:      z.string().default('The Second Spring'),
+    author:      z.string().default('Journal Desk'),
     tags:        z.array(z.string()).default([]),
     readTime:    z.string().default('5 min read'),
     featured:    z.boolean().default(false),
+    image:       z.string().optional(),
+    imageAlt:    z.string().optional(),
   }),
 });
 

@@ -12,40 +12,63 @@ const rest     = posts.filter(p => !p.data.featured);
 function formatDate(d: Date) {
   return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 }
+
+const TAG_COLORS: Record<string, string> = {
+  perimenopause: '#3D7A5F', anxiety: '#7B4F3A', 'mood swings': '#7B4F3A',
+  hormones: '#2A5C45', 'weight gain': '#C06030', basics: '#3D7A5F',
+  'mental health': '#7B4F3A', metabolism: '#C06030',
+};
+function tagColor(tag: string) { return TAG_COLORS[tag.toLowerCase()] || '#3D7A5F'; }
 ---
 
 <Layout
-  title="Blog — The Second Spring"
-  description="Honest, science-backed articles on perimenopause, menopause, hormones, and women's health. Written for Indian women."
+  title="The Second Spring Journal — Perimenopause Insights for Indian Women"
+  description="Honest, science-backed writing on perimenopause, hormones, and thriving through midlife. Journals written for Indian women."
 >
+
   <!-- Hero -->
-  <section class="blog-hero">
+  <section class="journal-hero">
     <div class="container">
-      <span class="bh-label">Knowledge is power</span>
-      <h1>The Second Spring Journal</h1>
-      <p class="bh-sub">Honest, science-backed writing on perimenopause, hormones, and thriving through midlife — for Indian women.</p>
+      <span class="jh-label">🌸 The Second Spring</span>
+      <h1>Journal</h1>
+      <p class="jh-sub">Honest, science-backed writing on perimenopause, hormones, and thriving through midlife — for Indian women.</p>
     </div>
   </section>
 
-  <!-- Featured posts -->
+  <!-- Featured journals -->
   {featured.length > 0 && (
     <section class="section bg-white">
       <div class="container">
-        <p class="grid-label">Featured reads</p>
+        <p class="grid-label">Featured journals</p>
         <div class="featured-grid">
           {featured.map(post => (
             <a href={`/blog/${post.slug}`} class="feat-card">
-              <div class="feat-tags">
-                {post.data.tags.slice(0,2).map(t => <span class="tag">{t}</span>)}
+              <div class="feat-image">
+                {post.data.image
+                  ? <img src={post.data.image} alt={post.data.imageAlt || post.data.title} loading="lazy" />
+                  : <div class="feat-image-fallback" style={`background: linear-gradient(135deg, #1A3D2B, #3D7A5F)`}></div>
+                }
+                <div class="feat-image-overlay"></div>
+                <div class="feat-image-tags">
+                  {post.data.tags.slice(0,2).map(t => (
+                    <span class="ftag">{t}</span>
+                  ))}
+                </div>
               </div>
-              <h2 class="feat-title">{post.data.title}</h2>
-              <p class="feat-desc">{post.data.description}</p>
-              <div class="feat-meta">
-                <span>{formatDate(post.data.pubDate)}</span>
-                <span>·</span>
-                <span>{post.data.readTime}</span>
+              <div class="feat-body">
+                <h2 class="feat-title">{post.data.title}</h2>
+                <p class="feat-desc">{post.data.description}</p>
+                <div class="feat-footer">
+                  <div class="feat-meta">
+                    <span class="feat-author">{post.data.author}</span>
+                    <span>·</span>
+                    <span>{formatDate(post.data.pubDate)}</span>
+                    <span>·</span>
+                    <span>{post.data.readTime}</span>
+                  </div>
+                  <span class="feat-read">Read →</span>
+                </div>
               </div>
-              <span class="feat-read">Read article →</span>
             </a>
           ))}
         </div>
@@ -53,23 +76,33 @@ function formatDate(d: Date) {
     </section>
   )}
 
-  <!-- All posts -->
+  <!-- All journals -->
   {rest.length > 0 && (
     <section class="section bg-cream">
       <div class="container">
-        <p class="grid-label">All articles</p>
+        <p class="grid-label">More journals</p>
         <div class="posts-grid">
           {rest.map(post => (
             <a href={`/blog/${post.slug}`} class="post-card">
-              <div class="post-tags">
-                {post.data.tags.slice(0,2).map(t => <span class="tag">{t}</span>)}
+              <div class="post-image">
+                {post.data.image
+                  ? <img src={post.data.image} alt={post.data.imageAlt || post.data.title} loading="lazy" />
+                  : <div class="post-image-fallback" style={`background: linear-gradient(135deg, #1A3D2B, #4E9070)`}></div>
+                }
               </div>
-              <h3 class="post-title">{post.data.title}</h3>
-              <p class="post-desc">{post.data.description}</p>
-              <div class="post-meta">
-                <span>{formatDate(post.data.pubDate)}</span>
-                <span>·</span>
-                <span>{post.data.readTime}</span>
+              <div class="post-body">
+                <div class="post-tags">
+                  {post.data.tags.slice(0,2).map(t => (
+                    <span class="ptag" style={`color:${tagColor(t)};background:${tagColor(t)}18`}>{t}</span>
+                  ))}
+                </div>
+                <h3 class="post-title">{post.data.title}</h3>
+                <p class="post-desc">{post.data.description}</p>
+                <div class="post-meta">
+                  <span>{post.data.author}</span>
+                  <span>·</span>
+                  <span>{post.data.readTime}</span>
+                </div>
               </div>
             </a>
           ))}
@@ -79,7 +112,7 @@ function formatDate(d: Date) {
   )}
 
   <!-- CTA -->
-  <section class="blog-cta">
+  <section class="journal-cta">
     <div class="container">
       <div class="cta-inner">
         <h2>Have a question you don't see answered here?</h2>
@@ -91,60 +124,64 @@ function formatDate(d: Date) {
 </Layout>
 
 <style>
-  .blog-hero {
+  .journal-hero {
     background: linear-gradient(150deg, #0F2A1A 0%, #1A3D2B 100%);
     padding: 5rem 0 4rem; text-align: center;
   }
-  .bh-label {
-    display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; color: rgba(255,255,255,.7); background: rgba(255,255,255,.1);
-    padding: .3rem .85rem; border-radius: 100px; margin-bottom: 1rem;
-  }
-  .blog-hero h1 {
-    font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; letter-spacing: -.03em;
-    color: #fff; line-height: 1.15; margin-bottom: 1rem;
-  }
-  .bh-sub { font-size: 1.05rem; color: rgba(255,255,255,.72); line-height: 1.72; max-width: 560px; margin: 0 auto; }
+  .jh-label { display: inline-flex; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.65); background: rgba(255,255,255,.1); padding: .3rem .9rem; border-radius: 100px; margin-bottom: 1rem; }
+  .journal-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; letter-spacing: -.04em; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+  .jh-sub { font-size: 1.05rem; color: rgba(255,255,255,.68); line-height: 1.72; max-width: 520px; margin: 0 auto; }
 
-  .section { padding: 4rem 0; }
+  .section { padding: 4.5rem 0; }
   .bg-white { background: #fff; }
   .bg-cream { background: var(--cream-mid); }
+  .grid-label { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 1.75rem; }
 
-  .grid-label { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 1.5rem; }
+  /* Featured cards */
+  .featured-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  .feat-card { border-radius: var(--radius-lg); overflow: hidden; border: 1.5px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: all .2s; background: #fff; }
+  .feat-card:hover { box-shadow: 0 16px 48px rgba(61,122,95,.14); transform: translateY(-4px); border-color: var(--green); }
+  .feat-image { position: relative; height: 240px; overflow: hidden; flex-shrink: 0; }
+  .feat-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .4s ease; display: block; }
+  .feat-card:hover .feat-image img { transform: scale(1.04); }
+  .feat-image-fallback { width: 100%; height: 100%; }
+  .feat-image-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.45) 0%, transparent 60%); }
+  .feat-image-tags { position: absolute; bottom: .85rem; left: 1rem; display: flex; gap: .4rem; flex-wrap: wrap; }
+  .ftag { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #fff; background: rgba(0,0,0,.35); backdrop-filter: blur(6px); padding: .22rem .65rem; border-radius: 100px; border: 1px solid rgba(255,255,255,.25); }
+  .feat-body { padding: 1.5rem; display: flex; flex-direction: column; gap: .65rem; flex: 1; }
+  .feat-title { font-size: 1.18rem; font-weight: 800; letter-spacing: -.02em; color: var(--text); line-height: 1.32; }
+  .feat-desc  { font-size: .88rem; color: var(--text-secondary); line-height: 1.68; flex: 1; }
+  .feat-footer { display: flex; align-items: center; justify-content: space-between; margin-top: .25rem; }
+  .feat-meta   { font-size: .76rem; color: var(--text-muted); display: flex; gap: .4rem; flex-wrap: wrap; }
+  .feat-author { font-weight: 600; color: var(--text-secondary); }
+  .feat-read   { font-size: .84rem; font-weight: 700; color: var(--green); white-space: nowrap; }
 
-  .featured-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .feat-card {
-    background: var(--cream-mid); border: 1.5px solid var(--border); border-radius: var(--radius-lg);
-    padding: 2rem; display: flex; flex-direction: column; gap: .75rem;
-    text-decoration: none; color: var(--text); transition: all .2s;
-  }
-  .feat-card:hover { border-color: var(--green); box-shadow: 0 8px 32px rgba(61,122,95,.12); transform: translateY(-3px); }
-  .feat-tags { display: flex; gap: .5rem; flex-wrap: wrap; }
-  .tag { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--green); background: var(--green-light); padding: .2rem .65rem; border-radius: 100px; }
-  .feat-title { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; color: var(--text); line-height: 1.3; }
-  .feat-desc  { font-size: .9rem; color: var(--text-secondary); line-height: 1.7; flex: 1; }
-  .feat-meta  { font-size: .78rem; color: var(--text-muted); display: flex; gap: .4rem; }
-  .feat-read  { font-size: .85rem; font-weight: 700; color: var(--green); margin-top: .25rem; }
-
+  /* Regular post cards */
   .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-  .post-card {
-    background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius);
-    padding: 1.5rem; display: flex; flex-direction: column; gap: .6rem;
-    text-decoration: none; color: var(--text); transition: all .18s;
-  }
-  .post-card:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(61,122,95,.1); }
-  .post-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
-  .post-title { font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.35; }
-  .post-desc  { font-size: .84rem; color: var(--text-secondary); line-height: 1.65; flex: 1; }
-  .post-meta  { font-size: .76rem; color: var(--text-muted); display: flex; gap: .4rem; }
+  .post-card { border-radius: var(--radius-lg); overflow: hidden; border: 1.5px solid var(--border); text-decoration: none; color: var(--text); display: flex; flex-direction: column; background: #fff; transition: all .18s; }
+  .post-card:hover { box-shadow: 0 10px 32px rgba(61,122,95,.12); transform: translateY(-3px); border-color: var(--green); }
+  .post-image { height: 175px; overflow: hidden; flex-shrink: 0; }
+  .post-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .4s ease; display: block; }
+  .post-card:hover .post-image img { transform: scale(1.04); }
+  .post-image-fallback { width: 100%; height: 100%; }
+  .post-body  { padding: 1.25rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
+  .post-tags  { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .ptag { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: .2rem .6rem; border-radius: 100px; }
+  .post-title { font-size: .97rem; font-weight: 700; color: var(--text); line-height: 1.35; }
+  .post-desc  { font-size: .83rem; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+  .post-meta  { font-size: .74rem; color: var(--text-muted); display: flex; gap: .35rem; flex-wrap: wrap; margin-top: .25rem; }
 
-  .blog-cta { background: var(--green-dark); padding: 4rem 0; text-align: center; }
-  .blog-cta .cta-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; max-width: 540px; margin: 0 auto; }
-  .blog-cta h2 { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -.02em; line-height: 1.25; }
-  .blog-cta p  { color: rgba(255,255,255,.72); font-size: .97rem; }
+  /* CTA */
+  .journal-cta { background: var(--green-dark); padding: 4rem 0; text-align: center; }
+  .cta-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; max-width: 540px; margin: 0 auto; }
+  .journal-cta h2 { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -.02em; line-height: 1.25; }
+  .journal-cta p  { color: rgba(255,255,255,.68); font-size: .97rem; }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .featured-grid { grid-template-columns: 1fr; }
-    .posts-grid    { grid-template-columns: 1fr; }
+    .posts-grid    { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 580px) {
+    .posts-grid { grid-template-columns: 1fr; }
   }
 </style>

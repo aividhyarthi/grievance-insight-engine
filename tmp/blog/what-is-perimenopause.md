@@ -2,9 +2,12 @@
 title: "What Is Perimenopause? Everything Indian Women Need to Know"
 description: "Perimenopause can start years before your last period — and most Indian women have never heard of it. Here's what's actually happening in your body."
 pubDate: 2025-05-01
+author: "Journal Desk"
 tags: ["perimenopause", "basics", "hormones", "Indian women"]
 readTime: "6 min read"
 featured: true
+image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Woman in thoughtful reflection representing the perimenopause journey"
 ---
 
 You're 38, 42, maybe 46. Your periods are changing. You're not sleeping the way you used to. You snap at your family over nothing and then feel terrible about it. You're gaining weight around your belly even though nothing in your diet has changed.
