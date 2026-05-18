@@ -12,7 +12,7 @@ imageAlt: "Woman looking contemplative, representing emotional changes during pe
 
 You've never had anxiety before. You're a calm, capable person. And then, somewhere in your 40s, you start waking at 3am with your heart racing. You feel irritable for no reason. You cry at advertisements. You snap at your husband over something trivial and then feel a wave of shame.
 
-Your GP suggests antidepressants. Your family suggests stress management. But something doesn't feel right about either answer.
+Your doctor suggests antidepressants. Your family suggests stress management. But something doesn't feel right about either answer.
 
 Here's what's actually going on.
 
