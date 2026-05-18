@@ -257,7 +257,7 @@ function showResult() {
   $result.style.display = 'flex';
   const r = RESULTS.find(x => score < x.max)!;
 
-  // Send lead data to Google Sheets
+  // Send completed quiz data — updates the partial lead captured at popup
   try {
     const lead = JSON.parse(sessionStorage.getItem('tss_lead') || '{}');
     fetch('/api/collect-lead', {
@@ -271,6 +271,7 @@ function showResult() {
         level: r.level,
       }),
     }).catch(() => {});
+    sessionStorage.removeItem('tss_lead'); // prevent duplicate if they retake
   } catch (_) {}
   document.getElementById('result-content')!.innerHTML = `
     <div class="result-card">

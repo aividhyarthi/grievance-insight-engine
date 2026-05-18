@@ -226,16 +226,18 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
         <form class="popup-form" id="popup-form" novalidate>
           <div class="popup-fields-row">
             <div class="popup-field">
-              <label for="popup-email" class="popup-label">Email <span class="popup-optional">(optional)</span></label>
-              <input type="email" id="popup-email" name="email" class="popup-input" placeholder="you@example.com" autocomplete="email" />
+              <label for="popup-email" class="popup-label">Email <span class="popup-req">*</span></label>
+              <input type="email" id="popup-email" name="email" class="popup-input" placeholder="you@example.com" autocomplete="email" required />
+              <span class="popup-err" id="err-email"></span>
             </div>
             <div class="popup-field">
-              <label for="popup-phone" class="popup-label">WhatsApp / Phone <span class="popup-optional">(optional)</span></label>
-              <input type="tel" id="popup-phone" name="phone" class="popup-input" placeholder="+91 98765 43210" autocomplete="tel" />
+              <label for="popup-phone" class="popup-label">WhatsApp / Phone <span class="popup-req">*</span></label>
+              <input type="tel" id="popup-phone" name="phone" class="popup-input" placeholder="+91 98765 43210" autocomplete="tel" required />
+              <span class="popup-err" id="err-phone"></span>
             </div>
           </div>
           <button type="submit" class="btn btn-peach popup-submit">Check my symptoms →</button>
-          <p class="popup-note">No spam. No login needed. 100% private.</p>
+          <p class="popup-note">🔒 Private. No spam. We will only contact you about your health.</p>
         </form>
       </div>
     </div>
@@ -375,13 +377,51 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
           if (e.key === 'Escape') hidePopup();
         });
 
-        // Form submit — save lead data then go to quiz
+        // Validate + submit
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-          const email = (document.getElementById('popup-email') as HTMLInputElement).value.trim();
-          const phone = (document.getElementById('popup-phone') as HTMLInputElement).value.trim();
-          // Store for quiz to pick up and send to Google Sheets
+          const emailEl = document.getElementById('popup-email') as HTMLInputElement;
+          const phoneEl = document.getElementById('popup-phone') as HTMLInputElement;
+          const errEmail = document.getElementById('err-email')!;
+          const errPhone = document.getElementById('err-phone')!;
+
+          const email = emailEl.value.trim();
+          const phone = phoneEl.value.trim();
+          let valid = true;
+
+          // Validate email
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errEmail.textContent = 'Please enter a valid email address';
+            emailEl.classList.add('popup-input-err');
+            valid = false;
+          } else {
+            errEmail.textContent = '';
+            emailEl.classList.remove('popup-input-err');
+          }
+
+          // Validate phone — at least 7 digits
+          const digits = phone.replace(/\D/g, '');
+          if (!phone || digits.length < 7) {
+            errPhone.textContent = 'Please enter a valid phone number';
+            phoneEl.classList.add('popup-input-err');
+            valid = false;
+          } else {
+            errPhone.textContent = '';
+            phoneEl.classList.remove('popup-input-err');
+          }
+
+          if (!valid) return;
+
+          // Save for quiz to use
           sessionStorage.setItem('tss_lead', JSON.stringify({ email, phone }));
+
+          // Send lead immediately — captures even if user never finishes the quiz
+          fetch('/api/collect-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, phone, age: '', score: '', level: 'Popup only — quiz not completed' }),
+          }).catch(() => {});
+
           hidePopup();
           window.location.href = '/quiz';
         });
@@ -732,7 +772,9 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
   .popup-fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
   .popup-field { display: flex; flex-direction: column; gap: .35rem; }
   .popup-label { font-size: .8rem; font-weight: 600; color: var(--text); }
-  .popup-optional { font-weight: 400; color: var(--text-muted); }
+  .popup-req { color: var(--peach); font-weight: 700; }
+  .popup-err { font-size: .74rem; color: #c0392b; min-height: 1rem; display: block; margin-top: .2rem; }
+  .popup-input-err { border-color: #c0392b !important; background: #fff5f5 !important; }
   .popup-input {
     width: 100%; padding: .75rem 1rem; border: 1.5px solid var(--border);
     border-radius: var(--radius-sm); font-size: .95rem; color: var(--text);
