@@ -209,9 +209,15 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
         <h2 class="popup-title">Are your symptoms trying to tell you something?</h2>
         <p class="popup-body">Hot flashes, mood swings, poor sleep, brain fog — these aren't just "stress." Our free symptom check takes 2 minutes and gives you real clarity.</p>
         <form class="popup-form" id="popup-form" novalidate>
-          <div class="popup-field">
-            <label for="popup-email" class="popup-label">Your email <span class="popup-optional">(optional — to save your results)</span></label>
-            <input type="email" id="popup-email" name="email" class="popup-input" placeholder="you@example.com" autocomplete="email" />
+          <div class="popup-fields-row">
+            <div class="popup-field">
+              <label for="popup-email" class="popup-label">Email <span class="popup-optional">(optional)</span></label>
+              <input type="email" id="popup-email" name="email" class="popup-input" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <div class="popup-field">
+              <label for="popup-phone" class="popup-label">WhatsApp / Phone <span class="popup-optional">(optional)</span></label>
+              <input type="tel" id="popup-phone" name="phone" class="popup-input" placeholder="+91 98765 43210" autocomplete="tel" />
+            </div>
           </div>
           <button type="submit" class="btn btn-peach popup-submit">Check my symptoms →</button>
           <p class="popup-note">No spam. No login needed. 100% private.</p>
@@ -354,15 +360,13 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
           if (e.key === 'Escape') hidePopup();
         });
 
-        // Form submit — capture email then go to quiz
+        // Form submit — save lead data then go to quiz
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-          const emailInput = document.getElementById('popup-email') as HTMLInputElement;
-          const email = emailInput.value.trim();
-          if (email) {
-            // Store locally — wire up to your backend/email service later
-            localStorage.setItem('tss_lead_email', email);
-          }
+          const email = (document.getElementById('popup-email') as HTMLInputElement).value.trim();
+          const phone = (document.getElementById('popup-phone') as HTMLInputElement).value.trim();
+          // Store for quiz to pick up and send to Google Sheets
+          sessionStorage.setItem('tss_lead', JSON.stringify({ email, phone }));
           hidePopup();
           window.location.href = '/quiz';
         });
@@ -710,6 +714,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     margin-bottom: 1.5rem;
   }
   .popup-form { display: flex; flex-direction: column; gap: .75rem; }
+  .popup-fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
   .popup-field { display: flex; flex-direction: column; gap: .35rem; }
   .popup-label { font-size: .8rem; font-weight: 600; color: var(--text); }
   .popup-optional { font-weight: 400; color: var(--text-muted); }
@@ -734,6 +739,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     }
     .popup-title { font-size: 1.25rem; }
     .popup-blossom { top: -14px; right: 18px; width: 56px; height: 56px; }
+    .popup-fields-row { grid-template-columns: 1fr; }
   }
 
   @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }

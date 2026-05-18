@@ -205,7 +205,7 @@ const RESULTS = [
   },
 ];
 
-let cur = 0, score = 0;
+let cur = 0, score = 0, ageAnswer = '';
 const $intro    = document.getElementById('screen-intro');
 const $questions = document.getElementById('screen-questions');
 const $result   = document.getElementById('screen-result');
@@ -243,6 +243,7 @@ function render() {
     btn.addEventListener('click', () => {
       el.querySelectorAll('.q-opt').forEach(b => { (b as HTMLButtonElement).disabled = true; });
       btn.classList.add('selected');
+      if (cur === 0) ageAnswer = opt.t; // capture age from Q1
       score += opt.s;
       cur++;
       setTimeout(() => cur < QUESTIONS.length ? render() : showResult(), 360);
@@ -255,6 +256,22 @@ function showResult() {
   $questions.style.display = 'none';
   $result.style.display = 'flex';
   const r = RESULTS.find(x => score < x.max)!;
+
+  // Send lead data to Google Sheets
+  try {
+    const lead = JSON.parse(sessionStorage.getItem('tss_lead') || '{}');
+    fetch('/api/collect-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: lead.email || '',
+        phone: lead.phone || '',
+        age:   ageAnswer,
+        score,
+        level: r.level,
+      }),
+    }).catch(() => {});
+  } catch (_) {}
   document.getElementById('result-content')!.innerHTML = `
     <div class="result-card">
       <div class="result-top" style="background:${r.topBg}">
