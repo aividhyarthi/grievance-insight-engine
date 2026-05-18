@@ -6,8 +6,8 @@ author: "Journal Desk"
 tags: ["anxiety", "mood swings", "mental health", "hormones"]
 readTime: "7 min read"
 featured: true
-image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&h=630&fit=crop&q=80"
-imageAlt: "Woman looking contemplative, representing emotional changes during perimenopause"
+image: "https://images.unsplash.com/photo-1614852207246-1df3db5b7c4f?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Indian woman looking contemplative, representing emotional changes during perimenopause"
 ---
 
 You've never had anxiety before. You're a calm, capable person. And then, somewhere in your 40s, you start waking at 3am with your heart racing. You feel irritable for no reason. You cry at advertisements. You snap at your husband over something trivial and then feel a wave of shame.

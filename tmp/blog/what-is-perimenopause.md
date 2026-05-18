@@ -6,8 +6,8 @@ author: "Journal Desk"
 tags: ["perimenopause", "basics", "hormones", "Indian women"]
 readTime: "6 min read"
 featured: true
-image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=630&fit=crop&q=80"
-imageAlt: "Woman in thoughtful reflection representing the perimenopause journey"
+image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Indian woman in thoughtful reflection representing the perimenopause journey"
 ---
 
 You're 38, 42, maybe 46. Your periods are changing. You're not sleeping the way you used to. You snap at your family over nothing and then feel terrible about it. You're gaining weight around your belly even though nothing in your diet has changed.
