@@ -1,21 +1,14 @@
 import type { APIRoute } from 'astro';
 
+// Confirmed working Apps Script URL — update APPS_SCRIPT_URL env var to override
+const FALLBACK_URL = 'https://script.google.com/macros/s/AKfycbxQyTXS8mPCNfTbv1FRzq2gzHFE0FDetR4H0eZtx3jUWbRBxuWyvTj-9TEfCbzDXhjU8Q/exec';
+
 export const POST: APIRoute = async ({ request }) => {
   let body: Record<string, unknown> = {};
-  try {
-    body = await request.json();
-  } catch {
-    return new Response(JSON.stringify({ ok: false, error: 'bad json' }), { status: 400 });
-  }
+  try { body = await request.json(); } catch { /* ignore */ }
 
-  const scriptUrl = process.env.APPS_SCRIPT_URL;
+  const scriptUrl = process.env.APPS_SCRIPT_URL || FALLBACK_URL;
 
-  if (!scriptUrl) {
-    console.warn('[collect-lead] APPS_SCRIPT_URL is not set');
-    return new Response(JSON.stringify({ ok: false, error: 'no script url' }), { status: 200 });
-  }
-
-  // Send as GET query params — reliable with GAS (POST body gets dropped on redirect)
   const url = new URL(scriptUrl);
   url.searchParams.set('email', String(body.email || ''));
   url.searchParams.set('phone', String(body.phone || ''));
@@ -23,15 +16,14 @@ export const POST: APIRoute = async ({ request }) => {
   url.searchParams.set('score', String(body.score ?? ''));
   url.searchParams.set('level', String(body.level || ''));
 
-  console.log('[collect-lead] sending →', url.search);
+  console.log('[collect-lead] →', url.search);
 
   try {
     const res = await fetch(url.toString(), { method: 'GET' });
-    console.log('[collect-lead] GAS status:', res.status);
     const text = await res.text().catch(() => '');
-    console.log('[collect-lead] GAS response:', text);
+    console.log('[collect-lead] GAS:', res.status, text);
   } catch (err) {
-    console.error('[collect-lead] fetch failed:', err);
+    console.error('[collect-lead] failed:', err);
   }
 
   return new Response(JSON.stringify({ ok: true }), {
