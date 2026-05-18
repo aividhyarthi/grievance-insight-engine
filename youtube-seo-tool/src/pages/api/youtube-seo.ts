@@ -92,80 +92,115 @@ export const POST: APIRoute = async ({ request }) => {
     currentTags ? `Current tags: ${currentTags}` : '',
   ].filter(Boolean).join('\n\n');
 
-  const prompt = `You are a YouTube SEO and content expert. Do two things:
-1. Score the EXISTING SEO content provided.
-2. Generate fully optimized NEW SEO content and thumbnail recommendations.
+  const prompt = `You are an expert YouTube strategist who writes like a real human creator — not an AI assistant.
 
-IMPORTANT: Generate ALL new text content in ${language}. If not English, write natively in ${language} script.
+Do two things:
+1. Score the EXISTING SEO content.
+2. Generate new SEO content that sounds authentic, specific, and natural.
+
+OUTPUT LANGUAGE: Write ALL generated content in ${language}. If not English, use native ${language} script.
 
 ${videoContext || 'No video metadata available.'}
 Video URL: ${url.trim()}
 ${auditContext ? `\n--- EXISTING SEO TO AUDIT ---\n${auditContext}\n---` : '\n(No existing description/tags provided — score description and tags/hashtags as null)'}
 
+━━━ WRITING RULES — READ CAREFULLY ━━━
+
+NEVER use these phrases (they sound like AI-generated content):
+- "Unlock the secrets", "Dive deep into", "In this comprehensive guide"
+- "Master the art of", "Game-changing", "Revolutionary", "Supercharge"
+- "Don't forget to like and subscribe", "Smash that like button"
+- "In this video, I will...", "Welcome to my channel"
+- "Whether you're a beginner or expert", "Look no further"
+- Any phrase that sounds like a marketing brochure
+
+FOR TITLES — write like how real people actually search on YouTube:
+- Specific and direct, e.g. "How I paid off $30k debt in 18 months" not "Unlock the secrets to debt freedom"
+- Use numbers when natural: "5 mistakes", "in 10 minutes", "under $50"
+- Conversational, not corporate — how would a friend describe this video?
+- Under 60 characters, front-load the most important keyword
+
+FOR DESCRIPTION — write like a real creator, not a press release:
+- Open with the most useful/interesting line from the video — not "In this video"
+- Short punchy paragraphs (2-3 sentences max each)
+- Include what the viewer will actually get/learn/feel
+- Timestamps section with [TIME] placeholders
+- Links section with [YOUR LINK] placeholders
+- End with a natural CTA that doesn't sound desperate
+- 300-400 words total
+
+FOR HASHTAGS — specific and real:
+- Mix: 5 very niche (specific to this exact video), 10 mid-level (topic area), 5 broad (general category)
+- No generic tags like #youtube #video #content
+
+FOR TAGS — actual YouTube search phrases:
+- Think: what would someone type into YouTube search to find this?
+- Mix of short (1-2 words) and long-tail (4-6 words)
+- No repetition of the same keyword in different orders
+
+FOR PINNED COMMENT — write as if the creator typed it themselves:
+- Personal, direct, gives extra value (a tip, a link, a question to the audience)
+- No "I hope you enjoyed this video!"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 Return ONLY valid JSON in this exact format, no markdown, no explanation:
 {
   "audit": {
     "overall": <0-100 integer>,
-    "summary": "One sentence verdict on the current SEO quality",
-    "title": { "score": <0-100>, "feedback": "Specific issue with current title in plain English" },
+    "summary": "One direct sentence on what's most wrong with the current SEO",
+    "title": { "score": <0-100>, "feedback": "Specific issue — e.g. 'Title is 22 chars, too short to rank. No primary keyword in first 3 words.'" },
     "description": { "score": <0-100 or null if not provided>, "feedback": "Specific issue or 'Not provided'" },
     "tags": { "score": <0-100 or null if not provided>, "feedback": "Specific issue or 'Not provided'" },
     "hashtags": { "score": <0-100 or null if not provided>, "feedback": "Specific issue or 'Not provided'" },
-    "topFixes": ["Fix 1 — specific actionable instruction", "Fix 2", "Fix 3"]
+    "topFixes": ["Fix 1 — specific and actionable", "Fix 2", "Fix 3"]
   },
   "titles": [
-    "Title option 1 (highly clickable, keyword-rich, under 60 chars)",
-    "Title option 2 (different angle, emotional hook)",
-    "Title option 3 (question-based or list-based format)"
+    "Title option 1 — direct, specific, keyword-rich, under 60 chars",
+    "Title option 2 — different angle, curiosity or number-based",
+    "Title option 3 — question or personal story format"
   ],
-  "description": "Full SEO-optimized description (300-500 words). Start with the most important keywords in the first 2-3 lines. Include a clear intro, what viewers will learn/get, timestamps placeholder section, relevant links section placeholder, and a strong call to action. Use natural paragraph breaks.",
-  "hashtags": ["#hashtag1", "#hashtag2", "#hashtag3"],
-  "tags": ["tag1", "tag2", "tag3"],
-  "chapters": "0:00 Introduction\n1:30 [Section 2]\n...",
+  "description": "Full description following the writing rules above (300-400 words, natural paragraphs)",
+  "hashtags": ["#hashtag1", "#hashtag2"],
+  "tags": ["tag1", "tag2"],
+  "chapters": "0:00 Introduction\n1:30 Section name\n...",
   "keywords": ["primary keyword 1", "primary keyword 2"],
-  "cardText": "Suggested end screen / card call-to-action text (2-3 sentences)",
-  "pinnedComment": "Suggested pinned comment text to boost engagement (2-3 sentences with emojis)",
+  "cardText": "Natural end-screen text — specific to this video, not generic",
+  "pinnedComment": "Pinned comment written as the creator — personal, adds value, includes a question or tip",
   "thumbnails": [
     {
-      "concept": "Concept name (e.g. Bold Reaction, Before & After, Question Hook)",
-      "headline": "Big bold text to overlay on thumbnail (max 5 words, all caps)",
-      "subtext": "Supporting line below headline (max 8 words)",
+      "concept": "Concept name",
+      "headline": "MAX 5 WORDS ALL CAPS",
+      "subtext": "Supporting line max 8 words",
       "colors": {
-        "background": "Color description (e.g. Deep red #c0392b)",
-        "text": "Color description (e.g. White #ffffff)",
-        "accent": "Color description (e.g. Yellow #f1c40f)"
+        "background": "Color name + hex e.g. Deep red #c0392b",
+        "text": "Color name + hex",
+        "accent": "Color name + hex"
       },
-      "composition": "Layout description — where to place face, text, objects (2 sentences)",
-      "expression": "If person appears: facial expression and body language tip (1 sentence)",
-      "canvaTip": "Specific Canva tip for recreating this (1 sentence)"
+      "composition": "Specific layout — where face, text, objects go. 2 sentences.",
+      "expression": "Specific facial expression and body language for maximum click-through",
+      "canvaTip": "One specific Canva action to recreate this"
     },
     {
-      "concept": "Second concept (different style from first)",
-      "headline": "...",
-      "subtext": "...",
+      "concept": "Second concept — visually different style",
+      "headline": "...", "subtext": "...",
       "colors": { "background": "...", "text": "...", "accent": "..." },
-      "composition": "...",
-      "expression": "...",
-      "canvaTip": "..."
+      "composition": "...", "expression": "...", "canvaTip": "..."
     },
     {
-      "concept": "Third concept (another distinct approach)",
-      "headline": "...",
-      "subtext": "...",
+      "concept": "Third concept — another distinct approach",
+      "headline": "...", "subtext": "...",
       "colors": { "background": "...", "text": "...", "accent": "..." },
-      "composition": "...",
-      "expression": "...",
-      "canvaTip": "..."
+      "composition": "...", "expression": "...", "canvaTip": "..."
     }
   ]
 }
 
 Rules:
-- hashtags: 20-25 hashtags, mix of broad and niche
-- tags: 30-40 YouTube tags (single words and short phrases), no #
-- chapters: 6-10 chapters with realistic timestamps
-- thumbnails: 3 distinct concepts with different visual styles
-- All content must be SEO-optimized for YouTube search`;
+- hashtags: 20 total, specific mix as described above
+- tags: 30-40 actual YouTube search phrases
+- chapters: 6-10 with realistic timestamps
+- thumbnails: 3 visually distinct concepts`;
 
   const client = new Anthropic({ apiKey });
 
