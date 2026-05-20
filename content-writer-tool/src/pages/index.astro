@@ -1,0 +1,652 @@
+---
+// Content Writer Agent — standalone independent tool
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Writer Agent — SEO Content from SEMRush Data</title>
+  <meta name="description" content="Generate unique, human-sounding SEO content from keywords, FAQs, and product details. Paste SEMRush data, get a full page ready to publish." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d1829;
+      --bg2:      #132038;
+      --bg3:      #1b2d4a;
+      --bg4:      #243659;
+      --border:   #2c4165;
+      --accent:   #7b84f8;
+      --accent-h: #5f68f0;
+      --text:     #e0eaf8;
+      --text-2:   #94adc8;
+      --text-3:   #5b7594;
+      --green:    #22d4a0;
+      --amber:    #fbbf24;
+      --red:      #f87171;
+      --r:        10px;
+      --sidebar:  420px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { display: flex; align-items: center; gap: 0.6rem; }
+    .logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .logo-text { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.3px; }
+    .logo-badge {
+      font-size: 0.65rem; font-weight: 500;
+      background: rgba(123,132,248,0.15); color: var(--accent);
+      border: 1px solid rgba(123,132,248,0.3);
+      border-radius: 99px; padding: 0.1rem 0.55rem; margin-left: 0.35rem;
+    }
+    .header-note { font-size: 0.78rem; color: var(--text-3); display: flex; align-items: center; gap: 0.4rem; }
+    .uniqueness-pill {
+      background: rgba(34,212,160,0.1); border: 1px solid rgba(34,212,160,0.25);
+      color: var(--green); border-radius: 99px; padding: 0.2rem 0.65rem;
+      font-size: 0.72rem; font-weight: 600;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sidebar) 1fr;
+      height: calc(100vh - 57px);
+    }
+
+    .inputs-panel {
+      border-right: 1px solid var(--border);
+      overflow-y: auto; padding: 1.25rem;
+      display: flex; flex-direction: column; gap: 0.85rem;
+    }
+
+    .panel-intro {
+      font-size: 0.8rem; color: var(--text-3); line-height: 1.6;
+      padding: 0.65rem 0.75rem;
+      background: rgba(123,132,248,0.06); border: 1px solid rgba(123,132,248,0.15);
+      border-radius: 8px;
+    }
+
+    .dabba { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+    .dabba-header {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border);
+      background: var(--bg3);
+    }
+    .dabba-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 800; flex-shrink: 0;
+    }
+    .n1 { background: rgba(123,132,248,0.2); color: var(--accent); }
+    .n2 { background: rgba(34,212,160,0.15); color: var(--green); }
+    .n3 { background: rgba(251,191,36,0.15); color: var(--amber); }
+    .n4 { background: rgba(248,113,113,0.15); color: var(--red); }
+
+    .dabba-title { font-size: 0.82rem; font-weight: 700; flex: 1; }
+    .dabba-tag { font-size: 0.65rem; font-weight: 500; border-radius: 99px; padding: 0.1rem 0.45rem; }
+    .tag-opt { background: rgba(255,255,255,0.05); color: var(--text-3); border: 1px solid var(--border); }
+    .tag-req { background: rgba(248,113,113,0.1); color: var(--red); border: 1px solid rgba(248,113,113,0.25); }
+
+    .dabba-body { padding: 0.75rem; }
+    .dabba-hint { font-size: 0.73rem; color: var(--text-3); margin-bottom: 0.5rem; line-height: 1.5; }
+
+    .field-input {
+      width: 100%; background: var(--bg3); border: 1.5px solid var(--border);
+      border-radius: 7px; color: var(--text); font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; padding: 0.6rem 0.75rem; outline: none;
+      transition: border-color 0.2s; resize: none;
+    }
+    .field-input:focus { border-color: var(--accent); }
+    .field-input::placeholder { color: var(--text-3); font-size: 0.8rem; line-height: 1.55; }
+    textarea.field-input { resize: vertical; }
+
+    .url-row { display: flex; gap: 0.5rem; }
+    .url-row .field-input { flex: 1; }
+
+    .fetch-btn {
+      background: var(--bg4); border: 1.5px solid var(--border); border-radius: 7px;
+      color: var(--text-2); font-family: 'Inter', sans-serif;
+      font-size: 0.78rem; font-weight: 600; padding: 0 0.8rem;
+      cursor: pointer; white-space: nowrap; transition: all 0.15s; flex-shrink: 0;
+    }
+    .fetch-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .url-status { font-size: 0.72rem; margin-top: 0.4rem; display: none; }
+    .url-status.ok  { color: var(--green); display: block; }
+    .url-status.err { color: var(--red);   display: block; }
+
+    .settings-row { display: flex; gap: 0.75rem; align-items: center; }
+    .settings-label { font-size: 0.75rem; color: var(--text-2); font-weight: 600; white-space: nowrap; }
+    .settings-select {
+      flex: 1; background: var(--bg3); border: 1.5px solid var(--border);
+      border-radius: 7px; color: var(--text); font-family: 'Inter', sans-serif;
+      font-size: 0.83rem; padding: 0.5rem 0.75rem; outline: none;
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .settings-select:focus { border-color: var(--accent); }
+    .settings-select option { background: var(--bg2); }
+
+    .generate-btn {
+      width: 100%; background: linear-gradient(135deg, var(--accent), #a78bfa);
+      color: #fff; border: none; border-radius: var(--r);
+      font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 700;
+      padding: 0.85rem 1.5rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      transition: opacity 0.2s, transform 0.1s; letter-spacing: 0.01em;
+    }
+    .generate-btn:hover { opacity: 0.92; }
+    .generate-btn:active { transform: scale(0.98); }
+    .generate-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .btn-spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.35); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.65s linear infinite; display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .regen-btn {
+      width: 100%; background: transparent; border: 1.5px dashed var(--border);
+      border-radius: var(--r); color: var(--text-2); font-family: 'Inter', sans-serif;
+      font-size: 0.82rem; font-weight: 600; padding: 0.6rem; cursor: pointer;
+      display: none; align-items: center; justify-content: center; gap: 0.4rem;
+      transition: all 0.15s;
+    }
+    .regen-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .error-box {
+      background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.3);
+      border-radius: 8px; color: var(--red); padding: 0.65rem 0.85rem;
+      font-size: 0.82rem; display: none; line-height: 1.5;
+    }
+
+    .output-panel { overflow-y: auto; display: flex; flex-direction: column; }
+
+    .empty-state {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 3rem 2rem; text-align: center; gap: 1rem;
+    }
+    .empty-icon {
+      width: 72px; height: 72px; background: var(--bg2);
+      border: 2px dashed var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 1.75rem;
+    }
+    .empty-title { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .empty-sub { font-size: 0.85rem; color: var(--text-3); max-width: 360px; line-height: 1.65; }
+    .empty-steps {
+      text-align: left; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 1rem 1.25rem; max-width: 360px;
+    }
+    .empty-step {
+      display: flex; gap: 0.65rem; font-size: 0.82rem; color: var(--text-2);
+      margin-bottom: 0.6rem; line-height: 1.5;
+    }
+    .empty-step:last-child { margin-bottom: 0; }
+    .empty-step-n {
+      width: 18px; height: 18px; background: var(--bg4); border-radius: 50%;
+      font-size: 0.65rem; font-weight: 700; color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    .loading-state {
+      display: none; flex: 1; flex-direction: column; align-items: center;
+      justify-content: center; padding: 3rem 2rem; text-align: center; gap: 1.25rem;
+    }
+    .loading-ring {
+      width: 52px; height: 52px; border: 3px solid var(--bg4);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    .loading-title { font-size: 1rem; font-weight: 700; }
+    .loading-sub { font-size: 0.82rem; color: var(--text-3); max-width: 280px; line-height: 1.6; }
+    .loading-tips {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.75rem 1rem; font-size: 0.78rem; color: var(--text-3);
+      max-width: 320px; line-height: 1.6;
+    }
+
+    .results { display: none; flex-direction: column; flex: 1; }
+
+    .stats-bar {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 0.65rem 1.25rem; display: flex; align-items: center;
+      gap: 0.5rem; flex-wrap: wrap;
+    }
+    .stat-chip {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 99px;
+      padding: 0.25rem 0.7rem; font-size: 0.72rem; color: var(--text-2);
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .stat-chip strong { color: var(--text); }
+    .style-chip {
+      background: rgba(123,132,248,0.08); border: 1px solid rgba(123,132,248,0.2);
+      color: var(--accent); border-radius: 99px; padding: 0.25rem 0.7rem;
+      font-size: 0.7rem; font-weight: 600; margin-left: auto;
+    }
+
+    .tab-row {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 0 1.25rem; display: flex; align-items: center;
+    }
+    .tab-btn {
+      background: none; border: none; border-bottom: 2.5px solid transparent;
+      color: var(--text-3); font-family: 'Inter', sans-serif;
+      font-size: 0.8rem; font-weight: 600; padding: 0.65rem 0.9rem 0.6rem;
+      cursor: pointer; transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .action-bar {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1.25rem; display: flex; align-items: center;
+      gap: 0.5rem; flex-wrap: wrap;
+    }
+    .act-btn {
+      background: var(--bg3); border: 1.5px solid var(--border); border-radius: 7px;
+      color: var(--text-2); font-family: 'Inter', sans-serif;
+      font-size: 0.77rem; font-weight: 600; padding: 0.4rem 0.85rem;
+      cursor: pointer; display: flex; align-items: center; gap: 0.35rem;
+      transition: all 0.15s;
+    }
+    .act-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .act-btn.copied { border-color: var(--green); color: var(--green); }
+    .act-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .act-btn.primary:hover { background: var(--accent-h); border-color: var(--accent-h); color: #fff; }
+
+    .meta-box {
+      background: rgba(123,132,248,0.05); border: 1px solid rgba(123,132,248,0.15);
+      border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.78rem;
+      color: var(--text-2); margin-left: auto; max-width: 500px; line-height: 1.5;
+    }
+    .meta-box strong { color: var(--text); }
+
+    .content-area { flex: 1; padding: 1.75rem 2rem 3rem; }
+
+    .preview-html h1 { font-size: 1.65rem; font-weight: 800; line-height: 1.2; color: var(--text); margin: 0 0 1.25rem; }
+    .preview-html h2 { font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 2rem 0 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+    .preview-html h3 { font-size: 0.98rem; font-weight: 600; color: var(--accent); margin: 1.35rem 0 0.5rem; }
+    .preview-html p { font-size: 0.925rem; line-height: 1.85; color: var(--text-2); margin: 0 0 0.9rem; }
+    .preview-html ul, .preview-html ol { margin: 0.35rem 0 1rem 1.4rem; }
+    .preview-html li { font-size: 0.925rem; line-height: 1.75; color: var(--text-2); margin-bottom: 0.3rem; }
+    .preview-html table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+    .preview-html th { background: var(--bg4); padding: 0.65rem 0.9rem; font-weight: 700; color: var(--text); border: 1px solid var(--border); text-align: left; }
+    .preview-html td { padding: 0.6rem 0.9rem; border: 1px solid var(--border); color: var(--text-2); }
+    .preview-html tr:nth-child(even) td { background: var(--bg3); }
+    .preview-html strong { color: var(--text); font-weight: 600; }
+    .preview-html em { color: var(--text-2); font-style: italic; }
+
+    .raw-area {
+      display: none; width: 100%; height: 100%; min-height: 500px;
+      background: var(--bg3); border: 1.5px solid var(--border); border-radius: var(--r);
+      color: var(--text-2); font-family: 'Courier New', monospace;
+      font-size: 0.8rem; line-height: 1.7; padding: 1rem; resize: none; outline: none;
+    }
+
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; height: auto; }
+      .inputs-panel { border-right: none; border-bottom: 1px solid var(--border); }
+      .output-panel { min-height: 70vh; }
+      .header-note { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-icon">✍️</div>
+    <span class="logo-text">Content Writer Agent</span>
+    <span class="logo-badge">SEO</span>
+  </div>
+  <div class="header-note">
+    <span class="uniqueness-pill">⚡ Unique style every generation</span>
+    <span>Powered by Claude</span>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="inputs-panel">
+
+    <div class="panel-intro">
+      Fill in the boxes below using your SEMRush, Search Console, or product data.
+      Every generation uses a different writing style so your pages never sound the same.
+    </div>
+
+    <!-- Box 1: Reference URL -->
+    <div class="dabba">
+      <div class="dabba-header">
+        <div class="dabba-num n1">1</div>
+        <span class="dabba-title">Reference URL</span>
+        <span class="dabba-tag tag-opt">Optional</span>
+      </div>
+      <div class="dabba-body">
+        <div class="dabba-hint">Enter the target page URL — the tool will fetch its existing content as context. Useful for rewrites or filling gaps.</div>
+        <div class="url-row">
+          <input id="inp-url" class="field-input" type="url" placeholder="https://yoursite.com/page-to-write-for" autocomplete="off" spellcheck="false" />
+          <button class="fetch-btn" id="fetch-btn">Fetch</button>
+        </div>
+        <div class="url-status" id="url-status"></div>
+      </div>
+    </div>
+
+    <!-- Box 2: Keywords -->
+    <div class="dabba">
+      <div class="dabba-header">
+        <div class="dabba-num n2">2</div>
+        <span class="dabba-title">Keywords</span>
+        <span class="dabba-tag tag-req">Required</span>
+      </div>
+      <div class="dabba-body">
+        <div class="dabba-hint">Paste keywords from Search Console or SEMRush. Label them by type for best results.</div>
+        <textarea id="inp-keywords" class="field-input" rows="7" placeholder="Primary: buy running shoes online
+Secondary: best running shoes 2025, running shoes for men
+LSI / Related: athletic footwear, marathon training shoes, cushioned running shoes
+Long-tail: best running shoes for flat feet, lightweight running shoes under $100"></textarea>
+      </div>
+    </div>
+
+    <!-- Box 3: SEMRush Data -->
+    <div class="dabba">
+      <div class="dabba-header">
+        <div class="dabba-num n3">3</div>
+        <span class="dabba-title">SEMRush Data — FAQs &amp; LLM Prompts</span>
+        <span class="dabba-tag tag-opt">Optional</span>
+      </div>
+      <div class="dabba-body">
+        <div class="dabba-hint">Paste FAQs, People Also Ask questions, or ChatGPT/LLM prompts from SEMRush. These become the FAQ section at the bottom of your page.</div>
+        <textarea id="inp-semrush" class="field-input" rows="8" placeholder="What are the best running shoes for beginners?
+How do I choose running shoes for my foot type?
+Are expensive running shoes worth the price?
+What is the difference between road and trail running shoes?
+How long do running shoes last before replacement?
+Do I need special running shoes for a treadmill?"></textarea>
+      </div>
+    </div>
+
+    <!-- Box 4: Content Brief -->
+    <div class="dabba">
+      <div class="dabba-header">
+        <div class="dabba-num n4">4</div>
+        <span class="dabba-title">Content Brief</span>
+        <span class="dabba-tag tag-req">Required</span>
+      </div>
+      <div class="dabba-body">
+        <div class="dabba-hint">Product or category details, key selling points, target audience, and anything specific the content must cover.</div>
+        <textarea id="inp-brief" class="field-input" rows="9" placeholder="Category: Running Shoes — Men &amp; Women
+Key products: Nike Air Zoom Pegasus 41, Adidas Ultraboost 24, Brooks Ghost 16
+Price range: $80 to $250
+USPs: Free shipping over $100, 30-day returns, expert fit advice
+Target audience: Recreational runners aged 25-50
+Must mention: In-store and online availability
+Avoid: Superlatives without evidence"></textarea>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="settings-row">
+      <span class="settings-label">Target length</span>
+      <select id="inp-wordcount" class="settings-select">
+        <option value="400-600">Short — 400 to 600 words</option>
+        <option value="600-900">Medium — 600 to 900 words</option>
+        <option value="900-1200" selected>Standard — 900 to 1200 words</option>
+        <option value="1200-1500">Long — 1200 to 1500 words</option>
+        <option value="1500-2000">Extended — 1500 to 2000 words</option>
+      </select>
+    </div>
+
+    <button class="generate-btn" id="generate-btn">
+      <div class="btn-spinner" id="btn-spinner"></div>
+      <span id="btn-label">✦ Generate Content</span>
+    </button>
+
+    <button class="regen-btn" id="regen-btn">↺ Regenerate with a different style</button>
+
+    <div class="error-box" id="error-box"></div>
+
+  </aside>
+
+  <section class="output-panel">
+
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">📄</div>
+      <div class="empty-title">Your content will appear here</div>
+      <div class="empty-sub">Fill in your keywords and content brief on the left, then hit Generate. Each page gets a unique writing style so your content never sounds repetitive.</div>
+      <div class="empty-steps">
+        <div class="empty-step"><div class="empty-step-n">1</div><span>Add your target URL (optional) — we'll fetch the existing page content as context.</span></div>
+        <div class="empty-step"><div class="empty-step-n">2</div><span>Paste primary, secondary, and LSI keywords from SEMRush or Search Console.</span></div>
+        <div class="empty-step"><div class="empty-step-n">3</div><span>Paste FAQs and LLM prompts from SEMRush — these build the FAQ section.</span></div>
+        <div class="empty-step"><div class="empty-step-n">4</div><span>Add your product or category details, USPs, and audience info.</span></div>
+        <div class="empty-step"><div class="empty-step-n">5</div><span>Hit Generate — then copy, download, or regenerate with a new style.</span></div>
+      </div>
+    </div>
+
+    <div class="loading-state" id="loading-state">
+      <div class="loading-ring"></div>
+      <div class="loading-title">Writing your content&hellip;</div>
+      <div class="loading-sub">Claude is reading your inputs and crafting unique, human-sounding content with headings, tables, bullets, and FAQs.</div>
+      <div class="loading-tips">⚡ Each generation picks a different tone, opening style, and structure — so every page feels written by a different editor.</div>
+    </div>
+
+    <div class="results" id="results">
+
+      <div class="stats-bar">
+        <div class="stat-chip">📝 <strong id="stat-words">—</strong> words</div>
+        <div class="stat-chip">🗂 <strong id="stat-headings">—</strong> headings</div>
+        <div class="stat-chip">❓ <strong id="stat-faqs">—</strong> FAQs</div>
+        <div class="stat-chip">⏱ <strong id="stat-read">—</strong> min read</div>
+        <div class="style-chip" id="stat-style">—</div>
+      </div>
+
+      <div class="action-bar" style="flex-wrap:wrap;gap:.5rem;row-gap:.45rem;">
+        <button class="act-btn primary" id="copy-html-btn">⎘ Copy HTML</button>
+        <button class="act-btn" id="copy-text-btn">⎘ Copy Plain Text</button>
+        <button class="act-btn" id="download-btn">⬇ Download .html</button>
+        <div class="meta-box"><strong>Meta:</strong> <span id="meta-desc-display">—</span></div>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab-btn active" id="tab-preview" data-tab="preview">Preview</button>
+        <button class="tab-btn" id="tab-raw" data-tab="raw">HTML Source</button>
+      </div>
+
+      <div class="content-area">
+        <div class="preview-html" id="preview-content"></div>
+        <textarea class="raw-area" id="raw-content" readonly spellcheck="false"></textarea>
+      </div>
+
+    </div>
+
+  </section>
+</div>
+
+<script>
+  let generatedHtml = '', generatedTitle = '', generatedMeta = '', currentTab = 'preview';
+
+  const inpUrl = document.getElementById('inp-url');
+  const inpKeywords = document.getElementById('inp-keywords');
+  const inpSemrush = document.getElementById('inp-semrush');
+  const inpBrief = document.getElementById('inp-brief');
+  const inpWordcount = document.getElementById('inp-wordcount');
+  const fetchBtn = document.getElementById('fetch-btn');
+  const urlStatus = document.getElementById('url-status');
+  const generateBtn = document.getElementById('generate-btn');
+  const regenBtn = document.getElementById('regen-btn');
+  const btnSpinner = document.getElementById('btn-spinner');
+  const btnLabel = document.getElementById('btn-label');
+  const errorBox = document.getElementById('error-box');
+  const emptyState = document.getElementById('empty-state');
+  const loadingState = document.getElementById('loading-state');
+  const results = document.getElementById('results');
+  const statWords = document.getElementById('stat-words');
+  const statHeadings = document.getElementById('stat-headings');
+  const statFaqs = document.getElementById('stat-faqs');
+  const statRead = document.getElementById('stat-read');
+  const statStyle = document.getElementById('stat-style');
+  const metaDisplay = document.getElementById('meta-desc-display');
+  const previewContent = document.getElementById('preview-content');
+  const rawContent = document.getElementById('raw-content');
+  const copyHtmlBtn = document.getElementById('copy-html-btn');
+  const copyTextBtn = document.getElementById('copy-text-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const tabPreview = document.getElementById('tab-preview');
+  const tabRaw = document.getElementById('tab-raw');
+
+  function setLoading(on) {
+    generateBtn.disabled = on;
+    btnSpinner.style.display = on ? 'block' : 'none';
+    btnLabel.textContent = on ? 'Generating…' : '✦ Generate Content';
+    emptyState.style.display = on ? 'none' : (results.style.display === 'flex' ? 'none' : 'flex');
+    loadingState.style.display = on ? 'flex' : 'none';
+    if (on) { results.style.display = 'none'; errorBox.style.display = 'none'; }
+  }
+
+  function showError(msg) {
+    errorBox.textContent = msg; errorBox.style.display = 'block';
+    emptyState.style.display = 'flex'; loadingState.style.display = 'none'; results.style.display = 'none';
+  }
+
+  function stripHtml(html) {
+    return html
+      .replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n\n').replace(/<\/h[1-6]>/gi, '\n\n')
+      .replace(/<\/li>/gi, '\n').replace(/<\/tr>/gi, '\n')
+      .replace(/<td[^>]*>/gi, ' | ').replace(/<th[^>]*>/gi, ' | ')
+      .replace(/<[^>]+>/g, '').replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  function flashCopied(btn, orig) {
+    btn.textContent = '✓ Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2200);
+  }
+
+  fetchBtn.addEventListener('click', async () => {
+    const url = inpUrl.value.trim();
+    if (!url) { urlStatus.className = 'url-status err'; urlStatus.textContent = 'Enter a URL first.'; return; }
+    urlStatus.className = 'url-status'; urlStatus.style.display = 'none';
+    fetchBtn.textContent = 'Checking…'; fetchBtn.disabled = true;
+    try {
+      const r = await fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(5000) });
+      urlStatus.className = r.ok ? 'url-status ok' : 'url-status err';
+      urlStatus.textContent = r.ok ? '✓ URL reachable — content will be fetched on generate.' : `⚠ URL returned ${r.status}. Will generate without it.`;
+    } catch {
+      urlStatus.className = 'url-status err';
+      urlStatus.textContent = '⚠ Could not reach URL. Will generate without it.';
+    } finally { fetchBtn.textContent = 'Fetch'; fetchBtn.disabled = false; }
+  });
+
+  [tabPreview, tabRaw].forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentTab = btn.dataset.tab;
+      tabPreview.classList.toggle('active', currentTab === 'preview');
+      tabRaw.classList.toggle('active', currentTab === 'raw');
+      previewContent.style.display = currentTab === 'preview' ? 'block' : 'none';
+      rawContent.style.display = currentTab === 'raw' ? 'block' : 'none';
+    });
+  });
+
+  copyHtmlBtn.addEventListener('click', () => {
+    if (!generatedHtml) return;
+    navigator.clipboard.writeText(generatedHtml).then(() => flashCopied(copyHtmlBtn, '⎘ Copy HTML'));
+  });
+
+  copyTextBtn.addEventListener('click', () => {
+    if (!generatedHtml) return;
+    navigator.clipboard.writeText(stripHtml(generatedHtml)).then(() => flashCopied(copyTextBtn, '⎘ Copy Plain Text'));
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!generatedHtml) return;
+    const fullHtml = `<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>${generatedTitle.replace(/</g,'&lt;')}</title><meta name="description" content="${generatedMeta.replace(/"/g,'&quot;')}"/><style>body{font-family:Georgia,serif;max-width:760px;margin:2rem auto;padding:0 1rem;line-height:1.8;color:#222}h1{font-size:2rem;margin-bottom:1rem}h2{font-size:1.35rem;margin:2.5rem 0 0.75rem;border-bottom:1px solid #e0e0e0;padding-bottom:.35rem}h3{font-size:1.05rem;margin:1.5rem 0 .5rem;color:#333}table{width:100%;border-collapse:collapse;margin:1.5rem 0}th,td{padding:.6rem .9rem;border:1px solid #ddd;text-align:left}th{background:#f5f5f5;font-weight:700}tr:nth-child(even) td{background:#fafafa}</style></head><body>${generatedHtml}</body></html>`;
+    const blob = new Blob([fullHtml], { type: 'text/html' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = (generatedTitle || 'content').replace(/[^a-z0-9]/gi, '-').toLowerCase().slice(0, 50) + '.html';
+    link.click(); URL.revokeObjectURL(link.href);
+  });
+
+  async function generate() {
+    const keywords = inpKeywords.value.trim();
+    const brief = inpBrief.value.trim();
+    if (!keywords && !brief) {
+      showError('Please fill in at least the Keywords box (Box 2) or the Content Brief box (Box 4) before generating.');
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch('/api/content-writer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: inpUrl.value.trim(),
+          keywords, semrushData: inpSemrush.value.trim(),
+          contentBrief: brief, wordCount: inpWordcount.value,
+        }),
+      });
+      let data;
+      try { data = await res.json(); } catch {
+        setLoading(false);
+        showError(`Server error (${res.status}). Check that ANTHROPIC_API_KEY is set in your Railway environment.`);
+        return;
+      }
+      if (!res.ok || !data.success) {
+        setLoading(false);
+        showError(data.error || `Generation failed (${res.status}). Please try again.`);
+        return;
+      }
+      const c = data.content || {};
+      generatedHtml = c.html || ''; generatedTitle = c.title || ''; generatedMeta = c.metaDescription || '';
+      const wc = c.wordCount || 0;
+      statWords.textContent = wc.toLocaleString();
+      statHeadings.textContent = c.headingsCount || '—';
+      statFaqs.textContent = c.faqCount || '—';
+      statRead.textContent = Math.max(1, Math.round(wc / 200));
+      statStyle.textContent = data.styleId || '—';
+      metaDisplay.textContent = generatedMeta || '—';
+      previewContent.innerHTML = generatedHtml;
+      rawContent.value = generatedHtml;
+      currentTab = 'preview';
+      tabPreview.classList.add('active'); tabRaw.classList.remove('active');
+      previewContent.style.display = 'block'; rawContent.style.display = 'none';
+      emptyState.style.display = 'none'; loadingState.style.display = 'none';
+      results.style.display = 'flex'; regenBtn.style.display = 'flex';
+      document.querySelector('.output-panel').scrollTop = 0;
+    } catch {
+      showError('Could not reach the server. Check your connection and try again.');
+    } finally { setLoading(false); }
+  }
+
+  generateBtn.addEventListener('click', generate);
+  regenBtn.addEventListener('click', generate);
+</script>
+
+</body>
+</html>

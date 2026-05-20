@@ -1,8 +1,6 @@
 import type { APIRoute } from 'astro';
 import Anthropic from '@anthropic-ai/sdk';
 
-// ── Uniqueness pools: each generation picks one from each dimension ──────────
-
 const TONES = [
   'conversational and direct — write like a knowledgeable friend who genuinely understands this topic and explains it clearly without talking down to the reader',
   'confident and authoritative — write like a seasoned industry professional who cuts straight to what matters, no filler, no hedging',
@@ -119,13 +117,11 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  // Fetch URL reference content server-side
   let urlRef: string | null = null;
   if (url?.trim()) {
     urlRef = await tryFetchUrl(url.trim());
   }
 
-  // ── Build unique style fingerprint for this generation ───────────────────
   const seed = Date.now();
   const pick = <T>(arr: T[], div: number): T => arr[Math.floor(seed / div) % arr.length];
 
@@ -133,11 +129,8 @@ export const POST: APIRoute = async ({ request }) => {
   const opening    = pick(OPENINGS, 7);
   const structure  = pick(STRUCTURES, 19);
   const h2starters = H2_STARTER_SETS[Math.floor(seed / 37) % H2_STARTER_SETS.length];
-
-  // Compact style ID for display
-  const styleId = `Style-${seed % 4 + 1}${Math.floor(seed / 7) % 4 + 1}${Math.floor(seed / 19) % 4 + 1}`;
-
-  const bannedStr = BANNED_PHRASES.map(p => `"${p}"`).join(', ');
+  const styleId    = `Style-${seed % 4 + 1}${Math.floor(seed / 7) % 4 + 1}${Math.floor(seed / 19) % 4 + 1}`;
+  const bannedStr  = BANNED_PHRASES.map(p => `"${p}"`).join(', ');
 
   const prompt = `You are an experienced human content editor. Your job is to write a web page that reads like a real person wrote it — not an AI assistant.
 
@@ -190,7 +183,7 @@ HTML content requirements:
       messages: [{ role: 'user', content: prompt }],
     });
 
-    const raw = msg.content[0].type === 'text' ? msg.content[0].text : '';
+    const raw   = msg.content[0].type === 'text' ? msg.content[0].text : '';
     const match = raw.match(/\{[\s\S]*\}/);
     if (!match) {
       return new Response(JSON.stringify({ error: 'Unexpected AI response format. Please try again.' }), {
@@ -218,12 +211,7 @@ HTML content requirements:
     }
 
     return new Response(
-      JSON.stringify({
-        success: true,
-        content: result,
-        styleId,
-        urlFetched: !!urlRef,
-      }),
+      JSON.stringify({ success: true, content: result, styleId, urlFetched: !!urlRef }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (err: unknown) {
