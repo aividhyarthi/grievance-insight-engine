@@ -1,7 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
 const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main';
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 8);
 ---
 
 <Layout
@@ -178,6 +183,57 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
     </div>
   </section>
 
+  <!-- ── 6b. JOURNAL SLIDER ── -->
+  <section class="section journal-section">
+    <div class="container">
+      <div class="journal-header">
+        <div>
+          <span class="section-label">From the journal</span>
+          <h2 class="section-title">Answers to questions<br/>you didn't know how to ask</h2>
+        </div>
+        <a href="/blog" class="btn btn-outline journal-all-btn">Read all journals →</a>
+      </div>
+
+      <div class="slider-wrap">
+        <div class="slider-track" id="sliderTrack">
+          {posts.map(post => (
+            <a href={`/blog/${post.slug}`} class="slide-card">
+              {post.data.image && (
+                <div class="slide-img-wrap">
+                  <img src={post.data.image} alt={post.data.imageAlt || post.data.title} class="slide-img" loading="lazy" />
+                  <div class="slide-img-overlay"></div>
+                </div>
+              )}
+              <div class="slide-body">
+                <div class="slide-tags">
+                  {post.data.tags.slice(0,2).map(tag => (
+                    <span class="slide-tag">{tag}</span>
+                  ))}
+                </div>
+                <h3 class="slide-title">{post.data.title}</h3>
+                <p class="slide-desc">{post.data.description}</p>
+                <div class="slide-meta">
+                  <span class="slide-read">{post.data.readTime}</span>
+                  <span class="slide-arrow">Read →</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <button class="slider-btn" id="sliderPrev" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-btn" id="sliderNext" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- ── 7. FAQ ── -->
   <section class="section faq-section bg-cream">
     <div class="container">
@@ -226,6 +282,51 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
 </Layout>
 
 <script>
+  // ── JOURNAL SLIDER ──
+  (function() {
+    const track = document.getElementById('sliderTrack') as HTMLElement;
+    const prevBtn = document.getElementById('sliderPrev') as HTMLButtonElement;
+    const nextBtn = document.getElementById('sliderNext') as HTMLButtonElement;
+    const dotsWrap = document.getElementById('sliderDots') as HTMLElement;
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.slide-card') as NodeListOf<HTMLElement>;
+    const cardW = () => (cards[0]?.offsetWidth || 300) + 20; // card + gap
+    const visible = () => Math.floor(track.parentElement!.offsetWidth / cardW()) || 1;
+    const maxIdx = () => Math.max(0, cards.length - visible());
+
+    let cur = 0;
+
+    // Build dots
+    const totalDots = () => maxIdx() + 1;
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < totalDots(); i++) {
+        const d = document.createElement('button');
+        d.className = 'slider-dot' + (i === cur ? ' active' : '');
+        d.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(d);
+      }
+    }
+
+    function go(idx: number) {
+      cur = Math.max(0, Math.min(idx, maxIdx()));
+      track.style.transform = `translateX(-${cur * cardW()}px)`;
+      dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+    }
+
+    prevBtn.addEventListener('click', () => go(cur - 1));
+    nextBtn.addEventListener('click', () => go(cur + 1));
+
+    // Auto-play
+    let timer = setInterval(() => go(cur >= maxIdx() ? 0 : cur + 1), 4000);
+    track.addEventListener('mouseenter', () => clearInterval(timer));
+    track.addEventListener('mouseleave', () => { timer = setInterval(() => go(cur >= maxIdx() ? 0 : cur + 1), 4000); });
+
+    buildDots();
+    window.addEventListener('resize', () => { buildDots(); go(0); });
+  })();
+
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -368,6 +469,52 @@ const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main
   .section-label { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
   .section-title { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.18; margin-bottom: .75rem; }
   .section-sub { font-size: 1rem; color: var(--text-secondary); line-height: 1.72; max-width: 560px; }
+
+  /* ── JOURNAL SLIDER ── */
+  .journal-section { background: var(--cream); }
+  .journal-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .journal-all-btn { flex-shrink: 0; }
+
+  .slider-wrap { overflow: hidden; border-radius: var(--radius-lg); }
+  .slider-track {
+    display: flex;
+    gap: 1.25rem;
+    transition: transform .45s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+  .slide-card {
+    flex: 0 0 300px;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--border-light);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .slide-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+
+  .slide-img-wrap { position: relative; height: 170px; overflow: hidden; }
+  .slide-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .slide-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.35), transparent); }
+
+  .slide-body { padding: 1.1rem; display: flex; flex-direction: column; flex: 1; gap: .6rem; }
+  .slide-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .slide-tag { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: var(--green-light); color: var(--green); padding: .2rem .55rem; border-radius: 99px; }
+  .slide-title { font-size: .92rem; font-weight: 800; color: var(--text); line-height: 1.4; letter-spacing: -.01em; }
+  .slide-desc { font-size: .8rem; color: var(--text-secondary); line-height: 1.6; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .slide-meta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: .5rem; border-top: 1px solid var(--border-light); }
+  .slide-read { font-size: .75rem; color: var(--text-muted); }
+  .slide-arrow { font-size: .78rem; font-weight: 700; color: var(--green); }
+
+  .slider-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+  .slider-btn { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--border); background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); transition: all .18s; }
+  .slider-btn:hover { background: var(--green); color: #fff; border-color: var(--green); }
+  .slider-dots { display: flex; gap: .45rem; align-items: center; }
+  .slider-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; padding: 0; transition: all .2s; }
+  .slider-dot.active { background: var(--green); width: 20px; border-radius: 99px; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1000px) {
