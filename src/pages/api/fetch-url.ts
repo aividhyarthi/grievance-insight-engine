@@ -2,152 +2,144 @@ import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request }) => {
   let body: { url?: string };
-  try {
-    body = await request.json();
-  } catch {
-    return new Response(JSON.stringify({ error: 'Invalid request.' }), {
-      status: 400, headers: { 'Content-Type': 'application/json' },
-    });
-  }
+  try { body = await request.json(); }
+  catch { return new Response(JSON.stringify({ error: 'Invalid request.' }), { status: 400, headers: { 'Content-Type': 'application/json' } }); }
 
   const { url } = body;
-  if (!url?.trim()) {
-    return new Response(JSON.stringify({ error: 'URL is required.' }), {
-      status: 400, headers: { 'Content-Type': 'application/json' },
-    });
-  }
+  if (!url?.trim()) return new Response(JSON.stringify({ error: 'URL is required.' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
 
+  const cleanUrl = url.trim();
+
+  // ── Strategy 1: Jina AI Reader — handles JS-rendered pages ───────────────
+  // r.jina.ai renders the page with a real browser and returns clean text
   try {
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 12000);
-
-    // Use real browser headers to avoid being blocked
-    const res = await fetch(url.trim(), {
-      signal: ctrl.signal,
+    const ctrl1 = new AbortController();
+    const t1 = setTimeout(() => ctrl1.abort(), 15000);
+    const jinaRes = await fetch(`https://r.jina.ai/${cleanUrl}`, {
+      signal: ctrl1.signal,
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Accept-Encoding': 'gzip, deflate',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
+        'Accept': 'application/json',
+        'X-Return-Format': 'markdown',
       },
     });
-    clearTimeout(t);
+    clearTimeout(t1);
 
-    if (!res.ok) {
-      return new Response(
-        JSON.stringify({ error: `Page returned status ${res.status}. This site may be blocking automated access.` }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
-      );
+    if (jinaRes.ok) {
+      const jinaText = await jinaRes.text();
+
+      // Jina returns: Title: ...\nURL Source: ...\nMarkdown Content:\n...
+      const titleMatch = jinaText.match(/^Title:\s*(.+)$/m);
+      const title = titleMatch ? titleMatch[1].trim() : '';
+
+      // Strip the Jina header lines, get the actual content
+      const contentStart = jinaText.indexOf('Markdown Content:');
+      const markdownContent = contentStart > -1
+        ? jinaText.slice(contentStart + 'Markdown Content:'.length).trim()
+        : jinaText;
+
+      // Extract headings from markdown
+      const h1s = (markdownContent.match(/^# (.+)$/gm) || []).map(h => h.replace(/^# /, '').trim()).slice(0, 2);
+      const h2s = (markdownContent.match(/^## (.+)$/gm) || []).map(h => h.replace(/^## /, '').trim()).filter(Boolean).slice(0, 8);
+
+      // Clean body text — remove markdown symbols, get readable text
+      const bodyText = markdownContent
+        .replace(/!\[.*?\]\(.*?\)/g, '')   // remove images
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links → text
+        .replace(/#{1,6}\s/g, '')           // remove heading markers
+        .replace(/[*_`~]/g, '')             // remove formatting
+        .replace(/\n{3,}/g, '\n\n')
+        .trim()
+        .slice(0, 2000);
+
+      return new Response(JSON.stringify({
+        success: true,
+        source: 'jina',
+        title: title || h1s[0] || '',
+        description: bodyText.slice(0, 300),
+        headings: h2s,
+        bodyText,
+        brand: '',
+        price: '',
+        sku: '',
+        category: '',
+        features: [],
+        keywords: '',
+        metaDesc: bodyText.slice(0, 160),
+      }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    }
+  } catch { /* fall through to direct fetch */ }
+
+  // ── Strategy 2: Direct HTML fetch + JSON-LD extraction ───────────────────
+  try {
+    const ctrl2 = new AbortController();
+    const t2 = setTimeout(() => ctrl2.abort(), 10000);
+    const directRes = await fetch(cleanUrl, {
+      signal: ctrl2.signal,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+      },
+    });
+    clearTimeout(t2);
+
+    if (!directRes.ok) {
+      return new Response(JSON.stringify({ error: `Page returned ${directRes.status}. Try pasting the product details manually into Box 4.` }), { status: 200, headers: { 'Content-Type': 'application/json' } });
     }
 
-    const html = await res.text();
+    const html = await directRes.text();
 
-    // ── 1. Extract JSON-LD structured data (best source for product info) ──
-    interface ProductData {
-      name?: string;
-      description?: string;
-      brand?: string;
-      price?: string;
-      sku?: string;
-      category?: string;
-      features?: string[];
-      ingredients?: string;
-    }
-    let productData: ProductData = {};
+    // JSON-LD product data
+    interface ProductData { name?: string; description?: string; brand?: string; price?: string; sku?: string; category?: string; features?: string[]; }
+    let pd: ProductData = {};
     const jsonLdBlocks = html.match(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi) || [];
     for (const block of jsonLdBlocks) {
       try {
-        const jsonStr = block.replace(/<script[^>]*>/i, '').replace(/<\/script>/i, '').trim();
-        const parsed = JSON.parse(jsonStr);
+        const parsed = JSON.parse(block.replace(/<script[^>]*>/i, '').replace(/<\/script>/i, '').trim());
         const items = Array.isArray(parsed) ? parsed : [parsed];
         for (const item of items) {
-          const type = item['@type'] || '';
-          if (['Product', 'ItemPage', 'WebPage'].includes(type) || item.name || item.description) {
-            productData.name        = productData.name        || item.name        || '';
-            productData.description = productData.description || item.description || '';
-            productData.brand       = productData.brand       || item.brand?.name || item.brand || '';
-            productData.sku         = productData.sku         || item.sku         || item.mpn   || '';
-            productData.category    = productData.category    || item.category    || '';
-            if (item.offers) {
-              const offer = Array.isArray(item.offers) ? item.offers[0] : item.offers;
-              productData.price = productData.price || offer?.price?.toString() || offer?.priceSpecification?.price?.toString() || '';
-            }
-            if (item.additionalProperty) {
-              const props = Array.isArray(item.additionalProperty) ? item.additionalProperty : [item.additionalProperty];
-              productData.features = props.map((p: {name?: string; value?: string}) => `${p.name}: ${p.value}`).filter(Boolean);
-            }
+          if (item['@type'] === 'Product' || item.name) {
+            pd.name        = pd.name        || item.name        || '';
+            pd.description = pd.description || item.description || '';
+            pd.brand       = pd.brand       || item.brand?.name || item.brand || '';
+            pd.sku         = pd.sku         || item.sku         || '';
+            pd.category    = pd.category    || item.category    || '';
+            if (item.offers) { const o = Array.isArray(item.offers) ? item.offers[0] : item.offers; pd.price = pd.price || o?.price?.toString() || ''; }
+            if (item.additionalProperty) { const props = Array.isArray(item.additionalProperty) ? item.additionalProperty : [item.additionalProperty]; pd.features = props.map((p: {name?: string; value?: string}) => `${p.name}: ${p.value}`).filter(Boolean); }
           }
         }
-      } catch { /* skip malformed JSON-LD */ }
+      } catch { /* skip */ }
     }
 
-    // ── 2. Extract Open Graph & meta tags ──────────────────────────────────
-    const get = (pattern: RegExp) => { const m = html.match(pattern); return m ? m[1].trim() : ''; };
+    const get = (p: RegExp) => { const m = html.match(p); return m ? m[1].trim() : ''; };
+    const ogTitle   = get(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']{1,200})["']/i) || get(/<meta[^>]+content=["']([^"']{1,200})["'][^>]+property=["']og:title["']/i);
+    const ogDesc    = get(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']{1,400})["']/i) || get(/<meta[^>]+content=["']([^"']{1,400})["'][^>]+property=["']og:description["']/i);
+    const metaDesc  = get(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']{1,400})["']/i) || get(/<meta[^>]+content=["']([^"']{1,400})["'][^>]+name=["']description["']/i);
+    const pageTitle = get(/<title[^>]*>([^<]{1,150})<\/title>/i);
+    const keywords  = get(/<meta[^>]+name=["']keywords["'][^>]+content=["']([^"']{1,300})["']/i);
+    const h1s       = (html.match(/<h1[^>]*>([^<]{2,150})<\/h1>/gi) || []).map(h => h.replace(/<[^>]+>/g, '').trim()).slice(0, 2);
+    const h2s       = (html.match(/<h2[^>]*>([^<]{2,150})<\/h2>/gi) || []).map(h => h.replace(/<[^>]+>/g, '').trim()).filter(Boolean).slice(0, 8);
 
-    const ogTitle       = get(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']{1,200})["']/i)
-                       || get(/<meta[^>]+content=["']([^"']{1,200})["'][^>]+property=["']og:title["']/i);
-    const ogDesc        = get(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']{1,400})["']/i)
-                       || get(/<meta[^>]+content=["']([^"']{1,400})["'][^>]+property=["']og:description["']/i);
-    const metaDesc      = get(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']{1,400})["']/i)
-                       || get(/<meta[^>]+content=["']([^"']{1,400})["'][^>]+name=["']description["']/i);
-    const pageTitle     = get(/<title[^>]*>([^<]{1,150})<\/title>/i);
-    const keywords      = get(/<meta[^>]+name=["']keywords["'][^>]+content=["']([^"']{1,300})["']/i)
-                       || get(/<meta[^>]+content=["']([^"']{1,300})["'][^>]+name=["']keywords["']/i);
+    const bodyText = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<nav[\s\S]*?<\/nav>/gi, ' ').replace(/<footer[\s\S]*?<\/footer>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s{2,}/g, ' ').trim().slice(0, 2000);
 
-    // ── 3. Extract headings from the page ─────────────────────────────────
-    const h1s = (html.match(/<h1[^>]*>([^<]{2,150})<\/h1>/gi) || [])
-      .map(h => h.replace(/<[^>]+>/g, '').trim()).filter(Boolean).slice(0, 3);
-    const h2s = (html.match(/<h2[^>]*>([^<]{2,150})<\/h2>/gi) || [])
-      .map(h => h.replace(/<[^>]+>/g, '').trim()).filter(Boolean).slice(0, 6);
-
-    // ── 4. Extract readable body text ─────────────────────────────────────
-    const bodyText = html
-      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-      .replace(/<nav[\s\S]*?<\/nav>/gi, ' ')
-      .replace(/<footer[\s\S]*?<\/footer>/gi, ' ')
-      .replace(/<header[\s\S]*?<\/header>/gi, ' ')
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/&nbsp;/g, ' ')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/\s{2,}/g, ' ')
-      .trim()
-      .slice(0, 1200);
-
-    // ── 5. Build the summary ──────────────────────────────────────────────
-    const title       = productData.name || ogTitle || h1s[0] || pageTitle || '';
-    const description = productData.description || ogDesc || metaDesc || '';
-
-    return new Response(
-      JSON.stringify({
-        success:     true,
-        title,
-        description,
-        brand:       productData.brand    || '',
-        price:       productData.price    || '',
-        sku:         productData.sku      || '',
-        category:    productData.category || '',
-        features:    productData.features || [],
-        keywords:    keywords             || '',
-        headings:    h2s,
-        bodyText,
-        metaDesc:    metaDesc             || ogDesc || '',
-      }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({
+      success: true,
+      source: 'direct',
+      title:       pd.name     || ogTitle  || h1s[0] || pageTitle || '',
+      description: pd.description || ogDesc || metaDesc || '',
+      brand:       pd.brand    || '',
+      price:       pd.price    || '',
+      sku:         pd.sku      || '',
+      category:    pd.category || '',
+      features:    pd.features || [],
+      keywords,
+      headings:    h2s,
+      bodyText,
+      metaDesc:    metaDesc || ogDesc || '',
+    }), { status: 200, headers: { 'Content-Type': 'application/json' } });
 
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'Unknown error';
-    const friendly = msg.includes('abort')
-      ? 'Request timed out — the page took too long to respond.'
-      : `Could not fetch this URL. The site may be blocking automated access. (${msg})`;
-    return new Response(JSON.stringify({ error: friendly }), {
-      status: 200, headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(JSON.stringify({ error: msg.includes('abort') ? 'Timed out. Try pasting product details into Box 4 manually.' : `Could not fetch page. Try pasting the product details into Box 4 manually.` }), { status: 200, headers: { 'Content-Type': 'application/json' } });
   }
 };
