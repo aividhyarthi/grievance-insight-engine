@@ -149,22 +149,28 @@
       border: 1px solid var(--border);
       border-left: 3px solid var(--green);
       border-radius: 7px;
-      padding: 0.7rem 0.85rem;
+      padding: 0.75rem 0.9rem;
     }
     .url-preview-label {
       font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.06em; color: var(--green); margin-bottom: 0.35rem;
+      letter-spacing: 0.06em; color: var(--green); margin-bottom: 0.5rem;
     }
-    .url-preview-title {
-      font-size: 0.82rem; font-weight: 700; color: var(--text);
-      margin-bottom: 0.3rem; line-height: 1.4;
+    .url-preview-row {
+      display: flex; gap: 0.4rem; margin-bottom: 0.3rem; align-items: baseline;
     }
-    .url-preview-meta {
-      font-size: 0.75rem; color: var(--text-2);
-      margin-bottom: 0.4rem; line-height: 1.5; font-style: italic;
+    .url-preview-key {
+      font-size: 0.7rem; font-weight: 700; color: var(--accent);
+      white-space: nowrap; flex-shrink: 0; min-width: 80px;
     }
-    .url-preview-text {
-      font-size: 0.72rem; color: var(--text-3); line-height: 1.55;
+    .url-preview-val {
+      font-size: 0.75rem; color: var(--text-2); line-height: 1.45;
+    }
+    .url-preview-divider {
+      border: none; border-top: 1px solid var(--border); margin: 0.5rem 0;
+    }
+    .url-preview-body {
+      font-size: 0.71rem; color: var(--text-3); line-height: 1.55;
+      margin-top: 0.35rem;
     }
 
     .settings-row { display: flex; gap: 0.75rem; align-items: center; }
@@ -381,10 +387,10 @@
         </div>
         <div class="url-status" id="url-status"></div>
         <div class="url-preview" id="url-preview">
-          <div class="url-preview-label">✓ Page fetched — will be used as reference</div>
-          <div class="url-preview-title" id="url-preview-title"></div>
-          <div class="url-preview-meta" id="url-preview-meta"></div>
-          <div class="url-preview-text" id="url-preview-text"></div>
+          <div class="url-preview-label">✓ Page fetched — product info found</div>
+          <div id="url-preview-rows"></div>
+          <hr class="url-preview-divider" id="url-preview-divider" style="display:none" />
+          <div class="url-preview-body" id="url-preview-body"></div>
         </div>
       </div>
     </div>
@@ -579,9 +585,17 @@ Avoid: Superlatives without evidence"></textarea>
   }
 
   const urlPreview      = document.getElementById('url-preview');
-  const urlPreviewTitle = document.getElementById('url-preview-title');
-  const urlPreviewMeta  = document.getElementById('url-preview-meta');
-  const urlPreviewText  = document.getElementById('url-preview-text');
+  const urlPreviewRows  = document.getElementById('url-preview-rows');
+  const urlPreviewDiv   = document.getElementById('url-preview-divider');
+  const urlPreviewBody  = document.getElementById('url-preview-body');
+
+  function makeRow(key, val) {
+    if (!val) return '';
+    return `<div class="url-preview-row">
+      <span class="url-preview-key">${key}</span>
+      <span class="url-preview-val">${val}</span>
+    </div>`;
+  }
 
   fetchBtn.addEventListener('click', async () => {
     const url = inpUrl.value.trim();
@@ -591,7 +605,6 @@ Avoid: Superlatives without evidence"></textarea>
       return;
     }
 
-    // Reset
     urlStatus.style.display = 'none';
     urlPreview.style.display = 'none';
     fetchBtn.textContent = 'Fetching…';
@@ -603,19 +616,37 @@ Avoid: Superlatives without evidence"></textarea>
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url }),
       });
-      const data = await res.json();
+      const d = await res.json();
 
-      if (data.error) {
+      if (d.error) {
         urlStatus.className = 'url-status err';
-        urlStatus.textContent = '⚠ ' + data.error;
+        urlStatus.textContent = '⚠ ' + d.error;
       } else {
-        // Show preview card
-        urlPreviewTitle.textContent = data.title || url;
-        urlPreviewMeta.textContent  = data.metaDesc || '';
-        urlPreviewMeta.style.display = data.metaDesc ? 'block' : 'none';
-        urlPreviewText.textContent  = data.preview ? data.preview.slice(0, 220) + '…' : '';
+        // Build info rows
+        let rows = '';
+        rows += makeRow('Product',     d.title       || '');
+        rows += makeRow('Brand',       d.brand       || '');
+        rows += makeRow('Price',       d.price       || '');
+        rows += makeRow('SKU',         d.sku         || '');
+        rows += makeRow('Category',    d.category    || '');
+        rows += makeRow('Description', d.description ? d.description.slice(0, 200) + (d.description.length > 200 ? '…' : '') : '');
+        rows += makeRow('Meta',        d.metaDesc && d.metaDesc !== d.description ? d.metaDesc.slice(0, 160) : '');
+        rows += makeRow('Keywords',    d.keywords    || '');
+        if (d.headings?.length) rows += makeRow('Headings', d.headings.join(' · '));
+        if (d.features?.length) rows += makeRow('Features', d.features.slice(0,4).join(' | '));
+
+        urlPreviewRows.innerHTML = rows || makeRow('Note', 'Basic page info found — no structured product data detected.');
+
+        if (d.bodyText) {
+          urlPreviewDiv.style.display = 'block';
+          urlPreviewBody.textContent = 'Page text: ' + d.bodyText.slice(0, 300) + '…';
+        } else {
+          urlPreviewDiv.style.display = 'none';
+          urlPreviewBody.textContent = '';
+        }
+
         urlPreview.style.display = 'block';
-        urlStatus.style.display = 'none';
+        urlStatus.style.display  = 'none';
       }
     } catch {
       urlStatus.className = 'url-status err';
