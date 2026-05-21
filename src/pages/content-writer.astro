@@ -142,6 +142,31 @@
     .url-status.ok  { color: var(--green); display: block; }
     .url-status.err { color: var(--red);   display: block; }
 
+    .url-preview {
+      display: none;
+      margin-top: 0.65rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: 7px;
+      padding: 0.7rem 0.85rem;
+    }
+    .url-preview-label {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--green); margin-bottom: 0.35rem;
+    }
+    .url-preview-title {
+      font-size: 0.82rem; font-weight: 700; color: var(--text);
+      margin-bottom: 0.3rem; line-height: 1.4;
+    }
+    .url-preview-meta {
+      font-size: 0.75rem; color: var(--text-2);
+      margin-bottom: 0.4rem; line-height: 1.5; font-style: italic;
+    }
+    .url-preview-text {
+      font-size: 0.72rem; color: var(--text-3); line-height: 1.55;
+    }
+
     .settings-row { display: flex; gap: 0.75rem; align-items: center; }
     .settings-label { font-size: 0.75rem; color: var(--text-2); font-weight: 600; white-space: nowrap; }
     .settings-select {
@@ -355,6 +380,12 @@
           <button class="fetch-btn" id="fetch-btn">Fetch</button>
         </div>
         <div class="url-status" id="url-status"></div>
+        <div class="url-preview" id="url-preview">
+          <div class="url-preview-label">✓ Page fetched — will be used as reference</div>
+          <div class="url-preview-title" id="url-preview-title"></div>
+          <div class="url-preview-meta" id="url-preview-meta"></div>
+          <div class="url-preview-text" id="url-preview-text"></div>
+        </div>
       </div>
     </div>
 
@@ -547,19 +578,52 @@ Avoid: Superlatives without evidence"></textarea>
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2200);
   }
 
+  const urlPreview      = document.getElementById('url-preview');
+  const urlPreviewTitle = document.getElementById('url-preview-title');
+  const urlPreviewMeta  = document.getElementById('url-preview-meta');
+  const urlPreviewText  = document.getElementById('url-preview-text');
+
   fetchBtn.addEventListener('click', async () => {
     const url = inpUrl.value.trim();
-    if (!url) { urlStatus.className = 'url-status err'; urlStatus.textContent = 'Enter a URL first.'; return; }
-    urlStatus.className = 'url-status'; urlStatus.style.display = 'none';
-    fetchBtn.textContent = 'Checking…'; fetchBtn.disabled = true;
+    if (!url) {
+      urlStatus.className = 'url-status err';
+      urlStatus.textContent = '⚠ Please enter a URL first.';
+      return;
+    }
+
+    // Reset
+    urlStatus.style.display = 'none';
+    urlPreview.style.display = 'none';
+    fetchBtn.textContent = 'Fetching…';
+    fetchBtn.disabled = true;
+
     try {
-      const r = await fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(5000) });
-      urlStatus.className = r.ok ? 'url-status ok' : 'url-status err';
-      urlStatus.textContent = r.ok ? '✓ URL reachable — content will be fetched on generate.' : `⚠ URL returned ${r.status}. Will generate without it.`;
+      const res = await fetch('/api/fetch-url', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      });
+      const data = await res.json();
+
+      if (data.error) {
+        urlStatus.className = 'url-status err';
+        urlStatus.textContent = '⚠ ' + data.error;
+      } else {
+        // Show preview card
+        urlPreviewTitle.textContent = data.title || url;
+        urlPreviewMeta.textContent  = data.metaDesc || '';
+        urlPreviewMeta.style.display = data.metaDesc ? 'block' : 'none';
+        urlPreviewText.textContent  = data.preview ? data.preview.slice(0, 220) + '…' : '';
+        urlPreview.style.display = 'block';
+        urlStatus.style.display = 'none';
+      }
     } catch {
       urlStatus.className = 'url-status err';
-      urlStatus.textContent = '⚠ Could not reach URL. Will generate without it.';
-    } finally { fetchBtn.textContent = 'Fetch'; fetchBtn.disabled = false; }
+      urlStatus.textContent = '⚠ Could not reach the server. Try again.';
+    } finally {
+      fetchBtn.textContent = 'Fetch';
+      fetchBtn.disabled = false;
+    }
   });
 
   [tabPreview, tabRaw].forEach(btn => {
