@@ -96,12 +96,15 @@
     /* URL Preview card */
     .url-preview { display: none; margin-top: 0.75rem; background: var(--bg3); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 9px; padding: 0.85rem 1rem; }
     .url-preview-badge { font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); margin-bottom: 0.55rem; }
-    .url-row-item { display: flex; gap: 0.6rem; margin-bottom: 0.35rem; align-items: baseline; }
-    .url-row-key { font-size: 0.7rem; font-weight: 700; color: var(--accent); min-width: 95px; flex-shrink: 0; }
-    .url-row-val { font-size: 0.75rem; color: var(--text-2); line-height: 1.45; }
     .url-divider { border: none; border-top: 1px solid var(--border); margin: 0.5rem 0; }
     .url-body-text { font-size: 0.71rem; color: var(--text-3); line-height: 1.6; }
     .url-tag { display: inline-block; background: rgba(123,132,248,0.1); border: 1px solid rgba(123,132,248,0.2); border-radius: 5px; padding: 0.1rem 0.45rem; font-size: 0.68rem; color: var(--accent); margin: 0.1rem 0.2rem 0.1rem 0; line-height: 1.6; }
+    .url-tag.green { background: rgba(34,212,160,0.1); border-color: rgba(34,212,160,0.25); color: var(--green); }
+    .url-tag.amber { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.25); color: var(--amber); }
+    .url-section-head { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin: 0.7rem 0 0.3rem; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+    .url-row-item { display: flex; gap: 0.6rem; margin-bottom: 0.3rem; align-items: baseline; }
+    .url-row-key { font-size: 0.7rem; font-weight: 700; color: var(--accent); min-width: 105px; flex-shrink: 0; }
+    .url-row-val { font-size: 0.75rem; color: var(--text-2); line-height: 1.5; }
 
     /* Footer */
     .inputs-footer { padding: 1.1rem 1.5rem; border-top: 1px solid var(--border); background: var(--bg3); display: flex; gap: 1rem; align-items: center; }
@@ -397,14 +400,16 @@ Avoid: Comparing with competitor products"></textarea>
   const rawOut    = document.getElementById('raw-out');
 
   // ── Fetch URL ──────────────────────────────────────────────────────────────
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function row(key, val) {
     if (!val) return '';
-    return `<div class="url-row-item"><span class="url-row-key">${key}</span><span class="url-row-val">${val}</span></div>`;
+    return `<div class="url-row-item"><span class="url-row-key">${key}</span><span class="url-row-val">${esc(val)}</span></div>`;
   }
-  function listRow(key, items) {
+  function tagRow(key, items, cls='') {
     if (!items || !items.length) return '';
-    return `<div class="url-row-item"><span class="url-row-key">${key}</span><span class="url-row-val">${items.map(i => `<span class="url-tag">${i}</span>`).join(' ')}</span></div>`;
+    return `<div class="url-row-item"><span class="url-row-key">${key}</span><span class="url-row-val">${items.map(i=>`<span class="url-tag ${cls}">${esc(i)}</span>`).join('')}</span></div>`;
   }
+  function sectionHead(label) { return `<div class="url-section-head">${label}</div>`; }
 
   fetchBtn.addEventListener('click', async () => {
     const url = inpUrl.value.trim();
@@ -417,42 +422,89 @@ Avoid: Comparing with competitor products"></textarea>
       if (d.error) {
         urlStatus.className='url-status err'; urlStatus.textContent='⚠ '+d.error;
       } else {
-        gFetchedData = d; // save for use in generate()
+        gFetchedData = d;
         let html = '';
-        // Core product info
-        html += row('Product',     d.title || '');
-        html += row('Brand',       d.brand || '');
-        if (d.price || d.mrp) html += row('Price', [d.price?`₹${d.price}`:'', d.mrp && d.mrp!==d.price?`MRP ₹${d.mrp}`:''].filter(Boolean).join('  |  '));
-        html += row('Category',    d.category || '');
-        if (d.reviewRating) html += row('Rating', `${d.reviewRating}★${d.reviewCount ? ` — ${d.reviewCount} reviews` : ''}`);
-        // Description
-        if (d.description) html += row('Description', d.description.slice(0,300)+(d.description.length>300?'…':''));
-        // Highlights / benefits
-        if (d.highlights?.length) html += listRow('Highlights', d.highlights.slice(0,8));
-        // Key ingredients
-        if (d.keyIngredients?.length) html += listRow('Key Ingredients', d.keyIngredients.slice(0,8));
-        // Full ingredients
-        if (d.ingredients) html += row('Ingredients', d.ingredients.slice(0,350)+(d.ingredients.length>350?'…':''));
-        // How to use
-        if (d.howToUse) html += row('How to Use', d.howToUse.slice(0,250)+(d.howToUse.length>250?'…':''));
-        // Features / specs
-        if (d.features?.length) html += listRow('Features/Specs', d.features.slice(0,6));
-        // Page headings (non-product pages)
-        if (!d.highlights?.length && d.headings?.length) html += row('Page sections', d.headings.slice(0,6).join(' · '));
-        html += row('Keywords',    d.keywords || '');
 
-        urlPrevRows.innerHTML = html || row('Note','Basic page info found — add product details in Box 4 for best results.');
-
-        // Body text preview only for non-JSON sources and only if no structured data
-        const hasStructured = d.highlights?.length || d.ingredients || d.keyIngredients?.length;
-        if (d.bodyText && !hasStructured) {
-          urlDivider.style.display='block';
-          urlBodyText.textContent='Page text preview: '+d.bodyText.slice(0,300)+'…';
-        } else {
-          urlDivider.style.display='none'; urlBodyText.textContent='';
+        // ── Product basics ─────────────────────────────────────────────────
+        if (d.title || d.brand || d.price || d.category) {
+          html += sectionHead('Product Info');
+          html += row('Product',  d.title    || '');
+          html += row('Brand',    d.brand    || '');
+          if (d.price || d.mrp) html += row('Price', [d.price?`₹${d.price}`:'', d.mrp&&d.mrp!==d.price?`MRP ₹${d.mrp}`:''].filter(Boolean).join('   |   '));
+          html += row('Category', d.category || '');
+          if (d.reviewRating) html += row('Rating', `${d.reviewRating}★${d.reviewCount ? ` — ${Number(d.reviewCount).toLocaleString()} reviews` : ''}`);
         }
-        urlPreview.style.display='block';
-        urlStatus.style.display='none';
+
+        // ── Description ────────────────────────────────────────────────────
+        if (d.description) {
+          html += sectionHead('Description');
+          html += row('', d.description.slice(0,400)+(d.description.length>400?'…':''));
+        }
+
+        // ── Highlights / benefits ──────────────────────────────────────────
+        if (d.highlights?.length) {
+          html += sectionHead('Highlights / Benefits');
+          html += tagRow('', d.highlights.slice(0,10), 'green');
+        }
+
+        // ── Ingredients ────────────────────────────────────────────────────
+        if (d.keyIngredients?.length || d.ingredients) {
+          html += sectionHead('Ingredients');
+          if (d.keyIngredients?.length) html += tagRow('Key', d.keyIngredients.slice(0,10));
+          if (d.ingredients) html += row('Full list', d.ingredients.slice(0,500)+(d.ingredients.length>500?'…':''));
+        }
+
+        // ── How to use ─────────────────────────────────────────────────────
+        if (d.howToUse) {
+          html += sectionHead('How to Use');
+          html += row('', d.howToUse.slice(0,400)+(d.howToUse.length>400?'…':''));
+        }
+
+        // ── Reviews summary ────────────────────────────────────────────────
+        if (d.reviewPros?.length || d.reviewCons?.length || d.topReviews?.length) {
+          html += sectionHead('Customer Feedback');
+          if (d.reviewPros?.length)  html += tagRow('Liked',     d.reviewPros.slice(0,6), 'green');
+          if (d.reviewCons?.length)  html += tagRow('Concerns',  d.reviewCons.slice(0,6), 'amber');
+          if (d.topReviews?.length)  html += d.topReviews.slice(0,2).map(r => row('Review', r.slice(0,200)+(r.length>200?'…':''))).join('');
+        }
+
+        // ── Features / specs ───────────────────────────────────────────────
+        if (d.features?.length) {
+          html += sectionHead('Features / Specs');
+          html += tagRow('', d.features.slice(0,8));
+        }
+
+        // ── Catch-all other sections ───────────────────────────────────────
+        if (d.allSections?.length) {
+          const covered = /ingredient|how.?to|usage|description|about|overview|highlight|benefit|feature|usp/i;
+          const extra = d.allSections.filter(s => !covered.test(s.key) && s.value?.length > 15);
+          if (extra.length) {
+            html += sectionHead('Other Info');
+            extra.slice(0,5).forEach(s => html += row(s.key, s.value.slice(0,250)+(s.value.length>250?'…':'')));
+          }
+        }
+
+        // ── Non-structured pages fallback ──────────────────────────────────
+        if (!d.title && !d.description && d.headings?.length) {
+          html += sectionHead('Page Sections Found');
+          html += row('', d.headings.slice(0,6).join(' · '));
+        }
+
+        if (!html) html = row('Note', 'Page fetched — but limited structured data found. Add product details in Box 4 for best results.');
+
+        urlPrevRows.innerHTML = html;
+
+        // Only show raw body text if we got almost nothing structured
+        const hasStructured = d.description || d.highlights?.length || d.ingredients || d.howToUse;
+        if (d.bodyText && !hasStructured) {
+          urlDivider.style.display = 'block';
+          urlBodyText.textContent = 'Page text preview: ' + d.bodyText.slice(0, 350) + '…';
+        } else {
+          urlDivider.style.display = 'none'; urlBodyText.textContent = '';
+        }
+
+        urlPreview.style.display = 'block';
+        urlStatus.style.display = 'none';
       }
     } catch { urlStatus.className='url-status err'; urlStatus.textContent='⚠ Could not reach the server. Try again.'; }
     finally { fetchBtn.textContent='Fetch Page'; fetchBtn.disabled=false; }
