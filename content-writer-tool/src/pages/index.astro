@@ -101,6 +101,7 @@
     .url-row-val { font-size: 0.75rem; color: var(--text-2); line-height: 1.45; }
     .url-divider { border: none; border-top: 1px solid var(--border); margin: 0.5rem 0; }
     .url-body-text { font-size: 0.71rem; color: var(--text-3); line-height: 1.6; }
+    .url-tag { display: inline-block; background: rgba(123,132,248,0.1); border: 1px solid rgba(123,132,248,0.2); border-radius: 5px; padding: 0.1rem 0.45rem; font-size: 0.68rem; color: var(--accent); margin: 0.1rem 0.2rem 0.1rem 0; line-height: 1.6; }
 
     /* Footer */
     .inputs-footer { padding: 1.1rem 1.5rem; border-top: 1px solid var(--border); background: var(--bg3); display: flex; gap: 1rem; align-items: center; }
@@ -360,6 +361,7 @@ Avoid: Comparing with competitor products"></textarea>
 
 <script>
   let gHtml = '', gTitle = '', gMeta = '';
+  let gFetchedData = null; // stores the structured product data from fetch
 
   // refs
   const inpUrl  = document.getElementById('inp-url');
@@ -399,6 +401,10 @@ Avoid: Comparing with competitor products"></textarea>
     if (!val) return '';
     return `<div class="url-row-item"><span class="url-row-key">${key}</span><span class="url-row-val">${val}</span></div>`;
   }
+  function listRow(key, items) {
+    if (!items || !items.length) return '';
+    return `<div class="url-row-item"><span class="url-row-key">${key}</span><span class="url-row-val">${items.map(i => `<span class="url-tag">${i}</span>`).join(' ')}</span></div>`;
+  }
 
   fetchBtn.addEventListener('click', async () => {
     const url = inpUrl.value.trim();
@@ -411,18 +417,40 @@ Avoid: Comparing with competitor products"></textarea>
       if (d.error) {
         urlStatus.className='url-status err'; urlStatus.textContent='⚠ '+d.error;
       } else {
+        gFetchedData = d; // save for use in generate()
         let html = '';
-        html += row('Product',     d.title       || '');
-        html += row('Brand',       d.brand       || '');
-        html += row('Price',       d.price       || '');
-        html += row('Category',    d.category    || '');
-        html += row('Description', d.description ? d.description.slice(0,250)+(d.description.length>250?'…':'') : '');
-        if (d.features?.length) html += row('Features', d.features.slice(0,4).join(' &nbsp;|&nbsp; '));
-        if (d.headings?.length) html += row('Page sections', d.headings.slice(0,6).join(' · '));
-        html += row('Keywords',    d.keywords    || '');
-        urlPrevRows.innerHTML = html || row('Note','Basic page info found. Add product details in Box 4 for best results.');
-        if (d.bodyText) { urlDivider.style.display='block'; urlBodyText.textContent='Page text preview: '+d.bodyText.slice(0,280)+'…'; }
-        else { urlDivider.style.display='none'; urlBodyText.textContent=''; }
+        // Core product info
+        html += row('Product',     d.title || '');
+        html += row('Brand',       d.brand || '');
+        if (d.price || d.mrp) html += row('Price', [d.price?`₹${d.price}`:'', d.mrp && d.mrp!==d.price?`MRP ₹${d.mrp}`:''].filter(Boolean).join('  |  '));
+        html += row('Category',    d.category || '');
+        if (d.reviewRating) html += row('Rating', `${d.reviewRating}★${d.reviewCount ? ` — ${d.reviewCount} reviews` : ''}`);
+        // Description
+        if (d.description) html += row('Description', d.description.slice(0,300)+(d.description.length>300?'…':''));
+        // Highlights / benefits
+        if (d.highlights?.length) html += listRow('Highlights', d.highlights.slice(0,8));
+        // Key ingredients
+        if (d.keyIngredients?.length) html += listRow('Key Ingredients', d.keyIngredients.slice(0,8));
+        // Full ingredients
+        if (d.ingredients) html += row('Ingredients', d.ingredients.slice(0,350)+(d.ingredients.length>350?'…':''));
+        // How to use
+        if (d.howToUse) html += row('How to Use', d.howToUse.slice(0,250)+(d.howToUse.length>250?'…':''));
+        // Features / specs
+        if (d.features?.length) html += listRow('Features/Specs', d.features.slice(0,6));
+        // Page headings (non-product pages)
+        if (!d.highlights?.length && d.headings?.length) html += row('Page sections', d.headings.slice(0,6).join(' · '));
+        html += row('Keywords',    d.keywords || '');
+
+        urlPrevRows.innerHTML = html || row('Note','Basic page info found — add product details in Box 4 for best results.');
+
+        // Body text preview only for non-JSON sources and only if no structured data
+        const hasStructured = d.highlights?.length || d.ingredients || d.keyIngredients?.length;
+        if (d.bodyText && !hasStructured) {
+          urlDivider.style.display='block';
+          urlBodyText.textContent='Page text preview: '+d.bodyText.slice(0,300)+'…';
+        } else {
+          urlDivider.style.display='none'; urlBodyText.textContent='';
+        }
         urlPreview.style.display='block';
         urlStatus.style.display='none';
       }
@@ -453,10 +481,34 @@ Avoid: Comparing with competitor products"></textarea>
     const kw=inpKw.value.trim(), brief=inpBrief.value.trim();
     if (!kw && !brief) { showError('Please fill in at least Box 2 (Keywords) or Box 4 (Content Brief) before generating.'); return; }
     setLoading(true);
+
+    // Build enriched content brief from fetched product data + user's Box 4
+    let enrichedBrief = brief;
+    if (gFetchedData && gFetchedData.success) {
+      const fd = gFetchedData;
+      const fetchedLines = [];
+      if (fd.title)       fetchedLines.push(`Product: ${fd.title}`);
+      if (fd.brand)       fetchedLines.push(`Brand: ${fd.brand}`);
+      if (fd.price)       fetchedLines.push(`Price: ₹${fd.price}`);
+      if (fd.mrp && fd.mrp !== fd.price) fetchedLines.push(`MRP: ₹${fd.mrp}`);
+      if (fd.category)    fetchedLines.push(`Category: ${fd.category}`);
+      if (fd.reviewRating) fetchedLines.push(`Rating: ${fd.reviewRating}★${fd.reviewCount ? ` from ${fd.reviewCount} reviews` : ''}`);
+      if (fd.description) fetchedLines.push(`Description: ${fd.description}`);
+      if (fd.keyIngredients?.length) fetchedLines.push(`Key Ingredients: ${fd.keyIngredients.join(', ')}`);
+      if (fd.ingredients) fetchedLines.push(`Ingredients: ${fd.ingredients}`);
+      if (fd.highlights?.length) fetchedLines.push(`Highlights:\n- ${fd.highlights.join('\n- ')}`);
+      if (fd.features?.length)   fetchedLines.push(`Features:\n- ${fd.features.join('\n- ')}`);
+      if (fd.howToUse)            fetchedLines.push(`How to Use: ${fd.howToUse}`);
+      if (fetchedLines.length) {
+        const fetchedBlock = '--- FROM FETCHED URL ---\n' + fetchedLines.join('\n');
+        enrichedBrief = brief ? fetchedBlock + '\n\n--- USER ADDED ---\n' + brief : fetchedBlock;
+      }
+    }
+
     try {
       const res = await fetch('/api/content-writer', {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ url:inpUrl.value.trim(), keywords:kw, semrushData:inpSem.value.trim(), contentBrief:brief, wordCount:inpWc.value }),
+        body: JSON.stringify({ url:inpUrl.value.trim(), keywords:kw, semrushData:inpSem.value.trim(), contentBrief:enrichedBrief, wordCount:inpWc.value }),
       });
       let d; try { d=await res.json(); } catch { setLoading(false); showError(`Server error (${res.status}). Check ANTHROPIC_API_KEY is set in Railway Variables.`); return; }
       if (!res.ok||!d.success) { setLoading(false); showError(d.error||`Generation failed (${res.status}). Please try again.`); return; }
