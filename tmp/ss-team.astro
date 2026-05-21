@@ -185,6 +185,51 @@ const experts = [
     </div>
   </section>
 
+  <!-- Clinical Advisory Board -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Clinical advisory board</span>
+        <h2 class="section-title">Our clinical team — being built</h2>
+        <p class="section-sub">We are actively onboarding India's leading women's health specialists. Our clinical advisory board will include gynaecologists, endocrinologists, psychologists, and allied health professionals who share our commitment to Indian women's health.</p>
+      </div>
+
+      <div class="advisory-grid">
+        {[
+          { icon: '🩺', role: 'Gynaecologist & Menopause Specialist', status: 'Onboarding in progress', desc: 'Clinical lead for hormonal assessment, HRT, and specialist tele-consultations.' },
+          { icon: '🧠', role: 'Psychologist', status: 'Onboarding in progress', desc: 'Mental health support for perimenopause-related anxiety, mood, and identity changes.' },
+          { icon: '🔬', role: 'Endocrinologist', status: 'Expressions of interest open', desc: 'Specialist care for thyroid, metabolic, and complex hormonal conditions.' },
+          { icon: '🥗', role: 'Registered Dietician', status: 'Expressions of interest open', desc: 'Clinical nutrition for bone health, insulin resistance, and metabolic change.' },
+          { icon: '👩‍⚕️', role: 'Nurse Practitioner', status: 'Onboarding in progress', desc: 'First point of contact — thorough assessments, results review, ongoing monitoring.' },
+          { icon: '🤸', role: 'Pelvic Floor Physiotherapist', status: 'Expressions of interest open', desc: 'Specialist care for bladder, pelvic, and intimacy-related symptoms.' },
+        ].map(a => (
+          <div class="advisory-card">
+            <div class="advisory-top">
+              <div class="advisory-avatar">{a.icon}</div>
+              <div class="advisory-status">
+                <span class={`status-pill ${a.status === 'Onboarding in progress' ? 'status-active' : 'status-open'}`}>
+                  {a.status === 'Onboarding in progress' ? '● Onboarding in progress' : '◎ Expressions of interest open'}
+                </span>
+              </div>
+            </div>
+            <h3 class="advisory-role">{a.role}</h3>
+            <p class="advisory-desc">{a.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="advisory-cta">
+        <div class="advisory-cta-inner">
+          <div>
+            <h3 class="advisory-cta-title">Are you a women's health specialist?</h3>
+            <p class="advisory-cta-desc">We are looking for clinicians who are passionate about perimenopause, want to reach underserved Indian women, and believe that technology can make healthcare more accessible and human. Join us as a clinical advisor or tele-consult partner.</p>
+          </div>
+          <a href="mailto:hello@thesecondspring.com?subject=Clinical Advisory Interest" class="btn btn-primary btn-lg">Express Your Interest →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Mission section -->
   <section class="section bg-white">
     <div class="container">
@@ -357,6 +402,104 @@ const experts = [
     background: var(--green);
     color: #fff;
     border-color: var(--green);
+  }
+
+  /* Advisory board */
+  .advisory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .advisory-card {
+    background: var(--cream-mid);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+  }
+
+  .advisory-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    flex-wrap: wrap;
+  }
+
+  .advisory-avatar {
+    font-size: 1.75rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green-light);
+    border-radius: var(--radius);
+  }
+
+  .status-pill {
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .3rem .7rem;
+    border-radius: 99px;
+    letter-spacing: .02em;
+  }
+
+  .status-active {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .status-open {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .advisory-role {
+    font-size: .97rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -.01em;
+  }
+
+  .advisory-desc {
+    font-size: .85rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .advisory-cta {
+    background: var(--green-dark);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2.5rem;
+    color: #fff;
+  }
+
+  .advisory-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .advisory-cta-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: .5rem;
+    letter-spacing: -.02em;
+  }
+
+  .advisory-cta-desc {
+    font-size: .88rem;
+    color: rgba(255,255,255,.8);
+    line-height: 1.65;
+    max-width: 580px;
   }
 
   /* Experts */
@@ -609,6 +752,8 @@ const experts = [
     .values-grid { grid-template-columns: repeat(2, 1fr); }
     .join-layout { grid-template-columns: 1fr; }
     .experts-grid { grid-template-columns: 1fr; }
+    .advisory-grid { grid-template-columns: repeat(2, 1fr); }
+    .advisory-cta-inner { flex-direction: column; }
   }
 
   @media (max-width: 600px) {
