@@ -118,7 +118,45 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
             </div>
           </li>
 
-          <li><a href="/perimenopause" class:list={[{ active: isActive('/perimenopause') }]}>Perimenopause</a></li>
+          <!-- Perimenopause dropdown -->
+          <li class="has-dropdown">
+            <a href="/perimenopause" class:list={[{ active: isActive('/perimenopause') }]}>
+              Perimenopause
+              <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-inner">
+                <a href="/perimenopause" class="dropdown-item">
+                  <span class="di-icon">🌸</span>
+                  <span>
+                    <span class="di-title">What Is Perimenopause?</span>
+                    <span class="di-desc">The complete overview</span>
+                  </span>
+                </a>
+                <a href="/perimenopause-explained" class="dropdown-item">
+                  <span class="di-icon">📊</span>
+                  <span>
+                    <span class="di-title">Visual Explainer</span>
+                    <span class="di-desc">Hormones, stages & symptoms in visuals</span>
+                  </span>
+                </a>
+                <a href="/guide/symptoms" class="dropdown-item">
+                  <span class="di-icon">🔍</span>
+                  <span>
+                    <span class="di-title">Symptom Library</span>
+                    <span class="di-desc">Every symptom explained clearly</span>
+                  </span>
+                </a>
+                <a href="/quiz" class="dropdown-item">
+                  <span class="di-icon">✅</span>
+                  <span>
+                    <span class="di-title">Symptom Check</span>
+                    <span class="di-desc">Free 3-minute assessment</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
           <li><a href="/blog" class:list={[{ active: isActive('/blog') }]}>Journal</a></li>
           <li><a href="/team" class:list={[{ active: isActive('/team') }]}>Our Team</a></li>
           <li><a href="/for-employers" class:list={[{ active: isActive('/for-employers') }]}>For Employers</a></li>

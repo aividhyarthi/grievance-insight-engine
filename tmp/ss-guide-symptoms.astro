@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 
 const symptoms = [
   {
+    slug: 'mood-swings',
     name: 'Mood swings & irritability',
     emoji: '🌊',
     feel: 'Sudden waves of frustration, tearfulness, or rage that feel disproportionate to the situation. You might snap at family members and then feel guilty, or swing from contentment to sadness within hours.',
@@ -15,6 +16,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'sleep-problems',
     name: 'Sleep disturbance',
     emoji: '🌙',
     feel: 'Difficulty falling asleep, waking at 2–4am with a racing mind, or waking drenched in sweat. Many women feel exhausted but unable to sleep deeply.',
@@ -28,6 +30,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'hot-flashes',
     name: 'Hot flashes & night sweats',
     emoji: '🔥',
     feel: 'A sudden wave of intense heat spreading across the chest, neck, and face, often followed by sweating and then a chill. Can last 30 seconds to several minutes. Night sweats are the same process occurring during sleep.',
@@ -41,6 +44,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'brain-fog',
     name: 'Brain fog & memory changes',
     emoji: '🌫️',
     feel: 'Forgetting words mid-sentence, struggling to concentrate, losing your train of thought, feeling mentally slow or "woolly." Many women worry they are developing dementia.',
@@ -54,6 +58,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'irregular-periods',
     name: 'Irregular periods',
     emoji: '📅',
     feel: 'Periods that come earlier or later than expected, are heavier or lighter than usual, last longer or shorter, or that simply skip months. For many women, this irregularity is one of the first signs perimenopause has begun.',
@@ -66,6 +71,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'anxiety',
     name: 'Anxiety & low mood',
     emoji: '💧',
     feel: 'A persistent low-grade anxiety, feelings of dread or worry that feel disproportionate, or a low mood that doesn\'t lift. Some women experience their first-ever panic attacks during perimenopause.',
@@ -79,6 +85,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'joint-pain',
     name: 'Joint pain & fatigue',
     emoji: '🦴',
     feel: 'Stiffness and aching in the hips, knees, fingers, or shoulders — often worse in the morning. A bone-deep tiredness that doesn\'t improve with rest. Many women describe feeling "like an older version of themselves" overnight.',
@@ -92,6 +99,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'low-libido',
     name: 'Changes in libido',
     emoji: '🌸',
     feel: 'Reduced interest in sex, reduced arousal, or discomfort during sex due to vaginal dryness. This is an extremely common perimenopausal symptom that rarely gets discussed, particularly in Indian contexts.',
@@ -105,6 +113,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'skin-hair',
     name: 'Skin & hair changes',
     emoji: '✨',
     feel: 'Skin that feels drier, thinner, or more prone to breakouts. Hair that sheds more than usual, feels finer, or loses its shine. Nails that become brittle. Some women notice more facial hair (often on the chin or upper lip).',
@@ -118,6 +127,7 @@ const symptoms = [
     ],
   },
   {
+    slug: 'heart-palpitations',
     name: 'Heart palpitations',
     emoji: '💓',
     feel: 'A sudden awareness of your heartbeat — fluttering, skipping, racing, or pounding — often at rest or at night. Unsettling and sometimes frightening, though usually not dangerous in the context of perimenopause.',
@@ -166,7 +176,7 @@ const symptoms = [
   <section class="section bg-cream">
     <div class="container">
       <div class="symptoms-grid">
-        {symptoms.map((s, i) => (
+        {symptoms.map((s) => (
           <div class="symptom-card">
             <div class="symptom-card-top">
               <span class="symptom-emoji">{s.emoji}</span>
@@ -191,6 +201,12 @@ const symptoms = [
                 ))}
               </ul>
             </div>
+
+            <div class="symptom-card-footer">
+              <a href={`/guide/symptoms/${s.slug}`} class="symptom-read-more">
+                Read full guide →
+              </a>
+            </div>
           </div>
         ))}
       </div>
@@ -203,7 +219,7 @@ const symptoms = [
       <div class="disclaimer">
         <span class="disclaimer-icon">ℹ️</span>
         <p>
-          <strong>Important:</strong> The information on this page is for educational purposes only and is not a substitute for professional medical advice. If you are experiencing distressing symptoms, please speak with your GP or a qualified gynaecologist. In India, you can ask for a referral to a menopause specialist — they exist, and you deserve one.
+          <strong>Important:</strong> The information on this page is for educational purposes only and is not a substitute for professional medical advice. If you are experiencing distressing symptoms, please speak with your doctor or a qualified gynaecologist. In India, you can ask for a referral to a menopause specialist — they exist, and you deserve one.
         </p>
       </div>
     </div>
@@ -310,6 +326,27 @@ const symptoms = [
     font-weight: 700;
     font-size: .78rem;
     top: .15rem;
+  }
+
+  .symptom-card-footer {
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1.5px solid var(--border-light);
+  }
+
+  .symptom-read-more {
+    display: inline-flex;
+    align-items: center;
+    font-size: .88rem;
+    font-weight: 700;
+    color: var(--green);
+    text-decoration: none;
+    gap: .3rem;
+    transition: gap .18s;
+  }
+
+  .symptom-read-more:hover {
+    gap: .6rem;
   }
 
   .disclaimer {

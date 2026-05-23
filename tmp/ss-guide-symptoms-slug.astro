@@ -1,0 +1,448 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const symptoms: Record<string, {
+  name: string; emoji: string; tagline: string;
+  feel: string; why: string; help: string[];
+  image: string; tags: string[];
+  faqs: { q: string; a: string }[];
+}> = {
+  'mood-swings': {
+    name: 'Mood Swings & Irritability',
+    emoji: '🌊',
+    tagline: 'Sudden waves of rage, tearfulness, or frustration — these are hormonal, not character flaws.',
+    image: 'https://images.unsplash.com/photo-1614852207246-1df3db5b7c4f?w=1200&h=630&fit=crop&q=80',
+    tags: ['mood', 'hormones', 'perimenopause'],
+    feel: 'Sudden waves of frustration, tearfulness, or rage that feel disproportionate to the situation. You might snap at family members and then feel guilty, or swing from contentment to sadness within hours. Many women describe feeling like a completely different person.',
+    why: 'Oestrogen directly regulates serotonin and dopamine — the brain chemicals that control mood, emotional resilience, and reward. As oestrogen fluctuates unpredictably during perimenopause, so does your brain chemistry. Progesterone, which has a calming, anti-anxiety effect, also declines — removing a key buffer against stress and emotional reactivity.',
+    help: [
+      'Track mood changes against your cycle — patterns often emerge that confirm the hormonal link',
+      'Regular strength training and walking significantly stabilise mood through endorphin release',
+      'Reduce alcohol — it disrupts oestrogen metabolism and worsens mood swings',
+      'Magnesium glycinate before bed reduces nervous system reactivity',
+      'Speak to a menopause-aware doctor — therapy (CBT) and HRT are both evidence-based options',
+    ],
+    faqs: [
+      { q: 'Are mood swings a normal part of perimenopause?', a: 'Yes. Mood swings are one of the most common perimenopausal symptoms — affecting up to 70% of women. They are driven by oestrogen\'s effect on brain chemistry, not by stress or personality. They are not a sign of a mental health disorder, though they can overlap with one.' },
+      { q: 'How do I know if my irritability is perimenopause or something else?', a: 'Perimenopausal mood changes typically correlate with cycle changes, worsen in the week before a period, and appear alongside other hormonal symptoms like sleep disruption or irregular cycles. If your mood symptoms are severe, persistent, or disconnected from your cycle, speak to your doctor to rule out depression, thyroid issues, or other causes.' },
+      { q: 'Can HRT help with mood swings?', a: 'Yes — HRT, particularly body-identical oestrogen and progesterone, is effective for mood symptoms driven by hormonal fluctuation. It is not an antidepressant but it addresses the root hormonal cause. Many women find mood significantly improves within weeks of starting HRT.' },
+      { q: 'What helps mood swings without medication?', a: 'Evidence-based non-medication approaches include regular aerobic exercise, strength training, reducing alcohol, improving sleep, magnesium supplementation, and mindfulness or yoga practices. These work best as part of a broader approach, not in isolation.' },
+    ],
+  },
+  'sleep-problems': {
+    name: 'Sleep Disturbance & Insomnia',
+    emoji: '🌙',
+    tagline: 'Waking at 3am, night sweats, light sleep — this is hormonal, and it is treatable.',
+    image: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=630&fit=crop&q=80',
+    tags: ['sleep', 'insomnia', 'night sweats', 'perimenopause'],
+    feel: 'Difficulty falling asleep, waking at 2–4am with a racing mind or drenched in sweat, then unable to get back to sleep. Many women feel exhausted all day but still cannot sleep deeply at night. The cumulative effect — weeks and months of broken sleep — affects memory, mood, weight, and concentration.',
+    why: 'Progesterone has natural sleep-promoting, sedative properties. Its decline during perimenopause directly disrupts sleep architecture, making sleep lighter and more fragmented. Oestrogen regulates body temperature — as it falls, the hypothalamus\'s thermostat misfires, triggering night sweats that physically wake you. Cortisol, which normally rises gently at dawn, can begin rising too early — causing the characteristic 3–4am waking.',
+    help: [
+      'Keep your bedroom below 20°C — critical for reducing night sweats',
+      'No screens for 45–60 minutes before bed — blue light suppresses melatonin',
+      'Avoid alcohol in the evening — it fragments sleep even if it initially makes you drowsy',
+      'Magnesium glycinate 200–400mg before bed has good evidence for improving sleep quality',
+      'Ask your doctor about progesterone therapy or HRT — these directly address the hormonal cause',
+    ],
+    faqs: [
+      { q: 'Why do I wake up at 3am during perimenopause?', a: 'Waking between 3–4am is extremely common in perimenopause. It is driven by early cortisol rise (the stress hormone that normally peaks at dawn begins rising too soon) and low progesterone (which normally promotes deep sleep). Night sweats from hot flashes also cause physical waking at this time.' },
+      { q: 'How long does sleep disruption last in perimenopause?', a: 'Sleep disruption typically worsens during late perimenopause and the year around menopause, then gradually improves as hormones stabilise postmenopause. For some women this takes 1–3 years. Treating the underlying hormonal cause with HRT or progesterone often produces faster improvement.' },
+      { q: 'Is it safe to take melatonin for perimenopause sleep?', a: 'Melatonin can help with sleep onset but does not address the deeper hormonal disruption of perimenopause. It is generally safe for short-term use. Magnesium glycinate has better evidence for the specific sleep pattern of perimenopause. Speak to your doctor before starting any supplement.' },
+      { q: 'Can poor sleep during perimenopause cause weight gain?', a: 'Yes — significantly. Even one week of poor sleep measurably increases ghrelin (hunger hormone) and reduces leptin (satiety hormone), increasing appetite — particularly for carbohydrates and sugar. Poor sleep also raises cortisol, which promotes abdominal fat storage. Treating sleep disruption is a genuine weight management strategy.' },
+    ],
+  },
+  'hot-flashes': {
+    name: 'Hot Flashes & Night Sweats',
+    emoji: '🔥',
+    tagline: 'The most recognised symptom of menopause — but it starts in perimenopause, and it is treatable.',
+    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&h=630&fit=crop&q=80',
+    tags: ['hot flashes', 'night sweats', 'perimenopause'],
+    feel: 'A sudden wave of intense heat spreading across the chest, neck, and face — sometimes the whole body. Often followed by visible flushing, sweating, and then a chill. Can last 30 seconds to several minutes. Night sweats are the same process happening during sleep, often waking you completely. Frequency ranges from occasional to multiple times per hour.',
+    why: 'The hypothalamus — your brain\'s internal thermostat — depends on oestrogen to function within a stable "thermoneutral zone." As oestrogen falls and fluctuates, this zone narrows dramatically. Tiny increases in body temperature that would normally be ignored now trigger an emergency cooling response: blood vessels dilate, sweat glands activate, and the body rapidly attempts to shed heat. This is a vasomotor reaction — a misfiring of the autonomic nervous system, not an actual fever.',
+    help: [
+      'Wear lightweight cotton or linen — avoid synthetic fabrics that trap heat',
+      'Identify your triggers: spicy food, hot drinks, alcohol, stress, and warm rooms all commonly trigger flashes',
+      'Keep a small fan at your desk and by your bed',
+      'Practice slow abdominal breathing at the onset — this activates the parasympathetic nervous system and can shorten the flash',
+      'HRT is the most effective treatment — reducing hot flash frequency by 75–90% in most women',
+    ],
+    faqs: [
+      { q: 'How long do hot flashes last during perimenopause?', a: 'Hot flashes typically begin in perimenopause and peak around the time of menopause. Most women experience them for 4–8 years, though for some they continue for over a decade. They often reduce in frequency and intensity postmenopause, but this is not guaranteed without treatment.' },
+      { q: 'What is the most effective treatment for hot flashes?', a: 'Hormone replacement therapy (HRT) is the most effective treatment, reducing frequency and severity by 75–90% for most women. Non-hormonal options with clinical evidence include SSRIs/SNRIs (like low-dose venlafaxine), clonidine, and gabapentin. Lifestyle measures — avoiding triggers, staying cool — reduce intensity but rarely eliminate flashes.' },
+      { q: 'Are hot flashes dangerous?', a: 'Hot flashes themselves are not dangerous — they are a vasomotor response, not a cardiovascular event. However, frequent hot flashes are associated with increased cardiovascular risk over time, and severe night sweats that disrupt sleep have significant downstream health effects. They warrant treatment, not just tolerance.' },
+      { q: 'Can Indian food trigger hot flashes?', a: 'Yes — spicy food is one of the most common hot flash triggers. Chillies, strong spices, and very hot food or drinks can trigger or worsen flashes in many women. This does not mean avoiding all Indian food — identifying your personal triggers and adjusting those specific items is more practical than wholesale dietary changes.' },
+    ],
+  },
+  'brain-fog': {
+    name: 'Brain Fog & Memory Changes',
+    emoji: '🌫️',
+    tagline: 'Forgetting words, losing your train of thought, feeling mentally slow — this is hormonal, not dementia.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop&q=80',
+    tags: ['brain fog', 'memory', 'concentration', 'perimenopause'],
+    feel: 'Forgetting words mid-sentence, losing your train of thought, walking into a room and forgetting why, struggling to concentrate on things that used to be easy. Many women describe feeling mentally "woolly" or slow. The fear of dementia is common — and usually unfounded. Brain fog typically fluctuates with your hormones, which is a key distinguishing feature.',
+    why: 'Oestrogen supports multiple aspects of brain function: it promotes the growth of neurons, supports blood flow to the brain, helps regulate neurotransmitters including acetylcholine (critical for memory), and reduces inflammation. As oestrogen fluctuates during perimenopause, these processes are disrupted. Poor sleep — itself driven by hormonal change — significantly compounds cognitive difficulties. This combination of hormonal and sleep effects explains why brain fog can feel so acute.',
+    help: [
+      'Prioritise sleep above almost everything else — cognitive symptoms often improve dramatically with better rest',
+      'Regular aerobic exercise increases blood flow to the brain and has direct cognitive benefits',
+      'Omega-3 fatty acids support brain health — oily fish, walnuts, flaxseed (alsi)',
+      'Use lists, reminders, and apps without shame — these are practical tools, not signs of failure',
+      'Reassure yourself this is typically temporary and hormonally driven, not permanent decline',
+    ],
+    faqs: [
+      { q: 'Is brain fog during perimenopause a sign of dementia?', a: 'Almost never. Perimenopausal brain fog is hormonally driven and typically fluctuates — it worsens around hormonal shifts and improves at other times. Dementia presents as progressive, consistent decline in multiple cognitive domains. If you are concerned, speak to your doctor for a proper assessment — but most women experiencing perimenopause brain fog are not developing dementia.' },
+      { q: 'How long does brain fog last in perimenopause?', a: 'Brain fog typically peaks during late perimenopause and the year around menopause, then gradually improves as hormones stabilise. Most women notice cognitive improvement in the postmenopause years. HRT, particularly oestrogen, has evidence for improving cognitive symptoms when started during the perimenopause window.' },
+      { q: 'Can HRT improve brain fog?', a: 'Yes — oestrogen supports brain function and has evidence for improving verbal memory and cognitive performance when taken during perimenopause. The "critical window" hypothesis suggests that starting HRT during perimenopause (rather than years after menopause) may be important for cognitive benefit.' },
+      { q: 'What foods help with brain fog during perimenopause?', a: 'Foods that support brain health: oily fish (mackerel, sardines, salmon), walnuts, flaxseed (alsi), eggs, leafy greens, and berries. Reducing refined sugar and processed foods reduces inflammation that can worsen cognitive symptoms. Staying hydrated is also important — even mild dehydration affects concentration.' },
+    ],
+  },
+  'irregular-periods': {
+    name: 'Irregular Periods',
+    emoji: '📅',
+    tagline: 'Heavier, lighter, earlier, later, or missing — changing periods are usually the first sign of perimenopause.',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=630&fit=crop&q=80',
+    tags: ['periods', 'irregular cycles', 'perimenopause'],
+    feel: 'Periods arriving earlier or later than expected. Cycles that become unpredictably shorter or longer. Bleeding that is heavier than before, with large clots, or lighter and briefer. Months where your period simply does not arrive. For many Indian women, this irregularity — particularly the heavier periods — is the first unmistakable sign that something has changed.',
+    why: 'Regular periods depend on a precisely timed sequence: the brain releases FSH, which stimulates a follicle in the ovary, which produces oestrogen, which triggers ovulation, which produces progesterone, which eventually falls and triggers menstruation. During perimenopause, the ovaries respond less reliably to FSH. Ovulation becomes irregular or absent. Without consistent ovulation, the hormonal sequence breaks down — producing cycles that are shorter, longer, heavier (when oestrogen dominates without progesterone to balance it), or absent.',
+    help: [
+      'Track your cycles in an app (Clue, Flo) or a simple calendar — patterns help your doctor assess where you are',
+      'Heavy bleeding (soaking a pad in under an hour, for several hours) warrants a doctor\'s visit',
+      'Any bleeding after 12 months without a period must always be investigated promptly',
+      'You can still become pregnant during perimenopause — contraception may still be needed until confirmed menopause',
+      'Ask your gynaecologist about tranexamic acid or the Mirena IUD if heavy bleeding is affecting your life',
+    ],
+    faqs: [
+      { q: 'What counts as irregular periods during perimenopause?', a: 'Any significant change from your usual pattern: cycles shorter than 21 days or longer than 35, variation of 7+ days between cycles, periods that are significantly heavier or lighter than before, or skipping one or more periods. In perimenopause, gaps of 60 days or more between periods are a sign you are in late perimenopause.' },
+      { q: 'Why are my periods heavier during perimenopause?', a: 'Heavier periods during early perimenopause are caused by oestrogen dominance — oestrogen rises without sufficient progesterone to counterbalance it (because ovulation is being skipped). This causes the uterine lining to thicken more than usual, resulting in heavier bleeding when it does shed. Fibroids, which are common in Indian women over 35, can worsen this.' },
+      { q: 'Can I still get pregnant with irregular periods in perimenopause?', a: 'Yes. Irregular periods do not mean you cannot ovulate — occasional ovulation still occurs during perimenopause. Pregnancy is possible until 12 consecutive months without a period. If you do not want to become pregnant, speak to your doctor about contraception that is appropriate for this life stage.' },
+      { q: 'When should I see a doctor about irregular periods?', a: 'See a doctor if: bleeding soaks through a pad every hour for several hours; you have bleeding between periods or after sex; you have not had a period for 3+ months and are not pregnant; or you have any bleeding after 12 months without a period (post-menopausal bleeding always requires investigation).' },
+    ],
+  },
+  'anxiety': {
+    name: 'Anxiety & Low Mood',
+    emoji: '💧',
+    tagline: 'New-onset anxiety in your 40s is most likely hormonal — not a mental health crisis.',
+    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=630&fit=crop&q=80',
+    tags: ['anxiety', 'low mood', 'mental health', 'perimenopause'],
+    feel: 'A persistent low-grade anxiety that was not there before. A sense of dread or worry that feels disproportionate to your circumstances. Waking at night with a racing heart and feeling of panic. Some women experience their first-ever panic attacks in their 40s. Others describe a persistent flatness, low mood, or loss of joy in things that used to matter.',
+    why: 'Oestrogen modulates GABA — your brain\'s primary calming neurotransmitter — as well as serotonin. As oestrogen fluctuates during perimenopause, the brain becomes more reactive to stress signals. Progesterone metabolises into allopregnanolone, a powerful natural anti-anxiety compound with effects similar to benzodiazepines — its decline removes this buffer. Sleep deprivation, which is itself a perimenopausal symptom, dramatically amplifies anxiety and low mood.',
+    help: [
+      'Regular exercise — particularly walking, yoga, or swimming — is one of the most evidence-based interventions for anxiety',
+      'Reduce caffeine, which amplifies the physiological anxiety response',
+      'Mindfulness, yoga nidra, and breathwork activate the parasympathetic nervous system',
+      'Do not carry this alone — isolation worsens anxiety significantly. Talk to The Second Spring, a trusted friend, or a therapist',
+      'Speak to your doctor — this is a medical symptom. HRT, progesterone therapy, and CBT are all evidence-based options',
+    ],
+    faqs: [
+      { q: 'Can perimenopause cause anxiety for the first time?', a: 'Yes — very commonly. New-onset anxiety in women aged 38–50 with no prior history is frequently perimenopausal in origin. Oestrogen and progesterone both have direct effects on brain chemistry that regulate anxiety. Their decline and fluctuation can produce anxiety, panic attacks, and low mood in women who have never experienced these before.' },
+      { q: 'How do I know if my anxiety is perimenopause or a mental health condition?', a: 'Key distinguishing factors: perimenopausal anxiety often correlates with your cycle, appears alongside other hormonal symptoms (sleep changes, period changes, hot flashes), and fluctuates rather than being constant. That said, the two can coexist — perimenopause can trigger or worsen underlying vulnerability to anxiety or depression. A thorough assessment including hormone levels and symptom history helps clarify.' },
+      { q: 'Should I take antidepressants for perimenopause anxiety?', a: 'Antidepressants may help, but they should not be the only option considered. If your anxiety is primarily hormonal, addressing the underlying oestrogen and progesterone fluctuation with HRT or progesterone therapy often produces better results. If your doctor offers antidepressants without discussing your hormone levels or perimenopause, ask directly whether your hormones have been considered.' },
+      { q: 'Is there a helpline for mental health support in India?', a: 'Yes. iCall offers free mental health support: 9152987821 (Mon–Sat, 8am–10pm). This service is run by TISS (Tata Institute of Social Sciences) and provides counselling by trained professionals. You can also speak to The Second Spring privately about what you are experiencing — any time, no login needed.' },
+    ],
+  },
+  'joint-pain': {
+    name: 'Joint Pain & Fatigue',
+    emoji: '🦴',
+    tagline: 'Aching joints and bone-deep exhaustion are recognised perimenopausal symptoms, not just "getting older".',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop&q=80',
+    tags: ['joint pain', 'fatigue', 'inflammation', 'perimenopause'],
+    feel: 'Stiffness and aching in the hips, knees, fingers, shoulders, or lower back — often worst in the morning and improving through the day. A bone-deep tiredness that does not improve with rest or sleep. Many women describe feeling like they have aged 10 years overnight. The fatigue can be so profound it affects their ability to work, exercise, or care for family.',
+    why: 'Oestrogen has significant anti-inflammatory properties and supports cartilage health, joint lubrication, and connective tissue integrity. As oestrogen declines, inflammatory markers rise and joints lose some of their natural protection — producing stiffness, aching, and swelling. Fatigue has multiple overlapping causes: poor sleep from hormonal disruption, the metabolic demands of hormonal transition, thyroid changes (common in Indian women), iron deficiency from heavy periods, and the psychological weight of managing multiple symptoms simultaneously.',
+    help: [
+      'Gentle daily movement keeps joints supple — walking, swimming, yoga, cycling',
+      'Anti-inflammatory foods: turmeric (with black pepper), ginger, leafy greens, oily fish',
+      'Warm baths or heating pads ease morning joint stiffness',
+      'Ask your doctor to check thyroid function, ferritin (iron stores), vitamin D, and B12 — all commonly deficient in Indian women and all causing fatigue',
+      'Strength training 2–3 times a week preserves muscle and significantly supports joint health',
+    ],
+    faqs: [
+      { q: 'Can perimenopause cause joint pain?', a: 'Yes. Joint pain — particularly in the knees, hips, fingers, and wrists — is a well-recognised but under-discussed perimenopausal symptom. Oestrogen has anti-inflammatory effects and supports cartilage and synovial fluid. Its decline during perimenopause allows inflammation to increase, producing joint stiffness and aching that can be significant.' },
+      { q: 'How is perimenopause joint pain different from arthritis?', a: 'Perimenopausal joint pain tends to be diffuse (multiple joints), correlates with hormonal fluctuation, appears alongside other menopause symptoms, and often improves with HRT. Osteoarthritis is typically localised to specific joints, worsens with use, and progresses over time. Rheumatoid arthritis involves more systemic inflammation and specific blood markers. Your doctor can help distinguish between these.' },
+      { q: 'What tests should I ask for if I have extreme fatigue?', a: 'Ask specifically for: full blood count (CBC), serum ferritin (not just haemoglobin), TSH (thyroid), free T3 and T4, vitamin D, vitamin B12, fasting blood sugar, and CRP (inflammation marker). These cover the most common treatable causes of fatigue in Indian women during perimenopause.' },
+      { q: 'Does HRT help with joint pain?', a: 'Yes — there is evidence that HRT reduces joint pain and inflammation in perimenopausal women. Many women report significant improvement in joint symptoms within weeks of starting oestrogen therapy. This is one of the less-discussed benefits of HRT that is worth raising with your gynaecologist.' },
+    ],
+  },
+  'low-libido': {
+    name: 'Low Libido & Vaginal Changes',
+    emoji: '🌸',
+    tagline: 'Loss of desire, vaginal dryness, and discomfort during sex are medical symptoms with medical solutions.',
+    image: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=630&fit=crop&q=80',
+    tags: ['libido', 'vaginal dryness', 'intimacy', 'perimenopause'],
+    feel: 'A significant reduction in sexual interest or desire — sometimes disappearing almost entirely. Vaginal dryness that makes daily life uncomfortable, not just intimacy. Pain or discomfort during sex. Reduced arousal and physical sensation. Many Indian women suffer these symptoms in complete silence, believing them to be a natural consequence of ageing or something they simply must accept.',
+    why: 'Oestrogen maintains the thickness, elasticity, and lubrication of vaginal tissue. As it falls, these tissues thin and dry — a condition called genitourinary syndrome of menopause (GSM). Testosterone, which also declines during perimenopause, plays a significant role in sexual desire in women. Low testosterone reduces libido, energy, and physical sensitivity. Fatigue, mood changes, and the psychological weight of multiple symptoms further suppress desire. This is not about losing interest in your partner — it is a physiological change with physiological causes.',
+    help: [
+      'Non-hormonal vaginal moisturisers (used regularly, not just during sex) maintain tissue hydration — available at Indian pharmacies',
+      'Lubricants during sex reduce discomfort significantly — water-based, silicone-based, or oil-based (not with condoms)',
+      'Topical vaginal oestrogen (cream or pessary) is highly effective, safe, and has minimal systemic absorption — available in India',
+      'Discuss testosterone therapy with a menopause-specialist gynaecologist — it can significantly restore libido',
+      'This is a medical issue, not a relationship failure — open communication with your partner and your doctor both matter',
+    ],
+    faqs: [
+      { q: 'Is low libido normal during perimenopause?', a: 'Yes — it is very common, affecting the majority of perimenopausal women to some degree. It is caused by declining oestrogen and testosterone, vaginal tissue changes, fatigue, and mood effects. It is not inevitable and it is not something you simply have to endure — effective treatments exist.' },
+      { q: 'What is genitourinary syndrome of menopause (GSM)?', a: 'GSM is the medical term for the group of symptoms caused by declining oestrogen in the vaginal and urinary tissues: vaginal dryness, itching, burning, discomfort during sex, urinary urgency, and recurrent UTIs. Unlike hot flashes (which often improve over time), GSM tends to worsen if untreated. Local vaginal oestrogen is highly effective and safe for most women.' },
+      { q: 'Is vaginal oestrogen available in India?', a: 'Yes. Vaginal oestrogen creams and pessaries are available in India with a prescription — brands include Ovestin cream and Premarin cream. These deliver oestrogen locally to vaginal tissue with minimal absorption into the bloodstream, making them safe for most women including those who cannot take systemic HRT. Ask your gynaecologist.' },
+      { q: 'How do I talk to my gynaecologist about low libido?', a: 'You can say directly: "I have noticed a significant change in my sexual desire and comfort, and I know this can be related to perimenopause. Can we discuss what options exist?" A menopause-aware gynaecologist will not find this unusual — these are standard medical symptoms. If your doctor dismisses this concern, consider seeking a second opinion.' },
+    ],
+  },
+  'skin-hair': {
+    name: 'Skin & Hair Changes',
+    emoji: '✨',
+    tagline: 'Drier skin, thinning hair, adult acne — oestrogen\'s effect on skin and hair is significant and often overlooked.',
+    image: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&h=630&fit=crop&q=80',
+    tags: ['skin', 'hair loss', 'collagen', 'perimenopause'],
+    feel: 'Skin that feels drier, thinner, or more prone to breakouts than before. A visible loss of glow or firmness. Hair that sheds more than usual, feels finer, or grows more slowly. Nails that become brittle or peel. Some women also notice new facial hair — on the chin, upper lip, or jaw — which can be distressing.',
+    why: 'Oestrogen stimulates collagen production — the structural protein that gives skin its firmness, thickness, and moisture-retention capacity. Women lose approximately 30% of skin collagen in the first five years after menopause. Hair follicles are oestrogen-sensitive; falling levels cause the growth phase to shorten and more follicles to enter the resting phase simultaneously, producing diffuse thinning rather than bald patches. The relative increase in androgens (male hormones) as oestrogen falls can trigger acne and facial hair growth — a pattern similar to PCOS.',
+    help: [
+      'Moisturise face and body daily with richer, barrier-supporting formulations',
+      'SPF every morning — skin becomes more sun-sensitive and collagen breakdown accelerates with UV exposure',
+      'Eat adequate protein at every meal — collagen is built from amino acids',
+      'Vitamin C supports collagen synthesis; zinc helps with skin repair and hair health',
+      'Be gentle with hair — avoid tight styles, excessive heat tools, and harsh chemical treatments',
+      'A dermatologist can advise on topical retinoids (for skin) and minoxidil (for hair) if changes are significant',
+    ],
+    faqs: [
+      { q: 'Why is my skin suddenly so dry during perimenopause?', a: 'Oestrogen stimulates sebum production and helps skin retain moisture. As oestrogen falls, sebum decreases and the skin\'s ability to hold water diminishes. This leads to drier, thinner, and sometimes itchy skin. This typically begins in perimenopause and becomes more pronounced postmenopause. Richer moisturisers, avoiding harsh cleansers, and staying well-hydrated all help.' },
+      { q: 'Why am I losing hair during perimenopause?', a: 'Oestrogen supports the hair growth cycle. Its decline causes more hair follicles to enter the resting (telogen) phase simultaneously, resulting in diffuse shedding — you may notice more hair on your pillow, in the shower drain, or on your brush. This is different from male-pattern baldness and usually affects the overall density rather than producing bald patches. It is typically reversible when the hormonal balance is addressed.' },
+      { q: 'Can HRT improve skin and hair during perimenopause?', a: 'Yes. Oestrogen in HRT has been shown to increase skin collagen content, improve skin thickness and hydration, and reduce the rate of hair loss. Many women notice improvement in skin and hair within 3–6 months of starting HRT. This is one of the cosmetic benefits of HRT that is often not discussed in consultations.' },
+      { q: 'Why am I getting acne again during perimenopause?', a: 'As oestrogen falls, the ratio of androgens (male hormones) to oestrogen shifts. Androgens stimulate sebum production in skin glands, which can trigger breakouts — particularly on the chin, jaw, and neck. This is the same mechanism as PCOS-related acne. A dermatologist can advise on topical and systemic options appropriate for perimenopausal skin.' },
+    ],
+  },
+  'heart-palpitations': {
+    name: 'Heart Palpitations',
+    emoji: '💓',
+    tagline: 'A fluttering, racing, or skipping heartbeat — usually hormonal, but always worth checking.',
+    image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=630&fit=crop&q=80',
+    tags: ['palpitations', 'heart', 'perimenopause'],
+    feel: 'A sudden awareness of your heartbeat — fluttering, skipping, racing, or pounding — often at rest, at night, or immediately after a hot flash. The sensation can be frightening, particularly if you have never experienced it before. Most perimenopausal palpitations are brief, benign, and directly linked to hormonal fluctuation.',
+    why: 'Oestrogen helps regulate the autonomic nervous system, which controls heart rate and the electrical activity of the heart. As oestrogen fluctuates during perimenopause, this regulation becomes less stable — producing temporary irregularities in heart rhythm. Hot flashes often directly trigger palpitations as the cardiovascular system responds rapidly to the vasodilation and temperature change. Anxiety, which is also hormonally driven, further sensitises the nervous system to cardiac sensations.',
+    help: [
+      'If palpitations are frequent, prolonged, accompanied by chest pain, breathlessness, or dizziness — see a doctor promptly. Call 112 in an emergency.',
+      'Reduce caffeine — coffee, tea, and energy drinks can trigger and worsen palpitations',
+      'Reduce alcohol — it directly affects heart rate and rhythm',
+      'Treating hot flashes (HRT, lifestyle measures) often reduces associated palpitations significantly',
+      'An ECG is a simple, quick test that rules out cardiac causes and gives peace of mind',
+    ],
+    faqs: [
+      { q: 'Are heart palpitations during perimenopause dangerous?', a: 'In most cases, perimenopausal palpitations are benign and directly caused by oestrogen fluctuation. However, palpitations should always be evaluated if they are frequent, prolonged (lasting more than a few minutes), accompanied by chest pain, breathlessness, dizziness, or fainting. An ECG will confirm whether there is an underlying cardiac cause.' },
+      { q: 'When should I go to hospital for palpitations?', a: 'Go to hospital immediately (or call 112) if you experience: palpitations with chest pain or pressure, palpitations with breathlessness, feeling faint or actually fainting, palpitations that last more than 10–15 minutes and do not resolve, or any palpitations that feel different from your usual ones.' },
+      { q: 'Can HRT help with palpitations?', a: 'Yes — by stabilising oestrogen levels, HRT reduces the hormonal fluctuation that drives palpitations. Women on HRT often report significant reduction in palpitations. However, palpitations should be evaluated by a doctor before attributing them entirely to perimenopause, to rule out cardiac causes.' },
+      { q: 'What tests should I ask for if I have palpitations?', a: 'An ECG (electrocardiogram) is the first-line test — it is quick, non-invasive, and available at most clinics and diagnostic centres in India. If palpitations are frequent, a 24-hour Holter monitor (a portable ECG worn for a day) captures what happens during an actual episode. Your doctor should also check thyroid function and iron levels, as both thyroid disease and anaemia cause palpitations.' },
+    ],
+  },
+};
+
+const { slug } = Astro.params;
+const symptom = symptoms[slug as string];
+
+if (!symptom) {
+  return Astro.redirect('/guide/symptoms');
+}
+---
+
+<Layout
+  title={`${symptom.name} — Perimenopause Symptom Guide | The Second Spring`}
+  description={symptom.tagline}
+  image={symptom.image}
+>
+
+  <!-- Hero -->
+  <section class="sym-hero">
+    <div class="sym-hero-img" style={`background-image: url('${symptom.image}')`}></div>
+    <div class="sym-hero-overlay"></div>
+    <div class="container sym-hero-inner">
+      <a href="/guide/symptoms" class="sym-back">← All symptoms</a>
+      <div class="sym-emoji-big">{symptom.emoji}</div>
+      <h1>{symptom.name}</h1>
+      <p class="sym-tagline">{symptom.tagline}</p>
+      <div class="sym-tags">
+        {symptom.tags.map(t => <span class="sym-tag">{t}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <div class="container sym-layout">
+
+    <!-- Main content -->
+    <main class="sym-main">
+
+      <div class="sym-block">
+        <h2>What it feels like</h2>
+        <p>{symptom.feel}</p>
+      </div>
+
+      <div class="sym-block sym-block--why">
+        <h2>Why it happens</h2>
+        <p>{symptom.why}</p>
+      </div>
+
+      <!-- Quiz CTA mid-article -->
+      <div class="sym-quiz-cta">
+        <div class="sqc-text">
+          <strong>Could your symptoms be perimenopause?</strong>
+          <p>Our free 3-minute symptom check is designed for Indian women.</p>
+        </div>
+        <a href="/quiz" class="btn btn-peach">Check my symptoms →</a>
+      </div>
+
+      <div class="sym-block">
+        <h2>What helps</h2>
+        <ul class="sym-help-list">
+          {symptom.help.map(h => (
+            <li class="sym-help-item">
+              <span class="shi-dot"></span>
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- FAQ -->
+      <div class="sym-block">
+        <h2>Frequently asked questions</h2>
+        <div class="sym-faqs">
+          {symptom.faqs.map((faq, i) => (
+            <details class="sym-faq" open={i === 0}>
+              <summary class="sym-faq-q">
+                <span>{faq.q}</span>
+                <svg class="faq-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="sym-faq-a">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="sym-sidebar">
+      <div class="sib-card">
+        <div class="sib-icon">💬</div>
+        <h3>Talk to The Second Spring</h3>
+        <p>Ask anything about this symptom — privately, any time. No login, no judgement.</p>
+        <a href="/chat" class="btn btn-peach sib-btn">Start chatting →</a>
+      </div>
+
+      <div class="sib-card">
+        <div class="sib-icon">✅</div>
+        <h3>Free Symptom Check</h3>
+        <p>3 minutes. Built for Indian women. Tells you whether your symptoms match perimenopause.</p>
+        <a href="/quiz" class="btn btn-outline sib-btn">Take the quiz →</a>
+      </div>
+
+      <div class="sib-card sib-card--plain">
+        <h3>Other symptoms</h3>
+        <ul class="sib-sym-list">
+          {Object.entries(symptoms).filter(([s]) => s !== slug).slice(0, 6).map(([s, sym]) => (
+            <li><a href={`/guide/symptoms/${s}`}>{sym.emoji} {sym.name}</a></li>
+          ))}
+        </ul>
+        <a href="/guide/symptoms" class="sib-all-link">View all symptoms →</a>
+      </div>
+
+      <div class="sib-disclaimer">
+        <strong>Medical disclaimer</strong>
+        This information is for educational purposes only and is not a substitute for professional medical advice. Always consult your doctor or a qualified gynaecologist for personal medical decisions.
+      </div>
+    </aside>
+
+  </div>
+
+</Layout>
+
+<style>
+  .sym-hero {
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .sym-hero-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .sym-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,30,20,.92) 0%, rgba(10,30,20,.55) 60%, rgba(10,30,20,.2) 100%);
+  }
+  .sym-hero-inner {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 3rem;
+    padding-top: 5rem;
+    color: #fff;
+  }
+  .sym-back {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: color .15s;
+  }
+  .sym-back:hover { color: #fff; }
+  .sym-emoji-big { font-size: 2.5rem; margin-bottom: .5rem; }
+  .sym-hero-inner h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -.03em; color: #fff; margin-bottom: .6rem; }
+  .sym-tagline { font-size: 1rem; color: rgba(255,255,255,.8); max-width: 560px; line-height: 1.65; margin-bottom: 1rem; }
+  .sym-tags { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .sym-tag { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); padding: .25rem .7rem; border-radius: 99px; }
+
+  .sym-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+    align-items: start;
+  }
+
+  .sym-block { margin-bottom: 2.5rem; }
+  .sym-block h2 { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -.02em; margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 2px solid var(--green-light); }
+  .sym-block p { font-size: .97rem; color: var(--text-secondary); line-height: 1.8; }
+  .sym-block--why { background: var(--green-light); border-radius: 16px; padding: 1.5rem; border-left: 4px solid var(--green); }
+  .sym-block--why h2 { border-bottom-color: rgba(26,61,43,.15); }
+
+  .sym-help-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+  .sym-help-item { display: flex; gap: .85rem; align-items: flex-start; font-size: .93rem; color: var(--text); line-height: 1.65; }
+  .shi-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: .45rem; }
+
+  .sym-quiz-cta { background: linear-gradient(135deg, #1A3D2B, #2A5C45); border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .sqc-text strong { display: block; color: #fff; font-size: 1rem; margin-bottom: .3rem; }
+  .sqc-text p { color: rgba(255,255,255,.75); font-size: .88rem; margin: 0; }
+
+  .sym-faqs { display: flex; flex-direction: column; gap: .6rem; }
+  .sym-faq { background: var(--cream); border: 1.5px solid var(--border-light); border-radius: 12px; overflow: hidden; }
+  .sym-faq[open] { border-color: var(--green); }
+  .sym-faq-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.15rem; cursor: pointer; list-style: none; font-size: .93rem; font-weight: 700; color: var(--text); }
+  .sym-faq-q::-webkit-details-marker { display: none; }
+  .sym-faq[open] .sym-faq-q { background: var(--green-light); }
+  .faq-chev { flex-shrink: 0; color: var(--green); transition: transform .2s; }
+  .sym-faq[open] .faq-chev { transform: rotate(180deg); }
+  .sym-faq-a { padding: 1rem 1.15rem 1.15rem; font-size: .88rem; color: var(--text-secondary); line-height: 1.75; }
+
+  /* Sidebar */
+  .sym-sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: 80px; }
+  .sib-card { background: #fff; border: 1.5px solid var(--border-light); border-radius: 16px; padding: 1.5rem; }
+  .sib-card--plain { background: var(--cream); }
+  .sib-icon { font-size: 1.75rem; margin-bottom: .75rem; }
+  .sib-card h3 { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: .4rem; }
+  .sib-card p { font-size: .85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+  .sib-btn { display: block; text-align: center; }
+  .btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: .65rem 1.25rem; border: 2px solid var(--green); color: var(--green); border-radius: 99px; font-weight: 700; font-size: .88rem; text-decoration: none; transition: all .18s; }
+  .btn-outline:hover { background: var(--green); color: #fff; }
+  .sib-sym-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; margin-bottom: .85rem; }
+  .sib-sym-list li a { font-size: .85rem; color: var(--text-secondary); text-decoration: none; transition: color .15s; }
+  .sib-sym-list li a:hover { color: var(--green); }
+  .sib-all-link { font-size: .82rem; font-weight: 700; color: var(--green); text-decoration: none; }
+  .sib-disclaimer { font-size: .77rem; color: var(--text-muted); line-height: 1.6; padding: 1rem; background: var(--cream); border-radius: 10px; border: 1px solid var(--border-light); }
+  .sib-disclaimer strong { display: block; margin-bottom: .3rem; }
+
+  @media (max-width: 900px) {
+    .sym-layout { grid-template-columns: 1fr; }
+    .sym-sidebar { position: static; }
+  }
+</style>
