@@ -129,3 +129,20 @@ Then find a gynaecologist who is willing to discuss perimenopause explicitly. Co
 Ready for a more detailed conversation? Our private AI companion is available any time — India-specific, non-judgmental, and built to help you understand what's happening in your body.
 
 **[Talk to The Second Spring →](/chat)**
+
+## Frequently Asked Questions
+
+**What are the 7 signs of perimenopause?**
+The seven key signs are: (1) changes in your menstrual cycle, (2) sleep disruption, (3) mood swings and anxiety, (4) brain fog and memory changes, (5) hot flashes and night sweats, (6) weight gain especially around the belly, and (7) vaginal dryness and urinary symptoms. Each is caused by declining and fluctuating oestrogen and progesterone.
+
+**At what age do the signs of perimenopause start?**
+In India, perimenopause typically begins between 40 and 44, though it can start in the late 30s. Signs can appear 4–10 years before the final menstrual period. Indian women reach menopause at an average age of 46–47 — slightly earlier than Western women.
+
+**Are signs of perimenopause the same as menopause?**
+The signs are similar, but perimenopause is the transition phase where hormones fluctuate unpredictably. Menopause is confirmed only after 12 consecutive months without a period. The most intense symptoms typically occur in late perimenopause, just before and in the year after menopause.
+
+**Can perimenopause signs be confused with thyroid problems?**
+Yes — significantly. Fatigue, weight changes, mood changes, brain fog, and sleep disruption are common to both perimenopause and thyroid dysfunction. Indian women have high rates of thyroid disorders. Always ask your doctor to check thyroid function (TSH, free T3, T4) alongside hormonal tests.
+
+**How long do perimenopause signs last?**
+Most women experience perimenopausal symptoms for 4 to 8 years. For some the transition is shorter; for others it extends to 10 years. Symptoms typically ease in the years after menopause as hormone levels stabilise at a lower baseline.

@@ -128,3 +128,20 @@ If your perimenopausal symptoms are affecting your sleep, your work, your relati
 Have questions about which treatments might be right for your specific symptoms? Our AI companion can help you think through what you're experiencing and what to ask your gynaecologist — privately and without judgement.
 
 **[Talk to The Second Spring →](/chat)**
+
+## Frequently Asked Questions
+
+**What is the most effective treatment for perimenopausal symptoms?**
+Hormone replacement therapy (HRT) — combining oestrogen and progesterone — is the most effective treatment for the majority of perimenopausal symptoms including hot flashes, sleep disruption, mood changes, brain fog, and vaginal dryness. It also protects bone density and reduces cardiovascular risk when started early in the menopause transition.
+
+**Is HRT safe for Indian women?**
+Yes, for most women. Modern body-identical HRT has an excellent safety profile, particularly when started before age 60 or within 10 years of menopause. The risks are small and depend on individual health history. The outdated fear of HRT stems from a 2002 study that has since been significantly reinterpreted. Discuss your personal risk factors with a menopause-aware gynaecologist.
+
+**What non-hormonal treatments exist for perimenopause?**
+Non-hormonal options include: SSRIs and SNRIs (antidepressants that also reduce hot flashes and improve mood), clonidine (for hot flashes), gabapentin (for night sweats and sleep), vaginal oestrogen (for local symptoms without systemic absorption), and the Mirena IUD (for heavy bleeding). Lifestyle interventions — strength training, diet, sleep hygiene — are effective adjuncts for all women.
+
+**What perimenopause treatments are available in India?**
+HRT is available in India — patches, gels, and oral tablets including body-identical options. Commonly available brands include Progynova (oestrogen tablets), Oestrogel (gel), and Susten/Gestofit (micronised progesterone). The Mirena IUD is available at most gynaecology clinics. SSRIs like Nexito and Paxidep are widely prescribed. Access varies by city — a menopause-specialist gynaecologist will guide you.
+
+**How long does it take for perimenopause treatment to work?**
+Most women notice improvement in hot flashes and sleep within 2–4 weeks of starting HRT. Mood improvements typically follow within 4–8 weeks. Vaginal symptoms can take 2–3 months to fully improve. Non-hormonal treatments like SSRIs for mood typically take 4–6 weeks to show effect.

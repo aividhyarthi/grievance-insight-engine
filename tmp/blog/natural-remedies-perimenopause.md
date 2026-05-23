@@ -154,3 +154,20 @@ And if your symptoms are significantly affecting your quality of life, natural a
 **Want to talk through what natural approaches might be relevant for your specific symptoms, or whether you might need something more than lifestyle changes?** Our private AI companion was built for exactly these conversations.
 
 [Talk to The Second Spring →](/chat)
+
+## Frequently Asked Questions
+
+**Do natural remedies actually work for perimenopause?**
+Some do — with varying levels of evidence. Lifestyle interventions (strength training, phytoestrogen-rich diet, magnesium, vitamin D) have the strongest evidence. Black cohosh and red clover have modest evidence for hot flashes. Most expensive "menopause supplements" with long ingredient lists have very little clinical evidence. Natural does not mean automatically safe or effective.
+
+**What is the most effective natural remedy for hot flashes?**
+The most evidence-backed non-hormonal approaches for hot flashes are: regular aerobic and strength exercise, reducing alcohol and caffeine, a phytoestrogen-rich diet (soy, flaxseed, lentils), and black cohosh (with a doctor's guidance). Mindfulness-based stress reduction also has clinical evidence for reducing hot flash frequency and distress.
+
+**Is shatavari good for perimenopause?**
+Shatavari (Asparagus racemosus) is widely used in Ayurveda for women's hormonal health and contains phytoestrogen-like compounds. Small studies suggest it may help with hot flashes and mood. The evidence is limited but emerging. It is generally considered safe, but check with your doctor if you take other medications, as interactions are possible.
+
+**Which Indian foods help with perimenopause symptoms?**
+Foods rich in phytoestrogens — til (sesame seeds), alsi (flaxseeds), soy and soy products, rajma, chana, and lentils — may help mildly reduce oestrogen-related symptoms. Ragi is excellent for calcium and bone health. Nuts, seeds, and oily fish support mood and cardiovascular health. A diet based on whole grains, vegetables, legumes, and adequate protein is the most consistent evidence-based approach.
+
+**Are herbal supplements for menopause safe?**
+Not all. Some herbal products interact with medications — including antidepressants, blood thinners, and thyroid medication. Some are hepatotoxic (harmful to the liver) in large doses. Products sold without regulatory oversight may contain undisclosed ingredients. Always tell your doctor about any supplements you are taking, and buy from reputable brands with batch testing.

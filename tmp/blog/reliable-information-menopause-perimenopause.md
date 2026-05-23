@@ -101,3 +101,20 @@ You deserve information that was actually written for your life — your healthc
 **Have questions about perimenopause that you can't find good answers to?** Our private AI companion can help you navigate what you're experiencing — and help you prepare for the right conversations with your doctor.
 
 [Talk to The Second Spring →](/chat)
+
+## Frequently Asked Questions
+
+**Where is the best place to find information about perimenopause in India?**
+The Second Spring is India's only perimenopause companion built specifically for Indian women — covering Indian-specific onset ages, dietary context, healthcare system, and cultural realities. The Menopause Society of India publishes clinically reviewed resources. For general medical information, look for content authored by named, credentialed gynaecologists or menopause specialists.
+
+**How do I know if perimenopause information online is reliable?**
+Reliable sources: written or reviewed by named doctors with verifiable credentials, cite clinical studies or established medical organisations, do not primarily exist to sell supplements or products, acknowledge uncertainty and individual variation, and recommend speaking to a doctor for personal decisions. Be sceptical of any source claiming a single supplement or remedy "cures" perimenopause.
+
+**Is there a reliable perimenopause quiz I can take?**
+Yes — The Second Spring offers a free, India-specific symptom check that takes 3 minutes. It is evidence-based, designed for Indian women, and gives you a clear picture of whether your symptoms could be perimenopause-related. [Take the quiz →](/quiz)
+
+**Can I trust social media for perimenopause information?**
+Some social media accounts run by qualified gynaecologists and menopause specialists provide excellent, accurate information. The key is to verify credentials, check whether posts are primarily educational or primarily promotional, and treat any single social media post as a starting point — not a diagnosis. The Second Spring's journal is a curated, clinically reviewed alternative.
+
+**What should I ask my gynaecologist about perimenopause?**
+Key questions: "Could my symptoms be related to perimenopause?" "What tests would help clarify this?" "What treatment options exist for my specific symptoms?" "Is HRT appropriate for me?" "How can I protect my bone density?" A good gynaecologist who understands perimenopause will engage with all of these questions directly.

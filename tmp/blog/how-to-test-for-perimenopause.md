@@ -191,3 +191,20 @@ And remember: "normal tests" is not the same as "no perimenopause." If your symp
 **Ready to talk through what your results might mean, or how to prepare for your gynaecologist appointment?** Our private AI companion is available any time.
 
 [Talk to The Second Spring →](/chat)
+
+## Frequently Asked Questions
+
+**Can I test myself for perimenopause at home?**
+Home perimenopause test kits measure FSH in urine and are available at some pharmacies. However, they are unreliable during perimenopause because FSH fluctuates so widely — a single reading, even if elevated, does not confirm perimenopause. A clinical assessment of your symptoms combined with blood tests done by a lab gives a much more accurate picture. The quickest first step is our free symptom check: [Take the quiz →](/quiz)
+
+**What blood tests confirm perimenopause?**
+The most useful tests are FSH (follicle-stimulating hormone), LH, serum oestradiol (E2), and AMH (anti-Müllerian hormone). FSH above 25–30 IU/L on two readings three months apart is a strong indicator. Always test on Day 2–5 of your cycle for the most meaningful results.
+
+**Where can I get hormone tests done in India?**
+Hormone panels are available at most diagnostic labs across India including Thyrocare, SRL Diagnostics, Metropolis, and Apollo Diagnostics. Many offer home blood collection. A basic perimenopause panel (FSH, LH, oestradiol, TSH, full blood count, vitamin D, B12) typically costs ₹1,500–₹3,500 depending on the city and lab.
+
+**Can hormone tests be normal during perimenopause?**
+Yes — frequently. Because hormone levels fluctuate dramatically during perimenopause, a single test can catch oestrogen on a high day and FSH on a low day, producing a "normal" result even when symptoms are significant. This is why perimenopause is diagnosed on symptoms and patterns, not a single blood result.
+
+**How is perimenopause different from menopause on a test?**
+During perimenopause, FSH and oestrogen fluctuate widely. After menopause, FSH is consistently elevated (above 30 IU/L) and oestradiol is consistently low (below 20 pg/mL). Menopause itself is confirmed clinically — 12 consecutive months without a period — not solely by a blood test.

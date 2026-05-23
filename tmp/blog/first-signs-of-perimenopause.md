@@ -118,3 +118,20 @@ Most importantly: find a gynaecologist who is willing to take your symptom pictu
 Ready to talk through what you're experiencing in more detail? Our private AI companion is available any time — India-specific, non-judgmental, and built to help you understand what's happening in your body.
 
 **[Talk to The Second Spring →](/chat)**
+
+## Frequently Asked Questions
+
+**What is the very first sign of perimenopause?**
+For most women, the first noticeable sign is a change in the menstrual cycle — periods becoming shorter, longer, heavier, or arriving closer together or further apart than usual. Worsening PMS and new sleep disruption are also early indicators that often appear before hot flashes.
+
+**Can perimenopause start at 35?**
+Yes. While perimenopause most commonly begins between 40 and 44 for Indian women, it can start in the mid-to-late 30s. If you are under 40 and experiencing symptoms, speak to a gynaecologist to rule out premature ovarian insufficiency.
+
+**How do I know if my symptoms are perimenopause or just stress?**
+Both cause sleep disruption, mood changes, and fatigue — which is why they are so often confused. The key difference is pattern: perimenopausal symptoms tend to correlate with your menstrual cycle and worsen over months, often alongside period changes. A symptom check and hormone panel can help clarify. [Take our free symptom check →](/quiz)
+
+**Can perimenopause cause anxiety with no prior history?**
+Yes. Oestrogen directly regulates serotonin and GABA — the brain chemicals that control anxiety and emotional resilience. As oestrogen fluctuates during perimenopause, new-onset anxiety is extremely common. It is hormonal, not a mental health disorder, though the two can overlap.
+
+**Do I need a blood test to confirm perimenopause?**
+Not necessarily. Perimenopause is primarily a clinical diagnosis based on your symptoms, age, and menstrual pattern. Blood tests (FSH, LH, oestradiol) can provide supporting information but are not definitive on their own, since hormone levels fluctuate widely day to day during perimenopause.

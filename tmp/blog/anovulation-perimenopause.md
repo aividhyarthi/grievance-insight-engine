@@ -83,3 +83,20 @@ It is also worth having thyroid function checked — hypothyroidism is common in
 If you're trying to understand what's happening with your cycle and whether perimenopause could be a factor, our AI companion can help you think it through — privately, in a way that's relevant to your life in India.
 
 **[Talk to The Second Spring →](/chat)**
+
+## Frequently Asked Questions
+
+**What is anovulation in simple terms?**
+Anovulation means your body goes through the motions of a menstrual cycle — you still bleed — but no egg is released from the ovaries. It is common during perimenopause when hormonal signalling becomes erratic.
+
+**Can you have a period without ovulating?**
+Yes. Menstrual bleeding and ovulation are separate events. During perimenopause, anovulatory bleeding (a period without ovulation) becomes increasingly common. The bleeding is triggered by oestrogen withdrawal, not by ovulation.
+
+**How do I know if I am having anovulatory cycles?**
+Signs include irregular cycle lengths, heavier or lighter than usual bleeding, the absence of mid-cycle signs (clear stretchy discharge, mild pelvic pain), and changes in basal body temperature. A blood test checking progesterone in the luteal phase (Day 21 of a 28-day cycle) can confirm whether ovulation occurred.
+
+**Does anovulation mean I cannot get pregnant?**
+Anovulatory cycles reduce fertility significantly, but occasional ovulation can still occur during perimenopause. Contraception is still recommended until 12 months after your last period if you wish to avoid pregnancy.
+
+**Is anovulation the same as menopause?**
+No. Anovulation is common throughout perimenopause — the transition phase before menopause. Menopause itself is confirmed only after 12 consecutive months without any period.
