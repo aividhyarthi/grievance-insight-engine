@@ -21,6 +21,7 @@ const staticPages = [
   { path: '/for-employers',             changefreq: 'monthly', priority: '0.6' },
   { path: '/events',                    changefreq: 'weekly',  priority: '0.6' },
   { path: '/contact',                   changefreq: 'yearly',  priority: '0.5' },
+  { path: '/myths',                     changefreq: 'monthly', priority: '0.7' },
 ];
 
 // Individual symptom pages
