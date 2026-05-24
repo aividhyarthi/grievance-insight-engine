@@ -3,67 +3,101 @@ import Layout from '../../layouts/Layout.astro';
 
 const topics = [
   {
-    icon: '🌙',
-    title: 'Sleep & perimenopause',
-    desc: 'Why perimenopause disrupts sleep, what\'s happening in your brain, and practical strategies for better rest — from sleep hygiene to medical options.',
-    time: '8 min read',
+    icon: '⚖️',
+    title: 'Weight & Belly Fat',
+    desc: 'Why perimenopause rewires how your body stores fat — and what actually works for Indian women.',
+    time: '7 min read',
     tag: 'Popular',
+    href: '/guide/weight',
+    live: true,
   },
   {
-    icon: '🌊',
-    title: 'Managing mood changes',
-    desc: 'Understanding the hormonal roots of irritability, anxiety, and low mood during perimenopause — and evidence-based approaches to feeling more like yourself.',
-    time: '9 min read',
+    icon: '🌙',
+    title: 'Sleep',
+    desc: 'The three hormonal mechanisms that disrupt sleep — and evidence-based approaches to fix them.',
+    time: '6 min read',
     tag: '',
+    href: '/guide/sleep',
+    live: true,
   },
   {
-    icon: '🔬',
-    title: 'Hormones explained simply',
-    desc: 'A clear, jargon-free explanation of oestrogen, progesterone, and testosterone — what they do, what happens when they fall, and why this matters for how you feel.',
-    time: '10 min read',
-    tag: 'Start here',
-  },
-  {
-    icon: '🥗',
-    title: 'Nutrition & lifestyle',
-    desc: 'How what you eat and how you live can meaningfully support your body during perimenopause — including Indian dietary considerations and practical tips.',
-    time: '11 min read',
-    tag: '',
-  },
-  {
-    icon: '💞',
-    title: 'Relationships & intimacy',
-    desc: 'How perimenopause affects your relationships — with partners, family, and yourself. Navigating libido changes, communication, and emotional shifts together.',
-    time: '8 min read',
-    tag: '',
-  },
-  {
-    icon: '🏃‍♀️',
-    title: 'Exercise & movement',
-    desc: 'The right kind of movement can profoundly ease perimenopausal symptoms. This guide covers what the evidence says and how to build a sustainable routine.',
+    icon: '🧠',
+    title: 'Mood & Memory',
+    desc: 'Anxiety, brain fog, and mood swings are hormonal — not stress or personality. Here is the science.',
     time: '7 min read',
     tag: '',
+    href: '/guide/mood-memory',
+    live: true,
+  },
+  {
+    icon: '🌸',
+    title: 'Sexual Wellness',
+    desc: 'Low libido, vaginal dryness, and discomfort during sex are medical symptoms with medical solutions.',
+    time: '7 min read',
+    tag: 'India-focused',
+    href: '/guide/sexual-wellness',
+    live: true,
+  },
+  {
+    icon: '✨',
+    title: 'Hair & Skin',
+    desc: 'Why oestrogen shapes your appearance — and practical steps for Indian women experiencing changes.',
+    time: '7 min read',
+    tag: '',
+    href: '/guide/hair-skin',
+    live: true,
   },
   {
     icon: '🌿',
-    title: 'Ayurveda & traditional remedies',
-    desc: 'What traditional Indian medicine says about this transition, which remedies have evidence behind them, and how to integrate Ayurvedic support safely.',
-    time: '9 min read',
-    tag: 'India-focused',
+    title: 'What Is Menopause?',
+    desc: 'What comes after perimenopause — what changes, what to protect long-term, and what to expect.',
+    time: '7 min read',
+    tag: '',
+    href: '/menopause',
+    live: true,
   },
   {
     icon: '💊',
-    title: 'Understanding HRT/MHT',
-    desc: 'A calm, balanced guide to hormone replacement therapy — what it is, what the research actually says about safety, and how to have an informed conversation with your doctor.',
-    time: '12 min read',
+    title: 'HRT & Treatments',
+    desc: 'A calm, balanced guide to hormone therapy — what the research actually says, and what is available in India.',
+    time: '9 min read',
     tag: 'Important',
+    href: '/blog/hormonal-symptom-treatments-perimenopause',
+    live: true,
+  },
+  {
+    icon: '🔬',
+    title: 'Hormones Explained',
+    desc: 'Oestrogen vs progesterone — what they do, how they differ, and why both matter in perimenopause.',
+    time: '8 min read',
+    tag: 'Start here',
+    href: '/blog/oestrogen-vs-progesterone-perimenopause',
+    live: true,
+  },
+  {
+    icon: '🥗',
+    title: 'Nutrition & Lifestyle',
+    desc: 'How diet, exercise, and daily habits can meaningfully support your body — with Indian dietary context.',
+    time: '11 min read',
+    tag: '',
+    href: '/blog/lifestyle-changes-perimenopause-symptoms',
+    live: true,
+  },
+  {
+    icon: '🌿',
+    title: 'Natural Remedies',
+    desc: 'Which alternative remedies have evidence behind them — and which are myths. Honest assessment.',
+    time: '8 min read',
+    tag: '',
+    href: '/blog/natural-remedies-perimenopause',
+    live: true,
   },
 ];
 ---
 
 <Layout
-  title="Topic Guides – The Second Spring"
-  description="Deep-dive guides on sleep, mood, hormones, nutrition, relationships, exercise, Ayurveda, and HRT during perimenopause — written for Indian women."
+  title="Topic Guides — The Second Spring"
+  description="Deep-dive guides on weight, sleep, mood, sexual wellness, hair, skin, hormones, and HRT during perimenopause — written for Indian women."
 >
 
   <section class="page-hero">
@@ -71,21 +105,7 @@ const topics = [
       <div class="page-hero-inner">
         <div class="page-eyebrow">📚 Guide</div>
         <h1>Topic Guides</h1>
-        <p>Deep dives on the subjects that matter most during perimenopause — written in plain language, with the Indian woman in mind.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Coming soon notice -->
-  <section class="section-sm bg-white">
-    <div class="container">
-      <div class="notice-banner">
-        <span class="notice-icon">✍️</span>
-        <div>
-          <strong>These guides are being written now.</strong>
-          <p>We're crafting each one carefully — with real information, Indian context, and the warmth you deserve. In the meantime, our AI companion can answer your questions on any of these topics right now, privately and without waiting.</p>
-        </div>
-        <a href="/chat" class="btn btn-primary" style="flex-shrink:0;">Ask our companion →</a>
+        <p>In-depth guides on the subjects that matter most during perimenopause — written in plain language, with the Indian woman in mind.</p>
       </div>
     </div>
   </section>
@@ -93,14 +113,9 @@ const topics = [
   <!-- Topics grid -->
   <section class="section bg-cream">
     <div class="container">
-      <div class="section-header">
-        <span class="section-label">All topics</span>
-        <h2 class="section-title">Explore what's coming</h2>
-        <p class="section-sub">Eight comprehensive guides covering everything you need to navigate perimenopause with confidence.</p>
-      </div>
       <div class="topics-grid">
         {topics.map(t => (
-          <a href="/chat" class="topic-card">
+          <a href={t.href} class="topic-card">
             <div class="topic-card-top">
               <span class="topic-icon">{t.icon}</span>
               {t.tag && <span class="topic-tag">{t.tag}</span>}
@@ -109,7 +124,7 @@ const topics = [
             <p class="topic-desc">{t.desc}</p>
             <div class="topic-footer">
               <span class="topic-time">⏱ {t.time}</span>
-              <span class="topic-cta">Chat about this →</span>
+              <span class="topic-cta">Read guide →</span>
             </div>
           </a>
         ))}
@@ -117,15 +132,25 @@ const topics = [
     </div>
   </section>
 
-  <!-- Expanding notice -->
+  <!-- Symptom library CTA -->
   <section class="section-sm bg-white">
     <div class="container">
-      <div class="expand-block">
-        <div class="expand-icon">🌱</div>
-        <div>
-          <h2 class="expand-title">This guide is growing</h2>
-          <p class="expand-text">We're publishing new topic guides regularly. Each one is reviewed for accuracy and written with Indian women's lives in mind — our food, our families, our healthcare system, and the cultural context that shapes our experience of this transition.</p>
-          <p class="expand-text">To be notified when new guides go live, reach out at <a href="mailto:hello@thesecondspring.com">hello@thesecondspring.com</a>.</p>
+      <div class="two-cta-row">
+        <div class="two-cta-card two-cta-card--green">
+          <div class="tcc-icon">🔍</div>
+          <div>
+            <h3>Symptom Library</h3>
+            <p>Every perimenopause symptom explained clearly — what it feels like, why it happens, and what helps.</p>
+          </div>
+          <a href="/guide/symptoms" class="btn btn-primary">Explore symptoms →</a>
+        </div>
+        <div class="two-cta-card two-cta-card--peach">
+          <div class="tcc-icon">💬</div>
+          <div>
+            <h3>Ask our companion</h3>
+            <p>Questions on any topic answered privately, any time. No login, no judgement.</p>
+          </div>
+          <a href="/chat" class="btn btn-peach">Talk privately →</a>
         </div>
       </div>
     </div>
@@ -136,10 +161,10 @@ const topics = [
     <div class="container">
       <div class="cta-block">
         <div>
-          <h2 class="section-title">Don't want to wait for the guides?</h2>
-          <p class="section-sub">Our companion can answer questions on any of these topics right now — personally and privately.</p>
+          <h2 class="section-title">Not sure where to start?</h2>
+          <p class="section-sub">Our free 3-minute symptom check will tell you which topics are most relevant for you.</p>
         </div>
-        <a href="/chat" class="btn btn-primary btn-lg">Start a conversation →</a>
+        <a href="/quiz" class="btn btn-primary btn-lg">Check my symptoms →</a>
       </div>
     </div>
   </section>
@@ -147,41 +172,28 @@ const topics = [
 </Layout>
 
 <style>
-  .notice-banner {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    background: var(--green-light);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem 1.5rem;
-    flex-wrap: wrap;
-  }
-  .notice-icon { font-size: 1.5rem; flex-shrink: 0; }
-  .notice-banner strong { display: block; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: .3rem; }
-  .notice-banner p { font-size: .9rem; color: var(--text-secondary); line-height: 1.65; }
-
   .topics-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .topic-card {
-    display: flex;
-    flex-direction: column;
     background: #fff;
     border: 1.5px solid var(--border-light);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     text-decoration: none;
-    color: var(--text);
-    transition: all .22s;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    transition: box-shadow .22s, border-color .22s, transform .18s;
+    cursor: pointer;
   }
 
   .topic-card:hover {
+    box-shadow: 0 8px 32px rgba(61,122,95,.12);
     border-color: var(--green);
-    box-shadow: 0 8px 28px rgba(61,122,95,.12);
     transform: translateY(-2px);
   }
 
@@ -189,27 +201,27 @@ const topics = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    gap: .5rem;
   }
 
-  .topic-icon { font-size: 1.75rem; }
+  .topic-icon { font-size: 2rem; }
 
   .topic-tag {
-    font-size: .7rem;
-    font-weight: 700;
+    font-size: .68rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: .07em;
-    background: var(--peach-light);
-    color: var(--peach-dark);
-    padding: .2rem .6rem;
-    border-radius: 100px;
+    letter-spacing: .08em;
+    background: var(--green-light);
+    color: var(--green);
+    padding: .2rem .65rem;
+    border-radius: 99px;
   }
 
   .topic-title {
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text);
-    margin-bottom: .6rem;
+    letter-spacing: -.02em;
     line-height: 1.3;
   }
 
@@ -218,15 +230,14 @@ const topics = [
     color: var(--text-secondary);
     line-height: 1.65;
     flex: 1;
-    margin-bottom: 1.25rem;
   }
 
   .topic-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid var(--border-light);
-    padding-top: .85rem;
+    padding-top: .75rem;
+    border-top: 1.5px solid var(--border-light);
     margin-top: auto;
   }
 
@@ -236,37 +247,48 @@ const topics = [
   }
 
   .topic-cta {
-    font-size: .83rem;
-    font-weight: 600;
+    font-size: .82rem;
+    font-weight: 700;
     color: var(--green);
   }
 
-  .topic-card:hover .topic-cta { color: var(--green-dark); }
-
-  .expand-block {
-    display: flex;
-    align-items: flex-start;
+  .two-cta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    max-width: 760px;
   }
 
-  .expand-icon {
-    font-size: 2.5rem;
-    flex-shrink: 0;
+  .two-cta-card {
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
-  .expand-title {
-    font-size: 1.35rem;
+  .two-cta-card--green {
+    background: var(--green-light);
+    border: 1.5px solid var(--green);
+  }
+
+  .two-cta-card--peach {
+    background: #FEF3EC;
+    border: 1.5px solid #D4845A;
+  }
+
+  .tcc-icon { font-size: 1.75rem; }
+
+  .two-cta-card h3 {
+    font-size: 1rem;
     font-weight: 800;
     color: var(--text);
-    margin-bottom: .6rem;
+    margin-bottom: .3rem;
   }
 
-  .expand-text {
-    font-size: .93rem;
+  .two-cta-card p {
+    font-size: .88rem;
     color: var(--text-secondary);
-    line-height: 1.72;
-    margin-bottom: .75rem;
+    line-height: 1.6;
   }
 
   .cta-block {
@@ -279,7 +301,7 @@ const topics = [
 
   @media (max-width: 768px) {
     .topics-grid { grid-template-columns: 1fr; }
-    .notice-banner { flex-direction: column; }
+    .two-cta-row { grid-template-columns: 1fr; }
     .cta-block { flex-direction: column; }
   }
 </style>

@@ -77,43 +77,50 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
               Guide
               <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
-            <div class="dropdown">
-              <div class="dropdown-inner">
-                <a href="/guide" class="dropdown-item">
-                  <span class="di-icon">📖</span>
-                  <span>
-                    <span class="di-title">Overview</span>
-                    <span class="di-desc">Start your learning journey</span>
-                  </span>
-                </a>
-                <a href="/guide/symptoms" class="dropdown-item">
-                  <span class="di-icon">🔍</span>
-                  <span>
-                    <span class="di-title">Symptom Library</span>
-                    <span class="di-desc">Every symptom, clearly explained</span>
-                  </span>
-                </a>
-                <a href="/guide/topics" class="dropdown-item">
-                  <span class="di-icon">📚</span>
-                  <span>
-                    <span class="di-title">Topic Guides</span>
-                    <span class="di-desc">Deep dives by subject</span>
-                  </span>
-                </a>
-                <a href="/guide/faqs" class="dropdown-item">
-                  <span class="di-icon">💬</span>
-                  <span>
-                    <span class="di-title">FAQs</span>
-                    <span class="di-desc">Common questions answered</span>
-                  </span>
-                </a>
-                <a href="/guide/talk-to-doctor" class="dropdown-item">
-                  <span class="di-icon">🩺</span>
-                  <span>
-                    <span class="di-title">Talk to Your Doctor</span>
-                    <span class="di-desc">What to say and how to prepare</span>
-                  </span>
-                </a>
+            <div class="dropdown dropdown--wide">
+              <div class="dropdown-inner dropdown-inner--cols">
+                <div class="dd-col">
+                  <div class="dd-col-label">Learn</div>
+                  <a href="/guide" class="dropdown-item">
+                    <span class="di-icon">📖</span>
+                    <span><span class="di-title">Guide Overview</span><span class="di-desc">Start your learning journey</span></span>
+                  </a>
+                  <a href="/guide/symptoms" class="dropdown-item">
+                    <span class="di-icon">🔍</span>
+                    <span><span class="di-title">Symptom Library</span><span class="di-desc">Every symptom explained</span></span>
+                  </a>
+                  <a href="/guide/faqs" class="dropdown-item">
+                    <span class="di-icon">💬</span>
+                    <span><span class="di-title">FAQs</span><span class="di-desc">Common questions answered</span></span>
+                  </a>
+                  <a href="/guide/talk-to-doctor" class="dropdown-item">
+                    <span class="di-icon">🩺</span>
+                    <span><span class="di-title">Talk to Your Doctor</span><span class="di-desc">How to prepare</span></span>
+                  </a>
+                </div>
+                <div class="dd-col">
+                  <div class="dd-col-label">Topic Hubs</div>
+                  <a href="/guide/weight" class="dropdown-item">
+                    <span class="di-icon">⚖️</span>
+                    <span><span class="di-title">Weight & Belly Fat</span><span class="di-desc">Why it happens & what works</span></span>
+                  </a>
+                  <a href="/guide/sleep" class="dropdown-item">
+                    <span class="di-icon">🌙</span>
+                    <span><span class="di-title">Sleep</span><span class="di-desc">Why 3am waking happens</span></span>
+                  </a>
+                  <a href="/guide/mood-memory" class="dropdown-item">
+                    <span class="di-icon">🧠</span>
+                    <span><span class="di-title">Mood & Memory</span><span class="di-desc">Anxiety, brain fog & more</span></span>
+                  </a>
+                  <a href="/guide/sexual-wellness" class="dropdown-item">
+                    <span class="di-icon">🌸</span>
+                    <span><span class="di-title">Sexual Wellness</span><span class="di-desc">Libido & vaginal health</span></span>
+                  </a>
+                  <a href="/guide/hair-skin" class="dropdown-item">
+                    <span class="di-icon">✨</span>
+                    <span><span class="di-title">Hair & Skin</span><span class="di-desc">Hormonal changes explained</span></span>
+                  </a>
+                </div>
               </div>
             </div>
           </li>
@@ -152,6 +159,13 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
                   <span>
                     <span class="di-title">Symptom Check</span>
                     <span class="di-desc">Free 3-minute assessment</span>
+                  </span>
+                </a>
+                <a href="/menopause" class="dropdown-item">
+                  <span class="di-icon">🌿</span>
+                  <span>
+                    <span class="di-title">What Is Menopause?</span>
+                    <span class="di-desc">What comes after perimenopause</span>
                   </span>
                 </a>
               </div>
@@ -600,6 +614,18 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
   .di-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .1rem; }
   .di-title { display: block; font-weight: 600; font-size: .88rem; color: var(--text); }
   .di-desc  { display: block; font-size: .78rem; color: var(--text-muted); margin-top: .1rem; }
+
+  /* Wide two-column dropdown */
+  .dropdown--wide { min-width: 520px; left: 0; transform: translateY(-6px); }
+  .has-dropdown:hover .dropdown--wide,
+  .has-dropdown:focus-within .dropdown--wide { transform: translateY(0); }
+  .dropdown-inner--cols { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem; }
+  .dd-col { display: flex; flex-direction: column; }
+  .dd-col-label {
+    font-size: .68rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--text-muted);
+    padding: .5rem .9rem .25rem; margin-bottom: .15rem;
+  }
 
   .navbar-right { display: flex; align-items: center; gap: .75rem; margin-left: auto; }
   .mobile-toggle {
