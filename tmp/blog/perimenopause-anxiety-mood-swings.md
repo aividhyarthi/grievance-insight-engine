@@ -40,7 +40,7 @@ It doesn't always look like the anxiety you might imagine. Women describe it as:
 - **Overthinking** — lying awake running through conversations and decisions
 - **Physical symptoms** like chest tightness, shortness of breath, or a feeling of unreality
 
-Many women are diagnosed with generalised anxiety disorder or even bipolar disorder during perimenopause, when the root cause is hormonal.
+Some women are diagnosed with anxiety disorders during perimenopause without the hormonal contribution being considered. In other cases, existing conditions like depression or mood disorders may be worsened by hormonal fluctuations. Bipolar disorder is a distinct psychiatric condition that warrants proper evaluation — perimenopause can worsen or unmask it, but hormonal treatment is not a substitute for appropriate psychiatric care.
 
 ## Rage: The Symptom Nobody Talks About
 

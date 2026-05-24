@@ -59,7 +59,9 @@ These are not "just antidepressants" in this context — they act on the same br
 A blood pressure medication (Catapres, available in India) that also reduces hot flashes. Less effective than HRT but useful for women in whom hormonal and SSRI options are not suitable.
 
 ### Gabapentin
-An anti-seizure medication with evidence for reducing hot flashes and improving sleep. Available in India as Gabapin or Neurontin. Often used when sleep disruption is a major complaint.
+An anti-seizure medication with evidence for reducing hot flashes and improving sleep. Available in India as Gabapin (Intas) or Gabantin (Sun Pharma). Often used when sleep disruption is a major complaint.
+
+**Important:** Gabapentin carries risks of dizziness, falls, cognitive sedation, and dependence — it must be used only under close medical supervision and is not appropriate as a long-term first-line sleep aid.
 
 ---
 
@@ -75,7 +77,7 @@ An anti-seizure medication with evidence for reducing hot flashes and improving 
 
 Genitourinary syndrome of menopause (GSM) — vaginal dryness, discomfort during sex, recurrent urinary infections — is extremely common and extremely undertreated.
 
-**Vaginal oestrogen** (pessaries, cream, or ring) delivers oestrogen directly to the vaginal tissue without significant systemic absorption. It is safe for most women, including those with a history of breast cancer (discuss with your oncologist). In India, vaginal oestrogen preparations are available by prescription — ask your gynaecologist specifically for them.
+**Vaginal oestrogen** (pessaries or cream. (Vaginal rings are not routinely available in India.)) delivers oestrogen directly to the vaginal tissue without significant systemic absorption. It is safe for most women, including those with a history of breast cancer (discuss with your oncologist). In India, vaginal oestrogen preparations are available by prescription — ask your gynaecologist specifically for them.
 
 Non-hormonal options for vaginal dryness include **vaginal moisturisers** used regularly (not just lubricants during sex) — look for products with hyaluronic acid.
 
@@ -138,10 +140,10 @@ Hormone replacement therapy (HRT) — combining oestrogen and progesterone — i
 Yes, for most women. Modern body-identical HRT has an excellent safety profile, particularly when started before age 60 or within 10 years of menopause. The risks are small and depend on individual health history. The outdated fear of HRT stems from a 2002 study that has since been significantly reinterpreted. Discuss your personal risk factors with a menopause-aware gynaecologist.
 
 **What non-hormonal treatments exist for perimenopause?**
-Non-hormonal options include: SSRIs and SNRIs (antidepressants that also reduce hot flashes and improve mood), clonidine (for hot flashes), gabapentin (for night sweats and sleep), vaginal oestrogen (for local symptoms without systemic absorption), and the Mirena IUD (for heavy bleeding). Lifestyle interventions — strength training, diet, sleep hygiene — are effective adjuncts for all women.
+Non-hormonal options include: SSRIs and SNRIs (antidepressants that also reduce hot flashes and improve mood), clonidine (for hot flashes), gabapentin (for night sweats and sleep), vaginal oestrogen (for local symptoms without systemic absorption), and the Mirena IUS (intrauterine system) (for heavy bleeding). Lifestyle interventions — strength training, diet, sleep hygiene — are effective adjuncts for all women.
 
 **What perimenopause treatments are available in India?**
-HRT is available in India — patches, gels, and oral tablets including body-identical options. Commonly available brands include Progynova (oestrogen tablets), Oestrogel (gel), and Susten/Gestofit (micronised progesterone). The Mirena IUD is available at most gynaecology clinics. SSRIs like Nexito and Paxidep are widely prescribed. Access varies by city — a menopause-specialist gynaecologist will guide you.
+HRT is available in India — patches, gels, and oral tablets including body-identical options. Commonly available brands include Progynova (oestrogen tablets), Oestrogel (gel), and Susten/Gestofit (micronised progesterone). The Mirena IUD is available at most gynaecology clinics. SSRIs like Nexito and Paxidep are widely prescribed. **Critical interaction:** Paroxetine (Paxidep) must NOT be used by women taking tamoxifen for breast cancer — it inhibits tamoxifen metabolism and significantly reduces its effectiveness. Women on tamoxifen should use a different SSRI or venlafaxine instead. Access varies by city — a menopause-specialist gynaecologist will guide you.
 
 **How long does it take for perimenopause treatment to work?**
 Most women notice improvement in hot flashes and sleep within 2–4 weeks of starting HRT. Mood improvements typically follow within 4–8 weeks. Vaginal symptoms can take 2–3 months to fully improve. Non-hormonal treatments like SSRIs for mood typically take 4–6 weeks to show effect.

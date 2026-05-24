@@ -46,7 +46,7 @@ The medical term for heavy menstrual bleeding is **menorrhagia**. Clinically, it
 - Soaking through a pad or tampon every hour for several consecutive hours
 - Needing to use double protection (pad + tampon simultaneously)
 - Bleeding that lasts longer than 7 days
-- Passing clots larger than a 50-paise coin
+- Passing clots larger than a 10-rupee coin (approximately 27mm across)
 - Waking at night to change protection
 - Symptoms of anaemia: extreme fatigue, breathlessness, dizziness, rapid heartbeat, pale skin
 
@@ -88,7 +88,7 @@ These two can be used together and are a reasonable first option for women who p
 **Progesterone-only treatment**
 Since the underlying hormonal driver is often insufficient progesterone, supplementing it can significantly reduce bleeding. Options include:
 
-- **Oral progesterone (Dydrogesterone, Micronised progesterone)** — taken for a set number of days each cycle to counterbalance oestrogen and regulate the lining
+- **Micronised progesterone (body-identical — e.g. Susten, Gestofit):** protects the uterine lining and may also improve sleep and mood. **Dydrogesterone (Duphaston):** a synthetic progestogen that protects the uterine lining but does not share the neurological (sleep/anxiety) benefits of micronised progesterone. Both are taken for a set number of days each cycle to counterbalance oestrogen and regulate the lining.
 - **Norethisterone** — a synthetic progestogen often prescribed in India, taken for 21 days per cycle to stop heavy bleeding; can be effective short-term
 
 **Levonorgestrel IUD (Mirena)**
@@ -96,7 +96,7 @@ This is widely considered one of the most effective long-term treatments for hea
 
 It is a 5-year device, does not affect systemic hormones significantly, and is reversible. It also serves as highly effective contraception — relevant because pregnancy is still possible during perimenopause until 12 months after your last period.
 
-The Mirena is available in India (brands include Mirena and Liletta) and is offered at many gynaecology practices and hospitals. Cost ranges from ₹8,000–₹15,000 for the device; procedure cost additional.
+The Mirena is available in India (brands include Mirena (Bayer)) and is offered at many gynaecology practices and hospitals. Cost ranges from ₹8,000–₹15,000 for the device; procedure cost additional.
 
 **Combined hormonal contraceptives**
 Low-dose combined oral contraceptive pills (COCs) or the contraceptive patch can regulate cycles and significantly reduce bleeding. They are sometimes used in perimenopause for women without contraindications (smoking history, cardiovascular risk, migraine with aura).
@@ -119,7 +119,7 @@ The uterine lining is destroyed using heat or other energy. Periods significantl
 **Hysterectomy (removal of the uterus)**
 A definitive solution, and one that many Indian gynaecologists recommend too quickly. This is major surgery with a full recovery period (4–6 weeks) and should only be considered when other options have failed, when fibroids are very large, or when the woman herself has decided she does not want to manage this long-term. It ends periods permanently.
 
-**Important:** A recommendation of hysterectomy should always be questioned. Ask whether you have tried tranexamic acid, the Mirena IUD, or ablation first. Hysterectomy is appropriate in some situations — but not as a first-line treatment.
+**Important:** A recommendation of hysterectomy should always be questioned. Ask whether you have tried tranexamic acid, the Mirena IUS (intrauterine system), or ablation first. Hysterectomy is appropriate in some situations — but not as a first-line treatment.
 
 ## Red Flags: When to Seek Urgent Medical Care
 
@@ -150,7 +150,7 @@ Many Indian women report being dismissed or told to "wait and see." Here is how 
 
 **Describe your bleeding in concrete terms.** "Heavy" means different things to different people. Say: "I am soaking through X pads in X hours on my heaviest days. I am passing clots of Y size." Numbers and specifics make dismissal harder.
 
-**Ask specifically about your options.** "What non-surgical options exist before we discuss surgery?" and "Is a Mirena IUD appropriate for me?"
+**Ask specifically about your options.** "What non-surgical options exist before we discuss surgery?" and "Is a Mirena IUS (intrauterine system) appropriate for me?"
 
 **Ask for a ferritin test**, not just haemoglobin.
 

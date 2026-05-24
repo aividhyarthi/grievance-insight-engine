@@ -18,13 +18,12 @@ Progesterone is the first reproductive hormone to decline in perimenopause — o
 
 Progesterone is a steroid hormone produced mainly by the **corpus luteum** — the temporary structure that forms in the ovary after an egg is released. It rises sharply in the second half of the menstrual cycle (the luteal phase) and falls if pregnancy does not occur.
 
-Its five main roles in the body:
+Its four main roles in the body:
 
 - **Stabilises the uterine lining.** Progesterone prevents the endometrium from growing unchecked. Without it, oestrogen drives continuous lining build-up, leading to heavy and prolonged periods.
 - **Promotes sleep.** Progesterone is a natural sedative. It is metabolised into **allopregnanolone**, a neurosteroid that binds to GABA-A receptors in the brain — the same receptors targeted by benzodiazepines. Higher progesterone = calmer, deeper sleep.
 - **Reduces anxiety.** Allopregnanolone also has direct anti-anxiety effects. Low progesterone means less allopregnanolone, which contributes to heightened anxiety and mood sensitivity.
 - **Counterbalances oestrogen.** Oestrogen is stimulating and proliferative. Progesterone is its biological counterpart. The two hormones need to be in proportion for normal cycles and mood.
-- **Supports thyroid function.** Progesterone helps thyroid hormone bind to cell receptors. Low progesterone can blunt thyroid hormone action, contributing to fatigue and sluggish metabolism even when thyroid blood tests look normal.
 
 ---
 
@@ -125,7 +124,7 @@ There is no single definitive test. Blood progesterone levels fluctuate signific
 
 Useful markers and approaches:
 
-- **Day 21 serum progesterone** (or 7 days post-ovulation, if cycle length varies) — a level below 16–30 nmol/L suggests poor or absent ovulation in that cycle
+- **Day 21 serum progesterone** (or 7 days post-ovulation, if cycle length varies) — A mid-luteal progesterone above 30 nmol/L confirms ovulation. Values between 16–30 nmol/L suggest suboptimal ovulation. Values below 16 nmol/L indicate probable anovulation in that cycle.
 - **Symptom pattern:** If symptoms worsen in the second half of the cycle (after ovulation) and ease with the period, low luteal-phase progesterone is a likely contributor
 - **Menstrual history:** Cycles becoming shorter, heavier, or more irregular are a clinical indicator
 - **AMH (Anti-Müllerian Hormone):** Low AMH suggests declining ovarian reserve, which correlates with less reliable ovulation
@@ -160,9 +159,9 @@ Yes. Progesterone can be prescribed on its own, without oestrogen. This is somet
 
 Progesterone alone has a modest effect on hot flushes, but it is not as effective as oestrogen for vasomotor symptoms. Some research, including the Hitchcock and Prior studies, suggests that oral micronised progesterone can reduce hot flush frequency compared to placebo. For women who cannot take oestrogen, it may be worth discussing with a doctor. For most women, oestrogen remains the primary treatment for hot flushes, with progesterone added to protect the uterus.
 
-**Is the progesterone in the Mirena IUD the same as micronised progesterone?**
+**Is the progesterone in the Mirena IUS (intrauterine system) the same as micronised progesterone?**
 
-No. The Mirena IUD contains **levonorgestrel**, a synthetic progestin. It is highly effective at protecting the uterine lining locally (within the uterus), which is why some specialists use it alongside systemic oestrogen as a HRT regimen. However, levonorgestrel does not convert to allopregnanolone. It does not provide the calming, sleep-promoting, or systemic anti-anxiety benefits of oral micronised progesterone. The two serve different purposes and are not interchangeable in terms of their effects on mood and sleep.
+No. The Mirena IUS (intrauterine system) contains **levonorgestrel**, a synthetic progestin. It is highly effective at protecting the uterine lining locally (within the uterus), which is why some specialists use it alongside systemic oestrogen as a HRT regimen. However, levonorgestrel does not convert to allopregnanolone. It does not provide the calming, sleep-promoting, or systemic anti-anxiety benefits of oral micronised progesterone. The two serve different purposes and are not interchangeable in terms of their effects on mood and sleep.
 
 **How long does it take for progesterone to improve sleep?**
 
@@ -170,4 +169,4 @@ Many women notice an improvement in sleep within the **first one to two weeks** 
 
 **Is progesterone safe to take long-term?**
 
-Body-identical micronised progesterone has a reassuring safety profile compared to synthetic progestins. Large observational studies, including the French E3N cohort study, found no increased breast cancer risk with micronised progesterone when used alongside oestrogen — in contrast to some synthetic progestins, which showed a small increased risk. The NICE guideline (2015, updated 2019) and the British Menopause Society support the use of body-identical progesterone as a safer progestogen option. Long-term use should still be reviewed annually with your gynaecologist, with a discussion of your individual risk factors. In India, this conversation is best had with a gynaecologist experienced in menopause medicine.
+Body-identical micronised progesterone has a reassuring safety profile compared to synthetic progestins. The French E3N cohort study found a substantially lower breast cancer risk with micronised progesterone compared to synthetic progestins. The absolute risk compared to non-HRT users is small but remains an active area of research — the picture continues to evolve. Discuss your personal risk profile with your doctor. The current NICE menopause guideline (NG23) and the British Menopause Society support the use of body-identical progesterone as a safer progestogen option. Long-term use should still be reviewed annually with your gynaecologist, with a discussion of your individual risk factors. In India, this conversation is best had with a gynaecologist experienced in menopause medicine.

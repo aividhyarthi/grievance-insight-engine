@@ -14,7 +14,7 @@ One of the most common things women say when they first learn about perimenopaus
 
 The second most common thing is: *"I thought I was the only one."*
 
-You are not. Roughly 30 million Indian women are entering perimenopause every year. What is rare is not the experience — it is the conversation. Perimenopause is still largely invisible in Indian culture, which means the women going through it do so in silence, believing their symptoms are unusual, their emotional experiences shameful, their bodies failing.
+You are not. Tens of millions of Indian women are navigating perimenopause at any given time — yet most have access to little or no information in their own cultural context. What is rare is not the experience — it is the conversation. Perimenopause is still largely invisible in Indian culture, which means the women going through it do so in silence, believing their symptoms are unusual, their emotional experiences shameful, their bodies failing.
 
 Finding others who are on the same road — or who have walked it before — changes everything.
 
@@ -61,7 +61,7 @@ Several books provide a solid foundation, though most are written for Western au
 
 - *The Menopause Book* by Pat Wingert and Barbara Kantrowitz — a comprehensive and readable overview
 - *Menopause: The One-Stop Guide* by Kathy Abernethy — UK-focused but strong on HRT and clinical options
-- *The Wisdom of Menopause* by Dr Christiane Northrup — a more holistic perspective, widely read
+- *The New Menopause* by Dr Mary Claire Haver (2024) — evidence-based and widely recommended
 
 For an Indian context, The Second Spring's own journal is specifically written for the realities of Indian women's lives — use it.
 

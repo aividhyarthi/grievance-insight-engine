@@ -118,12 +118,14 @@ For perimenopause-relevant tests, approximate Indian lab reference ranges to be 
 | FSH | 3–10 IU/L | Elevated: >12 IU/L suggests approaching menopause; >25 IU/L suggests late perimenopause |
 | LH | 2–15 IU/L | Elevated alongside FSH supports the picture |
 | Oestradiol (E2) | 30–120 pg/mL | Low (<20 pg/mL) supports perimenopause, but fluctuates widely |
-| AMH | Variable by age; <1 ng/mL by early 40s suggests declining reserve | <0.5 ng/mL is consistent with significant decline |
+| AMH | AMH declines naturally with age — values below 0.5–1 ng/mL by the early 40s suggest significant decline in ovarian reserve, but interpretation requires age-matched reference ranges. Discuss results with your gynaecologist. | <0.5 ng/mL is consistent with significant decline |
 | TSH | 0.4–4.0 mIU/L | Elevated: hypothyroidism; needs Free T3/T4 for full picture |
 | Ferritin | 20–300 ng/mL | <30 ng/mL suggests depletion worth addressing |
 | Vitamin D | 30–100 ng/mL | <20 ng/mL is deficient; 20–30 is insufficient |
 
 These ranges are guides, not definitive thresholds. Interpretation should be done in the context of your full clinical picture.
+
+**Note:** Lab reference ranges for ferritin often start at 12–20 ng/mL, but a level below 50 ng/mL is frequently associated with fatigue and hair loss in women. A result flagged 'normal' by the lab may still be worth treating if you are symptomatic — discuss with your doctor.
 
 ### Cost at Indian Diagnostic Labs
 

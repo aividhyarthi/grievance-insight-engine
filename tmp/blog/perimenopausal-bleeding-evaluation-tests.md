@@ -94,7 +94,7 @@ A **transvaginal ultrasound (TVS)** is the most important investigation for abno
 
 A good ultrasound report for abnormal bleeding should include:
 
-- **Endometrial thickness** — the thickness of the uterine lining. In a postmenopausal woman, a thickness above 4–5mm requires further investigation. In a perimenopausal woman, the normal range varies with cycle phase, but persistent thickening warrants investigation.
+- **Endometrial thickness** — the thickness of the uterine lining. In a postmenopausal woman, a thickness above 4–5mm requires further investigation. In a perimenopausal woman, the normal range varies with cycle phase, but persistent thickening warrants investigation. **Note:** The 4–5mm threshold applies primarily in women with no bleeding. In any woman who has experienced postmenopausal bleeding, the appearance, texture, and vascularity of the endometrium matter as much as thickness — biopsy may be recommended even with a thinner lining if it appears irregular.
 - **Uterine size and shape** — to identify fibroids, adenomyosis, or structural abnormalities
 - **Fibroid mapping** — number, location (submucosal fibroids cause the most bleeding), and size
 - **Ovarian assessment** — cysts, follicles, overall ovarian volume
@@ -118,7 +118,7 @@ This test is important. If your doctor is concerned about your endometrial thick
 If a polyp or submucosal fibroid is strongly suspected, or if a biopsy is inconclusive, a hysteroscopy gives a direct view inside the uterine cavity using a small camera. It can be done under local or general anaesthesia. If polyps are found, they can often be removed at the same time.
 
 **Cervical Smear (Pap Test)**
-If you are due for a cervical smear, this is a good time to have one. Cervical cancer can sometimes present with irregular bleeding. In India, Pap smears are recommended every 3 years for women aged 21–65, or every 5 years with co-testing for HPV.
+If you are due for a cervical smear, this is a good time to have one. Cervical cancer can sometimes present with irregular bleeding. In India, Pap smears are recommended every 3 years for women aged 21–65, or every 5 years with co-testing for HPV. Cervical screening intervals and protocols vary — follow current guidance from your gynaecologist or the Indian Cancer Society recommendations for your age group.
 
 ## A Note on Post-Menopausal Bleeding
 

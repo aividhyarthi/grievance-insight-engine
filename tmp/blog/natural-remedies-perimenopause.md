@@ -55,7 +55,7 @@ Food sources: Dark leafy greens, pumpkin seeds, almonds, cashews, whole grains, 
 
 Vitamin D deficiency is extremely widespread in India — paradoxically, despite abundant sunshine — and its effects include fatigue, low mood, joint pain, and poor bone health, all of which overlap with perimenopausal symptoms.
 
-Testing your vitamin D level (25-OH vitamin D) is worthwhile and affordable at labs like Thyrocare, SRL, or Apollo Diagnostics. If your level is deficient (below 30 ng/mL), supplementation is likely to help.
+Testing your vitamin D level (25-OH vitamin D) is worthwhile and affordable at labs like Thyrocare, SRL, or Apollo Diagnostics. If your level is deficient (below 30 ng/mL), supplementation is likely to help. A level below 20 ng/mL indicates deficiency; 20–30 ng/mL indicates insufficiency. Both warrant supplementation, but severe deficiency often requires a short-term higher loading dose under medical supervision — not just 1000–2000 IU/day.
 
 ### Strength Training
 
@@ -164,7 +164,7 @@ Some do — with varying levels of evidence. Lifestyle interventions (strength t
 The most evidence-backed non-hormonal approaches for hot flashes are: regular aerobic and strength exercise, reducing alcohol and caffeine, a phytoestrogen-rich diet (soy, flaxseed, lentils), and black cohosh (with a doctor's guidance). Mindfulness-based stress reduction also has clinical evidence for reducing hot flash frequency and distress.
 
 **Is shatavari good for perimenopause?**
-Shatavari (Asparagus racemosus) is widely used in Ayurveda for women's hormonal health and contains phytoestrogen-like compounds. Small studies suggest it may help with hot flashes and mood. The evidence is limited but emerging. It is generally considered safe, but check with your doctor if you take other medications, as interactions are possible.
+The evidence for shatavari in perimenopause is very limited — mostly animal studies and small, poorly designed human trials. No robust clinical trial supports recommending it for hot flashes or mood. It may be safe at standard doses for most women, but it cannot currently be recommended as a perimenopause treatment based on available evidence.
 
 **Which Indian foods help with perimenopause symptoms?**
 Foods rich in phytoestrogens — til (sesame seeds), alsi (flaxseeds), soy and soy products, rajma, chana, and lentils — may help mildly reduce oestrogen-related symptoms. Ragi is excellent for calcium and bone health. Nuts, seeds, and oily fish support mood and cardiovascular health. A diet based on whole grains, vegetables, legumes, and adequate protein is the most consistent evidence-based approach.

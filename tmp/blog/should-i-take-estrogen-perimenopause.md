@@ -140,7 +140,7 @@ Starting HRT after 60, or more than 10 years after menopause, requires more care
 
 ### Actual risks to understand
 
-- **Breast cancer**: Oestrogen-alone HRT does not appear to increase breast cancer risk. Combined HRT (oestrogen + progesterone) is associated with a small increase in risk — comparable to drinking one glass of wine daily or being overweight. The risk diminishes after stopping HRT. This must be weighed against symptom severity and the benefits to bone, brain, and heart.
+- **Breast cancer**: Oestrogen-alone HRT (for women without a uterus) has a different — and generally more favourable — breast cancer risk profile than combined HRT. Some studies show no increased risk; others show a small increase with long-term use. This should be discussed individually with your doctor based on your personal history. Combined HRT (oestrogen + progesterone) is associated with a small increase in risk — comparable to drinking one glass of wine daily or being overweight. These comparisons help contextualise relative risk, but absolute risk varies considerably based on age, duration of use, and individual health history — your doctor can help you understand what the numbers mean for you specifically. The risk diminishes after stopping HRT. This must be weighed against symptom severity and the benefits to bone, brain, and heart.
 - **Blood clots**: Oral oestrogen carries a small increased VTE risk. Transdermal oestrogen does not appear to carry this risk.
 - **Stroke**: Oral oestrogen at higher doses may slightly increase stroke risk. Transdermal oestrogen at standard doses does not appear to.
 
@@ -172,7 +172,7 @@ No. Weight gain during perimenopause is driven by hormonal changes, particularly
 
 **Q: I had a blood clot years ago. Can I still consider oestrogen?**
 
-A history of blood clots (DVT or pulmonary embolism) is a reason for careful evaluation, not an automatic disqualification. The key question is whether you use **transdermal oestrogen**, which bypasses the liver and does not appear to increase clotting risk, even in women with a history of VTE. This is different from oral oestrogen. Women with a prior clot history may still be candidates for transdermal HRT, particularly if the clot had a clear precipitating cause (surgery, long-haul travel, pregnancy). This assessment must be done with a specialist, ideally in conjunction with a haematologist if you have a thrombophilia.
+A history of blood clots (DVT or pulmonary embolism) is a reason for careful evaluation, not an automatic disqualification. The key question is whether you use **transdermal oestrogen**, which bypasses the liver and does not appear to increase clotting risk, even in women with a history of VTE. This is different from oral oestrogen. Women with a prior clot history may still be candidates for transdermal HRT, particularly if the clot had a clear precipitating cause (surgery, long-haul travel, pregnancy). This assessment must be done with a specialist, ideally in conjunction with a haematologist if you have a thrombophilia. In women with certain inherited clotting disorders — particularly antiphospholipid syndrome or severe thrombophilias — even transdermal oestrogen may carry elevated risk. Full haematological assessment is essential before any HRT decision in this group.
 
 **Q: My mother had breast cancer. Does that mean I cannot take HRT?**
 

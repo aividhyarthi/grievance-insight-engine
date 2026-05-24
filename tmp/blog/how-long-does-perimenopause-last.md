@@ -16,7 +16,7 @@ The honest answer is: it varies widely. And understanding why — and what stage
 
 ## The Short Answer
 
-Perimenopause typically lasts **4 to 8 years** for most women. But the range is broad: some women experience a transition of just 1 to 2 years. Others navigate symptoms for 10 to 12 years. Both ends of that range are medically normal.
+Perimenopause most commonly lasts **4 to 8 years**, though the range is broad — some women experience as few as 2 years and others up to 10–12. Both ends of that range are medically normal.
 
 The transition ends when you reach **menopause** — defined as 12 consecutive months without a menstrual period.
 

@@ -76,7 +76,7 @@ This is one of the most distressing perimenopausal symptoms for women in demandi
 
 **Why it happens**: Hot flashes are caused by oestrogen's effect (or withdrawal effect) on the hypothalamus — the brain's thermostat. With fluctuating oestrogen, the hypothalamus becomes hypersensitive to tiny changes in body temperature, triggering inappropriate cooling responses: peripheral blood vessel dilation (flushing), sweating, and increased heart rate.
 
-Hot flashes can begin before periods become irregular and persist for years — on average 7 years after menopause, and longer in women who experience them intensely.
+Hot flashes can begin before periods become irregular and persist for years — on average for about 7 years total from when they begin, often starting before the last period and continuing for several years after. They may last longer in women who experience them intensely.
 
 **In the Indian context**: Indian women do experience hot flashes, though cultural and dietary factors may affect frequency and severity. They are sometimes normalised as "just getting older" rather than treated.
 
