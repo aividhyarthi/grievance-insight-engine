@@ -70,6 +70,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
         <ul class="nav-links" id="nav-links">
           <li><a href="/" class:list={[{ active: isActive('/') && path === '/' }]}>Home</a></li>
           <li><a href="/how-it-works" class:list={[{ active: isActive('/how-it-works') }]}>How It Works</a></li>
+          <li><a href="/community" class:list={[{ active: isActive('/community') }]}>Community</a></li>
 
           <!-- Guide dropdown -->
           <li class="has-dropdown">

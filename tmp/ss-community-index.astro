@@ -1,0 +1,368 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allEntries = await getCollection('community');
+const entries = allEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categories = [
+  'Sleep', 'Weight', 'Mood', 'Periods', 'Hot Flashes',
+  'Brain Fog', 'Sexual Wellness', 'HRT', 'Hair & Skin', 'General',
+];
+
+const categoryColours: Record<string, { bg: string; color: string }> = {
+  'Sleep':            { bg: '#E8F4F8', color: '#2B7A9E' },
+  'Weight':           { bg: '#FEF9EC', color: '#9B6E00' },
+  'Mood':             { bg: '#F3EFFE', color: '#6B46C1' },
+  'Periods':          { bg: '#FEE2E2', color: '#C53030' },
+  'Hot Flashes':      { bg: '#FFF0E6', color: '#C05621' },
+  'Brain Fog':        { bg: '#E6F6FF', color: '#2C5F8A' },
+  'Sexual Wellness':  { bg: '#FEF0F5', color: '#9B2C5F' },
+  'HRT':              { bg: '#F0FEF4', color: '#276749' },
+  'Hair & Skin':      { bg: '#FFFBEB', color: '#92400E' },
+  'General':          { bg: '#F7F7F7', color: '#4A5568' },
+};
+---
+
+<Layout
+  title="Community Q&A | The Second Spring"
+  description="Indian women navigating perimenopause — sharing real questions, experiences, and support. Browse community Q&A answered by The Second Spring Team."
+>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-eyebrow">💬 Community</div>
+        <h1>Real Questions. Real Answers.</h1>
+        <p>Indian women navigating perimenopause — sharing questions, experiences, and support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter bar -->
+  <section class="filter-section">
+    <div class="container">
+      <div class="filter-bar" id="filter-bar" role="group" aria-label="Filter by category">
+        <button class="filter-chip active" data-filter="all">All</button>
+        {categories.map(cat => (
+          <button class="filter-chip" data-filter={cat}>{cat}</button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards grid -->
+  <section class="cards-section">
+    <div class="container">
+      <div class="cards-count" id="cards-count" aria-live="polite">
+        {entries.length} question{entries.length !== 1 ? 's' : ''}
+      </div>
+
+      <div class="cards-grid" id="cards-grid">
+        {entries.map(entry => {
+          const cat = entry.data.category;
+          const colours = categoryColours[cat] ?? categoryColours['General'];
+          return (
+            <article
+              class="q-card"
+              data-category={cat}
+            >
+              <div class="card-top">
+                <span
+                  class="cat-chip"
+                  style={`background:${colours.bg};color:${colours.color};`}
+                >
+                  {cat}
+                </span>
+              </div>
+
+              <h2 class="card-question">{entry.data.question}</h2>
+
+              <div class="card-meta">
+                <span class="asker-info">
+                  {entry.data.askerName}, {entry.data.askerAge} · {entry.data.askerCity}
+                </span>
+              </div>
+
+              <div class="card-answered">
+                Answered by <strong>{entry.data.answeredBy}</strong>
+              </div>
+
+              {entry.data.replies.length > 0 && (
+                <div class="card-replies-note">
+                  {entry.data.replies.length} community {entry.data.replies.length === 1 ? 'reply' : 'replies'}
+                </div>
+              )}
+
+              <a href={`/community/${entry.slug}`} class="card-link" aria-label={`Read answer to: ${entry.data.question}`}>
+                Read answer →
+              </a>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <p>No questions in this category yet. <a href="/chat">Ask one privately →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-icon">🌸</div>
+        <h2 class="cta-title">Have a question?</h2>
+        <p class="cta-sub">Ask privately and get a warm, clear, evidence-based answer from The Second Spring Team.</p>
+        <a href="/chat" class="btn btn-peach btn-lg">Ask privately →</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const filterBar = document.getElementById('filter-bar')!;
+  const cards     = document.querySelectorAll<HTMLElement>('.q-card');
+  const countEl   = document.getElementById('cards-count')!;
+  const emptyEl   = document.getElementById('empty-state')!;
+
+  let active = 'all';
+
+  function applyFilter(filter: string) {
+    active = filter;
+
+    // Update chip states
+    filterBar.querySelectorAll('.filter-chip').forEach(chip => {
+      const chipFilter = (chip as HTMLElement).dataset.filter ?? '';
+      chip.classList.toggle('active', chipFilter === filter);
+    });
+
+    // Show/hide cards
+    let visible = 0;
+    cards.forEach(card => {
+      const cat = card.dataset.category ?? '';
+      const show = filter === 'all' || cat === filter;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    // Update count
+    countEl.textContent = `${visible} question${visible !== 1 ? 's' : ''}`;
+
+    // Empty state
+    emptyEl.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  filterBar.addEventListener('click', (e) => {
+    const chip = (e.target as HTMLElement).closest('.filter-chip') as HTMLElement | null;
+    if (!chip) return;
+    applyFilter(chip.dataset.filter ?? 'all');
+  });
+</script>
+
+<style>
+  /* ── Filter section ── */
+  .filter-section {
+    background: #fff;
+    border-bottom: 1.5px solid var(--border);
+    padding: 1.25rem 0;
+    position: sticky;
+    top: var(--nav-h);
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(26,46,34,.05);
+  }
+
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px; /* prevent clipping on scroll */
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+
+  .filter-chip {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    padding: .38rem .9rem;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    color: var(--text-secondary);
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .18s;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  .filter-chip:hover {
+    border-color: var(--green);
+    color: var(--green-dark);
+    background: var(--green-light);
+  }
+  .filter-chip.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+  }
+
+  /* ── Cards section ── */
+  .cards-section {
+    padding: 3rem 0 4rem;
+  }
+
+  .cards-count {
+    font-size: .83rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 640px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Question card ── */
+  .q-card {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.6rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .q-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 8px 28px rgba(61,122,95,.1);
+    transform: translateY(-2px);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .cat-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: .22rem .72rem;
+    border-radius: 100px;
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    white-space: nowrap;
+  }
+
+  .card-question {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .asker-info {
+    font-size: .8rem;
+    color: var(--text-muted);
+  }
+
+  .card-answered {
+    font-size: .8rem;
+    color: var(--text-muted);
+  }
+  .card-answered strong {
+    color: var(--text-secondary);
+  }
+
+  .card-replies-note {
+    font-size: .77rem;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    margin-top: .25rem;
+    font-size: .88rem;
+    font-weight: 700;
+    color: var(--green);
+    text-decoration: none;
+    transition: gap .18s, color .18s;
+  }
+  .card-link:hover {
+    color: var(--green-dark);
+    gap: .55rem;
+  }
+
+  /* ── Empty state ── */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-size: .97rem;
+  }
+  .empty-state a {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 3rem 0 5rem;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, #1A3D2B 0%, #2A5C45 100%);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cta-icon {
+    font-size: 2.25rem;
+    line-height: 1;
+  }
+
+  .cta-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -.025em;
+  }
+
+  .cta-sub {
+    font-size: .97rem;
+    color: rgba(255,255,255,.78);
+    max-width: 480px;
+    line-height: 1.65;
+    margin-bottom: .25rem;
+  }
+</style>

@@ -1,0 +1,528 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const { slug } = Astro.params;
+const all = await getCollection('community');
+const entry = all.find(e => e.slug === slug);
+if (!entry) return Astro.redirect('/community');
+const { Content } = await entry.render();
+const data = entry.data;
+
+const categoryColours: Record<string, { bg: string; color: string }> = {
+  'Sleep':            { bg: '#E8F4F8', color: '#2B7A9E' },
+  'Weight':           { bg: '#FEF9EC', color: '#9B6E00' },
+  'Mood':             { bg: '#F3EFFE', color: '#6B46C1' },
+  'Periods':          { bg: '#FEE2E2', color: '#C53030' },
+  'Hot Flashes':      { bg: '#FFF0E6', color: '#C05621' },
+  'Brain Fog':        { bg: '#E6F6FF', color: '#2C5F8A' },
+  'Sexual Wellness':  { bg: '#FEF0F5', color: '#9B2C5F' },
+  'HRT':              { bg: '#F0FEF4', color: '#276749' },
+  'Hair & Skin':      { bg: '#FFFBEB', color: '#92400E' },
+  'General':          { bg: '#F7F7F7', color: '#4A5568' },
+};
+
+const colours = categoryColours[data.category] ?? categoryColours['General'];
+
+function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .map(w => w[0] ?? '')
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+}
+---
+
+<Layout
+  title={`${data.question} | The Second Spring Community`}
+  description={`${data.askerName} from ${data.askerCity} asks: "${data.question}" — answered by ${data.answeredBy}.`}
+>
+
+  <div class="thread-page">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/community">Community</a>
+        <span class="bc-sep" aria-hidden="true">›</span>
+        <span
+          class="bc-cat"
+          style={`background:${colours.bg};color:${colours.color};`}
+        >{data.category}</span>
+      </nav>
+
+      <div class="thread-layout">
+        <div class="thread-main">
+
+          <!-- Question block -->
+          <div class="question-block" role="region" aria-label="Question">
+            <p class="question-text">{data.question}</p>
+            <div class="question-meta">
+              <span class="asker-text">
+                Asked by <strong>{data.askerName}</strong>, {data.askerAge} · {data.askerCity}
+              </span>
+              <span
+                class="cat-chip"
+                style={`background:${colours.bg};color:${colours.color};`}
+              >{data.category}</span>
+            </div>
+          </div>
+
+          <!-- Answer block -->
+          <div class="answer-block" role="region" aria-label="Answer">
+            <div class="answer-header">
+              <div
+                class="avatar avatar--green"
+                aria-hidden="true"
+                title={data.answeredBy}
+              >
+                {getInitials(data.answeredBy)}
+              </div>
+              <div class="answer-header-text">
+                <span class="answered-label">Answered by</span>
+                <span class="answerer-name">{data.answeredBy}</span>
+              </div>
+            </div>
+
+            <div class="answer-body prose">
+              <Content />
+            </div>
+          </div>
+
+          <!-- Community replies -->
+          {data.replies.length > 0 && (
+            <section class="replies-section" aria-label="Community replies">
+              <h2 class="section-heading">From the community</h2>
+              <div class="replies-list">
+                {data.replies.map(reply => (
+                  <div class="reply-item">
+                    <div
+                      class="avatar avatar--peach"
+                      aria-hidden="true"
+                      title={reply.name}
+                    >
+                      {getInitials(reply.name)}
+                    </div>
+                    <div class="reply-content">
+                      <span class="reply-name">{reply.name}</span>
+                      <p class="reply-text">{reply.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <!-- Related journals -->
+          {data.relatedJournals.length > 0 && (
+            <section class="related-section" aria-label="Related reading">
+              <h2 class="section-heading">Related reading</h2>
+              <div class="related-cards">
+                {data.relatedJournals.map(journal => (
+                  <a href={journal.href} class="related-card">
+                    <span class="related-title">{journal.title}</span>
+                    <span class="related-cta">Read →</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <!-- CTA block -->
+          <div class="thread-cta">
+            <div class="thread-cta-inner">
+              <p class="thread-cta-text">Have a similar question?</p>
+              <div class="thread-cta-actions">
+                <a href="/chat" class="btn btn-peach">Ask privately →</a>
+                <a href="/quiz" class="btn btn-outline">Take our symptom check →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Back link -->
+          <a href="/community" class="back-link">← Back to Community</a>
+
+        </div><!-- /.thread-main -->
+      </div><!-- /.thread-layout -->
+    </div><!-- /.container -->
+  </div><!-- /.thread-page -->
+
+</Layout>
+
+<style>
+  /* ── Page wrapper ── */
+  .thread-page {
+    padding: 2.5rem 0 5rem;
+  }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 2rem;
+    font-size: .82rem;
+  }
+  .breadcrumb a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color .15s;
+  }
+  .breadcrumb a:hover {
+    color: var(--green);
+  }
+  .bc-sep {
+    color: var(--text-muted);
+    font-size: .9rem;
+  }
+  .bc-cat {
+    display: inline-flex;
+    align-items: center;
+    padding: .2rem .65rem;
+    border-radius: 100px;
+    font-size: .74rem;
+    font-weight: 700;
+  }
+
+  /* ── Layout ── */
+  .thread-layout {
+    max-width: 760px;
+  }
+
+  .thread-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* ── Question block ── */
+  .question-block {
+    background: #FEF3EC;
+    border-left: 4px solid #D4845A;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.75rem 2rem;
+  }
+
+  .question-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.4;
+    letter-spacing: -.02em;
+    margin-bottom: 1rem;
+  }
+
+  .question-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+
+  .asker-text {
+    font-size: .85rem;
+    color: var(--text-muted);
+  }
+  .asker-text strong {
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  .cat-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: .22rem .72rem;
+    border-radius: 100px;
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    white-space: nowrap;
+  }
+
+  /* ── Answer block ── */
+  .answer-block {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem 2rem;
+  }
+
+  .answer-header {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .answer-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+  }
+
+  .answered-label {
+    font-size: .75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  .answerer-name {
+    font-size: .97rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* ── Avatars ── */
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    letter-spacing: .03em;
+  }
+
+  .avatar--green {
+    background: var(--green);
+    color: #fff;
+  }
+
+  .avatar--peach {
+    background: #FEF3EC;
+    color: #D4845A;
+    border: 1.5px solid #F8CEBB;
+  }
+
+  /* ── Prose (answer body) ── */
+  .prose {
+    font-size: .97rem;
+    color: var(--text-secondary);
+    line-height: 1.78;
+  }
+  .prose :global(p) {
+    margin-bottom: 1.1rem;
+  }
+  .prose :global(p:last-child) {
+    margin-bottom: 0;
+  }
+  .prose :global(strong) {
+    font-weight: 700;
+    color: var(--text);
+  }
+  .prose :global(em) {
+    font-style: italic;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.1rem;
+  }
+  .prose :global(li) {
+    margin-bottom: .4rem;
+  }
+  .prose :global(a) {
+    color: var(--green);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose :global(a:hover) {
+    color: var(--green-dark);
+  }
+  .prose :global(h2),
+  .prose :global(h3) {
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.3;
+    margin: 1.5rem 0 .6rem;
+  }
+  .prose :global(h2) { font-size: 1.2rem; }
+  .prose :global(h3) { font-size: 1.05rem; }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--peach);
+    padding: .5rem 1rem;
+    margin: 1rem 0;
+    color: var(--text-muted);
+    font-style: italic;
+    background: var(--peach-light);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  /* ── Section heading ── */
+  .section-heading {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -.01em;
+    margin-bottom: 1.1rem;
+  }
+
+  /* ── Community replies ── */
+  .replies-section {
+    background: var(--cream-mid);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.75rem;
+  }
+
+  .replies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .reply-item {
+    display: flex;
+    align-items: flex-start;
+    gap: .85rem;
+  }
+
+  .reply-content {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: .9rem 1.1rem;
+  }
+
+  .reply-name {
+    display: block;
+    font-size: .83rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .35rem;
+  }
+
+  .reply-text {
+    font-size: .9rem;
+    color: var(--text-secondary);
+    line-height: 1.68;
+    margin: 0;
+  }
+
+  /* ── Related reading ── */
+  .related-section {
+    padding: 0;
+  }
+
+  .related-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .85rem;
+  }
+
+  .related-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .85rem 1.1rem .85rem 1.25rem;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-left: 4px solid var(--green);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: border-color .18s, box-shadow .18s, transform .18s;
+    flex: 1;
+    min-width: 200px;
+  }
+  .related-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 4px 16px rgba(61,122,95,.1);
+    transform: translateY(-1px);
+  }
+
+  .related-title {
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .related-cta {
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--green);
+    white-space: nowrap;
+  }
+
+  /* ── Thread CTA ── */
+  .thread-cta {
+    background: linear-gradient(135deg, #FEF3EC 0%, #FFF8F4 100%);
+    border: 1.5px solid #F8CEBB;
+    border-radius: var(--radius);
+    padding: 1.75rem 2rem;
+  }
+
+  .thread-cta-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .thread-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    align-items: center;
+  }
+
+  /* ── Back link ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .87rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color .15s;
+    padding-top: .5rem;
+  }
+  .back-link:hover {
+    color: var(--green);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .thread-page {
+      padding: 1.5rem 0 4rem;
+    }
+
+    .question-block {
+      padding: 1.25rem 1.25rem 1.25rem 1.35rem;
+    }
+
+    .question-text {
+      font-size: 1.18rem;
+    }
+
+    .answer-block {
+      padding: 1.25rem 1.25rem;
+    }
+
+    .replies-section {
+      padding: 1.25rem 1.1rem;
+    }
+
+    .thread-cta {
+      padding: 1.35rem 1.25rem;
+    }
+
+    .thread-cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .thread-cta-actions .btn {
+      justify-content: center;
+    }
+  }
+</style>
