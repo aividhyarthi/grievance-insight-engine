@@ -29,4 +29,4 @@ There is also a physical component: hot flashes themselves can trigger panic. Th
 
 The most important first step is getting properly assessed. Rule out thyroid disorders (hyperthyroidism causes anxiety and palpitations), anaemia, and cardiac causes — a doctor can do this with a blood test and ECG. Once other causes are excluded, perimenopause-related anxiety has effective treatments.
 
-Options include: HRT (particularly if hot flashes are triggering the panic), SSRIs or SNRIs (effective for perimenopause anxiety and recommended by psychiatrists), and CBT — Cognitive Behavioural Therapy — which has excellent evidence specifically for perimenopause-related anxiety. iCall (9152987821) offers accessible mental health support in India. Please don't try to manage this alone.
+Options include: HRT (particularly if hot flashes are triggering the panic), antidepressants prescribed by a doctor, and CBT — Cognitive Behavioural Therapy — which has excellent evidence specifically for perimenopause-related anxiety. iCall (9152987821) offers accessible mental health support in India. Please don't try to manage this alone.

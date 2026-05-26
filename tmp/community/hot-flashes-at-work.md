@@ -25,6 +25,6 @@ What is happening: the hypothalamus — the brain region that regulates body tem
 
 For immediate management at work: a small battery-powered fan that fits in a bag is genuinely useful. Loose, breathable fabrics — cotton, linen — in layers you can remove help. Sitting near a window or vent when possible. Avoiding common triggers on workdays: spicy food at lunch, caffeine in the afternoon, and alcohol the night before all increase flash frequency.
 
-Longer-term solutions: HRT is the most effective treatment for hot flashes, reducing frequency and severity by 50–90% depending on dosage. Non-hormonal prescription options include SSRIs/SNRIs (venlafaxine or paroxetine), clonidine, or — where available — fezolinetant, though this is not yet widely stocked in India. All of these require a prescription and a conversation with a gynaecologist.
+Longer-term solutions: HRT is the most effective treatment for hot flashes, reducing frequency and severity by 50–90% depending on dosage. Non-hormonal prescription options include antidepressants or other prescription medications. All of these require a prescription and a conversation with a gynaecologist.
 
 You should not have to quietly suffer through your working day. This is a medical symptom with medical solutions.

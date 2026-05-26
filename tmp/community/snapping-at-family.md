@@ -5,11 +5,7 @@ askerAge: 44
 askerCity: Kolkata
 category: Mood
 answeredBy: The Second Spring Team
-replies:
-  - name: Meera
-    text: "Telling my family what was happening was the thing that helped most. My husband had thought I was unhappy with him, and my teenage daughter had taken it personally. When I explained that my hormones were making it much harder for me to regulate my reactions, they became genuinely supportive — my daughter even started reminding me to eat and sleep when she noticed I was struggling."
-  - name: Priya K.
-    text: "My gynaecologist started me on micronised progesterone at bedtime and the difference in my emotional reactivity was noticeable within about two weeks. I still have difficult moments but the intensity of the snapping is so much lower."
+replies: []
 relatedJournals:
   - title: "Mood and Memory Guide"
     href: /guide/mood-memory
@@ -27,6 +23,6 @@ Irritability and emotional reactivity have a direct hormonal explanation. Oestro
 
 This is a recognised medical symptom. It is not a personality flaw, not a marriage problem, and not you "losing it." It is your nervous system operating with significantly reduced hormonal support.
 
-Many women find meaningful improvement with progesterone — particularly micronised progesterone (available in India as Susten or Gestofit) taken at bedtime, which also supports sleep. Systemic HRT addresses the oestrogen fluctuations. SSRIs, prescribed by a doctor, can also help with emotional reactivity specifically.
+Many women find meaningful improvement with progesterone taken at bedtime, which also supports sleep. Systemic HRT addresses the oestrogen fluctuations. Antidepressants prescribed by a doctor can also help with emotional reactivity specifically.
 
 Telling your family what is happening — even simply saying "I am going through a hormonal change and it is making it much harder for me to regulate my reactions right now; I am getting help" — can change the dynamic significantly. It is not weakness to explain. It reduces everyone's confusion and helps them support you rather than avoid you.

@@ -7,9 +7,7 @@ category: Sexual Wellness
 answeredBy: The Second Spring Team
 replies:
   - name: Priya M.
-    text: "Vaginal oestrogen cream alongside a good silicone-based lubricant changed things significantly for me — physical comfort came back and then my interest gradually followed. I had assumed the loss of desire was psychological, but so much of it was actually driven by the physical discomfort I had been dreading."
-  - name: Kavitha R.
-    text: "My husband and I went to couples counselling together — not because the relationship was in trouble, but to navigate this together. It took the pressure off enormously and gave us language for what was happening that we didn't have before."
+    text: "Vaginal oestrogen cream alongside a good water-based lubricant changed things significantly for me — physical comfort came back and then my interest gradually followed. I had assumed the loss of desire was psychological, but so much of it was actually driven by the physical discomfort I had been dreading."
 relatedJournals:
   - title: "Sexual Wellness Guide"
     href: /guide/sexual-wellness
@@ -29,12 +27,12 @@ There is often a physical layer underneath the loss of desire: genitourinary syn
 
 Treatment options that work and are available in India:
 
-Vaginal oestrogen (low-dose, local — cream or pessary, brands include Ovestin and Evalon) is very effective for GSM and uses minimal systemic oestrogen. It improves vaginal tissue health, lubrication, and sensitivity directly. It is generally considered separately from systemic HRT and has a strong safety record.
+Vaginal oestrogen (low-dose, local — available as a cream or pessary) is very effective for GSM and uses minimal systemic oestrogen. It improves vaginal tissue health, lubrication, and sensitivity directly. It is generally considered separately from systemic HRT and has a strong safety record.
 
 Systemic HRT (oestrogen + progesterone) addresses libido more broadly by restoring oestrogen systemically.
 
 Testosterone therapy is used in some cases for libido specifically — discuss with a gynaecologist experienced in menopause medicine.
 
-Good quality lubricants help immediately: water-based options (Yes, Durex Naturals) and silicone-based (Überlube) are available in India online and at some pharmacies.
+Good quality lubricants help immediately: water-based lubricants are widely available at pharmacies and online in India.
 
 Please see a gynaecologist — this is a legitimate, common, and very treatable symptom.

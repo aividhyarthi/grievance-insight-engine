@@ -7,9 +7,7 @@ category: Sexual Wellness
 answeredBy: The Second Spring Team
 replies:
   - name: Deepa S.
-    text: "I was too embarrassed to bring this up for almost two years, and I suffered unnecessarily for all of that time. When I finally told my gynaecologist, she prescribed Ovestin pessaries and explained that this was one of the most common things she treated. Within six weeks the difference was significant. I only wish I had asked sooner."
-  - name: Smita
-    text: "A water-based lubricant every single time — not just when things felt dry — helped immediately. It's not a cure for what's happening hormonally, but while I was waiting for my doctor appointment it made an immediate difference and helped me stop dreading intimacy."
+    text: "I was too embarrassed to bring this up for almost two years, and I suffered unnecessarily for all of that time. When I finally told my gynaecologist, she prescribed a vaginal oestrogen pessary and explained that this was one of the most common things she treated. Within six weeks the difference was significant. I only wish I had asked sooner."
 relatedJournals:
   - title: "Sexual Wellness Guide"
     href: /guide/sexual-wellness
@@ -27,8 +25,8 @@ This is a physical, medical condition. It does not mean your relationship has a 
 
 Treatment that works:
 
-Vaginal oestrogen is the most effective treatment. Applied locally to the vaginal tissue (as a pessary, cream, or ring), it restores tissue health, lubrication, pH, and elasticity with very minimal systemic absorption. In India, Ovestin (cream and pessary) and Evalon cream are available. Applied 2–3 times per week, results are typically noticeable within 4–8 weeks. This is separate from systemic HRT and is generally considered safe even for women who cannot use systemic HRT.
+Vaginal oestrogen is the most effective treatment. Applied locally to the vaginal tissue (as a pessary, cream, or ring), it restores tissue health, lubrication, pH, and elasticity with very minimal systemic absorption. Vaginal oestrogen is available in India as a cream or pessary. Applied 2–3 times per week, results are typically noticeable within 4–8 weeks. This is separate from systemic HRT and is generally considered safe even for women who cannot use systemic HRT.
 
-Lubricants help immediately: water-based options (Yes, Durex Naturals, available online) for use during sex; regular moisturisers designed for vaginal use (like Yes VM) help with daily comfort.
+Lubricants help immediately: water-based lubricants for use during sex, and vaginal moisturisers for daily comfort, are available at pharmacies and online.
 
 As for talking to your husband: you can say simply, "My hormones are causing physical changes that are making sex uncomfortable, and I'm seeing a gynaecologist about it." That is enough. You don't owe a detailed explanation; you just need him to understand it is physical, not emotional.
