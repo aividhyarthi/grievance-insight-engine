@@ -3,7 +3,8 @@ title: "Can Perimenopause Cause Acne?"
 description: "Acne at 40 is not a skin type problem — it is hormonal. Here is why oestrogen decline causes breakouts during perimenopause and what treatments actually work."
 pubDate: 2026-05-26
 author: "Journal Desk"
-heroImage: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&q=80"
+imageAlt: "Indian woman — Can Perimenopause Cause Acne?"
 tags: ["perimenopause", "symptoms", "acne", "hormonal acne", "skin", "skincare", "androgens"]
 readTime: "8 min read"
 ---

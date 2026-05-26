@@ -3,7 +3,8 @@ title: "Can Perimenopause Cause Dizziness?"
 description: "Yes — dizziness is a recognised but frequently overlooked perimenopause symptom. It can arise from vasomotor changes, blood pressure fluctuations, anxiety, inner ear effects, anaemia, and sleep deprivation — all of which are common during this transition. Here is what causes it and when to seek urgent care."
 pubDate: 2026-05-26
 author: "Journal Desk"
-heroImage: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&q=80"
+imageAlt: "Indian woman — Can Perimenopause Cause Dizziness?"
 tags: ["perimenopause", "dizziness", "vertigo", "symptoms", "vasomotor", "India"]
 readTime: "7 min read"
 ---

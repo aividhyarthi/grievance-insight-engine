@@ -3,7 +3,8 @@ title: "Can Perimenopause Cause Depression?"
 description: "Yes — perimenopause significantly raises the risk of depression, even in women with no previous history. Research shows women are 2–4x more likely to experience a first depressive episode during this transition. Here is what the evidence says, and what you can do about it."
 pubDate: 2026-05-26
 author: "Journal Desk"
-heroImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80"
+imageAlt: "Indian woman — Can Perimenopause Cause Depression?"
 tags: ["perimenopause", "depression", "mental health", "mood", "hormones", "HRT", "India"]
 readTime: "8 min read"
 ---
