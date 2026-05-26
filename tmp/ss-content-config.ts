@@ -15,4 +15,26 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const community = defineCollection({
+  type: 'content',
+  schema: z.object({
+    question:     z.string(),
+    askerName:    z.string(),
+    askerAge:     z.number(),
+    askerCity:    z.string(),
+    category:     z.string(),
+    answeredBy:   z.string(),
+    replies:      z.array(z.object({
+      name: z.string(),
+      text: z.string(),
+    })).default([]),
+    relatedJournals: z.array(z.object({
+      title: z.string(),
+      href:  z.string(),
+    })).default([]),
+    tags:    z.array(z.string()).default([]),
+    date:    z.date(),
+  }),
+});
+
+export const collections = { blog, community };
