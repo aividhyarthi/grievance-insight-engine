@@ -4,7 +4,7 @@ description: "Yes — blood pressure tends to rise during perimenopause and meno
 pubDate: 2026-05-26
 author: "Journal Desk"
 image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&q=80"
-imageAlt: "Indian woman — Can Perimenopause Cause High Blood Pressure?"
+imageAlt: "Indian woman in a medical setting discussing blood pressure concerns with a doctor"
 tags: ["perimenopause", "high blood pressure", "hypertension", "cardiovascular health", "heart health", "India"]
 readTime: "8 min read"
 ---

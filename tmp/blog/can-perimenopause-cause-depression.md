@@ -4,7 +4,7 @@ description: "Yes — perimenopause significantly raises the risk of depression,
 pubDate: 2026-05-26
 author: "Journal Desk"
 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80"
-imageAlt: "Indian woman — Can Perimenopause Cause Depression?"
+imageAlt: "South Asian woman in a contemplative mood reflecting on her mental wellbeing"
 tags: ["perimenopause", "depression", "mental health", "mood", "hormones", "HRT", "India"]
 readTime: "8 min read"
 ---

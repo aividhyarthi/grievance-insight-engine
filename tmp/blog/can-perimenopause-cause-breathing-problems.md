@@ -4,7 +4,7 @@ description: "Shortness of breath, chest tightness, and disrupted breathing at n
 pubDate: 2026-05-26
 author: "Journal Desk"
 image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80"
-imageAlt: "Indian woman — Can Perimenopause Cause Breathing Problems?"
+imageAlt: "Woman practising breathing and wellness exercises outdoors"
 tags: ["perimenopause", "symptoms", "breathing problems", "sleep apnoea", "anxiety", "hot flashes"]
 readTime: "8 min read"
 ---

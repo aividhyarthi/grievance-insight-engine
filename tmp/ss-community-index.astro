@@ -52,6 +52,21 @@ const categoryColours: Record<string, { bg: string; color: string }> = {
     </div>
   </section>
 
+  <!-- Submit question banner -->
+  <section class="sqb-section">
+    <div class="container">
+      <div class="submit-question-banner">
+        <div class="sqb-inner">
+          <div class="sqb-text">
+            <strong>Have a question?</strong>
+            <span>Email us at <a href="mailto:thesecondspringofficial@gmail.com">thesecondspringofficial@gmail.com</a> — we feature real questions (anonymously) from our community every week.</span>
+          </div>
+          <a href="mailto:thesecondspringofficial@gmail.com?subject=Community Question" class="sqb-btn">Submit your question →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Cards grid -->
   <section class="cards-section">
     <div class="container">
@@ -213,6 +228,41 @@ const categoryColours: Record<string, { bg: string; color: string }> = {
     border-color: var(--green);
     color: #fff;
   }
+
+  /* ── Submit question banner ── */
+  .sqb-section {
+    background: #fff;
+    padding: 1.5rem 0 0;
+  }
+  .submit-question-banner {
+    background: #FEF3EC;
+    border: 1.5px solid #D4845A;
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .sqb-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .sqb-text { font-size: .9rem; color: var(--text-secondary); }
+  .sqb-text strong { color: var(--text); margin-right: .35rem; }
+  .sqb-text a { color: #C05621; text-decoration: underline; }
+  .sqb-btn {
+    background: #D4845A;
+    color: #fff;
+    border-radius: 99px;
+    padding: .5rem 1.25rem;
+    font-size: .82rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sqb-btn:hover { background: #C05621; }
 
   /* ── Cards section ── */
   .cards-section {

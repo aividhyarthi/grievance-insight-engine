@@ -4,7 +4,7 @@ description: "Back pain that starts or worsens in your 40s may have a hormonal c
 pubDate: 2026-05-26
 author: "Journal Desk"
 image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80"
-imageAlt: "Indian woman — Can Perimenopause Cause Back Pain?"
+imageAlt: "Person holding their lower back experiencing back pain discomfort"
 tags: ["perimenopause", "symptoms", "back pain", "musculoskeletal", "bone health", "vitamin D", "joint pain"]
 readTime: "8 min read"
 ---

@@ -4,7 +4,7 @@ description: "Acne at 40 is not a skin type problem — it is hormonal. Here is 
 pubDate: 2026-05-26
 author: "Journal Desk"
 image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&q=80"
-imageAlt: "Indian woman — Can Perimenopause Cause Acne?"
+imageAlt: "South Asian woman with a clear focus on skin health and natural beauty"
 tags: ["perimenopause", "symptoms", "acne", "hormonal acne", "skin", "skincare", "androgens"]
 readTime: "8 min read"
 ---

@@ -3,8 +3,8 @@ title: "Can I Get Pregnant During Perimenopause?"
 description: "Yes — pregnancy is possible during perimenopause until 12 full months after your last period. Irregular periods do not mean infertility. Here is what you need to know about fertility, contraception, and your options."
 pubDate: 2026-05-26
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&q=80"
-imageAlt: "Indian woman — Can I Get Pregnant During Perimenopause?"
+image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&q=80"
+imageAlt: "Indian woman in a thoughtful pose considering her reproductive health"
 tags: ["perimenopause", "pregnancy", "fertility", "contraception", "family planning"]
 readTime: "9 min read"
 ---

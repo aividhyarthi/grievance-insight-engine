@@ -55,6 +55,7 @@ function getInitials(name: string): string {
       <div class="thread-layout">
         <div class="thread-main">
 
+
           <!-- Question block -->
           <div class="question-block" role="region" aria-label="Question">
             <p class="question-text">{data.question}</p>
@@ -140,10 +141,60 @@ function getInitials(name: string): string {
             </div>
           </div>
 
+          <!-- Submit question footer banner -->
+          <div class="submit-q-footer">
+            <p>💬 <strong>Have a similar question?</strong> Email <a href="mailto:thesecondspringofficial@gmail.com?subject=Community Question">thesecondspringofficial@gmail.com</a> — we may feature it (anonymously) in our community.</p>
+          </div>
+
           <!-- Back link -->
           <a href="/community" class="back-link">← Back to Community</a>
 
         </div><!-- /.thread-main -->
+
+        <aside class="thread-sidebar">
+          <!-- Quiz CTA -->
+          <div class="sidebar-card sidebar-quiz">
+            <div class="sc-icon">🌸</div>
+            <h3>Check your symptoms</h3>
+            <p>11 questions. 2 minutes. Understand if what you're experiencing could be perimenopause.</p>
+            <a href="/quiz" class="btn btn-peach" style="display:block; text-align:center; margin-top:1rem;">Free symptom check →</a>
+          </div>
+
+          <!-- Topic guides -->
+          <div class="sidebar-card">
+            <h3 class="sc-section-title">Topic Guides</h3>
+            <div class="sc-links">
+              <a href="/guide/sleep" class="sc-link">🌙 Sleep</a>
+              <a href="/guide/weight" class="sc-link">⚖️ Weight & Belly Fat</a>
+              <a href="/guide/mood-memory" class="sc-link">🧠 Mood & Memory</a>
+              <a href="/guide/sexual-wellness" class="sc-link">🌸 Sexual Wellness</a>
+              <a href="/guide/hair-skin" class="sc-link">✨ Hair & Skin</a>
+              <a href="/menopause" class="sc-link">🌿 What Is Menopause?</a>
+            </div>
+          </div>
+
+          <!-- Ask privately -->
+          <div class="sidebar-card sidebar-chat">
+            <div class="sc-icon">💬</div>
+            <h3>Ask privately</h3>
+            <p>Questions answered privately, any time. No login, no judgment.</p>
+            <a href="/chat" class="sc-chat-btn">Talk privately →</a>
+          </div>
+
+          <!-- Symptom library -->
+          <div class="sidebar-card">
+            <h3 class="sc-section-title">Symptom Library</h3>
+            <div class="sc-links">
+              <a href="/guide/symptoms/hot-flashes" class="sc-link">🌡️ Hot Flashes</a>
+              <a href="/guide/symptoms/sleep-problems" class="sc-link">🌙 Sleep Problems</a>
+              <a href="/guide/symptoms/mood-swings" class="sc-link">😤 Mood Swings</a>
+              <a href="/guide/symptoms/brain-fog" class="sc-link">🧠 Brain Fog</a>
+              <a href="/guide/symptoms/anxiety" class="sc-link">💭 Anxiety</a>
+              <a href="/guide/symptoms" class="sc-link sc-link--more">View all symptoms →</a>
+            </div>
+          </div>
+        </aside>
+
       </div><!-- /.thread-layout -->
     </div><!-- /.container -->
   </div><!-- /.thread-page -->
@@ -188,14 +239,55 @@ function getInitials(name: string): string {
 
   /* ── Layout ── */
   .thread-layout {
-    max-width: 760px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2.5rem;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
   .thread-main {
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
+
+  /* ── Sidebar ── */
+  .thread-sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: 5rem; }
+
+  .sidebar-card {
+    background: #fff;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+  }
+  .sidebar-quiz { background: var(--green-light); border-color: var(--green); }
+  .sidebar-chat { background: #FEF3EC; border-color: #D4845A; }
+
+  .sc-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+  .sidebar-card h3 { font-size: .95rem; font-weight: 800; color: var(--text); margin-bottom: .5rem; }
+  .sidebar-card p { font-size: .83rem; color: var(--text-secondary); line-height: 1.6; }
+
+  .sc-section-title { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: .75rem; }
+
+  .sc-links { display: flex; flex-direction: column; gap: .25rem; }
+  .sc-link {
+    font-size: .85rem; color: var(--text); text-decoration: none;
+    padding: .4rem .5rem; border-radius: 6px;
+    transition: background .15s, color .15s;
+  }
+  .sc-link:hover { background: var(--green-light); color: var(--green); }
+  .sc-link--more { color: var(--green); font-weight: 600; margin-top: .25rem; }
+
+  .sc-chat-btn {
+    display: block; text-align: center; margin-top: 1rem;
+    background: #D4845A; color: #fff; border-radius: 99px;
+    padding: .5rem 1rem; font-size: .82rem; font-weight: 700;
+    text-decoration: none;
+  }
+  .sc-chat-btn:hover { background: #C05621; }
 
   /* ── Question block ── */
   .question-block {
@@ -475,6 +567,21 @@ function getInitials(name: string): string {
     align-items: center;
   }
 
+  /* ── Submit question footer ── */
+  .submit-q-footer {
+    background: #FEF3EC;
+    border: 1.5px solid #D4845A;
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.5rem;
+    margin-top: 2rem;
+    font-size: .88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .submit-q-footer a { color: #C05621; text-decoration: underline; }
+  .submit-q-footer strong { color: var(--text); }
+  .submit-q-footer p { margin: 0; }
+
   /* ── Back link ── */
   .back-link {
     display: inline-flex;
@@ -492,6 +599,11 @@ function getInitials(name: string): string {
   }
 
   /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .thread-layout { grid-template-columns: 1fr; }
+    .thread-sidebar { position: static; }
+  }
+
   @media (max-width: 640px) {
     .thread-page {
       padding: 1.5rem 0 4rem;
