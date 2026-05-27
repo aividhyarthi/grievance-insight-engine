@@ -33,8 +33,15 @@ const posts = allPosts
           <p class="hero-trust">Private &bull; Science-backed &bull; Judgment-free</p>
         </div>
         <div class="hero-photo-col">
-          <div class="hero-photo-frame">
-            <img src={`${RAW}/women2.jpg`} alt="Indian woman navigating perimenopause" onerror="this.style.display='none';this.parentElement.style.background='rgba(255,255,255,.07)'" />
+          <div class="hero-video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/hRYemB6E5X4"
+              title="The Second Spring — Perimenopause Support for Indian Women"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -150,29 +157,6 @@ const posts = allPosts
             <span>{t}</span>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 5b. VIDEO ── -->
-  <section class="section video-section">
-    <div class="container">
-      <div class="section-header center">
-        <span class="section-label">Our Story</span>
-        <h2 class="section-title">Why We Built The Second Spring</h2>
-        <p class="section-sub">India's first perimenopause companion — built for women who were told "it's just stress".</p>
-      </div>
-      <div class="video-outer">
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/hRYemB6E5X4"
-            title="The Second Spring — Perimenopause Support for Indian Women"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
-        </div>
       </div>
     </div>
   </section>
@@ -387,8 +371,24 @@ const posts = allPosts
   .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 340px; gap: 4rem; align-items: center; }
   .hero-content { max-width: 580px; }
   .hero-photo-col { display: flex; justify-content: center; }
-  .hero-photo-frame { width: 280px; height: 380px; border-radius: 140px; overflow: hidden; border: 3px solid rgba(255,255,255,.18); box-shadow: 0 24px 60px rgba(0,0,0,.4), 0 0 0 8px rgba(255,255,255,.06); background: rgba(255,255,255,.07); }
-  .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+  .hero-video-frame {
+    width: 280px;
+    aspect-ratio: 9 / 16;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,.18);
+    box-shadow: 0 24px 60px rgba(0,0,0,.4), 0 0 0 8px rgba(255,255,255,.06);
+    background: rgba(255,255,255,.07);
+    position: relative;
+  }
+  .hero-video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
   .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; }
   .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.14; letter-spacing: -.03em; color: #fff; margin-bottom: 1.25rem; }
   .hero h1 em { font-style: normal; color: #FBBF81; }
@@ -448,26 +448,6 @@ const posts = allPosts
   .trust-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem 3rem; }
   .trust-item { display: flex; align-items: center; gap: .6rem; font-size: .95rem; color: rgba(255,255,255,.88); font-weight: 500; }
   .trust-check { font-size: 1.1rem; color: #FBBF81; font-weight: 900; flex-shrink: 0; }
-
-  /* ── VIDEO ── */
-  .video-section { background: #fff; }
-  .video-outer { display: flex; justify-content: center; margin-top: 2.5rem; }
-  .video-frame {
-    position: relative;
-    width: 320px;
-    max-width: 100%;
-    aspect-ratio: 9 / 16;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 24px 60px rgba(0,0,0,.18);
-  }
-  .video-frame iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
 
   /* ── REASSURANCE ── */
   .reassurance-section { background: var(--peach-light); border-top: 1px solid #F0C9B0; border-bottom: 1px solid #F0C9B0; }
