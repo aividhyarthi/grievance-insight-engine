@@ -33,6 +33,31 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
+    <!-- LEAD CAPTURE -->
+    <section class="qs-screen" id="screen-lead" style="display:none">
+      <div class="qc">
+        <button class="qq-back" id="lead-back-btn">← Back</button>
+        <div class="lead-card">
+          <div class="lead-icon">📩</div>
+          <h2 class="lead-title">Where should we send your result?</h2>
+          <p class="lead-desc">We'll send your personalised perimenopause result to your WhatsApp or email — along with resources matched to your symptoms. You can also take the quiz anonymously if you prefer.</p>
+          <form id="lead-form" novalidate>
+            <div class="lead-field">
+              <label class="lead-label" for="lead-phone">WhatsApp / Mobile number <span class="lead-optional">(India +91)</span></label>
+              <input class="lead-input" type="tel" id="lead-phone" name="phone" placeholder="e.g. 9876543210" inputmode="numeric" maxlength="10" />
+            </div>
+            <div class="lead-field">
+              <label class="lead-label" for="lead-email">Email address</label>
+              <input class="lead-input" type="email" id="lead-email" name="email" placeholder="you@example.com" />
+            </div>
+            <p class="lead-privacy">🔒 We never share your details. You can unsubscribe any time.</p>
+            <button type="submit" class="btn btn-peach btn-lg lead-submit-btn">Start symptom check →</button>
+          </form>
+          <button class="lead-skip" id="lead-skip-btn">Skip — take quiz anonymously</button>
+        </div>
+      </div>
+    </section>
+
     <!-- QUESTIONS -->
     <section class="qs-screen" id="screen-questions" style="display:none">
       <div class="qc">
@@ -326,6 +351,7 @@ let cur = 0;
 let ageAnswer = '';
 
 const $intro     = document.getElementById('screen-intro')!;
+const $lead      = document.getElementById('screen-lead')!;
 const $questions = document.getElementById('screen-questions')!;
 const $result    = document.getElementById('screen-result')!;
 
@@ -333,20 +359,64 @@ function totalScore() {
   return answers.reduce((sum, s) => sum + s, 0);
 }
 
-document.getElementById('start-btn')!.addEventListener('click', () => {
-  $intro.style.display = 'none';
+function startQuiz() {
+  $lead.style.display = 'none';
   $questions.style.display = 'flex';
   render();
+}
+
+// Intro → Lead capture
+document.getElementById('start-btn')!.addEventListener('click', () => {
+  $intro.style.display = 'none';
+  $lead.style.display = 'flex';
+});
+
+// Lead capture back → Intro
+document.getElementById('lead-back-btn')!.addEventListener('click', () => {
+  $lead.style.display = 'none';
+  $intro.style.display = 'flex';
+});
+
+// Lead form submit
+document.getElementById('lead-form')!.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const phone = (document.getElementById('lead-phone') as HTMLInputElement).value.trim();
+  const email = (document.getElementById('lead-email') as HTMLInputElement).value.trim();
+  if (!phone && !email) {
+    const err = document.querySelector('.lead-error') as HTMLElement || (() => {
+      const el = document.createElement('p');
+      el.className = 'lead-error';
+      el.textContent = 'Please enter at least a phone number or email to continue.';
+      document.getElementById('lead-form')!.insertBefore(el, document.querySelector('.lead-privacy'));
+      return el;
+    })();
+    err.style.display = 'block';
+    return;
+  }
+  try {
+    sessionStorage.setItem('tss_lead', JSON.stringify({ phone, email }));
+    fetch('/api/collect-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, email, stage: 'quiz_start' }),
+    }).catch(() => {});
+  } catch (_) {}
+  startQuiz();
+});
+
+// Skip → start anonymously
+document.getElementById('lead-skip-btn')!.addEventListener('click', () => {
+  startQuiz();
 });
 
 document.getElementById('back-btn')!.addEventListener('click', () => {
   if (cur > 0) {
     cur--;
-    answers = answers.slice(0, cur); // remove the current answer
+    answers = answers.slice(0, cur);
     render();
   } else {
     $questions.style.display = 'none';
-    $intro.style.display = 'flex';
+    $lead.style.display = 'flex';
   }
 });
 
@@ -521,26 +591,91 @@ function showResult() {
 
   .qq-privacy { font-size: .75rem; color: var(--text-muted); text-align: center; }
 
+  /* ── LEAD CAPTURE ── */
+  #screen-lead { align-items: flex-start; padding-top: 2rem; }
+  .lead-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; width: 100%; }
+  .lead-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+  .lead-title { font-size: 1.35rem; font-weight: 900; color: var(--text); letter-spacing: -.02em; margin-bottom: .6rem; }
+  .lead-desc { font-size: .9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+  .lead-field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+  .lead-label { font-size: .82rem; font-weight: 700; color: var(--text); }
+  .lead-optional { font-weight: 400; color: var(--text-muted); }
+  .lead-input {
+    width: 100%; padding: .85rem 1rem; font-size: 1rem;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    background: var(--cream); color: var(--text); outline: none;
+    transition: border-color .15s;
+  }
+  .lead-input:focus { border-color: var(--green); background: #fff; }
+  .lead-privacy { font-size: .76rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .lead-submit-btn { width: 100%; justify-content: center; }
+  .lead-skip { display: block; text-align: center; margin-top: 1rem; background: none; border: none; font-size: .84rem; color: var(--text-muted); text-decoration: underline; cursor: pointer; width: 100%; padding: .5rem; }
+  .lead-skip:hover { color: var(--green); }
+  .lead-error { font-size: .82rem; color: #c0392b; background: #fdf0f0; border: 1px solid #f5c6cb; border-radius: 8px; padding: .6rem .9rem; margin-bottom: .75rem; display: none; }
+
   /* ── RESULT ── */
-  #screen-result { flex-direction: column; padding: 2rem 1.5rem; }
-  .result-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; width: 100%; max-width: 620px; }
-  .result-top { padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+  #screen-result {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 1rem 3rem;
+    min-height: auto;
+  }
+  .result-card {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 620px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  }
+  .result-top {
+    padding: 2.5rem 2.5rem 2rem;
+    display: flex; flex-direction: column; align-items: flex-start; gap: .9rem;
+  }
   .rt-emoji { font-size: 3rem; line-height: 1; }
-  .rt-tag { display: inline-flex; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 100px; }
+  .rt-tag {
+    display: inline-flex; font-size: .74rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    padding: .4rem 1rem; border-radius: 100px;
+  }
   .rt-title { font-size: 1.5rem; font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.25; }
-  .result-body { padding: 2rem 2.5rem 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .result-body { padding: 1.75rem 2.5rem 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
   .rb-lead { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; }
-  .rb-steps { background: var(--cream-mid); border-radius: var(--radius); padding: 1.4rem 1.6rem; }
-  .rbs-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: .9rem; }
-  .rbs-item { display: flex; align-items: flex-start; gap: .8rem; padding: .6rem 0; border-bottom: 1px solid var(--border); font-size: .92rem; color: var(--text-secondary); line-height: 1.55; }
+  .rb-steps {
+    background: var(--cream);
+    border: 1.5px solid var(--border-light);
+    border-radius: 14px; padding: 1.25rem 1.5rem;
+  }
+  .rbs-label {
+    font-size: .7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .09em; color: var(--green); margin-bottom: 1rem;
+    display: block;
+  }
+  .rbs-item {
+    display: flex; align-items: flex-start; gap: .85rem;
+    padding: .75rem 0; border-bottom: 1px solid var(--border-light);
+    font-size: .92rem; color: var(--text); line-height: 1.55;
+    font-weight: 500;
+  }
   .rbs-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .rbs-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
-  .rb-cta-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; }
-  .rb-private { font-size: .78rem; color: var(--text-muted); }
-  .rb-footer { display: flex; flex-direction: column; align-items: center; gap: .75rem; border-top: 1px solid var(--border); padding-top: 1.25rem; }
-  .rb-retake { background: none; border: none; color: var(--text-muted); font-size: .84rem; cursor: pointer; text-decoration: underline; padding: 0; }
-  .rb-retake:hover { color: var(--green); }
-  .rb-disc { font-size: .74rem; color: var(--text-muted); text-align: center; line-height: 1.6; }
+  .rbs-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .05rem; }
+  .rb-cta-wrap { display: flex; flex-direction: column; gap: .6rem; }
+  .rb-cta-wrap .btn { width: 100%; justify-content: center; text-align: center; }
+  .rb-private { font-size: .78rem; color: var(--text-muted); text-align: center; }
+  .rb-footer {
+    display: flex; flex-direction: column; align-items: center; gap: .75rem;
+    border-top: 1.5px solid var(--border-light); padding-top: 1.25rem;
+  }
+  .rb-retake {
+    background: none; border: 1.5px solid var(--border);
+    border-radius: 99px; color: var(--text-muted);
+    font-size: .84rem; cursor: pointer; padding: .5rem 1.25rem;
+    transition: all .15s;
+  }
+  .rb-retake:hover { border-color: var(--green); color: var(--green); }
+  .rb-disc { font-size: .74rem; color: var(--text-muted); text-align: center; line-height: 1.6; max-width: 420px; }
 
   /* ── MOBILE ── */
   @media (max-width: 640px) {
@@ -563,10 +698,17 @@ function showResult() {
     .qq-bar-wrap > div:first-child { height: 10px; }
 
     /* Result */
-    .result-top { padding: 1.5rem 1.25rem; }
-    .result-body { padding: 1.25rem; gap: 1.25rem; }
-    .rt-title { font-size: 1.25rem; }
-    .rb-cta-wrap .btn { width: 100%; justify-content: center; }
+    #screen-result { padding: 1.25rem .85rem 3rem; }
+    .result-card { border-radius: 16px; }
+    .result-top { padding: 1.5rem 1.25rem 1.25rem; gap: .65rem; }
+    .rt-emoji { font-size: 2.5rem; }
+    .rt-title { font-size: 1.2rem; }
+    .result-body { padding: 1.25rem; gap: 1.1rem; }
+    .rb-lead { font-size: .92rem; }
+    .rb-steps { padding: 1rem 1.1rem; }
+    .rbs-item { font-size: .88rem; gap: .7rem; padding: .65rem 0; }
+    .rb-cta-wrap .btn { font-size: .95rem; padding: .85rem 1.25rem; }
+    .lead-card { padding: 1.5rem 1.1rem; }
   }
 
   /* ── SEO section ── */
