@@ -3,7 +3,7 @@ title: "How Long Do Heavy Periods Last in Perimenopause?"
 description: "Heavy perimenopausal periods typically last 2 to 8 years — but that doesn't mean you have to endure them. Here is what drives them, what changes over time, and what actually helps."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman speaking with a gynaecologist about heavy periods and perimenopausal bleeding"
 tags: ["heavy periods", "perimenopause", "anovulation", "symptoms", "duration"]
 readTime: "8 min read"

@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["oestrogen", "hormones", "perimenopause", "science"]
 readTime: "8 min read"
 featured: true
-image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1540553016722-983e3bbbcade?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman in a thoughtful moment representing hormonal understanding and self-awareness"
 ---
 

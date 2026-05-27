@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["treatment", "HRT", "hormones", "perimenopause"]
 readTime: "9 min read"
 featured: true
-image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman in a consultation with a healthcare professional, both looking at information together"
 ---
 

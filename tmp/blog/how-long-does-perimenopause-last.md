@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["perimenopause", "timeline", "menopause", "stages", "duration"]
 readTime: "7 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman looking thoughtfully at a window, representing the passage of time during perimenopause"
 ---
 

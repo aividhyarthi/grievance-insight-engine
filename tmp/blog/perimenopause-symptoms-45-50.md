@@ -3,8 +3,8 @@ title: "Perimenopause Symptoms at 45–50: What Changes in Late Perimenopause"
 description: "At 45–50, perimenopause shifts gear. Hot flashes intensify, periods become irregular, and oestrogen decline drives a new wave of symptoms. Here is exactly what to expect."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&h=630&fit=crop&q=80"
-imageAlt: "Indian woman in her late 40s in a thoughtful pose, representing the late perimenopausal transition"
+image: "https://images.unsplash.com/photo-1599599810694-b8b1f01ff0d8?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Ayurvedic herbs and wellness items representing the holistic aspects of late perimenopause"
 tags: ["symptoms", "perimenopause", "late perimenopause", "45-50", "menopause", "oestrogen"]
 readTime: "10 min read"
 ---

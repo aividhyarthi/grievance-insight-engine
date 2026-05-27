@@ -3,7 +3,7 @@ title: "Perimenopause Age in India: What Is Different and Why It Matters"
 description: "Indian women reach menopause at 46–47 on average — 4 to 5 years earlier than the global average. This changes everything about when symptoms start and what tests to expect."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Group of Indian women of different ages in conversation, representing perimenopause across generations"
 tags: ["perimenopause", "India", "age", "menopause", "hormones"]
 readTime: "9 min read"

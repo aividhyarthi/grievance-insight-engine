@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["progesterone", "hormones", "perimenopause", "HRT"]
 readTime: "8 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman speaking with a healthcare professional about hormones and perimenopause"
 ---
 

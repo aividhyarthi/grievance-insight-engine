@@ -3,7 +3,7 @@ title: "Low Progesterone Symptoms in Perimenopause: What It Feels Like"
 description: "Progesterone is the first hormone to fall in perimenopause — and its symptoms are almost always mistaken for anxiety, depression, or stress. Here's how to recognise them."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman awake and reflective in the early morning hours, representing the sleep disruption of low progesterone"
 tags: ["progesterone", "symptoms", "hormones", "sleep", "perimenopause"]
 readTime: "8 min read"
@@ -96,14 +96,66 @@ Breast tenderness before the period, which has become more pronounced or starts 
 
 These two patterns feel different and typically occur at different stages of perimenopause:
 
-| | Low Progesterone | Low Oestrogen |
-|---|---|---|
-| **When it occurs** | Earlier — late 30s to mid-40s | Later — mid-40s to menopause |
-| **Periods** | Heavy, clotty, prolonged | Irregular, then infrequent |
-| **Sleep** | 2–4am waking, mind won't quiet | Woken by night sweats, heat |
-| **Mood** | Premenstrual anxiety, irritability | Low mood, depression risk |
-| **Physical** | Breast tenderness, bloating, spotting | Hot flashes, vaginal dryness, joint aches |
-| **Long-term** | Oestrogen dominance | Bone density, cardiovascular changes |
+<div style="margin:24px 0;display:flex;flex-wrap:wrap;gap:12px">
+<div style="flex:1;min-width:220px;background:#F0E8F5;border-radius:14px;padding:18px;border-top:4px solid #8B5CF6">
+<div style="font-size:15px;font-weight:700;color:#6B3A8E;margin-bottom:14px">Low Progesterone</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9D4E6E;margin-bottom:4px">When it occurs</div>
+<div style="font-size:13px;color:#333">Earlier — late 30s to mid-40s</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9D4E6E;margin-bottom:4px">Periods</div>
+<div style="font-size:13px;color:#333">Heavy, clotty, prolonged</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9D4E6E;margin-bottom:4px">Sleep</div>
+<div style="font-size:13px;color:#333">2–4am waking, mind won't quiet</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9D4E6E;margin-bottom:4px">Mood</div>
+<div style="font-size:13px;color:#333">Premenstrual anxiety, irritability</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9D4E6E;margin-bottom:4px">Physical</div>
+<div style="font-size:13px;color:#333">Breast tenderness · Bloating · Spotting between periods</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9D4E6E;margin-bottom:4px">Long-term risk</div>
+<div style="font-size:13px;color:#333">Oestrogen dominance, heavy bleeding</div>
+</div>
+</div>
+</div>
+<div style="flex:1;min-width:220px;background:#FDE8EE;border-radius:14px;padding:18px;border-top:4px solid #D4637A">
+<div style="font-size:15px;font-weight:700;color:#9D4E6E;margin-bottom:14px">Low Oestrogen</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#C62828;margin-bottom:4px">When it occurs</div>
+<div style="font-size:13px;color:#333">Later — mid-40s to menopause</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#C62828;margin-bottom:4px">Periods</div>
+<div style="font-size:13px;color:#333">Irregular, then infrequent</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#C62828;margin-bottom:4px">Sleep</div>
+<div style="font-size:13px;color:#333">Woken by night sweats, heat</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#C62828;margin-bottom:4px">Mood</div>
+<div style="font-size:13px;color:#333">Low mood, depression risk</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#C62828;margin-bottom:4px">Physical</div>
+<div style="font-size:13px;color:#333">Hot flashes · Vaginal dryness · Joint aches</div>
+</div>
+<div style="background:white;border-radius:8px;padding:10px">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#C62828;margin-bottom:4px">Long-term risk</div>
+<div style="font-size:13px;color:#333">Bone density loss, cardiovascular changes</div>
+</div>
+</div>
+</div>
+</div>
 
 Many women experience both simultaneously as perimenopause progresses. See [oestrogen vs progesterone in perimenopause →](/blog/oestrogen-vs-progesterone-perimenopause) | [late perimenopause symptoms at 45–50 →](/blog/perimenopause-symptoms-45-50)
 

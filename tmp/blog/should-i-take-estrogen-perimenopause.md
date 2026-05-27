@@ -6,8 +6,8 @@ author: "Journal Desk"
 tags: ["oestrogen", "HRT", "perimenopause", "treatment"]
 readTime: "9 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&h=630&fit=crop&q=80"
-imageAlt: "Indian woman in a thoughtful discussion with her gynaecologist about HRT options"
+image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Healthy colourful food bowl representing nourishment and informed health choices"
 ---
 
 For most women with significant perimenopausal symptoms, **yes — oestrogen therapy is appropriate, evidence-based, and widely endorsed by major medical bodies worldwide**, including the Menopause Society of India. The long-standing fear around hormone replacement therapy (HRT) stems largely from a misread 2002 study. Current evidence shows that for the right candidate, oestrogen therapy meaningfully improves quality of life and carries a benefit-to-risk profile that most clinicians now consider favourable.
