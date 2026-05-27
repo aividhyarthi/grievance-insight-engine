@@ -11,6 +11,42 @@ readTime: "8 min read"
 
 Low progesterone causes some of perimenopause's most disruptive symptoms — heavy periods, sleeplessness, anxiety, and worsening PMS — yet it is almost never discussed with patients in India. Progesterone is the first hormone to decline in perimenopause, often by several years, and its symptoms are routinely misdiagnosed as anxiety disorder, depression, or chronic stress.
 
+<div style="margin:28px 0;background:#FDF8F9;border-radius:16px;padding:20px 20px 14px">
+<p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">What progesterone actually does — and what disappears when it falls</p>
+<svg viewBox="0 0 480 160" style="width:100%;max-width:480px;display:block" role="img" aria-label="Diagram showing progesterone's four main roles and the symptoms that emerge when each function is lost">
+  <rect x="175" y="4" width="130" height="30" rx="8" fill="#8B5CF6"/>
+  <text x="240" y="23" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="system-ui,sans-serif">Progesterone</text>
+  <line x1="200" y1="34" x2="65" y2="68" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="220" y1="34" x2="155" y2="68" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="260" y1="34" x2="325" y2="68" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="280" y1="34" x2="415" y2="68" stroke="#ccc" stroke-width="1.5"/>
+  <rect x="4" y="68" width="122" height="34" rx="7" fill="#F0E8F5"/>
+  <text x="65" y="83" text-anchor="middle" font-size="10" font-weight="600" fill="#6B3A8E" font-family="system-ui,sans-serif">Controls uterine</text>
+  <text x="65" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#6B3A8E" font-family="system-ui,sans-serif">lining</text>
+  <rect x="130" y="68" width="122" height="34" rx="7" fill="#F0E8F5"/>
+  <text x="191" y="83" text-anchor="middle" font-size="10" font-weight="600" fill="#6B3A8E" font-family="system-ui,sans-serif">Calms GABA</text>
+  <text x="191" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#6B3A8E" font-family="system-ui,sans-serif">receptors</text>
+  <rect x="256" y="68" width="122" height="34" rx="7" fill="#F0E8F5"/>
+  <text x="317" y="83" text-anchor="middle" font-size="10" font-weight="600" fill="#6B3A8E" font-family="system-ui,sans-serif">Balances</text>
+  <text x="317" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#6B3A8E" font-family="system-ui,sans-serif">oestrogen</text>
+  <rect x="382" y="68" width="94" height="34" rx="7" fill="#F0E8F5"/>
+  <text x="429" y="83" text-anchor="middle" font-size="10" font-weight="600" fill="#6B3A8E" font-family="system-ui,sans-serif">Natural</text>
+  <text x="429" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#6B3A8E" font-family="system-ui,sans-serif">diuretic</text>
+  <text x="65" y="118" text-anchor="middle" font-size="9" fill="#D4637A" font-family="system-ui,sans-serif">When low:</text>
+  <text x="65" y="130" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Heavy, clotty periods</text>
+  <text x="65" y="142" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Flooding · Clots</text>
+  <text x="191" y="118" text-anchor="middle" font-size="9" fill="#D4637A" font-family="system-ui,sans-serif">When low:</text>
+  <text x="191" y="130" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">2–4am waking</text>
+  <text x="191" y="142" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">PMS anxiety · Dread</text>
+  <text x="317" y="118" text-anchor="middle" font-size="9" fill="#D4637A" font-family="system-ui,sans-serif">When low:</text>
+  <text x="317" y="130" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Oestrogen dominance</text>
+  <text x="317" y="142" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Breast tender · Bloating</text>
+  <text x="429" y="118" text-anchor="middle" font-size="9" fill="#D4637A" font-family="system-ui,sans-serif">When low:</text>
+  <text x="429" y="130" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Puffiness</text>
+  <text x="429" y="142" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Fluid retention</text>
+</svg>
+</div>
+
 ## What Does Low Progesterone Feel Like in Perimenopause?
 
 ### Heavy or Prolonged Periods

@@ -30,6 +30,31 @@ Many women in their late 40s are managing symptoms from both phases simultaneous
 
 ## What New Symptoms Appear at 45–50?
 
+<div style="margin:28px 0;background:#FDF8F9;border-radius:16px;padding:20px 20px 14px">
+<p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">Two types of sleep disruption — which do you have?</p>
+<p style="margin:0 0 14px;font-size:12px;color:#888;line-height:1.5">The pattern of your sleep disruption tells you which hormone is the driver — and which treatment is likely to help.</p>
+<svg viewBox="0 0 520 130" style="width:100%;max-width:520px;display:block" role="img" aria-label="Comparison of two types of perimenopausal sleep disruption: early morning waking driven by progesterone loss versus night sweats driven by oestrogen decline">
+  <rect x="0" y="0" width="248" height="120" rx="10" fill="#F0E8F5"/>
+  <text x="124" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#6B3A8E" font-family="system-ui,sans-serif">Early 2–4am waking</text>
+  <text x="124" y="34" text-anchor="middle" font-size="10" fill="#8B5CF6" font-family="system-ui,sans-serif">Progesterone-driven (early perimenopause)</text>
+  <line x1="20" y1="42" x2="228" y2="42" stroke="#D8C8F5" stroke-width="1"/>
+  <text x="124" y="57" text-anchor="middle" font-size="10" fill="#444" font-family="system-ui,sans-serif">Wake alert, mind racing</text>
+  <text x="124" y="71" text-anchor="middle" font-size="10" fill="#444" font-family="system-ui,sans-serif">Can't settle for 1–2 hours</text>
+  <text x="124" y="85" text-anchor="middle" font-size="10" fill="#444" font-family="system-ui,sans-serif">Not hot or sweaty</text>
+  <text x="124" y="99" text-anchor="middle" font-size="10" fill="#8B5CF6" font-family="system-ui,sans-serif">→ GABA receptors unprotected</text>
+  <text x="124" y="113" text-anchor="middle" font-size="10" fill="#8B5CF6" font-family="system-ui,sans-serif">Progesterone support helps</text>
+  <rect x="272" y="0" width="248" height="120" rx="10" fill="#FDE8EE"/>
+  <text x="396" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#9D4E6E" font-family="system-ui,sans-serif">Night sweats waking</text>
+  <text x="396" y="34" text-anchor="middle" font-size="10" fill="#D4637A" font-family="system-ui,sans-serif">Oestrogen-driven (late perimenopause)</text>
+  <line x1="292" y1="42" x2="500" y2="42" stroke="#F5C8D5" stroke-width="1"/>
+  <text x="396" y="57" text-anchor="middle" font-size="10" fill="#444" font-family="system-ui,sans-serif">Wake drenched in sweat</text>
+  <text x="396" y="71" text-anchor="middle" font-size="10" fill="#444" font-family="system-ui,sans-serif">Strong heat sensation</text>
+  <text x="396" y="85" text-anchor="middle" font-size="10" fill="#444" font-family="system-ui,sans-serif">May need to change clothes</text>
+  <text x="396" y="99" text-anchor="middle" font-size="10" fill="#D4637A" font-family="system-ui,sans-serif">→ Hypothalamus hypersensitive</text>
+  <text x="396" y="113" text-anchor="middle" font-size="10" fill="#D4637A" font-family="system-ui,sans-serif">Oestrogen support helps most</text>
+</svg>
+</div>
+
 ### Hot Flashes and Night Sweats
 
 Hot flashes are the most recognisable marker of late perimenopause. A sudden wave of heat rises through the chest and face — often accompanied by visible flushing, sweating, and a racing heart. It lasts 1–5 minutes, then passes, sometimes followed by chills.

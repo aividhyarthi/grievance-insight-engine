@@ -24,6 +24,34 @@ At the same time — often before cycles become irregular — many women in thei
 
 If you recognise several of these together, you are likely in early perimenopause. [Take our free 3-minute symptom check →](/quiz)
 
+<div style="margin:32px 0;background:#FDF8F9;border-radius:16px;padding:20px 20px 14px">
+<p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">Hormone levels through perimenopause — the two-stage shift</p>
+<p style="margin:0 0 14px;font-size:12px;color:#888;line-height:1.5">Progesterone falls first and drives the early 40s symptoms. Oestrogen stays elevated (causing oestrogen dominance), then becomes erratic, then declines — triggering a second wave of symptoms in the late 40s.</p>
+<svg viewBox="0 0 500 158" style="width:100%;max-width:500px;display:block;overflow:visible" role="img" aria-label="Line chart showing progesterone declining steadily from the late 30s while oestrogen stays elevated then becomes erratic before declining from the mid-40s">
+  <line x1="55" y1="20" x2="55" y2="128" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="55" y1="128" x2="488" y2="128" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="50" y="24" text-anchor="end" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">High</text>
+  <text x="50" y="128" text-anchor="end" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">Low</text>
+  <text x="60" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">37</text>
+  <text x="144" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">39</text>
+  <text x="228" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">41</text>
+  <text x="312" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">43</text>
+  <text x="396" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">45</text>
+  <text x="480" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">47</text>
+  <text x="270" y="148" text-anchor="middle" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">Age</text>
+  <rect x="442" y="18" width="48" height="112" rx="4" fill="#9D4E6E" fill-opacity="0.06"/>
+  <text x="466" y="152" text-anchor="middle" font-size="8" fill="#9D4E6E" font-family="system-ui,sans-serif">Menopause</text>
+  <path d="M 60,46 C 95,52 125,57 144,62 C 178,70 208,75 228,78 C 264,86 294,91 312,95 C 350,102 380,109 396,112 C 432,116 464,119 480,120" stroke="#8B5CF6" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 60,43 C 92,40 120,34 144,38 C 168,42 198,27 228,32 C 250,36 270,54 312,47 C 336,43 360,62 396,70 C 428,77 460,86 480,91" stroke="#D4637A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <text x="162" y="90" font-size="10" fill="#8B5CF6" font-style="italic" font-family="system-ui,sans-serif">↓ Progesterone falls first</text>
+  <text x="165" y="26" font-size="10" fill="#D4637A" font-style="italic" font-family="system-ui,sans-serif">Oestrogen elevated → erratic</text>
+  <line x1="60" y1="152" x2="80" y2="152" stroke="#D4637A" stroke-width="2.5"/>
+  <text x="84" y="156" font-size="10" fill="#666" font-family="system-ui,sans-serif">Oestrogen</text>
+  <line x1="155" y1="152" x2="175" y2="152" stroke="#8B5CF6" stroke-width="2.5"/>
+  <text x="179" y="156" font-size="10" fill="#666" font-family="system-ui,sans-serif">Progesterone</text>
+</svg>
+</div>
+
 ## Why Do Periods Change in Your 40s?
 
 In your early 40s, the ovarian reserve — the supply of follicles available for ovulation — has diminished enough that ovulation becomes less reliable. Some months no egg is released at all (anovulatory cycles). When ovulation doesn't happen:
@@ -33,6 +61,37 @@ In your early 40s, the ovarian reserve — the supply of follicles available for
 - The eventual bleed is heavier, longer, and sometimes includes clots
 
 This is called oestrogen dominance. It explains why so many women in their 40s have their heaviest ever periods at a time when they expect the opposite. See [why periods get heavier in perimenopause →](/blog/heavy-periods-perimenopause-treatment) and [what blood clots mean →](/blog/blood-clots-periods-perimenopause).
+
+<div style="margin:28px 0;background:#FDF8F9;border-radius:16px;padding:20px 20px 16px">
+<p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">How one anovulatory cycle causes multiple symptoms</p>
+<p style="margin:0 0 14px;font-size:12px;color:#888;line-height:1.5">Missing progesterone isn't just about periods. It sets off a cascade that explains the sleep, mood, and cognitive changes too.</p>
+<svg viewBox="0 0 460 196" style="width:100%;max-width:460px;display:block" role="img" aria-label="Flow diagram showing how anovulatory cycle leads to no progesterone which causes three downstream effects: heavy periods, disrupted sleep and anxiety, and oestrogen dominance symptoms">
+  <rect x="145" y="4" width="170" height="30" rx="8" fill="#9D4E6E"/>
+  <text x="230" y="23" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="system-ui,sans-serif">Anovulatory cycle</text>
+  <line x1="230" y1="34" x2="230" y2="52" stroke="#9D4E6E" stroke-width="2"/>
+  <polygon points="224,49 236,49 230,56" fill="#9D4E6E"/>
+  <rect x="130" y="56" width="200" height="30" rx="8" fill="#F0E8F5"/>
+  <text x="230" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#6B3A8E" font-family="system-ui,sans-serif">No progesterone produced</text>
+  <line x1="180" y1="86" x2="75" y2="112" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="230" y1="86" x2="230" y2="112" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="280" y1="86" x2="385" y2="112" stroke="#ccc" stroke-width="1.5"/>
+  <rect x="14" y="112" width="122" height="38" rx="8" fill="#FDECEA"/>
+  <text x="75" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#B71C1C" font-family="system-ui,sans-serif">Uterine lining</text>
+  <text x="75" y="142" text-anchor="middle" font-size="10" font-weight="600" fill="#B71C1C" font-family="system-ui,sans-serif">builds unchecked</text>
+  <rect x="169" y="112" width="122" height="38" rx="8" fill="#FDECEA"/>
+  <text x="230" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#B71C1C" font-family="system-ui,sans-serif">GABA support</text>
+  <text x="230" y="142" text-anchor="middle" font-size="10" font-weight="600" fill="#B71C1C" font-family="system-ui,sans-serif">disappears</text>
+  <rect x="324" y="112" width="122" height="38" rx="8" fill="#FDECEA"/>
+  <text x="385" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#B71C1C" font-family="system-ui,sans-serif">Oestrogen acts</text>
+  <text x="385" y="142" text-anchor="middle" font-size="10" font-weight="600" fill="#B71C1C" font-family="system-ui,sans-serif">unopposed</text>
+  <text x="75" y="164" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Heavy clotty periods</text>
+  <text x="75" y="176" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Iron loss · Anaemia risk</text>
+  <text x="230" y="164" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">2–4am waking · PMS anxiety</text>
+  <text x="230" y="176" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Brain fog · Poor sleep</text>
+  <text x="385" y="164" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Breast tenderness · Bloating</text>
+  <text x="385" y="176" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Weight changes · Fluid retention</text>
+</svg>
+</div>
 
 Many women in our community have written about this exact experience. [Read: "My periods are so heavy I had to cancel work" →](/community/periods-too-heavy)
 
