@@ -3,8 +3,8 @@ title: "Perimenopause in Working Women: Signs You Are Not Imagining It"
 description: "Brain fog in meetings, anxiety before presentations, leaking through clothes at work — perimenopause in Indian working women has a specific shape. Here is what it looks like and what helps."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80"
-imageAlt: "Indian woman in professional attire sitting at a desk looking stressed and distracted"
+image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Indian woman reading health information on her phone at a work desk, looking focused and reflective"
 tags: ["working women", "perimenopause", "symptoms", "India", "brain fog", "workplace"]
 readTime: "9 min read"
 ---

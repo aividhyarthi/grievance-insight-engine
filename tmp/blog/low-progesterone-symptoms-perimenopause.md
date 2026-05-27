@@ -3,8 +3,8 @@ title: "Low Progesterone Symptoms in Perimenopause: What It Feels Like"
 description: "Progesterone is the first hormone to fall in perimenopause — and its symptoms are almost always mistaken for anxiety, depression, or stress. Here's how to recognise them."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1601986313624-28c5bf94ae71?w=1200&q=80"
-imageAlt: "Indian woman lying awake in the early morning, looking at the ceiling"
+image: "https://images.unsplash.com/photo-1614852207246-1df3db5b7c4f?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Indian woman awake and reflective in the early morning hours, representing the sleep disruption of low progesterone"
 tags: ["progesterone", "symptoms", "hormones", "sleep", "perimenopause"]
 readTime: "8 min read"
 ---
@@ -69,21 +69,16 @@ Breast tenderness before the period, which has become more pronounced or starts 
 
 These two patterns feel different and typically occur at different stages of perimenopause:
 
-**Low progesterone symptoms** (earlier in perimenopause, from the early 40s or late 30s):
-- Heavy periods, clots
-- Worse PMS and premenstrual anxiety
-- Early morning waking
-- Fluid retention, breast tenderness
-- Mid-cycle spotting
+| | Low Progesterone | Low Oestrogen |
+|---|---|---|
+| **When it occurs** | Earlier — late 30s to mid-40s | Later — mid-40s to menopause |
+| **Periods** | Heavy, clotty, prolonged | Irregular, then infrequent |
+| **Sleep** | 2–4am waking, mind won't quiet | Woken by night sweats, heat |
+| **Mood** | Premenstrual anxiety, irritability | Low mood, depression risk |
+| **Physical** | Breast tenderness, bloating, spotting | Hot flashes, vaginal dryness, joint aches |
+| **Long-term** | Oestrogen dominance | Bone density, cardiovascular changes |
 
-**Low oestrogen symptoms** (more typical of later perimenopause and menopause):
-- Hot flashes and night sweats
-- Vaginal dryness
-- Bone density loss
-- Cognitive changes (separate from brain fog of early perimenopause)
-- Urinary symptoms
-
-Many women experience both as perimenopause progresses. See [oestrogen vs progesterone in perimenopause →](/blog/oestrogen-vs-progesterone-perimenopause) | [what does progesterone do →](/blog/what-does-progesterone-do-perimenopause)
+Many women experience both simultaneously as perimenopause progresses. See [oestrogen vs progesterone in perimenopause →](/blog/oestrogen-vs-progesterone-perimenopause) | [late perimenopause symptoms at 45–50 →](/blog/perimenopause-symptoms-45-50)
 
 ## How Is Low Progesterone Confirmed?
 

@@ -3,8 +3,8 @@ title: "Anovulation and Perimenopause: What Is the Link?"
 description: "Anovulatory cycles — where you bleed but don't ovulate — are at the root of most perimenopausal symptoms. Here is exactly how they work and why they matter."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80"
-imageAlt: "Indian woman looking thoughtful while reviewing health information on her phone"
+image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Indian woman looking thoughtful while reviewing health information on a tablet"
 tags: ["anovulation", "perimenopause", "hormones", "heavy periods", "progesterone"]
 readTime: "9 min read"
 ---
@@ -25,6 +25,15 @@ In a typical ovulatory cycle, here is the sequence:
 
 In an anovulatory cycle, step 3 doesn't happen. Oestrogen may still rise. But without ovulation, there is no corpus luteum, and therefore **no progesterone is produced**. The uterine lining builds up under oestrogen's influence and eventually sheds — but without the regulatory influence of progesterone, the shed is often heavy, irregular, and incomplete.
 
+| | Ovulatory Cycle | Anovulatory Cycle |
+|---|---|---|
+| **Ovulation** | Egg released | No egg released |
+| **Corpus luteum** | Forms after ovulation | Not formed |
+| **Progesterone** | Produced for 10–14 days | Not produced |
+| **Uterine lining** | Regulated, complete shed | Unchecked build-up, irregular shed |
+| **Period** | Controlled flow, predictable | Heavy, clotty, variable |
+| **Other effects** | GABA support, sleep, mood stability | Poor sleep, premenstrual anxiety |
+
 ## What Is the Link Between Anovulation and Perimenopause?
 
 Anovulation becomes increasingly common as women approach menopause. This is directly related to ovarian ageing.
@@ -33,7 +42,7 @@ The ovaries contain a finite number of follicles — the structures that contain
 
 The result: as the ovarian reserve declines, the brain has to work harder (producing more FSH) to stimulate follicle growth. Some cycles, follicle growth begins but does not complete successfully. Ovulation does not occur. A bleed happens anyway, but it is an anovulatory bleed.
 
-In the mid-30s, anovulatory cycles occur perhaps 1–2 times per year. By the early 40s, they may occur several times per year. By late perimenopause, the majority of cycles may be anovulatory. This progressive increase in anovulation is the engine of the perimenopausal transition.
+As the ovarian reserve declines, anovulatory cycles become progressively more frequent — occasional in the late 30s, more common in the early 40s, and eventually the majority of cycles in late perimenopause. This progressive increase in anovulation is the engine of the perimenopausal transition.
 
 See [what is perimenopause →](/blog/what-is-perimenopause) for the broader picture of the hormonal transition.
 

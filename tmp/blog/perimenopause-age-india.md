@@ -3,8 +3,8 @@ title: "Perimenopause Age in India: What Is Different and Why It Matters"
 description: "Indian women reach menopause at 46–47 on average — 4 to 5 years earlier than the global average. This changes everything about when symptoms start and what tests to expect."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1604335398980-ededef2fa8a5?w=1200&q=80"
-imageAlt: "Group of Indian women of different ages in conversation at an outdoor gathering"
+image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=630&fit=crop&q=80"
+imageAlt: "Group of Indian women of different ages in conversation, representing perimenopause across generations"
 tags: ["perimenopause", "India", "age", "menopause", "hormones"]
 readTime: "9 min read"
 ---
@@ -15,10 +15,12 @@ Indian women reach menopause at an average age of 46–47 years — four to five
 
 Multiple Indian studies — including those from AIIMS Delhi, the ICMR, and regional population surveys — consistently place the average age of natural menopause in India at **46–47 years**.
 
-This compares to:
-- Global average: approximately 51–52 years
-- Western European average: approximately 51–52 years
-- North American average: approximately 51–52 years
+| Population | Average menopause age | Perimenopause typically begins |
+|---|---|---|
+| **India** | **46–47 years** | **37–43** |
+| Global average | 51–52 years | 42–48 |
+| Western Europe | 51–52 years | 42–48 |
+| North America | 51–52 years | 42–48 |
 
 Indian women reach menopause 4–5 years earlier than the global reference point used in most clinical guidelines and patient education materials. This matters because almost all information about perimenopause — from NHS guidelines to global menopause societies — is written with the global average in mind.
 

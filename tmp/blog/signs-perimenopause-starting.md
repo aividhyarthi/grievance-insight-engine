@@ -3,13 +3,24 @@ title: "Signs Perimenopause Is Starting: 8 Early Signals to Know"
 description: "The first signs of perimenopause arrive years before hot flashes. Here are the eight signals that the hormonal transition has begun — and what to do about them."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman standing near a window with soft morning light on her face"
 tags: ["signs", "symptoms", "perimenopause", "early perimenopause", "starting"]
 readTime: "8 min read"
 ---
 
 Perimenopause starts quietly. The first signs appear years before hot flashes — often before any cycle irregularity — and they are almost always attributed to something else: stress, thyroid, anaemia, or getting older. Knowing what to look for is the difference between years of confusion and actually understanding what your body is going through.
+
+| Sign | What it feels like | What's driving it |
+|---|---|---|
+| Cycle shortening | 28-day cycle becomes 24–25 days | Shorter luteal phase, less progesterone |
+| Worse PMS | Intense irritability, anxiety, tearfulness pre-period | Allopregnanolone (progesterone metabolite) falling |
+| 2–4am waking | Alert mind in early hours, can't return to sleep | Progesterone's GABA support disappearing |
+| New anxiety | Racing heart, sudden dread, correlates with cycle | Progesterone and oestrogen fluctuations |
+| Heavier periods | More blood, clots, longer duration | Anovulatory cycles, no progesterone to regulate lining |
+| Breast tenderness | Earlier in cycle, more pronounced | Oestrogen surging without progesterone balance |
+| Brain fog | Word retrieval problems, losing thoughts mid-sentence | Oestrogen fluctuations affecting brain function |
+| Early hot flashes | Waves of warmth, flushing — occasional at first | Oestrogen beginning to fluctuate erratically |
 
 ## What Are the First Signs That Perimenopause Is Starting?
 

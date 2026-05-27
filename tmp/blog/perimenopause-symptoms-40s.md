@@ -3,7 +3,7 @@ title: "Perimenopause Symptoms in Your 40s: What to Expect at Age 40–45"
 description: "Most Indian women enter perimenopause between 40 and 45. Here are the specific symptoms to watch for at this age — and why they happen."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman in her 40s sitting by a window, looking thoughtful"
 tags: ["symptoms", "perimenopause", "40s", "hormones", "periods"]
 readTime: "9 min read"

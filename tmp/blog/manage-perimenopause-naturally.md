@@ -3,7 +3,7 @@ title: "How to Manage Perimenopause Naturally: A Complete Guide"
 description: "Lifestyle changes for perimenopause that are backed by evidence — sleep, nutrition, movement, stress, and supplements — with practical guidance for Indian women."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman doing yoga outdoors in early morning light"
 tags: ["natural", "lifestyle", "perimenopause", "nutrition", "sleep", "stress", "management"]
 readTime: "12 min read"

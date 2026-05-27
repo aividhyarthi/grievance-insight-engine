@@ -3,13 +3,21 @@ title: "When Should I See a Doctor About Perimenopause?"
 description: "At 29, 35, or 42 — when do perimenopausal symptoms warrant a gynaecologist appointment? Here is exactly when to go, what to ask, and what tests to request."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman speaking with a female doctor in a clinic"
 tags: ["perimenopause", "doctor", "gynaecologist", "symptoms", "diagnosis"]
 readTime: "9 min read"
 ---
 
 You should see a gynaecologist if your symptoms are affecting your sleep, your work, your relationships, or your sense of yourself — regardless of your age. You do not need to have hot flashes or irregular cycles first. You do not need to wait until the symptoms are "bad enough." If perimenopause symptoms are disrupting your daily life, a gynaecologist can help. The question is not whether to go, but what to ask when you get there.
+
+| Age | What to watch for | How urgently |
+|---|---|---|
+| **Under 30** | Missed periods, hot flashes, vaginal dryness — this is POI, not perimenopause | Within weeks |
+| **30–35** | Heavy periods, worsening PMS, new sleep disruption | Within 1–2 months |
+| **35–39** | Progressive changes in periods, PMS, sleep, anxiety correlating with cycle | When symptoms are affecting daily life |
+| **40–45** | Any symptoms affecting functioning; flooding or anaemia symptoms | Urgently for flooding/anaemia; otherwise when convenient |
+| **45+** | Hot flashes, irregular cycles, vaginal dryness, mood changes | When symptoms are affecting quality of life |
 
 ## When Should You See a Doctor at Different Ages?
 
@@ -26,7 +34,7 @@ See a gynaecologist promptly — within weeks, not months — if you are under 3
 
 POI affects approximately 1 in 1,000 women under 30, and early diagnosis changes long-term health outcomes — particularly for bone density and cardiovascular health, which require oestrogen protection. Do not wait to be referred; ask for a gynaecologist specifically.
 
-[Read about perimenopause in your 20s — what is actually happening →](/blog/perimenopause-in-your-20s)
+[Read about late perimenopause at 45–50 →](/blog/perimenopause-symptoms-45-50)
 
 ### If You Are 30–35
 
@@ -110,7 +118,7 @@ When you see a gynaecologist about possible perimenopausal symptoms, ask specifi
 
 **For hormonal assessment:**
 - **Day 21 progesterone** (or 7 days post-ovulation): The most informative test for early perimenopause — confirms whether ovulation is occurring and whether progesterone is being produced
-- **FSH and LH**: Ovarian function markers. Elevated FSH (particularly above 10 IU/L consistently in your 40s, or above 40 IU/L under 40) indicates declining ovarian function
+- **FSH and LH**: Ovarian function markers. FSH rises as perimenopause advances — levels above the normal follicular phase range (typically rising above 10–12 mIU/mL) suggest declining ovarian reserve in your 40s; FSH consistently above 40 mIU/mL on two tests four weeks apart, in a woman under 40, indicates premature ovarian insufficiency. Note that FSH fluctuates widely — a single "normal" reading does not exclude perimenopause
 - **Oestradiol**: Oestrogen level; may be normal or erratic in early perimenopause
 - **AMH (anti-Müllerian hormone)**: A measure of ovarian reserve; very low AMH indicates few remaining follicles
 
