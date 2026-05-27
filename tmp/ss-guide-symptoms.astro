@@ -4,182 +4,231 @@ import Layout from '../../layouts/Layout.astro';
 const symptoms = [
   {
     slug: 'mood-swings',
-    name: 'Mood swings & irritability',
+    name: 'Mood Swings & Irritability',
     emoji: '🌊',
-    feel: 'Sudden waves of frustration, tearfulness, or rage that feel disproportionate to the situation. You might snap at family members and then feel guilty, or swing from contentment to sadness within hours.',
-    why: 'Oestrogen directly influences serotonin and dopamine — the "feel-good" neurotransmitters. As oestrogen fluctuates unpredictably during perimenopause, so do your brain chemistry and emotional regulation. Progesterone, which has a calming effect, also declines, reducing your natural buffer against stress.',
+    feel: 'Sudden waves of frustration, tearfulness, or rage that feel disproportionate to the situation. You might snap at family members and then feel guilty, or swing from contentment to sadness within hours. Many women describe feeling like a completely different person.',
+    why: 'Oestrogen directly influences serotonin and dopamine — the "feel-good" neurotransmitters. As oestrogen fluctuates unpredictably during perimenopause, so does your brain chemistry and emotional regulation. Progesterone, which has a calming, anti-anxiety effect, also declines — removing a key buffer against stress.',
     help: [
       'Track mood changes against your cycle to spot patterns',
       'Regular moderate exercise (even a 30-minute walk) significantly stabilises mood',
       'Reduce caffeine and alcohol, which amplify hormonal mood swings',
-      'Speak to your doctor if mood changes are severe — therapy and, in some cases, HRT can help',
+      'Speak to your doctor if mood changes are severe — therapy and HRT can both help',
     ],
   },
   {
     slug: 'sleep-problems',
-    name: 'Sleep disturbance',
+    name: 'Sleep Disturbance & Insomnia',
     emoji: '🌙',
-    feel: 'Difficulty falling asleep, waking at 2–4am with a racing mind, or waking drenched in sweat. Many women feel exhausted but unable to sleep deeply.',
-    why: 'Falling oestrogen disrupts the regulation of your body temperature and sleep architecture. Progesterone has sleep-promoting properties, so its decline makes deep sleep harder to achieve. Night sweats — caused by hot flashes during sleep — compound the problem by physically waking you.',
+    feel: 'Difficulty falling asleep, waking at 2–4am with a racing mind, or waking drenched in sweat. Many women feel exhausted all day but still cannot sleep deeply at night. The cumulative effect — weeks and months of broken sleep — affects memory, mood, weight, and concentration.',
+    why: 'Progesterone has natural sleep-promoting properties — its decline makes sleep lighter and more fragmented. Falling oestrogen makes the hypothalamus (your brain\'s thermostat) unstable, triggering hot flashes that physically wake you at night. Cortisol rhythm also shifts, causing the characteristic 3–4am waking with a racing mind.',
     help: [
-      'Keep your bedroom cool (18–20°C if possible)',
-      'Avoid screens for an hour before bed',
-      'Limit alcohol — it fragments sleep and worsens night sweats',
-      'Magnesium glycinate before bed may support sleep quality',
-      'Ask your doctor about options if sleep deprivation is affecting your daily life',
+      'Keep your bedroom below 20°C — this alone significantly reduces night sweats',
+      'No screens for 45–60 minutes before bed — blue light suppresses melatonin',
+      'Avoid alcohol in the evening — it fragments sleep even if it initially makes you drowsy',
+      'Magnesium glycinate before bed has evidence for improving perimenopause sleep',
+      'Ask your doctor about progesterone therapy or HRT — these treat the hormonal cause directly',
     ],
   },
   {
     slug: 'hot-flashes',
-    name: 'Hot flashes & night sweats',
+    name: 'Hot Flashes & Night Sweats',
     emoji: '🔥',
-    feel: 'A sudden wave of intense heat spreading across the chest, neck, and face, often followed by sweating and then a chill. Can last 30 seconds to several minutes. Night sweats are the same process occurring during sleep.',
-    why: 'The hypothalamus — your brain\'s thermostat — becomes hypersensitive to small changes in body temperature as oestrogen falls. It overreacts by triggering a "cooling response" — heat dissipation, sweating — even when your core temperature hasn\'t truly risen.',
+    feel: 'A sudden wave of intense heat spreading across the chest, neck, and face. Often followed by visible flushing, sweating, and then a chill. Can last 30 seconds to several minutes. Night sweats are the same process occurring during sleep, often waking you completely.',
+    why: 'The hypothalamus — your brain\'s internal thermostat — depends on oestrogen to function within a stable "thermoneutral zone." As oestrogen falls and fluctuates, this zone narrows dramatically. Tiny rises in body temperature now trigger an emergency cooling response: blood vessels dilate, sweat glands activate.',
     help: [
-      'Wear lightweight, breathable fabrics (cotton, linen) — avoid synthetic materials',
-      'Carry a small handheld fan',
-      'Avoid common triggers: spicy food, hot drinks, alcohol, stress',
-      'Practice slow, deep breathing at the onset of a flash',
-      'HRT is the most effective treatment — discuss it with your gynaecologist',
+      'Wear lightweight, breathable cotton or linen — avoid synthetic fabrics that trap heat',
+      'Carry a small handheld fan; keep one by your bed',
+      'Identify your triggers: spicy food, hot drinks, alcohol, and stress all commonly trigger flashes',
+      'Practice slow, deep breathing at the onset — this activates the parasympathetic nervous system',
+      'HRT is the most effective treatment — most women see 50–90% reduction in frequency',
     ],
   },
   {
     slug: 'brain-fog',
-    name: 'Brain fog & memory changes',
+    name: 'Brain Fog & Memory Changes',
     emoji: '🌫️',
-    feel: 'Forgetting words mid-sentence, struggling to concentrate, losing your train of thought, feeling mentally slow or "woolly." Many women worry they are developing dementia.',
-    why: 'Oestrogen supports neurological function, including memory consolidation and verbal fluency. Its fluctuation disrupts these processes. Poor sleep — itself a perimenopausal symptom — makes cognitive function significantly worse, creating a compounding effect.',
+    feel: 'Forgetting words mid-sentence, losing your train of thought, walking into a room and forgetting why, struggling to concentrate on things that used to be easy. Many women describe feeling mentally "woolly" or slow. The fear of dementia is common — and usually unfounded.',
+    why: 'Oestrogen supports brain blood flow, promotes neuron health, regulates acetylcholine (essential for memory), and reduces neurological inflammation. As oestrogen fluctuates during perimenopause, all of these processes become less stable. Poor sleep — itself a perimenopausal symptom — compounds cognitive decline significantly.',
     help: [
-      'Prioritise sleep above all else — cognitive symptoms often improve with better rest',
-      'Omega-3 fatty acids (oily fish, flaxseed, walnuts) support brain health',
-      'Regular exercise increases blood flow to the brain',
-      'Note that this is typically temporary and not a sign of dementia',
-      'Use lists, reminders, and apps without shame — this is a coping strategy, not a failure',
+      'Prioritise sleep above almost everything else — cognitive symptoms often improve dramatically with better rest',
+      'Regular aerobic exercise increases blood flow to the brain and has direct cognitive benefits',
+      'Omega-3 fatty acids support brain health — oily fish, walnuts, flaxseed (alsi)',
+      'Use lists, reminders, and apps without shame — these are practical tools, not signs of failure',
+      'Reassure yourself: this is typically temporary and hormonally driven, not permanent decline',
     ],
   },
   {
     slug: 'irregular-periods',
-    name: 'Irregular periods',
+    name: 'Irregular Periods',
     emoji: '📅',
-    feel: 'Periods that come earlier or later than expected, are heavier or lighter than usual, last longer or shorter, or that simply skip months. For many women, this irregularity is one of the first signs perimenopause has begun.',
-    why: 'As the ovaries produce less oestrogen and progesterone, ovulation becomes less predictable. Without regular ovulation, the hormonal signals that trigger menstruation become inconsistent — leading to cycles that are shorter, longer, heavier, or absent.',
+    feel: 'Periods arriving earlier or later than expected. Cycles that become unpredictably shorter or longer. Bleeding that is heavier than before — with large clots — or lighter and briefer. Months where your period simply does not arrive. For many Indian women, this irregularity is the first unmistakable sign something has changed.',
+    why: 'Regular periods depend on a precisely timed hormonal sequence. During perimenopause, the ovaries respond less reliably to FSH. Ovulation becomes irregular or absent. Without consistent ovulation, the hormonal sequence breaks down — producing cycles that are shorter, longer, heavier (oestrogen dominance without progesterone), or absent.',
     help: [
-      'Track your periods in an app (Clue, Flo, or a simple calendar)',
-      'Heavy bleeding that soaks through a pad/tampon in under an hour warrants a doctor\'s visit',
-      'Unexpected bleeding after 12 months of no periods should always be investigated',
+      'Track your cycles in an app (Clue, Flo) or simple calendar — patterns help your doctor assess you',
+      'Heavy bleeding soaking a pad in under an hour for several hours warrants a doctor\'s visit',
+      'Any bleeding after 12 months without a period must always be investigated promptly',
       'You can still become pregnant during perimenopause — contraception may still be needed',
     ],
   },
   {
     slug: 'anxiety',
-    name: 'Anxiety & low mood',
+    name: 'Anxiety & Low Mood',
     emoji: '💧',
-    feel: 'A persistent low-grade anxiety, feelings of dread or worry that feel disproportionate, or a low mood that doesn\'t lift. Some women experience their first-ever panic attacks during perimenopause.',
-    why: 'Oestrogen modulates the activity of GABA, your brain\'s main calming neurotransmitter, as well as serotonin. As oestrogen falls, the brain becomes more reactive to stress signals. Progesterone metabolises into allopregnanolone — a natural anti-anxiety compound — so its decline reduces this buffer.',
+    feel: 'A persistent low-grade anxiety that was simply not there before — often described as a constant feeling something bad is about to happen, with no clear cause. Some women experience their first-ever panic attacks in their 40s. Others notice a quieter but persistent low mood — a flatness, loss of motivation, or loss of joy in things that used to matter.',
+    why: 'Oestrogen modulates GABA — your brain\'s primary calming neurotransmitter — as well as serotonin. As oestrogen fluctuates, the brain becomes more reactive to stress signals. Progesterone metabolises into allopregnanolone, a powerful natural anti-anxiety compound — its decline removes this buffer. Sleep deprivation compounds anxiety dramatically.',
     help: [
-      'Regular exercise is one of the most evidence-based interventions for anxiety',
-      'Mindfulness, yoga, and breathwork can meaningfully reduce anxiety symptoms',
-      'Limit caffeine, which amplifies anxiety',
-      'Speak to your doctor — this is a medical symptom, not a character weakness',
-      'CBT (cognitive behavioural therapy) is highly effective and available in India',
+      'Regular exercise — walking, yoga, or swimming — is one of the most evidence-based interventions for anxiety',
+      'Reduce caffeine, which amplifies the physiological anxiety response',
+      'Mindfulness, yoga nidra, and breathwork activate the parasympathetic nervous system',
+      'Speak to your doctor — this is a medical symptom. HRT, progesterone therapy, and CBT are all evidence-based options',
+      'Mental health support: iCall 9152987821 (Mon–Sat, 8am–10pm)',
     ],
   },
   {
     slug: 'joint-pain',
-    name: 'Joint pain & fatigue',
+    name: 'Joint Pain & Fatigue',
     emoji: '🦴',
-    feel: 'Stiffness and aching in the hips, knees, fingers, or shoulders — often worse in the morning. A bone-deep tiredness that doesn\'t improve with rest. Many women describe feeling "like an older version of themselves" overnight.',
-    why: 'Oestrogen has anti-inflammatory properties and supports cartilage and joint fluid. Its decline can trigger inflammation, stiffness, and aching. Fatigue is driven by a combination of poor sleep, the metabolic demands of hormonal transition, and mood changes.',
+    feel: 'Stiffness and aching in the hips, knees, fingers, shoulders, or lower back — often worst in the morning and improving through the day. A bone-deep tiredness that does not improve with rest or sleep. Many women describe feeling like they have aged 10 years overnight.',
+    why: 'Oestrogen has significant anti-inflammatory properties and supports cartilage health and joint lubrication. As it declines, inflammatory markers rise and joints lose protection. Fatigue has multiple overlapping causes: poor sleep from hormonal disruption, thyroid changes (very common in Indian women), iron deficiency from heavy periods, and vitamin D deficiency.',
     help: [
-      'Gentle, regular movement keeps joints supple — walking, swimming, yoga',
-      'Anti-inflammatory foods: turmeric, ginger, leafy greens, oily fish',
-      'Warm baths or compresses for joint stiffness in the morning',
-      'Rule out thyroid issues, anaemia, and vitamin D deficiency with your doctor',
-      'Resistance training helps preserve muscle mass and supports joints',
+      'Gentle daily movement keeps joints supple — walking, swimming, yoga, cycling',
+      'Anti-inflammatory foods: turmeric with black pepper, ginger, leafy greens, oily fish',
+      'Ask your doctor to check thyroid, ferritin (iron stores), vitamin D, and B12 — all commonly deficient in Indian women',
+      'Strength training 2–3 times a week preserves muscle and significantly supports joint health',
     ],
   },
   {
     slug: 'low-libido',
-    name: 'Changes in libido',
+    name: 'Changes in Libido & Vaginal Changes',
     emoji: '🌸',
-    feel: 'Reduced interest in sex, reduced arousal, or discomfort during sex due to vaginal dryness. This is an extremely common perimenopausal symptom that rarely gets discussed, particularly in Indian contexts.',
-    why: 'Oestrogen maintains the thickness, lubrication, and elasticity of vaginal tissue. As levels fall, tissues can become thinner and drier — a condition called genitourinary syndrome of menopause (GSM). Testosterone, which also declines, plays a key role in sexual desire. Fatigue, mood, and relationship stress further reduce libido.',
+    feel: 'A significant reduction in sexual interest or desire — sometimes disappearing almost entirely. Vaginal dryness that makes daily life uncomfortable, not just intimacy. Pain or discomfort during sex. Reduced arousal and physical sensation. Many Indian women suffer these symptoms in complete silence, believing them to be a natural consequence of ageing.',
+    why: 'Oestrogen maintains the thickness, elasticity, and lubrication of vaginal tissue. As it falls, these tissues thin and dry — genitourinary syndrome of menopause (GSM). Testosterone, which also declines during perimenopause, plays a significant role in sexual desire in women. Fatigue and mood changes further suppress desire.',
     help: [
-      'Non-hormonal vaginal moisturisers and lubricants (use regularly, not just during sex)',
-      'Topical vaginal oestrogen is safe, effective, and has minimal systemic absorption',
-      'Open communication with a partner can reduce anxiety and pressure',
-      'Physical intimacy doesn\'t have to mean penetrative sex — explore what feels comfortable',
-      'Discuss with your gynaecologist — this is a medical issue, not something to simply endure',
+      'Non-hormonal vaginal moisturisers used regularly (not just during sex) maintain tissue hydration — available at Indian pharmacies',
+      'Lubricants during sex reduce discomfort significantly',
+      'Topical vaginal oestrogen is highly effective, safe, and has minimal systemic absorption — available in India',
+      'Discuss testosterone therapy with a menopause-specialist gynaecologist if libido is severely affected',
     ],
   },
   {
     slug: 'skin-hair',
-    name: 'Skin & hair changes',
+    name: 'Skin & Hair Changes',
     emoji: '✨',
-    feel: 'Skin that feels drier, thinner, or more prone to breakouts. Hair that sheds more than usual, feels finer, or loses its shine. Nails that become brittle. Some women notice more facial hair (often on the chin or upper lip).',
-    why: 'Oestrogen stimulates collagen production — its decline reduces skin thickness and moisture-retention capacity. Hair follicles are also oestrogen-sensitive, and falling levels can trigger diffuse hair thinning. The relative increase in androgens (male hormones) as oestrogen falls can cause facial hair growth and acne.',
+    feel: 'Skin that feels drier, thinner, or more prone to breakouts. A visible loss of glow or firmness. Hair that sheds more than usual, feels finer, or grows more slowly. Nails that become brittle. Some women also notice new facial hair on the chin or jawline.',
+    why: 'Oestrogen stimulates collagen production — the protein that gives skin its firmness, thickness, and moisture-retention capacity. Women lose approximately 30% of skin collagen in the years following menopause, a process that begins in perimenopause. Hair follicles are oestrogen-sensitive; falling levels cause diffuse thinning. The relative rise in androgens can trigger acne and facial hair.',
     help: [
       'Moisturise face and body daily with richer formulations than before',
-      'SPF every day — skin becomes more sun-sensitive',
-      'Collagen-supporting nutrients: vitamin C, protein, zinc',
-      'Be gentle with hair — avoid tight styles, excessive heat, harsh chemicals',
-      'A dermatologist can advise on topical treatments for specific concerns',
+      'SPF every morning — skin becomes more sun-sensitive and collagen breakdown accelerates with UV',
+      'Eat adequate protein at every meal — collagen is built from amino acids',
+      'Be gentle with hair — avoid tight styles, excessive heat tools, and harsh chemical treatments',
     ],
   },
   {
     slug: 'heart-palpitations',
-    name: 'Heart palpitations',
+    name: 'Heart Palpitations',
     emoji: '💓',
-    feel: 'A sudden awareness of your heartbeat — fluttering, skipping, racing, or pounding — often at rest or at night. Unsettling and sometimes frightening, though usually not dangerous in the context of perimenopause.',
-    why: 'Oestrogen helps regulate the autonomic nervous system, which controls heart rate. As oestrogen fluctuates, the heart\'s electrical activity can become temporarily erratic. Hot flashes often trigger palpitations as the cardiovascular system responds to the rapid temperature change.',
+    feel: 'A sudden awareness of your heartbeat — fluttering, skipping, racing, or pounding — often at rest, at night, or immediately after a hot flash. The sensation can be frightening, particularly if you have never experienced it before. Most perimenopausal palpitations are brief, benign, and directly linked to hormonal fluctuation.',
+    why: 'Oestrogen keeps blood vessels flexible, regulates the autonomic nervous system, and has a stabilising effect on cardiac rhythm. As oestrogen fluctuates, the autonomic nervous system becomes less stable — producing temporary changes in heart rate. Hot flashes often directly trigger palpitations via rapid vasodilation.',
     help: [
       'If palpitations are frequent, prolonged, or accompanied by chest pain or breathlessness — see a doctor promptly',
-      'Reduce caffeine and alcohol',
-      'Manage hot flashes — treating these often reduces associated palpitations',
-      'Stress reduction techniques support heart rate variability',
-      'An ECG can rule out any cardiac cause and give you peace of mind',
+      'In an emergency, call 112',
+      'Reduce caffeine and alcohol — both can trigger and worsen palpitations',
+      'Treating hot flashes often reduces associated palpitations significantly',
+      'An ECG is a simple test that rules out cardiac causes and gives peace of mind',
     ],
+  },
+];
+
+const pageFaqs = [
+  {
+    q: 'What are the most common symptoms of perimenopause?',
+    a: 'The most common perimenopause symptoms are irregular periods, hot flashes, night sweats, sleep disturbance (especially waking at 3–4am), mood swings, irritability, brain fog, memory changes, joint pain, fatigue, anxiety, low libido, and skin and hair changes. Most women experience several simultaneously. In Indian women, mood changes and sleep disruption are often the first symptoms noticed — sometimes years before periods become irregular.',
+  },
+  {
+    q: 'At what age do perimenopause symptoms start in Indian women?',
+    a: 'Most Indian women begin experiencing perimenopause symptoms between the ages of 38 and 45. The average age of menopause in India is 46–47 — slightly earlier than the global average of 51. Symptoms can begin up to 10 years before the final period, meaning some women in their late 30s are already in early perimenopause.',
+  },
+  {
+    q: 'How many symptoms does perimenopause cause?',
+    a: 'Perimenopause is associated with over 34 recognised symptoms. Most women experience several simultaneously. The symptoms arise because oestrogen and progesterone don\'t just regulate the reproductive system — they influence the brain, bones, heart, skin, sleep, and mood. When these hormones begin to fluctuate and gradually fall, the effects can be felt almost everywhere in the body.',
+  },
+  {
+    q: 'Can perimenopause symptoms start before periods become irregular?',
+    a: 'Yes — very commonly. Sleep disruption, mood changes, anxiety, and brain fog often appear 2–5 years before periods change. This is because progesterone (which governs mood and sleep) begins to fall before oestrogen does. Many women are told they\'re "not in perimenopause yet" because their periods are still regular — but this is not accurate. Symptom history matters more than cycle regularity in early perimenopause.',
+  },
+  {
+    q: 'How is perimenopause diagnosed in India?',
+    a: 'Perimenopause is primarily a clinical diagnosis — based on your age, your symptom pattern, and your menstrual history. Blood tests (FSH, oestradiol) can be checked but are unreliable in early perimenopause because hormone levels fluctuate widely day to day. A symptom diary and a consultation with a gynaecologist who is familiar with perimenopause are the most useful first steps.',
   },
 ];
 ---
 
 <Layout
-  title="Symptom Library – The Second Spring"
-  description="Every perimenopause symptom clearly explained — what it feels like, why it happens hormonally, and what might help. Designed for Indian women."
+  title="Perimenopause Symptoms: Complete Guide for Indian Women | The Second Spring"
+  description="34 perimenopause symptoms explained clearly — what each feels like, why it happens hormonally, and what actually helps. For Indian women aged 35–55."
 >
+
+  <!-- FAQ schema for Google & LLMs -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": pageFaqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  })} />
 
   <section class="page-hero">
     <div class="container">
       <div class="page-hero-inner">
-        <div class="page-eyebrow">🔍 Guide</div>
-        <h1>Symptom Library</h1>
-        <p>Every perimenopause symptom, clearly explained — what it is, why it happens, and what might help.</p>
+        <div class="page-eyebrow">🔍 Symptom Guide</div>
+        <h1>Perimenopause Symptoms</h1>
+        <p class="hero-sub">What each symptom feels like, why it happens, and what actually helps — for Indian women</p>
       </div>
     </div>
   </section>
 
-  <!-- Intro -->
+  <!-- Direct answer block (LLM-optimised) -->
   <section class="section-sm bg-white">
     <div class="container">
-      <div class="intro-layout">
-        <p class="body-text">
-          Perimenopause can produce more than 34 recognised symptoms — and yet most women are never told this. The symptoms arise because oestrogen and progesterone don't just regulate your reproductive system; they influence your brain, your bones, your skin, your sleep, your heart, and your mood. When these hormones begin to fluctuate and gradually fall, the effects can be felt almost everywhere.
-        </p>
-        <p class="body-text">
-          Below you'll find the 10 most commonly reported symptoms, each explained in plain language. Understanding <em>why</em> a symptom is happening is often the first step toward finding relief — and toward having a more productive conversation with your doctor.
-        </p>
+      <div class="answer-wrap">
+
+        <div class="answer-block">
+          <h2>What are the symptoms of perimenopause?</h2>
+          <p>
+            Perimenopause causes over <strong>34 recognised symptoms</strong> because oestrogen and progesterone don't just regulate the reproductive system — they influence the brain, heart, bones, skin, sleep, and mood. When these hormones begin to fluctuate in your late 30s or 40s, the effects can be felt almost everywhere. Most Indian women start noticing symptoms between <strong>ages 38 and 45</strong> — often years before periods become irregular.
+          </p>
+          <p>
+            The 10 most commonly reported symptoms are listed below, each explained in plain language. Understanding <em>why</em> a symptom is happening is often the first step toward finding relief.
+          </p>
+        </div>
+
+        <nav class="sym-quicknav" aria-label="Jump to symptom">
+          <p class="sqn-label">Jump to a symptom:</p>
+          <ul class="sqn-list">
+            {symptoms.map(s => (
+              <li>
+                <a href={`#${s.slug}`} class="sqn-link">
+                  <span aria-hidden="true">{s.emoji}</span> {s.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
       </div>
     </div>
   </section>
 
-  <!-- Symptom grid -->
+  <!-- Symptom cards -->
   <section class="section bg-cream">
     <div class="container">
       <div class="symptoms-grid">
         {symptoms.map((s) => (
-          <div class="symptom-card">
+          <article class="symptom-card" id={s.slug}>
             <div class="symptom-card-top">
-              <span class="symptom-emoji">{s.emoji}</span>
+              <span class="symptom-emoji" aria-hidden="true">{s.emoji}</span>
               <h2 class="symptom-name">{s.name}</h2>
             </div>
 
@@ -188,7 +237,7 @@ const symptoms = [
               <p class="symptom-text">{s.feel}</p>
             </div>
 
-            <div class="symptom-section">
+            <div class="symptom-section symptom-why">
               <h3 class="symptom-label">Why it happens</h3>
               <p class="symptom-text">{s.why}</p>
             </div>
@@ -204,22 +253,41 @@ const symptoms = [
 
             <div class="symptom-card-footer">
               <a href={`/guide/symptoms/${s.slug}`} class="symptom-read-more">
-                Read full guide →
+                Full guide: {s.name} →
               </a>
+              <a href="/chat" class="symptom-ask">Ask about this →</a>
             </div>
-          </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ section -->
+  <section class="section bg-white">
+    <div class="container faq-container">
+      <h2 class="faq-heading">Common questions about perimenopause symptoms</h2>
+      <div class="faq-list">
+        {pageFaqs.map((faq, i) => (
+          <details class="faq-item" open={i === 0}>
+            <summary class="faq-q">
+              <span>{faq.q}</span>
+              <svg class="faq-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-a">{faq.a}</p>
+          </details>
         ))}
       </div>
     </div>
   </section>
 
   <!-- Disclaimer -->
-  <section class="section-sm bg-white">
+  <section class="section-sm bg-white" style="padding-top:0">
     <div class="container">
       <div class="disclaimer">
         <span class="disclaimer-icon">ℹ️</span>
         <p>
-          <strong>Important:</strong> The information on this page is for educational purposes only and is not a substitute for professional medical advice. If you are experiencing distressing symptoms, please speak with your doctor or a qualified gynaecologist. In India, you can ask for a referral to a menopause specialist — they exist, and you deserve one.
+          <strong>Medical disclaimer:</strong> The information on this page is for educational purposes only and is not a substitute for professional medical advice. If you are experiencing distressing symptoms, please speak with your doctor or gynaecologist. For mental health support in India, contact iCall: <a href="tel:9152987821">9152987821</a> (Mon–Sat, 8am–10pm).
         </p>
       </div>
     </div>
@@ -230,10 +298,13 @@ const symptoms = [
     <div class="container">
       <div class="cta-block">
         <div>
-          <h2 class="section-title">Have questions about your symptoms?</h2>
-          <p class="section-sub">Our private companion can help you understand what you're experiencing — completely confidential.</p>
+          <h2 class="section-title">Not sure if it's perimenopause?</h2>
+          <p class="section-sub">Take the free 3-minute symptom check — built specifically for Indian women. Get a clear picture of where you are.</p>
         </div>
-        <a href="/chat" class="btn btn-primary btn-lg">Talk to our companion →</a>
+        <div class="cta-btns">
+          <a href="/quiz" class="btn btn-primary btn-lg">Check my symptoms →</a>
+          <a href="/chat" class="btn btn-outline-white">Ask privately →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -241,13 +312,82 @@ const symptoms = [
 </Layout>
 
 <style>
-  .intro-layout {
-    max-width: 760px;
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,.82);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-top: .5rem;
   }
 
+  /* ── Direct answer block ── */
+  .answer-wrap {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 3rem;
+    align-items: start;
+    max-width: 1000px;
+  }
+
+  .answer-block h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -.02em;
+    margin-bottom: 1rem;
+  }
+
+  .answer-block p {
+    font-size: .97rem;
+    color: var(--text-secondary);
+    line-height: 1.78;
+    margin-bottom: .85rem;
+  }
+
+  /* ── Quick nav ── */
+  .sym-quicknav {
+    background: var(--cream);
+    border: 1.5px solid var(--border-light);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    position: sticky;
+    top: 80px;
+  }
+
+  .sqn-label {
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--green);
+    margin-bottom: .75rem;
+  }
+
+  .sqn-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+  }
+
+  .sqn-link {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .88rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: .25rem 0;
+    transition: color .15s;
+    border-bottom: 1px solid transparent;
+  }
+
+  .sqn-link:hover { color: var(--green); }
+
+  /* ── Symptom grid ── */
   .symptoms-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
     gap: 1.75rem;
   }
 
@@ -257,6 +397,7 @@ const symptoms = [
     border-radius: var(--radius-lg);
     padding: 1.75rem;
     transition: box-shadow .22s;
+    scroll-margin-top: 80px;
   }
 
   .symptom-card:hover {
@@ -272,24 +413,26 @@ const symptoms = [
     border-bottom: 1.5px solid var(--border-light);
   }
 
-  .symptom-emoji {
-    font-size: 2rem;
-    flex-shrink: 0;
-  }
+  .symptom-emoji { font-size: 2rem; flex-shrink: 0; }
 
   .symptom-name {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 800;
     color: var(--text);
     letter-spacing: -.02em;
   }
 
-  .symptom-section {
-    margin-bottom: 1.1rem;
+  .symptom-section { margin-bottom: 1.1rem; }
+
+  .symptom-why {
+    background: var(--green-light);
+    border-radius: 10px;
+    padding: .9rem 1rem;
+    border-left: 3px solid var(--green);
   }
 
   .symptom-label {
-    font-size: .73rem;
+    font-size: .7rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .09em;
@@ -300,7 +443,7 @@ const symptoms = [
   .symptom-text {
     font-size: .9rem;
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.72;
   }
 
   .symptom-tips {
@@ -332,23 +475,80 @@ const symptoms = [
     margin-top: 1.2rem;
     padding-top: 1rem;
     border-top: 1.5px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
   }
 
   .symptom-read-more {
     display: inline-flex;
     align-items: center;
-    font-size: .88rem;
+    font-size: .85rem;
     font-weight: 700;
     color: var(--green);
     text-decoration: none;
-    gap: .3rem;
     transition: gap .18s;
   }
 
-  .symptom-read-more:hover {
-    gap: .6rem;
+  .symptom-ask {
+    font-size: .82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color .15s;
   }
 
+  .symptom-ask:hover { color: var(--green); }
+
+  /* ── FAQ ── */
+  .faq-container { max-width: 800px; }
+
+  .faq-heading {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-list { display: flex; flex-direction: column; gap: .6rem; }
+
+  .faq-item {
+    background: var(--cream);
+    border: 1.5px solid var(--border-light);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .faq-item[open] { border-color: var(--green); }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: .93rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-item[open] .faq-q { background: var(--green-light); }
+
+  .faq-chev { flex-shrink: 0; color: var(--green); transition: transform .2s; }
+  .faq-item[open] .faq-chev { transform: rotate(180deg); }
+
+  .faq-a {
+    padding: 1rem 1.15rem 1.15rem;
+    font-size: .88rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  /* ── Disclaimer ── */
   .disclaimer {
     display: flex;
     gap: 1rem;
@@ -362,7 +562,9 @@ const symptoms = [
 
   .disclaimer-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .1rem; }
   .disclaimer p { font-size: .9rem; color: var(--text-secondary); line-height: 1.68; }
+  .disclaimer a { color: var(--green); font-weight: 600; }
 
+  /* ── CTA ── */
   .cta-block {
     display: flex;
     align-items: center;
@@ -371,8 +573,36 @@ const symptoms = [
     flex-wrap: wrap;
   }
 
+  .cta-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    padding: .75rem 1.5rem;
+    border: 2px solid rgba(255,255,255,.6);
+    color: #fff;
+    border-radius: 99px;
+    font-weight: 700;
+    font-size: .95rem;
+    text-decoration: none;
+    transition: all .18s;
+    white-space: nowrap;
+  }
+
+  .btn-outline-white:hover { background: rgba(255,255,255,.15); }
+
+  @media (max-width: 900px) {
+    .answer-wrap { grid-template-columns: 1fr; }
+    .sym-quicknav { position: static; }
+  }
+
   @media (max-width: 768px) {
     .symptoms-grid { grid-template-columns: 1fr; }
-    .cta-block { flex-direction: column; }
+    .cta-block { flex-direction: column; align-items: flex-start; }
   }
 </style>
