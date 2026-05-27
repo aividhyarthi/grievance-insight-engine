@@ -30,25 +30,25 @@ If you recognise several of these together, you are likely in early perimenopaus
 <svg viewBox="0 0 500 158" style="width:100%;max-width:500px;display:block;overflow:visible" role="img" aria-label="Line chart showing progesterone declining steadily from the late 30s while oestrogen stays elevated then becomes erratic before declining from the mid-40s">
   <line x1="55" y1="20" x2="55" y2="128" stroke="#e0e0e0" stroke-width="1"/>
   <line x1="55" y1="128" x2="488" y2="128" stroke="#e0e0e0" stroke-width="1"/>
-  <text x="50" y="24" text-anchor="end" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">High</text>
-  <text x="50" y="128" text-anchor="end" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">Low</text>
-  <text x="60" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">37</text>
-  <text x="144" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">39</text>
-  <text x="228" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">41</text>
-  <text x="312" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">43</text>
-  <text x="396" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">45</text>
-  <text x="480" y="140" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">47</text>
-  <text x="270" y="148" text-anchor="middle" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">Age</text>
+  <text x="50" y="24" text-anchor="end" font-size="12" fill="#bbb" font-family="system-ui,sans-serif">High</text>
+  <text x="50" y="128" text-anchor="end" font-size="12" fill="#bbb" font-family="system-ui,sans-serif">Low</text>
+  <text x="60" y="140" text-anchor="middle" font-size="12" fill="#999" font-family="system-ui,sans-serif">37</text>
+  <text x="144" y="140" text-anchor="middle" font-size="12" fill="#999" font-family="system-ui,sans-serif">39</text>
+  <text x="228" y="140" text-anchor="middle" font-size="12" fill="#999" font-family="system-ui,sans-serif">41</text>
+  <text x="312" y="140" text-anchor="middle" font-size="12" fill="#999" font-family="system-ui,sans-serif">43</text>
+  <text x="396" y="140" text-anchor="middle" font-size="12" fill="#999" font-family="system-ui,sans-serif">45</text>
+  <text x="480" y="140" text-anchor="middle" font-size="12" fill="#999" font-family="system-ui,sans-serif">47</text>
+  <text x="270" y="148" text-anchor="middle" font-size="12" fill="#bbb" font-family="system-ui,sans-serif">Age</text>
   <rect x="442" y="18" width="48" height="112" rx="4" fill="#9D4E6E" fill-opacity="0.06"/>
-  <text x="466" y="152" text-anchor="middle" font-size="8" fill="#9D4E6E" font-family="system-ui,sans-serif">Menopause</text>
+  <text x="466" y="152" text-anchor="middle" font-size="11" fill="#9D4E6E" font-family="system-ui,sans-serif">Menopause</text>
   <path d="M 60,46 C 95,52 125,57 144,62 C 178,70 208,75 228,78 C 264,86 294,91 312,95 C 350,102 380,109 396,112 C 432,116 464,119 480,120" stroke="#8B5CF6" stroke-width="2.5" fill="none" stroke-linecap="round"/>
   <path d="M 60,43 C 92,40 120,34 144,38 C 168,42 198,27 228,32 C 250,36 270,54 312,47 C 336,43 360,62 396,70 C 428,77 460,86 480,91" stroke="#D4637A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <text x="162" y="90" font-size="10" fill="#8B5CF6" font-style="italic" font-family="system-ui,sans-serif">↓ Progesterone falls first</text>
-  <text x="165" y="26" font-size="10" fill="#D4637A" font-style="italic" font-family="system-ui,sans-serif">Oestrogen elevated → erratic</text>
+  <text x="162" y="90" font-size="13" fill="#8B5CF6" font-style="italic" font-family="system-ui,sans-serif">↓ Progesterone falls first</text>
+  <text x="165" y="26" font-size="13" fill="#D4637A" font-style="italic" font-family="system-ui,sans-serif">Oestrogen elevated → erratic</text>
   <line x1="60" y1="152" x2="80" y2="152" stroke="#D4637A" stroke-width="2.5"/>
-  <text x="84" y="156" font-size="10" fill="#666" font-family="system-ui,sans-serif">Oestrogen</text>
+  <text x="84" y="156" font-size="13" fill="#666" font-family="system-ui,sans-serif">Oestrogen</text>
   <line x1="155" y1="152" x2="175" y2="152" stroke="#8B5CF6" stroke-width="2.5"/>
-  <text x="179" y="156" font-size="10" fill="#666" font-family="system-ui,sans-serif">Progesterone</text>
+  <text x="179" y="156" font-size="13" fill="#666" font-family="system-ui,sans-serif">Progesterone</text>
 </svg>
 </div>
 
@@ -91,6 +91,117 @@ This is called oestrogen dominance. It explains why so many women in their 40s h
   <text x="385" y="164" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Breast tenderness · Bloating</text>
   <text x="385" y="176" text-anchor="middle" font-size="9" fill="#9D4E6E" font-family="system-ui,sans-serif">Weight changes · Fluid retention</text>
 </svg>
+</div>
+
+Many women in our community have written about this exact experience. [Read: "My periods are so heavy I had to cancel work" →](/community/periods-too-heavy)
+
+## Why Can't You Sleep Through the Night Anymore?
+
+Early morning waking — typically between 2 and 4am — is one of the most consistent and least recognised symptoms of perimenopause in the 40s.
+
+Progesterone acts directly on GABA receptors in the brain, the same receptors targeted by sleep medications. As progesterone declines, its natural sedative effect diminishes. You fall asleep easily but wake in the small hours with an alert, anxious mind that won't settle for one to two hours.
+
+This is not insomnia in the usual sense. It is a hormonal pattern, and it often begins years before hot flashes. [Many women in our community experience this →](/community/why-do-i-wake-at-3am). It also drives the profound exhaustion that many women in their 40s experience — the kind that no amount of rest seems to fix. [Read one woman's experience →](/community/exhausted-but-cant-sleep)
+
+## Is Anxiety at 40 Really Perimenopause?
+
+For many women in their 40s, a specific type of anxiety emerges that feels different from general life stress. It has a physiological quality — sudden dread without cause, a racing heart before ordinary situations, difficulty settling. This is oestrogen and progesterone acting on serotonin, GABA, and the autonomic nervous system.
+
+In India, perimenopausal anxiety is almost always attributed to "too much stress" or family pressures. While stress is real, the underlying hormonal driver is not acknowledged — which means it often goes unaddressed.
+
+If your anxiety is worst in the two weeks before your period and eases when bleeding begins, it is almost certainly hormonal. See [perimenopause and anxiety →](/blog/perimenopause-anxiety-mood-swings) and [community discussion on snapping at family →](/community/snapping-at-family).
+
+## What Happens to Mood in Your Early 40s?
+
+Oestrogen regulates serotonin, dopamine, and norepinephrine — the brain's mood chemicals. As oestrogen fluctuates erratically in perimenopause (it doesn't simply decline; it spikes and crashes), so does mood.
+
+The result can look like depression, irritability, or tearfulness that arrives without clear cause. It often maps onto the menstrual cycle: worse in the premenstrual week, briefly better when bleeding begins. If this pattern sounds familiar, see [can perimenopause cause depression →](/blog/can-perimenopause-cause-depression) and [why am I crying for no reason →](/community/crying-for-no-reason).
+
+## What Physical Changes Happen in Your 40s?
+
+Beyond mood and sleep, perimenopause in the 40s brings physical changes:
+
+**Weight and body shape**: Unexplained weight gain, particularly around the abdomen, is common even without dietary changes. Declining oestrogen shifts fat distribution towards the midsection. [Community discussion: "Weight going up despite eating less" →](/community/weight-going-up-eating-less)
+
+**Skin and hair**: Skin may become drier; some women notice new jawline breakouts. Hair may shed more than before. These are all oestrogen effects. [See jawline acne and perimenopause →](/community/jawline-acne-at-44) and [hair loss →](/community/hair-loss-perimenopause)
+
+**Joint aches**: Oestrogen has anti-inflammatory properties. As it fluctuates, joint discomfort in the knees, hips, and hands is common.
+
+**Headaches**: Migraine-like headaches may worsen or appear for the first time in perimenopause, particularly linked to oestrogen fluctuations around the menstrual cycle.
+
+## What Tests Are Worth Having at 40–45?
+
+Perimenopause is primarily diagnosed from symptoms and cycle history — not from a blood test alone. However, the following tests are useful to rule out other causes and to build a picture:
+
+- **FSH and LH**: Elevated FSH suggests declining ovarian function. Levels fluctuate widely, so a single normal result doesn't rule out perimenopause.
+- **Oestradiol**: Provides context alongside FSH
+- **Thyroid panel (TSH, free T3, T4)**: Hypothyroidism is very common in Indian women and overlaps significantly with perimenopausal symptoms
+- **Ferritin (iron stores)**: Heavy periods deplete iron. Ferritin below 30 µg/L causes significant fatigue even when haemoglobin is "normal"
+- **Vitamin D and B12**: Deficiencies are very common in India and worsen fatigue, mood, and cognitive function
+
+See [how to test for perimenopause →](/blog/how-to-test-for-perimenopause) for a full guide.
+
+## What Helps Perimenopause Symptoms in Your 40s?
+
+Lifestyle approaches that are well-evidenced for this stage:
+
+**Exercise**: Strength training supports bone density, metabolic health, and mood — all directly affected by declining oestrogen. Two to three sessions per week is the standard recommendation.
+
+**Diet**: Phytoestrogen-rich foods (tofu, soy milk, lentils, flaxseed) may help buffer oestrogen fluctuations. Ragi is excellent for calcium. Reduce refined carbohydrates, which destabilise blood sugar and worsen mood swings.
+
+**Sleep**: Keep the bedroom cool. Avoid screens after 9pm. Consistent wake times anchor the circadian rhythm even after a broken night.
+
+**Stress management**: Cortisol worsens oestrogen dominance symptoms. Yoga, pranayama, and deliberate rest are not luxuries — they are hormonal management.
+
+For a full guide, see [how to manage perimenopause naturally →](/blog/manage-perimenopause-naturally) and [lifestyle changes that help →](/blog/lifestyle-changes-perimenopause-symptoms).
+
+If symptoms are significantly affecting your quality of life, a conversation with a gynaecologist about hormonal support is worthwhile. You don't have to simply endure this phase.
+
+[Talk to our private AI companion — free, available anytime →](/chat)
+
+## Understanding the Full Symptom Picture
+
+If you're still trying to piece together whether what you're experiencing is perimenopause, the [symptoms guide](/guide/symptoms) covers every symptom in detail. You can also [take the quiz](/quiz) to see how your experience maps to a typical perimenopausal pattern.
+
+---
+
+## Frequently Asked Questions
+
+**Can perimenopause start at 40?**
+Yes. For Indian women, perimenopause typically begins between 40 and 45, sometimes earlier. India's average menopause age is 46 to 47 — meaning the transition leading to it often begins in the early 40s. If you are 40 with worsening PMS, heavier periods, sleep disruption, or new anxiety, perimenopause is a plausible explanation.
+
+**What is the most common first symptom of perimenopause in the 40s?**
+For most women, the first noticeable changes are in the menstrual cycle (shorter cycles, heavier periods, worsening PMS) or in sleep (early morning waking). Hot flashes are more typical of mid-to-late perimenopause and are not usually the first symptom.
+
+**How do I know if it's perimenopause or thyroid at 42?**
+Both cause fatigue, mood changes, brain fog, and cycle irregularity. The best approach is to test both: get a thyroid panel (TSH, free T3, T4) alongside FSH and oestradiol. Some women have both conditions simultaneously. Normal thyroid results with ongoing symptoms point towards perimenopause.
+
+**Will my perimenopause symptoms at 40 get worse before they get better?**
+Typically yes. Perimenopause symptoms often intensify in the mid-to-late 40s as cycles become more irregular and oestrogen levels become more erratic. They usually stabilise and improve after the final menstrual period (menopause). The good news is that effective management — lifestyle and medical — is available throughout.
+
+**Do I need to see a gynaecologist about perimenopause at 40?**
+If symptoms are affecting your sleep, relationships, or ability to work, yes. You don't need to wait for hot flashes or irregular cycles. Come with a record of your symptoms and their timing in relation to your cycle, ask about perimenopause specifically, and request the blood tests mentioned above.<div style="margin:28px 0;background:#FDF8F9;border-radius:16px;padding:20px">
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">How one anovulatory cycle causes multiple symptoms</p>
+<p style="margin:0 0 16px;font-size:13px;color:#888">Missing progesterone isn't just about periods. It triggers a cascade.</p>
+<div style="text-align:center;margin-bottom:12px">
+<div style="display:inline-block;background:#9D4E6E;color:white;font-weight:700;font-size:15px;padding:10px 24px;border-radius:10px">Anovulatory cycle</div>
+<div style="font-size:22px;color:#ccc;line-height:1.2">↓</div>
+<div style="display:inline-block;background:#F0E8F5;color:#6B3A8E;font-weight:700;font-size:15px;padding:10px 24px;border-radius:10px;border:1.5px solid #D8C8F5">No progesterone produced</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
+<div style="flex:1;min-width:160px;background:white;border-radius:10px;padding:14px;border-top:3px solid #E8718A">
+<div style="font-size:13px;font-weight:700;color:#C62828;margin-bottom:8px">Uterine lining unchecked</div>
+<div style="font-size:13px;color:#9D4E6E;line-height:1.6">Heavy, clotty periods<br>Flooding · Iron loss · Anaemia risk</div>
+</div>
+<div style="flex:1;min-width:160px;background:white;border-radius:10px;padding:14px;border-top:3px solid #8B5CF6">
+<div style="font-size:13px;font-weight:700;color:#6B3A8E;margin-bottom:8px">GABA support disappears</div>
+<div style="font-size:13px;color:#9D4E6E;line-height:1.6">2–4am waking · PMS anxiety<br>Brain fog · Exhaustion</div>
+</div>
+<div style="flex:1;min-width:160px;background:white;border-radius:10px;padding:14px;border-top:3px solid #D4637A">
+<div style="font-size:13px;font-weight:700;color:#9D4E6E;margin-bottom:8px">Oestrogen acts unopposed</div>
+<div style="font-size:13px;color:#9D4E6E;line-height:1.6">Breast tenderness · Bloating<br>Fluid retention · Weight changes</div>
+</div>
+</div>
 </div>
 
 Many women in our community have written about this exact experience. [Read: "My periods are so heavy I had to cancel work" →](/community/periods-too-heavy)

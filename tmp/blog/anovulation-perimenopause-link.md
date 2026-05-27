@@ -25,35 +25,25 @@ In a typical ovulatory cycle, here is the sequence:
 
 In an anovulatory cycle, step 3 doesn't happen. Oestrogen may still rise. But without ovulation, there is no corpus luteum, and therefore **no progesterone is produced**. The uterine lining builds up under oestrogen's influence and eventually sheds — but without the regulatory influence of progesterone, the shed is often heavy, irregular, and incomplete.
 
-<div style="margin:28px 0;background:#FDF8F9;border-radius:16px;padding:20px 20px 14px">
-<p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">Ovulatory vs anovulatory: where the sequence breaks</p>
-<svg viewBox="0 0 520 145" style="width:100%;max-width:520px;display:block" role="img" aria-label="Side by side flow diagram comparing a normal ovulatory cycle with an anovulatory cycle showing where the sequence diverges at step 3 ovulation">
-  <text x="130" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#2E7D32" font-family="system-ui,sans-serif">✓ Ovulatory cycle</text>
-  <line x1="270" y1="8" x2="270" y2="138" stroke="#E5D0DC" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <text x="390" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#C62828" font-family="system-ui,sans-serif">✗ Anovulatory cycle</text>
-  <rect x="10" y="20" width="240" height="22" rx="6" fill="#E8F5E9"/>
-  <text x="130" y="34" text-anchor="middle" font-size="10" fill="#1B5E20" font-family="system-ui,sans-serif">FSH → Follicle grows → Oestrogen rises</text>
-  <rect x="280" y="20" width="232" height="22" rx="6" fill="#E8F5E9"/>
-  <text x="396" y="34" text-anchor="middle" font-size="10" fill="#1B5E20" font-family="system-ui,sans-serif">FSH → Follicle grows → Oestrogen rises</text>
-  <line x1="130" y1="42" x2="130" y2="52" stroke="#aaa" stroke-width="1.5"/>
-  <line x1="396" y1="42" x2="396" y2="52" stroke="#aaa" stroke-width="1.5"/>
-  <rect x="10" y="52" width="240" height="22" rx="6" fill="#E8F5E9"/>
-  <text x="130" y="66" text-anchor="middle" font-size="10" fill="#1B5E20" font-family="system-ui,sans-serif">LH surge → Egg released (ovulation)</text>
-  <rect x="280" y="52" width="232" height="22" rx="6" fill="#FDECEA"/>
-  <text x="396" y="66" text-anchor="middle" font-size="10" fill="#B71C1C" font-weight="600" font-family="system-ui,sans-serif">No LH surge → No ovulation ✗</text>
-  <line x1="130" y1="74" x2="130" y2="84" stroke="#aaa" stroke-width="1.5"/>
-  <line x1="396" y1="74" x2="396" y2="84" stroke="#aaa" stroke-width="1.5"/>
-  <rect x="10" y="84" width="240" height="22" rx="6" fill="#E8F5E9"/>
-  <text x="130" y="98" text-anchor="middle" font-size="10" fill="#1B5E20" font-family="system-ui,sans-serif">Corpus luteum → Progesterone produced</text>
-  <rect x="280" y="84" width="232" height="22" rx="6" fill="#FDECEA"/>
-  <text x="396" y="98" text-anchor="middle" font-size="10" fill="#B71C1C" font-weight="600" font-family="system-ui,sans-serif">No corpus luteum → No progesterone ✗</text>
-  <line x1="130" y1="106" x2="130" y2="116" stroke="#aaa" stroke-width="1.5"/>
-  <line x1="396" y1="106" x2="396" y2="116" stroke="#aaa" stroke-width="1.5"/>
-  <rect x="10" y="116" width="240" height="22" rx="6" fill="#E8F5E9"/>
-  <text x="130" y="130" text-anchor="middle" font-size="10" fill="#1B5E20" font-family="system-ui,sans-serif">Controlled shed → Normal period</text>
-  <rect x="280" y="116" width="232" height="22" rx="6" fill="#FDECEA"/>
-  <text x="396" y="130" text-anchor="middle" font-size="10" fill="#B71C1C" font-weight="600" font-family="system-ui,sans-serif">Unchecked lining → Heavy bleed, clots ✗</text>
-</svg>
+<div style="margin:28px 0;background:#FDF8F9;border-radius:16px;padding:20px">
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">Where the sequence breaks — step by step</p>
+<p style="margin:0 0 16px;font-size:13px;color:#888">Both cycles produce a bleed. Inside, they are completely different.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<div style="flex:1;min-width:220px">
+<div style="background:#E8F5E9;border-radius:10px;padding:12px;margin-bottom:8px;font-size:13px;color:#2E7D32;font-weight:600">1. FSH → Follicle grows → Oestrogen rises</div>
+<div style="background:#E8F5E9;border-radius:10px;padding:12px;margin-bottom:8px;font-size:13px;color:#2E7D32;font-weight:600">2. LH surge → <strong>Egg released</strong></div>
+<div style="background:#E8F5E9;border-radius:10px;padding:12px;margin-bottom:8px;font-size:13px;color:#2E7D32;font-weight:600">3. Corpus luteum → <strong>Progesterone produced</strong></div>
+<div style="background:#E8F5E9;border-radius:10px;padding:12px;font-size:13px;color:#2E7D32;font-weight:600">4. Controlled shed → <strong>Normal period</strong></div>
+<div style="margin-top:8px;background:#D9F2DA;border-radius:8px;padding:8px;font-size:12px;color:#2E7D32;text-align:center;font-weight:700">✓ Ovulatory cycle</div>
+</div>
+<div style="flex:1;min-width:220px">
+<div style="background:#E8F5E9;border-radius:10px;padding:12px;margin-bottom:8px;font-size:13px;color:#2E7D32;font-weight:600">1. FSH → Follicle grows → Oestrogen rises</div>
+<div style="background:#FDECEA;border-radius:10px;padding:12px;margin-bottom:8px;font-size:13px;color:#C62828;font-weight:600">2. No LH surge → <strong>No ovulation ✗</strong></div>
+<div style="background:#FDECEA;border-radius:10px;padding:12px;margin-bottom:8px;font-size:13px;color:#C62828;font-weight:600">3. No corpus luteum → <strong>No progesterone ✗</strong></div>
+<div style="background:#FDECEA;border-radius:10px;padding:12px;font-size:13px;color:#C62828;font-weight:600">4. Unchecked lining → <strong>Heavy bleed, clots ✗</strong></div>
+<div style="margin-top:8px;background:#FDECEA;border-radius:8px;padding:8px;font-size:12px;color:#C62828;text-align:center;font-weight:700">✗ Anovulatory cycle (perimenopause)</div>
+</div>
+</div>
 </div>
 
 | | Ovulatory Cycle | Anovulatory Cycle |

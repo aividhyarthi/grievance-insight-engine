@@ -19,39 +19,48 @@ This is not the same as premature ovarian insufficiency (POI), which involves ac
 
 See [the complete guide to perimenopause symptoms at 40–45 →](/blog/perimenopause-symptoms-40s) and [what is perimenopause →](/blog/what-is-perimenopause) for more context.
 
-<div style="margin:32px 0;background:#FDF8F9;border-radius:16px;padding:20px 20px 14px">
-<p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">What your hormones look like: normal cycle vs early perimenopause</p>
-<p style="margin:0 0 14px;font-size:12px;color:#888;line-height:1.5">The cycle still arrives — but the hormonal pattern inside it has changed. Progesterone is absent or very low. That one difference drives almost every symptom below.</p>
-<svg viewBox="0 0 560 215" style="width:100%;max-width:560px;display:block;overflow:visible" role="img" aria-label="Comparison of hormone levels in a normal ovulatory cycle versus an anovulatory cycle in early perimenopause">
-  <text x="130" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#333" font-family="system-ui,sans-serif">Ovulatory cycle</text>
-  <text x="130" y="26" text-anchor="middle" font-size="10" fill="#888" font-family="system-ui,sans-serif">(normal / before perimenopause)</text>
-  <line x1="280" y1="8" x2="280" y2="175" stroke="#E5D0DC" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <text x="430" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#333" font-family="system-ui,sans-serif">Anovulatory cycle</text>
-  <text x="430" y="26" text-anchor="middle" font-size="10" fill="#888" font-family="system-ui,sans-serif">(early perimenopause — cycle still arrives)</text>
-  <line x1="20" y1="150" x2="240" y2="150" stroke="#e0e0e0" stroke-width="1"/>
-  <path d="M 20,134 C 40,130 58,115 69,112 C 82,110 94,55 110,46 C 118,43 124,88 126,84 C 145,78 165,92 183,99 C 202,108 222,130 240,134" stroke="#D4637A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <path d="M 20,139 L 126,139 C 148,139 162,42 183,55 C 200,63 218,132 240,139" stroke="#8B5CF6" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <line x1="126" y1="32" x2="126" y2="150" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
-  <text x="126" y="162" text-anchor="middle" font-size="9" fill="#999" font-family="system-ui,sans-serif">Ovulation day 14</text>
-  <text x="20" y="162" text-anchor="middle" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">Day 1</text>
-  <text x="240" y="162" text-anchor="middle" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">Day 28</text>
-  <rect x="30" y="170" width="200" height="22" rx="11" fill="#E8F5E9"/>
-  <text x="130" y="184" text-anchor="middle" font-size="10" fill="#2E7D32" font-weight="600" font-family="system-ui,sans-serif">✓ Controlled shed · Stable mood · Sleep intact</text>
-  <line x1="320" y1="150" x2="540" y2="150" stroke="#e0e0e0" stroke-width="1"/>
-  <path d="M 320,134 C 342,130 362,92 380,82 C 393,74 405,72 416,78 C 428,84 445,100 460,110 C 475,118 508,130 540,134" stroke="#D4637A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <line x1="320" y1="140" x2="540" y2="140" stroke="#8B5CF6" stroke-width="2.5" stroke-dasharray="6,4" stroke-linecap="round"/>
-  <text x="543" y="144" font-size="9" fill="#8B5CF6" font-family="system-ui,sans-serif">≈ 0</text>
-  <text x="320" y="162" text-anchor="middle" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">Day 1</text>
-  <text x="540" y="162" text-anchor="middle" font-size="9" fill="#bbb" font-family="system-ui,sans-serif">Day 28</text>
-  <rect x="330" y="170" width="200" height="22" rx="11" fill="#FDECEA"/>
-  <text x="430" y="184" text-anchor="middle" font-size="10" fill="#C62828" font-weight="600" font-family="system-ui,sans-serif">Heavy bleed · Clots · Poor sleep · Worse PMS</text>
-  <line x1="20" y1="207" x2="44" y2="207" stroke="#D4637A" stroke-width="2.5"/>
-  <text x="48" y="211" font-size="10" fill="#666" font-family="system-ui,sans-serif">Oestrogen</text>
-  <line x1="115" y1="207" x2="139" y2="207" stroke="#8B5CF6" stroke-width="2.5"/>
-  <text x="143" y="211" font-size="10" fill="#666" font-family="system-ui,sans-serif">Progesterone</text>
-  <line x1="225" y1="207" x2="249" y2="207" stroke="#8B5CF6" stroke-width="2.5" stroke-dasharray="6,4"/>
-  <text x="253" y="211" font-size="10" fill="#666" font-family="system-ui,sans-serif">Progesterone absent</text>
+<div style="margin:32px 0;background:#FDF8F9;border-radius:16px;padding:20px">
+<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.1em;color:#9D4E6E;text-transform:uppercase">What your cycle looks like — normal vs early perimenopause</p>
+<p style="margin:0 0 16px;font-size:13px;color:#888">The bleed still arrives. But inside the cycle, the hormonal pattern has changed completely.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<div style="flex:1;min-width:240px;background:#F0FBF0;border-radius:12px;padding:16px">
+<p style="margin:0 0 10px;font-size:14px;font-weight:700;color:#2E7D32">✓ Normal ovulatory cycle</p>
+<svg viewBox="0 0 240 72" style="width:100%;display:block;margin-bottom:10px" role="img" aria-label="Hormone chart showing oestrogen peaking at day 12 and progesterone rising after ovulation at day 14 in a normal cycle">
+  <path d="M 8,64 C 25,62 40,54 55,48 C 65,44 75,18 92,14 C 100,12 106,46 110,44 C 124,38 136,50 148,54 C 162,58 185,62 232,64" stroke="#D4637A" stroke-width="2" fill="none"/>
+  <path d="M 8,66 L 110,66 C 126,66 136,16 148,22 C 160,28 178,62 232,66" stroke="#8B5CF6" stroke-width="2" fill="none"/>
+  <line x1="110" y1="8" x2="110" y2="68" stroke="#ccc" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="110" y="6" text-anchor="middle" font-size="8" fill="#999" font-family="system-ui,sans-serif">Ovulation</text>
+  <text x="8" y="72" font-size="7" fill="#ccc" font-family="system-ui,sans-serif">Day 1</text>
+  <text x="196" y="72" font-size="7" fill="#ccc" font-family="system-ui,sans-serif">Day 28</text>
 </svg>
+<div style="display:flex;gap:12px;margin-bottom:10px">
+<span style="font-size:12px;color:#666;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:3px;background:#D4637A;border-radius:2px"></span>Oestrogen</span>
+<span style="font-size:12px;color:#666;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:3px;background:#8B5CF6;border-radius:2px"></span>Progesterone</span>
+</div>
+<div style="background:#D9F2DA;border-radius:8px;padding:10px">
+<p style="margin:0;font-size:13px;font-weight:700;color:#2E7D32">Controlled shed</p>
+<p style="margin:4px 0 0;font-size:12px;color:#388E3C">Stable mood · Normal flow · Sleep intact</p>
+</div>
+</div>
+<div style="flex:1;min-width:240px;background:#FFF5F5;border-radius:12px;padding:16px">
+<p style="margin:0 0 10px;font-size:14px;font-weight:700;color:#C62828">✗ Anovulatory cycle (early perimenopause)</p>
+<svg viewBox="0 0 240 72" style="width:100%;display:block;margin-bottom:10px" role="img" aria-label="Hormone chart showing irregular oestrogen and a flat absent progesterone line in an anovulatory perimenopausal cycle">
+  <path d="M 8,64 C 25,62 38,50 55,42 C 68,36 78,32 95,36 C 108,40 120,46 138,52 C 158,58 190,62 232,64" stroke="#D4637A" stroke-width="2" fill="none"/>
+  <line x1="8" y1="67" x2="232" y2="67" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="234" y="71" font-size="8" fill="#8B5CF6" font-family="system-ui,sans-serif">≈ 0</text>
+  <text x="8" y="72" font-size="7" fill="#ccc" font-family="system-ui,sans-serif">Day 1</text>
+  <text x="196" y="72" font-size="7" fill="#ccc" font-family="system-ui,sans-serif">Day 28</text>
+</svg>
+<div style="display:flex;gap:12px;margin-bottom:10px">
+<span style="font-size:12px;color:#666;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:3px;background:#D4637A;border-radius:2px"></span>Oestrogen</span>
+<span style="font-size:12px;color:#666;display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:14px;height:3px;background:#8B5CF6;border-radius:2px;opacity:0.4"></span>Progesterone (absent)</span>
+</div>
+<div style="background:#FDECEA;border-radius:8px;padding:10px">
+<p style="margin:0;font-size:13px;font-weight:700;color:#C62828">Unregulated shed</p>
+<p style="margin:4px 0 0;font-size:12px;color:#B71C1C">Heavy bleed · Clots · 2–4am waking · Worse PMS</p>
+</div>
+</div>
+</div>
 </div>
 
 ## What Are the Symptoms of Perimenopause in Your Late 30s?

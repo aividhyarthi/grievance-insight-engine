@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["anxiety", "mood swings", "mental health", "hormones"]
 readTime: "7 min read"
 featured: true
-image: "https://images.unsplash.com/photo-1614852207246-1df3db5b7c4f?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1595956553066-fe24a8c33395?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Indian woman looking contemplative, representing emotional changes during perimenopause"
 ---
 
