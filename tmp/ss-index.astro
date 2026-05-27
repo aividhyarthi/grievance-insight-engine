@@ -154,6 +154,29 @@ const posts = allPosts
     </div>
   </section>
 
+  <!-- ── 5b. VIDEO ── -->
+  <section class="section video-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Why We Built The Second Spring</h2>
+        <p class="section-sub">India's first perimenopause companion — built for women who were told "it's just stress".</p>
+      </div>
+      <div class="video-outer">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/hRYemB6E5X4"
+            title="The Second Spring — Perimenopause Support for Indian Women"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── 6. EMOTIONAL REASSURANCE ── -->
   <section class="section reassurance-section">
     <div class="container">
@@ -425,6 +448,26 @@ const posts = allPosts
   .trust-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem 3rem; }
   .trust-item { display: flex; align-items: center; gap: .6rem; font-size: .95rem; color: rgba(255,255,255,.88); font-weight: 500; }
   .trust-check { font-size: 1.1rem; color: #FBBF81; font-weight: 900; flex-shrink: 0; }
+
+  /* ── VIDEO ── */
+  .video-section { background: #fff; }
+  .video-outer { display: flex; justify-content: center; margin-top: 2.5rem; }
+  .video-frame {
+    position: relative;
+    width: 320px;
+    max-width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,.18);
+  }
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 
   /* ── REASSURANCE ── */
   .reassurance-section { background: var(--peach-light); border-top: 1px solid #F0C9B0; border-bottom: 1px solid #F0C9B0; }
