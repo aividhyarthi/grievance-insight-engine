@@ -169,7 +169,7 @@ const pageFaqs = [
 >
 
   <!-- FAQ schema for Google & LLMs -->
-  <script type="application/ld+json" set:html={JSON.stringify({
+  <Fragment set:html={`<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": pageFaqs.map(f => ({
@@ -177,7 +177,7 @@ const pageFaqs = [
       "name": f.q,
       "acceptedAnswer": { "@type": "Answer", "text": f.a }
     }))
-  })}></script>
+  })}</script>`} />
 
   <section class="page-hero">
     <div class="container">

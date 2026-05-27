@@ -276,7 +276,7 @@ const faqSchema = {
 >
 
   <!-- FAQ schema for Google rich results -->
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  <Fragment set:html={`<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`} />
 
   <!-- Hero -->
   <section class="sym-hero">
