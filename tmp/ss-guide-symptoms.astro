@@ -168,16 +168,6 @@ const pageFaqs = [
   description="34 perimenopause symptoms explained clearly — what each feels like, why it happens hormonally, and what actually helps. For Indian women aged 35–55."
 >
 
-  <!-- FAQ schema for Google & LLMs -->
-  <Fragment set:html={`<script type="application/ld+json">${JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": pageFaqs.map(f => ({
-      "@type": "Question",
-      "name": f.q,
-      "acceptedAnswer": { "@type": "Answer", "text": f.a }
-    }))
-  })}</script>`} />
 
   <section class="page-hero">
     <div class="container">

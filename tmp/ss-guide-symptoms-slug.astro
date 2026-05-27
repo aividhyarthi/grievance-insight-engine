@@ -257,16 +257,6 @@ if (!symptom) {
   return Astro.redirect('/guide/symptoms');
 }
 
-// FAQ JSON-LD schema — built from this symptom's existing FAQs
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": symptom.faqs.map(f => ({
-    "@type": "Question",
-    "name": f.q,
-    "acceptedAnswer": { "@type": "Answer", "text": f.a }
-  }))
-};
 ---
 
 <Layout
@@ -275,8 +265,6 @@ const faqSchema = {
   image={symptom.image}
 >
 
-  <!-- FAQ schema for Google rich results -->
-  <Fragment set:html={`<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`} />
 
   <!-- Hero -->
   <section class="sym-hero">
