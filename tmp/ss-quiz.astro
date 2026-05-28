@@ -3,747 +3,560 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Free Perimenopause Quiz — Check Your Symptoms | The Second Spring"
-  description="Take our free perimenopause quiz designed for Indian women. 12 questions, 2 minutes, instant results. Understand if your symptoms — irregular periods, mood changes, sleep problems, hot flashes — could be perimenopause."
+  title="Free Perimenopause Symptom Check — The Second Spring"
+  description="Take our free perimenopause quiz designed for Indian women. 12 questions, 2 minutes, instant results. Understand if your symptoms could be perimenopause."
 >
-  <div class="quiz-page">
 
-    <!-- INTRO -->
-    <section class="qs-screen" id="screen-intro">
-      <div class="qc">
-        <span class="q-eyebrow">🌸 Free · 2 minutes · Anonymous</span>
-        <h1>Could it be perimenopause?</h1>
-        <p class="qi-desc">
-          12 clinically-informed questions. Instant personalised results.<br/>
-          Nothing is saved, stored, or shared.
-        </p>
-        <div class="qi-stats">
-          <div class="qi-stat"><span class="qs-n">12</span><span class="qs-l">Questions</span></div>
-          <div class="qi-div"></div>
-          <div class="qi-stat"><span class="qs-n">2 min</span><span class="qs-l">Duration</span></div>
-          <div class="qi-div"></div>
-          <div class="qi-stat"><span class="qs-n">Free</span><span class="qs-l">Always</span></div>
-        </div>
-        <button class="btn btn-peach btn-lg qi-start-btn" id="start-btn">Begin symptom check →</button>
-        <p class="qi-note">🔒 Anonymous · No login required · Not medical advice</p>
-        <div class="qi-credibility">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Questions developed with guidance from menopause-aware gynaecologists, informed by the Greene Climacteric Scale — the most widely used validated tool for assessing menopausal symptoms in clinical practice.
-        </div>
+<div class="quiz-shell">
+
+  <!-- ── INTRO ── -->
+  <div class="q-screen active" id="s-intro">
+    <div class="q-wrap">
+      <div class="intro-badge">🌸 Free · 2 min · Private</div>
+      <h1 class="intro-h1">Could your symptoms<br/>be perimenopause?</h1>
+      <p class="intro-sub">12 clinically-informed questions. Instant personalised result. Nothing stored or shared.</p>
+      <div class="intro-pills">
+        <span>😤 Mood swings</span>
+        <span>🌙 Poor sleep</span>
+        <span>🧠 Brain fog</span>
+        <span>🔥 Hot flashes</span>
+        <span>😰 Anxiety</span>
+        <span>⚖️ Weight gain</span>
       </div>
-    </section>
-
-    <!-- LEAD CAPTURE -->
-    <section class="qs-screen" id="screen-lead" style="display:none">
-      <div class="qc">
-        <button class="qq-back" id="lead-back-btn">← Back</button>
-        <div class="lead-card">
-          <div class="lead-icon">📩</div>
-          <h2 class="lead-title">Where should we send your result?</h2>
-          <p class="lead-desc">We'll send your personalised perimenopause result to your WhatsApp or email — along with resources matched to your symptoms. You can also take the quiz anonymously if you prefer.</p>
-          <form id="lead-form" novalidate>
-            <div class="lead-field">
-              <label class="lead-label" for="lead-phone">WhatsApp / Mobile number <span class="lead-optional">(India +91)</span></label>
-              <input class="lead-input" type="tel" id="lead-phone" name="phone" placeholder="e.g. 9876543210" inputmode="numeric" maxlength="10" />
-            </div>
-            <div class="lead-field">
-              <label class="lead-label" for="lead-email">Email address</label>
-              <input class="lead-input" type="email" id="lead-email" name="email" placeholder="you@example.com" />
-            </div>
-            <p class="lead-privacy">🔒 We never share your details. You can unsubscribe any time.</p>
-            <button type="submit" class="btn btn-peach btn-lg lead-submit-btn">Start symptom check →</button>
-          </form>
-          <button class="lead-skip" id="lead-skip-btn">Skip — take quiz anonymously</button>
-        </div>
+      <button class="btn-main" id="btn-start">Begin symptom check →</button>
+      <p class="intro-lock">🔒 Anonymous · No login · Not medical advice</p>
+      <div class="intro-trust">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Informed by the Greene Climacteric Scale, developed with guidance from menopause-aware gynaecologists
       </div>
-    </section>
-
-    <!-- QUESTIONS -->
-    <section class="qs-screen" id="screen-questions" style="display:none">
-      <div class="qc">
-        <div class="qq-header">
-          <button class="qq-back" id="back-btn">← Back</button>
-          <span class="qq-counter" id="q-counter">1 of 12</span>
-        </div>
-        <div class="qq-bar-wrap">
-          <div class="qq-bar" id="q-bar"></div>
-          <span class="qq-pct" id="q-pct">0%</span>
-        </div>
-        <div class="qq-card">
-          <div class="qq-num" id="q-num"></div>
-          <h2 class="qq-text" id="q-text"></h2>
-          <div class="qq-opts" id="q-opts"></div>
-        </div>
-        <p class="qq-privacy">🔒 Your answers are not stored or shared</p>
-      </div>
-    </section>
-
-    <!-- RESULT -->
-    <section class="qs-screen" id="screen-result" style="display:none">
-      <div class="qc" id="result-content"></div>
-    </section>
-
+    </div>
   </div>
 
-  <!-- SEO content -->
-  <section class="quiz-seo-section">
-    <div class="container">
-
-      <div class="qseo-intro">
-        <h2>What Is This Perimenopause Quiz?</h2>
-        <p>This free perimenopause symptom quiz helps Indian women in their late 30s and 40s understand whether the changes they are experiencing — irregular periods, sleep disruption, mood swings, brain fog, weight gain, hot flashes — could be signs of perimenopause.</p>
-        <p>The quiz takes 2 minutes, asks 12 questions, and gives you an instant personalised result. It is private, anonymous, and free. No login, no data stored.</p>
+  <!-- ── PRIVACY ── -->
+  <div class="q-screen" id="s-privacy">
+    <div class="q-wrap">
+      <button class="btn-back" id="btn-privacy-back">← Back</button>
+      <div class="prv-top">
+        <div class="prv-icon">🔒</div>
+        <h2 class="prv-h2">Your data, your control</h2>
+        <p class="prv-sub">This quiz is completely private. Here is exactly what we do — and do not — do with any information you share.</p>
       </div>
-
-      <div class="qseo-grid">
-        <div class="qseo-card">
-          <div class="qseo-icon">🌸</div>
-          <h3>Designed for Indian Women</h3>
-          <p>Indian women reach menopause 2–3 years earlier than Western averages — typically around age 46–47. This quiz accounts for the Indian context, including different symptom patterns and cultural factors.</p>
+      <div class="prv-cards">
+        <div class="prv-card">
+          <span class="prv-card-icon">✅</span>
+          <div class="prv-card-body">
+            <p class="prv-card-title">What you choose to share</p>
+            <p class="prv-card-text">If you enter your phone or email, we use it only to send you your personalised result. Nothing else, ever.</p>
+          </div>
         </div>
-        <div class="qseo-card">
-          <div class="qseo-icon">🔬</div>
-          <h3>Clinically Informed</h3>
-          <p>Questions are informed by the Greene Climacteric Scale, the most widely validated tool for assessing menopausal symptoms, developed with guidance from menopause-aware gynaecologists.</p>
+        <div class="prv-card">
+          <span class="prv-card-icon">🚫</span>
+          <div class="prv-card-body">
+            <p class="prv-card-title">What we never collect</p>
+            <p class="prv-card-text">Your quiz answers are never stored or linked to your identity. We cannot see which options you chose.</p>
+          </div>
         </div>
-        <div class="qseo-card">
-          <div class="qseo-icon">🔒</div>
-          <h3>Completely Private</h3>
-          <p>Nothing is saved, shared, or stored. You do not need to create an account. Your answers disappear when you close the tab. Designed for women who want to understand their bodies without judgment.</p>
+        <div class="prv-card">
+          <span class="prv-card-icon">🤝</span>
+          <div class="prv-card-body">
+            <p class="prv-card-title">We never sell your data</p>
+            <p class="prv-card-text">Your information is never sold, rented, or shared with third parties. You can unsubscribe from any message instantly.</p>
+          </div>
         </div>
-      </div>
-
-      <div class="qseo-symptoms">
-        <h2>Which Symptoms Does the Quiz Cover?</h2>
-        <p>The perimenopause symptom check covers the most common signs of perimenopause in Indian women:</p>
-        <div class="qseo-sym-grid">
-          <a href="/guide/symptoms/irregular-periods" class="qseo-sym">📅 Irregular periods</a>
-          <a href="/guide/symptoms/hot-flashes" class="qseo-sym">🌡️ Hot flashes & night sweats</a>
-          <a href="/guide/symptoms/sleep-problems" class="qseo-sym">🌙 Sleep problems</a>
-          <a href="/guide/symptoms/mood-swings" class="qseo-sym">😤 Mood swings & irritability</a>
-          <a href="/guide/symptoms/anxiety" class="qseo-sym">💭 Anxiety & low mood</a>
-          <a href="/guide/symptoms/brain-fog" class="qseo-sym">🧠 Brain fog & memory</a>
-          <a href="/guide/symptoms/joint-pain" class="qseo-sym">🦴 Joint & muscle pain</a>
-          <a href="/guide/symptoms/joint-pain" class="qseo-sym">😴 Fatigue & low energy</a>
-          <a href="/guide/symptoms/low-libido" class="qseo-sym">🌸 Low libido</a>
-          <a href="/guide/symptoms/skin-hair" class="qseo-sym">✨ Hair & skin changes</a>
-          <a href="/guide/symptoms/heart-palpitations" class="qseo-sym">💓 Heart palpitations</a>
+        <div class="prv-card">
+          <span class="prv-card-icon">📧</span>
+          <div class="prv-card-body">
+            <p class="prv-card-title">Questions about your data?</p>
+            <p class="prv-card-text">Write to us at <strong>thesecondspringofficial@gmail.com</strong> and we will respond within 48 hours.</p>
+          </div>
         </div>
       </div>
+      <button class="btn-main" id="btn-privacy-ok">I understand — continue →</button>
+      <button class="btn-ghost" id="btn-privacy-anon">Skip — take quiz without sharing data</button>
+    </div>
+  </div>
 
-      <div class="qseo-faq">
-        <h2>Perimenopause Quiz — Common Questions</h2>
-        <div class="qseo-faq-item">
-          <h3>Is this perimenopause quiz accurate?</h3>
-          <p>This quiz is a symptom awareness tool, not a medical diagnosis. It identifies patterns that commonly align with perimenopause based on current clinical evidence. A definitive assessment requires a consultation with a gynaecologist — but the quiz gives you a clear starting point and language to use with your doctor.</p>
+  <!-- ── LEAD CAPTURE ── -->
+  <div class="q-screen" id="s-lead">
+    <div class="q-wrap">
+      <button class="btn-back" id="btn-lead-back">← Back</button>
+      <div class="lead-top">
+        <div class="lead-icon">📩</div>
+        <h2 class="lead-h2">Where should we send your result?</h2>
+        <p class="lead-sub">Get your personalised report on WhatsApp or email — matched to your symptoms.</p>
+      </div>
+      <form id="lead-form" novalidate>
+        <div class="field">
+          <label class="field-label" for="f-phone">WhatsApp / Mobile <span class="field-opt">India +91</span></label>
+          <input class="field-input" type="tel" id="f-phone" placeholder="9876543210" inputmode="numeric" maxlength="10" />
         </div>
-        <div class="qseo-faq-item">
-          <h3>What age should I take a perimenopause quiz?</h3>
-          <p>If you are 38 or older and noticing changes in your periods, sleep, mood, or energy, it is worth checking. In India, perimenopause typically begins between ages 41–46, though it can start in the late 30s. There is no age that is "too young" to understand your symptoms.</p>
+        <div class="field">
+          <label class="field-label" for="f-email">Email address</label>
+          <input class="field-input" type="email" id="f-email" placeholder="you@example.com" />
         </div>
-        <div class="qseo-faq-item">
-          <h3>Can I have perimenopause symptoms with regular periods?</h3>
-          <p>Yes. Perimenopause often begins while periods are still regular. The earliest signs are frequently mood changes, sleep disruption, anxiety, or subtle cycle length changes — not necessarily missed periods. The quiz covers this early pattern.</p>
-        </div>
-        <div class="qseo-faq-item">
-          <h3>What should I do after taking the quiz?</h3>
-          <p>Read the journals most relevant to your result, use our private <a href="/chat">chat companion</a> to ask questions without judgment, and if your symptoms are affecting your quality of life, speak to a gynaecologist. Our <a href="/guide/talk-to-doctor">Talk to Your Doctor guide</a> helps you prepare for that conversation.</p>
-        </div>
-        <div class="qseo-faq-item">
-          <h3>Is perimenopause different for Indian women?</h3>
-          <p>Yes. Indian women on average reach menopause 2–3 years earlier than Western women. Vitamin D deficiency is more prevalent, affecting bone and mood symptoms. Dietary patterns, body composition, and cultural factors around discussing menopause all influence the experience. This quiz and website are built specifically for the Indian context.</p>
+        <p class="lead-err" id="lead-err" style="display:none">Please enter at least your phone or email.</p>
+        <p class="field-note">🔒 We never sell or share your details. Unsubscribe any time.</p>
+        <button type="submit" class="btn-main">Continue to quiz →</button>
+      </form>
+      <button class="btn-ghost" id="btn-skip">Skip — take quiz anonymously</button>
+    </div>
+  </div>
+
+  <!-- ── QUESTION ── -->
+  <div class="q-screen" id="s-question">
+    <div class="q-wrap">
+      <div class="qhdr">
+        <button class="btn-back" id="btn-back">← Back</button>
+        <span class="q-count" id="q-count">1 / 12</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="q-card" id="q-card">
+        <p class="q-label" id="q-label">Question 1</p>
+        <h2 class="q-text" id="q-text"></h2>
+        <p class="q-hint" id="q-hint"></p>
+        <div class="q-opts" id="q-opts"></div>
+      </div>
+      <p class="q-foot">🔒 Your answers are private and not stored</p>
+    </div>
+  </div>
+
+  <!-- ── RESULT ── -->
+  <div class="q-screen" id="s-result">
+    <div class="q-wrap q-wrap--result">
+
+      <div class="res-hero" id="res-hero">
+        <div class="res-emoji" id="res-emoji"></div>
+        <div class="res-badge" id="res-badge"></div>
+        <h2 class="res-title" id="res-title"></h2>
+        <div class="res-meter" id="res-meter">
+          <div class="rm-track">
+            <div class="rm-fill" id="rm-fill"></div>
+          </div>
+          <div class="rm-labels">
+            <span>Mild</span><span>Moderate</span><span>Likely</span>
+          </div>
         </div>
       </div>
 
-      <div class="qseo-links">
-        <h2>Learn More</h2>
-        <div class="qseo-link-row">
-          <a href="/guide/symptoms" class="qseo-link-card">🔍 Symptom Library — every symptom explained</a>
-          <a href="/blog/seven-signs-of-perimenopause" class="qseo-link-card">📋 Seven Signs of Perimenopause</a>
-          <a href="/blog/how-to-test-for-perimenopause" class="qseo-link-card">🧪 How to Test for Perimenopause</a>
-          <a href="/blog/how-long-does-perimenopause-last" class="qseo-link-card">⏱ How Long Does Perimenopause Last?</a>
-          <a href="/myths" class="qseo-link-card">🚫 Perimenopause Myths Debunked</a>
-          <a href="/chat" class="qseo-link-card">💬 Ask Our Private Companion</a>
+      <div class="res-body">
+        <p class="res-desc" id="res-desc"></p>
+
+        <div class="res-steps" id="res-steps">
+          <p class="res-steps-label">Your personalised next steps</p>
+        </div>
+
+        <a class="btn-main res-cta" id="res-cta" href="/chat">Talk to our companion →</a>
+        <p class="res-lock">🔒 Private · Confidential · No login needed</p>
+
+        <div class="res-foot">
+          <button class="btn-ghost" id="btn-retake">← Retake quiz</button>
+          <p class="res-disc">This is a symptom awareness tool, not a medical diagnosis. Always consult a qualified gynaecologist.</p>
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
+
+</div>
+
+<!-- SEO section -->
+<section class="seo-wrap">
+  <div class="container">
+    <div class="seo-intro">
+      <h2>What Is This Perimenopause Quiz?</h2>
+      <p>This free perimenopause symptom quiz helps Indian women in their late 30s and 40s understand whether the changes they are experiencing could be signs of perimenopause. The quiz takes 2 minutes, asks 12 questions, and gives an instant personalised result.</p>
+    </div>
+    <div class="seo-cards">
+      <div class="seo-card"><div class="seo-icon">🌸</div><h3>For Indian Women</h3><p>Indian women reach menopause 2–3 years earlier than Western averages. This quiz accounts for the Indian context including age of onset, symptoms, and cultural factors.</p></div>
+      <div class="seo-card"><div class="seo-icon">🔬</div><h3>Clinically Informed</h3><p>Questions are informed by the Greene Climacteric Scale, developed with guidance from menopause-aware gynaecologists.</p></div>
+      <div class="seo-card"><div class="seo-icon">🔒</div><h3>Completely Private</h3><p>Nothing is saved or shared. No account needed. Answers disappear when you close the tab.</p></div>
+    </div>
+    <div class="seo-faqs">
+      <h2>Common Questions</h2>
+      <div class="seo-faq"><h3>Is this quiz accurate?</h3><p>It is a symptom awareness tool, not a medical diagnosis. It identifies patterns that align with perimenopause based on clinical evidence. A definitive assessment requires a gynaecologist consultation.</p></div>
+      <div class="seo-faq"><h3>What age should I take this quiz?</h3><p>If you are 38 or older and noticing changes in your periods, sleep, mood, or energy — it is worth checking. In India, perimenopause typically begins between ages 41–46.</p></div>
+      <div class="seo-faq"><h3>Can I have symptoms with regular periods?</h3><p>Yes. Perimenopause often begins while periods are still regular. The earliest signs are mood changes, sleep disruption, and anxiety — not necessarily missed periods.</p></div>
+      <div class="seo-faq"><h3>What do I do after the quiz?</h3><p>Use our private <a href="/chat">chat companion</a> to ask questions, read the <a href="/guide/symptoms">Symptom Library</a>, and speak to a gynaecologist if symptoms affect your quality of life.</p></div>
+    </div>
+  </div>
+</section>
 
 </Layout>
 
 <script>
-const QUESTIONS = [
-  {
-    q: "How old are you?",
-    hint: "Age is one of the strongest indicators of where you are in the hormonal transition.",
-    opts: [
-      { t: "Under 35",    s: 0 },
-      { t: "35 – 39",     s: 2 },
-      { t: "40 – 44",     s: 5 },
-      { t: "45 – 49",     s: 7 },
-      { t: "50 or older", s: 5 },
-    ]
-  },
-  {
-    q: "Have your periods changed in the last 12 months?",
-    hint: "Cycle changes are often the clearest early signal of perimenopause.",
-    opts: [
-      { t: "No — still regular and predictable",                  s: 0 },
-      { t: "Slightly different — lighter, heavier, or a few days off", s: 3 },
-      { t: "Noticeably irregular or skipping months",             s: 6 },
-      { t: "No period in over 12 months",                         s: 8 },
-    ]
-  },
-  {
-    q: "Do you experience hot flashes or night sweats?",
-    hint: "A sudden wave of heat, flushing, or waking drenched in sweat — even occasionally.",
-    opts: [
-      { t: "No, not at all",                                       s: 0 },
-      { t: "Occasionally — mild and manageable",                   s: 2 },
-      { t: "Regularly — a few times a week",                       s: 4 },
-      { t: "Often — disruptive to sleep or daily life",            s: 6 },
-    ]
-  },
-  {
-    q: "How is your sleep?",
-    hint: "Progesterone — the first hormone to decline — has natural sleep-promoting properties.",
-    opts: [
-      { t: "I sleep well and wake refreshed",                      s: 0 },
-      { t: "Occasionally restless or unrefreshed",                 s: 2 },
-      { t: "I regularly wake at night or struggle to fall asleep", s: 4 },
-      { t: "Sleep is a constant struggle affecting my days",       s: 5 },
-    ]
-  },
-  {
-    q: "Are you experiencing mood swings or feeling emotionally unlike yourself?",
-    hint: "Oestrogen directly influences serotonin. Its fluctuation can cause sudden, disproportionate emotional reactions.",
-    opts: [
-      { t: "Not really — emotions feel normal for me",             s: 0 },
-      { t: "Occasionally more irritable or tearful than usual",    s: 2 },
-      { t: "Often — swings that feel out of character",            s: 4 },
-      { t: "My moods feel very unpredictable and distressing",     s: 5 },
-    ]
-  },
-  {
-    q: "Have you noticed more anxiety or persistent low mood?",
-    hint: "New-onset anxiety in your 40s with no prior history is one of the most commonly missed signs of perimenopause.",
-    opts: [
-      { t: "No more than usual",                                   s: 0 },
-      { t: "A little more worried or flat lately",                 s: 2 },
-      { t: "Yes — anxiety or low mood I haven't felt before",      s: 4 },
-      { t: "It's significantly affecting my daily life",           s: 5 },
-    ]
-  },
-  {
-    q: "Do you have trouble concentrating or remembering things?",
-    hint: "Oestrogen supports memory and cognitive function. Brain fog is one of the most distressing but least talked-about symptoms.",
-    opts: [
-      { t: "No — memory and focus are fine",                       s: 0 },
-      { t: "Occasionally forgetful or lose my train of thought",   s: 2 },
-      { t: "Often — affecting work or daily tasks",                s: 4 },
-      { t: "Severe — I feel I've lost my mental sharpness",        s: 5 },
-    ]
-  },
-  {
-    q: "How are your energy levels?",
-    hint: "Hormonal disruption, poor sleep, and thyroid changes all contribute to perimenopausal fatigue.",
-    opts: [
-      { t: "Good — I feel energetic most days",                    s: 0 },
-      { t: "I tire more easily than I used to",                    s: 2 },
-      { t: "I feel exhausted most days",                           s: 4 },
-      { t: "My fatigue is severe and hard to explain",             s: 5 },
-    ]
-  },
-  {
-    q: "Do you have unexplained joint pain, stiffness, or muscle aches?",
-    hint: "Oestrogen has anti-inflammatory properties. Its decline often causes joint pain — an underrecognised perimenopause symptom.",
-    opts: [
-      { t: "No joint pain or stiffness",                           s: 0 },
-      { t: "Mild stiffness, especially in the morning",            s: 2 },
-      { t: "Regular joint or muscle pain without obvious cause",   s: 4 },
-      { t: "Significant pain affecting movement or daily life",    s: 5 },
-    ]
-  },
-  {
-    q: "Have you noticed unexplained weight gain, especially around the belly?",
-    hint: "Declining oestrogen shifts fat storage toward the abdomen — even without changes to diet or exercise.",
-    opts: [
-      { t: "No change in weight or shape",                         s: 0 },
-      { t: "A little weight gain — not sure if hormonal",          s: 2 },
-      { t: "Yes, gaining around my belly despite no diet changes", s: 4 },
-      { t: "Yes — significant and very hard to manage",            s: 5 },
-    ]
-  },
-  {
-    q: "Have you noticed changes in your hair or skin?",
-    hint: "Oestrogen stimulates collagen and supports the hair growth cycle. Its decline causes dryness, thinning, and reduced elasticity.",
-    opts: [
-      { t: "No noticeable changes",                                s: 0 },
-      { t: "Mild dryness or slightly more hair shedding",          s: 2 },
-      { t: "Noticeable thinning or skin changes that concern me",  s: 4 },
-      { t: "Significant changes in both hair and skin",            s: 5 },
-    ]
-  },
-  {
-    q: "Has your interest in sex or physical intimacy changed?",
-    hint: "Declining oestrogen and testosterone both reduce libido. Vaginal dryness and discomfort are also common.",
-    opts: [
-      { t: "No change",                                            s: 0 },
-      { t: "Slightly lower interest than before",                  s: 1 },
-      { t: "Noticeably lower, or intimacy is uncomfortable",       s: 3 },
-      { t: "Very low, or with significant physical discomfort",    s: 4 },
-    ]
-  },
+const Q = [
+  { q:'How old are you?', hint:'Age is the strongest single indicator of where you are in the hormonal transition.', opts:[{t:'Under 35',s:0},{t:'35–39',s:2},{t:'40–44',s:5},{t:'45–49',s:7},{t:'50 or older',s:5}] },
+  { q:'Have your periods changed in the last 12 months?', hint:'Cycle changes are often the clearest early signal of perimenopause.', opts:[{t:'No — still regular and predictable',s:0},{t:'Slightly different — heavier, lighter, or a few days off',s:3},{t:'Noticeably irregular or skipping months',s:6},{t:'No period in over 12 months',s:8}] },
+  { q:'Do you experience hot flashes or night sweats?', hint:'A sudden wave of heat or waking drenched in sweat — even occasionally — is a hallmark hormonal symptom.', opts:[{t:'No, not at all',s:0},{t:'Occasionally — mild',s:2},{t:'Regularly — a few times a week',s:4},{t:'Often — disruptive to sleep or daily life',s:6}] },
+  { q:'How is your sleep?', hint:'Progesterone — the first hormone to decline — has natural sleep-promoting properties. Its fall disrupts sleep significantly.', opts:[{t:'I sleep well and wake refreshed',s:0},{t:'Occasionally restless or unrefreshed',s:2},{t:'I regularly wake at night or struggle to fall asleep',s:4},{t:'Sleep is a constant struggle affecting my days',s:5}] },
+  { q:'Are you experiencing mood swings or feeling emotionally unlike yourself?', hint:'Oestrogen directly influences serotonin. Its fluctuation can cause sudden, disproportionate emotional reactions.', opts:[{t:'Not really — emotions feel normal for me',s:0},{t:'Occasionally more irritable or tearful',s:2},{t:'Often — swings that feel out of character',s:4},{t:'Very unpredictable and distressing',s:5}] },
+  { q:'Have you noticed more anxiety or persistent low mood?', hint:'New-onset anxiety in your 40s with no prior history is one of the most commonly missed signs of perimenopause.', opts:[{t:'No more than usual',s:0},{t:'A little more worried or flat lately',s:2},{t:'Yes — anxiety or low mood I haven\'t felt before',s:4},{t:'It\'s significantly affecting my daily life',s:5}] },
+  { q:'Do you have trouble concentrating or remembering things?', hint:'Oestrogen supports memory and cognitive function. Brain fog is one of the most distressing but least-discussed symptoms.', opts:[{t:'No — memory and focus are fine',s:0},{t:'Occasionally forget things or lose my train of thought',s:2},{t:'Often — affecting work or daily tasks',s:4},{t:'Severe — I feel I\'ve lost my mental sharpness',s:5}] },
+  { q:'How are your energy levels?', hint:'Hormonal disruption, poor sleep, and thyroid changes all contribute to perimenopausal fatigue.', opts:[{t:'Good — energetic most days',s:0},{t:'I tire more easily than I used to',s:2},{t:'I feel exhausted most days',s:4},{t:'Severe fatigue, hard to explain',s:5}] },
+  { q:'Do you have unexplained joint pain, stiffness, or muscle aches?', hint:'Oestrogen has anti-inflammatory properties. Its decline causes joint pain — an underrecognised but very common perimenopause symptom.', opts:[{t:'No joint pain or stiffness',s:0},{t:'Mild stiffness, especially in the morning',s:2},{t:'Regular joint or muscle pain without obvious cause',s:4},{t:'Significant pain affecting daily life',s:5}] },
+  { q:'Have you noticed unexplained weight gain, especially around the belly?', hint:'Declining oestrogen shifts fat storage toward the abdomen — even without changes to diet or exercise.', opts:[{t:'No change',s:0},{t:'A little — not sure if hormonal',s:2},{t:'Yes, gaining around belly despite no diet changes',s:4},{t:'Significant and very hard to manage',s:5}] },
+  { q:'Have you noticed changes in your hair or skin?', hint:'Oestrogen stimulates collagen and supports the hair growth cycle. Its decline causes dryness, thinning, and reduced elasticity.', opts:[{t:'No noticeable changes',s:0},{t:'Mild dryness or slightly more hair shedding',s:2},{t:'Noticeable thinning or skin changes',s:4},{t:'Significant changes in both hair and skin',s:5}] },
+  { q:'Has your interest in sex or physical intimacy changed?', hint:'Declining oestrogen and testosterone both reduce libido. Vaginal dryness and discomfort are also common.', opts:[{t:'No change',s:0},{t:'Slightly lower interest',s:1},{t:'Noticeably lower, or intimacy is uncomfortable',s:3},{t:'Very low or significant physical discomfort',s:4}] },
 ];
 
 const RESULTS = [
-  {
-    max: 15,
-    emoji: '🌱',
-    level: 'Low likelihood right now',
-    topBg: 'linear-gradient(135deg,#EEF7F2 0%,#C8E6D4 100%)',
-    color: '#3D7A5F',
-    title: 'Your symptoms are mild at this stage',
-    body: "Your answers suggest a low likelihood of perimenopause right now — but symptoms can evolve over months, and some changes may relate to hormonal shifts, thyroid function, or stress. It is worth staying aware.",
-    steps: [
-      { icon: '💬', text: 'Chat with our companion about any symptoms that concern you' },
-      { icon: '📚', text: 'Read our guide on early signs to watch for' },
-      { icon: '🩺', text: 'Mention any new changes to your doctor at your next visit' },
-    ],
-    cta: 'Talk to your companion', href: '/chat',
-  },
-  {
-    max: 33,
-    emoji: '🌸',
-    level: 'Possible early perimenopause',
-    topBg: 'linear-gradient(135deg,#FDF2EC 0%,#F5D4BA 100%)',
-    color: '#C06030',
-    title: 'You may be in early perimenopause',
-    body: "Your symptoms align with early perimenopause — the transition that typically begins 4–10 years before menopause. In India, this often starts between ages 38–44. This is completely normal, but it deserves proper understanding and support.",
-    steps: [
-      { icon: '💬', text: 'Start a private conversation — get answers specific to your symptoms' },
-      { icon: '🩺', text: 'Speak to a gynaecologist who understands perimenopause' },
-      { icon: '📖', text: 'Read our Symptom Library to understand each symptom in detail' },
-    ],
-    cta: 'Start a private conversation', href: '/chat',
-  },
-  {
-    max: Infinity,
-    emoji: '🌺',
-    level: 'Likely perimenopause or menopause transition',
-    topBg: 'linear-gradient(135deg,#FFF5F5 0%,#F9D0D0 100%)',
-    color: '#9B2C2C',
-    title: 'Your symptoms strongly suggest perimenopause',
-    body: "Based on your answers, you are likely in perimenopause or approaching menopause. This is well understood and very manageable with the right care. The women who do best are those who sought support early — you are doing that right now.",
-    steps: [
-      { icon: '💬', text: 'Talk to our companion now — personalised information, no judgement' },
-      { icon: '🩺', text: 'Consult a menopause-aware gynaecologist as soon as possible' },
-      { icon: '🩸', text: 'Ask your doctor for a hormone panel: FSH, LH, oestradiol, and thyroid' },
-    ],
-    cta: 'Get support now', href: '/chat',
-  },
+  { max:15, emoji:'🌱', level:'Low likelihood right now', meterPct:15, heroGrad:'linear-gradient(135deg,#E8F5EE,#C3DFC9)', badgeColor:'#3D7A5F', title:'Your symptoms are mild right now', desc:'Your answers suggest a low likelihood of perimenopause at this stage — but symptoms can evolve, and some changes may still relate to hormonal shifts, thyroid function, or stress. It\'s worth staying aware.', steps:[{i:'💬',t:'Chat privately about any symptoms that concern you'},{i:'📖',t:'Read our guide on early signs to watch for'},{i:'🩺',t:'Mention any new changes to your doctor at your next visit'}], cta:'Ask our companion', href:'/chat' },
+  { max:33, emoji:'🌸', level:'Possible early perimenopause', meterPct:50, heroGrad:'linear-gradient(135deg,#FDF2EC,#F5D0A9)', badgeColor:'#C06030', title:'You may be in early perimenopause', desc:'Your symptoms align with early perimenopause — the transition that typically begins 4–10 years before menopause. In India, this often starts between ages 38–44. This is completely normal, but it deserves proper understanding and support.', steps:[{i:'💬',t:'Start a private conversation — get answers for your specific symptoms'},{i:'🩺',t:'Speak to a gynaecologist who understands perimenopause'},{i:'📖',t:'Explore our Symptom Library to understand each symptom in detail'}], cta:'Start a private conversation', href:'/chat' },
+  { max:Infinity, emoji:'🌺', level:'Likely perimenopause', meterPct:90, heroGrad:'linear-gradient(135deg,#FDF0F0,#F5BABA)', badgeColor:'#9B2C2C', title:'Your symptoms strongly suggest perimenopause', desc:'Based on your answers, you are likely in perimenopause or approaching menopause. The good news: this is well understood and very manageable with the right support. Women who seek help early do significantly better.', steps:[{i:'💬',t:'Talk to our companion — personalised guidance, no judgement'},{i:'🩺',t:'Consult a menopause-aware gynaecologist as soon as possible'},{i:'🩸',t:'Ask your doctor for a hormone panel: FSH, oestradiol, and thyroid'}], cta:'Get support now', href:'/chat' },
 ];
 
-// Track per-question scores to enable proper back navigation
 let answers: number[] = [];
 let cur = 0;
 let ageAnswer = '';
 
-const $intro     = document.getElementById('screen-intro')!;
-const $lead      = document.getElementById('screen-lead')!;
-const $questions = document.getElementById('screen-questions')!;
-const $result    = document.getElementById('screen-result')!;
+const sIntro    = document.getElementById('s-intro')!;
+const sPrivacy  = document.getElementById('s-privacy')!;
+const sLead     = document.getElementById('s-lead')!;
+const sQuestion = document.getElementById('s-question')!;
+const sResult   = document.getElementById('s-result')!;
 
-function totalScore() {
-  return answers.reduce((sum, s) => sum + s, 0);
+function show(el: HTMLElement) {
+  [sIntro, sPrivacy, sLead, sQuestion, sResult].forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function startQuiz() {
-  $lead.style.display = 'none';
-  $questions.style.display = 'flex';
-  render();
-}
+// Intro → Privacy
+document.getElementById('btn-start')!.onclick = () => show(sPrivacy);
 
-// Intro → Lead capture
-document.getElementById('start-btn')!.addEventListener('click', () => {
-  $intro.style.display = 'none';
-  $lead.style.display = 'flex';
-});
+// Privacy → Intro (back)
+document.getElementById('btn-privacy-back')!.onclick = () => show(sIntro);
 
-// Lead capture back → Intro
-document.getElementById('lead-back-btn')!.addEventListener('click', () => {
-  $lead.style.display = 'none';
-  $intro.style.display = 'flex';
-});
+// Privacy → Lead
+document.getElementById('btn-privacy-ok')!.onclick = () => show(sLead);
+
+// Privacy → Quiz (anonymous, skip lead)
+document.getElementById('btn-privacy-anon')!.onclick = () => startQuiz();
+
+// Lead → Privacy (back)
+document.getElementById('btn-lead-back')!.onclick = () => show(sPrivacy);
 
 // Lead form submit
-document.getElementById('lead-form')!.addEventListener('submit', (e) => {
+document.getElementById('lead-form')!.addEventListener('submit', e => {
   e.preventDefault();
-  const phone = (document.getElementById('lead-phone') as HTMLInputElement).value.trim();
-  const email = (document.getElementById('lead-email') as HTMLInputElement).value.trim();
-  if (!phone && !email) {
-    const err = document.querySelector('.lead-error') as HTMLElement || (() => {
-      const el = document.createElement('p');
-      el.className = 'lead-error';
-      el.textContent = 'Please enter at least a phone number or email to continue.';
-      document.getElementById('lead-form')!.insertBefore(el, document.querySelector('.lead-privacy'));
-      return el;
-    })();
-    err.style.display = 'block';
-    return;
-  }
+  const phone = (document.getElementById('f-phone') as HTMLInputElement).value.trim();
+  const email = (document.getElementById('f-email') as HTMLInputElement).value.trim();
+  const err = document.getElementById('lead-err')!;
+  if (!phone && !email) { err.style.display = 'block'; return; }
+  err.style.display = 'none';
   try {
-    sessionStorage.setItem('tss_lead', JSON.stringify({ phone, email }));
-    fetch('/api/collect-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ phone, email, stage: 'quiz_start' }),
-    }).catch(() => {});
-  } catch (_) {}
+    sessionStorage.setItem('tss_lead', JSON.stringify({phone, email}));
+    fetch('/api/collect-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({phone,email,stage:'quiz_start'}) }).catch(()=>{});
+  } catch(_) {}
   startQuiz();
 });
 
 // Skip → start anonymously
-document.getElementById('lead-skip-btn')!.addEventListener('click', () => {
-  startQuiz();
-});
+document.getElementById('btn-skip')!.onclick = () => startQuiz();
 
-document.getElementById('back-btn')!.addEventListener('click', () => {
-  if (cur > 0) {
-    cur--;
-    answers = answers.slice(0, cur);
-    render();
-  } else {
-    $questions.style.display = 'none';
-    $lead.style.display = 'flex';
-  }
-});
+function startQuiz() {
+  cur = 0; answers = [];
+  renderQ();
+  show(sQuestion);
+}
 
-function render() {
-  const q = QUESTIONS[cur];
-  const pct = Math.round((cur / QUESTIONS.length) * 100);
-  (document.getElementById('q-counter') as HTMLElement).textContent = `${cur + 1} of ${QUESTIONS.length}`;
-  (document.getElementById('q-bar') as HTMLElement).style.width = `${pct}%`;
-  (document.getElementById('q-pct') as HTMLElement).textContent = `${pct}%`;
-  (document.getElementById('q-num') as HTMLElement).textContent = `Question ${cur + 1}`;
+// Back in question screen
+document.getElementById('btn-back')!.onclick = () => {
+  if (cur > 0) { cur--; answers = answers.slice(0, cur); renderQ(); }
+  else { show(sLead); }
+};
+
+function renderQ() {
+  const q = Q[cur];
+  const pct = Math.round((cur / Q.length) * 100);
+  (document.getElementById('prog-fill') as HTMLElement).style.width = pct + '%';
+  (document.getElementById('q-count') as HTMLElement).textContent = `${cur + 1} / ${Q.length}`;
+  (document.getElementById('q-label') as HTMLElement).textContent = `Question ${cur + 1} of ${Q.length}`;
   (document.getElementById('q-text') as HTMLElement).textContent = q.q;
+  (document.getElementById('q-hint') as HTMLElement).textContent = q.hint;
 
-  const el = document.getElementById('q-opts')!;
-  el.innerHTML = '';
+  const opts = document.getElementById('q-opts')!;
+  opts.innerHTML = '';
 
-  // Show hint if exists
-  const hintId = 'q-hint';
-  let hintEl = document.getElementById(hintId);
-  if (!hintEl) {
-    hintEl = document.createElement('p');
-    hintEl.id = hintId;
-    hintEl.className = 'qq-hint';
-    (document.getElementById('q-text') as HTMLElement).insertAdjacentElement('afterend', hintEl);
-  }
-  hintEl.textContent = q.hint || '';
+  // Animate card in
+  const card = document.getElementById('q-card')!;
+  card.classList.remove('q-in');
+  void card.offsetWidth;
+  card.classList.add('q-in');
 
   q.opts.forEach(opt => {
-    const btn = document.createElement('button');
-    btn.className = 'q-opt';
-    btn.innerHTML = `<span class="qo-radio"></span><span class="qo-text">${opt.t}</span>`;
-    btn.addEventListener('click', () => {
-      el.querySelectorAll('.q-opt').forEach(b => (b as HTMLButtonElement).disabled = true);
-      btn.classList.add('selected');
+    const b = document.createElement('button');
+    b.className = 'q-opt';
+    b.innerHTML = `<span class="q-opt-radio"></span><span>${opt.t}</span>`;
+    b.onclick = () => {
+      opts.querySelectorAll('.q-opt').forEach((x:any) => x.disabled = true);
+      b.classList.add('sel');
       if (cur === 0) ageAnswer = opt.t;
       answers[cur] = opt.s;
       cur++;
-      setTimeout(() => cur < QUESTIONS.length ? render() : showResult(), 380);
-    });
-    el.appendChild(btn);
+      setTimeout(() => cur < Q.length ? renderQ() : showResult(), 420);
+    };
+    opts.appendChild(b);
   });
 }
 
 function showResult() {
-  $questions.style.display = 'none';
-  $result.style.display = 'flex';
-  const score = totalScore();
+  const score = answers.reduce((a,b) => a+b, 0);
   const r = RESULTS.find(x => score < x.max)!;
+
+  (document.getElementById('res-emoji') as HTMLElement).textContent = r.emoji;
+  const badge = document.getElementById('res-badge')!;
+  badge.textContent = r.level;
+  badge.style.background = r.badgeColor;
+  (document.getElementById('res-title') as HTMLElement).textContent = r.title;
+  (document.getElementById('res-hero') as HTMLElement).style.background = r.heroGrad;
+  (document.getElementById('res-desc') as HTMLElement).textContent = r.desc;
+  (document.getElementById('rm-fill') as HTMLElement).style.width = r.meterPct + '%';
+
+  const stepsEl = document.getElementById('res-steps')!;
+  stepsEl.innerHTML = '<p class="res-steps-label">Your personalised next steps</p>';
+  r.steps.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'res-step';
+    d.innerHTML = `<span class="res-step-icon">${s.i}</span><span class="res-step-text">${s.t}</span>`;
+    stepsEl.appendChild(d);
+  });
+
+  const cta = document.getElementById('res-cta')!;
+  cta.textContent = r.cta + ' →';
+  (cta as HTMLAnchorElement).href = r.href;
+
+  document.getElementById('btn-retake')!.onclick = () => {
+    cur = 0; answers = [];
+    show(sIntro);
+  };
 
   try {
     const lead = JSON.parse(sessionStorage.getItem('tss_lead') || '{}');
-    fetch('/api/collect-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: lead.email || '', phone: lead.phone || '', age: ageAnswer, score, level: r.level }),
-    }).catch(() => {});
+    fetch('/api/collect-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:lead.email||'',phone:lead.phone||'',age:ageAnswer,score,level:r.level}) }).catch(()=>{});
     sessionStorage.removeItem('tss_lead');
-  } catch (_) {}
+  } catch(_) {}
 
-  document.getElementById('result-content')!.innerHTML = `
-    <div class="result-card">
-      <div class="result-top" style="background:${r.topBg}">
-        <div class="rt-emoji">${r.emoji}</div>
-        <div class="rt-tag" style="background:${r.color};color:#fff">${r.level}</div>
-        <h2 class="rt-title">${r.title}</h2>
-      </div>
-      <div class="result-body">
-        <p class="rb-lead">${r.body}</p>
-        <div class="rb-steps">
-          <p class="rbs-label">Your personalised next steps</p>
-          ${r.steps.map(s => `
-            <div class="rbs-item">
-              <span class="rbs-icon">${s.icon}</span>
-              <span>${s.text}</span>
-            </div>
-          `).join('')}
-        </div>
-        <div class="rb-cta-wrap">
-          <a href="${r.href}" class="btn btn-peach btn-lg">${r.cta} →</a>
-          <p class="rb-private">🔒 Private · Confidential · Judgment-free</p>
-        </div>
-        <div class="rb-footer">
-          <button id="retake" class="rb-retake">← Retake the quiz</button>
-          <p class="rb-disc">This quiz is a symptom awareness tool, not a medical diagnosis. Always consult a qualified gynaecologist for personal medical advice.</p>
-        </div>
-      </div>
-    </div>
-  `;
-  document.getElementById('retake')!.addEventListener('click', () => {
-    cur = 0; answers = [];
-    $result.style.display = 'none';
-    $intro.style.display = 'flex';
-  });
+  show(sResult);
 }
 </script>
 
 <style>
-  .quiz-page { background: var(--cream); min-height: calc(100vh - var(--nav-h)); }
-
-  .qs-screen {
-    min-height: calc(100vh - var(--nav-h));
-    display: flex; align-items: center; justify-content: center;
-    padding: 3rem 1.5rem;
+  /* ── SHELL ── */
+  .quiz-shell {
+    background: var(--cream);
+    min-height: calc(100vh - var(--nav-h, 64px));
   }
-  .qc { width: 100%; max-width: 620px; }
+  .q-screen { display: none; }
+  .q-screen.active { display: flex; flex-direction: column; align-items: center; padding: 2.5rem 1.25rem 3rem; }
+  .q-wrap { width: 100%; max-width: 560px; }
+  .q-wrap--result { max-width: 580px; }
 
   /* ── INTRO ── */
-  .q-eyebrow {
-    display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--green); background: var(--green-light); padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.5rem;
+  .intro-badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--green); background: var(--green-light);
+    padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.5rem;
   }
-  #screen-intro h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: -.03em; color: var(--text); line-height: 1.15; margin-bottom: 1rem; }
-  .qi-desc { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.72; margin-bottom: 2rem; }
-  .qi-stats {
-    display: flex; align-items: center; gap: 1.75rem;
-    background: var(--green-light); border-radius: var(--radius);
-    padding: 1.25rem 1.75rem; margin-bottom: 2rem;
+  .intro-h1 {
+    font-size: clamp(2rem, 6vw, 2.8rem); font-weight: 900;
+    letter-spacing: -.035em; line-height: 1.12;
+    color: var(--text); margin-bottom: 1rem;
   }
-  .qi-stat { text-align: center; flex: 1; }
-  .qs-n { display: block; font-size: 1.35rem; font-weight: 900; color: var(--green-dark); }
-  .qs-l { display: block; font-size: .74rem; color: var(--text-muted); font-weight: 500; margin-top: .1rem; }
-  .qi-div { width: 1px; height: 38px; background: var(--border); flex-shrink: 0; }
-  .qi-start-btn { width: 100%; justify-content: center; margin-bottom: .75rem; }
-  .qi-note { font-size: .8rem; color: var(--text-muted); margin-bottom: 1.25rem; }
-  .qi-credibility {
-    display: flex; gap: .65rem; align-items: flex-start;
-    background: #F0F7F4; border: 1.5px solid #C5DFD0;
-    border-radius: 10px; padding: .9rem 1.1rem;
-    font-size: .78rem; color: #2D5A42; line-height: 1.6;
+  .intro-sub { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.75rem; }
+  .intro-pills {
+    display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem;
   }
-  .qi-credibility svg { flex-shrink: 0; margin-top: .15rem; color: var(--green); }
-
-  /* ── QUESTIONS ── */
-  #screen-questions { flex-direction: column; align-items: center; }
-  #screen-questions .qc { display: flex; flex-direction: column; gap: 1.25rem; }
-  .qq-header { display: flex; align-items: center; justify-content: space-between; }
-  .qq-back { background: none; border: none; color: var(--text-muted); font-size: .85rem; font-weight: 500; cursor: pointer; padding: .4rem 0; }
-  .qq-back:hover { color: var(--green); }
-  .qq-counter { font-size: .82rem; color: var(--text-muted); font-weight: 600; }
-
-  .qq-bar-wrap { display: flex; align-items: center; gap: .75rem; }
-  .qq-bar-wrap > div:first-child { flex: 1; height: 8px; background: var(--border); border-radius: 100px; overflow: hidden; }
-  .qq-bar { height: 100%; background: var(--green); border-radius: 100px; transition: width .4s ease; width: 0; }
-  .qq-pct { font-size: .72rem; font-weight: 700; color: var(--green); min-width: 28px; text-align: right; }
-
-  .qq-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; }
-  .qq-num { font-size: .72rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
-  .qq-text { font-size: 1.25rem; font-weight: 800; color: var(--text); line-height: 1.38; margin-bottom: .5rem; }
-  .qq-hint { font-size: .82rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1.5rem; font-style: italic; }
-
-  .qq-opts { display: flex; flex-direction: column; gap: .6rem; }
-  .q-opt {
-    display: flex; align-items: center; gap: .85rem;
-    text-align: left; background: var(--cream); border: 1.5px solid var(--border);
-    border-radius: var(--radius-sm); padding: .95rem 1.1rem;
-    font-size: .93rem; color: var(--text); font-weight: 500; cursor: pointer;
-    transition: all .15s; line-height: 1.45; min-height: 52px; width: 100%;
+  .intro-pills span {
+    font-size: .8rem; font-weight: 600;
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 99px; padding: .3rem .85rem; color: var(--text-secondary);
   }
-  .q-opt:hover:not(:disabled) { border-color: var(--green); background: var(--green-light); color: var(--green-dark); }
-  .q-opt.selected { border-color: var(--green); background: var(--green); color: #fff; }
-  .q-opt:disabled { cursor: default; }
-  .q-opt.selected:disabled { opacity: 1; }
-  .q-opt:not(.selected):disabled { opacity: .45; }
-
-  .qo-radio {
-    width: 18px; height: 18px; border-radius: 50%;
-    border: 2px solid var(--border); flex-shrink: 0;
-    transition: all .15s; background: #fff;
+  .intro-lock { font-size: .78rem; color: var(--text-muted); margin-top: .75rem; margin-bottom: 1.25rem; }
+  .intro-trust {
+    display: flex; align-items: flex-start; gap: .6rem;
+    font-size: .76rem; color: #2D5A42; line-height: 1.6;
+    background: #EEF7F2; border: 1.5px solid #C5DFD0;
+    border-radius: 10px; padding: .85rem 1rem;
   }
-  .q-opt:hover:not(:disabled) .qo-radio { border-color: var(--green); }
-  .q-opt.selected .qo-radio { border-color: #fff; background: rgba(255,255,255,.3); box-shadow: inset 0 0 0 4px rgba(255,255,255,.8); }
-  .qo-text { flex: 1; }
+  .intro-trust svg { flex-shrink: 0; margin-top: .15rem; color: var(--green); }
 
-  .qq-privacy { font-size: .75rem; color: var(--text-muted); text-align: center; }
+  /* ── PRIVACY ── */
+  .prv-top { margin-bottom: 1.75rem; }
+  .prv-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+  .prv-h2 { font-size: 1.5rem; font-weight: 900; letter-spacing: -.02em; color: var(--text); margin-bottom: .5rem; }
+  .prv-sub { font-size: .92rem; color: var(--text-secondary); line-height: 1.65; }
+  .prv-cards { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.75rem; }
+  .prv-card {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: #fff; border: 1.5px solid var(--border-light);
+    border-radius: 14px; padding: 1rem 1.1rem;
+  }
+  .prv-card-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .05rem; }
+  .prv-card-body { display: flex; flex-direction: column; gap: .2rem; }
+  .prv-card-title { font-size: .84rem; font-weight: 800; color: var(--text); }
+  .prv-card-text { font-size: .81rem; color: var(--text-secondary); line-height: 1.6; }
+  .prv-card-text strong { color: var(--text); font-weight: 700; }
 
-  /* ── LEAD CAPTURE ── */
-  #screen-lead { align-items: flex-start; padding-top: 2rem; }
-  .lead-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; width: 100%; }
+  /* ── LEAD ── */
+  .lead-top { margin-bottom: 1.75rem; }
   .lead-icon { font-size: 2.5rem; margin-bottom: .75rem; }
-  .lead-title { font-size: 1.35rem; font-weight: 900; color: var(--text); letter-spacing: -.02em; margin-bottom: .6rem; }
-  .lead-desc { font-size: .9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
-  .lead-field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
-  .lead-label { font-size: .82rem; font-weight: 700; color: var(--text); }
-  .lead-optional { font-weight: 400; color: var(--text-muted); }
-  .lead-input {
-    width: 100%; padding: .85rem 1rem; font-size: 1rem;
-    border: 1.5px solid var(--border); border-radius: 10px;
-    background: var(--cream); color: var(--text); outline: none;
-    transition: border-color .15s;
+  .lead-h2 { font-size: 1.5rem; font-weight: 900; letter-spacing: -.02em; color: var(--text); margin-bottom: .5rem; }
+  .lead-sub { font-size: .92rem; color: var(--text-secondary); line-height: 1.65; }
+  .field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+  .field-label { font-size: .82rem; font-weight: 700; color: var(--text); }
+  .field-opt { font-weight: 400; color: var(--text-muted); }
+  .field-input {
+    padding: .9rem 1rem; font-size: 1rem;
+    border: 1.5px solid var(--border); border-radius: 12px;
+    background: #fff; color: var(--text); outline: none;
+    transition: border-color .15s; width: 100%;
   }
-  .lead-input:focus { border-color: var(--green); background: #fff; }
-  .lead-privacy { font-size: .76rem; color: var(--text-muted); margin-bottom: 1.25rem; }
-  .lead-submit-btn { width: 100%; justify-content: center; }
-  .lead-skip { display: block; text-align: center; margin-top: 1rem; background: none; border: none; font-size: .84rem; color: var(--text-muted); text-decoration: underline; cursor: pointer; width: 100%; padding: .5rem; }
-  .lead-skip:hover { color: var(--green); }
-  .lead-error { font-size: .82rem; color: #c0392b; background: #fdf0f0; border: 1px solid #f5c6cb; border-radius: 8px; padding: .6rem .9rem; margin-bottom: .75rem; display: none; }
+  .field-input:focus { border-color: var(--green); }
+  .field-note { font-size: .76rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .lead-err { font-size: .82rem; color: #c0392b; background: #fdf0f0; border: 1px solid #f5c6cb; border-radius: 8px; padding: .6rem .9rem; margin-bottom: .75rem; }
 
-  /* ── RESULT ── */
-  #screen-result {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 2rem 1rem 3rem;
-    min-height: auto;
-  }
-  .result-card {
-    background: #fff;
+  /* ── QUESTION ── */
+  .qhdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .q-count { font-size: .82rem; font-weight: 700; color: var(--text-muted); }
+  .prog-bar { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: 1.75rem; }
+  .prog-fill { height: 100%; background: var(--green); border-radius: 99px; transition: width .4s ease; width: 0; }
+  .q-card {
+    background: #fff; border-radius: 20px;
     border: 1.5px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    width: 100%;
-    max-width: 620px;
-    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+    padding: 2rem 1.75rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
   }
-  .result-top {
-    padding: 2.5rem 2.5rem 2rem;
-    display: flex; flex-direction: column; align-items: flex-start; gap: .9rem;
+  .q-card.q-in { animation: fadeUp .3s ease both; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  .q-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--green); margin-bottom: .5rem; }
+  .q-text { font-size: 1.2rem; font-weight: 800; color: var(--text); line-height: 1.38; margin-bottom: .5rem; }
+  .q-hint { font-size: .8rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1.5rem; font-style: italic; }
+  .q-opts { display: flex; flex-direction: column; gap: .55rem; }
+  .q-opt {
+    display: flex; align-items: center; gap: .85rem; width: 100%;
+    background: var(--cream); border: 1.5px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.1rem;
+    font-size: .93rem; color: var(--text); font-weight: 500;
+    cursor: pointer; text-align: left; min-height: 54px;
+    transition: border-color .15s, background .15s;
   }
-  .rt-emoji { font-size: 3rem; line-height: 1; }
-  .rt-tag {
-    display: inline-flex; font-size: .74rem; font-weight: 700;
-    letter-spacing: .06em; text-transform: uppercase;
-    padding: .4rem 1rem; border-radius: 100px;
-  }
-  .rt-title { font-size: 1.5rem; font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.25; }
-  .result-body { padding: 1.75rem 2.5rem 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-  .rb-lead { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; }
-  .rb-steps {
-    background: var(--cream);
-    border: 1.5px solid var(--border-light);
-    border-radius: 14px; padding: 1.25rem 1.5rem;
-  }
-  .rbs-label {
-    font-size: .7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .09em; color: var(--green); margin-bottom: 1rem;
-    display: block;
-  }
-  .rbs-item {
-    display: flex; align-items: flex-start; gap: .85rem;
-    padding: .75rem 0; border-bottom: 1px solid var(--border-light);
-    font-size: .92rem; color: var(--text); line-height: 1.55;
-    font-weight: 500;
-  }
-  .rbs-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .rbs-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .05rem; }
-  .rb-cta-wrap { display: flex; flex-direction: column; gap: .6rem; }
-  .rb-cta-wrap .btn { width: 100%; justify-content: center; text-align: center; }
-  .rb-private { font-size: .78rem; color: var(--text-muted); text-align: center; }
-  .rb-footer {
-    display: flex; flex-direction: column; align-items: center; gap: .75rem;
-    border-top: 1.5px solid var(--border-light); padding-top: 1.25rem;
-  }
-  .rb-retake {
-    background: none; border: 1.5px solid var(--border);
-    border-radius: 99px; color: var(--text-muted);
-    font-size: .84rem; cursor: pointer; padding: .5rem 1.25rem;
+  .q-opt:hover:not(:disabled) { border-color: var(--green); background: var(--green-light); }
+  .q-opt.sel { border-color: var(--green); background: var(--green); color: #fff; }
+  .q-opt:disabled { cursor: default; }
+  .q-opt:not(.sel):disabled { opacity: .45; }
+  .q-opt-radio {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid var(--border); flex-shrink: 0; background: #fff;
     transition: all .15s;
   }
-  .rb-retake:hover { border-color: var(--green); color: var(--green); }
-  .rb-disc { font-size: .74rem; color: var(--text-muted); text-align: center; line-height: 1.6; max-width: 420px; }
+  .q-opt:hover:not(:disabled) .q-opt-radio { border-color: var(--green); }
+  .q-opt.sel .q-opt-radio { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.25); box-shadow: inset 0 0 0 5px rgba(255,255,255,.6); }
+  .q-foot { font-size: .74rem; color: var(--text-muted); text-align: center; margin-top: 1.25rem; }
+
+  /* ── RESULT ── */
+  .res-hero {
+    border-radius: 20px 20px 0 0;
+    padding: 2.5rem 2rem 2rem;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+  }
+  .res-emoji { font-size: 3.5rem; line-height: 1; }
+  .res-badge {
+    display: inline-flex; font-size: .72rem; font-weight: 800;
+    letter-spacing: .07em; text-transform: uppercase;
+    color: #fff; padding: .4rem 1rem; border-radius: 99px;
+  }
+  .res-title { font-size: 1.55rem; font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.2; }
+
+  /* Meter */
+  .res-meter { width: 100%; }
+  .rm-track { height: 8px; background: rgba(0,0,0,.1); border-radius: 99px; overflow: hidden; margin-bottom: .5rem; }
+  .rm-fill { height: 100%; background: var(--text); border-radius: 99px; opacity: .5; transition: width .6s ease .2s; width: 0; }
+  .rm-labels { display: flex; justify-content: space-between; font-size: .7rem; font-weight: 600; color: var(--text-muted); }
+
+  /* Result body */
+  .res-body {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    padding: 2rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  }
+  .res-desc { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; }
+  .res-steps { display: flex; flex-direction: column; gap: .65rem; }
+  .res-steps-label {
+    font-size: .7rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .09em; color: var(--green); margin-bottom: .25rem;
+  }
+  .res-step {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--cream); border: 1.5px solid var(--border-light);
+    border-radius: 12px; padding: 1rem 1.1rem;
+  }
+  .res-step-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .res-step-text { font-size: .92rem; font-weight: 600; color: var(--text); line-height: 1.45; }
+  .res-lock { font-size: .78rem; color: var(--text-muted); text-align: center; }
+  .res-foot { display: flex; flex-direction: column; align-items: center; gap: .75rem; border-top: 1.5px solid var(--border-light); padding-top: 1.25rem; }
+  .res-disc { font-size: .73rem; color: var(--text-muted); text-align: center; line-height: 1.6; max-width: 400px; }
+
+  /* ── SHARED BUTTONS ── */
+  .btn-main {
+    display: flex; align-items: center; justify-content: center; width: 100%;
+    background: var(--peach, #D4845A); color: #fff;
+    border: none; border-radius: 99px;
+    padding: 1rem 2rem; font-size: 1rem; font-weight: 800;
+    cursor: pointer; text-decoration: none;
+    transition: opacity .18s, transform .18s;
+    letter-spacing: -.01em;
+  }
+  .btn-main:hover { opacity: .9; transform: translateY(-1px); }
+  .btn-back {
+    background: none; border: none; cursor: pointer;
+    font-size: .84rem; color: var(--text-muted); font-weight: 500;
+    padding: .35rem 0; transition: color .15s;
+  }
+  .btn-back:hover { color: var(--green); }
+  .btn-ghost {
+    display: block; width: 100%; text-align: center;
+    background: none; border: none; cursor: pointer;
+    font-size: .84rem; color: var(--text-muted);
+    padding: .5rem; margin-top: .25rem;
+    text-decoration: underline; transition: color .15s;
+  }
+  .btn-ghost:hover { color: var(--green); }
+  .res-cta { margin-top: .25rem; }
+
+  /* ── SEO ── */
+  .seo-wrap { background: #f4f2ef; padding: 4rem 0; border-top: 1.5px solid var(--border-light); }
+  .seo-intro { max-width: 680px; margin: 0 auto 3rem; text-align: center; }
+  .seo-intro h2 { font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: .75rem; }
+  .seo-intro p { font-size: .95rem; color: var(--text-secondary); line-height: 1.75; }
+  .seo-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-bottom: 3rem; }
+  .seo-card { background: #fff; border: 1.5px solid var(--border-light); border-radius: 16px; padding: 1.5rem; }
+  .seo-icon { font-size: 1.75rem; margin-bottom: .75rem; }
+  .seo-card h3 { font-size: .95rem; font-weight: 800; color: var(--text); margin-bottom: .4rem; }
+  .seo-card p { font-size: .85rem; color: var(--text-secondary); line-height: 1.65; }
+  .seo-faqs h2 { font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 1.5rem; }
+  .seo-faq { border-bottom: 1.5px solid var(--border-light); padding: 1rem 0; }
+  .seo-faq h3 { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+  .seo-faq p { font-size: .88rem; color: var(--text-secondary); line-height: 1.7; }
+  .seo-faq a { color: var(--green); text-decoration: underline; }
 
   /* ── MOBILE ── */
-  @media (max-width: 640px) {
-    .qs-screen { padding: 1rem .85rem; align-items: flex-start; padding-top: 1.5rem; }
-    #screen-intro h1 { font-size: 1.75rem; }
-    .qi-desc { font-size: .95rem; margin-bottom: 1.5rem; }
-    .qi-stats { gap: .75rem; padding: .9rem 1rem; margin-bottom: 1.5rem; }
-    .qs-n { font-size: 1.15rem; }
-
-    /* Question card — full width, less padding */
-    .qq-card { padding: 1.5rem 1.1rem; border-radius: 16px; }
-    .qq-text { font-size: 1.1rem; margin-bottom: .4rem; }
-    .qq-hint { font-size: .78rem; margin-bottom: 1.25rem; }
-
-    /* Options — larger tap targets */
-    .q-opt { font-size: .93rem; padding: 1rem .95rem; min-height: 56px; border-radius: 12px; }
-    .qq-opts { gap: .55rem; }
-
-    /* Progress bar — thicker on mobile */
-    .qq-bar-wrap > div:first-child { height: 10px; }
-
-    /* Result */
-    #screen-result { padding: 1.25rem .85rem 3rem; }
-    .result-card { border-radius: 16px; }
-    .result-top { padding: 1.5rem 1.25rem 1.25rem; gap: .65rem; }
-    .rt-emoji { font-size: 2.5rem; }
-    .rt-title { font-size: 1.2rem; }
-    .result-body { padding: 1.25rem; gap: 1.1rem; }
-    .rb-lead { font-size: .92rem; }
-    .rb-steps { padding: 1rem 1.1rem; }
-    .rbs-item { font-size: .88rem; gap: .7rem; padding: .65rem 0; }
-    .rb-cta-wrap .btn { font-size: .95rem; padding: .85rem 1.25rem; }
-    .lead-card { padding: 1.5rem 1.1rem; }
-  }
-
-  /* ── SEO section ── */
-  .quiz-seo-section { background: #f9f7f4; padding: 4rem 0; margin-top: 3rem; border-top: 1.5px solid var(--border-light); }
-  .qseo-intro { max-width: 720px; margin: 0 auto 3rem; text-align: center; }
-  .qseo-intro h2 { font-size: 1.6rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
-  .qseo-intro p { color: var(--text-secondary); line-height: 1.75; margin-bottom: .75rem; }
-
-  .qseo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-bottom: 3rem; }
-  .qseo-card { background: #fff; border: 1.5px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.5rem; }
-  .qseo-icon { font-size: 1.75rem; margin-bottom: .75rem; }
-  .qseo-card h3 { font-size: .95rem; font-weight: 800; color: var(--text); margin-bottom: .5rem; }
-  .qseo-card p { font-size: .85rem; color: var(--text-secondary); line-height: 1.65; }
-
-  .qseo-symptoms { margin-bottom: 3rem; }
-  .qseo-symptoms h2 { font-size: 1.35rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
-  .qseo-symptoms p { color: var(--text-secondary); margin-bottom: 1.25rem; }
-  .qseo-sym-grid { display: flex; flex-wrap: wrap; gap: .6rem; }
-  .qseo-sym { background: #fff; border: 1.5px solid var(--border-light); border-radius: 99px; padding: .4rem 1rem; font-size: .82rem; font-weight: 600; color: var(--text); text-decoration: none; transition: border-color .2s, color .2s; }
-  .qseo-sym:hover { border-color: var(--green); color: var(--green); }
-
-  .qseo-faq { margin-bottom: 3rem; }
-  .qseo-faq h2 { font-size: 1.35rem; font-weight: 800; color: var(--text); margin-bottom: 1.5rem; }
-  .qseo-faq-item { border-bottom: 1.5px solid var(--border-light); padding: 1.25rem 0; }
-  .qseo-faq-item h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
-  .qseo-faq-item p { font-size: .88rem; color: var(--text-secondary); line-height: 1.7; }
-  .qseo-faq-item a { color: var(--green); text-decoration: underline; }
-
-  .qseo-links h2 { font-size: 1.35rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
-  .qseo-link-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
-  .qseo-link-card { background: #fff; border: 1.5px solid var(--border-light); border-radius: var(--radius-lg); padding: 1rem 1.25rem; font-size: .88rem; font-weight: 600; color: var(--text); text-decoration: none; transition: border-color .2s, color .2s; }
-  .qseo-link-card:hover { border-color: var(--green); color: var(--green); }
-
-  @media (max-width: 768px) {
-    .qseo-grid { grid-template-columns: 1fr; }
-    .qseo-link-row { grid-template-columns: 1fr; }
+  @media (max-width: 600px) {
+    .q-screen.active { padding: 1.25rem .9rem 2.5rem; }
+    .intro-h1 { font-size: 1.85rem; }
+    .q-card { padding: 1.5rem 1.1rem; border-radius: 16px; }
+    .q-text { font-size: 1.08rem; }
+    .q-opt { font-size: .92rem; padding: .95rem 1rem; min-height: 54px; }
+    .res-hero { padding: 2rem 1.25rem 1.5rem; border-radius: 16px 16px 0 0; }
+    .res-title { font-size: 1.25rem; }
+    .res-body { padding: 1.25rem; border-radius: 0 0 16px 16px; }
+    .res-step { padding: .85rem .95rem; }
+    .res-step-text { font-size: .88rem; }
+    .seo-cards { grid-template-columns: 1fr; }
   }
 </style>
