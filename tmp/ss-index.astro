@@ -241,7 +241,49 @@ const posts = allPosts
     </div>
   </section>
 
-  <!-- ── 7. FAQ ── -->
+  <!-- ── 7. COMMUNITY ── -->
+  <section class="section community-section">
+    <div class="container">
+      <div class="community-inner">
+
+        <div class="community-left">
+          <span class="comm-eyebrow">👥 Community</span>
+          <h2 class="comm-title">You're not alone<br/>in this.</h2>
+          <p class="comm-sub">Thousands of Indian women sharing questions, experiences, and answers — together through every stage of perimenopause.</p>
+          <a href="/community" class="btn btn-peach btn-lg comm-cta">Join the community →</a>
+          <p class="comm-note">Free · Anonymous · No judgement</p>
+        </div>
+
+        <div class="community-feed">
+          <div class="cf-card">
+            <p class="cf-q">"I've been waking up at 3am almost every night for 4 months. Is this really perimenopause or am I overthinking it?"</p>
+            <div class="cf-meta">
+              <span class="cf-avatar">S</span>
+              <span class="cf-replies">47 women replied</span>
+            </div>
+          </div>
+          <div class="cf-card">
+            <p class="cf-q">"My doctor says my tests are normal but I feel completely unlike myself. What should I actually ask at my next appointment?"</p>
+            <div class="cf-meta">
+              <span class="cf-avatar">R</span>
+              <span class="cf-replies">31 women replied</span>
+            </div>
+          </div>
+          <div class="cf-card">
+            <p class="cf-q">"Joint pain and sudden mood swings together at 39 — could this really be perimenopause starting this early?"</p>
+            <div class="cf-meta">
+              <span class="cf-avatar">P</span>
+              <span class="cf-replies">28 women replied</span>
+            </div>
+          </div>
+          <a href="/community" class="cf-see-all">See all conversations →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 8. FAQ ── -->
   <section class="section faq-section bg-cream">
     <div class="container">
       <div class="section-header center">
@@ -494,6 +536,52 @@ const posts = allPosts
   .reassurance-content { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
   .reassurance-body { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75; }
   .reassurance-body strong { color: var(--text); }
+
+  /* ── COMMUNITY ── */
+  .community-section { background: linear-gradient(150deg, #0F2A1A 0%, #1A3D2B 100%); }
+  .community-inner {
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center;
+  }
+  .comm-eyebrow {
+    display: inline-block; font-size: .76rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: rgba(255,255,255,.6);
+    margin-bottom: 1.25rem;
+  }
+  .comm-title {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -.035em;
+    color: #fff; line-height: 1.12; margin-bottom: 1.1rem;
+  }
+  .comm-sub { font-size: .97rem; color: rgba(255,255,255,.65); line-height: 1.78; margin-bottom: 2rem; }
+  .comm-cta { display: inline-flex; width: auto; }
+  .comm-note { font-size: .76rem; color: rgba(255,255,255,.4); margin-top: .75rem; }
+
+  .community-feed { display: flex; flex-direction: column; gap: 1rem; }
+  .cf-card {
+    background: rgba(255,255,255,.07); border: 1.5px solid rgba(255,255,255,.12);
+    border-radius: 16px; padding: 1.35rem 1.5rem;
+    transition: background .2s;
+  }
+  .cf-card:hover { background: rgba(255,255,255,.11); }
+  .cf-q { font-size: .96rem; color: rgba(255,255,255,.88); line-height: 1.65; margin-bottom: .9rem; font-style: italic; }
+  .cf-meta { display: flex; align-items: center; gap: .65rem; }
+  .cf-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--peach); color: #fff;
+    font-size: .72rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .cf-replies { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.45); }
+  .cf-see-all {
+    font-size: .84rem; font-weight: 600; color: rgba(255,255,255,.5);
+    text-decoration: none; text-align: right; padding-top: .25rem;
+    transition: color .15s;
+  }
+  .cf-see-all:hover { color: rgba(255,255,255,.85); }
+
+  @media (max-width: 860px) {
+    .community-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .comm-title { font-size: 2rem; }
+  }
 
   /* ── FAQ ── */
   .faq-section { }

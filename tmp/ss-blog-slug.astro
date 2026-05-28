@@ -60,12 +60,12 @@ const related = posts
 
         <!-- Sidebar -->
         <aside class="post-sidebar">
-          <div class="sidebar-card sidebar-chat">
-            <div class="sc-icon">💬</div>
-            <p class="sc-eyebrow">Have questions?</p>
-            <h3 class="sc-title">Talk to our private companion</h3>
-            <p class="sc-body">Ask anything about what you're experiencing — anonymously, any time.</p>
-            <a href="/chat" class="btn btn-peach sc-btn">Start chatting →</a>
+          <div class="sidebar-card sidebar-community">
+            <div class="sc-icon">👥</div>
+            <p class="sc-eyebrow">Community</p>
+            <h3 class="sc-title">Ask. Share. Get answers.</h3>
+            <p class="sc-body">Thousands of women going through the same thing — plus expert answers to your questions.</p>
+            <a href="/community" class="btn btn-peach sc-btn">Join the community →</a>
           </div>
           <div class="sidebar-card sidebar-quiz">
             <div class="sc-icon">✅</div>
@@ -176,7 +176,10 @@ const related = posts
   /* ── SIDEBAR ── */
   .post-sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: calc(var(--nav-h) + 1.5rem); }
   .sidebar-card { border-radius: var(--radius-lg); padding: 1.5rem; display: flex; flex-direction: column; gap: .6rem; border: 1.5px solid var(--border); }
-  .sidebar-chat { background: linear-gradient(135deg, #EEF7F2, #C8E6D4); border-color: var(--border); }
+  .sidebar-community { background: linear-gradient(135deg, #1A3D2B, #0F2A1A); border-color: rgba(255,255,255,.1); }
+  .sidebar-community .sc-eyebrow { color: rgba(255,255,255,.5); }
+  .sidebar-community .sc-title   { color: #fff; }
+  .sidebar-community .sc-body    { color: rgba(255,255,255,.65); }
   .sidebar-quiz { background: var(--peach-light); border-color: #F0C9B0; }
   .sc-icon   { font-size: 1.75rem; }
   .sc-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); }
