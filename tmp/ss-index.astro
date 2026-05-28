@@ -32,7 +32,7 @@ const posts = allPosts
           <p class="hero-sub">Mood swings, poor sleep, anxiety, brain fog, weight gain, irregular periods — understand what your body may be trying to tell you.</p>
           <div class="hero-actions">
             <a href="/quiz" class="btn btn-peach btn-lg">Take the Free Quiz →</a>
-            <a href="/guide/symptoms" class="btn btn-outline-white">Read the Symptom Guide</a>
+            <a href="/guide" class="btn btn-outline-white">Explore the Guide</a>
           </div>
           <p class="hero-trust">Private &bull; Science-backed &bull; Judgment-free</p>
         </div>
@@ -469,11 +469,6 @@ const posts = allPosts
   }
   .rotate-word.is-out { opacity: 0; transform: translateY(-8px); }
   .rotate-word.is-in  { opacity: 1; transform: translateY(0); }
-  .rotate-word::after {
-    content: '';
-    position: absolute; left: 0; right: 0; bottom: -.05em;
-    height: .12em; background: currentColor; opacity: .35; border-radius: 99px;
-  }
   @media (prefers-reduced-motion: reduce) {
     .rotate-word { transition: none; }
   }
