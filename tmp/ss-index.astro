@@ -24,11 +24,11 @@ const posts = allPosts
       <div class="hero-inner">
         <div class="hero-content">
           <div class="eyebrow">🌸 India's perimenopause companion</div>
-          <h1>It may not be stress.<br/><em>It could be your <span class="rotate-word" id="rotateWord">hormones</span>.</em></h1>
+          <h1>It may not be stress.<br/><em>It could be your</em><br/><em><span class="rotate-word" id="rotateWord">hormones</span>.</em></h1>
           <p class="hero-sub">Mood swings, poor sleep, anxiety, brain fog, weight gain, irregular periods — understand what your body may be trying to tell you.</p>
           <div class="hero-actions">
             <a href="/quiz" class="btn btn-peach btn-lg">Start Free Symptom Check →</a>
-            <a href="/chat" class="btn btn-outline-white">Talk to an Expert</a>
+            <a href="/guide/symptoms" class="btn btn-outline-white">Explore Symptoms →</a>
           </div>
           <p class="hero-trust">Private &bull; Science-backed &bull; Judgment-free</p>
         </div>
@@ -410,13 +410,15 @@ const posts = allPosts
   }
   .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; }
   .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.14; letter-spacing: -.03em; color: #fff; margin-bottom: 1.25rem; }
-  .hero h1 em { font-style: normal; color: #FBBF81; }
+  .hero h1 em { font-style: normal; color: #FBBF81; display: block; }
   .rotate-word {
     display: inline-block;
     color: #FBBF81;
     position: relative;
     transition: opacity .35s ease, transform .35s ease;
     will-change: opacity, transform;
+    /* prevent the line from collapsing or shifting when word changes */
+    min-width: 8ch;
   }
   .rotate-word.is-out { opacity: 0; transform: translateY(-8px); }
   .rotate-word.is-in  { opacity: 1; transform: translateY(0); }
