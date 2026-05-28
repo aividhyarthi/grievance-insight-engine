@@ -24,7 +24,7 @@ const posts = allPosts
       <div class="hero-inner">
         <div class="hero-content">
           <div class="eyebrow">🌸 India's perimenopause companion</div>
-          <h1>Feeling Different Lately?<br/><em>It May Not Be Stress.<br/>It Could Be Perimenopause.</em></h1>
+          <h1>It may not be stress.<br/><em>It could be your <span class="rotate-word" id="rotateWord">hormones</span>.</em></h1>
           <p class="hero-sub">Mood swings, poor sleep, anxiety, brain fog, weight gain, irregular periods — understand what your body may be trying to tell you.</p>
           <div class="hero-actions">
             <a href="/quiz" class="btn btn-peach btn-lg">Start Free Symptom Check →</a>
@@ -289,6 +289,25 @@ const posts = allPosts
 </Layout>
 
 <script>
+  // ── HERO ROTATING WORD ──
+  (function() {
+    const el = document.getElementById('rotateWord');
+    if (!el) return;
+    const words = ['hormones', 'perimenopause', 'mood', 'sleep', 'mind', 'body', 'energy'];
+    let i = 0;
+    el.classList.add('is-in');
+    setInterval(() => {
+      el.classList.remove('is-in');
+      el.classList.add('is-out');
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.classList.remove('is-out');
+        el.classList.add('is-in');
+      }, 350);
+    }, 2200);
+  })();
+
   // ── JOURNAL SLIDER ──
   (function() {
     const track = document.getElementById('sliderTrack') as HTMLElement;
@@ -392,6 +411,23 @@ const posts = allPosts
   .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; }
   .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.14; letter-spacing: -.03em; color: #fff; margin-bottom: 1.25rem; }
   .hero h1 em { font-style: normal; color: #FBBF81; }
+  .rotate-word {
+    display: inline-block;
+    color: #FBBF81;
+    position: relative;
+    transition: opacity .35s ease, transform .35s ease;
+    will-change: opacity, transform;
+  }
+  .rotate-word.is-out { opacity: 0; transform: translateY(-8px); }
+  .rotate-word.is-in  { opacity: 1; transform: translateY(0); }
+  .rotate-word::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: -.05em;
+    height: .12em; background: currentColor; opacity: .35; border-radius: 99px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rotate-word { transition: none; }
+  }
   .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.8); line-height: 1.75; margin-bottom: 2rem; max-width: 520px; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
   .hero-trust { font-size: .85rem; color: rgba(255,255,255,.55); letter-spacing: .01em; }
