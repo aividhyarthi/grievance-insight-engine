@@ -464,8 +464,6 @@ const posts = allPosts
     position: relative;
     transition: opacity .35s ease, transform .35s ease;
     will-change: opacity, transform;
-    /* prevent the line from collapsing or shifting when word changes */
-    min-width: 10ch;
   }
   .rotate-word.is-out { opacity: 0; transform: translateY(-8px); }
   .rotate-word.is-in  { opacity: 1; transform: translateY(0); }
@@ -668,7 +666,8 @@ const posts = allPosts
   /* ── RESPONSIVE ── */
   @media (max-width: 1000px) {
     .hero-inner { grid-template-columns: 1fr; }
-    .hero-photo-col { display: none; }
+    .hero-photo-col { display: flex; justify-content: center; margin-top: 2rem; }
+    .hero-video-frame { width: 200px; }
     .chat-preview-inner { grid-template-columns: 1fr; }
     .steps-4 { grid-template-columns: 1fr 1fr; }
     .symptoms-grid { grid-template-columns: repeat(4, 1fr); }
