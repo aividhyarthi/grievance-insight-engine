@@ -1,5 +1,45 @@
 import Anthropic from '@anthropic-ai/sdk';
 
+const stripHtml = (html) =>
+  String(html)
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&[a-z#0-9]+;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+/**
+ * Pull the author's recent blog posts from the WordPress REST API so the model
+ * can mirror their real writing voice. Returns a compact reference string, or
+ * '' if disabled or the fetch fails (e.g. firewalled local runs).
+ */
+export async function fetchVoiceReference(config) {
+  const src = config.voice_source;
+  if (!src?.wp_api) return '';
+  const n = src.sample_count ?? 6;
+  const url = `${src.wp_api}?per_page=${n}&_fields=title,excerpt,content`;
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 12000);
+    const res = await fetch(url, {
+      signal: ctrl.signal,
+      headers: { 'User-Agent': 'x-growth-engine/0.1 (+voice-reference)' },
+    });
+    clearTimeout(t);
+    if (!res.ok) return '';
+    const posts = await res.json();
+    return posts
+      .map((p) => {
+        const title = stripHtml(p.title?.rendered || '');
+        const body = stripHtml(p.content?.rendered || p.excerpt?.rendered || '').slice(0, 900);
+        return `• ${title}\n  ${body}`;
+      })
+      .join('\n\n')
+      .slice(0, 9000);
+  } catch {
+    return '';
+  }
+}
+
 /**
  * Generate a batch of X posts across the configured lanes (AI + Politics),
  * in the author's voice, optimized for AEO/SEO. Returns an array of post
@@ -15,6 +55,8 @@ export async function generatePosts(config, { count, apiKey, freshness = '' } = 
   const banned = (config.banned_phrases || []).map((p) => `"${p}"`).join(', ');
   const maxChars = config.cadence?.max_chars ?? 280;
 
+  const voiceRef = await fetchVoiceReference(config);
+
   const prompt = `You are a ghostwriter for ${config.author} (${config.handle}) on X (Twitter).
 Write posts that sound exactly like this person — never like an AI or a brand account.
 
@@ -26,6 +68,7 @@ ${config.voice.summary}
 DO: ${config.voice.do.join(' | ')}
 DON'T: ${config.voice.dont.join(' | ')}
 NEVER use these phrases: ${banned}
+${voiceRef ? `\n══ THE AUTHOR'S ACTUAL WRITING (mirror this voice — rhythm, word choice, how they make a point) ══\n${voiceRef}\n` : ''}
 
 ══ LANES (write a mix across these) ══
 AI (${Math.round((config.lanes.ai.weight || 0.5) * 100)}% of posts): ${config.lanes.ai.description}

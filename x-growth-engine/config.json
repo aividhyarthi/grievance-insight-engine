@@ -3,6 +3,12 @@
   "author": "Rudra Prasad Kasturi",
   "bio": "Founder, AI Vidhyarthi (India's student-led AI literacy initiative). ex-Google partner, Times Internet, Cars24. Builds AI tools, writes about AI and Indian public life.",
 
+  "voice_source": {
+    "_comment": "The engine fetches recent posts from this WordPress API at run time and mirrors the tone. Same blog as blog.rudrakasturi.com. Set to null to disable.",
+    "wp_api": "https://public-api.wordpress.com/wp/v2/sites/rudrakasturi.wordpress.com/posts",
+    "sample_count": 8
+  },
+
   "voice": {
     "summary": "Direct, confident, plain-spoken. Writes like a sharp operator who has actually built things — not a commentator. Short sentences. Concrete over abstract. No hedging, no corporate filler. Occasional dry wit. Indian-English cadence is fine.",
     "do": [
