@@ -26,7 +26,9 @@ function log(...args) {
 
 async function main() {
   const dryRun = String(process.env.DRY_RUN ?? 'true').toLowerCase() !== 'false';
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  // Strip any stray whitespace/newlines — a secret pasted with line breaks
+  // produces an invalid HTTP header and fails the whole run.
+  const apiKey = (process.env.ANTHROPIC_API_KEY || '').replace(/\s/g, '');
   if (!apiKey) throw new Error('ANTHROPIC_API_KEY is not set — cannot generate posts.');
 
   const config = JSON.parse(fs.readFileSync(path.join(root, 'config.json'), 'utf8'));

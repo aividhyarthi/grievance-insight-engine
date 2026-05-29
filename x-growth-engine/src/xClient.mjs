@@ -52,11 +52,13 @@ function oauthHeader(method, url, creds) {
 }
 
 export function credsFromEnv(env = process.env) {
+  // Trim stray whitespace/newlines from pasted secrets.
+  const clean = (v) => (v || '').trim();
   const creds = {
-    apiKey: env.X_API_KEY,
-    apiSecret: env.X_API_SECRET,
-    accessToken: env.X_ACCESS_TOKEN,
-    accessSecret: env.X_ACCESS_SECRET,
+    apiKey: clean(env.X_API_KEY),
+    apiSecret: clean(env.X_API_SECRET),
+    accessToken: clean(env.X_ACCESS_TOKEN),
+    accessSecret: clean(env.X_ACCESS_SECRET),
   };
   const missing = Object.entries(creds)
     .filter(([, v]) => !v)
