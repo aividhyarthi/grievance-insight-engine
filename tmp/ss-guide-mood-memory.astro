@@ -1,10 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'Mood Changes & Brain Fog in Perimenopause | The Second Spring',
+    description: "Anxiety, irritability, low mood, and brain fog during perimenopause are hormonal — not character flaws or stress. Here is what's happening and what helps.",
+    url: '/guide/mood-memory',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Mood & Brain Fog', url: '/guide/mood-memory' },
+  ]),
+];
 ---
 
 <Layout
   title="Mood Changes & Brain Fog in Perimenopause | The Second Spring"
   description="Anxiety, irritability, low mood, and brain fog during perimenopause are hormonal — not character flaws or stress. Here is what's happening and what helps."
+  structuredData={structuredData}
 >
 
   <!-- HERO -->

@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 
 const { slug } = Astro.params;
 const posts = await getCollection('blog');
@@ -17,12 +18,33 @@ function formatDate(d: Date) {
 const related = posts
   .filter(p => p.slug !== slug && p.data.tags.some(t => post.data.tags.includes(t)))
   .slice(0, 2);
+
+// ─── Structured data ───
+const postUrl = `/blog/${post.slug}`;
+const structuredData = [
+  articleSchema({
+    title: post.data.title,
+    description: post.data.description,
+    url: postUrl,
+    image: post.data.image,
+    datePublished: post.data.pubDate.toISOString(),
+    authorName: post.data.author,
+    section: post.data.tags?.[0],
+    keywords: post.data.tags,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Journal', url: '/blog' },
+    { name: post.data.title, url: postUrl },
+  ]),
+];
 ---
 
 <Layout
   title={`${post.data.title} — The Second Spring Journal`}
   description={post.data.description}
   image={post.data.image}
+  structuredData={structuredData}
 >
 
   <!-- Full-bleed feature image hero -->

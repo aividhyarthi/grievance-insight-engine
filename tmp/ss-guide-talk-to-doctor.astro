@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../../lib/schema';
 
 const prepTips = [
   {
@@ -48,11 +49,25 @@ const trackItems = [
   { label: 'Sleep', items: ['Approximate time fell asleep', 'Number of night wakings', 'Overall quality (1–10)', 'Note if woken by night sweats or anxiety'] },
   { label: 'Mood & energy', items: ['Overall mood (1–10)', 'Anxiety level if present (1–10)', 'Energy levels (1–10)', 'Note anything that seems to trigger low mood or anxiety'] },
 ];
+
+const structuredData = [
+  webPageSchema({
+    name: 'How to Talk to Your Doctor About Perimenopause',
+    description: 'Scripts, preparation strategies, and questions to ask your doctor or gynaecologist about perimenopause. Advice for Indian women navigating the healthcare system.',
+    url: '/guide/talk-to-doctor',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Talk to Your Doctor', url: '/guide/talk-to-doctor' },
+  ]),
+];
 ---
 
 <Layout
   title="How to Talk to Your Doctor About Perimenopause – The Second Spring"
   description="Scripts, preparation strategies, and questions to ask your GP or gynaecologist about perimenopause. Advice for Indian women navigating the healthcare system."
+  structuredData={structuredData}
 >
 
   <section class="page-hero">

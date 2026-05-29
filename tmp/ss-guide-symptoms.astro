@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { collectionPageSchema, faqSchema, breadcrumbSchema } from '../../../lib/schema';
 
 const symptoms = [
   {
@@ -161,11 +162,28 @@ const pageFaqs = [
     a: 'Perimenopause is primarily a clinical diagnosis — based on your age, your symptom pattern, and your menstrual history. Blood tests (FSH, oestradiol) can be checked but are unreliable in early perimenopause because hormone levels fluctuate widely day to day. A symptom diary and a consultation with a gynaecologist who is familiar with perimenopause are the most useful first steps.',
   },
 ];
+
+// ─── Structured data ───
+const structuredData = [
+  collectionPageSchema({
+    name: 'Perimenopause Symptoms: Complete Guide for Indian Women',
+    description: '34 perimenopause symptoms explained clearly — what each feels like, why it happens hormonally, and what actually helps.',
+    url: '/guide/symptoms',
+    items: symptoms.map(s => ({ name: s.name, url: `/guide/symptoms/${s.slug}` })),
+  }),
+  faqSchema(pageFaqs.map(f => ({ question: f.q, answer: f.a }))),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Symptoms', url: '/guide/symptoms' },
+  ]),
+];
 ---
 
 <Layout
   title="Perimenopause Symptoms: Complete Guide for Indian Women | The Second Spring"
   description="34 perimenopause symptoms explained clearly — what each feels like, why it happens hormonally, and what actually helps. For Indian women aged 35–55."
+  structuredData={structuredData}
 >
 
 

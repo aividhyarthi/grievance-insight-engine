@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { faqSchema, breadcrumbSchema } from '../../../lib/schema';
 
 const symptoms: Record<string, {
   name: string; emoji: string; tagline: string; seoTitle: string; metaDescription: string;
@@ -257,12 +258,36 @@ if (!symptom) {
   return Astro.redirect('/guide/symptoms');
 }
 
+// ─── Structured data ───
+const symptomUrl = `/guide/symptoms/${slug}`;
+const structuredData = [
+  {
+    '@type': 'MedicalWebPage',
+    '@id': `https://www.thesecondspring.org${symptomUrl}#webpage`,
+    name: symptom.seoTitle,
+    description: symptom.metaDescription,
+    url: `https://www.thesecondspring.org${symptomUrl}`,
+    image: symptom.image,
+    about: { '@type': 'MedicalCondition', name: symptom.name },
+    inLanguage: 'en-IN',
+    isPartOf: { '@id': 'https://www.thesecondspring.org/#website' },
+  },
+  faqSchema(symptom.faqs.map(f => ({ question: f.q, answer: f.a }))),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Symptoms', url: '/guide/symptoms' },
+    { name: symptom.name, url: symptomUrl },
+  ]),
+];
+
 ---
 
 <Layout
   title={symptom.seoTitle}
   description={symptom.metaDescription}
   image={symptom.image}
+  structuredData={structuredData}
 >
 
 

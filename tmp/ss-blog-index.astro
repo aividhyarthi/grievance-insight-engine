@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { CATEGORIES, postsForCategory as postsInCategory } from '../../lib/blog-categories';
+import { breadcrumbSchema, collectionPageSchema, itemListSchema } from '../../lib/schema';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -12,56 +14,29 @@ const featuredPosts = (() => {
   return (f.length >= 3 ? f : posts).slice(0, 3);
 })();
 
-const CATEGORIES = [
-  {
-    slug: 'natural-remedies',
-    label: 'Natural Remedies',
-    icon: '🌿',
-    desc: 'Evidence-based lifestyle and natural approaches to managing perimenopause symptoms.',
-    tags: ['natural remedies', 'lifestyle', 'supplements'],
-  },
-  {
-    slug: 'symptoms',
-    label: 'Symptoms Explained',
-    icon: '🔬',
-    desc: 'Deep dives into individual perimenopause symptoms — what causes them and what to do.',
-    tags: ['symptoms', 'breast pain', 'hair loss', 'fibroids', 'spotting', 'water retention', 'libido', 'hot flashes', 'fatigue', 'brain fog'],
-  },
-  {
-    slug: 'mental-health',
-    label: 'Mental Health & Mood',
-    icon: '🧠',
-    desc: 'Mood swings, anxiety, depression, and brain fog — understanding the hormonal brain.',
-    tags: ['mental health', 'depression', 'anxiety', 'mood swings', 'brain fog', 'mood'],
-  },
-  {
-    slug: 'understanding',
-    label: 'Understanding Perimenopause',
-    icon: '📖',
-    desc: 'What perimenopause is, when it starts, how to recognise it, and what to expect.',
-    tags: ['basics', 'India', 'signs', 'hormones', 'oestrogen', 'progesterone'],
-  },
-  {
-    slug: 'life',
-    label: 'Life with Perimenopause',
-    icon: '💼',
-    desc: 'Relationships, work, pregnancy questions, and navigating Indian life during perimenopause.',
-    tags: ['working women', 'relationships', 'pregnancy', 'when to see doctor', 'community'],
-  },
-];
-
 function postsForCategory(cat: typeof CATEGORIES[number]) {
-  return posts
-    .filter(p =>
-      Array.isArray(p.data.tags) &&
-      p.data.tags.some((t: string) => cat.tags.includes(t.toLowerCase()))
-    )
-    .slice(0, 4);
+  return postsInCategory(posts, cat).slice(0, 4);
 }
 
 function formatDate(d: Date) {
   return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 }
+
+// ─── Structured data ───
+const structuredData = [
+  collectionPageSchema({
+    name: 'The Second Spring Journal',
+    description: 'Honest, science-backed writing on perimenopause, hormones, and thriving through midlife — for Indian women.',
+    url: '/blog',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Journal', url: '/blog' },
+  ]),
+  itemListSchema(
+    posts.slice(0, 20).map(p => ({ name: p.data.title, url: `/blog/${p.slug}` }))
+  ),
+];
 
 const TAG_COLORS: Record<string, string> = {
   perimenopause: '#3D7A5F', anxiety: '#7B4F3A', 'mood swings': '#7B4F3A',
@@ -76,6 +51,7 @@ function tagColor(tag: string) { return TAG_COLORS[tag.toLowerCase()] || '#3D7A5
 <Layout
   title="The Second Spring Journal — Perimenopause Insights for Indian Women"
   description="Honest, science-backed writing on perimenopause, hormones, and thriving through midlife. Journals written for Indian women."
+  structuredData={structuredData}
 >
 
   <!-- Hero -->
@@ -164,7 +140,7 @@ function tagColor(tag: string) { return TAG_COLORS[tag.toLowerCase()] || '#3D7A5
                 <p class="cat-desc">{cat.desc}</p>
               </div>
             </div>
-            <a href={`/blog?category=${cat.slug}`} class="cat-see-all">
+            <a href={`/blog/category/${cat.slug}`} class="cat-see-all">
               See all <span class="see-all-arrow">→</span>
             </a>
           </div>

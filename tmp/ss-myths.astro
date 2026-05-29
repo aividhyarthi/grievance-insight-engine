@@ -1,10 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'Perimenopause Myths — Debunked for Indian Women | The Second Spring',
+    description: "12 common perimenopause myths debunked with evidence. From HRT safety to blood tests, brain fog, and weight gain — what's true for Indian women.",
+    url: '/myths',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Myths', url: '/myths' },
+  ]),
+];
 ---
 
 <Layout
   title="Perimenopause Myths — Debunked for Indian Women | The Second Spring"
   description="12 common perimenopause myths debunked with evidence. From HRT safety to blood tests, brain fog, and weight gain — what's true for Indian women."
+  structuredData={structuredData}
 >
 
   <!-- HERO -->

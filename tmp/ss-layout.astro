@@ -1,18 +1,42 @@
 ---
+import { organizationSchema, websiteSchema, SITE_URL } from '../lib/schema';
+
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  /** Page-specific JSON-LD node(s). Merged into a single @graph with the
+   *  global Organization + WebSite nodes. */
+  structuredData?: any;
+  /** Override the canonical URL (defaults to the current path on the canonical domain). */
+  canonical?: string;
 }
 
 const {
   title = 'The Second Spring – Perimenopause Support for Indian Women',
   description = 'India\'s first private companion for women navigating perimenopause. Ask anything, understand what\'s happening, and find real support.',
   image = 'https://thesecondspring.org/og-default.jpg',
+  structuredData,
+  canonical,
 } = Astro.props;
 
 const path = Astro.url.pathname;
 const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+
+// Canonical URL on the production domain (strip trailing slash except for root).
+const canonicalPath = path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path;
+const canonicalUrl = canonical || `${SITE_URL}${canonicalPath}`;
+
+// Build a single JSON-LD @graph: global nodes + whatever the page passed in.
+const pageNodes = structuredData
+  ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+  : [];
+const jsonLdGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationSchema(), websiteSchema(), ...pageNodes],
+};
+// Escape "<" so the serialised JSON can never break out of the <script> tag.
+const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -30,6 +54,9 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={image} />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <script type="application/ld+json" set:html={jsonLd} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet" />

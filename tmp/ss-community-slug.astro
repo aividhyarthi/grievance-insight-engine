@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { discussionSchema, breadcrumbSchema } from '../../lib/schema';
 
 const { slug } = Astro.params;
 const all = await getCollection('community');
@@ -8,6 +9,25 @@ const entry = all.find(e => e.slug === slug);
 if (!entry) return Astro.redirect('/community');
 const { Content } = await entry.render();
 const data = entry.data;
+
+// ─── Structured data ───
+const entryUrl = `/community/${entry.slug}`;
+const structuredData = [
+  discussionSchema({
+    question: data.question,
+    description: data.question,
+    url: entryUrl,
+    authorName: data.askerName,
+    datePublished: data.date.toISOString(),
+    answeredBy: data.answeredBy,
+    replyCount: data.replies?.length ?? 0,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Community', url: '/community' },
+    { name: data.question, url: entryUrl },
+  ]),
+];
 
 const categoryColours: Record<string, { bg: string; color: string }> = {
   'Sleep':            { bg: '#E8F4F8', color: '#2B7A9E' },
@@ -37,6 +57,7 @@ function getInitials(name: string): string {
 <Layout
   title={`${data.question} | The Second Spring Community`}
   description={`${data.askerName} from ${data.askerCity} asks: "${data.question}" — answered by ${data.answeredBy}.`}
+  structuredData={structuredData}
 >
 
   <div class="thread-page">

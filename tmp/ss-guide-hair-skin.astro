@@ -1,10 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'Hair & Skin Changes in Perimenopause | The Second Spring',
+    description: "Drier skin, thinning hair, adult acne, and facial hair — oestrogen's decline changes how you look. Here is why it happens and what Indian women can do.",
+    url: '/guide/hair-skin',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Hair & Skin', url: '/guide/hair-skin' },
+  ]),
+];
 ---
 
 <Layout
   title="Hair & Skin Changes in Perimenopause | The Second Spring"
   description="Drier skin, thinning hair, adult acne, and facial hair — oestrogen's decline changes how you look. Here is why it happens and what Indian women can do."
+  structuredData={structuredData}
 >
 
   <!-- HERO -->

@@ -1,10 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'Sexual Wellness & Intimacy in Perimenopause | The Second Spring',
+    description: 'Changes in libido, vaginal dryness, and discomfort during sex are medical symptoms — not things to simply endure. A compassionate, clear guide for Indian women.',
+    url: '/guide/sexual-wellness',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Sexual Wellness', url: '/guide/sexual-wellness' },
+  ]),
+];
 ---
 
 <Layout
   title="Sexual Wellness & Intimacy in Perimenopause | The Second Spring"
   description="Changes in libido, vaginal dryness, and discomfort during sex are medical symptoms — not things to simply endure. A compassionate, clear guide for Indian women."
+  structuredData={structuredData}
 >
 
   <!-- HERO -->

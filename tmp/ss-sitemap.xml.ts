@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../lib/blog-categories';
 
 const SITE = 'https://www.thesecondspring.org';
 
@@ -8,14 +9,21 @@ const staticPages = [
   { path: '/',                          changefreq: 'weekly',  priority: '1.0' },
   { path: '/perimenopause',             changefreq: 'monthly', priority: '0.9' },
   { path: '/perimenopause-explained',   changefreq: 'monthly', priority: '0.8' },
+  { path: '/menopause',                 changefreq: 'monthly', priority: '0.8' },
   { path: '/guide',                     changefreq: 'monthly', priority: '0.8' },
   { path: '/guide/symptoms',            changefreq: 'monthly', priority: '0.8' },
   { path: '/guide/topics',              changefreq: 'monthly', priority: '0.7' },
   { path: '/guide/faqs',                changefreq: 'monthly', priority: '0.7' },
   { path: '/guide/talk-to-doctor',      changefreq: 'monthly', priority: '0.7' },
+  { path: '/guide/sleep',               changefreq: 'monthly', priority: '0.7' },
+  { path: '/guide/mood-memory',         changefreq: 'monthly', priority: '0.7' },
+  { path: '/guide/hair-skin',           changefreq: 'monthly', priority: '0.7' },
+  { path: '/guide/sexual-wellness',     changefreq: 'monthly', priority: '0.7' },
+  { path: '/guide/weight',              changefreq: 'monthly', priority: '0.7' },
   { path: '/quiz',                      changefreq: 'monthly', priority: '0.8' },
   { path: '/chat',                      changefreq: 'monthly', priority: '0.8' },
   { path: '/blog',                      changefreq: 'weekly',  priority: '0.8' },
+  { path: '/community',                 changefreq: 'weekly',  priority: '0.7' },
   { path: '/how-it-works',              changefreq: 'monthly', priority: '0.7' },
   { path: '/team',                      changefreq: 'monthly', priority: '0.6' },
   { path: '/for-employers',             changefreq: 'monthly', priority: '0.6' },
@@ -88,12 +96,31 @@ export const GET: APIRoute = async () => {
     });
   }
 
+  // Blog category landing pages
+  for (const cat of CATEGORIES) {
+    xml += urlEntry(`${SITE}/blog/category/${cat.slug}`, {
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: '0.7',
+    });
+  }
+
   // Journal / blog posts
   for (const post of posts) {
     xml += urlEntry(`${SITE}/blog/${post.slug}`, {
       lastmod: formatDate(post.data.pubDate),
       changefreq: 'yearly',
       priority: '0.7',
+    });
+  }
+
+  // Community Q&A threads
+  const community = await getCollection('community');
+  for (const entry of community) {
+    xml += urlEntry(`${SITE}/community/${entry.slug}`, {
+      lastmod: formatDate(entry.data.date),
+      changefreq: 'monthly',
+      priority: '0.6',
     });
   }
 

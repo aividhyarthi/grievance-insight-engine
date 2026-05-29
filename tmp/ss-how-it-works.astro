@@ -1,5 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'How It Works – The Second Spring',
+    description: "Learn how The Second Spring provides private, empathetic perimenopause support for Indian women — including our 3-step process, what makes us different, and what's free.",
+    url: '/how-it-works',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'How It Works', url: '/how-it-works' },
+  ]),
+];
 
 const steps = [
   {
@@ -75,6 +88,7 @@ const faqs = [
 <Layout
   title="How It Works – The Second Spring"
   description="Learn how The Second Spring provides private, empathetic perimenopause support for Indian women — including our 3-step process, what makes us different, and what's free."
+  structuredData={structuredData}
 >
 
   <section class="page-hero">

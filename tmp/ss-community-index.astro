@@ -1,9 +1,26 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { collectionPageSchema, breadcrumbSchema, itemListSchema } from '../../lib/schema';
 
 const allEntries = await getCollection('community');
 const entries = allEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// ─── Structured data ───
+const structuredData = [
+  collectionPageSchema({
+    name: 'Community Q&A — The Second Spring',
+    description: 'Indian women navigating perimenopause — sharing real questions, experiences, and support.',
+    url: '/community',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Community', url: '/community' },
+  ]),
+  itemListSchema(
+    entries.slice(0, 25).map(e => ({ name: e.data.question, url: `/community/${e.slug}` }))
+  ),
+];
 
 const categories = [
   'Sleep', 'Weight', 'Mood', 'Periods', 'Hot Flashes',
@@ -27,6 +44,7 @@ const categoryColours: Record<string, { bg: string; color: string }> = {
 <Layout
   title="Community Q&A | The Second Spring"
   description="Indian women navigating perimenopause — sharing real questions, experiences, and support. Browse community Q&A answered by The Second Spring Team."
+  structuredData={structuredData}
 >
 
   <!-- Hero -->

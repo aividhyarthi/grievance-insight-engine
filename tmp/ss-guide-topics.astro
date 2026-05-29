@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { collectionPageSchema, breadcrumbSchema } from '../../lib/schema';
 
 const topics = [
   {
@@ -93,11 +94,26 @@ const topics = [
     live: true,
   },
 ];
+
+const structuredData = [
+  collectionPageSchema({
+    name: 'Topic Guides — The Second Spring',
+    description: 'Deep-dive guides on weight, sleep, mood, sexual wellness, hair, skin, hormones, and HRT during perimenopause — written for Indian women.',
+    url: '/guide/topics',
+    items: topics.filter((t: any) => t.href).map((t: any) => ({ name: t.title, url: t.href })),
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Topics', url: '/guide/topics' },
+  ]),
+];
 ---
 
 <Layout
   title="Topic Guides — The Second Spring"
   description="Deep-dive guides on weight, sleep, mood, sexual wellness, hair, skin, hormones, and HRT during perimenopause — written for Indian women."
+  structuredData={structuredData}
 >
 
   <section class="page-hero">

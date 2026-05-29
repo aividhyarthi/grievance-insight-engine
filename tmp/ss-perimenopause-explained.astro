@@ -1,10 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'Perimenopause Explained — A Visual Guide for Indian Women',
+    description: 'What is perimenopause? What hormones change, why symptoms happen, and what your body is going through — explained visually so anyone can understand.',
+    url: '/perimenopause-explained',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Perimenopause Explained', url: '/perimenopause-explained' },
+  ]),
+];
 ---
 
 <Layout
   title="Perimenopause Explained — A Visual Guide for Indian Women"
   description="What is perimenopause? What hormones change, why symptoms happen, and what your body is going through — explained visually so anyone can understand."
+  structuredData={structuredData}
 >
 
   <!-- HERO -->

@@ -1,10 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'Sleep & Perimenopause | The Second Spring',
+    description: 'Waking at 3am, night sweats, light sleep — perimenopause disrupts sleep in specific ways. Here is why it happens and what actually helps.',
+    url: '/guide/sleep',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Sleep', url: '/guide/sleep' },
+  ]),
+];
 ---
 
 <Layout
   title="Sleep & Perimenopause | The Second Spring"
   description="Waking at 3am, night sweats, light sleep — perimenopause disrupts sleep in specific ways. Here is why it happens and what actually helps."
+  structuredData={structuredData}
 >
 
   <!-- HERO -->

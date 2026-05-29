@@ -1,10 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'What Is Menopause? A Guide for Indian Women | The Second Spring',
+    description: 'Menopause is a single point in time — not a phase, not a disease. Here is what it means, what changes, and what life looks like on the other side.',
+    url: '/menopause',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Menopause', url: '/menopause' },
+  ]),
+];
 ---
 
 <Layout
   title="What Is Menopause? A Guide for Indian Women | The Second Spring"
   description="Menopause is a single point in time — not a phase, not a disease. Here is what it means, what changes, and what life looks like on the other side."
+  structuredData={structuredData}
 >
 
   <!-- HERO -->

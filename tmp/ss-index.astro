@@ -1,6 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { webPageSchema } from '../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'The Second Spring – Perimenopause Support for Indian Women',
+    description: "Mood swings, poor sleep, anxiety, brain fog, weight gain — understand what your body may be trying to tell you. India's perimenopause companion.",
+    url: '/',
+  }),
+];
 
 const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main';
 const allPosts = await getCollection('blog');
@@ -12,6 +21,7 @@ const posts = allPosts
 <Layout
   title="The Second Spring – Perimenopause Support for Indian Women"
   description="Mood swings, poor sleep, anxiety, brain fog, weight gain — understand what your body may be trying to tell you. India's perimenopause companion."
+  structuredData={structuredData}
 >
 
   <!-- ── 1. HERO ── -->

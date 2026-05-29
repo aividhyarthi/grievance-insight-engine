@@ -1,10 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'Weight & Belly Fat in Perimenopause | The Second Spring',
+    description: 'Perimenopausal weight gain — particularly belly fat — is hormonal, not a willpower failure. Here is why it happens and what Indian women can do about it.',
+    url: '/guide/weight',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'Weight & Belly Fat', url: '/guide/weight' },
+  ]),
+];
 ---
 
 <Layout
   title="Weight & Belly Fat in Perimenopause | The Second Spring"
   description="Perimenopausal weight gain — particularly belly fat — is hormonal, not a willpower failure. Here is why it happens and what Indian women can do about it."
+  structuredData={structuredData}
 >
 
   <!-- HERO -->

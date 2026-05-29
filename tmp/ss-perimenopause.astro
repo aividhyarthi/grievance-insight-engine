@@ -1,5 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { webPageSchema, breadcrumbSchema } from '../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'Understanding Perimenopause – The Second Spring',
+    description: 'A plain-language guide to what perimenopause is, the hormonal changes involved, how it presents in Indian women, and when to seek help.',
+    url: '/perimenopause',
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Perimenopause', url: '/perimenopause' },
+  ]),
+];
 
 const stages = [
   {
@@ -53,6 +66,7 @@ const hormones = [
 <Layout
   title="Understanding Perimenopause – The Second Spring"
   description="A plain-language guide to what perimenopause is, the hormonal changes involved, how it presents in Indian women, and when to seek help."
+  structuredData={structuredData}
 >
 
   <section class="page-hero">

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { faqSchema, breadcrumbSchema } from '../../lib/schema';
 
 const categories = [
   {
@@ -81,11 +82,23 @@ const categories = [
     ],
   },
 ];
+
+// ─── Structured data ───
+const allFaqs = categories.flatMap(c => c.faqs.map(f => ({ question: f.q, answer: f.a })));
+const structuredData = [
+  faqSchema(allFaqs),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Guide', url: '/guide' },
+    { name: 'FAQs', url: '/guide/faqs' },
+  ]),
+];
 ---
 
 <Layout
   title="Frequently Asked Questions – The Second Spring"
   description="Honest, detailed answers to the questions Indian women ask most about perimenopause — from symptoms and timing to treatment and doctor conversations."
+  structuredData={structuredData}
 >
 
   <section class="page-hero">
