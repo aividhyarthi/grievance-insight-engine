@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { generatePosts } from './generate.mjs';
+import { generatePosts, fetchVoiceReference } from './generate.mjs';
+import { fetchNews } from './news.mjs';
 import { credsFromEnv, publishPost } from './xClient.mjs';
 
 /**
@@ -34,19 +35,31 @@ async function main() {
   const config = JSON.parse(fs.readFileSync(path.join(root, 'config.json'), 'utf8'));
   const count = process.env.POSTS_PER_RUN ? Number(process.env.POSTS_PER_RUN) : undefined;
 
+  // Gather inputs first so we can log and save them for review/diagnostics.
+  log('Fetching blog voice + live AI news…');
+  const [voiceRef, news] = await Promise.all([fetchVoiceReference(config), fetchNews(config)]);
+  const newsHeadlines = news ? news.split('\n').filter(Boolean) : [];
+  log(`Voice reference: ${voiceRef ? voiceRef.length + ' chars' : 'none'}. News headlines: ${newsHeadlines.length}.`);
+  if (newsHeadlines.length) newsHeadlines.forEach((h) => console.log(`    ${h}`));
+
   log(`Generating posts… (mode: ${dryRun ? 'DRY RUN / review' : 'LIVE publish'})`);
   const posts = await generatePosts(config, {
     count,
     apiKey,
+    voiceRef,
+    news,
     freshness: process.env.FRESHNESS || '',
   });
   log(`Generated ${posts.length} post(s).`);
 
-  // Always write a reviewable artifact.
+  // Always write a reviewable artifact (includes the news the model was given).
   fs.mkdirSync(path.join(root, 'output'), { recursive: true });
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
   const outFile = path.join(root, 'output', `posts-${stamp}.json`);
-  fs.writeFileSync(outFile, JSON.stringify({ generatedAt: stamp, posts }, null, 2));
+  fs.writeFileSync(
+    outFile,
+    JSON.stringify({ generatedAt: stamp, newsHeadlines, voiceReferenceChars: voiceRef.length, posts }, null, 2)
+  );
 
   // Human-readable preview.
   for (const [i, p] of posts.entries()) {

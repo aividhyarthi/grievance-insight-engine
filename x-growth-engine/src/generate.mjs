@@ -1,5 +1,4 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { fetchNews } from './news.mjs';
 
 const stripHtml = (html) =>
   String(html)
@@ -49,15 +48,14 @@ export async function fetchVoiceReference(config) {
  * The model writes ONLY within the stances/pillars defined in config.json.
  * It is explicitly instructed never to invent political positions.
  */
-export async function generatePosts(config, { count, apiKey, freshness = '' } = {}) {
+export async function generatePosts(config, { count, apiKey, freshness = '', voiceRef = '', news = '' } = {}) {
   const client = new Anthropic({ apiKey });
   const n = count ?? config.cadence?.posts_per_run ?? 3;
 
   const banned = (config.banned_phrases || []).map((p) => `"${p}"`).join(', ');
   const maxChars = config.cadence?.max_chars ?? 280;
 
-  const [voiceRef, newsRef] = await Promise.all([fetchVoiceReference(config), fetchNews(config)]);
-  const context = [freshness, newsRef].filter(Boolean).join('\n');
+  const context = [freshness, news].filter(Boolean).join('\n');
 
   // Political stances are read from the private POLITICS_STANCES secret (one per
   // line), NOT from the public config. Falls back to config only if a real
