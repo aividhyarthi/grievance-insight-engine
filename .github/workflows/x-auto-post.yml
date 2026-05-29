@@ -1,0 +1,59 @@
+name: X Auto-Post
+
+# Generates posts daily. Defaults to REVIEW mode (publishes nothing) until you
+# explicitly opt into live publishing by setting the repo variable LIVE=true
+# (Settings → Secrets and variables → Actions → Variables) or running manually
+# with publish=true.
+
+on:
+  schedule:
+    - cron: '30 3 * * *'   # 09:00 IST daily (03:30 UTC)
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish live to X? (false = review only)'
+        type: boolean
+        default: false
+      posts:
+        description: 'How many posts to generate'
+        type: string
+        default: '3'
+
+permissions:
+  contents: read
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: x-growth-engine
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        run: npm install --no-audit --no-fund
+
+      - name: Run engine
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          POSTS_PER_RUN: ${{ github.event.inputs.posts || '3' }}
+          # Live only if manually dispatched with publish=true, OR repo var LIVE=true.
+          DRY_RUN: ${{ (github.event.inputs.publish == 'true' || vars.LIVE == 'true') && 'false' || 'true' }}
+        run: node src/run.mjs
+
+      - name: Upload generated posts for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-posts
+          path: x-growth-engine/output/*.json
+          if-no-files-found: ignore

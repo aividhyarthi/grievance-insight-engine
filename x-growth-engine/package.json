@@ -1,0 +1,14 @@
+{
+  "name": "x-growth-engine",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Automated X (Twitter) content engine — generates AI + Politics posts in-voice, AEO/SEO-optimized, and publishes on a schedule.",
+  "scripts": {
+    "review": "DRY_RUN=true node src/run.mjs",
+    "publish": "DRY_RUN=false node src/run.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0"
+  }
+}
