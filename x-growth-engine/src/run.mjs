@@ -69,8 +69,33 @@ async function main() {
   }
   log(`\nSaved review file: ${path.relative(root, outFile)}`);
 
+  // Publish (unless review mode), capturing the result per post so we can link to it.
+  const results = posts.map(() => ({ url: null, error: null }));
+  if (!dryRun) {
+    const { creds, missing } = credsFromEnv();
+    if (missing.length) {
+      throw new Error(
+        `LIVE publish requested but missing X credentials: ${missing.join(', ')}. ` +
+          'Add them as secrets, or run in DRY_RUN mode.'
+      );
+    }
+    log('Publishing to X…');
+    for (const [i, p] of posts.entries()) {
+      try {
+        const ids = await publishPost(p, creds);
+        results[i].url = `https://x.com/i/web/status/${ids[0]}`;
+        log(`Published #${i + 1} [${p.lane}] → ${results[i].url}`);
+      } catch (e) {
+        results[i].error = e.message;
+        log(`FAILED #${i + 1} [${p.lane}]: ${e.message}`);
+      }
+      if (i < posts.length - 1) await new Promise((r) => setTimeout(r, 5000));
+    }
+    log('Done.');
+  }
+
   // Render the posts as a formatted summary on the GitHub Actions run page,
-  // so they're readable without downloading the artifact.
+  // so they're readable (with live links) without downloading the artifact.
   if (process.env.GITHUB_STEP_SUMMARY) {
     const md = [];
     md.push(`## 📝 ${posts.length} posts ${dryRun ? '(review only — nothing published)' : '(PUBLISHED to X)'}`);
@@ -82,6 +107,8 @@ async function main() {
       } else {
         md.push(`> ${p.tweets[0]}`);
       }
+      if (results[i].url) md.push(`\n🔗 **[View live tweet](${results[i].url})**`);
+      if (results[i].error) md.push(`\n❌ Publish failed: ${results[i].error}`);
       if (p.rationale) md.push(`\n_why: ${p.rationale}_\n`);
     }
     if (newsHeadlines.length) {
@@ -98,29 +125,7 @@ async function main() {
 
   if (dryRun) {
     log('DRY RUN — nothing published. Review the file above, then run with DRY_RUN=false to publish.');
-    return;
   }
-
-  const { creds, missing } = credsFromEnv();
-  if (missing.length) {
-    throw new Error(
-      `LIVE publish requested but missing X credentials: ${missing.join(', ')}. ` +
-        'Add them as secrets, or run in DRY_RUN mode.'
-    );
-  }
-
-  log('Publishing to X…');
-  for (const [i, p] of posts.entries()) {
-    try {
-      const ids = await publishPost(p, creds);
-      log(`Published #${i + 1} [${p.lane}] → ${ids.map((id) => `https://x.com/i/web/status/${id}`).join(' ')}`);
-    } catch (e) {
-      log(`FAILED #${i + 1} [${p.lane}]: ${e.message}`);
-    }
-    // Space posts out a little so they don't all land in the same second.
-    if (i < posts.length - 1) await new Promise((r) => setTimeout(r, 5000));
-  }
-  log('Done.');
 }
 
 main().catch((e) => {
