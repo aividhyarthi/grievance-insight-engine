@@ -10,6 +10,19 @@
     "sample_count": 8
   },
 
+  "news": {
+    "_comment": "Live AI headlines (all sectors + government/policy) pulled from Google News RSS at run time, so posts react to what's happening now. No API key needed. Set to null to disable.",
+    "queries": [
+      "artificial intelligence India",
+      "AI policy government India",
+      "generative AI enterprise",
+      "AI regulation",
+      "AI healthcare finance education India"
+    ],
+    "max_items": 12,
+    "max_age_days": 4
+  },
+
   "voice": {
     "summary": "Direct, confident, plain-spoken. Writes like a sharp operator who has actually built things — not a commentator. Short sentences. Concrete over abstract. No hedging, no corporate filler. Occasional dry wit. Indian-English cadence is fine.",
     "do": [
@@ -48,12 +61,17 @@
       "weight": 0.5,
       "description": "Indian public life and policy through a builder/operator lens. The engine will NOT invent stances.",
       "_stances_note": "Your actual political positions are NOT stored in this public file. Add them as a PRIVATE GitHub secret named POLITICS_STANCES — one position per line. The engine reads them privately at run time. While the secret is empty, the politics lane is disabled and only AI posts are written.",
+      "framing": "Issue- and policy-based, non-partisan, solutions-oriented. Comment on systems, governance, and outcomes — never on parties, politicians, religion, caste, or communities. Always frame as a constructive problem-plus-direction, like a CXO discussing public systems. The goal is credibility and usefulness, not heat.",
       "pillars": [],
       "stances": [],
       "off_limits": [
-        "Naming/attacking private individuals",
-        "Unverified claims stated as fact",
-        "Anything you would not say with your name attached"
+        "Naming, praising, or attacking any political party, politician, or public figure",
+        "Religion, caste, communal or identity-based framing of any kind",
+        "Election campaigning, vote appeals, or anything tied to a live election",
+        "Calls to action against any person, group, or institution",
+        "Unverified claims, allegations, or statistics stated as fact",
+        "Sarcasm or outrage aimed at a person or organisation",
+        "Anything defamatory, or that you would not say publicly with your name attached"
       ]
     }
   },
@@ -62,7 +80,7 @@
     "summary": "Answer Engine Optimization — phrase posts so AI search (Grok, ChatGPT, Perplexity) and X search surface and quote them.",
     "rules": [
       "State one clear, self-contained, quotable claim per post — no context needed to understand it",
-      "Name entities explicitly (people, orgs, models, places) — never 'this' or 'they'",
+      "Name entities explicitly for clarity (orgs, models, places) — never 'this' or 'they' — but keep any criticism on ideas and trends, not on named people or companies",
       "Prefer concrete numbers, dates, and comparisons over adjectives",
       "Front-load the takeaway in the first 100 characters",
       "Write at least one line that stands alone as a citation"

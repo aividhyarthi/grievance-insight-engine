@@ -1,4 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { fetchNews } from './news.mjs';
 
 const stripHtml = (html) =>
   String(html)
@@ -55,7 +56,8 @@ export async function generatePosts(config, { count, apiKey, freshness = '' } = 
   const banned = (config.banned_phrases || []).map((p) => `"${p}"`).join(', ');
   const maxChars = config.cadence?.max_chars ?? 280;
 
-  const voiceRef = await fetchVoiceReference(config);
+  const [voiceRef, newsRef] = await Promise.all([fetchVoiceReference(config), fetchNews(config)]);
+  const context = [freshness, newsRef].filter(Boolean).join('\n');
 
   // Political stances are read from the private POLITICS_STANCES secret (one per
   // line), NOT from the public config. Falls back to config only if a real
@@ -76,7 +78,7 @@ export async function generatePosts(config, { count, apiKey, freshness = '' } = 
 
   const politicsBlock = politicsEnabled
     ? `POLITICS (${polWeight}% of posts): ${config.lanes.politics.description}
-${pillars.length ? `  Themes: ${pillars.join('; ')}\n` : ''}  THE ONLY positions you may express (do not add, soften, or invent others):
+${config.lanes.politics.framing ? `  Framing (mandatory): ${config.lanes.politics.framing}\n` : ''}${pillars.length ? `  Themes: ${pillars.join('; ')}\n` : ''}  THE ONLY positions you may express (do not add, soften, or invent others):
     ${stances.map((s) => '- ' + s).join('\n    ')}
   OFF LIMITS — never write any of these: ${config.lanes.politics.off_limits.join('; ')}`
     : `POLITICS: DISABLED — no stances provided. Do NOT write any political posts.
@@ -90,6 +92,11 @@ ${config.bio}
 
 ══ VOICE ══
 ${config.voice.summary}
+Write like a CXO and industry expert who has actually operated at scale — measured,
+credible, never breathless. Each post lands a punchy, quotable line, but the punch
+comes from insight, not outrage. Pull a clear LEARNING out of every take that others
+can use. Critique ideas and systems, never people or companies by name. Add value;
+never punch down.
 DO: ${config.voice.do.join(' | ')}
 DON'T: ${config.voice.dont.join(' | ')}
 NEVER use these phrases: ${banned}
@@ -114,7 +121,14 @@ ${config.aeo.rules.map((r) => '- ' + r).join('\n')}
 - Threads allowed${config.cadence?.allow_threads ? '' : ' = NO'}: max ${config.cadence?.max_thread_tweets ?? 5} tweets, each <= ${maxChars} chars. Only use a thread when one tweet genuinely cannot hold the idea.
 - 0-2 hashtags total, only if they are real active communities.
 - At most one emoji, only if it earns its place.
-${freshness ? `\n══ TODAY'S CONTEXT (optional anchors — use only if genuinely relevant) ══\n${freshness}\n` : ''}
+${context ? `\n══ LATEST NEWS (real headlines from the last few days — AI across all sectors + government/policy) ══
+${context}
+
+Anchor most posts to the most significant, relevant items above. Don't just
+report the news — react like an operator: what does it mean, what's the second-order
+effect, what should builders/leaders learn from it. Stay timely and specific.
+Do not name or attack any individual or company critically; if you reference an
+organisation, do it neutrally and keep the critique on the idea or trend.\n` : ''}
 ══ TASK ══
 Write ${n} distinct, ready-to-publish posts. No two should cover the same idea.
 
