@@ -29,11 +29,19 @@ config.json  →  generate.mjs (Claude)  →  run.mjs  →  xClient.mjs  →  X 
 
 ## What you must do (only you can)
 
-### 1. Fill in your stances — `config.json`
-The `lanes.politics.pillars` and `lanes.politics.stances` start as `FILL ME`.
-**The engine will refuse to write any political post while those are unfilled** —
-it never invents an opinion for you. Replace them with positions you actually
-hold. Tune `voice`, `banned_phrases`, and `cadence` to taste.
+### 1. Add your political stances as a PRIVATE secret (not in the code)
+Because this repo is public, your political positions do **not** go in
+`config.json`. Instead add a repository **secret** named `POLITICS_STANCES`
+(Settings → Secrets and variables → Actions), with **one position per line**, e.g.:
+
+```
+I believe India needs stronger data-privacy protections for citizens
+State capacity, not more laws, is the real bottleneck in governance
+```
+
+The engine reads it privately at run time. **While the secret is empty, the
+politics lane is disabled and only AI posts are written** — it never invents an
+opinion. Tune `voice`, `banned_phrases`, and `cadence` in `config.json` to taste.
 
 ### 2. Get X API credentials
 Create a developer app at <https://developer.x.com> with **Read and Write**
@@ -44,7 +52,8 @@ permissions, then generate these four values:
 
 ### 3. Add secrets to GitHub
 Repo → **Settings → Secrets and variables → Actions → Secrets**, add:
-`ANTHROPIC_API_KEY`, `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN`, `X_ACCESS_SECRET`.
+`ANTHROPIC_API_KEY`, `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN`, `X_ACCESS_SECRET`,
+and (optional, for the politics lane) `POLITICS_STANCES`.
 
 ---
 

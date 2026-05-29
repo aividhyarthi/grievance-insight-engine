@@ -57,6 +57,31 @@ export async function generatePosts(config, { count, apiKey, freshness = '' } = 
 
   const voiceRef = await fetchVoiceReference(config);
 
+  // Political stances are read from the private POLITICS_STANCES secret (one per
+  // line), NOT from the public config. Falls back to config only if a real
+  // stance was filled there. If neither yields a stance, the politics lane is
+  // disabled and the engine writes AI-only.
+  const isReal = (s) => s && !/FILL ME/i.test(s);
+  const envStances = (process.env.POLITICS_STANCES || '')
+    .split('\n')
+    .map((s) => s.trim().replace(/^[-•]\s*/, ''))
+    .filter(Boolean);
+  const stances = envStances.length
+    ? envStances
+    : (config.lanes.politics.stances || []).filter(isReal);
+  const pillars = (config.lanes.politics.pillars || []).filter(isReal);
+  const politicsEnabled = stances.length > 0;
+  const aiWeight = Math.round((config.lanes.ai.weight || 0.5) * 100);
+  const polWeight = politicsEnabled ? Math.round((config.lanes.politics.weight || 0.5) * 100) : 0;
+
+  const politicsBlock = politicsEnabled
+    ? `POLITICS (${polWeight}% of posts): ${config.lanes.politics.description}
+${pillars.length ? `  Themes: ${pillars.join('; ')}\n` : ''}  THE ONLY positions you may express (do not add, soften, or invent others):
+    ${stances.map((s) => '- ' + s).join('\n    ')}
+  OFF LIMITS — never write any of these: ${config.lanes.politics.off_limits.join('; ')}`
+    : `POLITICS: DISABLED — no stances provided. Do NOT write any political posts.
+Generate only AI-lane posts. Never fabricate a political opinion.`;
+
   const prompt = `You are a ghostwriter for ${config.author} (${config.handle}) on X (Twitter).
 Write posts that sound exactly like this person — never like an AI or a brand account.
 
@@ -71,18 +96,14 @@ NEVER use these phrases: ${banned}
 ${voiceRef ? `\n══ THE AUTHOR'S ACTUAL WRITING (mirror this voice — rhythm, word choice, how they make a point) ══\n${voiceRef}\n` : ''}
 
 ══ LANES (write a mix across these) ══
-AI (${Math.round((config.lanes.ai.weight || 0.5) * 100)}% of posts): ${config.lanes.ai.description}
+AI (${aiWeight}% of posts): ${config.lanes.ai.description}
   Pillars: ${config.lanes.ai.pillars.join('; ')}
 
-POLITICS (${Math.round((config.lanes.politics.weight || 0.5) * 100)}% of posts): ${config.lanes.politics.description}
-  Pillars: ${config.lanes.politics.pillars.join('; ')}
-  THE ONLY positions you may express (do not add, soften, or invent others):
-    ${config.lanes.politics.stances.map((s) => '- ' + s).join('\n    ')}
-  OFF LIMITS — never write any of these: ${config.lanes.politics.off_limits.join('; ')}
+${politicsBlock}
 
-CRITICAL: If a Politics pillar or stance still says "FILL ME", DO NOT write any
-political posts at all. Generate only AI-lane posts and note this in the rationale.
-Never fabricate a political opinion the author has not stated.
+CRITICAL: Only express political positions explicitly listed above. If POLITICS
+is DISABLED, write zero political posts. Never fabricate a view the author has
+not stated.
 
 ══ AEO / SEO (Answer Engine Optimization) ══
 ${config.aeo.summary}

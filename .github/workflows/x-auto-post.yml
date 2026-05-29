@@ -45,6 +45,7 @@ jobs:
           X_API_SECRET: ${{ secrets.X_API_SECRET }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          POLITICS_STANCES: ${{ secrets.POLITICS_STANCES }}
           POSTS_PER_RUN: ${{ github.event.inputs.posts || '3' }}
           # Live only if manually dispatched with publish=true, OR repo var LIVE=true.
           DRY_RUN: ${{ (github.event.inputs.publish == 'true' || vars.LIVE == 'true') && 'false' || 'true' }}

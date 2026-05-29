@@ -45,17 +45,10 @@
     },
     "politics": {
       "weight": 0.5,
-      "description": "Indian public life and policy through a builder/operator lens. YOU define the positions below — the engine will NOT invent stances.",
-      "pillars": [
-        "FILL ME: e.g. 'Governance & state capacity — pro-reform, pro-accountability'",
-        "FILL ME: e.g. 'Tech policy & data — where you stand on regulation'",
-        "FILL ME: your recurring themes"
-      ],
-      "stances": [
-        "FILL ME: a clear sentence stating a position you actually hold",
-        "FILL ME: another genuine position — the engine writes only within these",
-        "FILL ME: red lines — topics or framings you will NOT post"
-      ],
+      "description": "Indian public life and policy through a builder/operator lens. The engine will NOT invent stances.",
+      "_stances_note": "Your actual political positions are NOT stored in this public file. Add them as a PRIVATE GitHub secret named POLITICS_STANCES — one position per line. The engine reads them privately at run time. While the secret is empty, the politics lane is disabled and only AI posts are written.",
+      "pillars": [],
+      "stances": [],
       "off_limits": [
         "Naming/attacking private individuals",
         "Unverified claims stated as fact",
