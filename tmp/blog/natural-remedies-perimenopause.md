@@ -151,9 +151,21 @@ And if your symptoms are significantly affecting your quality of life, natural a
 
 ---
 
-**Want to talk through what natural approaches might be relevant for your specific symptoms, or whether you might need something more than lifestyle changes?** Our private AI companion was built for exactly these conversations.
+---
 
-[Talk to The Second Spring →](/chat)
+## Natural remedies by symptom — detailed guides
+
+Each of the guides below goes deep into a specific symptom: what is driving it biologically, which natural approaches have real evidence, and what to be sceptical of.
+
+- [Natural remedies for perimenopause heavy bleeding](/blog/natural-remedies-perimenopause-heavy-bleeding)
+- [Natural remedies for perimenopause hot flashes](/blog/natural-remedies-perimenopause-hot-flashes)
+- [Natural remedies for perimenopause mood swings](/blog/natural-remedies-perimenopause-mood-swings)
+- [Natural remedies for perimenopause anxiety](/blog/natural-remedies-perimenopause-anxiety)
+- [Natural remedies for perimenopause depression](/blog/natural-remedies-perimenopause-depression)
+- [Natural remedies for perimenopause brain fog](/blog/natural-remedies-perimenopause-brain-fog)
+- [Natural remedies for perimenopause weight gain](/blog/natural-remedies-perimenopause-weight-gain)
+- [Natural remedies for perimenopause fatigue](/blog/natural-remedies-perimenopause-fatigue)
+- [Natural remedies for perimenopause hair loss](/blog/natural-remedies-perimenopause-hair-loss)
 
 ## Frequently Asked Questions
 
