@@ -130,16 +130,22 @@ async function crawl(url: string): Promise<{ url: string; ok: boolean; title: st
 // ---- route ------------------------------------------------------------------
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = process.env.ANTHROPIC_API_KEY || import.meta.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return json({ error: 'ANTHROPIC_API_KEY is not configured on the server.' }, 500);
-  }
-
-  let body: { urls?: string; keywords?: string; prompts?: string; brand?: string };
+  let body: { urls?: string; keywords?: string; prompts?: string; brand?: string; apiKey?: string };
   try {
     body = await request.json();
   } catch {
     return json({ error: 'Invalid request body.' }, 400);
+  }
+
+  // Prefer a server-side env var; otherwise fall back to a key supplied from
+  // the UI (stored only in the user's browser). This lets the tool work with
+  // zero Railway configuration.
+  const apiKey =
+    process.env.ANTHROPIC_API_KEY ||
+    import.meta.env.ANTHROPIC_API_KEY ||
+    (body.apiKey && body.apiKey.trim());
+  if (!apiKey) {
+    return json({ error: 'No Anthropic API key found. Add one in the "API key" box at the top of the tool (or set ANTHROPIC_API_KEY in Railway).' }, 400);
   }
 
   const brand = (body.brand && body.brand.trim()) || 'Nykaa';

@@ -158,9 +158,15 @@ how to choose a sunscreen that doesn't leave white cast"></textarea>
             <label for="brand">Brand</label>
             <input id="brand" type="text" value="Nykaa" />
           </div>
+          <div class="field">
+            <label for="apikey">Anthropic API key</label>
+            <input id="apikey" type="password" placeholder="sk-ant-..." autocomplete="off" style="min-width: 240px;" />
+          </div>
           <button class="primary" id="go">Generate blog topics</button>
-          <span class="field" id="hintline">Tip: more URLs &amp; prompts = sharper topics.</span>
         </div>
+        <p class="hint" style="margin: 8px 2px 0; font-size: 12px; color: var(--muted);">
+          🔒 Your API key is stored only in this browser (never shared) and is used to talk to Claude. Leave it blank if your admin already set it on the server.
+        </p>
 
         <div class="alert err" id="err"></div>
         <div class="alert info" id="info"></div>
@@ -216,6 +222,13 @@ how to choose a sunscreen that doesn't leave white cast"></textarea>
       bindCount('urls', 'URL');
       bindCount('keywords', 'keyword');
       bindCount('prompts', 'prompt');
+
+      // Remember the API key in this browser only.
+      const savedKey = localStorage.getItem('nykaa_anthropic_key');
+      if (savedKey) $('apikey').value = savedKey;
+      $('apikey').addEventListener('input', () => {
+        localStorage.setItem('nykaa_anthropic_key', $('apikey').value.trim());
+      });
 
       function showToast(msg) {
         const t = $('toast');
@@ -279,6 +292,7 @@ how to choose a sunscreen that doesn't leave white cast"></textarea>
         const keywords = $('keywords').value;
         const prompts = $('prompts').value;
         const brand = $('brand').value.trim() || 'Nykaa';
+        const apiKey = $('apikey').value.trim();
 
         if (!countLines(urls) && !countLines(keywords) && !countLines(prompts)) {
           showErr('Add at least one URL, keyword, or prompt to get started.');
@@ -295,7 +309,7 @@ how to choose a sunscreen that doesn't leave white cast"></textarea>
           const res = await fetch('/api/blog-topics', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ urls, keywords, prompts, brand }),
+            body: JSON.stringify({ urls, keywords, prompts, brand, apiKey }),
           });
           const data = await res.json();
           if (!res.ok) {
