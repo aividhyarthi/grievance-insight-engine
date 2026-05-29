@@ -69,6 +69,33 @@ async function main() {
   }
   log(`\nSaved review file: ${path.relative(root, outFile)}`);
 
+  // Render the posts as a formatted summary on the GitHub Actions run page,
+  // so they're readable without downloading the artifact.
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    const md = [];
+    md.push(`## 📝 ${posts.length} posts ${dryRun ? '(review only — nothing published)' : '(PUBLISHED to X)'}`);
+    md.push(`Generated ${stamp} · ${newsHeadlines.length} live news headlines used\n`);
+    for (const [i, p] of posts.entries()) {
+      md.push(`### ${i + 1}. ${p.lane.toUpperCase()} — ${p.kind}`);
+      if (p.tweets.length > 1) {
+        p.tweets.forEach((t, j) => md.push(`> **${j + 1}/${p.tweets.length}** ${t}\n>`));
+      } else {
+        md.push(`> ${p.tweets[0]}`);
+      }
+      if (p.rationale) md.push(`\n_why: ${p.rationale}_\n`);
+    }
+    if (newsHeadlines.length) {
+      md.push(`\n<details><summary>News headlines fed in</summary>\n`);
+      newsHeadlines.forEach((h) => md.push(h));
+      md.push(`</details>`);
+    }
+    try {
+      fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, md.join('\n') + '\n');
+    } catch {
+      /* non-fatal */
+    }
+  }
+
   if (dryRun) {
     log('DRY RUN — nothing published. Review the file above, then run with DRY_RUN=false to publish.');
     return;
