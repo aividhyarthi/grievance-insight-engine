@@ -1,6 +1,7 @@
 {
   "handle": "@your_handle",
   "author": "Rudra Prasad Kasturi",
+  "model": "claude-sonnet-4-6",
   "bio": "Founder, AI Vidhyarthi (India's student-led AI literacy initiative). ex-Google partner, Times Internet, Cars24. Builds AI tools, writes about AI and Indian public life.",
 
   "voice_source": {
