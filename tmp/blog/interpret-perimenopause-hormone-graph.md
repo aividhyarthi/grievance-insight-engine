@@ -4,7 +4,7 @@ description: "Blood test graphs for FSH, LH, and oestradiol can look confusing. 
 pubDate: 2026-05-31
 author: "Journal Desk"
 tags: ["understanding", "perimenopause", "hormones", "blood tests", "FSH"]
-image: "/images/blog/interpret-perimenopause-hormone-graph.jpg"
+image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=630&fit=crop&q=80"
 imageAlt: "A hormone test report with FSH, LH, and oestradiol values being reviewed"
 ---
 

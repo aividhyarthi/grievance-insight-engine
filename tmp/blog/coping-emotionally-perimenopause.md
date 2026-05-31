@@ -4,7 +4,7 @@ description: "Emotional changes in perimenopause are real and hormonal — not w
 pubDate: 2026-05-31
 author: "Journal Desk"
 tags: ["mental-health", "perimenopause", "mood", "anxiety", "coping"]
-image: "/images/blog/coping-emotionally-perimenopause.jpg"
+image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=630&fit=crop&q=80"
 imageAlt: "Woman sitting peacefully by a window, reflecting — representing emotional coping during perimenopause"
 ---
 
