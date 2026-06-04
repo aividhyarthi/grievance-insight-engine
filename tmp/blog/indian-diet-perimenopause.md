@@ -41,7 +41,7 @@ None of this means a radical overhaul. It means intentional adjustments to what 
     <div class="ig-row"><span class="ig-fill-green">Ginger</span><span>Anti-inflammatory, helps with nausea (which some perimenopausal women experience), improves digestion. Fresh ginger in chai, adrak in sabzi — keep using it.</span></div>
     <div class="ig-row"><span class="ig-fill-green">Flaxseed (alsi)</span><span>The richest dietary source of lignans — a type of phytoestrogen. One tablespoon ground flaxseed per day in atta, raita, or chutney is a meaningful addition. Must be ground to be absorbed.</span></div>
     <div class="ig-row"><span class="ig-fill-peach">Walnuts and almonds</span><span>Rich in omega-3 fats (walnuts particularly), which reduce joint inflammation. A small handful daily. Soaked almonds in the morning is a habit worth keeping.</span></div>
-    <flaxseed class="ig-row"><span class="ig-fill-peach">Fermented foods</span><span>Curd (dahi), kanji, idli, dosa — fermented foods support the gut microbiome, which in turn affects oestrogen metabolism. Include dahi daily if you tolerate dairy.</span></div>
+    <div class="ig-row"><span class="ig-fill-peach">Fermented foods</span><span>Curd (dahi), kanji, idli, dosa — fermented foods support the gut microbiome, which in turn affects oestrogen metabolism. Include dahi daily if you tolerate dairy.</span></div>
     <div class="ig-row"><span class="ig-fill-peach">Protein at every meal</span><span>Dal, paneer, curd, eggs, soya, chicken — include a protein source at lunch and dinner. Protein maintains muscle mass and keeps blood sugar stable.</span></div>
   </div>
 </div>
