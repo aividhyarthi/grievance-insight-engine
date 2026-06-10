@@ -11,6 +11,12 @@ import { analyzeBranding } from '../analyzers/branding.js';
 import { analyzeTechnical } from '../analyzers/technical.js';
 import { analyzeLinks } from '../analyzers/links.js';
 import { analyzeCrawlability } from '../analyzers/crawlability.js';
+import { analyzeCitability } from '../analyzers/citability.js';
+import { analyzeVoiceSearch } from '../analyzers/voice-search.js';
+import { analyzeFreshness } from '../analyzers/freshness.js';
+import { analyzeIntent } from '../analyzers/intent.js';
+import { analyzeOffSite } from '../analyzers/off-site.js';
+import { analyzeAIOverview } from '../analyzers/ai-overview.js';
 import { analyzeEcommerce, detectEcommerce } from '../analyzers/ecommerce.js';
 import { analyzePublisher, detectPublisher } from '../analyzers/publisher.js';
 import { analyzeIndustry, detectIndustry } from '../analyzers/industry.js';
@@ -39,6 +45,12 @@ const coreAnalyzers: Array<{ name: string; fn: AnalyzerFn }> = [
   { name: 'technical', fn: analyzeTechnical },
   { name: 'links', fn: analyzeLinks },
   { name: 'crawlability', fn: analyzeCrawlability },
+  { name: 'citability', fn: analyzeCitability },
+  { name: 'voice-search', fn: analyzeVoiceSearch },
+  { name: 'freshness', fn: analyzeFreshness },
+  { name: 'intent', fn: analyzeIntent },
+  { name: 'off-site', fn: analyzeOffSite },
+  { name: 'ai-overview', fn: analyzeAIOverview },
 ];
 
 // Conditional analyzers run only when site type is detected
@@ -174,6 +186,7 @@ export async function runAudit(url: string): Promise<AuditReport> {
   const categoryOrder: CategoryId[] = [
     'bot-access', 'content', 'schema', 'technical', 'meta-tags', 'branding',
     'headings', 'links', 'crawlability', 'boilerplate', 'ai-content',
+    'citability', 'voice-search', 'freshness', 'intent', 'off-site', 'ai-overview',
     'ecommerce', 'publisher', 'industry',
   ];
 

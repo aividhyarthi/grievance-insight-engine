@@ -14,6 +14,12 @@ export type CategoryId =
   | 'crawlability'
   | 'boilerplate'
   | 'ai-content'
+  | 'citability'
+  | 'voice-search'
+  | 'freshness'
+  | 'intent'
+  | 'off-site'
+  | 'ai-overview'
   | 'ecommerce'
   | 'publisher'
   | 'industry';
