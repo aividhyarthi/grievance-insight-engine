@@ -5,7 +5,12 @@ export function analyzeOffSite(ctx: AnalysisContext): Finding[] {
   const findings: Finding[] = [];
   const { $, html, url } = ctx;
 
-  const domain = new URL(url).hostname.replace(/^www\./, '');
+  let domain: string;
+  try {
+    domain = new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    domain = '';
+  }
   const $body = $('body').clone();
   $body.find('script, style, noscript').remove();
   const bodyText = $body.text().toLowerCase();
@@ -211,7 +216,8 @@ export function analyzeOffSite(ctx: AnalysisContext): Finding[] {
   $('a[href]').each((_, el) => {
     const href = $(el).attr('href') || '';
     try {
-      const linkDomain = new URL(href, url).hostname;
+      const baseUrl = url.startsWith('http') ? url : 'https://example.com';
+      const linkDomain = new URL(href, baseUrl).hostname;
       if (linkDomain !== domain && authorityDomains.some(p => p.test(linkDomain))) {
         authoritativeOutlinks++;
       }

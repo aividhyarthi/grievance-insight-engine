@@ -30,6 +30,7 @@ export interface AnalysisContext {
   responseTime: number;
   statusCode: number;
   contentLength: number;
+  isHtmlPaste: boolean;
 }
 
 type AnalyzerFn = (ctx: AnalysisContext) => Finding[];
@@ -135,6 +136,7 @@ export async function runAudit(input: string | AuditInput): Promise<AuditReport>
     responseTime,
     statusCode,
     contentLength,
+    isHtmlPaste: !!opts.html,
   };
 
   // Detect site type

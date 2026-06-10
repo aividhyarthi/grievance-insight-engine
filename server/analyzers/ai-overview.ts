@@ -135,15 +135,22 @@ export function analyzeAIOverview(ctx: AnalysisContext): Finding[] {
     });
   }
 
-  // ===== 3. Direct answer in first 100 words =====
-  const first100Words = visibleText.split(/\s+/).slice(0, 100).join(' ');
-  const hasDirectAnswer = /(?:^|\.\s+)(?:\w+\s+){0,5}(?:is|are|was|refers to|means|describes)\s+/i.test(first100Words);
+  // ===== 3. Direct answer in first 150 words =====
+  const first150Words = visibleText.split(/\s+/).slice(0, 150).join(' ');
+  const directAnswerPatterns = [
+    /(?:^|\.\s+)(?:\w+\s+){0,5}(?:is|are|was|were|refers? to|means?|describes?|provides?|offers?|helps?|allows?|enables?|includes?)\s+/i,
+    /(?:^|\.\s+)(?:this|the|a|an)\s+\w+\s+(?:is|are|was)\s+/i,
+    /(?:^|\.\s+)(?:here|below|following)\s+(?:is|are)\s+/i,
+    /(?:^|\.\s+)(?:you can|you should|to\s+\w+,?\s+you)\s+/i,
+    /(?:^|\.\s+)(?:the (?:best|top|most|main|key|primary))\s+/i,
+  ];
+  const hasDirectAnswer = directAnswerPatterns.some(p => p.test(first150Words));
 
   if (hasDirectAnswer) {
     findings.push({
       id: 'aio-early-answer',
-      title: 'Direct answer within first 100 words',
-      description: 'A definition or direct answer appears early in the content. AI Overviews prioritize pages that answer the query quickly.',
+      title: 'Direct answer within opening content',
+      description: 'A definition, explanation, or direct answer appears early in the content. AI Overviews prioritize pages that answer the query quickly.',
       severity: 'pass',
       category: 'ai-overview',
     });
@@ -151,7 +158,7 @@ export function analyzeAIOverview(ctx: AnalysisContext): Finding[] {
     findings.push({
       id: 'aio-no-early-answer',
       title: 'No direct answer in opening content',
-      description: 'The first 100 words don\'t contain a clear definition or direct answer. AI Overviews prefer pages that provide the answer upfront.',
+      description: 'The opening content doesn\'t contain a clear definition or direct answer. AI Overviews prefer pages that provide the answer upfront.',
       severity: 'warning',
       category: 'ai-overview',
       recommendation: 'Start your content with a clear, direct answer to the main question within the first paragraph.',

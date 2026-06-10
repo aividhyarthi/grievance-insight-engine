@@ -111,39 +111,41 @@ export function analyzeFreshness(ctx: AnalysisContext): Finding[] {
   }
 
   // ===== 2. HTTP freshness headers =====
-  const lastModifiedHeader = responseHeaders['last-modified'];
-  const etag = responseHeaders['etag'];
+  if (!ctx.isHtmlPaste) {
+    const lastModifiedHeader = responseHeaders['last-modified'];
+    const etag = responseHeaders['etag'];
 
-  if (lastModifiedHeader) {
-    findings.push({
-      id: 'freshness-http-last-modified',
-      title: 'HTTP Last-Modified header present',
-      description: `Server reports Last-Modified: ${lastModifiedHeader}. This helps crawlers determine if content changed since their last visit.`,
-      severity: 'pass',
-      category: 'freshness',
-      details: { lastModified: lastModifiedHeader },
-    });
-  }
+    if (lastModifiedHeader) {
+      findings.push({
+        id: 'freshness-http-last-modified',
+        title: 'HTTP Last-Modified header present',
+        description: `Server reports Last-Modified: ${lastModifiedHeader}. This helps crawlers determine if content changed since their last visit.`,
+        severity: 'pass',
+        category: 'freshness',
+        details: { lastModified: lastModifiedHeader },
+      });
+    }
 
-  if (etag) {
-    findings.push({
-      id: 'freshness-etag',
-      title: 'ETag header present',
-      description: 'Server provides an ETag for conditional requests. This enables efficient re-crawling by AI bots.',
-      severity: 'pass',
-      category: 'freshness',
-    });
-  }
+    if (etag) {
+      findings.push({
+        id: 'freshness-etag',
+        title: 'ETag header present',
+        description: 'Server provides an ETag for conditional requests. This enables efficient re-crawling by AI bots.',
+        severity: 'pass',
+        category: 'freshness',
+      });
+    }
 
-  if (!lastModifiedHeader && !etag) {
-    findings.push({
-      id: 'freshness-no-http-signals',
-      title: 'No HTTP freshness headers',
-      description: 'No Last-Modified or ETag headers found. These help AI crawlers efficiently determine if content has changed.',
-      severity: 'info',
-      category: 'freshness',
-      recommendation: 'Configure your server to send Last-Modified and/or ETag headers for efficient crawling.',
-    });
+    if (!lastModifiedHeader && !etag) {
+      findings.push({
+        id: 'freshness-no-http-signals',
+        title: 'No HTTP freshness headers',
+        description: 'No Last-Modified or ETag headers found. These help AI crawlers efficiently determine if content has changed.',
+        severity: 'info',
+        category: 'freshness',
+        recommendation: 'Configure your server to send Last-Modified and/or ETag headers for efficient crawling.',
+      });
+    }
   }
 
   // ===== 3. Visible freshness indicators on page =====

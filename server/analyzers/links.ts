@@ -5,7 +5,12 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
   const findings: Finding[] = [];
   const { $, url } = ctx;
 
-  const origin = new URL(url).origin;
+  let origin: string;
+  try {
+    origin = new URL(url).origin;
+  } catch {
+    origin = '';
+  }
   const links: Array<{ href: string; text: string; isInternal: boolean; rel: string }> = [];
 
   $('a[href]').each((_, el) => {
@@ -80,13 +85,13 @@ export function analyzeLinks(ctx: AnalysisContext): Finding[] {
   } else {
     findings.push({
       id: 'links-no-external',
-      title: 'No external links',
+      title: 'No external source links',
       description:
-        'No external links/citations found. Linking to authoritative external sources demonstrates expertise and improves E-E-A-T.',
+        'No external links/citations found. This is common for homepages and landing pages. For informational content, linking to authoritative external sources demonstrates expertise.',
       severity: 'info',
       category: 'links',
       recommendation:
-        'Consider citing authoritative sources with external links to strengthen your content credibility.',
+        'For informational/blog content, consider citing authoritative sources with external links to strengthen credibility.',
     });
   }
 

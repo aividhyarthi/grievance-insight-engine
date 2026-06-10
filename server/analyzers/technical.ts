@@ -3,61 +3,64 @@ import type { AnalysisContext } from '../services/orchestrator.js';
 
 export function analyzeTechnical(ctx: AnalysisContext): Finding[] {
   const findings: Finding[] = [];
-  const { $, html, responseHeaders, responseTime, statusCode, url, contentLength } = ctx;
+  const { $, html, responseHeaders, responseTime, statusCode, url, contentLength, isHtmlPaste } = ctx;
 
-  // ===== HTTPS Check ===== → HTML bucket
-  if (url.startsWith('https://')) {
-    findings.push({
-      id: 'tech-https',
-      title: 'HTTPS enabled',
-      description: 'The page is served over HTTPS, which is required for trust by AI engines.',
-      severity: 'pass',
-      category: 'technical',
-    });
-  } else {
-    findings.push({
-      id: 'tech-no-https',
-      title: 'Not using HTTPS',
-      description:
-        'The page is not served over HTTPS. Most AI bots and search engines penalize or skip non-HTTPS pages.',
-      severity: 'fail',
-      category: 'technical',
-      recommendation: 'Enable HTTPS with a valid SSL certificate.',
-    });
-  }
+  // Skip server-dependent checks in HTML paste mode
+  if (!isHtmlPaste) {
+    // ===== HTTPS Check ===== → HTML bucket
+    if (url.startsWith('https://')) {
+      findings.push({
+        id: 'tech-https',
+        title: 'HTTPS enabled',
+        description: 'The page is served over HTTPS, which is required for trust by AI engines.',
+        severity: 'pass',
+        category: 'technical',
+      });
+    } else {
+      findings.push({
+        id: 'tech-no-https',
+        title: 'Not using HTTPS',
+        description:
+          'The page is not served over HTTPS. Most AI bots and search engines penalize or skip non-HTTPS pages.',
+        severity: 'fail',
+        category: 'technical',
+        recommendation: 'Enable HTTPS with a valid SSL certificate.',
+      });
+    }
 
-  // ===== Response Time ===== → Speed bucket
-  if (responseTime <= 1000) {
-    findings.push({
-      id: 'tech-speed-fast',
-      title: `Fast response: ${responseTime}ms`,
-      description: 'Server response time is excellent. Fast pages are preferred by AI crawlers.',
-      severity: 'pass',
-      category: 'technical',
-      details: { responseTime },
-    });
-  } else if (responseTime <= 3000) {
-    findings.push({
-      id: 'tech-speed-ok',
-      title: `Moderate response: ${responseTime}ms`,
-      description:
-        'Server response time is acceptable but could be improved. AI bots may time out on slow pages.',
-      severity: 'warning',
-      category: 'technical',
-      details: { responseTime },
-      recommendation: 'Optimize server response time to under 1 second.',
-    });
-  } else {
-    findings.push({
-      id: 'tech-speed-slow',
-      title: `Slow response: ${responseTime}ms`,
-      description:
-        'Server response time is slow. AI bots may skip or incompletely index slow-responding pages.',
-      severity: 'fail',
-      category: 'technical',
-      details: { responseTime },
-      recommendation: 'Improve server performance. Consider caching, CDN, or server optimization.',
-    });
+    // ===== Response Time ===== → Speed bucket
+    if (responseTime <= 1000) {
+      findings.push({
+        id: 'tech-speed-fast',
+        title: `Fast response: ${responseTime}ms`,
+        description: 'Server response time is excellent. Fast pages are preferred by AI crawlers.',
+        severity: 'pass',
+        category: 'technical',
+        details: { responseTime },
+      });
+    } else if (responseTime <= 3000) {
+      findings.push({
+        id: 'tech-speed-ok',
+        title: `Moderate response: ${responseTime}ms`,
+        description:
+          'Server response time is acceptable but could be improved. AI bots may time out on slow pages.',
+        severity: 'warning',
+        category: 'technical',
+        details: { responseTime },
+        recommendation: 'Optimize server response time to under 1 second.',
+      });
+    } else {
+      findings.push({
+        id: 'tech-speed-slow',
+        title: `Slow response: ${responseTime}ms`,
+        description:
+          'Server response time is slow. AI bots may skip or incompletely index slow-responding pages.',
+        severity: 'fail',
+        category: 'technical',
+        details: { responseTime },
+        recommendation: 'Improve server performance. Consider caching, CDN, or server optimization.',
+      });
+    }
   }
 
   // ===== Page Size ===== → Speed bucket
@@ -228,55 +231,58 @@ export function analyzeTechnical(ctx: AnalysisContext): Finding[] {
     }
   }
 
-  // ===== X-Robots-Tag Header ===== → HTML bucket
-  const xRobots = responseHeaders['x-robots-tag'];
-  if (xRobots) {
-    if (xRobots.includes('noindex') || xRobots.includes('nosnippet')) {
+  // Skip header-dependent checks in HTML paste mode
+  if (!isHtmlPaste) {
+    // ===== X-Robots-Tag Header ===== → HTML bucket
+    const xRobots = responseHeaders['x-robots-tag'];
+    if (xRobots) {
+      if (xRobots.includes('noindex') || xRobots.includes('nosnippet')) {
+        findings.push({
+          id: 'tech-x-robots-restrictive',
+          title: `Restrictive X-Robots-Tag: ${xRobots}`,
+          description:
+            'The server sends an X-Robots-Tag header that may prevent AI engines from indexing or showing snippets.',
+          severity: 'fail',
+          category: 'technical',
+          recommendation: 'Review the X-Robots-Tag header and remove noindex/nosnippet if AI visibility is desired.',
+        });
+      } else {
+        findings.push({
+          id: 'tech-x-robots',
+          title: `X-Robots-Tag: ${xRobots}`,
+          description: 'X-Robots-Tag header is present.',
+          severity: 'info',
+          category: 'technical',
+        });
+      }
+    }
+
+    // ===== Status Code ===== → HTML bucket
+    if (statusCode === 200) {
       findings.push({
-        id: 'tech-x-robots-restrictive',
-        title: `Restrictive X-Robots-Tag: ${xRobots}`,
-        description:
-          'The server sends an X-Robots-Tag header that may prevent AI engines from indexing or showing snippets.',
-        severity: 'fail',
+        id: 'tech-status-ok',
+        title: 'HTTP 200 OK',
+        description: 'Page returns a successful HTTP status code.',
+        severity: 'pass',
         category: 'technical',
-        recommendation: 'Review the X-Robots-Tag header and remove noindex/nosnippet if AI visibility is desired.',
       });
-    } else {
+    } else if (statusCode >= 300 && statusCode < 400) {
       findings.push({
-        id: 'tech-x-robots',
-        title: `X-Robots-Tag: ${xRobots}`,
-        description: 'X-Robots-Tag header is present.',
-        severity: 'info',
+        id: 'tech-redirect',
+        title: `Redirect: HTTP ${statusCode}`,
+        description: 'The page redirects. Multiple redirects can slow AI bot crawling.',
+        severity: 'warning',
+        category: 'technical',
+      });
+    } else if (statusCode >= 400) {
+      findings.push({
+        id: 'tech-error-status',
+        title: `Error: HTTP ${statusCode}`,
+        description: `The page returns an HTTP ${statusCode} error. AI bots will not index error pages.`,
+        severity: 'fail',
         category: 'technical',
       });
     }
-  }
-
-  // ===== Status Code ===== → HTML bucket
-  if (statusCode === 200) {
-    findings.push({
-      id: 'tech-status-ok',
-      title: 'HTTP 200 OK',
-      description: 'Page returns a successful HTTP status code.',
-      severity: 'pass',
-      category: 'technical',
-    });
-  } else if (statusCode >= 300 && statusCode < 400) {
-    findings.push({
-      id: 'tech-redirect',
-      title: `Redirect: HTTP ${statusCode}`,
-      description: 'The page redirects. Multiple redirects can slow AI bot crawling.',
-      severity: 'warning',
-      category: 'technical',
-    });
-  } else if (statusCode >= 400) {
-    findings.push({
-      id: 'tech-error-status',
-      title: `Error: HTTP ${statusCode}`,
-      description: `The page returns an HTTP ${statusCode} error. AI bots will not index error pages.`,
-      severity: 'fail',
-      category: 'technical',
-    });
   }
 
   // ===== Charset ===== → HTML bucket

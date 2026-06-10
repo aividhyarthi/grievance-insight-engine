@@ -5,10 +5,18 @@ import type { AnalysisContext } from '../services/orchestrator.js';
 
 export function analyzeRobots(ctx: AnalysisContext): Finding[] {
   const findings: Finding[] = [];
-  const { robotsTxt, url, $ } = ctx;
+  const { robotsTxt, url, $, isHtmlPaste } = ctx;
 
-  // Check if robots.txt exists
-  if (!robotsTxt) {
+  // In HTML paste mode, robots.txt was not fetched — skip server-side checks
+  if (isHtmlPaste) {
+    findings.push({
+      id: 'robots-html-paste',
+      title: 'Robots.txt not checked (HTML paste mode)',
+      description: 'AI bot access via robots.txt cannot be analyzed in HTML paste mode. Use URL mode to check which bots can crawl your site.',
+      severity: 'info',
+      category: 'bot-access',
+    });
+  } else if (!robotsTxt) {
     findings.push({
       id: 'robots-missing',
       title: 'No robots.txt found',

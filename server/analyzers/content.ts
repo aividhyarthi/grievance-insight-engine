@@ -294,11 +294,11 @@ export function analyzeContent(ctx: AnalysisContext): Finding[] {
   if (wordCount >= 100) {
     const aiSignals = detectAIContent(visibleText, sentences);
 
-    if (aiSignals.score >= 70) {
+    if (aiSignals.score >= 80) {
       findings.push({
         id: 'ai-content-likely-ai',
-        title: `Content appears AI-generated (${aiSignals.score}% confidence)`,
-        description: `Multiple heuristic signals suggest this content may be AI-generated: ${aiSignals.signals.join(', ')}. AI engines may deprioritize content they detect as AI-written, preferring original human expertise.`,
+        title: `Content has strong AI-generated patterns (${aiSignals.score}% confidence)`,
+        description: `Multiple heuristic signals suggest this content may be AI-generated: ${aiSignals.signals.join(', ')}. AI engines may deprioritize content they detect as AI-written, preferring original human expertise. Note: this is a heuristic estimate and formal writing can trigger false positives.`,
         severity: 'warning',
         category: 'ai-content',
         details: {
@@ -306,13 +306,13 @@ export function analyzeContent(ctx: AnalysisContext): Finding[] {
           signals: aiSignals.signals,
           signalDetails: aiSignals.details,
         },
-        recommendation: 'If using AI-generated content, add personal expertise, unique data, real examples, and original analysis to make it more authoritative. AI engines value E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness).',
+        recommendation: 'Add original value: cite external sources, include expert quotes or data/statistics, show author expertise, and include first-person experience or original analysis.',
       });
-    } else if (aiSignals.score >= 40) {
+    } else if (aiSignals.score >= 45) {
       findings.push({
         id: 'ai-content-mixed',
         title: `Content has some AI-like patterns (${aiSignals.score}% confidence)`,
-        description: `Some patterns common in AI-generated content were detected: ${aiSignals.signals.join(', ')}. This could be AI-assisted or just formal writing style.`,
+        description: `Some patterns common in AI-generated content were detected: ${aiSignals.signals.join(', ')}. This could be AI-assisted writing or simply a formal writing style — not necessarily a problem.`,
         severity: 'info',
         category: 'ai-content',
         details: {
@@ -402,30 +402,16 @@ function detectAIContent(
   const details: Record<string, unknown> = {};
   let score = 0;
 
-  // 1. Common AI filler phrases
+  // 1. Distinctly AI filler phrases (only strong signals, not common business writing)
   const aiPhrases = [
-    /\bit(?:'s| is) (?:important|worth|crucial|essential) to note\b/i,
     /\bin today(?:'s|s) (?:digital|fast-paced|modern|competitive|evolving) (?:landscape|world|era|age)\b/i,
-    /\blet(?:'s|s|us) (?:dive|delve|explore|take a (?:closer )?look)\b/i,
+    /\blet(?:'s|s|us) (?:dive|delve) (?:in|into|deeper)\b/i,
     /\bnavigating the (?:complex|evolving|dynamic)\b/i,
     /\bunlock(?:ing)? the (?:power|potential|secrets|key)\b/i,
-    /\bin conclusion\b/i,
-    /\bfurthermore\b/i,
-    /\bmoreover\b/i,
-    /\bnevertheless\b/i,
     /\bit(?:'s| is) (?:no secret|widely known|commonly understood)\b/i,
-    /\bwhen it comes to\b/i,
-    /\bat the end of the day\b/i,
     /\bin the realm of\b/i,
     /\bone (?:might|could|may) argue\b/i,
-    /\bthat being said\b/i,
-    /\bto sum(?:marize)? up\b/i,
-    /\bplay(?:s)? a (?:crucial|vital|pivotal|key|significant) role\b/i,
-    /\bgame[\s-]?changer\b/i,
-    /\bseamless(?:ly)?\b/i,
-    /\bleverage\b/i,
-    /\brobust\b/i,
-    /\bholistic\b/i,
+    /\bplay(?:s)? a (?:crucial|vital|pivotal) role\b/i,
   ];
 
   let aiPhraseCount = 0;
@@ -437,12 +423,12 @@ function detectAIContent(
   }
 
   if (aiPhraseCount >= 5) {
-    score += 30;
+    score += 25;
     signals.push(`${aiPhraseCount} AI-typical phrases`);
   } else if (aiPhraseCount >= 3) {
-    score += 20;
+    score += 15;
     signals.push(`${aiPhraseCount} AI-typical phrases`);
-  } else if (aiPhraseCount >= 1) {
+  } else if (aiPhraseCount >= 2) {
     score += 8;
     signals.push(`${aiPhraseCount} AI-typical phrase(s)`);
   }

@@ -384,6 +384,17 @@ export function analyzeCrawlability(ctx: AnalysisContext): Finding[] {
   }
 
   // ===== AI BOT SPEED/PERFORMANCE ===== → Speed bucket
+  // Skip server-dependent checks in HTML paste mode
+  if (ctx.isHtmlPaste) {
+    findings.push({
+      id: 'crawl-speed-html-paste',
+      title: 'Response speed not checked (HTML paste mode)',
+      description: 'Server response time, compression, and caching cannot be measured in HTML paste mode. Use URL mode for a complete crawlability audit.',
+      severity: 'info',
+      category: 'crawlability',
+    });
+    return findings;
+  }
 
   // Response time for AI bots
   if (responseTime <= 500) {
