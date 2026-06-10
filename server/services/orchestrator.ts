@@ -66,7 +66,7 @@ function computeScore(findings: Finding[]): number {
 
   const points = scoreable.reduce((sum, f) => {
     if (f.severity === 'pass') return sum + 1;
-    if (f.severity === 'warning') return sum + 0.5;
+    if (f.severity === 'warning') return sum + 0.35;
     return sum; // fail = 0
   }, 0);
 
