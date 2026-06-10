@@ -2,6 +2,7 @@ import { Router, type Response } from 'express';
 import { z } from 'zod';
 import { v4 as uuid } from 'uuid';
 import { runAudit } from '../services/orchestrator.js';
+import type { AuditInput } from '../services/orchestrator.js';
 import { optionalAuth, type AuthRequest } from '../auth.js';
 import { queries } from '../db.js';
 
@@ -15,9 +16,16 @@ const urlSchema = z
     'URL must start with http:// or https://'
   );
 
-const AuditSchema = z.object({
+const AuditUrlSchema = z.object({
+  mode: z.literal('url').optional(),
   url: urlSchema,
   competitors: z.array(urlSchema).max(2).optional(),
+});
+
+const AuditHtmlSchema = z.object({
+  mode: z.literal('html'),
+  html: z.string().min(20, 'HTML content is too short'),
+  baseUrl: urlSchema.optional(),
 });
 
 function getTodayDate(): string {
@@ -26,23 +34,47 @@ function getTodayDate(): string {
 
 auditRouter.post('/audit', optionalAuth, async (req: AuthRequest, res: Response) => {
   try {
-    const parsed = AuditSchema.safeParse(req.body);
-    if (!parsed.success) {
-      res.status(400).json({
-        error: 'Invalid URL',
-        details: parsed.error.errors[0]?.message,
-      });
-      return;
+    const isHtmlMode = req.body?.mode === 'html';
+
+    let auditInput: AuditInput;
+    let competitorUrls: string[] = [];
+    let displayUrl: string;
+
+    if (isHtmlMode) {
+      const parsed = AuditHtmlSchema.safeParse(req.body);
+      if (!parsed.success) {
+        res.status(400).json({
+          error: 'Invalid input',
+          details: parsed.error.errors[0]?.message,
+        });
+        return;
+      }
+      displayUrl = parsed.data.baseUrl || 'html-paste://local';
+      auditInput = {
+        url: displayUrl,
+        html: parsed.data.html,
+        baseUrl: parsed.data.baseUrl,
+      };
+    } else {
+      const parsed = AuditUrlSchema.safeParse(req.body);
+      if (!parsed.success) {
+        res.status(400).json({
+          error: 'Invalid URL',
+          details: parsed.error.errors[0]?.message,
+        });
+        return;
+      }
+      displayUrl = parsed.data.url;
+      auditInput = { url: parsed.data.url };
+      competitorUrls = (parsed.data.competitors || []).filter(Boolean);
     }
 
     const userId = req.user?.userId;
     const today = getTodayDate();
 
     // Run audits: main site + competitors (in parallel)
-    const competitorUrls = (parsed.data.competitors || []).filter(Boolean);
-    const allUrls = [parsed.data.url, ...competitorUrls];
-
-    const reports = await Promise.all(allUrls.map((u) => runAudit(u)));
+    const allInputs: AuditInput[] = [auditInput, ...competitorUrls.map((u) => ({ url: u }))];
+    const reports = await Promise.all(allInputs.map((inp) => runAudit(inp)));
     const mainReport = reports[0];
     const competitorReports = reports.slice(1);
 
@@ -54,7 +86,7 @@ auditRouter.post('/audit', optionalAuth, async (req: AuthRequest, res: Response)
       queries.saveAudit.run(
         auditId,
         userId,
-        parsed.data.url,
+        displayUrl,
         mainReport.overallScore,
         mainReport.grade,
         JSON.stringify({ ...mainReport, competitors: competitorReports })

@@ -33,7 +33,7 @@ export default function App() {
   const [showAuth, setShowAuth] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
-  const handleAudit = async (url: string, competitors: string[]) => {
+  const handleAudit = async (url: string, competitors: string[], htmlInput?: { html: string; baseUrl?: string }) => {
     setLoading(true);
     setError(null);
     setReport(null);
@@ -43,8 +43,15 @@ export default function App() {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (token) headers.Authorization = `Bearer ${token}`;
 
-      const body: Record<string, unknown> = { url };
-      if (competitors.length > 0) body.competitors = competitors;
+      let body: Record<string, unknown>;
+
+      if (htmlInput) {
+        body = { mode: 'html', html: htmlInput.html };
+        if (htmlInput.baseUrl) body.baseUrl = htmlInput.baseUrl;
+      } else {
+        body = { url };
+        if (competitors.length > 0) body.competitors = competitors;
+      }
 
       const res = await fetch('/api/audit', {
         method: 'POST',

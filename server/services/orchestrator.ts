@@ -82,24 +82,59 @@ function getGrade(score: number): string {
   return 'F';
 }
 
-export async function runAudit(url: string): Promise<AuditReport> {
-  // Fetch page and robots.txt in parallel
-  const [pageResult, robotsTxt] = await Promise.all([
-    fetchPage(url),
-    fetchRobotsTxt(url),
-  ]);
+export interface AuditInput {
+  url: string;
+  html?: string;
+  baseUrl?: string;
+}
 
-  const $ = cheerio.load(pageResult.html);
+export async function runAudit(input: string | AuditInput): Promise<AuditReport> {
+  const opts: AuditInput = typeof input === 'string' ? { url: input } : input;
+
+  let html: string;
+  let robotsTxt: string | null;
+  let responseHeaders: Record<string, string>;
+  let responseTime: number;
+  let statusCode: number;
+  let contentLength: number;
+  let finalUrl: string;
+
+  if (opts.html) {
+    // HTML paste mode — skip fetching
+    html = opts.html;
+    robotsTxt = null;
+    responseHeaders = {};
+    responseTime = 0;
+    statusCode = 200;
+    contentLength = Buffer.byteLength(html, 'utf-8');
+    finalUrl = opts.baseUrl || opts.url;
+  } else {
+    // URL mode — fetch live page
+    const [pageResult, robotsResult] = await Promise.all([
+      fetchPage(opts.url),
+      fetchRobotsTxt(opts.url),
+    ]);
+    html = pageResult.html;
+    robotsTxt = robotsResult;
+    responseHeaders = pageResult.headers;
+    responseTime = pageResult.responseTime;
+    statusCode = pageResult.statusCode;
+    contentLength = pageResult.contentLength;
+    finalUrl = pageResult.finalUrl;
+  }
+
+  const url = opts.url;
+  const $ = cheerio.load(html);
 
   const ctx: AnalysisContext = {
     url,
-    html: pageResult.html,
+    html,
     $,
     robotsTxt,
-    responseHeaders: pageResult.headers,
-    responseTime: pageResult.responseTime,
-    statusCode: pageResult.statusCode,
-    contentLength: pageResult.contentLength,
+    responseHeaders,
+    responseTime,
+    statusCode,
+    contentLength,
   };
 
   // Detect site type
@@ -253,10 +288,10 @@ export async function runAudit(url: string): Promise<AuditReport> {
     description: $('meta[name="description"]').attr('content') || null,
     canonical: $('link[rel="canonical"]').attr('href') || null,
     ogTags: extractOgTags($),
-    responseTime: pageResult.responseTime,
-    contentLength: pageResult.contentLength,
-    statusCode: pageResult.statusCode,
-    finalUrl: pageResult.finalUrl,
+    responseTime,
+    contentLength,
+    statusCode,
+    finalUrl,
   };
 
   return {
