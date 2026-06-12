@@ -8,6 +8,8 @@ answeredBy: The Second Spring Team
 replies:
   - name: Kavitha M.
     text: "Getting my ferritin checked was the turning point for me. My haemoglobin was normal so my previous doctor hadn't flagged anything, but my ferritin was 14 — very depleted. My new doctor put me on iron supplements and by month four the shedding had noticeably reduced. Hair grows slowly so you need patience, but it did change."
+  - name: Priya R.
+    text: "My dermatologist added zinc to the panel and it came back very low. Between correcting my ferritin AND my zinc, plus a topical treatment, the shedding reduced noticeably within four months. Hair responds slowly but it does respond. Get the full panel — not just haemoglobin."
 relatedJournals:
   - title: "Hair and Skin Guide"
     href: /guide/hair-skin

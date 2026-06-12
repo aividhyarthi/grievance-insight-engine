@@ -8,6 +8,8 @@ answeredBy: The Second Spring Team
 replies:
   - name: Ritu
     text: "I find the patch easier — I apply it twice a week and don't have to think about it. No tablet to remember every day, and the oestrogen level stays more stable through the week than it apparently does with a daily tablet. It suits my routine well."
+  - name: Ananya D.
+    text: "I started on tablets because they were easier to find in my city, then switched to a gel after three months. The gel suits me better — no skin irritation and levels feel more stable through the day. It took some adjusting to find what worked but it was worth it."
 relatedJournals:
   - title: "Should I Take Oestrogen for Perimenopause?"
     href: /blog/should-i-take-estrogen-perimenopause

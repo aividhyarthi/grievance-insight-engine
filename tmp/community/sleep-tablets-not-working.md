@@ -8,6 +8,8 @@ answeredBy: The Second Spring Team
 replies:
   - name: Kavitha
     text: "I was on sleeping tablets for almost a year when I finally asked a different gynaecologist about HRT. She addressed the perimenopause properly and now, eight months later, I sleep without any tablets. I genuinely didn't think that was possible."
+  - name: Ritu M.
+    text: "CBT-I with a psychologist alongside a slow taper off tablets changed my sleep more than any medication. Twelve weeks of weekly sessions felt slow. Two years later I sleep without tablets or therapy. It is the only thing that actually fixed it rather than just managing it."
 relatedJournals:
   - title: "Sleep Guide"
     href: /guide/sleep

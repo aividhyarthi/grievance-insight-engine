@@ -8,6 +8,8 @@ answeredBy: Kavitha R.
 replies:
   - name: The Second Spring Team
     text: "Kavitha's experience is very typical. Jawline and chin acne in perimenopause is driven by androgen dominance — as oestrogen falls, androgens become relatively stronger and stimulate sebaceous (oil) glands in exactly this facial distribution. A dermatologist can prescribe treatments depending on severity — these may include anti-androgen medication, prescription topical creams, or other options. Do not use harsh scrubs or over-exfoliate cystic spots — this worsens inflammation and can cause scarring."
+  - name: Nandita
+    text: "I spent a fortune on premium skincare before a dermatologist told me those products were doing nothing for hormonal acne. Prescription treatment sorted my skin in about three months. I wish someone had told me much earlier to stop blaming my cleanser and just see a proper doctor."
 relatedJournals:
   - title: "Hair and Skin Guide"
     href: /guide/hair-skin

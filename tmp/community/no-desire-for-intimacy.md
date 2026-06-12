@@ -8,6 +8,8 @@ answeredBy: The Second Spring Team
 replies:
   - name: Priya M.
     text: "Vaginal oestrogen cream alongside a good water-based lubricant changed things significantly for me — physical comfort came back and then my interest gradually followed. I had assumed the loss of desire was psychological, but so much of it was actually driven by the physical discomfort I had been dreading."
+  - name: Rekha S.
+    text: "I was convinced my marriage was in trouble. Then I started HRT and within two months realised I had been blaming myself and my relationship for something that was entirely hormonal. Explaining the biology to my husband changed everything between us."
 relatedJournals:
   - title: "Sexual Wellness Guide"
     href: /guide/sexual-wellness

@@ -8,6 +8,8 @@ answeredBy: The Second Spring Team
 replies:
   - name: Deepa S.
     text: "I was too embarrassed to bring this up for almost two years, and I suffered unnecessarily for all of that time. When I finally told my gynaecologist, she prescribed a vaginal oestrogen pessary and explained that this was one of the most common things she treated. Within six weeks the difference was significant. I only wish I had asked sooner."
+  - name: Kavya
+    text: "My gynaecologist was completely matter-of-fact — said she hears this every week and wished more women asked earlier. The cream she prescribed worked within a few weeks. What helped most was her saying it is a common, treatable condition. I had been treating it like a personal failure."
 relatedJournals:
   - title: "Sexual Wellness Guide"
     href: /guide/sexual-wellness

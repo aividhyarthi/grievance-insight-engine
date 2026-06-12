@@ -5,7 +5,9 @@ askerAge: 44
 askerCity: Kolkata
 category: Mood
 answeredBy: The Second Spring Team
-replies: []
+replies:
+  - name: Sunita K.
+    text: "When I finally told my sister what was happening she said she had gone through the same thing ten years earlier and never told anyone. I felt such relief that it was not just me. Getting the diagnosis and starting treatment helped enormously within two months — the hair-trigger irritability reduced significantly. Please do not carry the guilt alone."
 relatedJournals:
   - title: "Mood and Memory Guide"
     href: /guide/mood-memory
