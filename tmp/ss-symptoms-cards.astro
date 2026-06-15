@@ -1,5 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const symptoms = [
+  { id: 'hot-flashes',  num: '01', name: 'Hot Flashes',    color: '#B84A2E', img: 'photo-1571019613454-1cb2f99b2d8b' },
+  { id: 'brain-fog',    num: '02', name: 'Brain Fog',       color: '#2D5F7A', img: 'photo-1580130732478-4e339fb33746' },
+  { id: 'mood-swings',  num: '03', name: 'Mood Swings',     color: '#3D7A5F', img: 'photo-1499209974431-9dddcece7f88' },
+  { id: 'sleep',        num: '04', name: 'Sleep Problems',  color: '#1A2D4A', img: 'photo-1455642305367-68834a1da7ab' },
+  { id: 'weight',       num: '05', name: 'Weight Changes',  color: '#8A5230', img: 'photo-1434682966571-95c657f41aa6' },
+  { id: 'hair-loss',    num: '06', name: 'Hair Loss',       color: '#5A6B4E', img: 'photo-1522337660859-02fbefca4702' },
+];
 ---
 <Layout
   title="Know Your Symptoms — The Second Spring"
@@ -13,29 +22,33 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <p class="sc-eyebrow">Symptom Guide</p>
       <h1 class="sc-title">Know What's Happening</h1>
-      <p class="sc-subtitle">Every symptom here has a biological reason. Understanding it is the first step to managing it.</p>
+      <p class="sc-subtitle">Every symptom has a biological reason. Understanding it is the first step to managing it.</p>
     </div>
   </div>
 
   <!-- Sticky nav -->
   <nav class="sc-nav" aria-label="Jump to symptom">
     <div class="sc-nav-inner">
-      <a href="#hot-flashes" class="sc-nav-pill">Hot Flashes</a>
-      <a href="#brain-fog" class="sc-nav-pill">Brain Fog</a>
-      <a href="#mood-swings" class="sc-nav-pill">Mood Swings</a>
-      <a href="#sleep" class="sc-nav-pill">Sleep</a>
-      <a href="#weight" class="sc-nav-pill">Weight</a>
-      <a href="#hair-loss" class="sc-nav-pill">Hair Loss</a>
+      {symptoms.map(s => (
+        <a href={`#${s.id}`} class="sc-nav-pill" style={`--pill-color:${s.color}`}>{s.name}</a>
+      ))}
     </div>
   </nav>
 
   <!-- ── 01 HOT FLASHES ── -->
   <section class="sc-card" id="hot-flashes">
-    <div class="sc-card-banner" style="background:#B84A2E;">
-      <span class="sc-num">01</span>
-      <div class="sc-banner-text">
-        <h2 class="sc-name">Hot Flashes</h2>
-        <p class="sc-hook">"Your hypothalamus has lost its thermostat. Here's how to work with it."</p>
+    <div class="sc-card-photo">
+      <img
+        src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1000&q=80&fit=crop"
+        alt="Woman experiencing perimenopause hot flashes"
+        loading="lazy"
+      />
+      <div class="sc-photo-overlay" style="background:linear-gradient(to bottom, rgba(184,74,46,0.3) 0%, rgba(184,74,46,0.85) 100%);">
+        <span class="sc-num">01</span>
+        <div class="sc-photo-title">
+          <h2 class="sc-name">Hot Flashes</h2>
+          <p class="sc-hook">"Your hypothalamus has lost its thermostat. Here's how to work with it."</p>
+        </div>
       </div>
     </div>
     <div class="sc-card-body">
@@ -72,7 +85,7 @@ import Layout from '../layouts/Layout.astro';
           <p>They are not. Skin temperature measurably rises, heart rate increases, blood vessels dilate. They are genuine physiological events — not imagined, not emotional, not a sign you cannot cope. Some women have 10 or more episodes a day. That is a medical situation, not a mood.</p>
         </div>
       </div>
-      <div class="sc-doctor-bar">
+      <div class="sc-doctor-bar" style="border-left:3px solid #B84A2E;">
         <span class="sc-doctor-label">See a doctor if</span>
         <span>More than 7 episodes per day, lasting more than 10 minutes each, or significantly disrupting sleep for weeks on end.</span>
       </div>
@@ -81,11 +94,18 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ── 02 BRAIN FOG ── -->
   <section class="sc-card" id="brain-fog">
-    <div class="sc-card-banner" style="background:#2D5F7A;">
-      <span class="sc-num">02</span>
-      <div class="sc-banner-text">
-        <h2 class="sc-name">Brain Fog</h2>
-        <p class="sc-hook">"The word is still in there. Oestrogen was helping you find it."</p>
+    <div class="sc-card-photo">
+      <img
+        src="https://images.unsplash.com/photo-1580130732478-4e339fb33746?w=1000&q=80&fit=crop"
+        alt="Woman with brain fog and difficulty concentrating"
+        loading="lazy"
+      />
+      <div class="sc-photo-overlay" style="background:linear-gradient(to bottom, rgba(45,95,122,0.3) 0%, rgba(45,95,122,0.88) 100%);">
+        <span class="sc-num">02</span>
+        <div class="sc-photo-title">
+          <h2 class="sc-name">Brain Fog</h2>
+          <p class="sc-hook">"The word is still in there. Oestrogen was helping you find it."</p>
+        </div>
       </div>
     </div>
     <div class="sc-card-body">
@@ -122,7 +142,7 @@ import Layout from '../layouts/Layout.astro';
           <p>It is not. Perimenopause brain fog is non-progressive, driven by hormonal fluctuation rather than neurodegeneration, and typically improves after menopause when the hormonal environment stabilises. Dementia does not come and go with your menstrual cycle. If your fog is worse before periods and better after — it is hormonal.</p>
         </div>
       </div>
-      <div class="sc-doctor-bar">
+      <div class="sc-doctor-bar" style="border-left:3px solid #2D5F7A;">
         <span class="sc-doctor-label">See a doctor if</span>
         <span>Forgetting people you know well, getting lost in familiar places, or noticing progressive deterioration over months — these warrant evaluation to rule out other causes.</span>
       </div>
@@ -131,11 +151,18 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ── 03 MOOD SWINGS ── -->
   <section class="sc-card" id="mood-swings">
-    <div class="sc-card-banner" style="background:#3D7A5F;">
-      <span class="sc-num">03</span>
-      <div class="sc-banner-text">
-        <h2 class="sc-name">Mood Swings</h2>
-        <p class="sc-hook">"You haven't changed. Your oestrogen has."</p>
+    <div class="sc-card-photo">
+      <img
+        src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1000&q=80&fit=crop"
+        alt="Woman dealing with mood swings and emotional changes"
+        loading="lazy"
+      />
+      <div class="sc-photo-overlay" style="background:linear-gradient(to bottom, rgba(61,122,95,0.3) 0%, rgba(61,122,95,0.88) 100%);">
+        <span class="sc-num">03</span>
+        <div class="sc-photo-title">
+          <h2 class="sc-name">Mood Swings</h2>
+          <p class="sc-hook">"You haven't changed. Your oestrogen has."</p>
+        </div>
       </div>
     </div>
     <div class="sc-card-body">
@@ -172,7 +199,7 @@ import Layout from '../layouts/Layout.astro';
           <p>It is not. The vast majority of women describe returning to emotional baseline once hormones stabilise — with HRT or after post-menopause settles. The irritability, the low threshold, the disproportionate reactions — these are symptoms of a hormonal state, not a character change. You are not becoming a different person. Your brain chemistry is temporarily disrupted.</p>
         </div>
       </div>
-      <div class="sc-doctor-bar">
+      <div class="sc-doctor-bar" style="border-left:3px solid #3D7A5F;">
         <span class="sc-doctor-label">See a doctor if</span>
         <span>Depression lasting more than two weeks, thoughts of self-harm (call iCall: 9152987821, emergency: 112), or anxiety that is preventing you from functioning at work or at home.</span>
       </div>
@@ -181,11 +208,18 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ── 04 SLEEP ── -->
   <section class="sc-card" id="sleep">
-    <div class="sc-card-banner" style="background:#1A2D4A;">
-      <span class="sc-num">04</span>
-      <div class="sc-banner-text">
-        <h2 class="sc-name">Sleep Problems</h2>
-        <p class="sc-hook">"3am is hormonal, not existential. Usually."</p>
+    <div class="sc-card-photo">
+      <img
+        src="https://images.unsplash.com/photo-1455642305367-68834a1da7ab?w=1000&q=80&fit=crop"
+        alt="Woman struggling with sleep problems at night"
+        loading="lazy"
+      />
+      <div class="sc-photo-overlay" style="background:linear-gradient(to bottom, rgba(26,45,74,0.3) 0%, rgba(26,45,74,0.92) 100%);">
+        <span class="sc-num">04</span>
+        <div class="sc-photo-title">
+          <h2 class="sc-name">Sleep Problems</h2>
+          <p class="sc-hook">"3am is hormonal, not existential. Usually."</p>
+        </div>
       </div>
     </div>
     <div class="sc-card-body">
@@ -222,7 +256,7 @@ import Layout from '../layouts/Layout.astro';
           <p>Sleeping tablets treat the symptom, not the cause. They lose effectiveness within 2–4 weeks as the body builds tolerance. The root cause — hormonal disruption of the sleep system — remains untouched. CBT-I (Cognitive Behavioural Therapy for Insomnia) has better long-term outcomes than medication. And for many women, addressing the perimenopause itself with HRT resolves the sleep problem at its source.</p>
         </div>
       </div>
-      <div class="sc-doctor-bar">
+      <div class="sc-doctor-bar" style="border-left:3px solid #1A2D4A;">
         <span class="sc-doctor-label">See a doctor if</span>
         <span>Sleeping less than 5 hours regularly, new loud snoring (sleep apnoea risk increases in perimenopause), or daytime function is significantly impaired by fatigue.</span>
       </div>
@@ -231,11 +265,18 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ── 05 WEIGHT ── -->
   <section class="sc-card" id="weight">
-    <div class="sc-card-banner" style="background:#8A5230;">
-      <span class="sc-num">05</span>
-      <div class="sc-banner-text">
-        <h2 class="sc-name">Weight Changes</h2>
-        <p class="sc-hook">"Your body didn't stop listening. It started storing differently."</p>
+    <div class="sc-card-photo">
+      <img
+        src="https://images.unsplash.com/photo-1434682966571-95c657f41aa6?w=1000&q=80&fit=crop"
+        alt="Healthy food and body weight management during perimenopause"
+        loading="lazy"
+      />
+      <div class="sc-photo-overlay" style="background:linear-gradient(to bottom, rgba(138,82,48,0.3) 0%, rgba(138,82,48,0.88) 100%);">
+        <span class="sc-num">05</span>
+        <div class="sc-photo-title">
+          <h2 class="sc-name">Weight Changes</h2>
+          <p class="sc-hook">"Your body didn't stop listening. It started storing differently."</p>
+        </div>
       </div>
     </div>
     <div class="sc-card-body">
@@ -272,7 +313,7 @@ import Layout from '../layouts/Layout.astro';
           <p>Severe calorie restriction in perimenopause typically backfires. It accelerates muscle loss, worsens fatigue, raises cortisol (which drives abdominal fat storage), and rarely produces sustained fat loss. The body defends its fat stores more aggressively when muscle is also being lost. The solution is changing body composition — more muscle, less visceral fat — which requires strength training, not starvation.</p>
         </div>
       </div>
-      <div class="sc-doctor-bar">
+      <div class="sc-doctor-bar" style="border-left:3px solid #8A5230;">
         <span class="sc-doctor-label">See a doctor if</span>
         <span>Rapid unexplained weight gain of more than 4–5 kg over a few months, significant abdominal swelling, or weight gain accompanied by fatigue and cold intolerance — check thyroid.</span>
       </div>
@@ -281,11 +322,18 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ── 06 HAIR LOSS ── -->
   <section class="sc-card" id="hair-loss">
-    <div class="sc-card-banner" style="background:#5A6B4E;">
-      <span class="sc-num">06</span>
-      <div class="sc-banner-text">
-        <h2 class="sc-name">Hair Loss</h2>
-        <p class="sc-hook">"It's not all coming out. It just feels that way."</p>
+    <div class="sc-card-photo">
+      <img
+        src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=1000&q=80&fit=crop"
+        alt="Woman concerned about hair loss during perimenopause"
+        loading="lazy"
+      />
+      <div class="sc-photo-overlay" style="background:linear-gradient(to bottom, rgba(90,107,78,0.3) 0%, rgba(90,107,78,0.9) 100%);">
+        <span class="sc-num">06</span>
+        <div class="sc-photo-title">
+          <h2 class="sc-name">Hair Loss</h2>
+          <p class="sc-hook">"It's not all coming out. It just feels that way."</p>
+        </div>
       </div>
     </div>
     <div class="sc-card-body">
@@ -322,7 +370,7 @@ import Layout from '../layouts/Layout.astro';
           <p>In most cases of hormonally-driven perimenopause hair thinning, the follicle is still alive — it has miniaturised, not died. With the right nutritional support and targeted treatment, recovery is possible. What does not work: expensive shampoos, biotin supplements in isolation, or waiting for it to resolve on its own. What does work: fixing the underlying cause (nutritional deficiency, hormonal, thyroid) and adding targeted treatment.</p>
         </div>
       </div>
-      <div class="sc-doctor-bar">
+      <div class="sc-doctor-bar" style="border-left:3px solid #5A6B4E;">
         <span class="sc-doctor-label">See a doctor if</span>
         <span>Patchy bald spots rather than diffuse thinning (warrants evaluation for alopecia areata), very rapid loss over weeks, or hair loss alongside significant fatigue and weight changes.</span>
       </div>
@@ -344,72 +392,147 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   /* ── Page ── */
-  .sc-page { background: #F6FAF7; }
+  .sc-page { background: #F2F5F3; }
   .container { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem; }
 
   /* ── Hero ── */
-  .sc-hero { background: linear-gradient(150deg, #0F2A1A 0%, #1A3D2B 100%); padding: 4.5rem 1.25rem 3.5rem; text-align: center; }
-  .sc-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #8BAF98; margin-bottom: .75rem; }
-  .sc-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
-  .sc-subtitle { font-size: 1.05rem; color: rgba(255,255,255,.7); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+  .sc-hero {
+    background: linear-gradient(150deg, #0F2A1A 0%, #1A3D2B 100%);
+    padding: 5rem 1.25rem 4rem;
+    text-align: center;
+  }
+  .sc-eyebrow {
+    font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .14em; color: #8BAF98; margin-bottom: .75rem;
+  }
+  .sc-title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 900;
+    color: #fff; line-height: 1.1; margin-bottom: 1rem;
+  }
+  .sc-subtitle {
+    font-size: 1.05rem; color: rgba(255,255,255,.7);
+    max-width: 540px; margin: 0 auto; line-height: 1.75;
+  }
 
   /* ── Nav ── */
-  .sc-nav { background: #fff; border-bottom: 1.5px solid #E0E8E3; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
-  .sc-nav-inner { max-width: 1000px; margin: 0 auto; padding: .75rem 1.25rem; display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: none; }
+  .sc-nav {
+    background: #fff; border-bottom: 1.5px solid #DDE8E3;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,.07);
+  }
+  .sc-nav-inner {
+    max-width: 1000px; margin: 0 auto; padding: .8rem 1.25rem;
+    display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: none;
+  }
   .sc-nav-inner::-webkit-scrollbar { display: none; }
-  .sc-nav-pill { padding: .4rem 1rem; border-radius: 99px; font-size: .82rem; font-weight: 600; color: #3D7A5F; background: #EBF5EF; border: 1.5px solid transparent; white-space: nowrap; text-decoration: none; transition: all .18s; flex-shrink: 0; }
-  .sc-nav-pill:hover { background: #3D7A5F; color: #fff; }
+  .sc-nav-pill {
+    padding: .42rem 1.05rem; border-radius: 99px; font-size: .82rem;
+    font-weight: 600; color: var(--pill-color, #3D7A5F);
+    background: #F0F5F2; border: 1.5px solid transparent;
+    white-space: nowrap; text-decoration: none; transition: all .18s; flex-shrink: 0;
+  }
+  .sc-nav-pill:hover {
+    background: var(--pill-color, #3D7A5F); color: #fff;
+  }
 
   /* ── Cards ── */
-  .sc-card { margin: 2.5rem auto; max-width: 1000px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.08); background: #fff; }
+  .sc-card {
+    margin: 2.5rem auto; max-width: 1000px; border-radius: 20px;
+    overflow: hidden; box-shadow: 0 6px 32px rgba(0,0,0,.10); background: #fff;
+  }
 
-  /* Banner */
-  .sc-card-banner { padding: 2rem 2.5rem; display: flex; align-items: flex-start; gap: 1.75rem; position: relative; overflow: hidden; }
-  .sc-card-banner::before { content: attr(data-num); position: absolute; right: -1rem; top: -1rem; font-size: 9rem; font-weight: 900; color: rgba(255,255,255,.08); line-height: 1; pointer-events: none; }
-  .sc-num { font-size: 1rem; font-weight: 900; color: rgba(255,255,255,.45); letter-spacing: .05em; flex-shrink: 0; padding-top: .3rem; }
-  .sc-name { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; color: #fff; margin-bottom: .5rem; line-height: 1.1; }
-  .sc-hook { font-size: 1rem; color: rgba(255,255,255,.8); font-style: italic; line-height: 1.6; }
+  /* Photo section */
+  .sc-card-photo { position: relative; height: 320px; overflow: hidden; }
+  .sc-card-photo img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .sc-photo-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end; gap: 1.25rem;
+    padding: 1.75rem 2rem;
+  }
+  .sc-num {
+    font-size: 3.5rem; font-weight: 900; color: rgba(255,255,255,.25);
+    line-height: 1; flex-shrink: 0; align-self: flex-end; padding-bottom: .1rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .sc-photo-title { flex: 1; }
+  .sc-name {
+    font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 900;
+    color: #fff; margin-bottom: .4rem; line-height: 1.1;
+    text-shadow: 0 1px 4px rgba(0,0,0,.3);
+  }
+  .sc-hook {
+    font-size: 1rem; color: rgba(255,255,255,.88); font-style: italic;
+    line-height: 1.55; text-shadow: 0 1px 3px rgba(0,0,0,.3); margin: 0;
+  }
 
   /* Body */
-  .sc-card-body { padding: 2rem 2.5rem 1.5rem; }
+  .sc-card-body { padding: 2rem 2.5rem 1.75rem; }
 
-  /* Grid: 2x2 */
-  .sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
-
-  .sc-block { background: #F6FAF7; border-radius: 12px; padding: 1.25rem 1.4rem; }
+  /* Grid 2×2 */
+  .sc-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.25rem; margin-bottom: 1.5rem;
+  }
+  .sc-block { background: #F6FAF7; border-radius: 14px; padding: 1.25rem 1.4rem; }
   .sc-block-myth { background: #FFF8F5; border: 1.5px solid #F0C9B0; }
 
-  .sc-block-head { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #3D7A5F; margin-bottom: .75rem; }
+  .sc-block-head {
+    font-size: .68rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .12em; color: #3D7A5F; margin-bottom: .7rem;
+  }
   .sc-head-warn { color: #B84A2E; }
   .sc-head-help { color: #2D6B4A; }
 
-  .sc-block p { font-size: .9rem; color: #2D4A38; line-height: 1.7; margin: 0; }
-  .sc-myth-text { font-size: .92rem; font-weight: 700; color: #8A3A1A; margin-bottom: .6rem !important; font-style: italic; }
+  .sc-block p { font-size: .9rem; color: #2D4A38; line-height: 1.72; margin: 0; }
+  .sc-myth-text {
+    font-size: .92rem; font-weight: 700; color: #8A3A1A;
+    margin-bottom: .6rem !important; font-style: italic;
+  }
 
   .sc-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .45rem; }
-  .sc-list li { font-size: .88rem; color: #2D4A38; padding-left: 1.1rem; position: relative; line-height: 1.5; }
+  .sc-list li { font-size: .88rem; color: #2D4A38; padding-left: 1.15rem; position: relative; line-height: 1.5; }
   .sc-list li::before { content: '×'; position: absolute; left: 0; color: #B84A2E; font-weight: 700; }
   .sc-list-green li::before { content: '✓'; color: #3D7A5F; }
 
   /* Doctor bar */
-  .sc-doctor-bar { background: #F0F5F2; border-radius: 10px; padding: .9rem 1.25rem; display: flex; align-items: flex-start; gap: .75rem; font-size: .87rem; color: #2D4A38; line-height: 1.6; }
-  .sc-doctor-label { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #3D7A5F; flex-shrink: 0; padding-top: .15rem; white-space: nowrap; }
+  .sc-doctor-bar {
+    background: #F6FAF7; border-radius: 10px; padding: 1rem 1.4rem;
+    display: flex; align-items: flex-start; gap: .9rem;
+    font-size: .88rem; color: #2D4A38; line-height: 1.65;
+  }
+  .sc-doctor-label {
+    font-size: .67rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .1em; color: inherit; flex-shrink: 0;
+    padding-top: .18rem; white-space: nowrap; opacity: .65;
+  }
 
   /* Footer CTA */
-  .sc-footer-cta { background: linear-gradient(150deg, #0F2A1A, #1A3D2B); padding: 4rem 1.25rem; text-align: center; margin-top: 3rem; }
-  .sc-footer-cta h2 { font-size: 1.75rem; font-weight: 800; color: #fff; margin-bottom: .75rem; }
-  .sc-footer-cta p { color: rgba(255,255,255,.7); font-size: 1rem; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
-  .sc-cta-btn { display: inline-block; background: #fff; color: #1A3D2B; font-weight: 700; font-size: .95rem; padding: .85rem 2rem; border-radius: 99px; text-decoration: none; transition: transform .18s, box-shadow .18s; }
-  .sc-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+  .sc-footer-cta {
+    background: linear-gradient(150deg, #0F2A1A, #1A3D2B);
+    padding: 4.5rem 1.25rem; text-align: center; margin-top: 3rem;
+  }
+  .sc-footer-cta h2 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: .75rem; }
+  .sc-footer-cta p { color: rgba(255,255,255,.7); font-size: 1rem; max-width: 480px; margin: 0 auto 2rem; line-height: 1.75; }
+  .sc-cta-btn {
+    display: inline-block; background: #fff; color: #1A3D2B; font-weight: 700;
+    font-size: .95rem; padding: .9rem 2.2rem; border-radius: 99px;
+    text-decoration: none; transition: transform .18s, box-shadow .18s;
+  }
+  .sc-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.22); }
 
   /* ── Mobile ── */
   @media (max-width: 680px) {
     .sc-card { margin: 1.5rem .75rem; border-radius: 16px; }
-    .sc-card-banner { padding: 1.5rem 1.25rem; gap: 1rem; }
+    .sc-card-photo { height: 240px; }
+    .sc-photo-overlay { padding: 1.25rem 1.25rem; gap: .75rem; }
+    .sc-num { font-size: 2.5rem; }
+    .sc-hook { font-size: .9rem; }
     .sc-card-body { padding: 1.25rem 1.25rem 1rem; }
     .sc-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .sc-hook { font-size: .93rem; }
-    .sc-doctor-bar { flex-direction: column; gap: .35rem; }
+    .sc-doctor-bar { flex-direction: column; gap: .3rem; }
     .sc-nav-pill { font-size: .78rem; padding: .35rem .85rem; }
   }
 </style>
