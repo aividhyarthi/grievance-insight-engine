@@ -1,0 +1,342 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stories = [
+  {
+    num: '01',
+    name: 'Meera',
+    age: 39,
+    city: 'Pune',
+    title: 'The Doctor Said It Was Stress',
+    pull: 'Three doctors in fourteen months. That is my number.',
+    color: '#2D5F7A',
+    body: `Three doctors in fourteen months. That is my number.
+
+The first one said it was work stress. He asked me how many hours I was putting in — I said sixty, sometimes more — and he nodded like he had solved it. Take a break. Reduce screen time. Try yoga. He wrote it on a prescription pad. Yoga. For what I now know were hot flashes, heart palpitations, and a memory so shot I had started writing my own name on sticky notes in case I forgot it mid-thought.
+
+The second one ran a thyroid test, found nothing, and told me I was probably anxious. She was not unkind about it. She prescribed something for anxiety and sent me home. I took the tablets for three weeks. Nothing changed except I felt slightly numb and slightly embarrassed — as if I had been manufacturing symptoms for attention.
+
+The third doctor was a gynaecologist. My cousin had seen her and mentioned perimenopause almost as an aside, the way you mention something you are not sure is relevant. I almost did not make the appointment. I was 39. Perimenopause was something that happened to your mother. Your mother's mother.
+
+She asked me to describe my periods. I told her: irregular for the past eight months, sometimes 21 days apart, sometimes 45, once so heavy I soaked through my clothes at a client meeting and had to walk out of the room pretending to take a call. She listened without interrupting. Then she ordered a hormone panel — FSH, LH, AMH, oestradiol — things the previous two doctors had never mentioned.
+
+The results came back within a week. She called me herself. Meera, your hormones are consistent with early perimenopause.
+
+I sat in my car in the parking lot of my office and cried. Not because it was devastating. Because someone had finally said a real thing. After fourteen months of being handed explanations that did not fit, someone had given me the right one.
+
+I am not fixed. There is no fixing. But I am managing it now — I know what is happening in my body and why, and that is more than I had before. If I could say anything to the version of myself sitting across from Doctor Number One being told to try yoga: push harder. Ask for the blood tests. You are not imagining it.`
+  },
+  {
+    num: '02',
+    name: 'Divya',
+    age: 38,
+    city: 'Hyderabad',
+    title: 'Nobody Told Me It Could Happen at 38',
+    pull: 'I found out I was in perimenopause the same week my daughter turned seven.',
+    color: '#3D7A5F',
+    body: `I found out I was in perimenopause the same week my daughter turned seven. She was blowing out her candles and I was standing behind her thinking: something is very wrong with me and I do not know what.
+
+It had been building for almost a year. The sleep — or the complete absence of it. Waking at 3am completely alert, heart going faster than it should, mind already running through everything I had not done, everything I might have said wrong, every bill, every school form, every unanswered message. Lying there for two hours before giving up. Getting through the day on three hours of sleep and two cups of coffee and a kind of desperation I had no name for.
+
+The rage was the thing I am least proud of. Not anger — rage. Sudden, disproportionate, frightening to me as much as to anyone else. My husband would leave a cup on the wrong shelf and something would rise in me that felt completely out of scale. I would see it happening and not be able to stop it. Afterwards I would feel so ashamed. So unlike myself. I started wondering if I was becoming someone I did not want to be.
+
+I thought it was depression. My mother had it — I had watched it from close enough to be afraid of it my whole adult life. I went to see a psychiatrist. She was thorough and careful and after two sessions she said: before we go further, I want to rule out a hormonal cause. Have you seen a gynaecologist recently?
+
+I had not. Why would I? I was 38.
+
+The gynaecologist explained perimenopause to me the way you explain something to someone who has never heard of it, which I essentially had not — not as something that could happen to me. I had always thought of it as a distant event. Post-50. After your children left home. Not now, in the middle of everything.
+
+What nobody tells you is that it can start in your late 30s. That early perimenopause is not rare. That the symptoms — the sleep, the mood, the brain that stops cooperating — can arrive years before your periods change significantly. I wish I had known that earlier. I wish someone had said it out loud at some point in my life so that when it arrived, I would have recognised it instead of spending a year being frightened of myself.
+
+I am in a better place now. Not a perfect place — I am not sure perfect exists anymore. But I know what is happening. And knowing, it turns out, is most of the battle.`
+  },
+  {
+    num: '03',
+    name: 'Ananya',
+    age: 41,
+    city: 'Mumbai',
+    title: 'My Husband Thought I Was Becoming Someone Else',
+    pull: 'Twelve years is long enough that when something changes, the other person notices before you do.',
+    color: '#8A5230',
+    body: `We had been married for twelve years. Twelve years is long enough that you think you know each other completely. Long enough that when something changes, the other person notices before you do.
+
+He said it on a Sunday morning, quietly, while I was making chai. You have not been yourself lately. I asked him what that meant. He said: shorter. More angry. Like you are always on the edge of something.
+
+He was not wrong. That was the part I could not argue with. I had been snapping at him, at our son, at colleagues who did not deserve it. I would say something in a meeting that I would immediately regret. I would lie awake at 3am composing apologies for things I had said and things I had only thought. The gap between who I was and who I was behaving like had never felt this wide.
+
+What he did not know — what I did not know — was that I was not becoming someone else. My oestrogen was crashing and spiking and crashing again on a schedule that had nothing to do with my intentions or my character or how much I loved my family.
+
+I told him about perimenopause six weeks after my gynaecologist explained it to me. I had spent those six weeks feeling like I needed to understand it fully before I could explain it to him. Sitting at the kitchen table, I showed him what I had been reading. He listened. He asked a few questions. Then he said: so this is what has been happening. Not a question — an understanding.
+
+Things did not change overnight. But he stopped interpreting my reactions as personal, and I stopped being ashamed of having them. That shift — that small factual shift — changed what was happening between us more than anything else could have.
+
+He did not need me to be fixed. He needed to understand what was happening. They both do, our husbands. We just have to tell them.`
+  },
+  {
+    num: '04',
+    name: 'Kavitha',
+    age: 43,
+    city: 'Bangalore',
+    title: 'I Thought I Was Losing My Mind at Work',
+    pull: 'That memory — that particular sharpness — was not something I thought about. It was just who I was.',
+    color: '#1A2D4A',
+    body: `I have been in product management for fifteen years. I am the person teams come to when they need clarity. I am the one who remembers the meeting from three months ago and what was decided and who said what. That memory — that particular sharpness — was not something I thought about. It was just who I was.
+
+And then, at 42, it started leaving.
+
+Not all at once. Slowly. I would be mid-sentence in a presentation and the word I needed — a completely normal, professional word I had used a hundred times — would simply not be there. I would pause. Look at the screen. Keep talking around it. Nobody noticed, or if they did, they were polite enough not to say anything.
+
+But I noticed. Every single time.
+
+I started over-preparing. I wrote detailed notes for every meeting. I sent myself voice memos with things I needed to remember. I arrived fifteen minutes early to every call to review what had been discussed last time. I was doing the work of two brains just to perform at the level one brain used to manage automatically.
+
+The worst part was not the forgetting itself. It was the fear underneath the forgetting. My father had Alzheimer's. I watched what that took from him, and from us. When my memory started slipping, that fear sat behind every blank moment like a shadow.
+
+When I finally brought it up with a doctor — a psychiatrist I had been seeing for what I thought was burnout — she said something I will not forget: this is not progressive. It does not get worse over time the way Alzheimer's does. It fluctuates. Worse some weeks, better others. That alone tells you it is not what you are afraid of.
+
+Perimenopause brain fog fluctuates. Dementia does not. That distinction saved me months of quiet, private terror.
+
+I am still in product management. Still the person teams come to. I still write more notes than I used to, and I have made peace with that. The sharpness has come back — not completely, not always, but enough. Enough to know I did not lose myself. I just went through something that nobody told me was coming.`
+  },
+  {
+    num: '05',
+    name: 'Sunita',
+    age: 37,
+    city: 'Jaipur',
+    title: 'Everyone Said I Was Too Young. I Believed Them.',
+    pull: 'Thirty-seven. That is how old I was when it started.',
+    color: '#5A6B4E',
+    body: `Thirty-seven. That is how old I was when it started. That is the number that made every doctor do a small double-take when I sat across from them.
+
+Too young, my mother said. She was not unkind. She just could not fit it into what she knew. Menopause in her world happened to women in their fifties. Their mothers before them. Not her daughter, with a toddler still at home and a job she had fought to keep.
+
+Too young, my first doctor said. He ran no tests. He told me my periods were probably irregular because of the stress of having a young child and going back to work. He told me the night sweats were anxiety. He told me to rest more.
+
+I believed him. Why would I not? He was the doctor. I was the person who had never heard of early perimenopause. I went home and tried to rest more.
+
+For almost a year, I tried to rest more.
+
+What changed was a conversation at a family wedding — the kind you have standing near the food while children run past you. My cousin's wife, ten years older than me, mentioned offhand that she had been on HRT for three years. I asked her what it was like. She asked me why I was asking. I told her what had been happening to me. She looked at me with a particular kind of recognition and said: Sunita, you need to see a gynaecologist. Not a GP. A gynaecologist who deals with perimenopause specifically.
+
+The tests took two weeks. The diagnosis took one appointment. Early perimenopause — confirmed, documented, real.
+
+I have thought a lot about that year of being told I was too young. About how much I accommodated that explanation because it came from authority. About how different things might have been if someone had mentioned that this can happen in your 30s.
+
+I am mentioning it now. It can happen in your 30s. If your body is telling you something, find someone who will listen.`
+  },
+  {
+    num: '06',
+    name: 'Priya',
+    age: 40,
+    city: 'Chennai',
+    title: 'I Was Ashamed of the Word Menopause',
+    pull: 'In my family, menopause was not a word we said.',
+    color: '#B84A2E',
+    body: `In my family, menopause was not a word we said. It was something that was happening, or had happened, or would happen — but it moved through conversations sideways, never directly. My mother referred to it as that time when she spoke of it at all. My aunts would lower their voices. It sat in the same category as things that were too intimate, too bodily, too much.
+
+So when the symptoms started at 40 and I eventually, finally, found out what they were — I did not tell anyone for four months.
+
+Not my husband. Not my mother, who would have, in her way, understood. Not my closest friend, who had told me things I know she has told no one else. Nobody.
+
+I carried it alone. And carrying it alone made everything worse — the anxiety sharper, the sleeplessness more frightening, the rage more shameful. There was no one to say this makes sense or I have been through this or simply I am here.
+
+The silence around menopause in Indian families is not malicious. It comes from a generation of women who were themselves not told anything, who were handed the experience with no language for it and made something out of it anyway. Our mothers were not trying to leave us unprepared. They were working with what they had.
+
+But the silence has a cost. I felt, for those four months, like I was ageing badly and privately and wrong — like something was ending that was not supposed to end yet, and I had to carry the embarrassment of that alone.
+
+I told my husband on a Tuesday evening. He listened for a long time. Then he said: why did you not tell me earlier? I did not have a good answer. I said: I think I was ashamed of the word.
+
+He said: it is just a word.
+
+I know it is not just a word. Words carry everything that has ever been said and not said around them. But he was trying, and the trying mattered.
+
+I am saying the word now. Perimenopause. Menopause. Out loud, with my name attached to it. Because the silence cost me four months of unnecessary suffering, and I would rather someone else not pay the same.`
+  }
+];
+---
+<Layout
+  title="Voices — The Second Spring"
+  description="Six women. Six different journeys through perimenopause. Composite stories drawn from the experiences many women share — the feelings are real even where the names are not."
+>
+
+<main class="v-page">
+
+  <!-- Hero -->
+  <div class="v-hero">
+    <div class="v-hero-inner">
+      <p class="v-eyebrow">Voices</p>
+      <h1 class="v-title">You Are Not the Only One</h1>
+      <p class="v-subtitle">Six women. Six different journeys. The details differ — the feeling of not being believed, of not recognising yourself, of carrying it alone — is something many of us share.</p>
+      <p class="v-disclaimer">These are composite stories drawn from the experiences women share about perimenopause. Names and details are fictional. The feelings are not.</p>
+    </div>
+  </div>
+
+  <!-- Stories -->
+  <div class="v-stories">
+    {stories.map((s) => (
+      <article class="v-card" id={s.name.toLowerCase()}>
+        <div class="v-card-top" style={`border-left: 4px solid ${s.color};`}>
+          <div class="v-meta">
+            <span class="v-num" style={`color:${s.color};`}>{s.num}</span>
+            <div>
+              <div class="v-identity">
+                <span class="v-name">{s.name}</span>
+                <span class="v-comma">,</span>
+                <span class="v-age">{s.age}</span>
+                <span class="v-sep">·</span>
+                <span class="v-city">{s.city}</span>
+              </div>
+              <h2 class="v-story-title">{s.title}</h2>
+            </div>
+          </div>
+          <blockquote class="v-pull" style={`border-color:${s.color};`}>
+            {s.pull}
+          </blockquote>
+        </div>
+        <div class="v-body">
+          {s.body.split('\n\n').map(para => (
+            <p>{para}</p>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Share CTA -->
+  <div class="v-share">
+    <div class="v-share-inner">
+      <div class="v-share-icon">✉</div>
+      <h2 class="v-share-title">Have a story of your own?</h2>
+      <p class="v-share-body">We would love to hear it. Write to us — your name, your city, what happened, and what you wish you had known. With your permission, we may share it here so someone else finds it at the right moment.</p>
+      <a href="mailto:thesecondspringofficial@gmail.com?subject=My Story" class="v-share-btn">Write to Us</a>
+    </div>
+  </div>
+
+</main>
+
+</Layout>
+
+<style>
+  /* ── Page ── */
+  .v-page { background: #F5F2EE; min-height: 100vh; }
+
+  /* ── Hero ── */
+  .v-hero {
+    background: linear-gradient(150deg, #1A1208 0%, #2D2010 100%);
+    padding: 5rem 1.25rem 4rem;
+    text-align: center;
+  }
+  .v-hero-inner { max-width: 640px; margin: 0 auto; }
+  .v-eyebrow {
+    font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .16em; color: #C8A87A; margin-bottom: .75rem;
+  }
+  .v-title {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;
+    color: #FFF8F0; line-height: 1.1; margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .v-subtitle {
+    font-size: 1.05rem; color: rgba(255,248,240,.72);
+    line-height: 1.75; margin-bottom: 1.5rem;
+  }
+  .v-disclaimer {
+    font-size: .78rem; color: rgba(255,248,240,.4);
+    line-height: 1.6; font-style: italic;
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 1.25rem; margin: 0;
+  }
+
+  /* ── Stories ── */
+  .v-stories {
+    max-width: 740px; margin: 0 auto;
+    padding: 3rem 1.25rem 2rem;
+    display: flex; flex-direction: column; gap: 3rem;
+  }
+
+  /* ── Card ── */
+  .v-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,.07);
+  }
+
+  .v-card-top { padding: 2rem 2rem 1.5rem; background: #FDFBF8; }
+
+  .v-meta { display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 1.25rem; }
+
+  .v-num {
+    font-size: 2.5rem; font-weight: 900; line-height: 1;
+    flex-shrink: 0; font-variant-numeric: tabular-nums;
+    opacity: .35; padding-top: .2rem;
+  }
+
+  .v-identity {
+    display: flex; align-items: center; gap: .35rem;
+    font-size: .8rem; color: #7A6A58; margin-bottom: .35rem;
+  }
+  .v-name { font-weight: 700; color: #3D2E1A; font-size: .85rem; }
+  .v-comma, .v-sep { color: #B8A898; }
+  .v-age, .v-city { color: #7A6A58; }
+
+  .v-story-title {
+    font-size: 1.3rem; font-weight: 800; color: #1A1208;
+    line-height: 1.25; margin: 0;
+  }
+
+  .v-pull {
+    margin: 0; padding: .9rem 1.25rem;
+    border-left: 3px solid;
+    background: #FAF7F3; border-radius: 0 8px 8px 0;
+    font-size: 1.05rem; font-style: italic; color: #3D2E1A;
+    font-weight: 600; line-height: 1.6;
+  }
+
+  /* Body */
+  .v-body { padding: 1.75rem 2rem 2rem; }
+  .v-body p {
+    font-size: .96rem; color: #2D2010; line-height: 1.85;
+    margin: 0 0 1.1rem;
+  }
+  .v-body p:last-child { margin-bottom: 0; }
+
+  /* ── Share CTA ── */
+  .v-share {
+    background: linear-gradient(150deg, #2D2010, #1A1208);
+    padding: 4.5rem 1.25rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .v-share-inner { max-width: 520px; margin: 0 auto; }
+  .v-share-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+    filter: grayscale(1) brightness(2); opacity: .6;
+  }
+  .v-share-title {
+    font-size: 1.6rem; font-weight: 800; color: #FFF8F0;
+    margin-bottom: .75rem;
+  }
+  .v-share-body {
+    font-size: .97rem; color: rgba(255,248,240,.68);
+    line-height: 1.8; margin-bottom: 2rem;
+  }
+  .v-share-btn {
+    display: inline-block; background: #C8A87A; color: #1A1208;
+    font-weight: 700; font-size: .95rem; padding: .85rem 2.2rem;
+    border-radius: 99px; text-decoration: none;
+    transition: transform .18s, box-shadow .18s;
+  }
+  .v-share-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .v-card-top { padding: 1.5rem 1.25rem 1.25rem; }
+    .v-body { padding: 1.25rem 1.25rem 1.5rem; }
+    .v-story-title { font-size: 1.15rem; }
+    .v-pull { font-size: .95rem; }
+    .v-body p { font-size: .93rem; }
+    .v-num { font-size: 1.8rem; }
+    .v-stories { gap: 2rem; }
+  }
+</style>
