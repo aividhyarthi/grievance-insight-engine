@@ -3,35 +3,28 @@ import Layout from '../../layouts/Layout.astro';
 
 export const prerender = true;
 
-const stories: Record<string, {
-  name: string; age: number; city: string; occupation: string;
-  title: string; color: string;
-  sections: Array<{ type: 'text'; text: string } | { type: 'ig'; head: string; rows: Array<{ label: string; labelColor: 'green'|'peach'|'muted'; text: string }> }>;
-}> = {
+// Using plain JS objects (no complex TS types) to avoid build errors
+const stories: any = {
 
   meera: {
     name: 'Meera', age: 39, city: 'Pune', occupation: 'Software Team Lead',
     color: '#2D5F7A',
     title: 'The Doctor Said It Was Stress',
     sections: [
-      { type: 'text', text: 'Three doctors in fourteen months. That is my number.' },
-      { type: 'text', text: 'The first one said it was work stress. He asked me how many hours I was putting in, I said sixty sometimes more, and he nodded like he had solved it. Take a break. Reduce screen time. Try yoga. He wrote it on a prescription pad. Yoga. For what I now know were hot flashes, heart palpitations, and a memory so shot I had started writing my own name on sticky notes in case I forgot it mid-thought.' },
-      {
-        type: 'ig',
-        head: 'What Was Happening in Meera\'s Body',
-        rows: [
-          { label: 'Oestrogen spikes and crashes', labelColor: 'peach', text: 'Levels became unpredictable instead of following a steady monthly pattern' },
-          { label: 'Hypothalamus confused', labelColor: 'peach', text: 'The brain\'s thermostat misreads signals, triggers sudden heat and sweating' },
-          { label: 'Nervous system activated', labelColor: 'muted', text: 'Heart rate increases during a flash, feel like palpitations' },
-          { label: 'Brain chemistry disrupted', labelColor: 'muted', text: 'Oestrogen supports memory and word retrieval. When it fluctuates, both slow down' },
-        ]
-      },
-      { type: 'text', text: 'The second doctor ran a thyroid test, found nothing, and told me I was probably anxious. She was not unkind about it. She prescribed something for anxiety and sent me home. I took the tablets for three weeks. Nothing changed except I felt slightly numb and slightly embarrassed, as if I had been manufacturing symptoms for attention.' },
-      { type: 'text', text: 'The third doctor was a gynaecologist. My cousin had seen her and mentioned perimenopause almost as an aside, the way you mention something you are not sure is relevant. I almost did not make the appointment. I was 39. Perimenopause was something that happened to your mother. Your mother\'s mother.' },
-      { type: 'text', text: 'She asked me to describe my periods. I told her: irregular for the past eight months, sometimes 21 days apart, sometimes 45, once so heavy I soaked through my clothes at a client meeting and had to walk out of the room pretending to take a call. She listened without interrupting. Then she ordered a hormone panel, FSH, LH, AMH, oestradiol, things the previous two doctors had never mentioned.' },
-      { type: 'text', text: 'The results came back within a week. She called me herself. Meera, your hormones are consistent with early perimenopause.' },
-      { type: 'text', text: 'I sat in my car in the parking lot of my office and cried. Not because it was devastating. Because someone had finally said a real thing. After fourteen months of being handed explanations that did not fit, someone had given me the right one.' },
-      { type: 'text', text: 'I am not fixed. There is no fixing. But I am managing it now. I know what is happening in my body and why, and that is more than I had before. If I could say anything to the version of myself sitting across from Doctor Number One being told to try yoga: push harder. Ask for the blood tests. You are not imagining it.' },
+      { text: 'Three doctors in fourteen months. That is my number.' },
+      { text: 'The first one said it was work stress. He asked me how many hours I was putting in, I said sixty sometimes more, and he nodded like he had solved it. Take a break. Reduce screen time. Try yoga. He wrote it on a prescription pad. Yoga. For what I now know were hot flashes, heart palpitations, and a memory so shot I had started writing my own name on sticky notes in case I forgot it mid-thought.' },
+      { ig: { head: "What Was Happening in Meera's Body", rows: [
+        { label: 'Oestrogen spikes and crashes', color: 'peach', text: 'Levels became unpredictable instead of following a steady monthly pattern' },
+        { label: 'Hypothalamus confused', color: 'peach', text: "The brain's thermostat misreads signals and triggers sudden heat and sweating" },
+        { label: 'Nervous system activated', color: 'muted', text: 'Heart rate increases during a flash. This is what feels like palpitations' },
+        { label: 'Brain chemistry disrupted', color: 'muted', text: 'Oestrogen supports memory and word retrieval. When it fluctuates, both slow down' },
+      ]}},
+      { text: 'The second doctor ran a thyroid test, found nothing, and told me I was probably anxious. She was not unkind about it. She prescribed something for anxiety and sent me home. I took the tablets for three weeks. Nothing changed except I felt slightly numb and slightly embarrassed, as if I had been manufacturing symptoms for attention.' },
+      { text: 'The third doctor was a gynaecologist. My cousin had seen her and mentioned perimenopause almost as an aside, the way you mention something you are not sure is relevant. I almost did not make the appointment. I was 39. Perimenopause was something that happened to your mother. Your mother\'s mother.' },
+      { text: 'She asked me to describe my periods. I told her: irregular for the past eight months, sometimes 21 days apart, sometimes 45, once so heavy I soaked through my clothes at a client meeting and had to walk out pretending to take a call. She listened without interrupting. Then she ordered a hormone panel, FSH, LH, AMH, oestradiol, things the previous two doctors had never mentioned.' },
+      { text: 'The results came back within a week. She called me herself. Meera, your hormones are consistent with early perimenopause.' },
+      { text: 'I sat in my car in the parking lot of my office and cried. Not because it was devastating. Because someone had finally said a real thing. After fourteen months of being handed explanations that did not fit, someone had given me the right one.' },
+      { text: 'I am not fixed. There is no fixing. But I am managing it now. I know what is happening in my body and why, and that is more than I had before. If I could say anything to the version of myself sitting across from Doctor Number One being told to try yoga: push harder. Ask for the blood tests. You are not imagining it.' },
     ]
   },
 
@@ -40,24 +33,20 @@ const stories: Record<string, {
     color: '#3D7A5F',
     title: 'Nobody Told Me It Could Happen at 38',
     sections: [
-      { type: 'text', text: 'I found out I was in perimenopause the same week my daughter turned seven. She was blowing out her candles and I was standing behind her thinking: something is very wrong with me and I do not know what.' },
-      { type: 'text', text: 'It had been building for almost a year. The sleep, or the complete absence of it. Waking at 3am completely alert, heart going faster than it should, mind already running through everything I had not done, everything I might have said wrong, every bill, every school form, every unanswered message. Lying there for two hours before giving up. Getting through the day on three hours of sleep and two cups of coffee and a kind of desperation I had no name for.' },
-      { type: 'text', text: 'The rage was the thing I am least proud of. Not anger. Rage. Sudden, disproportionate, frightening to me as much as to anyone else. My husband would leave a cup on the wrong shelf and something would rise in me that felt completely out of scale. I would see it happening and not be able to stop it. Afterwards I would feel so ashamed. So unlike myself. I started wondering if I was becoming someone I did not want to be.' },
-      {
-        type: 'ig',
-        head: 'What Was Happening in Divya\'s Body',
-        rows: [
-          { label: 'Oestrogen falling', labelColor: 'peach', text: 'Triggers a drop in serotonin, the brain chemical responsible for mood stability' },
-          { label: 'Progesterone falling first', labelColor: 'peach', text: 'Reduces GABA, the calming neurotransmitter. The emotional buffer thins' },
-          { label: 'Small triggers, big reactions', labelColor: 'muted', text: 'The nervous system cannot absorb frustration the way it used to. This is chemistry, not character' },
-          { label: '3am waking', labelColor: 'muted', text: 'Cortisol pattern shifts in perimenopause, producing early waking with a racing mind' },
-        ]
-      },
-      { type: 'text', text: 'I thought it was depression. My mother had it, I had watched it from close enough to be afraid of it my whole adult life. I went to see a psychiatrist. She was thorough and careful and after two sessions she said: before we go further, I want to rule out a hormonal cause. Have you seen a gynaecologist recently?' },
-      { type: 'text', text: 'I had not. Why would I? I was 38.' },
-      { type: 'text', text: 'The gynaecologist explained perimenopause to me the way you explain something to someone who has never heard of it, which I essentially had not, not as something that could happen to me. I had always thought of it as a distant event. Post-50. After your children left home. Not now, in the middle of everything, when I still had a seven-year-old who needed me present and a husband who was starting to look at me like I was someone he did not recognise.' },
-      { type: 'text', text: 'What nobody tells you is that it can start in your late 30s. That early perimenopause is not rare. That the symptoms, the sleep, the mood, the brain that stops cooperating, can arrive years before your periods change significantly. I wish I had known that earlier. I wish someone had said it out loud at some point in my life so that when it arrived, I would have recognised it instead of spending a year being frightened of myself.' },
-      { type: 'text', text: 'I am in a better place now. Not a perfect place. I am not sure perfect exists anymore. But I know what is happening. And knowing, it turns out, is most of the battle.' },
+      { text: 'I found out I was in perimenopause the same week my daughter turned seven. She was blowing out her candles and I was standing behind her thinking: something is very wrong with me and I do not know what.' },
+      { text: 'It had been building for almost a year. The sleep, or the complete absence of it. Waking at 3am completely alert, heart going faster than it should, mind already running through everything I had not done, every bill, every school form, every unanswered message. Lying there for two hours before giving up. Getting through the day on three hours of sleep and two cups of coffee and a kind of desperation I had no name for.' },
+      { text: 'The rage was the thing I am least proud of. Not anger. Rage. Sudden, disproportionate, frightening to me as much as to anyone else. My husband would leave a cup on the wrong shelf and something would rise in me that felt completely out of scale. I would see it happening and not be able to stop it. Afterwards I would feel so ashamed. So unlike myself.' },
+      { ig: { head: "What Was Happening in Divya's Body", rows: [
+        { label: 'Oestrogen falling', color: 'peach', text: 'Triggers a drop in serotonin, the brain chemical responsible for mood stability' },
+        { label: 'Progesterone falling first', color: 'peach', text: 'Reduces GABA, the calming neurotransmitter. The emotional buffer thins' },
+        { label: 'Small triggers, big reactions', color: 'muted', text: 'The nervous system cannot absorb frustration the way it used to. This is chemistry, not character' },
+        { label: '3am waking', color: 'muted', text: 'Cortisol patterns shift in perimenopause, producing early waking with a racing mind' },
+      ]}},
+      { text: 'I thought it was depression. My mother had it, I had watched it from close enough to be afraid of it my whole adult life. I went to see a psychiatrist. She was thorough and careful and after two sessions she said: before we go further, I want to rule out a hormonal cause. Have you seen a gynaecologist recently?' },
+      { text: 'I had not. Why would I? I was 38.' },
+      { text: 'The gynaecologist explained perimenopause to me the way you explain something to someone who has never heard of it, which I essentially had not, not as something that could happen to me. I had always thought of it as a distant event. Post-50. After your children left home. Not now, in the middle of everything.' },
+      { text: 'What nobody tells you is that it can start in your late 30s. That early perimenopause is not rare. That the symptoms, the sleep, the mood, the brain that stops cooperating, can arrive years before your periods change significantly. I wish I had known that earlier. I wish someone had said it out loud so that when it arrived, I would have recognised it instead of spending a year being frightened of myself.' },
+      { text: 'I am in a better place now. Not a perfect place. I am not sure perfect exists anymore. But I know what is happening. And knowing, it turns out, is most of the battle.' },
     ]
   },
 
@@ -66,23 +55,19 @@ const stories: Record<string, {
     color: '#8A5230',
     title: 'My Husband Thought I Was Becoming Someone Else',
     sections: [
-      { type: 'text', text: 'We had been married for twelve years. Twelve years is long enough that you think you know each other completely. Long enough that when something changes, the other person notices before you do.' },
-      { type: 'text', text: 'He said it on a Sunday morning, quietly, while I was making chai. You have not been yourself lately. I asked him what that meant. He said: shorter. More angry. Like you are always on the edge of something.' },
-      { type: 'text', text: 'He was not wrong. That was the part I could not argue with. I had been snapping at him, at our son, at colleagues who did not deserve it. I would say something in a meeting that I would immediately regret. I would lie awake at 3am composing apologies for things I had said and things I had only thought. The gap between who I was and who I was behaving like had never felt this wide.' },
-      {
-        type: 'ig',
-        head: 'What Was Happening in Ananya\'s Body',
-        rows: [
-          { label: 'Oestrogen spiking and crashing', labelColor: 'peach', text: 'Not steadily declining but swinging wildly, which disrupts mood more than a slow decline would' },
-          { label: 'Progesterone declining', labelColor: 'peach', text: 'The calming, stabilising hormone falls first. The emotional brake weakens' },
-          { label: 'Serotonin destabilised', labelColor: 'muted', text: 'Oestrogen supports serotonin. When it fluctuates, the threshold for frustration lowers' },
-          { label: 'Not character change', labelColor: 'green', text: 'The nervous system is running without its usual hormonal buffer. This is fixable' },
-        ]
-      },
-      { type: 'text', text: 'What he did not know, what I did not know, was that I was not becoming someone else. My oestrogen was crashing and spiking and crashing again on a schedule that had nothing to do with my intentions or my character or how much I loved my family.' },
-      { type: 'text', text: 'I told him about perimenopause six weeks after my gynaecologist explained it to me. I had spent those six weeks feeling like I needed to understand it fully before I could explain it to him. Sitting at the kitchen table, I showed him what I had been reading. He listened. He asked a few questions. Then he said: so this is what has been happening. Not a question. An understanding.' },
-      { type: 'text', text: 'Things did not change overnight. But he stopped interpreting my reactions as personal, and I stopped being ashamed of having them. That shift, that small factual shift, changed what was happening between us more than anything else could have.' },
-      { type: 'text', text: 'He did not need me to be fixed. He needed to understand what was happening. They both do, our husbands. We just have to tell them.' },
+      { text: 'We had been married for twelve years. Twelve years is long enough that you think you know each other completely. Long enough that when something changes, the other person notices before you do.' },
+      { text: 'He said it on a Sunday morning, quietly, while I was making chai. You have not been yourself lately. I asked him what that meant. He said: shorter. More angry. Like you are always on the edge of something.' },
+      { text: 'He was not wrong. I had been snapping at him, at our son, at colleagues who did not deserve it. I would say something in a meeting that I would immediately regret. I would lie awake composing apologies for things I had said and things I had only thought. The gap between who I was and who I was behaving like had never felt this wide.' },
+      { ig: { head: "What Was Happening in Ananya's Body", rows: [
+        { label: 'Oestrogen spiking and crashing', color: 'peach', text: 'Not steadily declining but swinging wildly, which disrupts mood more than a slow decline would' },
+        { label: 'Progesterone declining', color: 'peach', text: 'The calming, stabilising hormone falls first. The emotional brake weakens' },
+        { label: 'Serotonin destabilised', color: 'muted', text: 'Oestrogen supports serotonin. When it fluctuates, the threshold for frustration lowers' },
+        { label: 'Not character change', color: 'green', text: 'The nervous system is running without its usual hormonal buffer. This is recognisable and treatable' },
+      ]}},
+      { text: 'What he did not know, what I did not know, was that I was not becoming someone else. My oestrogen was crashing and spiking and crashing again on a schedule that had nothing to do with my intentions or my character or how much I loved my family.' },
+      { text: 'I told him about perimenopause six weeks after my gynaecologist explained it to me. I had spent those six weeks feeling like I needed to understand it fully before I could explain it to him. Sitting at the kitchen table, I showed him what I had been reading. He listened. He asked a few questions. Then he said: so this is what has been happening. Not a question. An understanding.' },
+      { text: 'Things did not change overnight. But he stopped interpreting my reactions as personal, and I stopped being ashamed of having them. That shift, that small factual shift, changed what was happening between us more than anything else could have.' },
+      { text: 'He did not need me to be fixed. He needed to understand what was happening. They both do, our husbands. We just have to tell them.' },
     ]
   },
 
@@ -91,25 +76,21 @@ const stories: Record<string, {
     color: '#1A2D4A',
     title: 'I Thought I Was Losing My Mind at Work',
     sections: [
-      { type: 'text', text: 'I have been in product management for fifteen years. I am the person teams come to when they need clarity. I am the one who remembers the meeting from three months ago and what was decided and who said what. That memory, that particular sharpness, was not something I thought about. It was just who I was.' },
-      { type: 'text', text: 'And then, at 42, it started leaving.' },
-      { type: 'text', text: 'Not all at once. Slowly. I would be mid-sentence in a presentation and the word I needed, a completely normal professional word I had used a hundred times, would simply not be there. I would pause. Look at the screen. Keep talking around it. Nobody noticed, or if they did, they were polite enough not to say anything.' },
-      {
-        type: 'ig',
-        head: 'What Was Happening in Kavitha\'s Brain',
-        rows: [
-          { label: 'Oestrogen supports acetylcholine', labelColor: 'green', text: 'Acetylcholine is the neurotransmitter for memory, attention, and word retrieval' },
-          { label: 'Oestrogen fluctuating', labelColor: 'peach', text: 'Acetylcholine signalling becomes inconsistent. Words take longer to arrive' },
-          { label: 'Blood flow reduced', labelColor: 'muted', text: 'Oestrogen increases blood flow to verbal memory areas. When it drops, processing slows' },
-          { label: 'Not progressive', labelColor: 'green', text: 'Unlike dementia, perimenopause brain fog fluctuates. Worse some weeks, better others' },
-        ]
-      },
-      { type: 'text', text: 'But I noticed. Every single time.' },
-      { type: 'text', text: 'I started over-preparing. I wrote detailed notes for every meeting. I sent myself voice memos with things I needed to remember. I arrived fifteen minutes early to every call to review what had been discussed last time. I was doing the work of two brains just to perform at the level one brain used to manage automatically.' },
-      { type: 'text', text: 'The worst part was not the forgetting itself. It was the fear underneath the forgetting. My father had Alzheimer\'s. I watched what that took from him, and from us. When my memory started slipping, that fear sat behind every blank moment like a shadow.' },
-      { type: 'text', text: 'When I finally brought it up with a doctor, a psychiatrist I had been seeing for what I thought was burnout, she said something I will not forget: this is not progressive. It does not get worse over time the way Alzheimer\'s does. It fluctuates. Worse some weeks, better others. That alone tells you it is not what you are afraid of.' },
-      { type: 'text', text: 'Perimenopause brain fog fluctuates. Dementia does not. That distinction saved me months of quiet, private terror.' },
-      { type: 'text', text: 'I am still in product management. Still the person teams come to. I still write more notes than I used to, and I have made peace with that. The sharpness has come back, not completely, not always, but enough. Enough to know I did not lose myself. I just went through something that nobody told me was coming.' },
+      { text: 'I have been in product management for fifteen years. I am the person teams come to when they need clarity. I am the one who remembers the meeting from three months ago and what was decided and who said what. That memory, that particular sharpness, was not something I thought about. It was just who I was.' },
+      { text: 'And then, at 42, it started leaving.' },
+      { text: 'Not all at once. Slowly. I would be mid-sentence in a presentation and the word I needed, a completely normal professional word I had used a hundred times, would simply not be there. I would pause. Look at the screen. Keep talking around it. Nobody noticed, or if they did, they were polite enough not to say anything.' },
+      { ig: { head: "What Was Happening in Kavitha's Brain", rows: [
+        { label: 'Oestrogen supports acetylcholine', color: 'green', text: 'Acetylcholine is the neurotransmitter for memory, attention, and word retrieval' },
+        { label: 'Oestrogen fluctuating', color: 'peach', text: 'Acetylcholine signalling becomes inconsistent. Words take longer to arrive' },
+        { label: 'Blood flow reduced', color: 'muted', text: 'Oestrogen increases blood flow to verbal memory areas. When it drops, processing slows' },
+        { label: 'Not progressive', color: 'green', text: 'Unlike dementia, perimenopause brain fog fluctuates. Worse some weeks, better others' },
+      ]}},
+      { text: 'But I noticed. Every single time.' },
+      { text: 'I started over-preparing. I wrote detailed notes for every meeting. I sent myself voice memos with things I needed to remember. I arrived fifteen minutes early to every call to review what had been discussed. I was doing the work of two brains just to perform at the level one brain used to manage automatically.' },
+      { text: 'The worst part was not the forgetting itself. It was the fear underneath the forgetting. My father had Alzheimer\'s. I watched what that took from him, and from us. When my memory started slipping, that fear sat behind every blank moment like a shadow.' },
+      { text: 'When I finally brought it up with a doctor, a psychiatrist I had been seeing for what I thought was burnout, she said something I will not forget: this is not progressive. It does not get worse over time the way Alzheimer\'s does. It fluctuates. Worse some weeks, better others. That alone tells you it is not what you are afraid of.' },
+      { text: 'Perimenopause brain fog fluctuates. Dementia does not. That distinction saved me months of quiet, private terror.' },
+      { text: 'I am still in product management. Still the person teams come to. I still write more notes than I used to, and I have made peace with that. The sharpness has come back, not completely, not always, but enough to know I did not lose myself. I just went through something that nobody told me was coming.' },
     ]
   },
 
@@ -118,25 +99,21 @@ const stories: Record<string, {
     color: '#5A6B4E',
     title: 'Everyone Said I Was Too Young. I Believed Them.',
     sections: [
-      { type: 'text', text: 'Thirty-seven. That is how old I was when it started. That is the number that made every doctor do a small double-take when I sat across from them.' },
-      { type: 'text', text: 'Too young, my mother said. She was not unkind. She just could not fit it into what she knew. Menopause in her world happened to women in their fifties. Their mothers before them. Not her daughter, with a toddler still at home and a job she had fought to keep.' },
-      { type: 'text', text: 'Too young, my first doctor said. He ran no tests. He told me my periods were probably irregular because of the stress of having a young child and going back to work. He told me the night sweats were anxiety. He told me to rest more.' },
-      {
-        type: 'ig',
-        head: 'What Was Happening in Sunita\'s Body',
-        rows: [
-          { label: 'Anovulatory cycles', labelColor: 'peach', text: 'The follicle develops but ovulation does not always happen. No ovulation means no progesterone' },
-          { label: 'Cycle becomes unpredictable', labelColor: 'peach', text: '21 days one month, 45 the next. This is a hormonal signal, not stress' },
-          { label: 'Night sweats', labelColor: 'muted', text: 'Oestrogen fluctuation disrupts the hypothalamus thermostat. The body tries to cool itself at night' },
-          { label: 'Early perimenopause is real', labelColor: 'green', text: 'It can begin in the mid to late 30s. Not rare. Just rarely discussed' },
-        ]
-      },
-      { type: 'text', text: 'I believed him. Why would I not? He was the doctor. I was the person who had never heard of early perimenopause. I went home and tried to rest more.' },
-      { type: 'text', text: 'For almost a year, I tried to rest more.' },
-      { type: 'text', text: 'What changed was a conversation at a family wedding, the kind you have standing near the food while children run past you. My cousin\'s wife, ten years older than me, mentioned offhand that she had been on HRT for three years. I asked her what it was like. She asked me why I was asking. I told her what had been happening to me. She looked at me with a particular kind of recognition and said: Sunita, you need to see a gynaecologist. Not a GP. A gynaecologist who deals with perimenopause specifically.' },
-      { type: 'text', text: 'The tests took two weeks. The diagnosis took one appointment. Early perimenopause, confirmed, documented, real.' },
-      { type: 'text', text: 'I have thought a lot about that year of being told I was too young. About how much I accommodated that explanation because it came from authority. About how different things might have been if someone had mentioned that this can happen in your 30s.' },
-      { type: 'text', text: 'I am mentioning it now. It can happen in your 30s. If your body is telling you something, find someone who will listen.' },
+      { text: 'Thirty-seven. That is how old I was when it started. That is the number that made every doctor do a small double-take when I sat across from them.' },
+      { text: 'Too young, my mother said. She was not unkind. She just could not fit it into what she knew. Menopause in her world happened to women in their fifties. Not her daughter, with a toddler still at home and a job she had fought to keep.' },
+      { text: 'Too young, my first doctor said. He ran no tests. He told me my periods were probably irregular because of the stress of having a young child and going back to work. He told me the night sweats were anxiety. He told me to rest more.' },
+      { ig: { head: "What Was Happening in Sunita's Body", rows: [
+        { label: 'Anovulatory cycles', color: 'peach', text: 'The follicle develops but ovulation does not always happen. No ovulation means no progesterone' },
+        { label: 'Cycle becomes unpredictable', color: 'peach', text: '21 days one month, 45 the next. This is a hormonal signal, not stress' },
+        { label: 'Night sweats', color: 'muted', text: 'Oestrogen fluctuation disrupts the hypothalamus thermostat. The body tries to cool itself at night' },
+        { label: 'Early perimenopause is real', color: 'green', text: 'It can begin in the mid to late 30s. Not rare. Just rarely discussed' },
+      ]}},
+      { text: 'I believed him. Why would I not? He was the doctor. I was the person who had never heard of early perimenopause. I went home and tried to rest more.' },
+      { text: 'For almost a year, I tried to rest more.' },
+      { text: 'What changed was a conversation at a family wedding, the kind you have standing near the food while children run past you. My cousin\'s wife, ten years older than me, mentioned offhand that she had been on HRT for three years. I asked her what it was like. She asked me why I was asking. I told her what had been happening to me. She looked at me with a particular kind of recognition and said: Sunita, you need to see a gynaecologist. Not a GP. A gynaecologist who deals with perimenopause specifically.' },
+      { text: 'The tests took two weeks. The diagnosis took one appointment. Early perimenopause, confirmed, documented, real.' },
+      { text: 'I have thought a lot about that year of being told I was too young. About how much I accommodated that explanation because it came from authority. About how different things might have been if someone had mentioned that this can happen in your 30s.' },
+      { text: 'I am mentioning it now. It can happen in your 30s. If your body is telling you something, find someone who will listen.' },
     ]
   },
 
@@ -145,44 +122,40 @@ const stories: Record<string, {
     color: '#B84A2E',
     title: 'I Was Ashamed of the Word Menopause',
     sections: [
-      { type: 'text', text: 'In my family, menopause was not a word we said. It was something that was happening, or had happened, or would happen, but it moved through conversations sideways, never directly. My mother referred to it as that time when she spoke of it at all. My aunts would lower their voices. It sat in the same category as things that were too intimate, too bodily, too much.' },
-      { type: 'text', text: 'So when the symptoms started at 40 and I eventually, finally, found out what they were, I did not tell anyone for four months.' },
-      { type: 'text', text: 'Not my husband. Not my mother, who would have, in her way, understood. Not my closest friend, who had told me things I know she has told no one else. Nobody.' },
-      { type: 'text', text: 'I carried it alone. And carrying it alone made everything worse. The anxiety sharper, the sleeplessness more frightening, the rage more shameful. There was no one to say this makes sense, or I have been through this, or simply I am here.' },
-      {
-        type: 'ig',
-        head: 'What Silence Does to Perimenopause Symptoms',
-        rows: [
-          { label: 'Cortisol rises', labelColor: 'peach', text: 'Sustained stress and social isolation raise cortisol, which amplifies every symptom' },
-          { label: 'Sleep worsens', labelColor: 'peach', text: 'High cortisol disrupts the sleep cycle further, creating a worsening loop' },
-          { label: 'Anxiety intensifies', labelColor: 'muted', text: 'Without context or language for what is happening, the body\'s signals become frightening' },
-          { label: 'Naming it helps', labelColor: 'green', text: 'When the brain understands what is happening, the nervous system threat response reduces' },
-        ]
-      },
-      { type: 'text', text: 'The silence around menopause in Indian families is not malicious. It comes from a generation of women who were themselves not told anything, who were handed the experience with no language for it and made something out of it anyway. Our mothers were not trying to leave us unprepared. They were working with what they had.' },
-      { type: 'text', text: 'But the silence has a cost. I felt, for those four months, like I was ageing badly and privately and wrong, like something was ending that was not supposed to end yet, and I had to carry the embarrassment of that alone.' },
-      { type: 'text', text: 'I told my husband on a Tuesday evening. He listened for a long time. Then he said: why did you not tell me earlier? I did not have a good answer. I said: I think I was ashamed of the word.' },
-      { type: 'text', text: 'He said: it is just a word.' },
-      { type: 'text', text: 'I know it is not just a word. Words carry everything that has ever been said and not said around them. But he was trying, and the trying mattered.' },
-      { type: 'text', text: 'I am saying the word now. Perimenopause. Menopause. Out loud, with my name attached to it. Because the silence cost me four months of unnecessary suffering, and I would rather someone else not pay the same.' },
+      { text: 'In my family, menopause was not a word we said. It moved through conversations sideways, never directly. My mother referred to it as that time when she spoke of it at all. My aunts would lower their voices. It sat in the same category as things that were too intimate, too bodily, too much.' },
+      { text: 'So when the symptoms started at 40 and I eventually, finally, found out what they were, I did not tell anyone for four months.' },
+      { text: 'Not my husband. Not my mother, who would have, in her way, understood. Not my closest friend, who had told me things I know she has told no one else. Nobody.' },
+      { text: 'I carried it alone. And carrying it alone made everything worse. The anxiety sharper, the sleeplessness more frightening, the rage more shameful. There was no one to say this makes sense, or I have been through this, or simply I am here.' },
+      { ig: { head: "What Silence Does to Perimenopause Symptoms", rows: [
+        { label: 'Cortisol rises', color: 'peach', text: 'Sustained stress and social isolation raise cortisol, which amplifies every symptom' },
+        { label: 'Sleep worsens', color: 'peach', text: 'High cortisol disrupts the sleep cycle further, creating a worsening loop' },
+        { label: 'Anxiety intensifies', color: 'muted', text: "Without language for what is happening, the body's signals become frightening" },
+        { label: 'Naming it helps', color: 'green', text: 'When the brain understands what is happening, the nervous system threat response reduces' },
+      ]}},
+      { text: 'The silence around menopause in Indian families is not malicious. It comes from a generation of women who were themselves not told anything, who were handed the experience with no language for it and made something out of it anyway. Our mothers were not trying to leave us unprepared. They were working with what they had.' },
+      { text: 'But the silence has a cost. I felt, for those four months, like I was ageing badly and privately and wrong, like something was ending that was not supposed to end yet, and I had to carry the embarrassment of that alone.' },
+      { text: 'I told my husband on a Tuesday evening. He listened for a long time. Then he said: why did you not tell me earlier? I did not have a good answer. I said: I think I was ashamed of the word.' },
+      { text: 'He said: it is just a word.' },
+      { text: 'I know it is not just a word. Words carry everything that has ever been said and not said around them. But he was trying, and the trying mattered.' },
+      { text: 'I am saying the word now. Perimenopause. Menopause. Out loud, with my name attached to it. Because the silence cost me four months of unnecessary suffering, and I would rather someone else not pay the same.' },
     ]
   },
 
 };
 
 export function getStaticPaths() {
-  return Object.keys(stories).map(slug => ({ params: { slug } }));
+  return Object.keys(stories).map((slug) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
-const story = stories[slug as keyof typeof stories];
+const story = stories[slug];
 
 const allSlugs = Object.keys(stories);
 const currentIndex = allSlugs.indexOf(slug as string);
 const prevSlug = currentIndex > 0 ? allSlugs[currentIndex - 1] : null;
 const nextSlug = currentIndex < allSlugs.length - 1 ? allSlugs[currentIndex + 1] : null;
-const prev = prevSlug ? stories[prevSlug as keyof typeof stories] : null;
-const next = nextSlug ? stories[nextSlug as keyof typeof stories] : null;
+const prev = prevSlug ? stories[prevSlug] : null;
+const next = nextSlug ? stories[nextSlug] : null;
 ---
 <Layout
   title={`${story.title} — Voices — The Second Spring`}
@@ -191,12 +164,10 @@ const next = nextSlug ? stories[nextSlug as keyof typeof stories] : null;
 
 <main class="vs-page">
 
-  <!-- Back -->
   <div class="vs-breadcrumb">
     <a href="/voices">← All Voices</a>
   </div>
 
-  <!-- Header -->
   <div class="vs-header" style={`border-top: 5px solid ${story.color};`}>
     <div class="vs-who">
       <span class="vs-name">{story.name}</span>
@@ -210,39 +181,32 @@ const next = nextSlug ? stories[nextSlug as keyof typeof stories] : null;
     <h1 class="vs-title">{story.title}</h1>
   </div>
 
-  <!-- Story body -->
   <article class="vs-body">
-    {story.sections.map(section => {
-      if (section.type === 'text') {
-        return <p class="vs-para">{section.text}</p>;
-      }
-      if (section.type === 'ig') {
-        return (
-          <div class="vs-ig">
-            <div class="vs-ig-head">{section.head}</div>
+    {story.sections.map((section: any) => (
+      section.text
+        ? <p class="vs-para">{section.text}</p>
+        : <div class="vs-ig">
+            <div class="vs-ig-head">{section.ig.head}</div>
             <div class="vs-ig-body">
-              {section.rows.map(row => (
+              {section.ig.rows.map((row: any) => (
                 <div class="vs-ig-row">
-                  <span class={`vs-ig-label vs-ig-label--${row.labelColor}`}>{row.label}</span>
+                  <span class={`vs-ig-label vs-ig-label--${row.color}`}>{row.label}</span>
                   <span class="vs-ig-text">{row.text}</span>
                 </div>
               ))}
             </div>
           </div>
-        );
-      }
-    })}
+    ))}
   </article>
 
-  <!-- Navigation between stories -->
   <nav class="vs-nav">
-    {prev ? (
-      <a href={`/voices/${prevSlug}`} class="vs-nav-link vs-nav-prev">
+    {prev && prevSlug ? (
+      <a href={`/voices/${prevSlug}`} class="vs-nav-link">
         <span class="vs-nav-dir">← Previous</span>
         <span class="vs-nav-name">{prev.name}: {prev.title}</span>
       </a>
     ) : <span />}
-    {next ? (
+    {next && nextSlug ? (
       <a href={`/voices/${nextSlug}`} class="vs-nav-link vs-nav-next">
         <span class="vs-nav-dir">Next →</span>
         <span class="vs-nav-name">{next.name}: {next.title}</span>
@@ -250,7 +214,6 @@ const next = nextSlug ? stories[nextSlug as keyof typeof stories] : null;
     ) : <span />}
   </nav>
 
-  <!-- Share CTA -->
   <div class="vs-share">
     <div class="vs-share-inner">
       <h2>Have a story of your own?</h2>
@@ -269,114 +232,54 @@ const next = nextSlug ? stories[nextSlug as keyof typeof stories] : null;
 <style>
   .vs-page { background: #F5F2EE; }
 
-  .vs-breadcrumb {
-    max-width: 720px; margin: 0 auto; padding: 1.5rem 1.5rem 0;
-  }
-  .vs-breadcrumb a {
-    font-size: .82rem; font-weight: 600; color: #7A6A58;
-    text-decoration: none; transition: color .15s;
-  }
+  .vs-breadcrumb { max-width: 720px; margin: 0 auto; padding: 1.5rem 1.5rem 0; }
+  .vs-breadcrumb a { font-size: .82rem; font-weight: 600; color: #7A6A58; text-decoration: none; }
   .vs-breadcrumb a:hover { color: #3D2E1A; }
 
   .vs-header {
     max-width: 720px; margin: 1.25rem auto 0;
-    background: #fff; border-radius: 16px;
-    padding: 2rem 2.5rem;
+    background: #fff; border-radius: 16px; padding: 2rem 2.5rem;
     box-shadow: 0 2px 16px rgba(0,0,0,.07);
   }
-  .vs-who {
-    display: flex; align-items: center; gap: .45rem; flex-wrap: wrap;
-    font-size: .82rem; color: #7A6A58; margin-bottom: .85rem;
-  }
+  .vs-who { display: flex; align-items: center; gap: .45rem; flex-wrap: wrap; font-size: .82rem; color: #7A6A58; margin-bottom: .85rem; }
   .vs-name { font-weight: 700; color: #3D2E1A; font-size: .88rem; }
   .vs-sep { color: #C8B8A8; }
-  .vs-title {
-    font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 900;
-    color: #1A1208; line-height: 1.25; font-style: italic;
-  }
+  .vs-title { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 900; color: #1A1208; line-height: 1.25; font-style: italic; }
 
-  /* Story body */
-  .vs-body {
-    max-width: 720px; margin: 0 auto;
-    padding: 2rem 1.5rem 1rem;
-  }
+  .vs-body { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 1rem; }
 
-  .vs-para {
-    font-size: 1.02rem; color: #2D2010; line-height: 1.9;
-    margin-bottom: 1.4rem;
-  }
+  .vs-para { font-size: 1.02rem; color: #2D2010; line-height: 1.9; margin-bottom: 1.4rem; }
 
-  /* Infographic block */
-  .vs-ig {
-    background: #fff; border-radius: 14px;
-    border: 1.5px solid #E8E0D8;
-    margin: 2rem 0; overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,.06);
-  }
-  .vs-ig-head {
-    background: #F5F0EA; padding: .75rem 1.25rem;
-    font-size: .68rem; font-weight: 800; text-transform: uppercase;
-    letter-spacing: .12em; color: #5A4A38;
-    border-bottom: 1.5px solid #E8E0D8;
-  }
+  .vs-ig { background: #fff; border-radius: 14px; border: 1.5px solid #E8E0D8; margin: 2rem 0; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+  .vs-ig-head { background: #F5F0EA; padding: .75rem 1.25rem; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: #5A4A38; border-bottom: 1.5px solid #E8E0D8; }
   .vs-ig-body { padding: .5rem; display: flex; flex-direction: column; gap: .25rem; }
-  .vs-ig-row {
-    display: flex; align-items: flex-start; gap: .85rem;
-    padding: .65rem .75rem; border-radius: 8px;
-  }
-  .vs-ig-label {
-    flex-shrink: 0; width: 168px; min-width: 168px;
-    padding: .32rem .65rem; border-radius: 6px;
-    font-size: .72rem; font-weight: 700; color: #fff;
-    text-align: center; line-height: 1.35;
-  }
-  .vs-ig-label--green  { background: #3D7A5F; }
-  .vs-ig-label--peach  { background: #B84A2E; }
-  .vs-ig-label--muted  { background: #7A8A80; }
+  .vs-ig-row { display: flex; align-items: flex-start; gap: .85rem; padding: .65rem .75rem; border-radius: 8px; }
+  .vs-ig-label { flex-shrink: 0; width: 168px; min-width: 168px; padding: .32rem .65rem; border-radius: 6px; font-size: .72rem; font-weight: 700; color: #fff; text-align: center; line-height: 1.35; }
+  .vs-ig-label--green { background: #3D7A5F; }
+  .vs-ig-label--peach { background: #B84A2E; }
+  .vs-ig-label--muted { background: #7A8A80; }
   .vs-ig-text { font-size: .88rem; color: #3D2E1A; line-height: 1.6; padding-top: .18rem; }
 
-  /* Story nav */
-  .vs-nav {
-    max-width: 720px; margin: 1rem auto 0; padding: 0 1.5rem;
-    display: flex; justify-content: space-between; gap: 1rem;
-  }
-  .vs-nav-link {
-    display: flex; flex-direction: column; gap: .25rem;
-    padding: 1rem 1.25rem; background: #fff; border-radius: 12px;
-    text-decoration: none; max-width: 46%;
-    box-shadow: 0 2px 10px rgba(0,0,0,.06);
-    transition: box-shadow .18s;
-  }
+  .vs-nav { max-width: 720px; margin: 1rem auto 0; padding: 0 1.5rem; display: flex; justify-content: space-between; gap: 1rem; }
+  .vs-nav-link { display: flex; flex-direction: column; gap: .25rem; padding: 1rem 1.25rem; background: #fff; border-radius: 12px; text-decoration: none; max-width: 46%; box-shadow: 0 2px 10px rgba(0,0,0,.06); transition: box-shadow .18s; }
   .vs-nav-link:hover { box-shadow: 0 4px 18px rgba(0,0,0,.1); }
   .vs-nav-next { text-align: right; margin-left: auto; }
   .vs-nav-dir { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7A6A58; }
   .vs-nav-name { font-size: .85rem; font-weight: 600; color: #3D2E1A; line-height: 1.35; }
 
-  /* Share CTA */
-  .vs-share {
-    background: linear-gradient(150deg, #2D2010, #1A1208);
-    padding: 4rem 1.25rem; text-align: center; margin-top: 2.5rem;
-  }
+  .vs-share { background: linear-gradient(150deg, #2D2010, #1A1208); padding: 4rem 1.25rem; text-align: center; margin-top: 2.5rem; }
   .vs-share-inner { max-width: 520px; margin: 0 auto; }
   .vs-share h2 { font-size: 1.4rem; font-weight: 800; color: #FFF8F0; margin-bottom: .75rem; }
   .vs-share p { font-size: .93rem; color: rgba(255,248,240,.65); line-height: 1.75; margin-bottom: 2rem; }
   .vs-share p a { color: #C8A87A; text-decoration: underline; }
   .vs-share-btns { display: flex; gap: .85rem; justify-content: center; flex-wrap: wrap; }
-  .vs-btn-primary {
-    display: inline-block; background: #C8A87A; color: #1A1208;
-    font-weight: 700; font-size: .92rem; padding: .8rem 1.75rem;
-    border-radius: 99px; text-decoration: none; transition: transform .18s;
-  }
+  .vs-btn-primary { display: inline-block; background: #C8A87A; color: #1A1208; font-weight: 700; font-size: .92rem; padding: .8rem 1.75rem; border-radius: 99px; text-decoration: none; transition: transform .18s; }
   .vs-btn-primary:hover { transform: translateY(-2px); }
-  .vs-btn-outline {
-    display: inline-block; border: 1.5px solid rgba(255,255,255,.3); color: rgba(255,248,240,.75);
-    font-weight: 600; font-size: .92rem; padding: .8rem 1.75rem;
-    border-radius: 99px; text-decoration: none; transition: background .18s;
-  }
+  .vs-btn-outline { display: inline-block; border: 1.5px solid rgba(255,255,255,.3); color: rgba(255,248,240,.75); font-weight: 600; font-size: .92rem; padding: .8rem 1.75rem; border-radius: 99px; text-decoration: none; transition: background .18s; }
   .vs-btn-outline:hover { background: rgba(255,255,255,.1); color: #fff; }
 
   @media (max-width: 640px) {
-    .vs-header { margin: 1rem .75rem 0; padding: 1.5rem 1.25rem; border-radius: 12px; }
+    .vs-header { margin: 1rem .75rem 0; padding: 1.5rem 1.25rem; }
     .vs-body { padding: 1.5rem 1rem .5rem; }
     .vs-para { font-size: .95rem; }
     .vs-ig-label { width: 130px; min-width: 130px; font-size: .68rem; }
