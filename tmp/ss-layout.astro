@@ -203,7 +203,25 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
               </div>
             </div>
           </li>
-          <li><a href="/blog" class:list={[{ active: isActive('/blog') }]}>Journal</a></li>
+          <!-- Journal dropdown -->
+          <li class="has-dropdown">
+            <a href="/blog" class:list={[{ active: isActive('/blog') || isActive('/voices') }]}>
+              Journal
+              <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-inner">
+                <a href="/blog" class="dropdown-item">
+                  <span class="di-icon">📝</span>
+                  <span><span class="di-title">Journal</span><span class="di-desc">Articles, guides and expert insights</span></span>
+                </a>
+                <a href="/voices" class="dropdown-item">
+                  <span class="di-icon">🗣️</span>
+                  <span><span class="di-title">Voices</span><span class="di-desc">Real stories from women like you</span></span>
+                </a>
+              </div>
+            </div>
+          </li>
           <li><a href="/team" class:list={[{ active: isActive('/team') }]}>Our Team</a></li>
           <li><a href="/for-employers" class:list={[{ active: isActive('/for-employers') }]}>For Employers</a></li>
           <li><a href="/contact" class:list={[{ active: isActive('/contact') }]}>Contact</a></li>

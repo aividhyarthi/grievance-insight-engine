@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const stories = [
+  { slug: 'meera',   name: 'Meera',   age: 39, city: 'Pune',      title: 'The Doctor Said It Was Stress',               color: '#2D5F7A', teaser: 'Three doctors in fourteen months. That is my number. The first one said it was work stress. The second said anxiety. Neither ordered a single hormone test.' },
+  { slug: 'divya',   name: 'Divya',   age: 38, city: 'Hyderabad', title: 'Nobody Told Me It Could Happen at 38',         color: '#3D7A5F', teaser: 'I found out I was in perimenopause the same week my daughter turned seven. She was blowing out her candles and I was standing behind her thinking: something is very wrong with me.' },
+  { slug: 'ananya',  name: 'Ananya',  age: 41, city: 'Mumbai',    title: 'My Husband Thought I Was Becoming Someone Else', color: '#8A5230', teaser: 'He said it on a Sunday morning, quietly, while I was making chai. You have not been yourself lately. He was not wrong. That was the part I could not argue with.' },
+  { slug: 'kavitha', name: 'Kavitha', age: 43, city: 'Bangalore', title: 'I Thought I Was Losing My Mind at Work',        color: '#1A2D4A', teaser: 'I am the person teams come to when they need clarity. That particular sharpness was not something I thought about. It was just who I was. And then, at 42, it started leaving.' },
+  { slug: 'sunita',  name: 'Sunita',  age: 37, city: 'Jaipur',    title: 'Everyone Said I Was Too Young. I Believed Them.', color: '#5A6B4E', teaser: 'Thirty-seven. That is how old I was when it started. The number that made every doctor do a small double-take. Too young, they said. I went home and tried to rest more.' },
+  { slug: 'priya',   name: 'Priya',   age: 40, city: 'Chennai',   title: 'I Was Ashamed of the Word Menopause',           color: '#B84A2E', teaser: 'In my family, menopause was not a word we said. So when I found out what was happening, I did not tell anyone for four months. Not my husband. Not my closest friend. Nobody.' },
+];
+---
+<Layout
+  title="Voices — The Second Spring"
+  description="Six women. Six different journeys through perimenopause. Composite stories drawn from the experiences many women share."
+>
+
+<main class="vi-page">
+
+  <div class="vi-hero">
+    <div class="vi-hero-inner">
+      <p class="vi-eyebrow">Voices</p>
+      <h1 class="vi-title">You Are Not the Only One</h1>
+      <p class="vi-subtitle">Six women. Six different journeys. The details differ but the feeling of not being believed, of not recognising yourself, of carrying it alone, is something many of us share.</p>
+      <p class="vi-note">These are composite stories drawn from the experiences women share about perimenopause. Names and details are fictional. The feelings are not.</p>
+    </div>
+  </div>
+
+  <div class="vi-grid">
+    {stories.map((s, i) => (
+      <a href={`/voices/${s.slug}`} class="vi-card" style={`--card-color:${s.color};`}>
+        <div class="vi-card-top">
+          <span class="vi-num" style={`color:${s.color};`}>{String(i+1).padStart(2,'0')}</span>
+          <div class="vi-meta">
+            <span class="vi-name">{s.name}</span>
+            <span class="vi-dot">·</span>
+            <span class="vi-city">{s.city}</span>
+            <span class="vi-dot">·</span>
+            <span class="vi-age">{s.age}</span>
+          </div>
+        </div>
+        <h2 class="vi-card-title">{s.title}</h2>
+        <p class="vi-card-teaser">{s.teaser}</p>
+        <span class="vi-read">Read her story</span>
+      </a>
+    ))}
+  </div>
+
+  <div class="vi-share">
+    <div class="vi-share-inner">
+      <h2>Have a story of your own?</h2>
+      <p>Write to us. Your name, your city, what happened, what you wish you had known. With your permission, we may share it here so someone else finds it at the right moment.</p>
+      <a href="mailto:thesecondspringofficial@gmail.com?subject=My Story" class="vi-share-btn">Write to Us</a>
+    </div>
+  </div>
+
+</main>
+
+</Layout>
+
+<style>
+  .vi-page { background: #F5F2EE; }
+
+  .vi-hero {
+    background: linear-gradient(150deg, #1A1208 0%, #2D2010 100%);
+    padding: 5rem 1.25rem 4rem; text-align: center;
+  }
+  .vi-hero-inner { max-width: 620px; margin: 0 auto; }
+  .vi-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; color: #C8A87A; margin-bottom: .75rem; }
+  .vi-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: #FFF8F0; font-style: italic; margin-bottom: 1rem; line-height: 1.15; }
+  .vi-subtitle { font-size: 1.02rem; color: rgba(255,248,240,.72); line-height: 1.75; margin-bottom: 1.25rem; }
+  .vi-note { font-size: .76rem; color: rgba(255,248,240,.38); font-style: italic; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.25rem; }
+
+  .vi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem;
+  }
+
+  .vi-card {
+    background: #fff; border-radius: 16px; padding: 1.75rem;
+    text-decoration: none; display: flex; flex-direction: column;
+    border-top: 4px solid var(--card-color);
+    box-shadow: 0 2px 16px rgba(0,0,0,.07);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .vi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.12); }
+
+  .vi-card-top { display: flex; align-items: center; gap: .75rem; margin-bottom: .85rem; }
+  .vi-num { font-size: 1.8rem; font-weight: 900; line-height: 1; opacity: .3; }
+  .vi-meta { display: flex; align-items: center; gap: .35rem; font-size: .78rem; color: #7A6A58; }
+  .vi-name { font-weight: 700; color: #3D2E1A; }
+  .vi-dot { color: #C8B8A8; }
+
+  .vi-card-title { font-size: 1.05rem; font-weight: 800; color: #1A1208; line-height: 1.3; margin-bottom: .85rem; }
+  .vi-card-teaser { font-size: .87rem; color: #5A4A38; line-height: 1.7; flex: 1; margin-bottom: 1.25rem; }
+  .vi-read { font-size: .78rem; font-weight: 700; color: var(--card-color); letter-spacing: .03em; }
+
+  .vi-share {
+    background: linear-gradient(150deg, #2D2010, #1A1208);
+    padding: 4rem 1.25rem; text-align: center; margin-top: 2rem;
+  }
+  .vi-share-inner { max-width: 500px; margin: 0 auto; }
+  .vi-share h2 { font-size: 1.5rem; font-weight: 800; color: #FFF8F0; margin-bottom: .75rem; }
+  .vi-share p { font-size: .95rem; color: rgba(255,248,240,.65); line-height: 1.75; margin-bottom: 2rem; }
+  .vi-share-btn {
+    display: inline-block; background: #C8A87A; color: #1A1208;
+    font-weight: 700; font-size: .93rem; padding: .82rem 2rem;
+    border-radius: 99px; text-decoration: none; transition: transform .18s, box-shadow .18s;
+  }
+  .vi-share-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+
+  @media (max-width: 900px) { .vi-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 580px) { .vi-grid { grid-template-columns: 1fr; gap: 1rem; margin: 2rem auto; } }
+</style>
