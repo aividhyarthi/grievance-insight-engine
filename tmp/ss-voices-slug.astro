@@ -144,7 +144,14 @@ const stories: any = {
 };
 
 export function getStaticPaths() {
-  return Object.keys(stories).map((slug) => ({ params: { slug } }));
+  return [
+    { params: { slug: 'meera' } },
+    { params: { slug: 'divya' } },
+    { params: { slug: 'ananya' } },
+    { params: { slug: 'kavitha' } },
+    { params: { slug: 'sunita' } },
+    { params: { slug: 'priya' } },
+  ];
 }
 
 const { slug } = Astro.params;
