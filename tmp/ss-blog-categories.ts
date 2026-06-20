@@ -23,7 +23,45 @@ export const CATEGORIES: BlogCategory[] = [
     label: 'Symptoms Explained',
     icon: '🔬',
     desc: 'Deep dives into individual perimenopause symptoms — what causes them and what to do.',
-    tags: ['symptoms', 'breast pain', 'hair loss', 'fibroids', 'spotting', 'water retention', 'libido', 'hot flashes', 'fatigue', 'brain fog'],
+    tags: [
+      'symptoms', 'breast pain', 'hair loss', 'fibroids', 'spotting',
+      'water retention', 'libido', 'hot flashes', 'fatigue', 'brain fog',
+      'allergy', 'immune system', 'histamine', 'skin', 'flushing', 'rosacea',
+      'vasomotor', 'mastalgia', 'nipple pain', 'breast',
+    ],
+  },
+  {
+    slug: 'body-pain',
+    label: 'Body & Pain',
+    icon: '🦴',
+    desc: 'Joint pain, hip pain, abdominal cramps, ear pain — how oestrogen affects every part of the body.',
+    tags: [
+      'joint pain', 'hip pain', 'ear pain', 'abdominal pain', 'pelvic pain',
+      'back pain', 'inflammation', 'musculoskeletal', 'TMJ', 'tinnitus',
+      'arthralgia', 'bloating', 'gut', 'cramps', 'ovulation pain', 'mittelschmerz',
+      'muscle aches',
+    ],
+  },
+  {
+    slug: 'cycles-bleeding',
+    label: 'Cycles & Bleeding',
+    icon: '🩸',
+    desc: 'Heavy periods, irregular cycles, spotting, ovulation changes — navigating the shift.',
+    tags: [
+      'cycles', 'bleeding', 'ovulation', 'spotting', 'anovulation',
+      'blood clots', 'heavy periods', 'blood sugar', 'hunger', 'perimenopause basics',
+      'fertility', 'contraception',
+    ],
+  },
+  {
+    slug: 'sexual-intimate-health',
+    label: 'Sexual & Intimate Health',
+    icon: '💛',
+    desc: 'Vaginal dryness, painful sex, libido, and intimacy — practical, honest answers.',
+    tags: [
+      'vaginal dryness', 'gsm', 'sexual health', 'intimacy', 'libido',
+      'urinary symptoms', 'nipple pain', 'breast',
+    ],
   },
   {
     slug: 'mental-health',
@@ -37,14 +75,20 @@ export const CATEGORIES: BlogCategory[] = [
     label: 'Understanding Perimenopause',
     icon: '📖',
     desc: 'What perimenopause is, when it starts, how to recognise it, and what to expect.',
-    tags: ['basics', 'india', 'signs', 'hormones', 'oestrogen', 'progesterone'],
+    tags: [
+      'basics', 'india', 'signs', 'hormones', 'oestrogen', 'progesterone',
+      'perimenopause basics', 'ovulation', 'fertility', 'contraception',
+    ],
   },
   {
     slug: 'life',
     label: 'Life with Perimenopause',
     icon: '💼',
     desc: 'Relationships, work, pregnancy questions, and navigating Indian life during perimenopause.',
-    tags: ['working women', 'relationships', 'pregnancy', 'when to see doctor', 'community'],
+    tags: [
+      'working women', 'relationships', 'pregnancy', 'when to see doctor', 'community',
+      'sexual health', 'intimacy',
+    ],
   },
 ];
 
