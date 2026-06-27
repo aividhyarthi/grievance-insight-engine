@@ -117,6 +117,11 @@ curl -sL "$BLOG_BASE/perimenopause-ear-pain.md"                          -o "src
 curl -sL "$BLOG_BASE/ovulation-during-perimenopause.md"                  -o "src/content/blog/ovulation-during-perimenopause.md"
 curl -sL "$BLOG_BASE/perimenopause-abdominal-pain.md"                    -o "src/content/blog/perimenopause-abdominal-pain.md"
 curl -sL "$BLOG_BASE/perimenopause-vaginal-dryness.md"                   -o "src/content/blog/perimenopause-vaginal-dryness.md"
+# New blogs — bones, anxiety triggers, egg freezing, urinary frequency
+curl -sL "$BLOG_BASE/prepare-bones-perimenopause.md"                     -o "src/content/blog/prepare-bones-perimenopause.md"
+curl -sL "$BLOG_BASE/perimenopause-anxiety-triggers-easily.md"           -o "src/content/blog/perimenopause-anxiety-triggers-easily.md"
+curl -sL "$BLOG_BASE/egg-freezing-during-perimenopause.md"              -o "src/content/blog/egg-freezing-during-perimenopause.md"
+curl -sL "$BLOG_BASE/why-urinate-more-perimenopause.md"                  -o "src/content/blog/why-urinate-more-perimenopause.md"
 
 echo ""
 echo "=== All files downloaded. Committing... ==="
