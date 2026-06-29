@@ -88,7 +88,7 @@ const spots = [
       </div>
     </div>
 
-    <button class="ck-result-trigger" id="ck-see-result" hidden>See my result →</button>
+    <button class="ck-result-trigger" id="ck-see-result" hidden>See my full result →</button>
 
   </section>
 
@@ -103,6 +103,17 @@ const spots = [
 
       <div class="ck-disclaimer">
         <strong>This is not a diagnosis.</strong> Only a doctor can confirm perimenopause, using your symptoms and cycle history. This check is here to help you recognise a pattern and have a more confident conversation with your gynaecologist.
+      </div>
+
+      <!-- Newsletter subscribe -->
+      <div class="ck-subscribe" id="ck-subscribe">
+        <h3 class="ck-sub-title">Keep learning with us</h3>
+        <p class="ck-sub-text">Get honest, India-aware guides on perimenopause in your inbox. No spam — just what actually helps, from women figuring this out together.</p>
+        <form class="ck-sub-form" id="ck-sub-form" novalidate>
+          <input type="email" id="ck-sub-email" class="ck-sub-input" placeholder="you@example.com" autocomplete="email" aria-label="Your email address" required />
+          <button type="submit" class="ck-sub-btn" id="ck-sub-btn">Subscribe</button>
+        </form>
+        <p class="ck-sub-msg" id="ck-sub-msg" role="status"></p>
       </div>
 
       <div class="ck-result-cta">
@@ -152,19 +163,29 @@ const spots = [
     card.hidden = true;
     current = null;
     updateMeter();
+
+    // Send the user back up to the figure to pick the next area —
+    // or down to the result button once every area is checked.
+    const answered = Object.keys(state).length;
+    const target = answered < order.length ? figure : seeBtn;
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function updateMeter() {
     const answered = Object.keys(state).length;
     const yesCount = Object.values(state).filter(Boolean).length;
+    const remaining = order.length - answered;
     const pct = Math.round((answered / order.length) * 100);
     fill.style.width = pct + '%';
-    if (yesCount === 0 && answered === 0) {
-      meterTxt.textContent = 'Tap an area to begin';
+    if (answered === 0) {
+      meterTxt.textContent = `Tap each of the ${order.length} areas — answer all to see your result`;
+    } else if (remaining > 0) {
+      meterTxt.textContent = `${remaining} area${remaining === 1 ? '' : 's'} left to check · ${yesCount} marked so far`;
     } else {
-      meterTxt.textContent = `${yesCount} symptom${yesCount === 1 ? '' : 's'} marked · ${answered} of ${order.length} areas checked`;
+      meterTxt.textContent = `All ${order.length} areas checked · ${yesCount} marked as yes`;
     }
-    seeBtn.hidden = answered < 1;
+    // Result is only available once every area has been answered.
+    seeBtn.hidden = remaining > 0;
   }
 
   figure.addEventListener('click', (e) => {
@@ -219,6 +240,33 @@ const spots = [
     document.getElementById('ck-result').hidden = false;
     document.getElementById('ck-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  // Newsletter subscribe — reuses the site's existing lead endpoint
+  const subForm = document.getElementById('ck-sub-form');
+  subForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const emailEl = document.getElementById('ck-sub-email');
+    const msg = document.getElementById('ck-sub-msg');
+    const btn = document.getElementById('ck-sub-btn');
+    const email = emailEl.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.textContent = 'Please enter a valid email address.';
+      msg.className = 'ck-sub-msg ck-sub-msg-err';
+      return;
+    }
+    const yesCount = Object.values(state).filter(Boolean).length;
+    fetch('/api/collect-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, phone: '', age: '', score: String(yesCount), level: 'Newsletter — body check' }),
+    }).catch(() => {});
+    msg.textContent = 'Thank you — you are on the list.';
+    msg.className = 'ck-sub-msg ck-sub-msg-ok';
+    emailEl.value = '';
+    emailEl.disabled = true;
+    btn.disabled = true;
+    btn.textContent = 'Subscribed ✓';
+  });
 
   document.getElementById('ck-restart').addEventListener('click', () => {
     for (const k in state) delete state[k];
@@ -319,6 +367,20 @@ const spots = [
 
   .ck-disclaimer { background: rgba(200,168,122,.1); border: 1px solid rgba(200,168,122,.25); border-radius: 12px; padding: 1rem 1.1rem; font-size: .82rem; color: rgba(255,248,240,.7); line-height: 1.6; margin-bottom: 1.75rem; }
   .ck-disclaimer strong { color: #FFF8F0; }
+
+  .ck-subscribe { background: rgba(255,255,255,.05); border: 1px solid rgba(200,168,122,.22); border-radius: 16px; padding: 1.5rem 1.4rem; margin-bottom: 1.75rem; text-align: center; }
+  .ck-sub-title { font-size: 1.15rem; font-weight: 800; color: #FFF8F0; margin-bottom: .5rem; }
+  .ck-sub-text { font-size: .9rem; color: rgba(255,248,240,.72); line-height: 1.65; margin-bottom: 1.2rem; }
+  .ck-sub-form { display: flex; gap: .55rem; max-width: 420px; margin: 0 auto; flex-wrap: wrap; }
+  .ck-sub-input { flex: 1; min-width: 180px; padding: .8rem 1rem; border-radius: 99px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.95); color: #2D2010; font-size: .92rem; }
+  .ck-sub-input:focus { outline: none; border-color: #C8A87A; box-shadow: 0 0 0 3px rgba(200,168,122,.3); }
+  .ck-sub-input:disabled { opacity: .6; }
+  .ck-sub-btn { background: #C8A87A; color: #2D2010; border: none; cursor: pointer; font-weight: 700; font-size: .92rem; padding: .8rem 1.5rem; border-radius: 99px; transition: transform .15s; white-space: nowrap; }
+  .ck-sub-btn:hover:not(:disabled) { transform: translateY(-2px); }
+  .ck-sub-btn:disabled { background: #3D7A5F; color: #FFF8F0; cursor: default; }
+  .ck-sub-msg { font-size: .82rem; margin-top: .8rem; min-height: 1rem; }
+  .ck-sub-msg-ok { color: #9FD4B8; font-weight: 600; }
+  .ck-sub-msg-err { color: #E8A593; font-weight: 600; }
 
   .ck-result-cta { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
   .ck-cta-primary { background: #C8A87A; color: #2D2010; font-weight: 700; font-size: .92rem; padding: .8rem 1.6rem; border-radius: 99px; text-decoration: none; transition: transform .15s; }
