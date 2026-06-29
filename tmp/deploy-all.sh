@@ -33,6 +33,10 @@ cp "$SRC/ss-layout.astro" "src/layouts/Layout.astro"
 echo "→ Symptoms page..."
 cp "$SRC/ss-symptoms-cards.astro" "src/pages/symptoms.astro"
 
+# 2b. Interactive body-map check page
+echo "→ Interactive check page..."
+cp "$SRC/ss-check.astro" "src/pages/check.astro"
+
 # 3. Voices — remove old flat file to avoid routing conflict, then create subdirectory pages
 echo "→ Voices pages..."
 rm -f src/pages/voices.astro
