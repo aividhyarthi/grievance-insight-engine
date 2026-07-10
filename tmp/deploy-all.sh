@@ -29,6 +29,11 @@ fi
 echo "→ Layout..."
 cp "$SRC/ss-layout.astro" "src/layouts/Layout.astro"
 
+# 1b. AdSense ads.txt (served at site root via public/)
+echo "→ ads.txt..."
+mkdir -p public
+cp "$SRC/ss-ads.txt" "public/ads.txt"
+
 # 2. Symptoms page
 echo "→ Symptoms page..."
 cp "$SRC/ss-symptoms-cards.astro" "src/pages/symptoms.astro"
