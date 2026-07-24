@@ -3,7 +3,7 @@ title: "Periods Every Two Weeks? Short Cycles and Frequent Periods in Perimenopa
 description: "Periods arriving closer together — every two or three weeks instead of monthly — is one of the most common and confusing changes of perimenopause. Here is why cycles shorten, and when frequent periods need checking."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman tracking frequent, short menstrual cycles in perimenopause"
 tags: ["symptoms", "cycles", "frequent periods", "bleeding", "hormones"]
 category: "Cycles & Bleeding"

@@ -3,7 +3,7 @@ title: "Can Ear Pain Be a Symptom of Perimenopause?"
 description: "Ringing in the ears, a feeling of fullness, muffled hearing, or aching ear pain with no infection — the ears have oestrogen receptors, and perimenopause affects them in ways most doctors do not mention."
 pubDate: 2026-06-20
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing ear pain and tinnitus during perimenopause"
 tags: ["symptoms", "ear pain", "tinnitus", "hearing", "TMJ"]
 category: "Symptoms"

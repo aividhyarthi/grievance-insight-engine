@@ -4,7 +4,7 @@ description: "The silence around perimenopause inside marriages is almost as exh
 pubDate: 2026-06-03
 author: "Journal Desk"
 tags: ["relationships", "perimenopause", "mental health", "India", "support"]
-image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian couple sitting together in conversation, representing the dialogue needed around perimenopause"
 ---
 

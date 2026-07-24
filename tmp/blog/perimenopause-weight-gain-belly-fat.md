@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["weight gain", "belly fat", "metabolism", "diet", "exercise"]
 readTime: "8 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1607990281591-8c3f97c37a78?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1607990281591-8c3f97c37a78?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman focused on health and wellbeing during midlife transition"
 ---
 

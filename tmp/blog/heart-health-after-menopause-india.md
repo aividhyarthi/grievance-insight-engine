@@ -4,7 +4,7 @@ description: "Oestrogen protects the heart. After menopause, that protection goe
 pubDate: 2026-06-03
 author: "Journal Desk"
 tags: ["menopause", "heart health", "post-menopause", "understanding", "India"]
-image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman walking outdoors in sunlight — representing heart-healthy lifestyle choices after menopause"
 ---
 

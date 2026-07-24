@@ -3,7 +3,7 @@ title: "Perimenopause vs Menopause: What's the Difference?"
 description: "Perimenopause and menopause are not the same thing, and the difference matters — for your symptoms, your fertility, and your treatment. Here is a clear, simple explanation of each stage and how to tell where you are."
 pubDate: 2026-07-05
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman understanding the difference between perimenopause and menopause"
 tags: ["basics", "perimenopause basics", "menopause", "hormones", "signs"]
 category: "Understanding"

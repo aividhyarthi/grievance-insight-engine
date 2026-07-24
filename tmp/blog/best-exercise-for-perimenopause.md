@@ -3,7 +3,7 @@ title: "The Best Exercise for Perimenopause: What Actually Helps Your Body Now"
 description: "The kind of exercise that helped in your 20s is not what your body needs most in perimenopause. Here is what actually protects your bones, muscle, mood, and weight through the transition — and why strength training matters most."
 pubDate: 2026-07-05
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman doing strength training exercise during perimenopause"
 tags: ["natural remedies", "lifestyle", "exercise", "bone health"]
 category: "Natural Remedies"

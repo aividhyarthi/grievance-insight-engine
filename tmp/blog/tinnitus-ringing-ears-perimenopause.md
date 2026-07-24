@@ -3,7 +3,7 @@ title: "Ringing in the Ears (Tinnitus) in Perimenopause: Why It Happens"
 description: "A ringing, buzzing, or humming in your ears that no one else can hear can appear or worsen in perimenopause. Here is the hormonal link behind tinnitus, what helps, and when to get it checked."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing ringing in the ears during perimenopause"
 tags: ["symptoms", "tinnitus", "hearing", "hormones"]
 category: "Symptoms"

@@ -3,7 +3,7 @@ title: "A Partner's Guide to Perimenopause: How to Support the Woman You Love"
 description: "If someone you love is going through perimenopause, you may feel confused or shut out. This guide explains what is really happening to her, why it is not about you, and the practical things that genuinely help."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A supportive partner sitting with a woman going through perimenopause"
 tags: ["life", "relationships", "community", "when to see doctor"]
 category: "Life with Perimenopause"

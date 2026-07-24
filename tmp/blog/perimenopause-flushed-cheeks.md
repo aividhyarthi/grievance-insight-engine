@@ -3,7 +3,7 @@ title: "Does Perimenopause Cause Flushed Cheeks?"
 description: "A sudden redness across your cheeks and nose that comes and goes — sometimes with heat, sometimes without. This is a vasomotor symptom of perimenopause, and it is different from a hot flash."
 pubDate: 2026-06-18
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman with flushed cheeks and facial redness during perimenopause"
 tags: ["symptoms", "skin", "flushing", "rosacea", "vasomotor"]
 category: "Symptoms"

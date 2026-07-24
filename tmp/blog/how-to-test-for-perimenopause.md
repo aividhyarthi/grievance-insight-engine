@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["testing", "diagnosis", "blood tests", "perimenopause"]
 readTime: "8 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman reviewing lab results on a tablet in a clinic waiting area, looking focused"
 ---
 

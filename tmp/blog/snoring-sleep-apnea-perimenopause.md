@@ -3,7 +3,7 @@ title: "Snoring and Sleep Apnea in Perimenopause: A Different Kind of Sleep Prob
 description: "If you have started snoring, or wake gasping or unrefreshed despite enough hours in bed, this may not be ordinary perimenopausal insomnia. Sleep apnea becomes more common around this stage, and it needs its own kind of attention."
 pubDate: 2026-07-11
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman concerned about snoring and sleep apnea during perimenopause"
 tags: ["symptoms", "sleep apnea", "snoring", "sleep", "hormones"]
 category: "Symptoms"

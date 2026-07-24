@@ -3,7 +3,7 @@ title: "How to Track Your Perimenopause: A Symptom Diary That Works"
 description: "Keeping a simple record of your symptoms and cycles is one of the most useful things you can do in perimenopause — for understanding your own body and for being taken seriously by a doctor. Here is exactly what to track and how."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman keeping a perimenopause symptom diary"
 tags: ["understanding", "perimenopause basics", "when to see doctor", "community"]
 category: "Understanding"

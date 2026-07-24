@@ -3,7 +3,7 @@ title: "What Causes Hair Loss in Perimenopause — and What You Can Do About It"
 description: "Hair thinning and increased shedding during perimenopause are caused by hormonal changes that directly shorten the hair growth cycle. Here is the biology and what actually works."
 pubDate: 2026-05-28
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman running her fingers through her hair, representing hair thinning and shedding during perimenopause"
 tags: ["perimenopause", "hair loss", "hair thinning", "oestrogen", "androgens", "symptoms", "India"]
 readTime: "8 min read"

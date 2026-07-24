@@ -3,7 +3,7 @@ title: "Is HRT Safe? Benefits, Risks, and How to Decide"
 description: "Hormone replacement therapy is one of the most effective treatments for perimenopause symptoms — and one of the most misunderstood. Here is an honest, balanced look at the benefits, the risks, and how to make the decision that is right for you."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman weighing the benefits and risks of HRT with balanced information"
 tags: ["understanding", "HRT", "hormones", "treatment"]
 category: "Understanding"

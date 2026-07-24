@@ -3,7 +3,7 @@ title: "Vulvar Itching and Irritation in Perimenopause and Menopause"
 description: "Persistent itching, soreness, or irritation of the vulva is a common but rarely discussed symptom of falling oestrogen. Here is why it happens, how to tell it apart from an infection, and what actually soothes it."
 pubDate: 2026-06-30
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman seeking answers about vulvar itching and irritation during perimenopause"
 tags: ["symptoms", "vulvar irritation", "itching", "GSM", "vaginal dryness"]
 category: "Symptoms"

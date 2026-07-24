@@ -3,7 +3,7 @@ title: "Why Your PMS Is Getting Worse in Perimenopause (and What PMDD Is)"
 description: "If your premenstrual symptoms have become far more intense in your 40s — worse mood, deeper lows, more physical symptoms — perimenopause is very likely why. Here is what is happening, what PMDD is, and what helps."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing worsening premenstrual symptoms in perimenopause"
 tags: ["mental health", "PMS", "PMDD", "mood", "cycles"]
 category: "Mental Health"

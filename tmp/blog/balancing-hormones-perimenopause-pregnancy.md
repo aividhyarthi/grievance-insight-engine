@@ -4,7 +4,7 @@ description: "Getting pregnant in perimenopause is possible but carries specific
 pubDate: 2026-06-04
 author: "Journal Desk"
 tags: ["understanding", "perimenopause", "pregnancy", "hormones", "fertility"]
-image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman holding a pregnancy test with a thoughtful expression, representing the complexity of pregnancy in perimenopause"
 ---
 

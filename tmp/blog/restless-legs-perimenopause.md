@@ -3,7 +3,7 @@ title: "Restless Legs at Night in Perimenopause: Why It Happens and What Helps"
 description: "That maddening urge to move your legs just as you settle to sleep — creeping, crawling, tugging sensations that ease only when you move — is more common in perimenopause. Here is the hormonal link and what genuinely helps."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman troubled by restless legs at night during perimenopause"
 tags: ["symptoms", "restless legs", "sleep", "hormones"]
 category: "Symptoms"

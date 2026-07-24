@@ -3,7 +3,7 @@ title: "Losing Confidence in Perimenopause: Why It Happens and How to Rebuild It
 description: "A quiet loss of confidence — second-guessing yourself, feeling less capable, shrinking back — is one of the least discussed and most painful parts of perimenopause. Here is why it happens and how to find your footing again."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman quietly rebuilding her confidence during perimenopause"
 tags: ["mental health", "confidence", "mood", "brain fog"]
 category: "Mental Health"

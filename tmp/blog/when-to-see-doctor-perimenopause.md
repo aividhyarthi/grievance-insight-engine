@@ -3,7 +3,7 @@ title: "When Should I See a Doctor About Perimenopause?"
 description: "At 29, 35, or 42 — when do perimenopausal symptoms warrant a gynaecologist appointment? Here is exactly when to go, what to ask, and what tests to request."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman speaking with a female doctor in a clinic"
 tags: ["perimenopause", "doctor", "gynaecologist", "symptoms", "diagnosis"]
 readTime: "9 min read"

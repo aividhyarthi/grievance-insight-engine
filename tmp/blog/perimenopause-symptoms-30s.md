@@ -3,7 +3,7 @@ title: "Perimenopause Symptoms in Your 30s: What Is Normal at 35–39?"
 description: "Perimenopausal hormonal changes can begin in the late 30s. Here's what they look like, why they're so often missed, and when to see a gynaecologist."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman in her late 30s sitting by a window in soft morning light"
 tags: ["symptoms", "perimenopause", "30s", "early perimenopause", "hormones"]
 readTime: "8 min read"

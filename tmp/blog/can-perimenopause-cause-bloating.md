@@ -3,7 +3,7 @@ title: "Can Perimenopause Cause Bloating?"
 description: "Yes — bloating is a recognised symptom of perimenopause, driven by oestrogen fluctuations, declining progesterone, gut microbiome shifts, and rising cortisol. Here is what is happening and what actually helps."
 pubDate: 2026-05-26
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman at a health consultation discussing digestive symptoms"
 tags: ["perimenopause", "bloating", "digestion", "gut health", "symptoms", "diet"]
 readTime: "9 min read"

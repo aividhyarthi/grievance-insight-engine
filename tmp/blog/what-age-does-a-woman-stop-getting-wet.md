@@ -3,7 +3,7 @@ title: "What Age Does a Woman Stop Getting Wet?"
 description: "There is no single age when natural lubrication stops — it is a gradual change driven by oestrogen, not a switch that flips. Here is what actually happens, when it tends to begin, and why age is only part of the story."
 pubDate: 2026-06-30
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1484627147104-f5197bcd6651?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1484627147104-f5197bcd6651?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman reflecting on how natural lubrication changes with age during perimenopause"
 tags: ["symptoms", "vaginal dryness", "GSM", "perimenopause basics"]
 category: "Symptoms"

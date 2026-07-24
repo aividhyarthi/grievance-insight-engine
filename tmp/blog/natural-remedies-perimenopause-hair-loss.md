@@ -3,7 +3,7 @@ title: "Natural Remedies for Perimenopause Hair Loss — What Works and Why"
 description: "Hair thinning during perimenopause has multiple overlapping causes — hormonal, nutritional, and thyroid-related. Several approaches can meaningfully reduce shedding and support regrowth."
 pubDate: 2026-05-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman running fingers gently through her hair, representing concern about thinning and hair loss during perimenopause"
 tags: ["natural remedies", "hair loss", "hair thinning", "oestrogen", "iron", "lifestyle", "symptoms", "India"]
 readTime: "9 min read"

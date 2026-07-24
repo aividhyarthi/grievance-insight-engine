@@ -3,7 +3,7 @@ title: "Hormonal Headaches and Migraines in Perimenopause"
 description: "If your headaches or migraines have got worse, more frequent, or started for the first time in your 40s, hormones are very likely involved. Here is why perimenopause triggers headaches and what actually helps."
 pubDate: 2026-07-05
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing a hormonal headache or migraine during perimenopause"
 tags: ["symptoms", "headaches", "migraine", "hormones"]
 category: "Symptoms"

@@ -3,7 +3,7 @@ title: "Does Perimenopause Cause Breast Pain?"
 description: "Breast pain that used to come only before your period is now happening all month, or feels different than before. This is mastalgia — and in perimenopause, it is very common and very manageable."
 pubDate: 2026-06-18
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing breast pain and discomfort during perimenopause"
 tags: ["symptoms", "breast pain", "mastalgia", "hormones"]
 category: "Symptoms"

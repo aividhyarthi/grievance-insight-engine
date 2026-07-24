@@ -3,7 +3,7 @@ title: "Metallic Taste, Burning Mouth and Bleeding Gums in Perimenopause"
 description: "A metallic taste, a burning tongue, dry mouth, or gums that suddenly bleed are not always about oral hygiene. Oestrogen affects your mouth too — here is the hormonal link and what helps."
 pubDate: 2026-07-01
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing oral changes like metallic taste and burning mouth in perimenopause"
 tags: ["symptoms", "burning mouth", "oral health", "metallic taste", "hormones"]
 category: "Symptoms"

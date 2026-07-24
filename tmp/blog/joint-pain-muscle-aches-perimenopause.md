@@ -4,7 +4,7 @@ description: "Waking up stiff, aching knees, sore wrists — these aren't just a
 pubDate: 2026-06-03
 author: "Journal Desk"
 tags: ["symptoms", "perimenopause", "joint pain", "inflammation", "lifestyle"]
-image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman holding her wrist in discomfort, representing joint pain common in perimenopause"
 ---
 

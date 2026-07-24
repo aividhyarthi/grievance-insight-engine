@@ -3,7 +3,7 @@ title: "Understanding Your Bone Density Scan (DEXA) Results"
 description: "If your doctor has recommended a bone density scan, or you have results in hand and are not sure what they mean, here is a clear guide to what a DEXA scan measures, what a T-score means, and what to do next."
 pubDate: 2026-07-10
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1583912267550-d44c9a17edf9?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1583912267550-d44c9a17edf9?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman reviewing her bone density scan results with her doctor"
 tags: ["understanding", "bone health", "osteoporosis", "DEXA scan"]
 category: "Understanding"

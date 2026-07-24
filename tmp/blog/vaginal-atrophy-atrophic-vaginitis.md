@@ -3,7 +3,7 @@ title: "Vaginal Atrophy (Atrophic Vaginitis): Symptoms, Causes and Treatment"
 description: "Vaginal atrophy — also called atrophic vaginitis or GSM — is the thinning and inflammation of vaginal tissue when oestrogen falls. It is extremely common, often mistaken for infection, and highly treatable. Here is what to know."
 pubDate: 2026-06-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman understanding vaginal atrophy and atrophic vaginitis during perimenopause and menopause"
 tags: ["symptoms", "vaginal atrophy", "atrophic vaginitis", "GSM", "vaginal dryness"]
 category: "Symptoms"

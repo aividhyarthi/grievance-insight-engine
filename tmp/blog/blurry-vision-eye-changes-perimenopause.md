@@ -3,7 +3,7 @@ title: "Blurry Vision and Eye Changes in Perimenopause"
 description: "If your eyesight has shifted, blurrier vision, sudden trouble reading small text, or eyes that seem to change week to week, hormones may be part of the story. Here is how perimenopause affects vision, distinct from dry eyes."
 pubDate: 2026-07-11
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing changes in her vision during perimenopause"
 tags: ["symptoms", "vision changes", "eyesight", "hormones"]
 category: "Symptoms"

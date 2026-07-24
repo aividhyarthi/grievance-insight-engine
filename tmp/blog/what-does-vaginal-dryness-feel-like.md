@@ -3,7 +3,7 @@ title: "What Does Vaginal Dryness Feel Like? The Symptoms to Recognise"
 description: "Vaginal dryness is more than a lack of moisture during sex — it is a daily set of sensations many women do not realise are connected. Here is exactly what feminine dryness feels like, and how to recognise it."
 pubDate: 2026-06-30
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman recognising the everyday symptoms of feminine dryness during perimenopause"
 tags: ["symptoms", "vaginal dryness", "GSM", "sexual health"]
 category: "Symptoms"

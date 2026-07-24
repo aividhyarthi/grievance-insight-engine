@@ -3,7 +3,7 @@ title: "Blood Clots During Periods in Perimenopause: Why They Happen and When to
 description: "Large blood clots during periods are one of the most alarming perimenopause symptoms — and one of the most common. Here is exactly why they happen and when to seek help."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman in a health consultation discussing heavy period concerns with her doctor"
 tags: ["heavy periods", "blood clots", "perimenopause", "anovulation", "symptoms"]
 readTime: "8 min read"

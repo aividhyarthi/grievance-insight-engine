@@ -3,7 +3,7 @@ title: "Menopause Rage: Why You Feel So Angry in Perimenopause"
 description: "Sudden, intense anger that feels out of proportion and frightening, even to you, is a real and common part of perimenopause. Here is why 'menopause rage' happens, why it is not a character flaw, and what genuinely helps."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1541199249251-f713e6145474?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1541199249251-f713e6145474?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing sudden intense anger during perimenopause"
 tags: ["mental health", "anger", "mood", "hormones"]
 category: "Mental Health"

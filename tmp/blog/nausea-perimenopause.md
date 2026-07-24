@@ -3,7 +3,7 @@ title: "Can Perimenopause Cause Nausea? Why You Feel Sick and What Helps"
 description: "Waves of queasiness or feeling vaguely sick, often around your period or a hot flash, can be a genuine part of perimenopause. Here is why hormones make you feel nauseous and what actually helps."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman feeling nauseous during perimenopause"
 tags: ["symptoms", "nausea", "hormones", "hot flashes"]
 category: "Symptoms"

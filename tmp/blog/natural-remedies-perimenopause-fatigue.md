@@ -3,7 +3,7 @@ title: "Natural Remedies for Perimenopause Fatigue — Understanding the Causes 
 description: "Fatigue during perimenopause has multiple overlapping hormonal causes. Identifying the specific drivers and addressing them systematically produces the most meaningful improvement."
 pubDate: 2026-05-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman resting with eyes closed, representing the exhaustion of perimenopausal fatigue"
 tags: ["natural remedies", "fatigue", "tiredness", "energy", "sleep", "lifestyle", "symptoms", "India"]
 readTime: "9 min read"

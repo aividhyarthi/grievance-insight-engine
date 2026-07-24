@@ -3,7 +3,7 @@ title: "Frozen Shoulder in Perimenopause: The Surprising Hormonal Link"
 description: "A stiff, painful shoulder that slowly loses its range of movement is far more common in women aged 40 to 60 — and there is a growing link to falling oestrogen. Here is what frozen shoulder is, why perimenopause may trigger it, and what helps."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman with shoulder pain and stiffness linked to perimenopause"
 tags: ["symptoms", "frozen shoulder", "joint pain", "inflammation", "musculoskeletal"]
 category: "Body & Pain"

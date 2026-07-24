@@ -3,7 +3,7 @@ title: "Why Does My Skin Feel Like Bugs Are Crawling On It? Formication in Perim
 description: "The unsettling sensation of insects crawling on or under your skin — with nothing there — has a name: formication. It is a real, hormone-linked symptom of perimenopause, and understanding it takes away much of the fear."
 pubDate: 2026-07-01
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing the crawling skin sensation known as formication in perimenopause"
 tags: ["symptoms", "formication", "skin", "hormones", "nervous system"]
 category: "Symptoms"

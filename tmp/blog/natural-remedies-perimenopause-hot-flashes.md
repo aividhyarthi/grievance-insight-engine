@@ -3,7 +3,7 @@ title: "Natural Remedies for Perimenopause Hot Flashes — Evidence-Based Approa
 description: "Hot flashes are caused by a specific change in the brain's temperature regulation. Several natural approaches have meaningful evidence — here is what helps and why."
 pubDate: 2026-05-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman fanning herself near an open window, representing the sudden heat and flushing of a hot flash"
 tags: ["natural remedies", "hot flashes", "night sweats", "oestrogen", "lifestyle", "symptoms", "India"]
 readTime: "8 min read"

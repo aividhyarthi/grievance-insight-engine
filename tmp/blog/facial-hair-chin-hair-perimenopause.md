@@ -3,7 +3,7 @@ title: "New Facial Hair and Chin Hairs in Perimenopause: Why It Happens"
 description: "Finding coarse new hairs on your chin, upper lip, or jaw in your 40s is common, normal, and hormonal — even as the hair on your head thins. Here is the reason behind it and what genuinely helps."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1512310604669-443f26c35f52?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1512310604669-443f26c35f52?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing new facial hair during perimenopause"
 tags: ["symptoms", "facial hair", "hair", "hormones", "skin"]
 category: "Symptoms"

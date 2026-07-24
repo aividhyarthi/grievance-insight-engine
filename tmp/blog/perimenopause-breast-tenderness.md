@@ -3,7 +3,7 @@ title: "Can Perimenopause Cause Breast Pain?"
 description: "Breast pain that is more intense than before, coming at odd times in your cycle, or present almost constantly — perimenopause is a very common cause, and most women are not told this."
 pubDate: 2026-06-19
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing breast tenderness and pain during perimenopause"
 tags: ["symptoms", "breast pain", "mastalgia", "hormones", "cycles"]
 category: "Symptoms"

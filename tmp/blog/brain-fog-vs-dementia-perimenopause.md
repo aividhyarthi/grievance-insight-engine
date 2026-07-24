@@ -3,7 +3,7 @@ title: "Perimenopause Brain Fog or Early Dementia? How to Tell the Difference"
 description: "Forgetting words, losing your train of thought, walking into a room and forgetting why — perimenopause brain fog can feel frighteningly like the early signs of dementia. Here is how to tell them apart, and why the distinction matters."
 pubDate: 2026-07-09
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman reassured about the difference between perimenopause brain fog and dementia"
 tags: ["mental health", "brain fog", "dementia", "hormones", "memory"]
 category: "Mental Health"

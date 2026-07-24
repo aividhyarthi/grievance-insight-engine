@@ -3,7 +3,7 @@ title: "Can Perimenopause Cause Back Pain?"
 description: "Back pain that starts or worsens in your 40s may have a hormonal cause. Here is what oestrogen decline does to your spine, joints, and muscles — and what actually helps."
 pubDate: 2026-05-26
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Person holding their lower back experiencing back pain discomfort"
 tags: ["perimenopause", "symptoms", "back pain", "musculoskeletal", "bone health", "vitamin D", "joint pain"]
 readTime: "8 min read"

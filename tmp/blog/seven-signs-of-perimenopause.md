@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["symptoms", "signs", "perimenopause", "Indian women"]
 readTime: "7 min read"
 featured: true
-image: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman sitting at a desk looking thoughtful, natural light coming through a window behind her"
 ---
 

@@ -3,7 +3,7 @@ title: "Anovulation and Perimenopause: What Is the Link?"
 description: "Anovulatory cycles — where you bleed but don't ovulate — are at the root of most perimenopausal symptoms. Here is exactly how they work and why they matter."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman looking thoughtful while reviewing health information on a tablet"
 tags: ["anovulation", "perimenopause", "hormones", "heavy periods", "progesterone"]
 readTime: "9 min read"

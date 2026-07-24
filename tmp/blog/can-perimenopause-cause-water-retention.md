@@ -3,7 +3,7 @@ title: "Can Perimenopause Cause Water Retention?"
 description: "Yes — water retention is common during perimenopause. Oestrogen's effect on aldosterone, declining progesterone, and elevated cortisol all contribute to fluid accumulation. Here is what is happening and how to manage it."
 pubDate: 2026-05-26
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman doctor in a medical consultation setting"
 tags: ["perimenopause", "water retention", "oedema", "symptoms", "hormones", "diet"]
 readTime: "9 min read"

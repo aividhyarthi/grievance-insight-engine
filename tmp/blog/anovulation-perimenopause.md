@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["anovulation", "hormones", "perimenopause", "ovulation"]
 readTime: "7 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1558017487-06bf9f82613a?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1558017487-06bf9f82613a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman looking thoughtful while reviewing health information on a tablet"
 ---
 

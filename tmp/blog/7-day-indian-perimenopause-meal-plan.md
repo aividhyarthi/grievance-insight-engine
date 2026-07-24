@@ -3,7 +3,7 @@ title: "A 7-Day Indian Perimenopause Meal Plan"
 description: "A simple, realistic week of Indian meals built to support you through perimenopause — steady blood sugar, protect your bones, ease symptoms, and keep it all familiar and vegetarian-friendly. Use it as a flexible template, not a rulebook."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A balanced Indian thali suited to perimenopause nutrition"
 tags: ["natural remedies", "diet", "nutrition", "lifestyle"]
 category: "Natural Remedies"

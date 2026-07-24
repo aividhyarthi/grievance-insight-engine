@@ -4,7 +4,7 @@ description: "The Indian kitchen already has much of what perimenopause needs â€
 pubDate: 2026-06-03
 author: "Journal Desk"
 tags: ["lifestyle", "perimenopause", "diet", "nutrition", "India"]
-image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Colourful array of Indian spices, lentils, and vegetables â€” nourishing foods for perimenopause"
 ---
 

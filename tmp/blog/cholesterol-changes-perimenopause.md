@@ -3,7 +3,7 @@ title: "Cholesterol Changes in Perimenopause: Why Your Numbers Shift"
 description: "Cholesterol levels often worsen in perimenopause, even without any change in diet or weight, purely because of falling oestrogen. Here is why it happens, what your numbers mean, and what genuinely helps."
 pubDate: 2026-07-10
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman reviewing her cholesterol results during perimenopause"
 tags: ["understanding", "cholesterol", "heart health", "hormones"]
 category: "Understanding"

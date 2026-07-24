@@ -3,7 +3,7 @@ title: "Is Vaginal Dryness a Sign of Perimenopause?"
 description: "Dryness, discomfort, pain during sex, burning when urinating — these are not inevitable or untreatable. Vaginal dryness is one of the most common symptoms of perimenopause, and one of the most effectively managed."
 pubDate: 2026-06-20
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman learning about vaginal dryness and genitourinary changes in perimenopause"
 tags: ["symptoms", "vaginal dryness", "GSM", "sexual health", "urinary symptoms"]
 category: "Symptoms"

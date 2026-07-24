@@ -3,7 +3,7 @@ title: "Can Perimenopause Cause Joint Pain?"
 description: "Knees that ache getting up from the floor, stiff fingers in the morning, hips that hurt after a walk — perimenopause has a direct and documented connection to joint pain that most women are never told about."
 pubDate: 2026-06-19
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing joint pain and stiffness during perimenopause"
 tags: ["symptoms", "joint pain", "inflammation", "arthralgia"]
 category: "Symptoms"

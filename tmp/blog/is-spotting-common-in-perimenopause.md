@@ -3,7 +3,7 @@ title: "Is Spotting Common in Perimenopause? Causes, Patterns, and When to Act"
 description: "Spotting between periods is one of the most frequent and least understood signs of perimenopause. Here is why it happens, what patterns are normal, and the warning signs that need investigation."
 pubDate: 2026-05-28
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman sitting quietly, representing the uncertainty around irregular bleeding during perimenopause"
 tags: ["perimenopause", "spotting", "irregular periods", "bleeding", "symptoms", "India"]
 readTime: "8 min read"

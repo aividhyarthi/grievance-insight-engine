@@ -3,7 +3,7 @@ title: "Perimenopause and Alcohol: Why Your Tolerance Changed and What It Does"
 description: "If alcohol suddenly hits you harder, worsens your hot flashes, or wrecks your sleep in perimenopause, you are not imagining it. Here is how falling hormones change the way your body handles alcohol, and what to do about it."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman considering how alcohol affects her during perimenopause"
 tags: ["natural remedies", "lifestyle", "alcohol", "hot flashes", "sleep"]
 category: "Natural Remedies"

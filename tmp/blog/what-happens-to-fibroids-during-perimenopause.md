@@ -3,7 +3,7 @@ title: "What Happens to Fibroids During Perimenopause?"
 description: "Fibroids are oestrogen-dependent — they can grow and cause heavier symptoms in early perimenopause before shrinking significantly after menopause. Here is the complete picture."
 pubDate: 2026-05-28
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman with hand on her lower abdomen, representing pelvic symptoms and fibroid changes during perimenopause"
 tags: ["perimenopause", "fibroids", "uterine fibroids", "heavy periods", "bleeding", "symptoms", "India"]
 readTime: "9 min read"

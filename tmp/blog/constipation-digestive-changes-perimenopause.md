@@ -3,7 +3,7 @@ title: "Constipation and Digestive Changes in Perimenopause"
 description: "Sluggish digestion, new constipation, or a gut that behaves completely differently than it used to are common in perimenopause. Here is why hormones affect your gut and what genuinely gets things moving again."
 pubDate: 2026-07-09
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman managing digestive changes and constipation during perimenopause"
 tags: ["symptoms", "constipation", "gut", "digestion", "bloating"]
 category: "Body & Pain"

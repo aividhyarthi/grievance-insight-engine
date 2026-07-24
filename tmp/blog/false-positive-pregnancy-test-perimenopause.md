@@ -4,7 +4,7 @@ description: "A positive pregnancy test in your 40s can be confusing when you're
 pubDate: 2026-06-04
 author: "Journal Desk"
 tags: ["understanding", "perimenopause", "pregnancy", "hormones", "fertility"]
-image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman looking thoughtfully at a pregnancy test, representing the uncertainty of testing during perimenopause"
 ---
 

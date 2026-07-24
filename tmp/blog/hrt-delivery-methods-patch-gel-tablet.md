@@ -3,7 +3,7 @@ title: "HRT Delivery Methods: Patch, Gel, Tablet, or Spray — Which Is Right fo
 description: "If you and your doctor have decided HRT is worth trying, the next question is how to take it. Patches, gels, tablets, and sprays all deliver hormones differently, with different pros, cons, and risk profiles. Here is a clear guide."
 pubDate: 2026-07-11
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman learning about different HRT delivery methods"
 tags: ["understanding", "HRT", "hormones", "treatment"]
 category: "Understanding"

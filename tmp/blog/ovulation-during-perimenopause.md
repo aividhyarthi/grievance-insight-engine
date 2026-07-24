@@ -3,7 +3,7 @@ title: "Do You Ovulate During Perimenopause?"
 description: "The honest answer is: sometimes. Understanding when and why ovulation happens in perimenopause matters for family planning, symptom management, and understanding why your body feels the way it does."
 pubDate: 2026-06-20
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman thinking about fertility and ovulation during perimenopause"
 tags: ["ovulation", "fertility", "cycles", "perimenopause basics", "contraception"]
 category: "Understanding Perimenopause"

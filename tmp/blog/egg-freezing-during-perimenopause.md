@@ -3,7 +3,7 @@ title: "Can You Freeze Your Eggs During Perimenopause?"
 description: "It is one of the most common questions women ask once they realise perimenopause has begun. The honest answer is layered — it depends on what your ovaries still hold, and perimenopause is, by definition, late in that story."
 pubDate: 2026-06-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman discussing egg freezing and fertility preservation options in perimenopause"
 tags: ["fertility", "egg freezing", "ovulation", "perimenopause basics"]
 category: "Understanding"

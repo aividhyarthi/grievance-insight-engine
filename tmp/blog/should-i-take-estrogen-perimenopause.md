@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["oestrogen", "HRT", "perimenopause", "treatment"]
 readTime: "9 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Healthy colourful food bowl representing nourishment and informed health choices"
 ---
 

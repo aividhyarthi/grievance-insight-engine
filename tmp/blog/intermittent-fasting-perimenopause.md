@@ -3,7 +3,7 @@ title: "Intermittent Fasting in Perimenopause: Does It Help or Hurt?"
 description: "Intermittent fasting is everywhere, but does it actually suit a perimenopausal body? The honest answer is: it depends, and for some women it can backfire. Here is what to weigh before you try it."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman considering intermittent fasting during perimenopause"
 tags: ["natural remedies", "diet", "intermittent fasting", "weight", "hormones"]
 category: "Natural Remedies"

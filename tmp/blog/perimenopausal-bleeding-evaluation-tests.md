@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["bleeding", "perimenopause", "tests", "diagnosis", "gynaecologist"]
 readTime: "8 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman at a medical consultation with a gynaecologist reviewing test results"
 ---
 

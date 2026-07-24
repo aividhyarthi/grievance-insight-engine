@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["oestrogen", "progesterone", "hormones", "perimenopause"]
 readTime: "8 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman reading about hormones and perimenopause, looking engaged and informed"
 ---
 

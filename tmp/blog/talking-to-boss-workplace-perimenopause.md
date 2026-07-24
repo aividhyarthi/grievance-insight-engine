@@ -3,7 +3,7 @@ title: "Talking to Your Boss About Perimenopause: A Practical Guide"
 description: "Deciding whether, when, and how to tell your workplace about perimenopause is a real dilemma for working women in India. Here is a practical, honest guide to having that conversation, and what your options are if you would rather not."
 pubDate: 2026-07-09
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Working woman preparing to discuss perimenopause with her manager"
 tags: ["life", "working women", "workplace", "when to see doctor"]
 category: "Life with Perimenopause"

@@ -3,7 +3,7 @@ title: "Signs Perimenopause Is Starting: 8 Early Signals to Know"
 description: "The first signs of perimenopause arrive years before hot flashes. Here are the eight signals that the hormonal transition has begun — and what to do about them."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman standing near a window with soft morning light on her face"
 tags: ["signs", "symptoms", "perimenopause", "early perimenopause", "starting"]
 readTime: "8 min read"

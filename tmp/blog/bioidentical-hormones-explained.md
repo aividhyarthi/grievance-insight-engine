@@ -3,7 +3,7 @@ title: "Bioidentical Hormones: What They Are, and Are They Better Than Regular H
 description: "The term 'bioidentical' is everywhere in menopause marketing, often implying it is safer or more natural than standard HRT. Here is what the term actually means, what the evidence says, and how to cut through the confusion."
 pubDate: 2026-07-11
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman researching bioidentical hormones versus standard HRT"
 tags: ["understanding", "HRT", "bioidentical hormones", "hormones"]
 category: "Understanding"

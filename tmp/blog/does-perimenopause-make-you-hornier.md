@@ -3,7 +3,7 @@ title: "Does Perimenopause Make You Hornier? The Hormonal Truth"
 description: "Perimenopause does not always reduce libido. Some women feel a significant and unexpected increase in sexual desire — and there is a clear hormonal explanation for why."
 pubDate: 2026-05-28
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1604881991720-f91add269bed?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1604881991720-f91add269bed?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman looking confident and at ease, representing changes in desire and identity during perimenopause"
 tags: ["perimenopause", "libido", "sexual health", "hormones", "symptoms"]
 readTime: "7 min read"

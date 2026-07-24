@@ -3,7 +3,7 @@ title: "Can Perimenopause Cause High Blood Pressure?"
 description: "Yes — blood pressure tends to rise during perimenopause and menopause as oestrogen levels decline. Oestrogen keeps blood vessels flexible and lowers vascular resistance; losing it accelerates cardiovascular risk. Here is what Indian women need to know about monitoring and managing blood pressure through this transition."
 pubDate: 2026-05-26
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1576669801945-aa2e01d83e86?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1576669801945-aa2e01d83e86?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Close-up of hands taking blood pressure measurement with a medical cuff"
 tags: ["perimenopause", "high blood pressure", "hypertension", "cardiovascular health", "heart health", "India"]
 readTime: "8 min read"

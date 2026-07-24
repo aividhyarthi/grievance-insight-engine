@@ -3,7 +3,7 @@ title: "Why Can't I Sleep? Insomnia and Sleep Problems in Perimenopause"
 description: "Trouble falling asleep, waking at 3am wide awake, night sweats that soak the sheets — sleep problems are one of the most common and most exhausting parts of perimenopause. Here is why it happens and what genuinely helps."
 pubDate: 2026-07-05
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman lying awake at night with insomnia during perimenopause"
 tags: ["symptoms", "sleep", "insomnia", "night sweats", "hormones"]
 category: "Symptoms"

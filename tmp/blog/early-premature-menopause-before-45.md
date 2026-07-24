@@ -3,7 +3,7 @@ title: "Early and Premature Menopause: When It Happens Before 45"
 description: "Menopause before 45 is called early, and before 40 premature. It is more common than many realise, often missed, and matters for long-term health. Here is what to know and why getting it recognised is so important."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Younger woman learning about early and premature menopause"
 tags: ["understanding", "early menopause", "premature menopause", "hormones", "perimenopause basics"]
 category: "Understanding"

@@ -3,7 +3,7 @@ title: "Breast Lumps and Changes in Perimenopause: What's Normal, What to Check"
 description: "Breast tissue changes throughout perimenopause, and this can make lumps, bumps, and texture changes harder to interpret. Here is how to understand what your breasts are doing, how to self-check, and what needs a doctor's assessment."
 pubDate: 2026-07-10
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman doing a breast self-check during perimenopause"
 tags: ["symptoms", "breast changes", "breast lumps", "hormones", "when to see doctor"]
 category: "Symptoms"

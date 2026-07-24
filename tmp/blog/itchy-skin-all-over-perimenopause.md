@@ -3,7 +3,7 @@ title: "Itchy Skin All Over? Why Perimenopause Causes Whole-Body Itching"
 description: "Persistent, unexplained itching across your arms, legs, back, or whole body, with no rash to explain it, can be a genuine perimenopause symptom. Here is why falling oestrogen makes skin itch, and what actually soothes it."
 pubDate: 2026-07-11
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing itchy skin all over her body during perimenopause"
 tags: ["symptoms", "itchy skin", "pruritus", "skin", "hormones"]
 category: "Symptoms"

@@ -3,7 +3,7 @@ title: "Grey Hair and Changing Hair Texture in Perimenopause"
 description: "Faster greying, hair that has suddenly turned frizzy, dry, or unmanageable — hormones affect more than hair loss. Here is why hair texture and colour change in perimenopause, and what genuinely helps."
 pubDate: 2026-07-09
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing changing hair texture and greying during perimenopause"
 tags: ["symptoms", "hair", "grey hair", "hormones", "skin"]
 category: "Symptoms"

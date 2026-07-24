@@ -3,7 +3,7 @@ title: "Panic Attacks in Perimenopause: What They Are and What Helps"
 description: "A sudden, overwhelming wave of terror, a racing heart, and a feeling that something is seriously wrong can be a panic attack, and perimenopause makes them more likely. Here is what is happening, and how to get through one, and prevent more."
 pubDate: 2026-07-10
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing a panic attack during perimenopause"
 tags: ["mental health", "panic attacks", "anxiety", "hormones"]
 category: "Mental Health"

@@ -3,7 +3,7 @@ title: "Why Does the Slightest Thing Set Off My Anxiety in Perimenopause?"
 description: "A spilled cup, a delayed reply, a small change in plan — and suddenly your whole body is in alarm. This is one of the most disorienting parts of perimenopause, and there is a clear hormonal reason behind it."
 pubDate: 2026-06-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing heightened anxiety from small triggers during perimenopause"
 tags: ["mental health", "anxiety", "mood", "hormones"]
 category: "Mental Health"

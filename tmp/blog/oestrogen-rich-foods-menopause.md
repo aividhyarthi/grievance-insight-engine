@@ -3,7 +3,7 @@ title: "Oestrogen-Rich Foods for Menopause: Which Ones Actually Help"
 description: "Certain foods contain plant compounds that gently mimic oestrogen in the body, and others support the systems that struggle as oestrogen falls. Here is an honest, Indian-friendly guide to eating well through perimenopause and menopause."
 pubDate: 2026-06-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A spread of oestrogen-supporting foods for perimenopause and menopause"
 tags: ["natural remedies", "lifestyle", "diet", "oestrogen", "nutrition"]
 category: "Natural Remedies"

@@ -3,7 +3,7 @@ title: "Does Perimenopause Cause Water Retention?"
 description: "Yes — perimenopause directly causes water retention through two hormonal mechanisms. Here is the biology behind the bloating, puffiness, and sudden heaviness, and what actually helps."
 pubDate: 2026-05-28
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman looking at her reflection, representing body changes and bloating during perimenopause"
 tags: ["perimenopause", "water retention", "bloating", "weight", "hormones", "symptoms"]
 readTime: "7 min read"

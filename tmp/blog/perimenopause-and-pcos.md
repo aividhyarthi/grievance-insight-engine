@@ -4,7 +4,7 @@ description: "PCOS is very common in Indian women. When perimenopause arrives, t
 pubDate: 2026-06-03
 author: "Journal Desk"
 tags: ["understanding", "perimenopause", "PCOS", "hormones", "India"]
-image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Medical illustration concept representing hormonal complexity of PCOS and perimenopause"
 ---
 

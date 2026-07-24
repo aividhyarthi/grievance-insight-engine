@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["community", "support", "stories", "resources", "Indian women"]
 readTime: "6 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Group of Indian women laughing and talking together, representing community and shared experience"
 ---
 

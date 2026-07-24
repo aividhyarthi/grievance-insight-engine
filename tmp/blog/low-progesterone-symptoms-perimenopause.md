@@ -3,7 +3,7 @@ title: "Low Progesterone Symptoms in Perimenopause: What It Feels Like"
 description: "Progesterone is the first hormone to fall in perimenopause — and its symptoms are almost always mistaken for anxiety, depression, or stress. Here's how to recognise them."
 pubDate: 2026-05-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman awake and reflective in the early morning hours, representing the sleep disruption of low progesterone"
 tags: ["progesterone", "symptoms", "hormones", "sleep", "perimenopause"]
 readTime: "8 min read"

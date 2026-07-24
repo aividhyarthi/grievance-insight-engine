@@ -3,7 +3,7 @@ title: "Supplements for Perimenopause: Which Ones Actually Help"
 description: "The shelves are full of pills promising to fix perimenopause. Most are a waste of money, but a few have genuine evidence behind them. Here is an honest guide to which supplements are worth it — and which to skip."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A selection of supplements commonly considered during perimenopause"
 tags: ["natural remedies", "supplements", "nutrition", "bone health"]
 category: "Natural Remedies"

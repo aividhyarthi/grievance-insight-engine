@@ -3,7 +3,7 @@ title: "Natural Remedies for Perimenopause Mood Swings — What Actually Helps"
 description: "Mood swings in perimenopause are caused by specific hormonal changes in the brain. Several natural approaches reduce their frequency and intensity — here is the evidence."
 pubDate: 2026-05-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1554734867-bf3c00a49371?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1554734867-bf3c00a49371?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman looking pensive by a window, representing the emotional unpredictability of perimenopausal mood swings"
 tags: ["natural remedies", "mood swings", "irritability", "mood", "hormones", "lifestyle", "symptoms", "India"]
 readTime: "8 min read"

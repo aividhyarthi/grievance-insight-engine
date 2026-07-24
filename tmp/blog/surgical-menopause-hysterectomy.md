@@ -3,7 +3,7 @@ title: "Surgical Menopause: Menopause After a Hysterectomy or Ovary Removal"
 description: "When the ovaries are removed, menopause does not arrive gradually — it happens overnight. Here is what surgical menopause is, why the symptoms can be more intense, and how it is managed."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman learning about surgical menopause after a hysterectomy"
 tags: ["understanding", "surgical menopause", "hysterectomy", "hormones", "HRT"]
 category: "Understanding"

@@ -3,7 +3,7 @@ title: "Perimenopause and Weight Loss: What Actually Works"
 description: "If the weight-loss methods that once worked have stopped working in perimenopause, you are not imagining it. Here is why weight becomes harder to lose, and the approach that genuinely works for a perimenopausal body."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman preparing a balanced meal to support weight loss in perimenopause"
 tags: ["natural remedies", "weight", "lifestyle", "exercise", "diet"]
 category: "Natural Remedies"

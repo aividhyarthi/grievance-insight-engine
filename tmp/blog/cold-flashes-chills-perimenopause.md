@@ -3,7 +3,7 @@ title: "Cold Flashes and Chills in Perimenopause: The Opposite of a Hot Flash"
 description: "Perimenopause is famous for overheating — but sudden chills, shivering, and icy waves are just as real and rarely discussed. Here is why cold flashes happen and what helps."
 pubDate: 2026-07-01
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1483664852095-d6cc6870702d?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1483664852095-d6cc6870702d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman wrapped up warm during a sudden cold flash in perimenopause"
 tags: ["symptoms", "cold flashes", "chills", "vasomotor", "hot flashes"]
 category: "Symptoms"

@@ -3,7 +3,7 @@ title: "Why Am I Suddenly So Clumsy? Perimenopause and Coordination"
 description: "Dropping things, misjudging distances, bumping into door frames — a phase of new clumsiness in midlife is real and often linked to hormonal changes. Here is what may be behind it and when to get it checked."
 pubDate: 2026-07-01
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing new clumsiness and coordination changes during perimenopause"
 tags: ["symptoms", "clumsiness", "coordination", "brain fog", "hormones"]
 category: "Symptoms"

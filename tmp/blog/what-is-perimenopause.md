@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["perimenopause", "basics", "hormones", "Indian women"]
 readTime: "6 min read"
 featured: true
-image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman in thoughtful reflection representing the perimenopause journey"
 ---
 

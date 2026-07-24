@@ -3,7 +3,7 @@ title: "Can Abdominal Pain Be a Sign of Perimenopause?"
 description: "Cramps outside your period, bloating that will not shift, lower abdominal aching with no obvious cause — perimenopause affects the gut, the uterus, and the pelvic floor in ways that all show up as abdominal symptoms."
 pubDate: 2026-06-20
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1525904097878-94fb15835963?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1525904097878-94fb15835963?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing abdominal pain and bloating during perimenopause"
 tags: ["symptoms", "abdominal pain", "bloating", "gut", "cramps"]
 category: "Symptoms"

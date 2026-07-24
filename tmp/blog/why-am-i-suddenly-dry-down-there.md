@@ -3,7 +3,7 @@ title: "Why Am I Suddenly Dry Down There?"
 description: "If vaginal dryness has appeared seemingly out of nowhere — along with less discharge or discomfort you never used to have — it is unsettling. Here is what causes sudden dryness, why perimenopause is so often behind it, and what to do."
 pubDate: 2026-06-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman wondering why she has suddenly become dry during perimenopause"
 tags: ["symptoms", "vaginal dryness", "GSM", "perimenopause basics"]
 category: "Symptoms"

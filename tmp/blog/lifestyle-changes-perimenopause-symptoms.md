@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["lifestyle", "diet", "exercise", "sleep", "stress", "perimenopause"]
 readTime: "9 min read"
 featured: true
-image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman doing yoga outdoors in the morning light, representing wellness during midlife"
 ---
 

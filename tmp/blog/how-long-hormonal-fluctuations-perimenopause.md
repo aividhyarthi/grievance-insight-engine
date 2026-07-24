@@ -4,7 +4,7 @@ description: "The erratic hormonal swings of perimenopause don't last forever â€
 pubDate: 2026-06-04
 author: "Journal Desk"
 tags: ["understanding", "perimenopause", "hormones", "timeline", "oestrogen"]
-image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman looking out of a window in thought, representing the passage of time through perimenopause"
 ---
 

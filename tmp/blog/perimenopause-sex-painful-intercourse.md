@@ -4,7 +4,7 @@ description: "Pain during sex, vanished desire, and a body that feels unfamiliar
 pubDate: 2026-06-03
 author: "Journal Desk"
 tags: ["symptoms", "perimenopause", "intimacy", "GSM", "relationships"]
-image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman sitting quietly by a window, representing the private and often unspoken experience of sexual changes during perimenopause"
 ---
 

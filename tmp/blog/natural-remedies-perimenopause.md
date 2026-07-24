@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["natural remedies", "lifestyle", "supplements", "perimenopause"]
 readTime: "8 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman preparing food in a bright kitchen, surrounded by whole foods and spices"
 ---
 

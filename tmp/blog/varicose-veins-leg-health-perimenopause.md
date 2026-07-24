@@ -3,7 +3,7 @@ title: "Varicose Veins and Leg Health in Perimenopause"
 description: "New or worsening varicose veins, heavy or aching legs, and visible spider veins are more common in perimenopause. Here is why falling oestrogen affects your veins, and what genuinely helps."
 pubDate: 2026-07-11
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman caring for her leg health during perimenopause"
 tags: ["symptoms", "varicose veins", "leg health", "hormones", "circulation"]
 category: "Body & Pain"

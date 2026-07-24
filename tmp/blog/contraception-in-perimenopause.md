@@ -3,7 +3,7 @@ title: "Contraception in Perimenopause: Which Method Makes Sense Now"
 description: "You can still get pregnant in perimenopause, and your contraception needs may change too. Here is how to think about birth control during this stage, and when it is finally safe to stop."
 pubDate: 2026-07-10
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman discussing contraception options during perimenopause"
 tags: ["understanding", "contraception", "fertility", "perimenopause basics"]
 category: "Understanding"

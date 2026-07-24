@@ -3,7 +3,7 @@ title: "Why Do You Urinate More During Perimenopause?"
 description: "Needing the toilet more often, sudden urgency, waking at night to go, the occasional leak — these are common and rarely talked about. There is a clear hormonal reason, and there is a lot that helps."
 pubDate: 2026-06-27
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1584516150909-c43483ee7932?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1584516150909-c43483ee7932?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman learning why urinary frequency increases during perimenopause"
 tags: ["symptoms", "urinary symptoms", "GSM", "bladder", "pelvic floor"]
 category: "Symptoms"

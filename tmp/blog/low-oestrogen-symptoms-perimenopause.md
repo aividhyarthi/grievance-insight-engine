@@ -3,7 +3,7 @@ title: "Low Oestrogen Symptoms: What Your Body Is Trying to Tell You"
 description: "Oestrogen touches almost every system in the body, so when it falls in perimenopause the signs show up in unexpected places — from your sleep and mood to your joints, skin, and bladder. Here is the full picture of what low oestrogen actually feels like."
 pubDate: 2026-06-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman recognising the wide-ranging symptoms of low oestrogen during perimenopause"
 tags: ["symptoms", "oestrogen", "hormones", "perimenopause basics"]
 category: "Symptoms"

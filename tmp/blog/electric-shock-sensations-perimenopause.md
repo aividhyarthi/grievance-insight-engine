@@ -3,7 +3,7 @@ title: "Electric Shock Sensations in Perimenopause: What Those Sudden Zaps Mean"
 description: "A brief, startling 'zap' in your head or limbs, often just before a hot flash, is a recognised perimenopause sensation. Here is what causes these electric shock feelings, and when a zap is worth checking with a doctor."
 pubDate: 2026-07-01
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing sudden electric shock sensations during perimenopause"
 tags: ["symptoms", "electric shock sensations", "nervous system", "hot flashes"]
 category: "Symptoms"

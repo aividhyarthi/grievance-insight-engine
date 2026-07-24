@@ -6,7 +6,7 @@ author: "Journal Desk"
 tags: ["resources", "information", "menopause", "India"]
 readTime: "6 min read"
 featured: false
-image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman reading health information on her phone while sitting at a desk, looking focused"
 ---
 

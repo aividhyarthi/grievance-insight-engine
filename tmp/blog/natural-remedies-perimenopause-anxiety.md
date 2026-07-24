@@ -3,7 +3,7 @@ title: "Natural Remedies for Perimenopause Anxiety — Understanding the Biology
 description: "Anxiety in perimenopause has a direct hormonal cause. Several natural approaches can reduce its frequency and intensity — here is what works and the mechanism behind it."
 pubDate: 2026-05-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman breathing deeply with eyes closed, representing the calm sought during perimenopausal anxiety"
 tags: ["natural remedies", "anxiety", "mental health", "hormones", "lifestyle", "symptoms", "India"]
 readTime: "9 min read"

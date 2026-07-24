@@ -3,7 +3,7 @@ title: "Sugar Cravings in Perimenopause: Why They Hit and How to Tame Them"
 description: "Sudden, intense cravings for sweets, chocolate, or carbs in perimenopause are not a lack of willpower. Here is the hormonal reason behind them and practical ways to steady them without a battle of self-control."
 pubDate: 2026-07-08
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1499195333224-3ce974eecb47?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1499195333224-3ce974eecb47?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman managing sugar cravings during perimenopause"
 tags: ["natural remedies", "diet", "blood sugar", "hormones"]
 category: "Natural Remedies"

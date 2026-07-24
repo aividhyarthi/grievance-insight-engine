@@ -3,7 +3,7 @@ title: "Dry, Itchy, Gritty Eyes in Perimenopause: The Hormonal Link"
 description: "Eyes that feel dry, gritty, tired, or irritated — as though there is sand in them — are a surprisingly common perimenopause symptom that almost no one connects to hormones. Here is why it happens and what helps."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman with dry, tired eyes linked to perimenopause"
 tags: ["symptoms", "dry eyes", "hormones", "GSM"]
 category: "Symptoms"

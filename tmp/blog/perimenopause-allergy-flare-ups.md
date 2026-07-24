@@ -3,7 +3,7 @@ title: "Can Perimenopause Cause Allergy Flare-Ups?"
 description: "Suddenly sneezing more, reacting to things you never did before, skin breaking out — your immune system is connected to your hormones. Here's what's happening."
 pubDate: 2026-06-18
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman with allergy symptoms during perimenopause"
 tags: ["symptoms", "allergy", "immune system", "histamine"]
 category: "Symptoms"

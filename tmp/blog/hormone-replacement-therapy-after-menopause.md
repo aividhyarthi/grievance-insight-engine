@@ -4,7 +4,7 @@ description: "An evidence-based overview of what hormone replacement therapy (al
 pubDate: 2026-05-31
 author: "Journal Desk"
 tags: ["understanding", "menopause", "hormones", "HRT", "treatment"]
-image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=630&fit=crop&q=80"
+image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A calm, confident woman in her 50s representing post-menopausal health and informed decision-making"
 ---
 

@@ -3,7 +3,7 @@ title: "Why Do I Suddenly Smell Different? Body Odour Changes in Perimenopause"
 description: "A new or stronger body odour, even with the same hygiene routine, is a real and rarely discussed perimenopause change. Here is the hormonal reason your scent shifts, and what genuinely helps."
 pubDate: 2026-07-07
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing changes in body odour during perimenopause"
 tags: ["symptoms", "body odour", "sweating", "hormones"]
 category: "Symptoms"

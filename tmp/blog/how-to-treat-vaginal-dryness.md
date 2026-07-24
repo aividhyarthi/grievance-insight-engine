@@ -3,7 +3,7 @@ title: "How to Treat Vaginal Dryness: What Actually Works"
 description: "Vaginal dryness is one of the most treatable symptoms of perimenopause and menopause — yet most women endure it in silence. Here is a clear, honest guide to what actually works, from moisturisers to local oestrogen."
 pubDate: 2026-06-29
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman learning practical treatments for vaginal dryness in perimenopause"
 tags: ["symptoms", "vaginal dryness", "GSM", "sexual health", "treatment"]
 category: "Symptoms"

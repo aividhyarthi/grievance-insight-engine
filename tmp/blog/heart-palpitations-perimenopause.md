@@ -3,7 +3,7 @@ title: "Heart Palpitations in Perimenopause: Why Your Heart Races and When to Wo
 description: "A pounding, fluttering, or racing heart is a common and frightening perimenopause symptom. Here is the hormonal reason behind palpitations, what helps — and the warning signs that mean you should see a doctor."
 pubDate: 2026-07-05
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman feeling heart palpitations during perimenopause"
 tags: ["symptoms", "heart palpitations", "hormones", "anxiety"]
 category: "Symptoms"

@@ -3,7 +3,7 @@ title: "Vaginal Odour Changes in Perimenopause: Why It Happens"
 description: "A change in vaginal odour, even with unchanged hygiene, can be a genuine part of the hormonal shift of perimenopause. Here is why it happens, how to tell it apart from infection, and what helps."
 pubDate: 2026-07-09
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman understanding vaginal odour changes during perimenopause"
 tags: ["symptoms", "vaginal odour", "GSM", "vaginal dryness", "sexual health"]
 category: "Sexual & Intimate Health"

@@ -3,7 +3,7 @@ title: "Self-Care Without Guilt: Rest in Perimenopause for Indian Women"
 description: "For many Indian women, resting feels like something you earn only after everyone else's needs are met. Perimenopause asks for more rest, not less. Here is why that guilt exists, and how to give yourself permission anyway."
 pubDate: 2026-07-09
 author: "Journal Desk"
-image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&q=80"
+image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman finally taking a moment of rest during perimenopause"
 tags: ["life", "self-care", "community", "mental health"]
 category: "Life with Perimenopause"
