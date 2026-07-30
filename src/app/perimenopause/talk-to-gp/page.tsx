@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Talk to Your GP",
   description:
-    "How to have a productive conversation with your GP about perimenopause — what to say, what to ask, and how to find a menopause-trained doctor in Australia.",
+    "How to have a productive conversation with your GP about perimenopause — what to say, what to ask, and how to find a menopause-trained doctor.",
 };
 
 const openers = [
@@ -54,7 +54,7 @@ const resources = [
   {
     icon: "🏥",
     name: "RANZCOG",
-    note: "ranzcog.edu.au — The Royal Australian and New Zealand College of Obstetricians and Gynaecologists, for finding a specialist.",
+    note: "ams.asn.au (Australasian Menopause Society) and menopause.org (The Menopause Society, US) — both have specialist finder tools for women seeking menopause-trained gynaecologists.",
   },
   {
     icon: "📞",
@@ -106,7 +106,7 @@ export default function TalkToGPPage() {
               <h2 className="font-display text-2xl font-bold text-foreground">Before your appointment</h2>
             </div>
             <p className="text-foreground/60 leading-relaxed mb-6">
-              GPs in Australia have limited appointment time — often 10–15 minutes. Arriving prepared means you use that time well.
+              GPs typically have limited appointment time — often 10–15 minutes. Arriving prepared means you use that time well.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
@@ -206,9 +206,9 @@ export default function TalkToGPPage() {
             </div>
           </div>
 
-          {/* Australian resources */}
+          {/* Trusted resources */}
           <div>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Trusted Australian resources</h2>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-6">Trusted resources</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {resources.map((r) => (
                 <div key={r.name} className="bg-white rounded-2xl border border-champagne/80 p-5 card-lift">

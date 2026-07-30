@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "HerMidlife — doctor-led midlife care for Australian women";
+export const alt = "HerMidlife — doctor-led midlife care for women everywhere";
 export const size = {
   width: 1200,
   height: 630,
@@ -102,7 +102,7 @@ export default function Image() {
               display: "flex",
             }}
           >
-            For Australian women 35+
+            For women 35+ worldwide
           </div>
           <div
             style={{

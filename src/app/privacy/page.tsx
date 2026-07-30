@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Privacy Policy — HerMidlife",
   description:
-    "How HerMidlife collects, uses, stores, and protects personal information — aligned with the Australian Privacy Principles (APPs) under the Privacy Act 1988 (Cth).",
+    "How HerMidlife collects, uses, stores, and protects personal information — and how we keep your data safe.",
 };
 
 const lastUpdated = "15 April 2026";
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           <p className="mt-6 text-lg text-foreground/60 max-w-2xl leading-relaxed">
             HerMidlife is committed to protecting your privacy. This policy explains how
             we collect, use, store, and disclose your personal information — aligned
-            with the Australian Privacy Principles (APPs) under the Privacy Act 1988 (Cth).
+            with applicable privacy laws and data protection regulations.
           </p>
           <p className="mt-4 text-sm text-foreground/40">
             Last updated: {lastUpdated}
@@ -43,8 +43,8 @@ export default function PrivacyPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl p-5 bg-gold-light/40 border border-gold/30 text-sm text-foreground/70 leading-relaxed mb-12">
             <strong className="text-foreground">Draft — pending legal review.</strong>{" "}
-            This policy is provided in good faith and follows Australian Privacy
-            Principles, but should be reviewed by qualified Australian legal counsel
+            This policy is provided in good faith and follows international privacy
+            Principles, but should be reviewed by qualified legal counsel
             before being relied upon as a final legal instrument.
           </div>
 
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
               </h2>
               <p className="text-foreground/75 leading-relaxed">
                 HerMidlife (&quot;HerMidlife&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is
-                a digital women&apos;s health platform based in Melbourne, Australia. We
+                a digital women&apos;s health platform. We
                 provide education, clinical consultations, and continuous support to
                 women navigating perimenopause, menopause, and midlife health. This
                 Privacy Policy applies to all information we collect through{" "}
@@ -84,7 +84,7 @@ export default function PrivacyPage() {
                   <strong>Health information:</strong> where relevant to a clinical
                   consultation, information you voluntarily share about your symptoms,
                   medical history, medications, and lifestyle. This is considered
-                  &quot;sensitive information&quot; under Australian law and is handled
+                  &quot;sensitive information&quot; under applicable law and is handled
                   with additional protection.
                 </li>
                 <li>
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
                 process.
               </p>
               <p className="text-foreground/75 leading-relaxed">
-                Some of our service providers may be located outside Australia. Where
+                Some of our service providers may be located in various countries. Where
                 this occurs, we take reasonable steps to ensure those providers handle
                 your information in accordance with the APPs or equivalent standards.
               </p>
@@ -185,7 +185,7 @@ export default function PrivacyPage() {
                 8. Your rights
               </h2>
               <p className="text-foreground/75 leading-relaxed mb-4">
-                Under Australian privacy law, you have the right to:
+                Under applicable privacy law, you have the right to:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-foreground/75">
                 <li>Request access to the personal information we hold about you</li>
@@ -243,7 +243,7 @@ export default function PrivacyPage() {
                   listen@hermidlife.org
                 </a>
                 . If you are not satisfied with our response, you may lodge a complaint
-                with the Office of the Australian Information Commissioner (OAIC) at{" "}
+                with the relevant data protection authority in your country at{" "}
                 <a
                   href="https://www.oaic.gov.au"
                   target="_blank"

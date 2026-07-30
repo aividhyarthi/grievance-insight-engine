@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Topic Guides",
   description:
-    "Six in-depth guides covering hormones, periods, mental health, sleep, lifestyle, and navigating Australian healthcare during perimenopause.",
+    "Six in-depth guides covering hormones, periods, mental health, sleep, lifestyle, and navigating healthcare during perimenopause.",
 };
 
 const guides = [
@@ -102,19 +102,19 @@ const guides = [
   {
     num: "06",
     icon: "🩺",
-    title: "Navigating Healthcare in Australia",
-    desc: "How to work with your GP, what to ask about, and what treatment options exist in the Australian context.",
+    title: "Navigating Healthcare & Your Options",
+    desc: "How to work with your GP, what to ask about, and what treatment options exist and how to advocate for yourself.",
     topics: [
       "How to raise perimenopause with your GP",
       "Menopausal Hormone Therapy (MHT) — the current evidence",
       "Non-hormonal treatment options",
       "The menopause management Medicare item",
-      "Finding a menopause specialist in Australia",
+      "Finding a menopause specialist near you",
     ],
     body: [
       "Many GPs are knowledgeable about perimenopause — but many women still report being dismissed or undertreated. Being informed and specific about your symptoms makes a significant difference. Come prepared with a written list.",
-      "MHT (Menopausal Hormone Therapy — the current Australian term for HRT) has undergone a major rehabilitation in the evidence base since the 2002 WHI study. For most healthy women under 60 and within 10 years of menopause, current evidence suggests benefits outweigh risks. Your GP can advise based on your individual health profile.",
-      "Under Medicare, GPs can claim a specific item number for perimenopause and menopause management consultations. It is worth asking whether this applies to your appointment. The Australasian Menopause Society (ams.asn.au) also has a Find a Doctor tool for locating GPs with specific menopause training.",
+      "MHT (Menopausal Hormone Therapy — also known as HRT) has undergone a major rehabilitation in the evidence base since the 2002 WHI study. For most healthy women under 60 and within 10 years of menopause, current evidence suggests benefits outweigh risks. Your GP can advise based on your individual health profile.",
+      "The Menopause Society (menopause.org) and Australasian Menopause Society (ams.asn.au) both have Find a Doctor tools for locating clinicians with specific menopause training.",
     ],
   },
 ];

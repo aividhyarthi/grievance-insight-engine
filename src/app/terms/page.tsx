@@ -42,7 +42,7 @@ export default function TermsPage() {
           <div className="rounded-2xl p-5 bg-gold-light/40 border border-gold/30 text-sm text-foreground/70 leading-relaxed mb-12">
             <strong className="text-foreground">Draft — pending legal review.</strong>{" "}
             These terms are provided in good faith as a starting framework and should
-            be reviewed by qualified Australian legal counsel before being relied upon
+            be reviewed by qualified legal counsel before being relied upon
             as a final legal instrument.
           </div>
 
@@ -76,7 +76,7 @@ export default function TermsPage() {
               <p className="text-foreground/75 leading-relaxed">
                 HerMidlife is a digital women&apos;s health platform providing
                 education, clinical consultations, and continuous support to women
-                navigating perimenopause, menopause, and midlife health in Australia.
+                navigating perimenopause, menopause, and midlife health.
                 We connect you with qualified clinicians and provide educational
                 resources informed by current medical evidence.
               </p>
@@ -143,7 +143,7 @@ export default function TermsPage() {
               <p className="text-foreground/75 leading-relaxed">
                 All content on the HerMidlife website — including text, graphics,
                 logos, images, audio, video, and software — is owned by HerMidlife or
-                its licensors and is protected by Australian and international
+                its licensors and is protected by international
                 copyright, trademark, and other intellectual property laws. You may
                 access and use this content for personal, non-commercial purposes
                 only. Any other use requires our prior written consent.
@@ -185,7 +185,7 @@ export default function TermsPage() {
                 9. Limitation of liability
               </h2>
               <p className="text-foreground/75 leading-relaxed mb-4">
-                To the maximum extent permitted by Australian Consumer Law, HerMidlife
+                To the maximum extent permitted by applicable law, HerMidlife
                 and its founders, employees, contractors, and affiliates shall not be
                 liable for any indirect, incidental, special, consequential, or
                 punitive damages arising out of or in connection with your use of our
@@ -194,7 +194,7 @@ export default function TermsPage() {
               <p className="text-foreground/75 leading-relaxed">
                 Nothing in these terms excludes, restricts, or modifies any
                 consumer guarantee, right, or remedy conferred on you by the
-                Australian Consumer Law that cannot lawfully be excluded, restricted,
+                applicable consumer law that cannot lawfully be excluded, restricted,
                 or modified.
               </p>
             </section>
@@ -241,7 +241,7 @@ export default function TermsPage() {
                 13. Governing law
               </h2>
               <p className="text-foreground/75 leading-relaxed">
-                These Terms of Service are governed by the laws of Victoria, Australia.
+                These Terms of Service are governed by applicable law.
                 Any disputes arising out of or in connection with these terms will be
                 subject to the exclusive jurisdiction of the courts of Victoria.
               </p>

@@ -50,8 +50,7 @@ const patientFaqs: FaqItem[] = [
     q: "Are your consultations Medicare-rebatable?",
     a: (
       <>
-        Where clinically appropriate, our consultations with Australian-
-        registered GPs attract Medicare rebates. We&apos;ll confirm
+        Where clinically appropriate, our telehealth consultations attract rebates where applicable in your country. We&apos;ll confirm
         eligibility and out-of-pocket costs clearly before you book, so there
         are no surprises.
       </>
@@ -104,13 +103,10 @@ const patientFaqs: FaqItem[] = [
     ),
   },
   {
-    q: "Is HerMidlife available across Australia?",
+    q: "Is HerMidlife available globally?",
     a: (
       <>
-        Yes. We deliver care via secure telehealth to women across Australia,
-        with our team based in Melbourne. In-person events and community
-        gatherings are currently running in Victoria, with more locations to
-        follow.
+        Yes. We deliver care via secure telehealth to women worldwide. In-person events and community gatherings are being launched in key locations globally — with more to follow.
       </>
     ),
   },
@@ -119,9 +115,7 @@ const patientFaqs: FaqItem[] = [
     a: (
       <>
         Absolutely. We handle your personal and health information in line
-        with the Australian Privacy Principles under the Privacy Act 1988
-        (Cth). Health information is treated as sensitive information and
-        access is restricted to your clinicians and authorised staff. See our{" "}
+        with applicable privacy laws and data protection regulations. Health information is treated as sensitive information and access is restricted to your clinicians and authorised staff. See our{" "}
         <a href="/privacy" className="text-plum underline font-semibold">
           Privacy Policy
         </a>{" "}
@@ -136,9 +130,9 @@ const partnerFaqs: FaqItem[] = [
     q: "What stage is HerMidlife at?",
     a: (
       <>
-        HerMidlife is a pre-launch Australian women&apos;s health platform,
-        launching <strong>30 May 2026</strong> in Melbourne with our first
-        free community event in Point Cook. We are actively speaking with
+        HerMidlife is a pre-launch women&apos;s health platform.
+        We are actively building toward our first public launch.
+        We are actively speaking with
         aligned investors, clinical partners, and employers.
       </>
     ),
@@ -174,7 +168,7 @@ const partnerFaqs: FaqItem[] = [
         Three layers: (1) a clinically-credentialed founding team with deep
         GP and women&apos;s health expertise, (2) an integrated B2C + B2B
         model that most international entrants can&apos;t replicate in
-        Australia without local clinical partnerships, and (3) a community
+        without deep clinical partnerships, and (3) a community
         and trust flywheel built from the ground up in-market.
       </>
     ),

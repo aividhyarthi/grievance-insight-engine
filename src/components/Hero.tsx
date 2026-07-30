@@ -16,7 +16,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/60 backdrop-blur-sm border border-champagne mb-10">
               <span className="w-2 h-2 rounded-full bg-sage animate-pulse" />
               <span className="text-sm font-medium text-foreground/60">
-                Doctor-Led Care for Australian Women
+                Doctor-Led Care for Women, Worldwide
               </span>
             </div>
 

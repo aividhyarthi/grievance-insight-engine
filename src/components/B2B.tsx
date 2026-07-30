@@ -41,7 +41,7 @@ export default function B2B() {
               <span className="text-gradient-sage">in your workplace</span>
             </h2>
             <p className="mt-4 text-base font-semibold text-sage-dark italic">
-              Australia is finally investing in Women&apos;s Health.
+              The world is finally investing in Women&apos;s Health.
             </p>
             <p className="mt-4 text-lg text-foreground/60 leading-relaxed">
               Partner with HerMidlife to provide world-class midlife health support
@@ -94,7 +94,7 @@ export default function B2B() {
             </div>
             <div className="mt-8 text-center">
               <a
-                href="mailto:rudra@appstudiox.com"
+                href="mailto:listen@hermidlife.org"
                 className="inline-flex items-center px-8 py-3 rounded-full text-sm font-semibold text-white gradient-cta-sage hover:opacity-90 transition-opacity shadow-md"
               >
                 Partner With Us
@@ -104,16 +104,6 @@ export default function B2B() {
               </a>
             </div>
           </div>
-        </div>
-
-        <div className="animate-on-scroll mt-10 max-w-2xl mx-auto text-center">
-          <p className="text-sm text-foreground/40 italic leading-relaxed">
-            &ldquo;The Australian Government expects employers to provide appropriate support to
-            employees experiencing symptoms of perimenopause and menopause.&rdquo;
-          </p>
-          <p className="mt-2 text-xs text-foreground/30 font-medium">
-            — APS Circular 2025/02, Australian Public Service Commission
-          </p>
         </div>
       </div>
     </section>

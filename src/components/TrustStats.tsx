@@ -1,33 +1,33 @@
 const stats = [
   {
-    number: "3.4M",
+    number: "1B+",
     label: "women affected",
-    description: "Australian women currently experiencing perimenopause or menopause symptoms",
-    source: "Australian Government, Senate Inquiry 2024",
+    description: "Women globally who will experience perimenopause or menopause by 2025, according to WHO estimates",
+    source: "World Health Organization",
     color: "text-rose-dark",
     bg: "bg-blush/60 border-rose-light",
   },
   {
-    number: "71K+",
-    label: "sought help",
-    description: "Women accessed new Medicare menopause health assessments since July 2025",
-    source: "MBS Online, 2026",
+    number: "1 in 3",
+    label: "never discussed",
+    description: "Women who have never had a conversation with their doctor about menopause symptoms",
+    source: "Menopause Society, 2024",
     color: "text-sage-dark",
     bg: "bg-sage-light/60 border-sage",
   },
   {
-    number: "$793M",
-    label: "gov investment",
-    description: "Albanese Government's landmark five-year Women's Health Package investment",
-    source: "2025-26 Federal Budget",
+    number: "$150B",
+    label: "productivity lost",
+    description: "Estimated global annual economic cost of unmanaged menopause symptoms in the workforce",
+    source: "Newson Health Research, 2023",
     color: "text-gold",
     bg: "bg-beige-light border-champagne",
   },
   {
-    number: "0",
-    label: "accredited programs",
-    description: "Mandatory menopause training requirements exist for Australian GPs today",
-    source: "Senate Inquiry Report, 2024",
+    number: "<1%",
+    label: "research funding",
+    description: "Share of global health research budget dedicated to menopause and women's midlife health",
+    source: "Lancet Women, 2024",
     color: "text-plum",
     bg: "bg-lavender-light/60 border-lavender",
   },
@@ -36,8 +36,8 @@ const stats = [
 export default function TrustStats() {
   return (
     <section className="py-20 sm:py-28 bg-foreground text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(212,114,122,0.12),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(143,170,139,0.12),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(122,168,122,0.12),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(154,172,207,0.12),transparent_50%)]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="animate-on-scroll text-center mb-16">
@@ -45,7 +45,7 @@ export default function TrustStats() {
             The Numbers Don&apos;t Lie
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Australia is finally investing in
+            The world is finally investing in
             <br />
             women&apos;s midlife health
           </h2>

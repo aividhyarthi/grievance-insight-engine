@@ -148,7 +148,7 @@ export default function PerimenopausePage() {
               often come back &quot;normal&quot; even when you feel anything but.
             </p>
             <p className="text-lg text-foreground/70 leading-relaxed">
-              The average age of menopause in Australia is <strong className="text-foreground">51</strong>, but
+              The average age of menopause is <strong className="text-foreground">51</strong>, but
               perimenopause can begin <strong className="text-foreground">10–15 years earlier</strong>.
               That means women in their late 30s and early 40s are often deep
               in hormonal transition — without knowing it.
@@ -205,21 +205,20 @@ export default function PerimenopausePage() {
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="animate-on-scroll rounded-3xl p-8 sm:p-10 gradient-card border border-rose-light/50 card-lift">
               <p className="text-xs font-bold uppercase tracking-widest text-rose mb-3">
-                Free Event · 30 May
+                Your Questions Answered
               </p>
               <h3 className="font-display text-2xl font-bold text-foreground mb-3">
-                Why your body feels different after 35
+                Start with our perimenopause FAQ
               </h3>
               <p className="text-foreground/60 leading-relaxed mb-6">
-                Join us at Point Cook for a free community event on perimenopause,
-                hormonal health, and midlife. Expert doctors, real conversation,
-                complimentary lunch.
+                Straight answers to the most common questions about perimenopause,
+                hormonal health, and what to expect during midlife.
               </p>
               <a
-                href="/events/perimenopause-point-cook"
+                href="/perimenopause/faq"
                 className="inline-flex items-center gap-2 text-rose-dark font-semibold hover:text-plum transition-colors"
               >
-                Learn more & register
+                Read the FAQ
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -235,7 +234,7 @@ export default function PerimenopausePage() {
               </h3>
               <p className="text-foreground/60 leading-relaxed mb-6">
                 Book a consultation with a midlife-trained GP who will actually listen.
-                Telehealth across Australia — no referral needed.
+                Telehealth, anywhere — no referral needed.
               </p>
               <a
                 href="/contact"

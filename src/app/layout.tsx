@@ -7,7 +7,7 @@ const siteUrl = "https://www.hermidlife.org";
 const siteTitle =
   "HerMidlife — Finally, a place where women are heard and not judged";
 const siteDescription =
-  "Doctor-led, personalised care for perimenopause, menopause and beyond. The first fully integrated platform for midlife care — combining medical expertise, emotional understanding, and continuous support. Built for Australian women.";
+  "Doctor-led, personalised care for perimenopause, menopause and beyond. A fully integrated platform for midlife care — combining medical expertise, emotional understanding, and continuous support. Built for every woman, everywhere.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -22,7 +22,6 @@ export const metadata: Metadata = {
     "midlife health",
     "women's health",
     "telehealth",
-    "Australia",
     "menopause care",
     "HRT",
     "hormone therapy",
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_AU",
+    locale: "en_US",
     url: siteUrl,
     siteName: "HerMidlife",
     title: siteTitle,

@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Careers — Join the HerMidlife Clinical Team",
   description:
-    "We're hiring part-time GPs, psychologists, dietitians, sex therapists, nutritionists, gynaecologists, and endocrinologists to join Australia's first integrated midlife women's care platform.",
+    "We're hiring part-time GPs, psychologists, dietitians, sex therapists, nutritionists, gynaecologists, and endocrinologists to join HerMidlife's integrated midlife women's care platform.",
 };
 
 type Role = {
@@ -29,7 +29,7 @@ const roles: Role[] = [
     iconPath:
       "M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z",
     description:
-      "Telehealth consultations with Australian women navigating perimenopause, menopause, and midlife hormonal health. You'll be part of a multidisciplinary team with clear protocols and genuine clinical support.",
+      "Telehealth consultations with women navigating perimenopause, menopause, and midlife hormonal health. You'll be part of a multidisciplinary team with clear protocols and genuine clinical support.",
     requirements: [
       "FRACGP or equivalent (GP) / APHRA-registered Nurse Practitioner",
       "Interest or experience in women's health or menopause management",
@@ -68,7 +68,7 @@ const roles: Role[] = [
       "Accredited Practising Dietitian (APD)",
       "Knowledge of nutrition in hormonal and metabolic health",
       "Experience with telehealth or digital health delivery",
-      "Cultural sensitivity working with diverse Australian communities",
+      "Cultural sensitivity working with diverse, multicultural communities",
     ],
     ideal: "APDs with a background in women's health, menopause nutrition, or metabolic conditions.",
   },
@@ -116,7 +116,7 @@ const roles: Role[] = [
     description:
       "Provide specialist gynaecological oversight and complex case support within the HerMidlife clinical network — including HRT management, genitourinary conditions, PCOS, and post-menopausal health.",
     requirements: [
-      "FRANZCOG or equivalent specialist registration in Australia",
+      "FRANZCOG or equivalent specialist medical registration",
       "Experience in menopausal management and women's reproductive health",
       "Available for telehealth consultations and complex case review",
       "Collaborative approach to multidisciplinary care",
@@ -165,7 +165,7 @@ export default function CareersPage() {
             <span className="text-gradient">women deserve better</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
-            We&apos;re building Australia&apos;s first fully integrated midlife care platform —
+            We&apos;re building the world&apos;s most compassionate midlife care platform —
             and we need passionate clinicians ready to do medicine differently.
             Flexible, part-time, telehealth-first roles that fit around your life.
           </p>
@@ -184,7 +184,7 @@ export default function CareersPage() {
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-champagne">
               <span className="w-2 h-2 rounded-full bg-plum animate-pulse" />
-              Australia-wide
+              Global reach
             </div>
           </div>
         </div>

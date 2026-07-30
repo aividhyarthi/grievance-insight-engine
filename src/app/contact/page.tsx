@@ -148,8 +148,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">Based in</p>
-                    <p className="font-display text-lg font-bold text-foreground">Melbourne, Australia</p>
-                    <p className="text-sm text-foreground/50">Serving women across Australia</p>
+                    <p className="font-display text-lg font-bold text-foreground">Global Platform</p>
+                    <p className="text-sm text-foreground/50">Serving women everywhere</p>
                   </div>
                 </div>
 
@@ -162,7 +162,7 @@ export default function ContactPage() {
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">Response time</p>
                     <p className="font-display text-lg font-bold text-foreground">Within 2 business days</p>
-                    <p className="text-sm text-foreground/50">Mon–Fri, Melbourne time</p>
+                    <p className="text-sm text-foreground/50">Mon–Fri, AEST</p>
                   </div>
                 </div>
               </div>

@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: "Is HRT (hormone replacement therapy) safe?",
-    a: "For most healthy women under 60 and within 10 years of their last period, current evidence suggests that MHT (Menopausal Hormone Therapy — the Australian term) has benefits that outweigh risks. The major concerns raised by the 2002 WHI study have been substantially revised. The type, dose, and form of MHT matters — body-identical hormones and transdermal oestrogen carry a different risk profile than older oral formulations. Your GP can advise based on your individual health history.",
+    a: "For most healthy women under 60 and within 10 years of their last period, current evidence suggests that MHT (Menopausal Hormone Therapy — also known as HRT) has benefits that outweigh risks. The major concerns raised by the 2002 WHI study have been substantially revised. The type, dose, and form of MHT matters — body-identical hormones and transdermal oestrogen carry a different risk profile than older oral formulations. Your GP can advise based on your individual health history.",
   },
   {
     q: "Are my hot flushes actually dangerous?",
@@ -43,7 +43,7 @@ const faqs = [
   },
   {
     q: "My doctor doesn't seem to take my symptoms seriously. What should I do?",
-    a: "Unfortunately, this is a common experience. Some practical approaches: come to your appointment with a written list of symptoms and how they affect your daily life; ask specifically whether perimenopause could be contributing; request a longer appointment so there is time to discuss properly; and ask for a referral to a gynaecologist or menopause specialist if your concerns are not being addressed. The Australasian Menopause Society (ams.asn.au) has a directory of doctors with specific menopause training.",
+    a: "Unfortunately, this is a common experience. Some practical approaches: come to your appointment with a written list of symptoms and how they affect your daily life; ask specifically whether perimenopause could be contributing; request a longer appointment so there is time to discuss properly; and ask for a referral to a gynaecologist or menopause specialist if your concerns are not being addressed. The Menopause Society (menopause.org) and Australasian Menopause Society (ams.asn.au) both have directories of doctors with specific menopause training.",
   },
   {
     q: "What's the difference between perimenopause and thyroid problems?",
@@ -79,7 +79,7 @@ export default function FAQPage() {
           </h1>
           <p className="mt-5 text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed">
             Straightforward answers to the questions women ask most about
-            perimenopause, hormones, and healthcare in Australia.
+            perimenopause, hormones, and healthcare.
           </p>
         </div>
       </section>

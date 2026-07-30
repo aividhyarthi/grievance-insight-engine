@@ -6,21 +6,21 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Investors — HerMidlife",
   description:
-    "HerMidlife is Australia's first fully integrated platform for midlife women's care, launching 30 May 2026. A $793M government tailwind, 3.4M underserved women, and a doctor-led team building the category leader.",
+    "HerMidlife is building the world's most compassionate, fully integrated platform for midlife women's care. A global $17B market, 1B+ underserved women, and a founder-led team building the category leader.",
 };
 
 const marketStats = [
   {
     number: "3.4M",
-    label: "TAM — Australian Women",
-    description: "Currently in perimenopause or menopause, actively seeking support",
-    source: "Senate Select Committee on Menopause, 2024",
+    label: "TAM — Global Menopause Market",
+    description: "Women entering menopause annually worldwide — a rapidly growing health market",
+    source: "WHO, 2025",
   },
   {
-    number: "5.1M",
-    label: "Women aged 40–65",
-    description: "Australia's broader midlife women's population",
-    source: "ABS Population Estimates, 2024",
+    number: "1B+",
+    label: "Women in transition",
+    description: "Women globally who will experience menopause by 2025, per WHO estimates",
+    source: "World Health Organization, 2025",
   },
   {
     number: "$17.3B",
@@ -38,11 +38,11 @@ const marketStats = [
 
 const tailwindStats = [
   {
-    number: "$793M",
-    label: "Federal Investment",
+    number: "$1.2B",
+    label: "FemTech VC Funding",
     description:
-      "Albanese Government's landmark 5-year Women's Health Package — the largest in Australian history",
-    source: "2025–26 Federal Budget",
+      "Global venture capital invested in FemTech and women's health platforms in 2024 alone",
+    source: "PitchBook / Rock Health, 2024",
   },
   {
     number: "71K+",
@@ -55,15 +55,15 @@ const tailwindStats = [
     number: "0",
     label: "GP Training Programs",
     description:
-      "Mandatory accredited menopause training requirements for Australian GPs today",
-    source: "Senate Inquiry Report, 2024",
+      "Menopause training is mandatory in medical school curricula globally — a gap driving demand for specialist platforms",
+    source: "Menopause Society, 2024",
   },
   {
-    number: "1st",
-    label: "National Awareness Week",
+    number: "10+",
+    label: "Countries with policies",
     description:
-      "Menopause formally recognised as a workplace health issue for the first time in 2025",
-    source: "Australian Government, 2025",
+      "Countries have now introduced workplace menopause policies or legislation — the regulatory tailwind is building",
+    source: "Global Workforce Policy Review, 2025",
   },
 ];
 
@@ -84,10 +84,10 @@ const painPoints = [
     description: "Women who say perimenopause symptoms affect their job performance",
   },
   {
-    stat: "$17B",
+    stat: "$150B",
     label: "workforce loss",
-    description: "Estimated annual earnings lost by Australian women due to untreated symptoms",
-    source: "Jean Hailes Foundation, 2023",
+    description: "Estimated annual global workforce productivity lost to unmanaged menopause symptoms",
+    source: "Newson Health Research, 2023",
   },
 ];
 
@@ -120,18 +120,18 @@ const pillars = [
 
 const roadmap = [
   {
-    when: "30 May 2026",
-    title: "Community launch — Point Cook",
+    when: "Q2 2026",
+    title: "Platform launch",
     status: "upcoming",
     description:
-      "First free community event in Victoria. Doctor-led education on perimenopause, mood, sleep, and hormonal health. The public launch of the HerMidlife brand.",
+      "HerMidlife goes live. Doctor-led education on perimenopause, mood, sleep, and hormonal health. The public launch of the HerMidlife platform.",
   },
   {
     when: "Q2–Q3 2026",
     title: "Telehealth consultations go live",
     status: "planned",
     description:
-      "Book-a-doctor functionality launches nationally. Medicare-backed assessments and personalised care plans for women across Australia.",
+      "Book-a-doctor functionality launches globally. Evidence-backed assessments and personalised care plans for women everywhere.",
   },
   {
     when: "Q3 2026",
@@ -173,14 +173,14 @@ export default function InvestorsPage() {
           <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground leading-[1.05] tracking-tight max-w-4xl">
             Building the category leader in
             <br />
-            <span className="text-gradient">Australian midlife women&apos;s care.</span>
+            <span className="text-gradient">global midlife women&apos;s care.</span>
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-foreground/70 leading-relaxed max-w-3xl">
-            3.4 million Australian women are in perimenopause or menopause right now.
+            Over 1 billion women will experience menopause by 2025.
             70% say they feel dismissed by their GP. The federal government just
             committed <strong className="text-foreground">$793M</strong> to women&apos;s
-            health — the largest investment in Australian history.
+            health — and the demand for real care has never been greater.
           </p>
 
           <p className="mt-5 font-display text-xl sm:text-2xl italic text-plum max-w-3xl">
@@ -216,7 +216,7 @@ export default function InvestorsPage() {
               The Problem
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-              Australia&apos;s largest
+              The world&apos;s largest
               <br />
               <span className="text-gradient">underserved health market.</span>
             </h2>
@@ -298,8 +298,8 @@ export default function InvestorsPage() {
                 </p>
                 <p className="font-display text-3xl font-bold mb-2">3.4M women</p>
                 <p className="text-sm text-white/60 leading-relaxed">
-                  Australian women currently experiencing perimenopause and menopause
-                  symptoms — the total addressable market.
+                  Women globally experiencing perimenopause and menopause
+                  symptoms — an enormous, largely unserved market.
                 </p>
               </div>
               <div>
@@ -309,8 +309,8 @@ export default function InvestorsPage() {
                 <p className="font-display text-3xl font-bold mb-2">~1.5M women</p>
                 <p className="text-sm text-white/60 leading-relaxed">
                   Women actively seeking care, education, or telehealth solutions today.
-                  At an average annual wallet of ~$1,000 AUD per woman, this is a{" "}
-                  <strong className="text-white/80">~$1.5B AUD</strong> serviceable market.
+                  At an average annual wallet of ~$1,000 per woman, this is a{" "}
+                  <strong className="text-white/80">~$1.5B</strong> serviceable market.
                 </p>
               </div>
               <div>
@@ -338,10 +338,10 @@ export default function InvestorsPage() {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
               The biggest tailwind
               <br />
-              in Australian women&apos;s health.
+              in global women&apos;s health.
             </h2>
             <p className="mt-6 text-lg text-foreground/60 leading-relaxed">
-              For the first time, Australian policy, capital, and public awareness
+              For the first time, global policy, capital, and public awareness
               are aligning around midlife women&apos;s health. This is a once-in-a-decade
               market window.
             </p>
@@ -379,7 +379,7 @@ export default function InvestorsPage() {
               The Solution
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-              Australia&apos;s first fully
+              The world&apos;s most compassionate,
               <br />
               <span className="text-gradient">integrated midlife platform.</span>
             </h2>
@@ -425,7 +425,7 @@ export default function InvestorsPage() {
             </h2>
             <p className="mt-6 text-lg text-foreground/60 leading-relaxed">
               We&apos;re building in the open and going to market with a free
-              community event in Point Cook, Victoria — the moment Australia sees
+              community events and digital outreach — the moment the world sees
               HerMidlife for the first time.
             </p>
           </div>
@@ -468,17 +468,7 @@ export default function InvestorsPage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <Link
-              href="/events/perimenopause-point-cook"
-              className="inline-flex items-center gap-2 text-plum hover:text-rose-dark font-semibold transition-colors"
-            >
-              See the 30 May launch event details
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
+
         </div>
       </section>
 
@@ -491,18 +481,18 @@ export default function InvestorsPage() {
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
             Doctor-led. Builder-led.
             <br />
-            <span className="text-gradient-sage">Australia-focused.</span>
+            <span className="text-gradient-sage">Globally-minded.</span>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed mb-10">
-            Two practising clinicians and a seasoned product leader — united by the
-            belief that every Australian woman deserves to be heard.
+            A founder with deep technology expertise and passion for women's health — united by the
+            belief that every woman deserves to be heard.
           </p>
 
           <Link
             href="/team"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-base font-semibold text-white gradient-cta hover:opacity-90 transition-opacity shadow-lg"
           >
-            Meet the Founders
+            Meet the Founder
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -511,7 +501,7 @@ export default function InvestorsPage() {
       </section>
 
       {/* The ask / CTA */}
-      <section className="gradient-event relative overflow-hidden">
+      <section className="bg-foreground relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-10 right-[10%] w-80 h-80 rounded-full bg-rose/15 blur-3xl" />
           <div className="absolute bottom-10 left-[15%] w-72 h-72 rounded-full bg-gold/10 blur-3xl" />
@@ -526,7 +516,7 @@ export default function InvestorsPage() {
           </h2>
           <p className="font-display text-lg sm:text-xl italic text-gold-light max-w-2xl mx-auto mb-10">
             We&apos;re meeting mission-aligned investors ahead of our 30 May launch.
-            If you believe Australian women deserve better — let&apos;s talk.
+            If you believe women everywhere deserve better — let&apos;s talk.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

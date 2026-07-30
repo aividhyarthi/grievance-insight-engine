@@ -54,9 +54,9 @@ const outcomes = [
 
 const stats = [
   { number: "1 in 2", label: "women say menopause symptoms affect their work" },
-  { number: "$17B", label: "annual cost to Australian employers" },
+  { number: "$150B", label: "annual global cost in lost workforce productivity" },
   { number: "25%", label: "of women consider leaving work due to symptoms" },
-  { number: "900K", label: "Australian women aged 45–55 in the workforce" },
+  { number: "47M", label: "women enter menopause globally every year" },
 ];
 
 export default function ForEmployersPage() {
@@ -81,7 +81,7 @@ export default function ForEmployersPage() {
             <span className="text-gradient-sage">in your workplace</span>
           </h1>
           <p className="mt-4 text-base font-semibold text-sage-dark italic">
-            Australia is finally investing in Women&apos;s Health.
+            The world is finally investing in Women&apos;s Health.
           </p>
           <p className="mt-4 text-lg sm:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
             Partner with HerMidlife to provide world-class midlife health
@@ -196,12 +196,11 @@ export default function ForEmployersPage() {
 
           <div className="animate-on-scroll mt-10 text-center">
             <p className="text-sm text-foreground/40 italic leading-relaxed">
-              &ldquo;The Australian Government expects employers to provide
-              appropriate support to employees experiencing symptoms of
-              perimenopause and menopause.&rdquo;
+              &ldquo;Employers who support women through menopause see measurable
+              improvements in retention, engagement, and wellbeing across their entire workforce.&rdquo;
             </p>
             <p className="mt-2 text-xs text-foreground/30 font-medium">
-              — APS Circular 2025/02, Australian Public Service Commission
+              — Menopause in the Workplace, Newson Health Research 2023
             </p>
           </div>
         </div>

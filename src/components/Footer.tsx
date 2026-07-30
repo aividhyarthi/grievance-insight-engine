@@ -8,7 +8,7 @@ export default function Footer() {
               Her<span className="text-rose-light">Midlife</span>
             </span>
             <p className="mt-4 text-sm text-white/40 leading-relaxed max-w-xs">
-              Australia&apos;s first fully integrated platform for personalised midlife care.
+              A fully integrated platform for personalised midlife care.
               Because every woman deserves to be heard.
             </p>
           </div>
@@ -28,7 +28,6 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-white/40">
               <li><a href="/team" className="hover:text-white transition-colors">Our Team</a></li>
               <li><a href="/careers" className="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="/events/perimenopause-point-cook" className="hover:text-white transition-colors">Events</a></li>
               <li><a href="/investors" className="hover:text-white transition-colors">Investors</a></li>
               <li><a href="/faq" className="hover:text-white transition-colors">FAQ</a></li>
               <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
@@ -43,7 +42,6 @@ export default function Footer() {
                   listen@hermidlife.org
                 </a>
               </li>
-              <li>Melbourne, Australia</li>
             </ul>
           </div>
         </div>

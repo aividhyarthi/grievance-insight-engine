@@ -27,7 +27,7 @@ export default function Home() {
                 <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/60 backdrop-blur-sm border border-champagne mb-10">
                   <span className="w-2 h-2 rounded-full bg-sage animate-pulse" />
                   <span className="text-sm font-medium text-foreground/60">
-                    Doctor-Led Care for Australian Women
+                    Doctor-Led Care for Women, Worldwide
                   </span>
                 </div>
 
@@ -269,7 +269,7 @@ export default function Home() {
               ))}
             </div>
             <p className="animate-on-scroll text-center mt-8 text-sm text-white/40">
-              Sources: Australian Government Senate Inquiry 2024, MBS Online 2026, 2025-26 Federal Budget
+              Sources: WHO 2025, Menopause Society 2024, Newson Health Research 2023, Lancet Women 2024
             </p>
           </div>
         </section>
