@@ -89,32 +89,53 @@ html {
   background: linear-gradient(145deg, #fefcf9 0%, #d0e4d0 100%);
 }
 
-/* Scroll animations */
-.animate-on-scroll {
+/* Scroll animations
+   ------------------------------------------------------------------
+   The hiding styles are deliberately scoped to html.reveal-js, which an
+   inline script in the layout adds before first paint. If JavaScript is
+   disabled or fails, nothing is ever hidden and the page reads normally.
+   Never un-scope these rules — doing so risks blank pages. */
+.reveal-js .animate-on-scroll {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.animate-on-scroll.is-visible {
+.reveal-js .animate-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Stagger children */
-.stagger-children > * {
+.reveal-js .stagger-children > * {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.stagger-children.is-visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
-.stagger-children.is-visible > *:nth-child(2) { transition-delay: 100ms; opacity: 1; transform: translateY(0); }
-.stagger-children.is-visible > *:nth-child(3) { transition-delay: 150ms; opacity: 1; transform: translateY(0); }
-.stagger-children.is-visible > *:nth-child(4) { transition-delay: 200ms; opacity: 1; transform: translateY(0); }
-.stagger-children.is-visible > *:nth-child(5) { transition-delay: 250ms; opacity: 1; transform: translateY(0); }
-.stagger-children.is-visible > *:nth-child(6) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
-.stagger-children.is-visible > *:nth-child(7) { transition-delay: 350ms; opacity: 1; transform: translateY(0); }
-.stagger-children.is-visible > *:nth-child(8) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
-.stagger-children.is-visible > *:nth-child(9) { transition-delay: 450ms; opacity: 1; transform: translateY(0); }
+.reveal-js .stagger-children.is-visible > * { opacity: 1; transform: translateY(0); }
+.reveal-js .stagger-children.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-js .stagger-children.is-visible > *:nth-child(2) { transition-delay: 100ms; }
+.reveal-js .stagger-children.is-visible > *:nth-child(3) { transition-delay: 150ms; }
+.reveal-js .stagger-children.is-visible > *:nth-child(4) { transition-delay: 200ms; }
+.reveal-js .stagger-children.is-visible > *:nth-child(5) { transition-delay: 250ms; }
+.reveal-js .stagger-children.is-visible > *:nth-child(6) { transition-delay: 300ms; }
+.reveal-js .stagger-children.is-visible > *:nth-child(7) { transition-delay: 350ms; }
+.reveal-js .stagger-children.is-visible > *:nth-child(8) { transition-delay: 400ms; }
+.reveal-js .stagger-children.is-visible > *:nth-child(9) { transition-delay: 450ms; }
+
+/* Respect reduced-motion: show everything immediately, no transitions. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-js .animate-on-scroll,
+  .reveal-js .stagger-children > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .float-shape,
+  .float-shape-reverse,
+  .pulse-shape {
+    animation: none !important;
+  }
+}
 
 /* Floating shapes in hero */
 @keyframes float {

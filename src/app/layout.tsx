@@ -57,6 +57,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased scroll-smooth">
+      <head>
+        {/*
+          Enables the scroll-reveal hiding styles only when JS is running, and
+          does so before first paint so there is no flash of unstyled content.
+          Without this class nothing is hidden — that is the safety net that
+          keeps a JS failure from producing a blank page.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('reveal-js')`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         <ScrollRevealProvider>{children}</ScrollRevealProvider>
         <Analytics />
