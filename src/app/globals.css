@@ -2,27 +2,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8f6f2;
-  --foreground: #1e3a2f;
-  --rose: #b07a8a;
-  --rose-light: #e8d0d8;
-  --rose-dark: #3d7a6a;
-  --blush: #f0e8e4;
-  --lavender: #9aaccf;
-  --lavender-light: #e8eef8;
-  --beige: #ede5d8;
-  --beige-light: #faf6f0;
-  --gold: #b8924a;
-  --gold-light: #e8d9b8;
-  --sage: #7aa87a;
-  --sage-light: #d0e4d0;
-  --sage-dark: #3d7a5a;
-  --cream: #fdf9f4;
-  --terracotta: #c4896b;
-  --coral: #c49faa;
-  --plum: #7a6b8a;
-  --champagne: #e8ddd0;
-  --warm-white: #fefcf9;
+  --background: #fdf8f4;
+  --foreground: #3a2532;
+  --rose: #d88a93;
+  --rose-light: #f5dcdf;
+  --rose-dark: #b85d68;
+  --blush: #f8e9e7;
+  --lavender: #b79bc7;
+  --lavender-light: #f0e5f4;
+  --beige: #f0e3d4;
+  --beige-light: #fbf3e8;
+  --gold: #c9a15c;
+  --gold-light: #eeddb0;
+  --sage: #9cae8c;
+  --sage-light: #e2e9d8;
+  --sage-dark: #6b7d5c;
+  --cream: #fdf6ee;
+  --terracotta: #c97052;
+  --coral: #e0917e;
+  --plum: #6b3f5c;
+  --champagne: #f0dfc8;
+  --warm-white: #fffbf7;
 }
 
 @theme inline {
@@ -61,32 +61,32 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Hero gradient — calm linen to sage to periwinkle */
+/* Hero gradient — warm blush to champagne to soft lilac */
 .gradient-hero {
-  background: linear-gradient(160deg, #fefcf9 0%, #f0e8e4 20%, #e8eef8 50%, #d0e4d0 80%, #faf6f0 100%);
+  background: linear-gradient(160deg, #fffbf7 0%, #f8e9e7 22%, #f0e5f4 52%, #f0dfc8 82%, #fdf6ee 100%);
   position: relative;
   overflow: hidden;
 }
 
-/* CTA gradient — deep forest to sage (health/nature, not startup) */
+/* CTA gradient — dusty rose through terracotta to warm gold */
 .gradient-cta {
-  background: linear-gradient(135deg, #1e3a2f 0%, #3d7a5a 50%, #7aa87a 100%);
+  background: linear-gradient(135deg, #b85d68 0%, #c97052 50%, #c9a15c 100%);
 }
 
 .gradient-cta-sage {
-  background: linear-gradient(135deg, #3d7a5a 0%, #7aa87a 100%);
+  background: linear-gradient(135deg, #6b7d5c 0%, #9cae8c 100%);
 }
 
 .gradient-card {
-  background: linear-gradient(145deg, #fefcf9 0%, #f0e8e4 100%);
+  background: linear-gradient(145deg, #fffbf7 0%, #f8e9e7 100%);
 }
 
 .gradient-card-lavender {
-  background: linear-gradient(145deg, #fefcf9 0%, #e8eef8 100%);
+  background: linear-gradient(145deg, #fffbf7 0%, #f0e5f4 100%);
 }
 
 .gradient-card-sage {
-  background: linear-gradient(145deg, #fefcf9 0%, #d0e4d0 100%);
+  background: linear-gradient(145deg, #fffbf7 0%, #e2e9d8 100%);
 }
 
 /* Scroll animations
@@ -160,12 +160,12 @@ html {
 }
 .card-lift:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px -12px rgba(61, 122, 90, 0.15);
+  box-shadow: 0 20px 40px -12px rgba(184, 93, 104, 0.18);
 }
 
 /* Stat counter glow */
 .stat-glow {
-  text-shadow: 0 0 40px rgba(122, 168, 122, 0.3);
+  text-shadow: 0 0 40px rgba(201, 112, 82, 0.25);
 }
 
 /* Wave separator */
@@ -182,16 +182,16 @@ html {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover no-repeat;
 }
 
-/* Gradient text */
+/* Gradient text — rose through terracotta to gold */
 .text-gradient {
-  background: linear-gradient(135deg, #3d7a5a 0%, #7aa87a 50%, #b8924a 100%);
+  background: linear-gradient(135deg, #b85d68 0%, #c97052 50%, #c9a15c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-sage {
-  background: linear-gradient(135deg, #1e3a2f 0%, #3d7a5a 50%, #7aa87a 100%);
+  background: linear-gradient(135deg, #6b3f5c 0%, #b85d68 50%, #c97052 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -202,8 +202,8 @@ html {
   font-size: 6rem;
   line-height: 1;
   font-family: 'Playfair Display', Georgia, serif;
-  color: var(--sage);
-  opacity: 0.2;
+  color: var(--rose-dark);
+  opacity: 0.25;
 }
 
 /* Image styling */
