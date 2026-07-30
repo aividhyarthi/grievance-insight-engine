@@ -8,7 +8,8 @@ const navLinks = [
   { href: "/perimenopause", label: "Perimenopause" },
   { href: "/for-employers", label: "For Employers" },
   { href: "/team", label: "Team" },
-  { href: "/events/perimenopause-point-cook", label: "Events", isNew: true },
+  { href: "/careers", label: "Careers", isNew: true },
+  { href: "/events/perimenopause-point-cook", label: "Events" },
   { href: "/contact", label: "Contact" },
 ];
 
