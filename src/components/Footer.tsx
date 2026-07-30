@@ -42,6 +42,8 @@ export default function Footer() {
                   listen@hermidlife.org
                 </a>
               </li>
+              <li>Bangalore, India</li>
+              <li className="text-white/30">Serving women globally</li>
             </ul>
           </div>
         </div>

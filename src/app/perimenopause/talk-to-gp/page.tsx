@@ -42,24 +42,34 @@ const questions = [
 
 const resources = [
   {
+    icon: "🌍",
+    name: "International Menopause Society",
+    note: "imsociety.org — The global professional body. Publishes international consensus statements and maintains links to national member societies worldwide.",
+  },
+  {
     icon: "🏛️",
+    name: "The Menopause Society",
+    note: "menopause.org — Formerly NAMS. Its 2022 hormone therapy position statement is one of the most widely cited references in the field, and it has a clinician finder.",
+  },
+  {
+    icon: "📘",
+    name: "NICE guideline NG23",
+    note: "nice.org.uk — The UK national guideline on menopause identification and management. Freely readable, and the source of the guidance against routine FSH testing over age 45.",
+  },
+  {
+    icon: "🇬🇧",
+    name: "British Menopause Society",
+    note: "thebms.org.uk — Practical, regularly updated tools and patient factsheets, including clear summaries of hormone therapy risks and benefits.",
+  },
+  {
+    icon: "🇮🇳",
+    name: "Indian Menopause Society",
+    note: "indianmenopausesociety.org — Regional guidance and clinician directories relevant to South Asian women, where average menopause age is typically earlier.",
+  },
+  {
+    icon: "🇦🇺",
     name: "Australasian Menopause Society",
-    note: "ams.asn.au — Find a menopause-trained doctor, read evidence-based position statements, and access patient resources.",
-  },
-  {
-    icon: "💚",
-    name: "Jean Hailes for Women's Health",
-    note: "jeanhailes.org.au — Comprehensive health information with a strong focus on midlife and hormonal health.",
-  },
-  {
-    icon: "🏥",
-    name: "RANZCOG",
-    note: "ams.asn.au (Australasian Menopause Society) and menopause.org (The Menopause Society, US) — both have specialist finder tools for women seeking menopause-trained gynaecologists.",
-  },
-  {
-    icon: "📞",
-    name: "Healthdirect",
-    note: "healthdirect.gov.au — Government health information and the nurse advice line (1800 022 222) for after-hours guidance.",
+    note: "ams.asn.au — Well-regarded plain-language patient information sheets and a Find a Doctor tool for menopause-trained clinicians.",
   },
 ];
 
@@ -69,7 +79,7 @@ export default function TalkToGPPage() {
       <Header />
 
       {/* Hero */}
-      <section className="gradient-hero pt-48 pb-14 sm:pt-56 sm:pb-16 relative overflow-hidden">
+      <section className="gradient-hero pt-40 pb-14 sm:pt-48 sm:pb-16 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="float-shape absolute top-28 right-[10%] w-44 h-44 rounded-full bg-sage/12 blur-2xl" />
           <div className="float-shape-reverse absolute top-20 left-[12%] w-36 h-36 rounded-full bg-lavender/15 blur-2xl" />
@@ -123,7 +133,7 @@ export default function TalkToGPPage() {
                 {
                   icon: "🕐",
                   title: "Book a longer appointment",
-                  desc: "Call ahead and ask for a 20–30 minute appointment specifically about perimenopause. Many practices have a longer Medicare item for this. You deserve enough time to be heard.",
+                  desc: "Call ahead and ask for a longer appointment specifically about perimenopause. Many practices offer extended consultations, and some health systems fund them explicitly. Ten minutes is not enough for this conversation.",
                 },
                 {
                   icon: "👨‍👩‍👧",
@@ -194,8 +204,8 @@ export default function TalkToGPPage() {
               {[
                 { icon: "🔄", title: "Seek a second opinion", desc: "You are always entitled to see another GP. If your concerns are not being heard, seeking a second opinion is reasonable — especially for something as significant as perimenopause management." },
                 { icon: "🎯", title: "Ask for a specialist referral", desc: "You can ask your GP for a referral to a gynaecologist or a doctor with specific menopause training. This is a reasonable request." },
-                { icon: "🔍", title: "Find a menopause-trained GP", desc: "The Australasian Menopause Society has a Find a Doctor tool at ams.asn.au. These doctors have completed specific menopause training." },
-                { icon: "📱", title: "Telehealth options", desc: "Several telehealth services offer GP consultations with doctors experienced in perimenopause — useful if you are in a regional area or prefer convenience." },
+                { icon: "🔍", title: "Find a menopause-trained clinician", desc: "Several national menopause societies maintain clinician directories — The Menopause Society, the British Menopause Society and the Australasian Menopause Society all have finder tools. These clinicians have completed specific menopause training." },
+                { icon: "📄", title: "Bring the guideline with you", desc: "NICE guideline NG23 is publicly readable and states that diagnosis over age 45 should be based on symptoms, not FSH testing. Citing a named guideline changes the tone of a difficult consultation." },
               ].map((item) => (
                 <div key={item.title} className="bg-white rounded-2xl border border-champagne/80 p-5 card-lift">
                   <div className="text-2xl mb-3">{item.icon}</div>

@@ -45,11 +45,11 @@ const tailwindStats = [
     source: "PitchBook / Rock Health, 2024",
   },
   {
-    number: "71K+",
-    label: "Medicare Assessments",
+    number: "7.4 yrs",
+    label: "Median Symptom Duration",
     description:
-      "Women who accessed new Medicare menopause health assessments in the first 12 months",
-    source: "MBS Online, 2026",
+      "Median duration of vasomotor symptoms — a multi-year care relationship, not a single transaction",
+    source: "SWAN cohort, JAMA Internal Medicine 2015",
   },
   {
     number: "0",
@@ -184,8 +184,8 @@ export default function InvestorsPage() {
           </p>
 
           <p className="mt-5 font-display text-xl sm:text-2xl italic text-plum max-w-3xl">
-            HerMidlife is the first fully integrated platform built for this moment. Launching{" "}
-            <span className="not-italic font-bold text-rose-dark">30 May 2026.</span>
+            HerMidlife is building the integrated platform this moment requires —
+            starting with the open, sourced reference layer that is already live.
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-start gap-4">
@@ -421,7 +421,7 @@ export default function InvestorsPage() {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
               Pre-launch.
               <br />
-              <span className="text-gradient">Launching 30 May 2026.</span>
+              <span className="text-gradient">Content live. Care layer next.</span>
             </h2>
             <p className="mt-6 text-lg text-foreground/60 leading-relaxed">
               We&apos;re building in the open and going to market with a free
@@ -484,7 +484,7 @@ export default function InvestorsPage() {
             <span className="text-gradient-sage">Globally-minded.</span>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed mb-10">
-            A founder with deep technology expertise and passion for women's health — united by the
+            A founder with deep technology expertise and a conviction about women&apos;s health — united by the
             belief that every woman deserves to be heard.
           </p>
 
@@ -515,7 +515,7 @@ export default function InvestorsPage() {
             Partner with us to define a category.
           </h2>
           <p className="font-display text-lg sm:text-xl italic text-gold-light max-w-2xl mx-auto mb-10">
-            We&apos;re meeting mission-aligned investors ahead of our 30 May launch.
+            We&apos;re meeting mission-aligned investors as we move from reference layer to care delivery.
             If you believe women everywhere deserve better — let&apos;s talk.
           </p>
 

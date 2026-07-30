@@ -49,7 +49,7 @@ export default function TermsPage() {
           <div className="rounded-2xl p-5 bg-rose/10 border border-rose-light text-sm text-foreground/80 leading-relaxed mb-12">
             <strong className="text-rose-dark">Important medical notice.</strong>{" "}
             HerMidlife is not an emergency service. If you are experiencing a medical
-            emergency, please call <strong>000</strong> immediately or go to your
+            emergency, please call your <strong>local emergency number</strong> immediately or go to your
             nearest hospital.
           </div>
 
@@ -241,9 +241,9 @@ export default function TermsPage() {
                 13. Governing law
               </h2>
               <p className="text-foreground/75 leading-relaxed">
-                These Terms of Service are governed by applicable law.
+                These Terms of Service are governed by the laws of India.
                 Any disputes arising out of or in connection with these terms will be
-                subject to the exclusive jurisdiction of the courts of Victoria.
+                subject to the exclusive jurisdiction of the courts of Bangalore, Karnataka, India.
               </p>
             </section>
 

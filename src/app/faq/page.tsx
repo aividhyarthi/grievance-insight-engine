@@ -47,12 +47,13 @@ const patientFaqs: FaqItem[] = [
     ),
   },
   {
-    q: "Are your consultations Medicare-rebatable?",
+    q: "Will consultations be covered by insurance or a public health scheme?",
     a: (
       <>
-        Where clinically appropriate, our telehealth consultations attract rebates where applicable in your country. We&apos;ll confirm
-        eligibility and out-of-pocket costs clearly before you book, so there
-        are no surprises.
+        Coverage depends entirely on where you live and how your health system
+        or insurer treats telehealth. We make no blanket claims about this. What
+        we do commit to is confirming eligibility and any out-of-pocket cost
+        clearly before you book, so there are never surprises.
       </>
     ),
   },
@@ -95,10 +96,10 @@ const patientFaqs: FaqItem[] = [
     q: "How much does it cost?",
     a: (
       <>
-        Pricing depends on the consultation type and whether Medicare rebates
-        apply. We publish clear pricing at the time of booking. Our goal is
-        to make high-quality midlife care financially accessible — not a
-        luxury product.
+        Pricing depends on the consultation type and your region. We publish
+        clear pricing at the point of booking rather than after it. The goal is
+        to make high-quality midlife care financially accessible — not a luxury
+        product.
       </>
     ),
   },
@@ -141,10 +142,10 @@ const partnerFaqs: FaqItem[] = [
     q: "What is your business model?",
     a: (
       <>
-        A blended model: direct-to-consumer clinical consultations (with
-        Medicare rebates where applicable), subscription-based continuous
-        care, and B2B corporate wellness programs for employers who want to
-        retain and support women aged 35–55 in their workforce.
+        A blended model: direct-to-consumer clinical consultations, subscription-based
+        continuous care, and B2B workplace health programmes for employers who want
+        to retain and support women aged 35–55 in their workforce. Free educational
+        content remains open to everyone and is not gated.
       </>
     ),
   },

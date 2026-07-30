@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const navLinks = [
   { href: "/how-it-works", label: "How It Works" },
@@ -28,15 +29,15 @@ export default function Header() {
       <div className={`transition-all duration-300 ${scrolled ? "bg-warm-white/95 backdrop-blur-md shadow-sm" : "bg-warm-white/60 backdrop-blur-sm"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-18">
-            <a href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <span className="text-2xl font-display font-bold text-rose-dark">
                 Her<span className="text-sage-dark">Midlife</span>
               </span>
-            </a>
+            </Link>
 
             <nav className="hidden lg:flex items-center gap-6">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="relative text-sm font-medium text-foreground/60 hover:text-rose transition-colors inline-flex items-center gap-1.5"
@@ -47,14 +48,14 @@ export default function Header() {
                       New
                     </span>
                   )}
-                </a>
+                </Link>
               ))}
-              <a
+              <Link
                 href="/contact"
                 className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold text-white gradient-cta hover:opacity-90 transition-opacity shadow-md"
               >
                 Join the Waiting List
-              </a>
+              </Link>
             </nav>
 
             <button
@@ -75,7 +76,7 @@ export default function Header() {
           {mobileOpen && (
             <nav className="lg:hidden pb-6 space-y-1 bg-warm-white/95 backdrop-blur-md rounded-b-2xl">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-foreground/70 hover:text-rose hover:bg-blush/30 rounded-xl transition-colors"
@@ -87,16 +88,16 @@ export default function Header() {
                       New
                     </span>
                   )}
-                </a>
+                </Link>
               ))}
               <div className="px-4 pt-2">
-                <a
+                <Link
                   href="/contact"
                   className="block text-center px-6 py-3 rounded-full text-sm font-semibold text-white gradient-cta"
                   onClick={() => setMobileOpen(false)}
                 >
                   Join the Waiting List
-                </a>
+                </Link>
               </div>
             </nav>
           )}

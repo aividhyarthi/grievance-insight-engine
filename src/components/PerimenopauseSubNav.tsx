@@ -14,7 +14,7 @@ export default function PerimenopauseSubNav() {
   const pathname = usePathname();
 
   return (
-    <div className="sticky top-[104px] sm:top-[112px] z-40 bg-warm-white/95 backdrop-blur-md border-b border-champagne shadow-sm">
+    <div className="sticky top-16 sm:top-[72px] z-40 bg-warm-white/95 backdrop-blur-md border-b border-champagne shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-0" style={{ scrollbarWidth: "none" }}>
           <span className="font-display text-sm font-semibold text-rose-dark mr-3 shrink-0 hidden sm:block">

@@ -31,7 +31,7 @@ const roles: Role[] = [
     description:
       "Telehealth consultations with women navigating perimenopause, menopause, and midlife hormonal health. You'll be part of a multidisciplinary team with clear protocols and genuine clinical support.",
     requirements: [
-      "FRACGP or equivalent (GP) / APHRA-registered Nurse Practitioner",
+      "Current medical registration in your country of practice (GP/family medicine) or registered Nurse Practitioner",
       "Interest or experience in women's health or menopause management",
       "Comfortable with telehealth delivery",
       "Empathetic communication style with diverse patient backgrounds",
@@ -48,7 +48,7 @@ const roles: Role[] = [
     description:
       "Support women dealing with anxiety, depression, mood disruption, and identity shifts during midlife. Work within an integrated care team where your input directly shapes each woman's personalised plan.",
     requirements: [
-      "AHPRA-registered Psychologist (General or Clinical)",
+      "Registered Psychologist (General or Clinical) with your national regulator",
       "Experience with anxiety, depression, or women's mental health",
       "Ability to deliver sessions via telehealth",
       "Interest in the intersection of hormonal and psychological health",
@@ -65,12 +65,12 @@ const roles: Role[] = [
     description:
       "Help women optimise their nutrition during perimenopause and menopause — managing weight changes, metabolic shifts, bone density, and cardiovascular risk through personalised dietary guidance.",
     requirements: [
-      "Accredited Practising Dietitian (APD)",
+      "Registered or accredited Dietitian with your national body",
       "Knowledge of nutrition in hormonal and metabolic health",
       "Experience with telehealth or digital health delivery",
       "Cultural sensitivity working with diverse, multicultural communities",
     ],
-    ideal: "APDs with a background in women's health, menopause nutrition, or metabolic conditions.",
+    ideal: "Dietitians with a background in women's health, menopause nutrition, or metabolic conditions.",
   },
   {
     title: "Sex Therapist",
@@ -82,7 +82,7 @@ const roles: Role[] = [
     description:
       "Address the sexual health and intimacy challenges that affect women during midlife — from libido changes and genitourinary symptoms to relationship impacts and self-image. Work in a non-judgmental, integrated care model.",
     requirements: [
-      "Qualified sex therapist with ASSERT, ANZSSP, or equivalent accreditation",
+      "Qualified sex therapist with recognised national or international accreditation",
       "Experience discussing sexual health with diverse, multicultural clients",
       "Comfortable working within a medical team and sharing clinical insights",
       "Telehealth delivery experience",
@@ -116,7 +116,7 @@ const roles: Role[] = [
     description:
       "Provide specialist gynaecological oversight and complex case support within the HerMidlife clinical network — including HRT management, genitourinary conditions, PCOS, and post-menopausal health.",
     requirements: [
-      "FRANZCOG or equivalent specialist medical registration",
+      "Specialist registration in obstetrics and gynaecology in your country of practice",
       "Experience in menopausal management and women's reproductive health",
       "Available for telehealth consultations and complex case review",
       "Collaborative approach to multidisciplinary care",
@@ -133,7 +133,7 @@ const roles: Role[] = [
     description:
       "Support complex hormonal presentations including thyroid disorders, insulin resistance, adrenal health, and metabolic syndrome — conditions that frequently intersect with perimenopause and are often missed or mismanaged.",
     requirements: [
-      "FRACP (Endocrinology) or equivalent specialist registration",
+      "Specialist registration in endocrinology in your country of practice",
       "Experience with thyroid, metabolic, and adrenal conditions in women",
       "Willingness to work within a GP-led multidisciplinary model",
       "Telehealth delivery experience preferred",
@@ -250,8 +250,8 @@ export default function CareersPage() {
               <span className="text-gradient">7 disciplines</span>
             </h2>
             <p className="mt-4 text-foreground/55 max-w-xl mx-auto">
-              All positions are part-time and telehealth-delivered. AHPRA registration
-              required for all clinical roles.
+              All positions are part-time and telehealth-delivered. Current professional
+              registration in your country of practice is required for all clinical roles.
             </p>
           </div>
 

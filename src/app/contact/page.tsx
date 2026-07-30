@@ -148,8 +148,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">Based in</p>
-                    <p className="font-display text-lg font-bold text-foreground">Global Platform</p>
-                    <p className="text-sm text-foreground/50">Serving women everywhere</p>
+                    <p className="font-display text-lg font-bold text-foreground">Bangalore, India</p>
+                    <p className="text-sm text-foreground/50">Serving women globally</p>
                   </div>
                 </div>
 
@@ -162,7 +162,7 @@ export default function ContactPage() {
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-1">Response time</p>
                     <p className="font-display text-lg font-bold text-foreground">Within 2 business days</p>
-                    <p className="text-sm text-foreground/50">Mon–Fri, AEST</p>
+                    <p className="text-sm text-foreground/50">Mon–Fri, IST (UTC+5:30)</p>
                   </div>
                 </div>
               </div>
@@ -172,8 +172,9 @@ export default function ContactPage() {
                   Looking for urgent medical care?
                 </p>
                 <p className="text-sm text-foreground/60 leading-relaxed">
-                  HerMidlife is not an emergency service. If you need urgent medical
-                  help, please call <strong>000</strong> or contact your local GP.
+                  HerMidlife is not an emergency service and does not provide
+                  individual medical advice by email. If you need urgent help,
+                  contact your local emergency number or your doctor.
                 </p>
               </div>
             </div>

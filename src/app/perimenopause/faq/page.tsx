@@ -63,7 +63,7 @@ export default function FAQPage() {
       <Header />
 
       {/* Hero */}
-      <section className="gradient-hero pt-48 pb-14 sm:pt-56 sm:pb-16 relative overflow-hidden">
+      <section className="gradient-hero pt-40 pb-14 sm:pt-48 sm:pb-16 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="float-shape absolute top-24 left-[10%] w-36 h-36 rounded-full bg-lavender/15 blur-2xl" />
           <div className="pulse-shape absolute bottom-8 right-[15%] w-48 h-48 rounded-full bg-rose/10 blur-3xl" />

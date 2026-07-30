@@ -108,7 +108,7 @@ const guides = [
       "How to raise perimenopause with your GP",
       "Menopausal Hormone Therapy (MHT) — the current evidence",
       "Non-hormonal treatment options",
-      "The menopause management Medicare item",
+      "How to ask for a longer, dedicated appointment",
       "Finding a menopause specialist near you",
     ],
     body: [
@@ -125,7 +125,7 @@ export default function GuidesPage() {
       <Header />
 
       {/* Hero */}
-      <section className="gradient-hero pt-48 pb-14 sm:pt-56 sm:pb-16 relative overflow-hidden">
+      <section className="gradient-hero pt-40 pb-14 sm:pt-48 sm:pb-16 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="float-shape absolute top-24 right-[8%] w-40 h-40 rounded-full bg-lavender/15 blur-2xl" />
           <div className="pulse-shape absolute bottom-8 left-[20%] w-52 h-52 rounded-full bg-sage/10 blur-3xl" />
