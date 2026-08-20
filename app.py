@@ -25,6 +25,7 @@ import json
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "seo-audit-dev-key-change-in-prod")
+app.config["MAX_CONTENT_LENGTH"] = 32 * 1024 * 1024  # 32 MB — allow large pasted HTML
 
 # In-memory cache for download links (keyed by job_id)
 _cache: dict[str, object] = {}
