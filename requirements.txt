@@ -7,7 +7,4 @@ openpyxl>=3.1.0
 # Chrome TLS fingerprint impersonation — bypasses Cloudflare/Nykaa bot detection
 # Replaces plain requests for sites that inspect JA3/JA4 TLS handshake hashes
 curl_cffi>=0.6.0
-# Optional: headless JS rendering for React/Next.js/Vue/Angular pages
-# After installing, run: playwright install chromium
-# Then set env var: PLAYWRIGHT_ENABLED=1
-playwright>=1.40.0
+# playwright>=1.40.0  # optional JS rendering — install manually, not via pip on Railway
