@@ -90,13 +90,20 @@ def audit():
 
     # ── Fetch / parse the main page ──────────────────────────────────────────
     if input_mode == "html":
-        html_content = request.form.get("html_content", "").strip()
-        raw_url      = request.form.get("html_url", "").strip() or "pasted-html"
-        if not html_content:
-            return render_template("index.html", site_types=SITE_TYPE_LABELS,
-                                   error="Please paste some HTML to audit.")
+        raw_url = request.form.get("html_url", "").strip() or "pasted-html"
         if not raw_url.startswith(("http://", "https://", "pasted")):
             raw_url = "https://" + raw_url
+
+        # Prefer uploaded file (avoids proxy body-size limit on large pastes)
+        html_file = request.files.get("html_file")
+        if html_file and html_file.filename:
+            html_content = html_file.read().decode("utf-8", errors="replace")
+        else:
+            html_content = request.form.get("html_content", "").strip()
+
+        if not html_content:
+            return render_template("index.html", site_types=SITE_TYPE_LABELS,
+                                   error="Please upload an HTML file or paste HTML to audit.")
         page = parse_raw_html(html_content, raw_url)
     else:
         url = request.form.get("url", "").strip()

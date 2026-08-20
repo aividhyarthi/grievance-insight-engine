@@ -80,7 +80,7 @@
     {% endif %}
 
     <!-- Audit Form -->
-    <form id="auditForm" action="/audit" method="POST" class="space-y-4 text-left" onsubmit="showLoader()">
+    <form id="auditForm" action="/audit" method="POST" enctype="multipart/form-data" class="space-y-4 text-left" onsubmit="showLoader()">
       <input type="hidden" name="input_mode" id="inputModeField" value="url"/>
 
       <!-- Mode Toggle -->
@@ -123,11 +123,22 @@
             class="input-focus w-full bg-white border border-slate-200 rounded-2xl pl-12 pr-4 py-3 text-slate-800 placeholder-slate-400 text-sm shadow-sm"
             autocomplete="off"/>
         </div>
+        <!-- File upload (primary — bypasses proxy body-size limits) -->
+        <label class="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-200 rounded-2xl cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors" id="htmlDropZone">
+          <div class="flex flex-col items-center justify-center gap-1 text-slate-400 text-sm" id="dropLabel">
+            <svg class="w-7 h-7 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            <span>Upload HTML file <span class="text-slate-300 font-normal">or paste below</span></span>
+            <span class="text-xs text-slate-300">Save page source as .html, then upload here</span>
+          </div>
+          <span id="dropFilename" class="hidden text-sm text-indigo-600 font-medium mt-1"></span>
+          <input type="file" name="html_file" id="htmlFile" accept=".html,.htm" class="hidden" onchange="onHtmlFileChange(this)"/>
+        </label>
+        <!-- Paste fallback (small — for short snippets only) -->
         <textarea name="html_content" id="htmlContent"
-          placeholder="Paste the full HTML source of the page here (Ctrl+U → Select All → Copy in browser)…"
-          rows="8"
+          placeholder="Or paste a short HTML snippet here (for large pages use the file upload above)…"
+          rows="4"
           class="input-focus w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 text-slate-800 placeholder-slate-400 text-sm font-mono resize-y shadow-sm"></textarea>
-        <p class="text-slate-400 text-xs">Tip: In Chrome, press <kbd class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded text-slate-500">Ctrl+U</kbd> to view page source, then <kbd class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded text-slate-500">Ctrl+A</kbd> → <kbd class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded text-slate-500">Ctrl+C</kbd> to copy.</p>
+        <p class="text-slate-400 text-xs">Tip: In Chrome press <kbd class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded text-slate-500">Ctrl+U</kbd> → File → Save as… → upload above for full-page audits.</p>
       </div>
 
       <!-- Site Type -->
@@ -272,6 +283,23 @@
   </section>
 
   <script>
+    // ── HTML file upload handler ─────────────────────────────────────────────
+    function onHtmlFileChange(input) {
+      const file = input.files[0];
+      const label = document.getElementById('dropLabel');
+      const fname = document.getElementById('dropFilename');
+      if (file) {
+        label.classList.add('hidden');
+        fname.classList.remove('hidden');
+        fname.textContent = '✓ ' + file.name;
+        // Clear textarea so backend prefers the file
+        document.getElementById('htmlContent').value = '';
+      } else {
+        label.classList.remove('hidden');
+        fname.classList.add('hidden');
+      }
+    }
+
     // ── Mode toggle ─────────────────────────────────────────────────────────
     function setMode(mode) {
       document.getElementById('inputModeField').value = mode;
