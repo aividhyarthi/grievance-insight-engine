@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <title>Appstudiox SEO Audit — {{ result.url }}</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    .card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .card-hover { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: all 0.2s; cursor: pointer; }
+    .card-hover:hover { border-color: rgba(99,102,241,0.45); box-shadow: 0 4px 16px rgba(99,102,241,0.1); transform: translateY(-1px); }
+    .tab-btn { transition: all 0.15s; border-bottom: 2px solid transparent; padding: 0.75rem 1.25rem; font-size: 0.875rem; font-weight: 500; color: #64748b; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; }
+    .tab-btn.active { border-bottom-color: #6366f1; color: #4338ca; font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .finding-row { border-bottom: 1px solid #f1f5f9; }
+    .finding-row:last-child { border-bottom: none; }
+    .prose-ai { white-space: pre-line; line-height: 1.75; }
+    .score-ring { transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1); }
+    .finding-header { cursor: pointer; transition: background 0.15s; }
+    .finding-header:hover { background: #f8fafc; }
+    .finding-detail { display: none; }
+    .finding-detail.open { display: block; }
+    .expand-icon { transition: transform 0.2s; display: inline-block; }
+    .expand-icon.rotated { transform: rotate(180deg); }
+    .highlight-cat { animation: highlightPulse 1.8s ease-out; }
+    @keyframes highlightPulse {
+      0% { box-shadow: 0 0 0 0 rgba(99,102,241,0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(99,102,241,0.1); }
+      100% { box-shadow: 0 0 0 0 rgba(99,102,241,0); }
+    }
+    .brand-dot { color: #8b5cf6; }
+    .impact-high { background: #fef2f2; color: #dc2626; }
+    .impact-medium { background: #fffbeb; color: #d97706; }
+    .impact-low { background: #f0fdf4; color: #16a34a; }
+    .effort-quick { background: #eef2ff; color: #4338ca; }
+    .effort-medium { background: #fffbeb; color: #d97706; }
+    .effort-long { background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800">
+
+  <!-- Sticky Nav -->
+  <nav class="border-b border-slate-200 bg-white px-6 py-3 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="/" class="flex items-center gap-1.5 text-slate-400 hover:text-slate-700 transition-colors text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          New Audit
+        </a>
+        <span class="text-slate-200 hidden sm:block">|</span>
+        <div class="hidden sm:flex items-center gap-2">
+          <div class="w-7 h-7 rounded-md flex items-center justify-center text-xs font-black text-white" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">Ax</div>
+          <div class="flex flex-col leading-tight">
+            <span class="font-black text-sm tracking-tight text-slate-900">Appstudiox<span class="brand-dot">.</span></span>
+            <span class="text-slate-400 text-xs">SEO Auditing Tool</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <!-- PDF Proposal -->
+        <a href="/report/{{ job_id }}" target="_blank"
+           class="flex items-center gap-1.5 bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-600 text-xs px-3 py-1.5 rounded-lg transition-colors font-medium">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          PDF Report
+        </a>
+        <!-- Excel -->
+        <a href="/download/excel/{{ job_id }}"
+           class="flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-600 text-xs px-3 py-1.5 rounded-lg transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          Excel
+        </a>
+        <!-- JSON -->
+        <a href="/download/json/{{ job_id }}"
+           class="flex items-center gap-1.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-600 text-xs px-3 py-1.5 rounded-lg transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          JSON
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / Summary -->
+  <section class="max-w-6xl mx-auto px-6 pt-10 pb-6">
+
+    <!-- URL + Site Type header -->
+    <div class="mb-6">
+      <div class="flex items-center gap-2 text-slate-400 text-sm mb-1">
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+        </svg>
+        Audit complete — {{ result.profile.label }}
+      </div>
+      <h1 class="text-lg md:text-2xl font-bold text-slate-900 break-all">{{ result.url }}</h1>
+    </div>
+
+    <!-- Score + Stats row -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+
+      <!-- Score circle -->
+      <div class="col-span-2 md:col-span-1 card rounded-2xl p-5 flex flex-col items-center justify-center">
+        <div class="relative w-24 h-24">
+          <svg class="w-24 h-24 -rotate-90" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="44" fill="none" stroke="#e2e8f0" stroke-width="9"/>
+            <circle cx="50" cy="50" r="44" fill="none"
+              stroke="{% if result.overall_score >= 80 %}#22c55e{% elif result.overall_score >= 55 %}#f59e0b{% else %}#ef4444{% endif %}"
+              stroke-width="9" stroke-linecap="round"
+              class="score-ring"
+              id="scoreRing"
+              style="stroke-dasharray: 276.46; stroke-dashoffset: {{ (276.46 * (1 - result.overall_score / 100)) | round(2) }}"/>
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <span class="text-2xl font-extrabold {% if result.overall_score >= 80 %}text-green-600{% elif result.overall_score >= 55 %}text-amber-500{% else %}text-red-600{% endif %}">
+              {{ result.overall_score }}
+            </span>
+            <span class="text-slate-400 text-xs">/100</span>
+          </div>
+        </div>
+        <p class="text-slate-400 text-xs mt-2 text-center font-medium">Overall Score</p>
+      </div>
+
+      <!-- Critical -->
+      <div class="card rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+        <div class="text-3xl font-extrabold text-red-600">{{ result.critical_findings | length }}</div>
+        <div class="text-slate-400 text-xs mt-1">Critical Issues</div>
+      </div>
+
+      <!-- Warnings -->
+      <div class="card rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+        <div class="text-3xl font-extrabold text-amber-500">{{ result.warning_findings | length }}</div>
+        <div class="text-slate-400 text-xs mt-1">Warnings</div>
+      </div>
+
+      <!-- Quick Wins -->
+      <div class="card rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+        <div class="text-3xl font-extrabold text-blue-600">{{ result.quick_wins | length }}</div>
+        <div class="text-slate-400 text-xs mt-1">Quick Wins</div>
+      </div>
+
+      <!-- Categories -->
+      <div class="card rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+        <div class="text-3xl font-extrabold text-indigo-600">{{ result.category_reports | length }}</div>
+        <div class="text-slate-400 text-xs mt-1">Categories</div>
+      </div>
+
+    </div>
+
+    <!-- 12 Category Score Cards — clickable, jump to findings -->
+    <div class="mb-3 flex items-center gap-2">
+      <span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Category Scores</span>
+      <span class="text-slate-300 text-xs">— click any card to see detailed findings</span>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-8">
+      {% for cr in result.category_reports %}
+      <div class="card-hover rounded-xl p-3 group" onclick="goToCategory({{ loop.index }})" title="View {{ cr.name }} findings">
+        <div class="text-xs text-slate-500 mb-1.5 leading-tight font-medium group-hover:text-indigo-600 transition-colors">{{ cr.name }}</div>
+        <div class="flex items-baseline gap-1 mb-2">
+          <span class="text-xl font-extrabold {% if cr.score >= 80 %}text-green-600{% elif cr.score >= 55 %}text-amber-500{% else %}text-red-600{% endif %}">
+            {{ cr.score }}
+          </span>
+          <span class="text-slate-300 text-xs">/100</span>
+        </div>
+        <div class="w-full bg-slate-100 rounded-full h-1.5 mb-2">
+          <div class="{% if cr.score >= 80 %}bg-green-500{% elif cr.score >= 55 %}bg-amber-400{% else %}bg-red-500{% endif %} h-1.5 rounded-full"
+               style="width: {{ cr.score }}%"></div>
+        </div>
+        {% if cr.critical_count > 0 %}
+        <div class="text-red-600 text-xs font-medium">{{ cr.critical_count }} critical</div>
+        {% elif cr.warning_count > 0 %}
+        <div class="text-amber-600 text-xs">{{ cr.warning_count }} warnings</div>
+        {% else %}
+        <div class="text-green-600 text-xs">All passing</div>
+        {% endif %}
+        <div class="text-indigo-600/0 group-hover:text-indigo-600/70 text-xs mt-1 transition-colors font-medium">View details →</div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </section>
+
+  <!-- Tab Content -->
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+
+    <!-- Tab nav bar -->
+    <div class="flex border-b border-slate-200 mb-6 overflow-x-auto gap-0 -mx-1 bg-white rounded-t-xl px-2">
+      <button onclick="showTab('proposal')" id="tab-proposal" class="tab-btn active">Proposal</button>
+      <button onclick="showTab('findings')" id="tab-findings" class="tab-btn">Findings</button>
+      <button onclick="showTab('roadmap')" id="tab-roadmap" class="tab-btn">Roadmap</button>
+      <button onclick="showTab('traffic')" id="tab-traffic" class="tab-btn">Traffic Strategy</button>
+      <button onclick="showTab('checklist')" id="tab-checklist" class="tab-btn">Site Checklist</button>
+      {% if page_audit_pairs %}
+      <button onclick="showTab('sitepages')" id="tab-sitepages" class="tab-btn">
+        🗂 Site Pages
+        <span class="ml-1 bg-emerald-100 text-emerald-700 text-xs px-1.5 rounded-full">{{ page_audit_pairs | length }}</span>
+      </button>
+      {% endif %}
+      {% if comp_pairs and comp_pairs | selectattr('1') | list %}
+      <button onclick="showTab('compare')" id="tab-compare" class="tab-btn">
+        📊 Comparison
+        <span class="ml-1 bg-indigo-100 text-indigo-600 text-xs px-1.5 rounded-full">{{ comp_pairs | selectattr('1') | list | length }}</span>
+      </button>
+      {% endif %}
+    </div>
+
+    <!-- ── PROPOSAL TAB ───────────────────────────────────── -->
+    <div id="panel-proposal" class="tab-panel active">
+
+      <!-- Header intro card -->
+      <div class="card rounded-2xl p-7 mb-5">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <div>
+            <p class="text-indigo-600 text-xs font-semibold uppercase tracking-widest mb-1">SEO Audit Report</p>
+            <h2 class="font-bold text-xl text-slate-900 mb-1">Executive Summary</h2>
+            <p class="text-slate-400 text-sm">Prepared by Appstudiox SEO Auditing Tool</p>
+          </div>
+          <div class="shrink-0 text-right">
+            <div class="text-4xl font-black {% if result.overall_score >= 80 %}text-green-600{% elif result.overall_score >= 55 %}text-amber-500{% else %}text-red-600{% endif %}">{{ result.overall_score }}<span class="text-lg text-slate-300">/100</span></div>
+            <div class="text-xs text-slate-400 mt-0.5">SEO Health Score</div>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-100 pt-4">
+          <p class="text-slate-600 leading-relaxed text-sm mb-3">
+            We conducted a comprehensive SEO audit of <strong class="text-slate-900">{{ result.url }}</strong>,
+            analysed as a <strong class="text-slate-900">{{ result.profile.label }}</strong> site,
+            covering <strong class="text-slate-900">12 SEO categories</strong> — from on-page fundamentals
+            and technical health to content quality, page speed, and AI-readiness signals.
+          </p>
+          <p class="text-slate-600 leading-relaxed text-sm mb-4">
+            The site achieved an overall SEO score of
+            <strong class="{% if result.overall_score >= 80 %}text-green-600{% elif result.overall_score >= 55 %}text-amber-500{% else %}text-red-600{% endif %}">{{ result.overall_score }}/100</strong>
+            —
+            {% if result.overall_score < 45 %}
+              <span class="text-red-600 font-semibold">Needs Immediate Attention.</span>
+              There are significant gaps that are likely suppressing organic visibility and traffic right now.
+            {% elif result.overall_score < 70 %}
+              <span class="text-amber-600 font-semibold">Needs Improvement.</span>
+              The foundation is partially in place, but key issues are limiting the site's ability to rank and attract organic traffic.
+            {% else %}
+              <span class="text-green-600 font-semibold">Good Foundation.</span>
+              Core SEO hygiene is in reasonable shape. The focus should shift to amplifying what's working and closing remaining gaps.
+            {% endif %}
+          </p>
+
+          <!-- Stats strip -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black text-red-600">{{ result.critical_findings | length }}</div>
+              <div class="text-xs text-red-500 mt-0.5">Critical Issues</div>
+              <div class="text-xs text-slate-400 mt-0.5">Fix immediately</div>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black text-amber-600">{{ result.warning_findings | length }}</div>
+              <div class="text-xs text-amber-600 mt-0.5">Warnings</div>
+              <div class="text-xs text-slate-400 mt-0.5">Address this month</div>
+            </div>
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black text-blue-600">{{ result.quick_wins | length }}</div>
+              <div class="text-xs text-blue-600 mt-0.5">Quick Wins</div>
+              <div class="text-xs text-slate-400 mt-0.5">Low effort, fast results</div>
+            </div>
+            <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black text-indigo-600">{{ result.category_reports | length }}</div>
+              <div class="text-xs text-indigo-600 mt-0.5">Categories Audited</div>
+              <div class="text-xs text-slate-400 mt-0.5">Full-stack coverage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Score Overview -->
+      <div class="card rounded-2xl p-6 mb-5">
+        <h3 class="font-bold text-slate-900 mb-4">Category Performance Breakdown</h3>
+        <div class="space-y-3">
+          {% for cr in result.category_reports %}
+          <div class="flex items-center gap-3">
+            <div class="w-36 shrink-0 text-xs text-slate-500 font-medium truncate">{{ cr.name }}</div>
+            <div class="flex-1 bg-slate-100 rounded-full h-2">
+              <div class="{% if cr.score >= 80 %}bg-green-500{% elif cr.score >= 55 %}bg-amber-400{% else %}bg-red-500{% endif %} h-2 rounded-full transition-all"
+                   style="width:{{ cr.score }}%"></div>
+            </div>
+            <div class="w-10 text-right text-xs font-bold {% if cr.score >= 80 %}text-green-600{% elif cr.score >= 55 %}text-amber-500{% else %}text-red-600{% endif %}">{{ cr.score }}</div>
+            <div class="w-16 text-right">
+              {% if cr.critical_count > 0 %}
+              <span class="text-xs text-red-600">{{ cr.critical_count }} critical</span>
+              {% elif cr.warning_count > 0 %}
+              <span class="text-xs text-amber-600">{{ cr.warning_count }} warn</span>
+              {% else %}
+              <span class="text-xs text-green-600">✓ Pass</span>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if result.critical_findings %}
+      <!-- Critical Issues -->
+      <div class="card rounded-2xl p-6 mb-5 border-l-4 border-red-500">
+        <h3 class="font-bold text-red-600 mb-1 flex items-center gap-2">
+          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+          </svg>
+          Critical Issues — Require Immediate Action
+        </h3>
+        <p class="text-slate-400 text-xs mb-4">These issues are actively harming your search visibility and must be resolved as a priority.</p>
+        <div class="space-y-0">
+          {% for f in result.critical_findings %}
+          <div class="finding-row py-3.5">
+            <div class="flex items-start gap-3">
+              <span class="bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded font-bold shrink-0 mt-0.5">{{ f.category }}</span>
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-2 flex-wrap">
+                  <p class="text-slate-800 text-sm font-semibold">{{ f.check }}</p>
+                  <div class="flex gap-1.5 shrink-0">
+                    {% if f.effort %}
+                    <span class="text-xs px-2 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>
+                    {% endif %}
+                    {% if f.impact %}
+                    <span class="text-xs px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }} Impact</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <p class="text-slate-500 text-xs mt-1 leading-relaxed">{{ f.detail }}</p>
+                {% if f.recommendation %}
+                <div class="mt-2 flex items-start gap-1.5">
+                  <span class="text-indigo-500 text-xs font-bold shrink-0 mt-0.5">→</span>
+                  <p class="text-indigo-700 text-xs leading-relaxed"><span class="font-semibold">How to fix:</span> {{ f.recommendation }}</p>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if result.warning_findings %}
+      <!-- Warnings -->
+      <div class="card rounded-2xl p-6 mb-5 border-l-4 border-amber-400">
+        <h3 class="font-bold text-amber-600 mb-1">Warnings — Address This Month</h3>
+        <p class="text-slate-400 text-xs mb-4">These issues won't cause immediate ranking drops but are limiting the site's full potential.</p>
+        <div class="space-y-0">
+          {% for f in result.warning_findings %}
+          <div class="finding-row py-3">
+            <div class="flex items-start gap-3">
+              <span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded font-bold shrink-0 mt-0.5">{{ f.category }}</span>
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-2 flex-wrap">
+                  <p class="text-slate-700 text-sm font-medium">{{ f.check }}</p>
+                  <div class="flex gap-1.5 shrink-0">
+                    {% if f.effort %}
+                    <span class="text-xs px-2 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>
+                    {% endif %}
+                    {% if f.impact %}
+                    <span class="text-xs px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }} Impact</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <p class="text-slate-400 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
+                {% if f.recommendation %}
+                <div class="mt-1.5 flex items-start gap-1.5">
+                  <span class="text-indigo-500 text-xs font-bold shrink-0">→</span>
+                  <p class="text-indigo-600 text-xs leading-relaxed">{{ f.recommendation }}</p>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if result.ai_proposal %}
+      <div class="card rounded-2xl p-6 border border-indigo-200">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-6 h-6 bg-gradient-to-br from-indigo-500 to-purple-500 rounded flex items-center justify-center text-xs font-bold text-white">AI</div>
+          <h3 class="font-bold text-indigo-700 text-sm">AI-Generated Executive Narrative</h3>
+        </div>
+        <div class="prose-ai text-slate-600 text-sm">{{ result.ai_proposal }}</div>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- ── FINDINGS TAB ───────────────────────────────────── -->
+    <div id="panel-findings" class="tab-panel">
+      <p class="text-slate-400 text-xs mb-5">Click any row to expand the full detail and fix recommendation.</p>
+      {% for cr in result.category_reports %}
+      <div id="cat-{{ loop.index }}" class="card rounded-2xl p-6 mb-4 scroll-mt-20">
+        <div class="flex items-center justify-between mb-2">
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">{{ cr.name }}</h3>
+            <p class="text-slate-400 text-xs mt-0.5">{{ cr.description }}</p>
+          </div>
+          <div class="text-right shrink-0 ml-4">
+            <span class="text-2xl font-extrabold {% if cr.score >= 80 %}text-green-600{% elif cr.score >= 55 %}text-amber-500{% else %}text-red-600{% endif %}">
+              {{ cr.score }}
+            </span>
+            <span class="text-slate-300 text-sm">/100</span>
+            <div class="w-20 bg-slate-100 rounded-full h-1.5 mt-1 ml-auto">
+              <div class="{% if cr.score >= 80 %}bg-green-500{% elif cr.score >= 55 %}bg-amber-400{% else %}bg-red-500{% endif %} h-1.5 rounded-full"
+                   style="width:{{ cr.score }}%"></div>
+            </div>
+          </div>
+        </div>
+
+        {% if cr.findings %}
+        <div class="rounded-xl overflow-hidden border border-slate-200 mt-4">
+          {% for f in cr.findings %}
+          <div class="finding-row
+            {% if f.severity == Severity.CRITICAL %}bg-red-50
+            {% elif f.severity == Severity.WARNING %}bg-amber-50
+            {% elif f.severity == Severity.PASS %}bg-green-50
+            {% else %}bg-blue-50{% endif %}">
+
+            <!-- Clickable header row -->
+            <div class="finding-header flex items-start gap-3 px-4 py-3.5" onclick="toggleFinding(this)">
+              <span class="text-xs font-bold px-2 py-0.5 rounded shrink-0 mt-0.5
+                {% if f.severity == Severity.CRITICAL %}bg-red-100 text-red-700
+                {% elif f.severity == Severity.WARNING %}bg-amber-100 text-amber-700
+                {% elif f.severity == Severity.PASS %}bg-green-100 text-green-700
+                {% else %}bg-blue-100 text-blue-700{% endif %}">
+                {{ f.severity.value | upper }}
+              </span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                  <span class="text-slate-800 text-sm font-semibold">{{ f.check }}</span>
+                  <div class="flex items-center gap-1.5 shrink-0">
+                    {% if f.effort %}
+                    <span class="text-xs px-1.5 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>
+                    {% endif %}
+                    {% if f.impact %}
+                    <span class="text-xs px-1.5 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }}</span>
+                    {% endif %}
+                    <span class="expand-icon text-slate-300 text-xs ml-1">▼</span>
+                  </div>
+                </div>
+                <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
+              </div>
+            </div>
+
+            <!-- Expanded detail panel -->
+            <div class="finding-detail border-t border-slate-100 px-4 pb-4 pt-3 bg-slate-50">
+              <div class="ml-9 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div>
+                  <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">What We Found</p>
+                  <p class="text-slate-700 text-sm leading-relaxed">{{ f.detail }}</p>
+                  {% if f.external_data_needed %}
+                  <p class="text-purple-600 text-xs mt-2 italic">⚠ Verification requires an external tool (e.g., Google Search Console, PageSpeed Insights).</p>
+                  {% endif %}
+                </div>
+
+                {% if f.recommendation %}
+                <div>
+                  <p class="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-1.5">How to Fix It</p>
+                  <p class="text-indigo-700 text-sm leading-relaxed">{{ f.recommendation }}</p>
+                </div>
+                {% endif %}
+
+                <div class="md:col-span-2">
+                  <div class="flex flex-wrap gap-3 items-center pt-2 border-t border-slate-100">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs text-slate-400">Severity:</span>
+                      <span class="text-xs font-bold
+                        {% if f.severity == Severity.CRITICAL %}text-red-600
+                        {% elif f.severity == Severity.WARNING %}text-amber-600
+                        {% elif f.severity == Severity.PASS %}text-green-600
+                        {% else %}text-blue-600{% endif %}">
+                        {{ f.severity.value | title }}
+                      </span>
+                    </div>
+                    {% if f.effort %}
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs text-slate-400">Effort:</span>
+                      <span class="text-xs px-2 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>
+                    </div>
+                    {% endif %}
+                    {% if f.impact %}
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs text-slate-400">Business Impact:</span>
+                      <span class="text-xs px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }}</span>
+                    </div>
+                    {% endif %}
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs text-slate-400">Category:</span>
+                      <span class="text-xs text-slate-500">{{ f.category }}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="mt-4 flex items-center gap-2 text-green-700 bg-green-50 rounded-xl px-4 py-3 border border-green-200">
+          <span class="text-lg">✓</span>
+          <p class="text-sm">No issues found in this category — well done!</p>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- ── ROADMAP TAB ────────────────────────────────────── -->
+    <div id="panel-roadmap" class="tab-panel">
+
+      <!-- Phase 1: Quick Wins -->
+      <div class="card rounded-2xl p-6 mb-4 border-l-4 border-red-500">
+        <h3 class="font-bold text-red-600 mb-0.5 flex items-center gap-2">
+          <span class="bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-full font-bold">Phase 1</span>
+          Quick Wins — Week 1 to 2
+        </h3>
+        <p class="text-slate-400 text-xs mb-4">High-impact fixes that require minimal development effort and can be deployed immediately.</p>
+        {% if result.quick_wins %}
+        <div class="space-y-0">
+          {% for f in result.quick_wins[:10] %}
+          <div class="finding-row py-3.5">
+            <div class="flex items-start gap-3">
+              <span class="text-xs font-bold shrink-0 mt-0.5 min-w-[56px]
+                {% if f.severity == Severity.CRITICAL %}bg-red-100 text-red-700{% else %}bg-amber-100 text-amber-700{% endif %} px-2 py-0.5 rounded">
+                {{ f.severity.value | upper }}
+              </span>
+              <div class="flex-1">
+                <p class="text-slate-800 text-sm font-semibold">{{ f.category }} — {{ f.check }}</p>
+                <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
+                {% if f.recommendation %}
+                <div class="mt-1.5 flex items-start gap-1.5">
+                  <span class="text-indigo-500 text-xs font-bold shrink-0">→</span>
+                  <p class="text-indigo-600 text-xs leading-relaxed">{{ f.recommendation }}</p>
+                </div>
+                {% endif %}
+              </div>
+              {% if f.impact %}
+              <span class="text-xs shrink-0 px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }}</span>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-slate-400 text-sm italic">No quick wins identified — the site is well-optimised in key areas.</p>
+        {% endif %}
+      </div>
+
+      <!-- Phase 2: High Impact -->
+      <div class="card rounded-2xl p-6 mb-4 border-l-4 border-amber-400">
+        <h3 class="font-bold text-amber-600 mb-0.5 flex items-center gap-2">
+          <span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-bold">Phase 2</span>
+          Core Improvements — Month 1 to 2
+        </h3>
+        <p class="text-slate-400 text-xs mb-4">Structural improvements with significant ranking and organic traffic impact.</p>
+        {% set ns = namespace(has_items=false) %}
+        {% for f in result.high_impact_items %}
+          {% if f not in result.quick_wins %}{% set ns.has_items = true %}{% endif %}
+        {% endfor %}
+        {% if ns.has_items %}
+        <div class="space-y-0">
+          {% for f in result.high_impact_items %}
+          {% if f not in result.quick_wins %}
+          <div class="finding-row py-3.5">
+            <div class="flex items-start gap-3">
+              <span class="text-amber-700 text-xs font-bold shrink-0 mt-0.5 min-w-[56px] bg-amber-100 px-2 py-0.5 rounded">{{ f.severity.value | upper }}</span>
+              <div class="flex-1">
+                <p class="text-slate-800 text-sm font-semibold">{{ f.category }} — {{ f.check }}</p>
+                <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
+                {% if f.recommendation %}
+                <div class="mt-1.5 flex items-start gap-1.5">
+                  <span class="text-indigo-500 text-xs font-bold shrink-0">→</span>
+                  <p class="text-indigo-600 text-xs leading-relaxed">{{ f.recommendation }}</p>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-slate-400 text-sm italic">No additional high-impact items beyond the quick wins.</p>
+        {% endif %}
+      </div>
+
+      <!-- Phase 3: Long-term -->
+      <div class="card rounded-2xl p-6 mb-4 border-l-4 border-blue-500">
+        <h3 class="font-bold text-blue-600 mb-0.5 flex items-center gap-2">
+          <span class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-bold">Phase 3</span>
+          Long-Term Growth — Month 3 to 6
+        </h3>
+        <p class="text-slate-400 text-xs mb-4">Content, authority, and technical investments for compounding organic growth.</p>
+        {% set ns2 = namespace(count=0) %}
+        {% for f in result.all_findings %}
+          {% if f.effort == 'Long-term' and (f.severity == Severity.CRITICAL or f.severity == Severity.WARNING) %}
+            {% set ns2.count = ns2.count + 1 %}
+          {% endif %}
+        {% endfor %}
+        {% if ns2.count > 0 %}
+        <div class="space-y-0">
+          {% set shown = namespace(n=0) %}
+          {% for f in result.all_findings %}
+          {% if f.effort == 'Long-term' and (f.severity == Severity.CRITICAL or f.severity == Severity.WARNING) and shown.n < 10 %}
+          {% set shown.n = shown.n + 1 %}
+          <div class="finding-row py-3.5">
+            <div class="flex items-start gap-3">
+              <span class="text-blue-700 text-xs font-bold shrink-0 mt-0.5 min-w-[56px] bg-blue-100 px-2 py-0.5 rounded">{{ f.severity.value | upper }}</span>
+              <div class="flex-1">
+                <p class="text-slate-800 text-sm font-semibold">{{ f.category }} — {{ f.check }}</p>
+                <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
+                {% if f.recommendation %}
+                <div class="mt-1.5 flex items-start gap-1.5">
+                  <span class="text-indigo-500 text-xs font-bold shrink-0">→</span>
+                  <p class="text-indigo-600 text-xs leading-relaxed">{{ f.recommendation }}</p>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-slate-400 text-sm italic">No specific long-term items identified at this time.</p>
+        {% endif %}
+      </div>
+
+      {% if result.ai_roadmap %}
+      <div class="card rounded-2xl p-6 border border-indigo-200">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-6 h-6 bg-gradient-to-br from-indigo-500 to-purple-500 rounded flex items-center justify-center text-xs font-bold text-white">AI</div>
+          <h3 class="font-bold text-indigo-700 text-sm">AI-Generated Roadmap</h3>
+        </div>
+        <div class="prose-ai text-slate-600 text-sm">{{ result.ai_roadmap }}</div>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- ── TRAFFIC STRATEGY TAB ───────────────────────────── -->
+    <div id="panel-traffic" class="tab-panel">
+
+      <div class="card rounded-2xl p-6 mb-4 border-l-4 border-green-500">
+        <h3 class="font-bold text-green-700 mb-1">Traffic Strategy — {{ result.profile.label }}</h3>
+        <p class="text-slate-400 text-xs mb-5">Site-type-specific recommendations for growing organic search traffic.</p>
+        <div class="space-y-3">
+          {% for note in result.profile.traffic_strategy_notes %}
+          <div class="flex items-start gap-3 bg-green-50 rounded-xl px-4 py-3 border border-green-200">
+            <span class="text-green-600 font-bold text-sm shrink-0 mt-0.5">→</span>
+            <p class="text-slate-700 text-sm leading-relaxed">{{ note }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if result.ai_traffic_strategy %}
+      <div class="card rounded-2xl p-6 border border-indigo-200">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-6 h-6 bg-gradient-to-br from-indigo-500 to-purple-500 rounded flex items-center justify-center text-xs font-bold text-white">AI</div>
+          <h3 class="font-bold text-indigo-700 text-sm">AI-Generated Traffic Strategy</h3>
+        </div>
+        <div class="prose-ai text-slate-600 text-sm">{{ result.ai_traffic_strategy }}</div>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- ── CHECKLIST TAB ──────────────────────────────────── -->
+    <div id="panel-checklist" class="tab-panel">
+
+      {% if result.profile.custom_checks %}
+      <div class="card rounded-2xl p-6 mb-4">
+        <h3 class="font-bold text-slate-900 mb-1">{{ result.profile.label }} — Site-Type Checklist</h3>
+        <p class="text-slate-400 text-xs mb-4">Items specifically relevant for your site type and industry vertical.</p>
+        <div class="space-y-0">
+          {% for name, rec in result.profile.custom_checks %}
+          <div class="finding-row py-3.5 flex items-start gap-3">
+            <div class="w-5 h-5 border-2 border-indigo-300 rounded mt-0.5 shrink-0 flex items-center justify-center bg-indigo-50">
+              <div class="w-2 h-2 rounded-sm bg-indigo-400"></div>
+            </div>
+            <div class="flex-1">
+              <p class="text-slate-800 text-sm font-semibold">{{ name }}</p>
+              <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">{{ rec }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- 12-category pass/fail grid -->
+      <div class="card rounded-2xl p-6">
+        <h3 class="font-bold text-slate-900 mb-4">12-Category Pass / Fail Summary</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {% for cr in result.category_reports %}
+          <div class="flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer hover:border-indigo-300 transition-colors
+            {% if cr.critical_count > 0 %}bg-red-50 border-red-200{% elif cr.warning_count > 0 %}bg-amber-50 border-amber-200{% else %}bg-green-50 border-green-200{% endif %}"
+            onclick="goToCategory({{ loop.index }})" title="View {{ cr.name }} findings">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-bold text-sm
+              {% if cr.critical_count > 0 %}bg-red-100 text-red-600
+              {% elif cr.warning_count > 0 %}bg-amber-100 text-amber-700
+              {% else %}bg-green-100 text-green-700{% endif %}">
+              {% if cr.critical_count > 0 %}✕{% elif cr.warning_count > 0 %}!{% else %}✓{% endif %}
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-slate-700 text-sm font-semibold truncate">{{ cr.name }}</p>
+              <p class="text-slate-400 text-xs">
+                {{ cr.score }}/100 ·
+                {% if cr.critical_count > 0 %}<span class="text-red-600">{{ cr.critical_count }} critical</span>{% endif %}
+                {% if cr.critical_count > 0 and cr.warning_count > 0 %}, {% endif %}
+                {% if cr.warning_count > 0 %}<span class="text-amber-600">{{ cr.warning_count }} warnings</span>{% endif %}
+                {% if cr.critical_count == 0 and cr.warning_count == 0 %}<span class="text-green-600">All passing</span>{% endif %}
+              </p>
+            </div>
+            <span class="text-slate-300 text-xs">→</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── SITE PAGES TAB ────────────────────────────────── -->
+    {% if page_audit_pairs %}
+    <div id="panel-sitepages" class="tab-panel">
+
+      <div class="card rounded-2xl p-6 mb-5">
+        <div class="flex items-center justify-between mb-1">
+          <h3 class="font-bold text-slate-900">Site Pages Audit</h3>
+          <span class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full font-medium">
+            {{ page_audit_pairs | length }} page{% if page_audit_pairs | length != 1 %}s{% endif %}
+          </span>
+        </div>
+        <p class="text-slate-400 text-xs mb-2">
+          Each page audited across all 13 categories. PSI/CWV scores excluded for speed — run a separate single-URL audit for full Lighthouse data.
+        </p>
+        <p class="text-slate-400 text-xs">
+          Navigation links were auto-discovered from your main URL.
+          {% if result.url %}<a href="{{ result.url }}" target="_blank" class="text-indigo-500 hover:underline break-all">{{ result.url }}</a>{% endif %}
+        </p>
+      </div>
+
+      <!-- Per-page accordion -->
+      <div class="space-y-3 mb-6">
+        {% for page_url, page_result in page_audit_pairs %}
+        {% set pg_idx = loop.index %}
+        <div class="card rounded-2xl overflow-hidden">
+
+          {% if page_result %}
+          <!-- ── Accordion header (always visible) ─────────────── -->
+          <button type="button"
+            onclick="togglePageAudit({{ pg_idx }})"
+            class="w-full text-left px-5 py-4 flex items-center gap-4 hover:bg-slate-50 transition-colors">
+
+            <!-- Score badge -->
+            <div class="shrink-0 w-12 text-center">
+              <div class="text-xl font-extrabold leading-none
+                {% if page_result.overall_score >= 80 %}text-green-600
+                {% elif page_result.overall_score >= 55 %}text-amber-500
+                {% else %}text-red-600{% endif %}">
+                {{ page_result.overall_score }}
+              </div>
+              <div class="text-slate-300 text-xs leading-none">/100</div>
+            </div>
+
+            <!-- Score bar -->
+            <div class="shrink-0 w-20 hidden sm:block">
+              <div class="w-full bg-slate-100 rounded-full h-1.5">
+                <div class="h-1.5 rounded-full
+                  {% if page_result.overall_score >= 80 %}bg-green-500
+                  {% elif page_result.overall_score >= 55 %}bg-amber-400
+                  {% else %}bg-red-500{% endif %}"
+                  style="width: {{ page_result.overall_score }}%"></div>
+              </div>
+            </div>
+
+            <!-- URL + counts -->
+            <div class="flex-1 min-w-0">
+              <a href="{{ page_url }}" target="_blank"
+                 onclick="event.stopPropagation()"
+                 class="text-xs font-semibold text-indigo-600 hover:underline break-all line-clamp-1">
+                {{ page_url | replace('https://', '') | replace('http://', '') }}
+              </a>
+              <div class="flex flex-wrap gap-3 text-xs mt-1">
+                <span class="flex items-center gap-1 text-red-600 font-semibold">
+                  <span class="w-1.5 h-1.5 bg-red-500 rounded-full inline-block"></span>
+                  {{ page_result.critical_findings | length }} critical
+                </span>
+                <span class="flex items-center gap-1 text-amber-600 font-semibold">
+                  <span class="w-1.5 h-1.5 bg-amber-400 rounded-full inline-block"></span>
+                  {{ page_result.warning_findings | length }} warnings
+                </span>
+                <span class="flex items-center gap-1 text-emerald-600">
+                  <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block"></span>
+                  {{ page_result.quick_wins | length }} quick wins
+                </span>
+              </div>
+            </div>
+
+            <!-- Category pills (sm+) -->
+            <div class="shrink-0 hidden md:flex flex-wrap gap-1 max-w-xs justify-end">
+              {% for cr in page_result.category_reports %}
+              <span class="inline-flex text-xs px-1.5 py-0.5 rounded border font-medium
+                {% if cr.score >= 80 %}bg-green-50 border-green-200 text-green-700
+                {% elif cr.score >= 55 %}bg-amber-50 border-amber-200 text-amber-700
+                {% else %}bg-red-50 border-red-200 text-red-700{% endif %}"
+                title="{{ cr.name }}: {{ cr.score }}/100">{{ cr.score }}</span>
+              {% endfor %}
+            </div>
+
+            <!-- Chevron -->
+            <span id="page-chevron-{{ pg_idx }}" class="shrink-0 text-slate-300 text-xs transition-transform duration-200">▼</span>
+          </button>
+
+          <!-- ── Expandable full audit ───────────────────────────── -->
+          <div id="page-audit-{{ pg_idx }}" class="hidden border-t border-slate-100 bg-slate-50/50">
+            <div class="px-5 py-4">
+              <p class="text-slate-400 text-xs mb-4">Full findings for this page — click any row to expand the fix recommendation.</p>
+              {% for cr in page_result.category_reports %}
+              <div class="mb-4">
+                <!-- Category header -->
+                <div class="flex items-center justify-between mb-2">
+                  <div>
+                    <span class="font-semibold text-slate-800 text-sm">{{ cr.name }}</span>
+                    {% if cr.description %}
+                    <span class="text-slate-400 text-xs ml-2 hidden sm:inline">{{ cr.description }}</span>
+                    {% endif %}
+                  </div>
+                  <span class="text-sm font-extrabold ml-4 shrink-0
+                    {% if cr.score >= 80 %}text-green-600
+                    {% elif cr.score >= 55 %}text-amber-500
+                    {% else %}text-red-600{% endif %}">
+                    {{ cr.score }}<span class="text-slate-300 font-normal text-xs">/100</span>
+                  </span>
+                </div>
+
+                {% if cr.findings %}
+                <div class="rounded-xl overflow-hidden border border-slate-200">
+                  {% for f in cr.findings %}
+                  <div class="finding-row
+                    {% if f.severity == Severity.CRITICAL %}bg-red-50
+                    {% elif f.severity == Severity.WARNING %}bg-amber-50
+                    {% elif f.severity == Severity.PASS %}bg-green-50
+                    {% else %}bg-blue-50{% endif %}">
+
+                    <div class="finding-header flex items-start gap-3 px-4 py-3" onclick="toggleFinding(this)">
+                      <span class="text-xs font-bold px-2 py-0.5 rounded shrink-0 mt-0.5
+                        {% if f.severity == Severity.CRITICAL %}bg-red-100 text-red-700
+                        {% elif f.severity == Severity.WARNING %}bg-amber-100 text-amber-700
+                        {% elif f.severity == Severity.PASS %}bg-green-100 text-green-700
+                        {% else %}bg-blue-100 text-blue-700{% endif %}">
+                        {{ f.severity.value | upper }}
+                      </span>
+                      <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2 flex-wrap">
+                          <span class="text-slate-800 text-sm font-semibold">{{ f.check }}</span>
+                          <div class="flex items-center gap-1.5 shrink-0">
+                            {% if f.effort %}<span class="text-xs px-1.5 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span>{% endif %}
+                            {% if f.impact %}<span class="text-xs px-1.5 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }}</span>{% endif %}
+                            <span class="expand-icon text-slate-300 text-xs ml-1">▼</span>
+                          </div>
+                        </div>
+                        <p class="text-slate-500 text-xs mt-0.5 leading-relaxed">{{ f.detail }}</p>
+                      </div>
+                    </div>
+
+                    <div class="finding-detail border-t border-slate-100 px-4 pb-4 pt-3 bg-slate-50">
+                      <div class="ml-9 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">What We Found</p>
+                          <p class="text-slate-700 text-sm leading-relaxed">{{ f.detail }}</p>
+                        </div>
+                        {% if f.recommendation %}
+                        <div>
+                          <p class="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-1.5">How to Fix It</p>
+                          <p class="text-indigo-700 text-sm leading-relaxed">{{ f.recommendation }}</p>
+                        </div>
+                        {% endif %}
+                        <div class="md:col-span-2">
+                          <div class="flex flex-wrap gap-3 items-center pt-2 border-t border-slate-100">
+                            <div class="flex items-center gap-1.5">
+                              <span class="text-xs text-slate-400">Severity:</span>
+                              <span class="text-xs font-bold {% if f.severity == Severity.CRITICAL %}text-red-600{% elif f.severity == Severity.WARNING %}text-amber-600{% elif f.severity == Severity.PASS %}text-green-600{% else %}text-blue-600{% endif %}">{{ f.severity.value | title }}</span>
+                            </div>
+                            {% if f.effort %}<div class="flex items-center gap-1.5"><span class="text-xs text-slate-400">Effort:</span><span class="text-xs px-2 py-0.5 rounded {% if 'Quick' in f.effort %}effort-quick{% elif 'Medium' in f.effort %}effort-medium{% else %}effort-long{% endif %}">{{ f.effort }}</span></div>{% endif %}
+                            {% if f.impact %}<div class="flex items-center gap-1.5"><span class="text-xs text-slate-400">Business Impact:</span><span class="text-xs px-2 py-0.5 rounded {% if f.impact == 'High' %}impact-high{% elif f.impact == 'Medium' %}impact-medium{% else %}impact-low{% endif %}">{{ f.impact }}</span></div>{% endif %}
+                            <div class="flex items-center gap-1.5"><span class="text-xs text-slate-400">Category:</span><span class="text-xs text-slate-500">{{ f.category }}</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  {% endfor %}
+                </div>
+                {% else %}
+                <div class="flex items-center gap-2 text-green-700 bg-green-50 rounded-xl px-4 py-2.5 border border-green-200">
+                  <span>✓</span>
+                  <p class="text-xs">No issues in this category.</p>
+                </div>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          {% else %}
+          <!-- Failed page -->
+          <div class="px-5 py-4 flex items-center gap-3">
+            <span class="w-2 h-2 bg-slate-300 rounded-full shrink-0"></span>
+            <a href="{{ page_url }}" target="_blank"
+               class="text-xs text-slate-500 break-all hover:text-indigo-600 transition-colors">
+              {{ page_url | replace('https://', '') | replace('http://', '') }}
+            </a>
+            <span class="text-xs text-slate-400 ml-auto">Could not reach this page.</span>
+          </div>
+          {% endif %}
+
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Site-wide summary across all pages -->
+      {% set reachable = page_audit_pairs | selectattr('1') | list %}
+      {% if reachable %}
+      <div class="card rounded-2xl p-6">
+        <h4 class="font-bold text-slate-900 mb-4">Site-wide Issues Summary</h4>
+        <p class="text-slate-400 text-xs mb-4">
+          Most common issues found across all {{ reachable | length }} audited page{% if reachable | length != 1 %}s{% endif %}.
+          Fix these once and they likely apply everywhere.
+        </p>
+        {% set all_crits = [] %}
+        {% for _, pr in reachable %}
+          {% for f in pr.critical_findings %}
+            {% if all_crits.append(f) %}{% endif %}
+          {% endfor %}
+        {% endfor %}
+
+        {% if all_crits %}
+        <!-- Count by check name -->
+        {% set check_counts = {} %}
+        {% for f in all_crits %}
+          {% if f.check not in check_counts %}
+            {% set _ = check_counts.update({f.check: {'count': 0, 'category': f.category, 'rec': f.recommendation}}) %}
+          {% endif %}
+          {% set _ = check_counts[f.check].update({'count': check_counts[f.check]['count'] + 1}) %}
+        {% endfor %}
+        <div class="space-y-2">
+          {% for check_name, info in (check_counts.items() | sort(attribute='1.count', reverse=True))[:8] %}
+          <div class="flex items-center gap-3 py-2 border-b border-slate-50 last:border-0">
+            <span class="shrink-0 bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full min-w-[2rem] text-center">
+              ×{{ info.count }}
+            </span>
+            <div class="min-w-0 flex-1">
+              <span class="text-sm font-semibold text-slate-800">{{ check_name }}</span>
+              <span class="text-slate-400 text-xs ml-2">{{ info.category }}</span>
+            </div>
+            {% if info.rec %}
+            <span class="text-xs text-slate-400 hidden sm:block max-w-xs truncate">{{ info.rec }}</span>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-emerald-600 text-sm font-medium">🎉 No critical issues found across audited pages.</p>
+        {% endif %}
+      </div>
+      {% endif %}
+
+    </div>
+    {% endif %}
+
+    <!-- ── COMPARISON TAB ────────────────────────────────── -->
+    {% if comp_pairs and comp_pairs | selectattr('1') | list %}
+    <div id="panel-compare" class="tab-panel">
+
+      <!-- Overall score comparison -->
+      <div class="card rounded-2xl p-6 mb-5">
+        <h3 class="font-bold text-slate-900 mb-1">Overall Score Comparison</h3>
+        <p class="text-slate-400 text-xs mb-5">Side-by-side SEO health scores across your site and competitors.</p>
+        <div class="flex flex-wrap gap-4 items-end">
+
+          <!-- Your site -->
+          <div class="flex-1 min-w-[120px] text-center">
+            <div class="text-xs text-indigo-600 font-bold uppercase tracking-wider mb-2">Your Site</div>
+            <div class="text-4xl font-black {% if result.overall_score >= 80 %}text-green-600{% elif result.overall_score >= 55 %}text-amber-500{% else %}text-red-600{% endif %} mb-1">{{ result.overall_score }}</div>
+            <div class="text-slate-400 text-xs mb-3">/100</div>
+            <div class="w-full bg-slate-100 rounded-full h-3">
+              <div class="{% if result.overall_score >= 80 %}bg-green-500{% elif result.overall_score >= 55 %}bg-amber-400{% else %}bg-red-500{% endif %} h-3 rounded-full" style="width:{{ result.overall_score }}%"></div>
+            </div>
+            <div class="text-slate-400 text-xs mt-2 truncate max-w-[150px] mx-auto">{{ result.url | replace('https://','') | replace('http://','') | truncate(25) }}</div>
+          </div>
+
+          {% for comp_url, comp_res in comp_pairs %}
+          {% if comp_res %}
+          <div class="flex-1 min-w-[120px] text-center opacity-85">
+            <div class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-2">Competitor {{ loop.index }}</div>
+            <div class="text-4xl font-black {% if comp_res.overall_score >= 80 %}text-green-600{% elif comp_res.overall_score >= 55 %}text-amber-500{% else %}text-red-600{% endif %} mb-1">{{ comp_res.overall_score }}</div>
+            <div class="text-slate-400 text-xs mb-3">/100</div>
+            <div class="w-full bg-slate-100 rounded-full h-3">
+              <div class="{% if comp_res.overall_score >= 80 %}bg-green-500{% elif comp_res.overall_score >= 55 %}bg-amber-400{% else %}bg-red-500{% endif %} h-3 rounded-full" style="width:{{ comp_res.overall_score }}%"></div>
+            </div>
+            <div class="text-slate-400 text-xs mt-2 truncate max-w-[150px] mx-auto">{{ comp_url | replace('https://','') | replace('http://','') | truncate(25) }}</div>
+          </div>
+          {% elif comp_url %}
+          <div class="flex-1 min-w-[120px] text-center opacity-40">
+            <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2">Competitor {{ loop.index }}</div>
+            <div class="text-2xl font-black text-slate-300 mb-1">—</div>
+            <div class="text-slate-400 text-xs mt-2 truncate max-w-[150px] mx-auto">{{ comp_url | replace('https://','') | replace('http://','') | truncate(25) }}</div>
+            <div class="text-red-500 text-xs mt-1">Could not reach site</div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Stats comparison -->
+      <div class="card rounded-2xl p-6 mb-5">
+        <h3 class="font-bold text-slate-900 mb-4">Issue Comparison</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th class="text-left py-2 pr-4 text-slate-400 text-xs font-semibold uppercase tracking-wider">Metric</th>
+                <th class="text-center py-2 px-3 text-indigo-600 text-xs font-semibold uppercase tracking-wider">Your Site</th>
+                {% for comp_url, comp_res in comp_pairs %}
+                {% if comp_res or comp_url %}
+                <th class="text-center py-2 px-3 text-slate-400 text-xs font-semibold uppercase tracking-wider">Comp {{ loop.index }}</th>
+                {% endif %}
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for label, your_val, color, comp_key in [
+                ('Critical Issues', result.critical_findings | length, 'red', 'critical'),
+                ('Warnings', result.warning_findings | length, 'yellow', 'warning'),
+                ('Quick Wins', result.quick_wins | length, 'blue', 'quick'),
+              ] %}
+              <tr class="border-b border-slate-100">
+                <td class="py-3 pr-4 text-slate-600 font-medium">{{ label }}</td>
+                <td class="py-3 px-3 text-center font-bold {% if color == 'red' %}text-red-600{% elif color == 'yellow' %}text-amber-600{% else %}text-blue-600{% endif %}">{{ your_val }}</td>
+                {% for comp_url, comp_res in comp_pairs %}
+                {% if comp_res or comp_url %}
+                <td class="py-3 px-3 text-center {% if comp_res %}
+                  {% if comp_key == 'critical' %}{{ 'text-red-600' if comp_res.critical_findings | length > 0 else 'text-green-600' }}
+                  {% elif comp_key == 'warning' %}{{ 'text-amber-600' if comp_res.warning_findings | length > 0 else 'text-green-600' }}
+                  {% else %}text-blue-600{% endif %}
+                  font-bold{% else %}text-slate-300{% endif %}">
+                  {{ comp_res.critical_findings | length if comp_res and comp_key == 'critical' else
+                     comp_res.warning_findings | length if comp_res and comp_key == 'warning' else
+                     comp_res.quick_wins | length if comp_res and comp_key == 'quick' else '—' }}
+                </td>
+                {% endif %}
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Category-by-category table -->
+      <div class="card rounded-2xl p-6">
+        <h3 class="font-bold text-slate-900 mb-1">Category-by-Category Breakdown</h3>
+        <p class="text-slate-400 text-xs mb-4">Score for each of the 12 SEO categories across all sites audited.</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th class="text-left py-2 pr-4 text-slate-400 text-xs font-semibold uppercase tracking-wider">Category</th>
+                <th class="text-center py-2 px-3 text-indigo-600 text-xs font-semibold uppercase tracking-wider min-w-[80px]">Your Site</th>
+                {% for comp_url, comp_res in comp_pairs %}
+                {% if comp_res %}
+                <th class="text-center py-2 px-3 text-slate-400 text-xs font-semibold uppercase tracking-wider min-w-[80px]">
+                  {{ comp_url | replace('https://','') | replace('http://','') | truncate(18) }}
+                </th>
+                {% endif %}
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for cr in result.category_reports %}
+              <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                <td class="py-2.5 pr-4 text-slate-600 font-medium text-xs">{{ cr.name }}</td>
+                <td class="py-2.5 px-3 text-center">
+                  <span class="font-black text-sm {% if cr.score >= 80 %}text-green-600{% elif cr.score >= 55 %}text-amber-500{% else %}text-red-600{% endif %}">{{ cr.score }}</span>
+                </td>
+                {% for comp_url, comp_res in comp_pairs %}
+                {% if comp_res %}
+                {% set comp_cr = comp_res.get_category(cr.name) %}
+                <td class="py-2.5 px-3 text-center">
+                  {% if comp_cr %}
+                  <span class="font-black text-sm {% if comp_cr.score >= 80 %}text-green-600{% elif comp_cr.score >= 55 %}text-amber-500{% else %}text-red-600{% endif %}">{{ comp_cr.score }}</span>
+                  {% else %}
+                  <span class="text-slate-300 text-xs">—</span>
+                  {% endif %}
+                </td>
+                {% endif %}
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    {% endif %}
+
+  </section>
+
+  <script>
+    function showTab(name) {
+      document.querySelectorAll('.tab-panel').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('panel-' + name).classList.add('active');
+      document.getElementById('tab-' + name).classList.add('active');
+    }
+
+    function goToCategory(idx) {
+      showTab('findings');
+      setTimeout(() => {
+        const el = document.getElementById('cat-' + idx);
+        if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.classList.add('highlight-cat');
+        setTimeout(() => el.classList.remove('highlight-cat'), 2000);
+      }, 60);
+    }
+
+    function togglePageAudit(idx) {
+      const panel   = document.getElementById('page-audit-' + idx);
+      const chevron = document.getElementById('page-chevron-' + idx);
+      if (!panel) return;
+      const isOpen = !panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', isOpen);
+      if (chevron) chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+    }
+
+    function toggleFinding(headerEl) {
+      const detail = headerEl.nextElementSibling;
+      const icon = headerEl.querySelector('.expand-icon');
+      if (detail.classList.contains('open')) {
+        detail.classList.remove('open');
+        icon.classList.remove('rotated');
+      } else {
+        detail.classList.add('open');
+        icon.classList.add('rotated');
+      }
+    }
+
+    // Animate score ring on load
+    window.addEventListener('load', () => {
+      const ring = document.getElementById('scoreRing');
+      if (!ring) return;
+      const score = {{ result.overall_score }};
+      const circumference = 276.46;
+      const target = circumference * (1 - score / 100);
+      ring.style.strokeDashoffset = circumference;
+      setTimeout(() => { ring.style.strokeDashoffset = target; }, 150);
+    });
+  </script>
+
+</body>
+</html>

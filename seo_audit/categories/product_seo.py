@@ -1,0 +1,441 @@
+"""
+product_seo.py — Product SEO checks.
+Covers: Product/Offer/Review schema completeness, breadcrumbs, product image
+        alt text relevance, product description depth, spec/feature tables,
+        price visibility in HTML, multiple images, video content, FAQ section.
+Relevant for: e-commerce, SaaS pricing pages, product landing pages.
+
+IMPORTANT — Schema type detection:
+  We use TOP-LEVEL @type only (not recursive) for the is_product_page decision.
+  This prevents false positives on pages where 'Product' appears only as a
+  deeply nested type inside Organization or ItemList schemas (common on SaaS
+  and corporate sites that describe their offerings via schema).
+"""
+
+from __future__ import annotations
+
+import json
+import re
+
+from .base import CategoryReport, Finding, Severity
+from ..crawler import PageData
+
+
+def _parse_schemas(page: PageData) -> list[dict]:
+    parsed = []
+    for raw in page.structured_data:
+        try:
+            parsed.append(json.loads(raw))
+        except (json.JSONDecodeError, ValueError):
+            pass
+    return parsed
+
+
+def _top_level_types(schemas: list[dict]) -> list[str]:
+    """
+    Collect @type values from the TOP LEVEL of each schema block only.
+    Does NOT recurse into nested objects — this prevents false positives
+    where 'Product' appears inside Organization.makesOffer or ItemList.
+    """
+    types: list[str] = []
+    for s in schemas:
+        # Handle @graph wrapper (common in Yoast/RankMath)
+        if "@graph" in s and isinstance(s["@graph"], list):
+            for node in s["@graph"]:
+                t = node.get("@type")
+                if isinstance(t, str):
+                    types.append(t)
+                elif isinstance(t, list):
+                    types.extend(t)
+        else:
+            t = s.get("@type")
+            if isinstance(t, str):
+                types.append(t)
+            elif isinstance(t, list):
+                types.extend(t)
+    return types
+
+
+def _all_nested_types(obj, out=None) -> list[str]:
+    """Recursive collector — used only for supplementary detail display, not for gating logic."""
+    if out is None:
+        out = []
+    if isinstance(obj, dict):
+        t = obj.get("@type")
+        if isinstance(t, str):
+            out.append(t)
+        elif isinstance(t, list):
+            out.extend(t)
+        for v in obj.values():
+            _all_nested_types(v, out)
+    elif isinstance(obj, list):
+        for item in obj:
+            _all_nested_types(item, out)
+    return out
+
+
+_EDITORIAL_URL_RE = re.compile(
+    r"/("
+    r"news|blog|blogs|article|articles|editorial|opinion|opinions|"
+    r"analysis|feature|features|story|stories|magazine|press|"
+    r"co-design|co.design|technology|tech|culture|work-life|leadership|"
+    r"ideas|world-changing|impact|innovation|creativity|"
+    r"economy|finance|design|science|health|politics|environment|"
+    r"sports|entertainment|lifestyle|travel|food|fashion|beauty|"
+    r"interview|interviews|review|reviews|podcast|podcasts|video|videos"
+    r")/",
+    re.I,
+)
+
+
+def _is_editorial_page(page: "PageData", soup, top_types: list[str]) -> bool:
+    """
+    Return True if the page is clearly a news, blog, or editorial page.
+    Used to suppress HTML-signal-based product detection on media sites.
+    """
+    # 1. Schema: Article / NewsArticle / BlogPosting in top-level types
+    editorial_schema_types = {
+        "Article", "NewsArticle", "BlogPosting", "OpinionNewsArticle",
+        "AnalysisNewsArticle", "ReportageNewsArticle", "ReviewNewsArticle",
+    }
+    if editorial_schema_types & set(top_types):
+        return True
+
+    # 2. Open Graph / meta article signals
+    if soup.find("meta", attrs={"property": re.compile(r"^article:", re.I)}):
+        return True
+    if soup.find("meta", attrs={"name": re.compile(r"^article:", re.I)}):
+        return True
+
+    # 3. URL path contains an editorial section keyword
+    if _EDITORIAL_URL_RE.search(page.url):
+        return True
+
+    # 4. HTML: has <article> element AND an author/byline element
+    if soup.find("article") and soup.find(
+        attrs={"class": re.compile(r"\b(author|byline|contributor|journalist|reporter)\b", re.I)}
+    ):
+        return True
+
+    return False
+
+
+def _is_product_page_from_html(soup) -> tuple[bool, list[str]]:
+    """
+    Determine if the page looks like a product/e-commerce page from HTML signals.
+    Returns (is_product, reasons[]) — requires MULTIPLE signals to avoid false positives.
+    """
+    reasons: list[str] = []
+
+    # Signal 1: dedicated price element (not just any mention of currency in text)
+    price_elem = soup.find(attrs={"class": re.compile(
+        r"\bprice\b|\bproduct.price\b|\bwoocommerce.price\b|\bshopify.price\b", re.I
+    )})
+    if price_elem:
+        reasons.append("price display element")
+
+    # Signal 2: add-to-cart button (specific patterns only)
+    atc_button = soup.find(
+        attrs={"class": re.compile(r"add[_-]to[_-]cart|add[_-]to[_-]bag|btn[_-]buy", re.I)}
+    ) or soup.find("button", string=re.compile(
+        r"\badd to (cart|bag|basket)\b|\bbuy now\b", re.I
+    ))
+    if atc_button:
+        reasons.append("add-to-cart button")
+
+    # Signal 3: product form (quantity selector or variant picker)
+    qty_input = soup.find("input", attrs={"name": re.compile(r"qty|quantity", re.I)})
+    if qty_input:
+        reasons.append("quantity input")
+
+    # Signal 4: WooCommerce / Shopify page class
+    woo_shopify = soup.find(attrs={"class": re.compile(
+        r"woocommerce|single-product|product-template|ProductSection", re.I
+    )})
+    if woo_shopify:
+        reasons.append("WooCommerce/Shopify product template")
+
+    # Require at least 2 signals to classify as product page
+    return len(reasons) >= 2, reasons
+
+
+def run(page: PageData) -> CategoryReport:
+    report = CategoryReport(
+        name="Product SEO",
+        description="Schema completeness, on-page content quality, and rich-result eligibility for product pages.",
+    )
+    f = report.findings
+    soup = page.soup
+    schemas = _parse_schemas(page)
+
+    # Use TOP-LEVEL types only for gating logic
+    top_types = _top_level_types(schemas)
+    # Use all nested types only for display/supplementary info
+    all_types = _all_nested_types(schemas)
+
+    body_text = (soup.find("body") or soup).get_text(separator=" ", strip=True)
+
+    # Determine if this is a product page — explicit schema OR strong HTML signals
+    schema_is_product = "Product" in top_types
+
+    # Skip HTML-based product detection entirely for editorial/news pages.
+    # Media sites commonly have subscription pricing widgets and "buy" CTAs that
+    # would otherwise fire our HTML signals, producing false positives.
+    is_editorial = _is_editorial_page(page, soup, top_types)
+    if is_editorial:
+        html_is_product, html_reasons = False, []
+    else:
+        html_is_product, html_reasons = _is_product_page_from_html(soup)
+
+    is_product_page = schema_is_product or html_is_product
+
+    # ── Product schema ─────────────────────────────────────────────────────────
+    if schema_is_product:
+        # Show which schema script it came from
+        schema_source = next(
+            (raw for raw in page.structured_data if '"Product"' in raw), None
+        )
+        preview = ""
+        if schema_source:
+            try:
+                obj = json.loads(schema_source)
+                name = obj.get("name", "")
+                preview = f" — name: '{name}'" if name else ""
+            except Exception:
+                pass
+        f.append(Finding("Product SEO", "Product schema", Severity.PASS,
+            f"Product JSON-LD schema found{preview}."))
+
+        # Price / Offers — check schema text for these fields
+        schema_str = " ".join(page.structured_data)
+        has_price = '"price"' in schema_str or '"offers"' in schema_str
+        if has_price:
+            f.append(Finding("Product SEO", "Price in schema", Severity.PASS,
+                "Offers/price found in Product schema."))
+        else:
+            f.append(Finding("Product SEO", "Price in schema", Severity.WARNING,
+                "Product schema present but missing Offers/price — not eligible for price rich results.",
+                "Add offers.price, offers.priceCurrency, and offers.availability to Product schema.",
+                impact="High", effort="Medium"))
+
+        # Review / AggregateRating — check in all nested types (valid use case here)
+        if "AggregateRating" in all_types or "Review" in all_types:
+            f.append(Finding("Product SEO", "Review/rating schema", Severity.PASS,
+                "AggregateRating or Review schema found — eligible for star-rating rich results."))
+        else:
+            f.append(Finding("Product SEO", "Review/rating schema", Severity.INFO,
+                "No review/rating schema. Star ratings in SERPs can lift CTR by 30%+.",
+                "Add AggregateRating to Product schema once you have user reviews.",
+                impact="High", effort="Medium"))
+
+        # Availability
+        has_avail = '"availability"' in schema_str
+        if not has_avail:
+            f.append(Finding("Product SEO", "Availability in schema", Severity.WARNING,
+                "Product schema does not declare availability — required for valid Google rich results.",
+                "Add offers.availability (e.g. 'https://schema.org/InStock') to schema.",
+                impact="Medium", effort="Quick Win"))
+
+    elif html_is_product:
+        f.append(Finding("Product SEO", "Product schema", Severity.CRITICAL,
+            f"Product page detected via HTML signals ({', '.join(html_reasons)}) "
+            "but no top-level Product JSON-LD schema found.",
+            "Add Product schema with name, description, offers (price, currency, availability). "
+            "Required for Google Shopping integration and price rich results.",
+            impact="High", effort="Medium"))
+
+    else:
+        # Not a product page — note any nested 'Product' types so it's transparent
+        if "Product" in all_types:
+            f.append(Finding("Product SEO", "Product schema", Severity.INFO,
+                "A 'Product' type was found nested inside another schema (e.g. Organization > Offer > Product). "
+                "This page is not classified as a product page — no top-level Product schema present.",
+                "If this IS a product page, add a top-level Product schema block. "
+                "Otherwise this nested usage is fine and can be ignored.",
+                impact="Low", effort="Medium"))
+        else:
+            f.append(Finding("Product SEO", "Product schema", Severity.INFO,
+                "Page does not appear to be a product page — Product schema not required here."))
+
+    # ── BreadcrumbList schema ─────────────────────────────────────────────────
+    if "BreadcrumbList" in all_types:
+        f.append(Finding("Product SEO", "Breadcrumb schema", Severity.PASS,
+            "BreadcrumbList schema found."))
+    else:
+        f.append(Finding("Product SEO", "Breadcrumb schema", Severity.WARNING,
+            "No BreadcrumbList schema — category path will not show in search results.",
+            "Add BreadcrumbList JSON-LD to display the product's category hierarchy in SERPs.",
+            impact="Medium", effort="Medium"))
+
+    # ── Product image checks (only if product page) ───────────────────────────
+    images = page.images
+
+    if is_product_page:
+        img_count = len(images)
+        if img_count == 0:
+            f.append(Finding("Product SEO", "Product images", Severity.CRITICAL,
+                "No images found on what appears to be a product page.",
+                "Add multiple high-quality product images (front, back, detail, lifestyle).",
+                impact="High", effort="Medium"))
+        elif img_count == 1:
+            f.append(Finding("Product SEO", "Product images", Severity.WARNING,
+                "Only 1 image detected. Single-image product pages have lower conversion and ranking.",
+                "Add 3–6 images showing different angles, uses, and scale.",
+                impact="Medium", effort="Medium"))
+        else:
+            f.append(Finding("Product SEO", "Product images", Severity.PASS,
+                f"{img_count} image(s) found — good visual coverage."))
+
+    # Product image alt text relevance
+    if images and is_product_page:
+        h1_words = set(re.findall(r"[a-z]{3,}", " ".join(page.h1_tags).lower()))
+        title_words = set(re.findall(r"[a-z]{3,}", page.title.lower()))
+        product_keywords = h1_words | title_words
+
+        missing_alt = [img for img in images if not img["alt"].strip()]
+        trivial_alt = [
+            img for img in images
+            if img["alt"].strip()
+            and re.match(
+                r"^(image|photo|picture|img\d*|banner|thumbnail|placeholder)$",
+                img["alt"].strip(), re.I
+            )
+        ]
+        kw_missing_alt = [
+            img for img in images
+            if img["alt"].strip()
+            and len(img["alt"].strip()) > 3
+            and not any(kw in img["alt"].lower() for kw in product_keywords if len(kw) > 3)
+            and img not in trivial_alt
+        ]
+
+        if missing_alt:
+            f.append(Finding("Product SEO", "Product image alt text — missing", Severity.CRITICAL,
+                f"{len(missing_alt)}/{len(images)} image(s) have no alt text.",
+                "Add descriptive alt text to every image, including product name and key attribute "
+                "(e.g. 'Blue Nike Air Max 90 running shoe — left side view').",
+                impact="High", effort="Medium"))
+        elif trivial_alt:
+            f.append(Finding("Product SEO", "Product image alt text — generic", Severity.WARNING,
+                f"{len(trivial_alt)} image(s) have generic alt text ('image', 'photo', 'img1') "
+                "with no product-relevant keywords.",
+                "Use descriptive alt text containing the product name, colour, material, or use-case.",
+                impact="Medium", effort="Quick Win"))
+        else:
+            f.append(Finding("Product SEO", "Product image alt text", Severity.PASS,
+                "Image alt texts appear descriptive and product-relevant."))
+
+    # Image filename keyword signal
+    product_named_imgs = [
+        img for img in images
+        if re.search(r"(product|item|sku|pdp|gallery)", img["src"], re.I)
+    ]
+    if images and is_product_page and not product_named_imgs:
+        f.append(Finding("Product SEO", "Product image naming", Severity.INFO,
+            "Image file paths don't contain product-related keywords (product/item/sku/gallery).",
+            "Name product images with descriptive slugs (e.g. blue-nike-air-max-90-side.webp) "
+            "for Google Image Search visibility.",
+            impact="Low", effort="Medium"))
+
+    # ── Product description depth ─────────────────────────────────────────────
+    if is_product_page:
+        desc_section = (
+            soup.find(attrs={"class": re.compile(r"(description|product.desc|overview)", re.I)})
+            or soup.find("div", id=re.compile(r"(description|overview)", re.I))
+        )
+        if desc_section:
+            desc_words = len(desc_section.get_text(separator=" ", strip=True).split())
+            if desc_words < 80:
+                f.append(Finding("Product SEO", "Product description depth", Severity.WARNING,
+                    f"Product description section is thin ({desc_words} words).",
+                    "Write at least 150–300 words covering: key features, specifications, "
+                    "use-cases, materials, and who the product is for.",
+                    impact="High", effort="Medium"))
+            else:
+                f.append(Finding("Product SEO", "Product description depth", Severity.PASS,
+                    f"Product description: {desc_words} words — good depth."))
+        else:
+            f.append(Finding("Product SEO", "Product description section", Severity.WARNING,
+                "No dedicated product description section detected.",
+                "Add a clearly marked description section with 150+ words of unique product copy.",
+                impact="High", effort="Medium"))
+
+    # ── Specification / feature table ─────────────────────────────────────────
+    if is_product_page:
+        tables = soup.find_all("table")
+        spec_table = any(
+            re.search(r"(spec|feature|dimension|weight|material|compatib)", t.get_text(), re.I)
+            for t in tables
+        ) if tables else False
+        spec_section = soup.find(attrs={
+            "class": re.compile(r"(spec|specification|technical.detail)", re.I)
+        })
+        if not spec_table and not spec_section:
+            f.append(Finding("Product SEO", "Specification table", Severity.INFO,
+                "No product specification table or structured spec section found.",
+                "Add a spec table (dimensions, weight, materials, compatibility) — "
+                "frequently pulled into Google's structured snippets and comparison results.",
+                impact="Medium", effort="Medium"))
+        else:
+            f.append(Finding("Product SEO", "Specification table", Severity.PASS,
+                "Product specification table or section detected."))
+
+    # ── Price visible in HTML text ────────────────────────────────────────────
+    if is_product_page:
+        price_elem = soup.find(attrs={"class": re.compile(r"\bprice\b", re.I)})
+        visible_price_text = soup.find_all(
+            string=re.compile(r"[$£€₹]\s*[\d,]+(\.\d{2})?")
+        )
+        if not price_elem and not visible_price_text:
+            f.append(Finding("Product SEO", "Price visible in HTML", Severity.WARNING,
+                "Price not detected in visible HTML elements. "
+                "If price is rendered by JavaScript, Google may not index it reliably.",
+                "Ensure the price is in server-rendered HTML, not only injected by JS or stored in schema only.",
+                impact="Medium", effort="Medium"))
+        else:
+            f.append(Finding("Product SEO", "Price visible in HTML", Severity.PASS,
+                "Price element or text found in visible HTML."))
+
+    # ── Availability text ─────────────────────────────────────────────────────
+    availability = soup.find_all(string=re.compile(
+        r"\b(in stock|out of stock|available|sold out|pre.order|ships in|delivery)\b", re.I
+    ))
+    if availability:
+        f.append(Finding("Product SEO", "Availability text", Severity.PASS,
+            "Availability/delivery text found — clear purchase signals for users and crawlers."))
+    elif is_product_page:
+        f.append(Finding("Product SEO", "Availability text", Severity.INFO,
+            "No clear availability status text detected.",
+            "Display in-stock/out-of-stock status prominently (also add to schema's offers.availability).",
+            impact="Medium", effort="Quick Win"))
+
+    # ── Video on product page ─────────────────────────────────────────────────
+    if is_product_page:
+        has_video = bool(
+            soup.find("video")
+            or soup.find("iframe", src=re.compile(r"(youtube|vimeo|wistia)", re.I))
+            or soup.find(attrs={"class": re.compile(r"video|player", re.I)})
+        )
+        if not has_video:
+            f.append(Finding("Product SEO", "Product video", Severity.INFO,
+                "No product video detected. Video increases dwell time and average order value.",
+                "Add a product demo or explainer video — also add VideoObject schema for SERP video thumbnails.",
+                impact="Medium", effort="Long-term"))
+        else:
+            f.append(Finding("Product SEO", "Product video", Severity.PASS,
+                "Video content detected — good for engagement and SERP video rich results."))
+
+    # ── FAQ / Q&A on product page ─────────────────────────────────────────────
+    faq_schema = "FAQPage" in all_types
+    faq_html = bool(soup.find_all(attrs={"class": re.compile(r"faq|accordion|q.a", re.I)}))
+    if not faq_schema and not faq_html:
+        f.append(Finding("Product SEO", "FAQ / Q&A section", Severity.INFO,
+            "No FAQ section detected.",
+            "Add a FAQ section with FAQPage schema — captures 'question' searches and "
+            "occupies extra SERP real estate.",
+            impact="Medium", effort="Medium"))
+    else:
+        f.append(Finding("Product SEO", "FAQ / Q&A section", Severity.PASS,
+            "FAQ content detected."))
+
+    return report
