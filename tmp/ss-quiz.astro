@@ -227,8 +227,18 @@ document.getElementById('btn-start')!.onclick = () => show(sPrivacy);
 // Privacy → Intro (back)
 document.getElementById('btn-privacy-back')!.onclick = () => show(sIntro);
 
-// Privacy → Lead
-document.getElementById('btn-privacy-ok')!.onclick = () => show(sLead);
+// Privacy → Lead (skip if we already have their details from the site popup)
+document.getElementById('btn-privacy-ok')!.onclick = () => {
+  try {
+    const existing = JSON.parse(sessionStorage.getItem('tss_lead') || '{}');
+    if (existing && (existing.phone || existing.email)) {
+      fetch('/api/collect-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({phone: existing.phone || '', email: existing.email || '', stage:'quiz_start_prefilled'}) }).catch(()=>{});
+      startQuiz();
+      return;
+    }
+  } catch(_) {}
+  show(sLead);
+};
 
 // Privacy → Quiz (anonymous, skip lead)
 document.getElementById('btn-privacy-anon')!.onclick = () => startQuiz();
@@ -433,26 +443,34 @@ function showResult() {
   .q-label { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--green); margin-bottom: .5rem; }
   .q-text { font-size: 1.35rem; font-weight: 800; color: var(--text); line-height: 1.38; margin-bottom: .5rem; }
   .q-hint { font-size: .92rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1.5rem; font-style: italic; }
-  .q-opts { display: flex; flex-direction: column; gap: .6rem; }
+  .q-opts { display: flex; flex-direction: column; gap: .7rem; }
   .q-opt {
-    display: flex; align-items: center; gap: .85rem; width: 100%;
-    background: var(--cream); border: 1.5px solid var(--border);
-    border-radius: 12px; padding: 1.15rem 1.25rem;
-    font-size: 1.05rem; color: var(--text); font-weight: 600;
-    cursor: pointer; text-align: left; min-height: 58px;
-    transition: border-color .15s, background .15s;
+    display: flex; align-items: center; gap: 1rem; width: 100%;
+    background: var(--cream); border: 2px solid var(--border);
+    border-radius: 14px; padding: 1.25rem 1.3rem;
+    font-size: 1.15rem; color: var(--text); font-weight: 600; line-height: 1.35;
+    cursor: pointer; text-align: left; min-height: 64px;
+    transition: border-color .15s, background .15s, transform .1s;
   }
+  .q-opt:active:not(:disabled) { transform: scale(.98); }
   .q-opt:hover:not(:disabled) { border-color: var(--green); background: var(--green-light); }
   .q-opt.sel { border-color: var(--green); background: var(--green); color: #fff; }
   .q-opt:disabled { cursor: default; }
-  .q-opt:not(.sel):disabled { opacity: .45; }
+  .q-opt:not(.sel):disabled { opacity: .4; }
   .q-opt-radio {
-    width: 20px; height: 20px; border-radius: 50%;
-    border: 2px solid var(--border); flex-shrink: 0; background: #fff;
+    width: 30px; height: 30px; border-radius: 8px;
+    border: 2.5px solid var(--border); flex-shrink: 0; background: #fff;
+    display: flex; align-items: center; justify-content: center;
     transition: all .15s;
   }
+  .q-opt-radio::after {
+    content: ''; width: 16px; height: 16px;
+    background: transparent; transition: all .15s;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
   .q-opt:hover:not(:disabled) .q-opt-radio { border-color: var(--green); }
-  .q-opt.sel .q-opt-radio { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.25); box-shadow: inset 0 0 0 5px rgba(255,255,255,.6); }
+  .q-opt.sel .q-opt-radio { border-color: #fff; background: #fff; }
+  .q-opt.sel .q-opt-radio::after { background: var(--green); }
   .q-foot { font-size: .74rem; color: var(--text-muted); text-align: center; margin-top: 1.25rem; }
 
   /* ── RESULT ── */
@@ -552,7 +570,7 @@ function showResult() {
     .q-card { padding: 1.5rem 1.1rem; border-radius: 16px; }
     .q-text { font-size: 1.3rem; }
     .q-hint { font-size: .9rem; }
-    .q-opt { font-size: 1.05rem; padding: 1.1rem 1.15rem; min-height: 58px; }
+    .q-opt { padding: 1.15rem 1.2rem; }
     .q-count { font-size: .88rem; }
     .res-hero { padding: 2rem 1.25rem 1.5rem; border-radius: 16px 16px 0 0; }
     .res-title { font-size: 1.25rem; }
