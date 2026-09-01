@@ -68,6 +68,8 @@ cp "$SRC/ss-page-privacy.astro"                "src/pages/privacy.astro"
 cp "$SRC/ss-page-terms.astro"                  "src/pages/terms.astro"
 cp "$SRC/ss-page-for-employers.astro"          "src/pages/for-employers.astro"
 cp "$SRC/ss-page-how-it-works.astro"           "src/pages/how-it-works.astro"
+mkdir -p src/pages/blog
+cp "$SRC/ss-page-blog-index.astro"             "src/pages/blog/index.astro"
 
 # 3. Voices — remove old flat file to avoid routing conflict, then create subdirectory pages
 echo "→ Voices pages..."

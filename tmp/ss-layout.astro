@@ -122,7 +122,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
                   </a>
                   <a href="/myths" class="dropdown-item">
                     <span class="di-icon">🚫</span>
-                    <span><span class="di-title">Myths Debunked</span><span class="di-desc">12 common myths — busted</span></span>
+                    <span><span class="di-title">Myths Debunked</span><span class="di-desc">12 common myths, busted</span></span>
                   </a>
                 </div>
                 <div class="dd-col">
@@ -254,7 +254,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
             </p>
             <p class="footer-sub-tagline">
               India's first private companion for women navigating perimenopause.
-              Information and support — not medical advice.
+              Information and support, not medical advice.
             </p>
             <div class="footer-disclaimer">
               This service provides general health information only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your doctor or a qualified healthcare professional.
@@ -311,7 +311,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} The Second Spring. General health information only — not medical advice.</p>
+          <p>&copy; {new Date().getFullYear()} The Second Spring. General health information only, not medical advice.</p>
         </div>
       </div>
     </footer>
@@ -332,7 +332,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         </div>
         <div class="popup-eyebrow">Free · 2 minutes · Anonymous</div>
         <h2 class="popup-title">Are your symptoms trying to tell you something?</h2>
-        <p class="popup-body">Hot flashes, mood swings, poor sleep, brain fog — these aren't just "stress." Our free symptom check takes 2 minutes and gives you real clarity.</p>
+        <p class="popup-body">Hot flashes, mood swings, poor sleep, brain fog: these aren't just "stress." Our free symptom check takes 2 minutes and gives you real clarity.</p>
         <form class="popup-form" id="popup-form" novalidate>
           <div class="popup-fields-row">
             <div class="popup-field">
@@ -529,7 +529,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
           fetch('/api/collect-lead', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, phone, age: '', score: '', level: 'Popup only — quiz not completed' }),
+            body: JSON.stringify({ email, phone, age: '', score: '', level: 'Popup only, quiz not completed' }),
           }).catch(() => {});
 
           hidePopup();
@@ -691,55 +691,55 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
   }
 
   /* ── Footer ── */
-  .footer { background: #2B1820; color: #E0AFBC; padding: 4rem 0 2rem; margin-top: 5rem; }
+  .footer { background: #FFFFFF; color: var(--text-secondary); padding: 4rem 0 2rem; margin-top: 5rem; border-top: 1px solid var(--border); }
   .footer-grid {
     display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 3rem; padding-bottom: 3rem;
-    border-bottom: 1px solid #42222C;
+    border-bottom: 1px solid var(--border);
   }
-  .footer-brand { font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: .75rem; }
-  .footer-tagline { font-size: 1rem; font-weight: 600; color: #F5DEE4; line-height: 1.4; margin-bottom: .5rem; font-style: italic; }
-  .footer-sub-tagline { font-size: .88rem; line-height: 1.65; margin-bottom: 1.25rem; color: #E0AFBC; }
-  .footer-disclaimer { font-size: .78rem; line-height: 1.65; color: #8C6470; padding: 1rem; background: #42222C; border-radius: 8px; border-left: 3px solid var(--green); }
-  .footer h4 { color: #F5DEE4; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
+  .footer-brand { font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: .75rem; color: var(--text); }
+  .footer-tagline { font-size: 1rem; font-weight: 600; color: var(--green-dark); line-height: 1.4; margin-bottom: .5rem; font-style: italic; }
+  .footer-sub-tagline { font-size: .88rem; line-height: 1.65; margin-bottom: 1.25rem; color: var(--text-secondary); }
+  .footer-disclaimer { font-size: .78rem; line-height: 1.65; color: var(--text-muted); padding: 1rem; background: var(--cream-mid); border-radius: 8px; border-left: 3px solid var(--green); }
+  .footer h4 { color: var(--text); font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
   .footer ul { list-style: none; }
   .footer ul li { margin-bottom: .4rem; }
-  .footer ul li a { color: #E0AFBC; font-size: .87rem; transition: color .18s; }
-  .footer ul li a:hover { color: #F5DEE4; }
-  .footer-bottom { padding-top: 1.5rem; font-size: .82rem; color: #8C6470; text-align: center; }
+  .footer ul li a { color: var(--text-secondary); font-size: .87rem; transition: color .18s; }
+  .footer ul li a:hover { color: var(--green-dark); }
+  .footer-bottom { padding-top: 1.5rem; font-size: .82rem; color: var(--text-muted); text-align: center; }
   .footer-social { display: flex; gap: .75rem; margin-top: 1.25rem; align-items: center; }
-  .footer-social-link { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: #42222C; color: #E0AFBC; transition: background .18s, color .18s; }
+  .footer-social-link { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: var(--cream-mid); color: var(--green-dark); transition: background .18s, color .18s; }
   .footer-social-link:hover { background: var(--green); color: #fff; }
   .footer-social-wa:hover { background: #25D366; color: #fff; }
 
   /* ── Shared page styles ── */
   .page-hero {
-    background: linear-gradient(145deg, #2B1820 0%, #5C2E3A 55%, #D46E86 100%);
-    color: #fff; padding: 5rem 0 4rem; position: relative; overflow: hidden;
+    background: var(--cream-mid);
+    color: var(--text); padding: 5rem 0 4rem; position: relative; overflow: hidden;
   }
   .page-hero::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 50% 55% at 90% 30%, rgba(212,132,90,.22) 0%, transparent 65%);
+    background: radial-gradient(ellipse 50% 55% at 90% 30%, rgba(232,137,159,.18) 0%, transparent 65%);
   }
   .page-hero::after {
     content: ''; position: absolute; right: 10%; top: 50%; transform: translateY(-50%);
     width: 280px; height: 280px;
     background: url('/favicon.svg') center/contain no-repeat;
-    opacity: .18; pointer-events: none;
+    opacity: .10; pointer-events: none;
   }
   .page-hero-inner { position: relative; z-index: 1; max-width: 680px; }
   .page-eyebrow {
     display: inline-flex; align-items: center; gap: .5rem;
     font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    color: rgba(255,255,255,.75); background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.2); padding: .35rem .9rem;
+    color: var(--green-dark); background: #fff;
+    border: 1px solid var(--border); padding: .35rem .9rem;
     border-radius: 100px; margin-bottom: 1.25rem;
   }
   .page-hero h1 {
     font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900;
-    letter-spacing: -.03em; color: #fff; line-height: 1.15; margin-bottom: 1rem;
+    letter-spacing: -.03em; color: var(--text); line-height: 1.15; margin-bottom: 1rem;
   }
-  .page-hero p { font-size: 1.05rem; color: rgba(255,255,255,.8); line-height: 1.72; max-width: 560px; }
+  .page-hero p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.72; max-width: 560px; }
 
   .section { padding: 5rem 0; }
   .section-sm { padding: 3.5rem 0; }

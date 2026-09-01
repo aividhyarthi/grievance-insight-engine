@@ -9,8 +9,8 @@ const entries = allEntries.sort((a, b) => b.data.date.getTime() - a.data.date.ge
 // ─── Structured data ───
 const structuredData = [
   collectionPageSchema({
-    name: 'Community Q&A — The Second Spring',
-    description: 'Indian women navigating perimenopause — sharing real questions, experiences, and support.',
+    name: 'Community Q&A, The Second Spring',
+    description: 'Indian women navigating perimenopause, sharing real questions, experiences, and support.',
     url: '/community',
   }),
   breadcrumbSchema([
@@ -43,7 +43,7 @@ const categoryColours: Record<string, { bg: string; color: string }> = {
 
 <Layout
   title="Community Q&A | The Second Spring"
-  description="Indian women navigating perimenopause — sharing real questions, experiences, and support. Browse community Q&A answered by The Second Spring Team."
+  description="Indian women navigating perimenopause, sharing real questions, experiences, and support. Browse community Q&A answered by The Second Spring Team."
   structuredData={structuredData}
 >
 
@@ -53,7 +53,7 @@ const categoryColours: Record<string, { bg: string; color: string }> = {
       <div class="page-hero-inner">
         <div class="page-eyebrow">💬 Community</div>
         <h1>Real Questions. Real Answers.</h1>
-        <p>Indian women navigating perimenopause — sharing questions, experiences, and support.</p>
+        <p>Indian women navigating perimenopause, sharing questions, experiences, and support.</p>
       </div>
     </div>
   </section>
@@ -77,7 +77,7 @@ const categoryColours: Record<string, { bg: string; color: string }> = {
         <div class="sqb-inner">
           <div class="sqb-text">
             <strong>Have a question?</strong>
-            <span>Email us at <a href="mailto:thesecondspringofficial@gmail.com">thesecondspringofficial@gmail.com</a> — we feature real questions (anonymously) from our community every week.</span>
+            <span>Email us at <a href="mailto:thesecondspringofficial@gmail.com">thesecondspringofficial@gmail.com</a>, we feature real questions (anonymously) from our community every week.</span>
           </div>
           <a href="mailto:thesecondspringofficial@gmail.com?subject=Community Question" class="sqb-btn">Submit your question →</a>
         </div>
@@ -404,7 +404,7 @@ const categoryColours: Record<string, { bg: string; color: string }> = {
   }
 
   .cta-box {
-    background: linear-gradient(135deg, #D46E86 0%, #B85268 100%);
+    background: var(--green, #D46E86);
     border-radius: var(--radius-lg);
     padding: 3rem 2.5rem;
     text-align: center;
