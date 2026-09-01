@@ -419,7 +419,7 @@ function showResult() {
 
   /* ── QUESTION ── */
   .qhdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
-  .q-count { font-size: .82rem; font-weight: 700; color: var(--text-muted); }
+  .q-count { font-size: .88rem; font-weight: 700; color: var(--text-muted); }
   .prog-bar { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: 1.75rem; }
   .prog-fill { height: 100%; background: var(--green); border-radius: 99px; transition: width .4s ease; width: 0; }
   .q-card {
@@ -430,16 +430,16 @@ function showResult() {
   }
   .q-card.q-in { animation: fadeUp .3s ease both; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
-  .q-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--green); margin-bottom: .5rem; }
-  .q-text { font-size: 1.2rem; font-weight: 800; color: var(--text); line-height: 1.38; margin-bottom: .5rem; }
-  .q-hint { font-size: .8rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1.5rem; font-style: italic; }
-  .q-opts { display: flex; flex-direction: column; gap: .55rem; }
+  .q-label { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--green); margin-bottom: .5rem; }
+  .q-text { font-size: 1.35rem; font-weight: 800; color: var(--text); line-height: 1.38; margin-bottom: .5rem; }
+  .q-hint { font-size: .92rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1.5rem; font-style: italic; }
+  .q-opts { display: flex; flex-direction: column; gap: .6rem; }
   .q-opt {
     display: flex; align-items: center; gap: .85rem; width: 100%;
     background: var(--cream); border: 1.5px solid var(--border);
-    border-radius: 12px; padding: 1rem 1.1rem;
-    font-size: .93rem; color: var(--text); font-weight: 500;
-    cursor: pointer; text-align: left; min-height: 54px;
+    border-radius: 12px; padding: 1.15rem 1.25rem;
+    font-size: 1.05rem; color: var(--text); font-weight: 600;
+    cursor: pointer; text-align: left; min-height: 58px;
     transition: border-color .15s, background .15s;
   }
   .q-opt:hover:not(:disabled) { border-color: var(--green); background: var(--green-light); }
@@ -550,8 +550,10 @@ function showResult() {
     .q-screen.active { padding: 1.25rem .9rem 2.5rem; }
     .intro-h1 { font-size: 1.85rem; }
     .q-card { padding: 1.5rem 1.1rem; border-radius: 16px; }
-    .q-text { font-size: 1.08rem; }
-    .q-opt { font-size: .92rem; padding: .95rem 1rem; min-height: 54px; }
+    .q-text { font-size: 1.3rem; }
+    .q-hint { font-size: .9rem; }
+    .q-opt { font-size: 1.05rem; padding: 1.1rem 1.15rem; min-height: 58px; }
+    .q-count { font-size: .88rem; }
     .res-hero { padding: 2rem 1.25rem 1.5rem; border-radius: 16px 16px 0 0; }
     .res-title { font-size: 1.25rem; }
     .res-body { padding: 1.25rem; border-radius: 0 0 16px 16px; }
