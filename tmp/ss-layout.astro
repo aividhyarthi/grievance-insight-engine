@@ -62,7 +62,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
     <script type="application/ld+json" set:html={jsonLd} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <!-- Google Analytics -->
@@ -81,16 +81,8 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
 
         <a href="/" class="brand">
           <svg class="brand-icon" width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="7" fill="#1A3D2B"/>
-            <g transform="translate(16,16)">
-              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9"/>
-              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(60)"/>
-              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(120)"/>
-              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(180)"/>
-              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(240)"/>
-              <ellipse rx="3.5" ry="6.5" fill="#D4845A" opacity=".9" transform="rotate(300)"/>
-              <circle r="3.8" fill="#FBBF81"/>
-            </g>
+            <path d="M16 4 C21 9 25 12 25 18 C25 23.5 21 27 16 27 C11 27 7 23.5 7 18 C7 12 11 9 16 4Z" fill="#E8899F"/>
+            <circle cx="16" cy="18" r="4" fill="#FFFFFF"/>
           </svg>
           <span class="brand-the">The</span>
           <span class="brand-second">Second</span>
@@ -253,9 +245,9 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         <div class="footer-grid">
           <div class="footer-about">
             <div class="footer-brand">
-              <span style="color:#7FB89A;">The</span>
+              <span style="color:#F0AEBE;">The</span>
               <span style="color:#fff;"> Second </span>
-              <span style="color:#D4845A;">Spring</span>
+              <span style="color:#E8899F;">Spring</span>
             </div>
             <p class="footer-tagline">
               The best of you is not behind you.
@@ -331,10 +323,10 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         <div class="popup-blossom" aria-hidden="true">
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(32,32)">
-              <ellipse rx="7" ry="13" fill="#D4845A" opacity=".18"/>
-              <ellipse rx="7" ry="13" fill="#D4845A" opacity=".18" transform="rotate(60)"/>
-              <ellipse rx="7" ry="13" fill="#D4845A" opacity=".18" transform="rotate(120)"/>
-              <circle r="7.5" fill="#D4845A" opacity=".22"/>
+              <ellipse rx="7" ry="13" fill="#E8899F" opacity=".18"/>
+              <ellipse rx="7" ry="13" fill="#E8899F" opacity=".18" transform="rotate(60)"/>
+              <ellipse rx="7" ry="13" fill="#E8899F" opacity=".18" transform="rotate(120)"/>
+              <circle r="7.5" fill="#E8899F" opacity=".22"/>
             </g>
           </svg>
         </div>
@@ -550,22 +542,22 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
 </html>
 
 <style is:global>
-  /* ── Design tokens ── */
+  /* ── Design tokens (white & blush pink) ── */
   :root {
-    --green:          #3D7A5F;
-    --green-dark:     #2A5C45;
-    --green-mid:      #4E9070;
-    --green-light:    #EEF7F2;
-    --peach:          #D4845A;
-    --peach-dark:     #B8693F;
-    --peach-light:    #FDF2EC;
-    --cream:          #FAFDF8;
-    --cream-mid:      #F2F9F4;
-    --border:         #C8E0D2;
-    --border-light:   #E0F0E8;
-    --text:           #1A2E22;
-    --text-secondary: #3A5444;
-    --text-muted:     #6B8A76;
+    --green:          #D46E86;
+    --green-dark:     #B85268;
+    --green-mid:      #E8899F;
+    --green-light:    #FDF0F3;
+    --peach:          #F0AEBE;
+    --peach-dark:     #D98CA0;
+    --peach-light:    #FCE8ED;
+    --cream:          #FFFFFF;
+    --cream-mid:      #FDF0F3;
+    --border:         #F5DEE4;
+    --border-light:   #FAE6EB;
+    --text:           #2B2226;
+    --text-secondary: #5C4850;
+    --text-muted:     #8C7278;
     --radius-sm:      8px;
     --radius:         14px;
     --radius-lg:      22px;
@@ -575,7 +567,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
     background: var(--cream);
     color: var(--text);
     line-height: 1.7;
@@ -699,30 +691,30 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
   }
 
   /* ── Footer ── */
-  .footer { background: #1A2E22; color: #8BAF98; padding: 4rem 0 2rem; margin-top: 5rem; }
+  .footer { background: #2B1820; color: #E0AFBC; padding: 4rem 0 2rem; margin-top: 5rem; }
   .footer-grid {
     display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 3rem; padding-bottom: 3rem;
-    border-bottom: 1px solid #253D2E;
+    border-bottom: 1px solid #42222C;
   }
   .footer-brand { font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: .75rem; }
-  .footer-tagline { font-size: 1rem; font-weight: 600; color: #C8E0D2; line-height: 1.4; margin-bottom: .5rem; font-style: italic; }
-  .footer-sub-tagline { font-size: .88rem; line-height: 1.65; margin-bottom: 1.25rem; color: #8BAF98; }
-  .footer-disclaimer { font-size: .78rem; line-height: 1.65; color: #5A7A68; padding: 1rem; background: #253D2E; border-radius: 8px; border-left: 3px solid var(--green); }
-  .footer h4 { color: #C8E0D2; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
+  .footer-tagline { font-size: 1rem; font-weight: 600; color: #F5DEE4; line-height: 1.4; margin-bottom: .5rem; font-style: italic; }
+  .footer-sub-tagline { font-size: .88rem; line-height: 1.65; margin-bottom: 1.25rem; color: #E0AFBC; }
+  .footer-disclaimer { font-size: .78rem; line-height: 1.65; color: #8C6470; padding: 1rem; background: #42222C; border-radius: 8px; border-left: 3px solid var(--green); }
+  .footer h4 { color: #F5DEE4; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
   .footer ul { list-style: none; }
   .footer ul li { margin-bottom: .4rem; }
-  .footer ul li a { color: #8BAF98; font-size: .87rem; transition: color .18s; }
-  .footer ul li a:hover { color: #C8E0D2; }
-  .footer-bottom { padding-top: 1.5rem; font-size: .82rem; color: #5A7A68; text-align: center; }
+  .footer ul li a { color: #E0AFBC; font-size: .87rem; transition: color .18s; }
+  .footer ul li a:hover { color: #F5DEE4; }
+  .footer-bottom { padding-top: 1.5rem; font-size: .82rem; color: #8C6470; text-align: center; }
   .footer-social { display: flex; gap: .75rem; margin-top: 1.25rem; align-items: center; }
-  .footer-social-link { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: #253D2E; color: #8BAF98; transition: background .18s, color .18s; }
+  .footer-social-link { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: #42222C; color: #E0AFBC; transition: background .18s, color .18s; }
   .footer-social-link:hover { background: var(--green); color: #fff; }
   .footer-social-wa:hover { background: #25D366; color: #fff; }
 
   /* ── Shared page styles ── */
   .page-hero {
-    background: linear-gradient(145deg, #1A3D2B 0%, #2A5C45 55%, #3D7A5F 100%);
+    background: linear-gradient(145deg, #2B1820 0%, #5C2E3A 55%, #D46E86 100%);
     color: #fff; padding: 5rem 0 4rem; position: relative; overflow: hidden;
   }
   .page-hero::before {

@@ -42,6 +42,14 @@ cp "$SRC/ss-symptoms-cards.astro" "src/pages/symptoms.astro"
 echo "→ Interactive check page..."
 cp "$SRC/ss-check.astro" "src/pages/check.astro"
 
+# 2c. Symptom quiz page
+echo "→ Quiz page..."
+cp "$SRC/ss-quiz.astro" "src/pages/quiz.astro"
+
+# 2d. Favicon
+echo "→ Favicon..."
+cp "$SRC/ss-favicon.svg" "public/favicon.svg"
+
 # 3. Voices — remove old flat file to avoid routing conflict, then create subdirectory pages
 echo "→ Voices pages..."
 rm -f src/pages/voices.astro
