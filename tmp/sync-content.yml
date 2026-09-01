@@ -1,0 +1,106 @@
+name: Sync content from staging
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download staging repo
+        run: |
+          curl -fsSL "https://codeload.github.com/aividhyarthi/grievance-insight-engine/tar.gz/refs/heads/claude/perimenopause-chat-app-kgml4" -o /tmp/repo.tar.gz
+          mkdir -p /tmp/extracted
+          tar xzf /tmp/repo.tar.gz -C /tmp/extracted
+          echo "SRC=/tmp/extracted/$(ls /tmp/extracted)/tmp" >> "$GITHUB_ENV"
+
+      - name: Sanity check
+        run: |
+          if ! head -1 "$SRC/blog/blood-clots-periods-perimenopause.md" | grep -q "^---"; then
+            echo "ERROR: downloaded blog files look corrupt. Aborting."
+            exit 1
+          fi
+
+      - name: Copy layout, ads.txt, favicon
+        run: |
+          cp "$SRC/ss-layout.astro" "src/layouts/Layout.astro"
+          mkdir -p public
+          cp "$SRC/ss-ads.txt" "public/ads.txt"
+          cp "$SRC/ss-favicon.svg" "public/favicon.svg"
+
+      - name: Copy symptoms, check, quiz pages
+        run: |
+          cp "$SRC/ss-symptoms-cards.astro" "src/pages/symptoms.astro"
+          cp "$SRC/ss-check.astro" "src/pages/check.astro"
+          cp "$SRC/ss-quiz.astro" "src/pages/quiz.astro"
+
+      - name: Copy rebranded pages (color fix)
+        run: |
+          mkdir -p src/pages/guide src/pages/community
+          cp "$SRC/ss-page-index.astro"                  "src/pages/index.astro"
+          cp "$SRC/ss-page-menopause.astro"              "src/pages/menopause.astro"
+          cp "$SRC/ss-page-guide-sexual-wellness.astro"  "src/pages/guide/sexual-wellness.astro"
+          cp "$SRC/ss-page-guide-hair-skin.astro"        "src/pages/guide/hair-skin.astro"
+          cp "$SRC/ss-page-guide-mood-memory.astro"      "src/pages/guide/mood-memory.astro"
+          cp "$SRC/ss-page-guide-sleep.astro"            "src/pages/guide/sleep.astro"
+          cp "$SRC/ss-page-guide-weight.astro"           "src/pages/guide/weight.astro"
+          cp "$SRC/ss-page-guide-symptoms.astro"         "src/pages/guide/symptoms.astro"
+          cp "$SRC/ss-page-guide-talk-to-doctor.astro"   "src/pages/guide/talk-to-doctor.astro"
+          cp "$SRC/ss-page-myths.astro"                  "src/pages/myths.astro"
+          cp "$SRC/ss-page-community-index.astro"        "src/pages/community/index.astro"
+          cp "$SRC/ss-page-privacy.astro"                "src/pages/privacy.astro"
+          cp "$SRC/ss-page-terms.astro"                  "src/pages/terms.astro"
+          cp "$SRC/ss-page-for-employers.astro"          "src/pages/for-employers.astro"
+          cp "$SRC/ss-page-how-it-works.astro"           "src/pages/how-it-works.astro"
+
+      - name: Copy voices pages
+        run: |
+          rm -f src/pages/voices.astro
+          mkdir -p src/pages/voices
+          cp "$SRC/ss-voices-index.astro" "src/pages/voices/index.astro"
+          cp "$SRC/ss-voices-slug.astro"  "src/pages/voices/[slug].astro"
+
+      - name: Copy blog categories and posts
+        run: |
+          cp "$SRC/ss-blog-categories.ts" "src/lib/blog-categories.ts"
+          mkdir -p src/content/blog
+          cp "$SRC"/blog/*.md src/content/blog/
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            src/layouts/Layout.astro \
+            public/ads.txt \
+            public/favicon.svg \
+            src/pages/symptoms.astro \
+            src/pages/check.astro \
+            src/pages/quiz.astro \
+            src/pages/index.astro \
+            src/pages/menopause.astro \
+            src/pages/guide/sexual-wellness.astro \
+            src/pages/guide/hair-skin.astro \
+            src/pages/guide/mood-memory.astro \
+            src/pages/guide/sleep.astro \
+            src/pages/guide/weight.astro \
+            src/pages/guide/symptoms.astro \
+            src/pages/guide/talk-to-doctor.astro \
+            src/pages/myths.astro \
+            src/pages/community/index.astro \
+            src/pages/privacy.astro \
+            src/pages/terms.astro \
+            src/pages/for-employers.astro \
+            src/pages/how-it-works.astro \
+            src/pages/voices/index.astro \
+            "src/pages/voices/[slug].astro" \
+            src/lib/blog-categories.ts \
+            src/content/blog
+          git commit -m "Sync content: rebrand fix + latest staging content" || echo "Nothing to commit"
+          git push

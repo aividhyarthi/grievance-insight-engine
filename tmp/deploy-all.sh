@@ -50,6 +50,25 @@ cp "$SRC/ss-quiz.astro" "src/pages/quiz.astro"
 echo "→ Favicon..."
 cp "$SRC/ss-favicon.svg" "public/favicon.svg"
 
+# 2e. Rebrand fix — pages with page-specific hardcoded colors
+echo "→ Rebranded pages..."
+mkdir -p src/pages/guide src/pages/community
+cp "$SRC/ss-page-index.astro"                  "src/pages/index.astro"
+cp "$SRC/ss-page-menopause.astro"              "src/pages/menopause.astro"
+cp "$SRC/ss-page-guide-sexual-wellness.astro"  "src/pages/guide/sexual-wellness.astro"
+cp "$SRC/ss-page-guide-hair-skin.astro"        "src/pages/guide/hair-skin.astro"
+cp "$SRC/ss-page-guide-mood-memory.astro"      "src/pages/guide/mood-memory.astro"
+cp "$SRC/ss-page-guide-sleep.astro"            "src/pages/guide/sleep.astro"
+cp "$SRC/ss-page-guide-weight.astro"           "src/pages/guide/weight.astro"
+cp "$SRC/ss-page-guide-symptoms.astro"         "src/pages/guide/symptoms.astro"
+cp "$SRC/ss-page-guide-talk-to-doctor.astro"   "src/pages/guide/talk-to-doctor.astro"
+cp "$SRC/ss-page-myths.astro"                  "src/pages/myths.astro"
+cp "$SRC/ss-page-community-index.astro"        "src/pages/community/index.astro"
+cp "$SRC/ss-page-privacy.astro"                "src/pages/privacy.astro"
+cp "$SRC/ss-page-terms.astro"                  "src/pages/terms.astro"
+cp "$SRC/ss-page-for-employers.astro"          "src/pages/for-employers.astro"
+cp "$SRC/ss-page-how-it-works.astro"           "src/pages/how-it-works.astro"
+
 # 3. Voices — remove old flat file to avoid routing conflict, then create subdirectory pages
 echo "→ Voices pages..."
 rm -f src/pages/voices.astro
