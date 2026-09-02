@@ -245,9 +245,9 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         <div class="footer-grid">
           <div class="footer-about">
             <div class="footer-brand">
-              <span style="color:#F0AEBE;">The</span>
-              <span style="color:#fff;"> Second </span>
-              <span style="color:#E8899F;">Spring</span>
+              <span style="color:var(--text-muted);font-style:italic;font-weight:500;">The</span>
+              <span style="color:var(--text);"> Second </span>
+              <span style="color:var(--green);">Spring</span>
             </div>
             <p class="footer-tagline">
               The best of you is not behind you.
@@ -593,8 +593,8 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
   }
   .btn-primary { background: var(--green); color: #fff; border-color: var(--green); }
   .btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); color: #fff; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(61,122,95,.28); }
-  .btn-peach   { background: var(--peach); color: #fff; border-color: var(--peach); }
-  .btn-peach:hover { background: var(--peach-dark); border-color: var(--peach-dark); color: #fff; transform: translateY(-1px); }
+  .btn-peach   { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
+  .btn-peach:hover { background: var(--green); border-color: var(--green); color: #fff; transform: translateY(-1px); }
   .btn-outline { background: transparent; color: var(--green); border-color: var(--green); }
   .btn-outline:hover { background: var(--green-light); }
   .btn-outline-white { background: transparent; color: #fff; border-color: rgba(255,255,255,.55); }
@@ -638,7 +638,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
   }
   .nav-badge {
     font-size: .65rem; font-weight: 700; letter-spacing: .05em;
-    background: var(--peach); color: #fff;
+    background: var(--green-dark); color: #fff;
     padding: .15rem .45rem; border-radius: 100px;
     text-transform: uppercase;
   }
@@ -839,7 +839,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
     .mbn-center { flex: 1.2; position: relative; padding-top: 0; justify-content: flex-end; padding-bottom: 6px; }
     .mbn-center-btn {
       width: 52px; height: 52px; border-radius: 50%;
-      background: var(--peach); color: #fff;
+      background: var(--green-dark); color: #fff;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 16px rgba(211,132,90,.45);
       margin-bottom: 3px;

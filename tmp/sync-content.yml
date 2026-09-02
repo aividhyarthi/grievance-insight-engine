@@ -71,6 +71,10 @@ jobs:
           cp "$SRC/ss-voices-index.astro" "src/pages/voices/index.astro"
           cp "$SRC/ss-voices-slug.astro"  "src/pages/voices/[slug].astro"
 
+      - name: Copy blog post template (rebrand fix)
+        run: |
+          cp "$SRC/ss-blog-slug.astro" "src/pages/blog/[slug].astro"
+
       - name: Copy blog categories and posts
         run: |
           cp "$SRC/ss-blog-categories.ts" "src/lib/blog-categories.ts"
@@ -108,6 +112,7 @@ jobs:
             src/pages/api/chat.ts \
             src/pages/voices/index.astro \
             "src/pages/voices/[slug].astro" \
+            "src/pages/blog/[slug].astro" \
             src/lib/blog-categories.ts \
             src/content/blog
           git commit -m "Sync content: rebrand fix + latest staging content" || echo "Nothing to commit"

@@ -84,6 +84,10 @@ mkdir -p src/pages/voices
 cp "$SRC/ss-voices-index.astro" "src/pages/voices/index.astro"
 cp "$SRC/ss-voices-slug.astro"  "src/pages/voices/[slug].astro"
 
+# 3b. Blog post template (rebrand fix — was never wired into this script before)
+echo "→ Blog post template..."
+cp "$SRC/ss-blog-slug.astro" "src/pages/blog/[slug].astro"
+
 # 4. Blog categories — updated with new sections
 echo "→ Blog categories..."
 cp "$SRC/ss-blog-categories.ts" "src/lib/blog-categories.ts"
