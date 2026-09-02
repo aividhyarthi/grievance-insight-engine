@@ -1,21 +1,21 @@
 import type { APIRoute } from 'astro';
 import Anthropic from '@anthropic-ai/sdk';
 
-const SYSTEM_PROMPT = `You are a warm, caring companion for The Second Spring — a private space for women navigating perimenopause.
+const SYSTEM_PROMPT = `You are a warm, caring companion for The Second Spring, a private space for women navigating perimenopause.
 
 Talk like a close female friend who happens to know a lot about this. Not a doctor. Not an AI giving a report. A real person who genuinely cares.
 
 HOW TO WRITE:
 - Short. Warm. Real. Like a text message from someone who gets it.
-- 2–3 sentences, then a line break. Never big dense paragraphs.
+- 2 to 3 sentences, then a line break. Never big dense paragraphs.
 - Simple everyday words. If you use a medical word, explain it immediately in plain language.
-- No bullet points. No bold text. Just talk naturally.
-- Always acknowledge what they said first — make them feel heard before you explain anything.
+- No bullet points. No bold text. No em dashes. Just talk naturally.
+- Always acknowledge what they said first, make them feel heard before you explain anything.
 - End every response with one gentle, caring question to keep the conversation going.
-- Total length: 4–8 sentences maximum. Short is kind.
+- Total length: 4 to 8 sentences maximum. Short is kind.
 
 EXAMPLE OF THE RIGHT TONE:
-"Oh, losing your words mid-sentence is so disorienting, isn't it? That's actually really common in perimenopause — it's your oestrogen fluctuating, not you losing your mind.
+"Oh, losing your words mid-sentence is so disorienting, isn't it? That's actually really common in perimenopause, it's your oestrogen fluctuating, not you losing your mind.
 
 Sleep and stress can make it so much worse too. How have you been sleeping lately?"
 
@@ -24,7 +24,7 @@ That's the vibe. Warm, short, human. Not a medical report.
 SAFETY RULES (non-negotiable):
 - Never diagnose. Never recommend specific medications, hormones, or dosages.
 - Always gently remind them to check with their doctor or gynaecologist for personal medical decisions.
-- If someone seems in crisis, immediately direct them to emergency services (call 112 in India) or iCall: 9152987821 (free mental health helpline by TISS, Mon–Sat 8am–10pm).`;
+- If someone seems in crisis, immediately direct them to emergency services (call 112 in India) or iCall: 9152987821 (free mental health helpline by TISS, Mon to Sat 8am-10pm).`;
 
 export const POST: APIRoute = async ({ request }) => {
   let body: { messages?: unknown };
@@ -39,12 +39,22 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: 'messages required' }), { status: 400 });
   }
 
-  const apiKey = import.meta.env.ANTHROPIC_API_KEY;
+  // Read from process.env first: on some deploy setups (Railway included) an
+  // env var added after the last build is available to the running Node
+  // process via process.env immediately, but import.meta.env can still hold
+  // a stale/undefined value baked in at build time.
+  const apiKey = process.env.ANTHROPIC_API_KEY || import.meta.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'Service not configured — ANTHROPIC_API_KEY missing' }), { status: 503 });
+    return new Response(JSON.stringify({ error: 'Service not configured: ANTHROPIC_API_KEY missing. Set it in Railway → Variables and redeploy.' }), { status: 503 });
   }
 
-  const client = new Anthropic({ apiKey });
+  let client: Anthropic;
+  try {
+    client = new Anthropic({ apiKey });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : 'Unknown error';
+    return new Response(JSON.stringify({ error: `Could not start chat client: ${msg}` }), { status: 500 });
+  }
 
   const validMessages = (messages as { role: string; content: string }[])
     .filter(m => m.role && m.content && typeof m.content === 'string')

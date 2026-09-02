@@ -12,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="chat-header-inner">
         <div class="eyebrow">&#127807; Private companion</div>
         <h1>How are you feeling lately?</h1>
-        <p>Ask anything. Your companion listens first, then explains in plain language — no jargon, no judgement, no sign-up required.</p>
+        <p>Ask anything. Your companion listens first, then explains in plain language: no jargon, no judgement, no sign-up required.</p>
       </div>
     </div>
   </section>
@@ -21,7 +21,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="container disclaimer-inner">
       <span>&#128274;</span>
       <span>
-        <strong>Information only — not medical advice.</strong>
+        <strong>Information only, not medical advice.</strong>
         This companion helps you understand perimenopause but cannot diagnose or treat.
         Always consult your doctor or gynaecologist. In an emergency call <strong>112</strong>.
       </span>
@@ -44,10 +44,10 @@ import Layout from '../layouts/Layout.astro';
                 { emoji: '💤', label: 'Sleep problems',       msg: "I'm waking up in the night and can't get back to sleep. It's affecting everything. What's going on?" },
                 { emoji: '🔥', label: 'Hot flushes',          msg: "I keep getting sudden waves of heat, especially at night. Are these hot flushes? What can I do?" },
                 { emoji: '🧠', label: 'Brain fog',            msg: "My memory and concentration have changed. I forget words mid-sentence. Is this normal in perimenopause?" },
-                { emoji: '📅', label: 'Irregular periods',    msg: "My periods have become unpredictable — sometimes heavier, sometimes skipped. What does this mean?" },
+                { emoji: '📅', label: 'Irregular periods',    msg: "My periods have become unpredictable, sometimes heavier, sometimes skipped. What does this mean?" },
                 { emoji: '😔', label: 'Anxiety & low mood',   msg: "I feel anxious and low for no obvious reason. I didn't used to be like this. Could hormones be causing this?" },
                 { emoji: '💑', label: 'My wife / partner',    msg: "My wife seems emotionally different lately. She's exhausted, irritable, and not herself. Could this be perimenopause?" },
-                { emoji: '👩‍👧', label: 'My mum has changed',  msg: "My mother has changed a lot in the last year — moody, forgetful, not sleeping. Could she be in perimenopause?" },
+                { emoji: '👩‍👧', label: 'My mum has changed',  msg: "My mother has changed a lot in the last year: moody, forgetful, not sleeping. Could she be in perimenopause?" },
               ].map(s => (
                 <button class="starter-btn" data-msg={s.msg}>
                   <span class="starter-emoji">{s.emoji}</span>
@@ -75,9 +75,9 @@ import Layout from '../layouts/Layout.astro';
             <div class="msg msg-assistant">
               <div class="msg-avatar">&#127807;</div>
               <div class="msg-bubble">
-                <p>Hello, I'm your <strong>Second Spring companion</strong> — a warm, private space to ask anything about perimenopause.</p>
+                <p>Hello, I'm your <strong>Second Spring companion</strong>, a warm, private space to ask anything about perimenopause.</p>
                 <p style="margin-top:.6rem;">
-                  Whether you're dealing with sleep changes, mood shifts, hot flushes, brain fog, or something you can't quite name —
+                  Whether you're dealing with sleep changes, mood shifts, hot flushes, brain fog, or something you can't quite name,
                   I'm here to listen and help you understand what might be happening.
                 </p>
                 <p style="margin-top:.6rem; font-size:.87rem; color: var(--text-muted);">
@@ -92,7 +92,7 @@ import Layout from '../layouts/Layout.astro';
               <textarea
                 id="chat-input"
                 class="chat-textarea"
-                placeholder="Type your question here — or choose a topic on the left"
+                placeholder="Type your question here, or choose a topic on the left"
                 rows="2"
                 maxlength="1000"
               ></textarea>
@@ -105,7 +105,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
             <div class="input-footer">
               <span id="char-count" class="char-count">0 / 1000</span>
-              <span class="input-note">Not medical advice — always see your doctor for personal health decisions</span>
+              <span class="input-note">Not medical advice, always see your doctor for personal health decisions</span>
             </div>
           </div>
         </div>
@@ -118,8 +118,8 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .chat-header {
-    background: linear-gradient(145deg, #1A3D2B 0%, #2A5C45 55%, #3D7A5F 100%);
-    color: #fff;
+    background: var(--cream-mid, #FDF0F3);
+    color: var(--text, #2B2226);
     padding: 3.5rem 0 3rem;
     position: relative;
     overflow: hidden;
@@ -128,7 +128,7 @@ import Layout from '../layouts/Layout.astro';
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 55% 60% at 90% 30%, rgba(212,132,90,.2) 0%, transparent 65%);
+    background: radial-gradient(ellipse 55% 60% at 90% 30%, rgba(232,137,159,.18) 0%, transparent 65%);
   }
   .chat-header-inner { position: relative; z-index: 1; max-width: 600px; }
   .eyebrow {
@@ -139,9 +139,9 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,.7);
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.18);
+    color: var(--green-dark, #B85268);
+    background: #fff;
+    border: 1px solid var(--border, #F5DEE4);
     padding: .3rem .85rem;
     border-radius: 100px;
     margin-bottom: 1rem;
@@ -151,9 +151,9 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 900;
     letter-spacing: -.025em;
     margin-bottom: .75rem;
-    color: #fff;
+    color: var(--text, #2B2226);
   }
-  .chat-header p { font-size: .97rem; color: rgba(255,255,255,.8); line-height: 1.7; }
+  .chat-header p { font-size: .97rem; color: var(--text-secondary, #5C4850); line-height: 1.7; }
 
   .disclaimer-bar {
     background: var(--green-light);
@@ -249,7 +249,7 @@ import Layout from '../layouts/Layout.astro';
     display: flex; align-items: center; justify-content: center;
     font-size: 1rem; flex-shrink: 0; margin-top: .1rem;
   }
-  .msg-user .msg-avatar { background: var(--peach-light); border-color: #F0C9B0; }
+  .msg-user .msg-avatar { background: var(--peach-light); border-color: var(--peach); }
   .msg-bubble {
     max-width: 78%;
     background: var(--cream-mid);
