@@ -91,35 +91,47 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add \
-            src/layouts/Layout.astro \
-            public/ads.txt \
-            public/favicon.svg \
-            src/pages/symptoms.astro \
-            src/pages/check.astro \
-            src/pages/quiz.astro \
-            src/pages/index.astro \
-            src/pages/menopause.astro \
-            src/pages/guide/sexual-wellness.astro \
-            src/pages/guide/hair-skin.astro \
-            src/pages/guide/mood-memory.astro \
-            src/pages/guide/sleep.astro \
-            src/pages/guide/weight.astro \
-            src/pages/guide/symptoms.astro \
-            src/pages/guide/talk-to-doctor.astro \
-            src/pages/myths.astro \
-            src/pages/community/index.astro \
-            src/pages/privacy.astro \
-            src/pages/terms.astro \
-            src/pages/for-employers.astro \
-            src/pages/how-it-works.astro \
-            src/pages/blog/index.astro \
-            src/pages/chat.astro \
-            src/pages/api/chat.ts \
-            src/pages/voices/index.astro \
-            "src/pages/voices/[slug].astro" \
-            "src/pages/blog/[slug].astro" \
-            src/lib/blog-categories.ts \
+
+          # Add each path individually and tolerate any single one failing
+          # (e.g. a file that was removed and was never actually committed
+          # before, so there's nothing for git to stage a deletion for).
+          # Without this, one bad path aborts the whole job (bash runs with
+          # -e by default in GitHub Actions) and NOTHING syncs, not just
+          # the one broken file.
+          PATHS=(
+            src/layouts/Layout.astro
+            public/ads.txt
+            public/favicon.svg
+            src/pages/symptoms.astro
+            src/pages/check.astro
+            src/pages/quiz.astro
+            src/pages/index.astro
+            src/pages/menopause.astro
+            src/pages/guide/sexual-wellness.astro
+            src/pages/guide/hair-skin.astro
+            src/pages/guide/mood-memory.astro
+            src/pages/guide/sleep.astro
+            src/pages/guide/weight.astro
+            src/pages/guide/symptoms.astro
+            src/pages/guide/talk-to-doctor.astro
+            src/pages/myths.astro
+            src/pages/community/index.astro
+            src/pages/privacy.astro
+            src/pages/terms.astro
+            src/pages/for-employers.astro
+            src/pages/how-it-works.astro
+            src/pages/blog/index.astro
+            src/pages/chat.astro
+            src/pages/api/chat.ts
+            src/pages/voices/index.astro
+            "src/pages/voices/[slug].astro"
+            "src/pages/blog/[slug].astro"
+            src/lib/blog-categories.ts
             src/content/blog
+          )
+          for p in "${PATHS[@]}"; do
+            git add -- "$p" || echo "  (skipped $p, nothing to stage)"
+          done
+
           git commit -m "Sync content: rebrand fix + latest staging content" || echo "Nothing to commit"
           git push
