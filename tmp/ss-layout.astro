@@ -221,12 +221,12 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
           <li><a href="/for-employers" class:list={[{ active: isActive('/for-employers') }]}>For Employers</a></li>
           <li><a href="/contact" class:list={[{ active: isActive('/contact') }]}>Contact</a></li>
           <li class="mob-menu-cta">
-            <a href="/chat" class="btn btn-primary mob-menu-cta-btn">Start Chatting</a>
+            <a href="/quiz" class="btn btn-primary mob-menu-cta-btn">Take the Quiz</a>
           </li>
         </ul>
 
         <div class="navbar-right">
-          <a href="/chat" class="btn btn-primary navbar-cta">Start Chatting</a>
+          <a href="/quiz" class="btn btn-primary navbar-cta">Take the Quiz</a>
           <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
             <svg id="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
             <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -298,7 +298,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
           <div>
             <h4>Talk to Us</h4>
             <ul>
-              <li><a href="/chat">Chat with Companion</a></li>
+              <li><a href="/quiz">Take the Symptom Quiz</a></li>
               <li><a href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
               <li><a href="mailto:thesecondspringofficial@gmail.com">thesecondspringofficial@gmail.com</a></li>
             </ul>
@@ -368,9 +368,9 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         </div>
         <span>Check</span>
       </a>
-      <a href="/chat" class="mbn-tab" data-path="/chat">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span>Chat</span>
+      <a href="/community" class="mbn-tab" data-path="/community">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Community</span>
       </a>
       <button class="mbn-tab mbn-more" id="mbn-more-btn" aria-label="More navigation">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
@@ -440,9 +440,9 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         const closeBtn = document.getElementById('popup-close')!;
         const form = document.getElementById('popup-form')!;
 
-        // Don't show on quiz or chat pages, or if already dismissed
+        // Don't show on the quiz page, or if already dismissed
         const pg = window.location.pathname;
-        if (pg.startsWith('/quiz') || pg.startsWith('/chat') || sessionStorage.getItem(STORAGE_KEY)) return;
+        if (pg.startsWith('/quiz') || sessionStorage.getItem(STORAGE_KEY)) return;
 
         function showPopup() {
           overlay.classList.add('popup-visible');
@@ -808,7 +808,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
     .has-dropdown.mob-open .chevron { transform: rotate(180deg); }
     .dropdown-item { padding: .75rem 1rem; }
 
-    /* Start Chatting inside mobile menu */
+    /* Quiz CTA inside mobile menu */
     .mob-menu-cta { border-bottom: none !important; padding: 1.25rem 1.5rem; }
     .mob-menu-cta-btn { width: 100%; justify-content: center; font-size: 1rem; }
 

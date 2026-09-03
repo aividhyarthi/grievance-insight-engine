@@ -17,24 +17,24 @@ const structuredData = [
 const steps = [
   {
     num: '01',
-    icon: '💬',
-    title: 'Start a private conversation',
-    desc: 'Open the chat, no sign-up, no login, no name required. Type exactly what\'s on your mind. You can describe your symptoms, ask about a specific experience, or simply say "I don\'t know where to start", the companion will meet you there.',
-    detail: 'Your conversation is private by design. We do not share, sell, or expose your data. You can chat from your phone in 5 minutes of privacy, no one else needs to know.',
+    icon: '✅',
+    title: 'Take the free symptom check',
+    desc: 'No sign-up, no login, no name required. Twelve quick questions about how you\'ve been feeling, your sleep, mood, periods, energy, and more, take about 2 minutes.',
+    detail: 'Nothing is stored or shared. We do not save your answers or link them to your identity.',
   },
   {
     num: '02',
     icon: '🌿',
-    title: 'Receive personalised, empathetic information',
-    desc: 'The Second Spring companion draws on up-to-date medical information and an understanding of the Indian woman\'s context, our bodies, our families, our healthcare system, and our cultural relationship with this transition.',
-    detail: 'Every response is designed to feel like a conversation with a knowledgeable, warm friend, not a medical textbook. You\'ll receive clear explanations, validated information, and practical suggestions tailored to what you\'ve shared.',
+    title: 'Get your personalised result',
+    desc: 'Your answers are matched against patterns built with guidance from menopause-aware gynaecologists and an understanding of the Indian woman\'s context, our bodies, our families, our healthcare system, and our cultural relationship with this transition.',
+    detail: 'You\'ll get a clear, plain-language result explaining what your symptoms may point toward, not a diagnosis, but a starting point for understanding.',
   },
   {
     num: '03',
     icon: '🩺',
     title: 'Find your next step',
     desc: 'The Second Spring helps you understand when something warrants a doctor\'s visit, what to say when you get there, and what specialist support might look like. We help you bridge the gap between feeling confused and getting real care.',
-    detail: 'When appropriate, we can connect you with verified gynaecologists and menopause specialists. We also provide guides on preparing for appointments, advocating for yourself, and understanding your treatment options.',
+    detail: 'Explore our full guide library on every symptom, read how other Indian women are navigating the same thing in our community, and use our doctor-prep guides to walk into your appointment ready.',
   },
 ];
 
@@ -42,7 +42,7 @@ const differentiators = [
   {
     icon: '🔒',
     title: 'Completely private',
-    desc: 'No account required. No personal data collected. Chat from wherever you feel safe, a quiet moment at work, from your bedroom, from anywhere. Your questions stay yours.',
+    desc: 'No account required. No personal data collected. Take the quiz wherever you feel safe, a quiet moment at work, from your bedroom, from anywhere. Your answers stay yours.',
   },
   {
     icon: '🌸',
@@ -51,28 +51,28 @@ const differentiators = [
   },
   {
     icon: '💛',
-    title: 'Empathy before information',
-    desc: 'We know how it feels to be dismissed, confused, and alone in this. The companion is designed to listen first, validate your experience, and then provide information, never the other way around.',
+    title: 'Clear, not clinical',
+    desc: 'We know how it feels to be dismissed, confused, and alone in this. Every result and guide is written in plain language first, medical detail second, never the other way around.',
   },
   {
     icon: '🏥',
     title: 'Bridges to real care',
-    desc: 'We are not a replacement for medical care, we\'re a bridge to it. We help you understand when to seek help, what to ask, and, where relevant, connect you with qualified specialists.',
+    desc: 'We are not a replacement for medical care, we\'re a bridge to it. We help you understand when to seek help, what to ask, and how to prepare for that conversation.',
   },
 ];
 
 const faqs = [
   {
-    q: 'Is The Second Spring actually a doctor?',
-    a: 'No. The Second Spring is an AI-powered companion that provides general health information. It is not a substitute for professional medical advice, diagnosis, or treatment. We always encourage users to speak with a qualified doctor or gynaecologist for personal medical decisions.',
+    q: 'Is the symptom check a diagnosis?',
+    a: 'No. The quiz is a screening tool that shows whether your symptoms commonly align with perimenopause, it is not a substitute for professional medical advice, diagnosis, or treatment. We always encourage you to speak with a qualified doctor or gynaecologist for personal medical decisions.',
   },
   {
-    q: 'How private is my conversation really?',
-    a: 'Your conversations are private. We do not require you to create an account or provide your name, and we do not sell or share personal data. You can read more in our Privacy Policy.',
+    q: 'How private is the quiz really?',
+    a: 'Completely. We do not require you to create an account or provide your name, and your answers are never stored or linked to your identity. You can read more in our Privacy Policy.',
   },
   {
     q: 'Can The Second Spring help me find a doctor in my city?',
-    a: 'We are working on a verified specialist directory. In the meantime, our companion can provide guidance on what type of specialist to look for and what questions to ask when evaluating one.',
+    a: 'We are working on a verified specialist directory. In the meantime, our guides can help you understand what type of specialist to look for and what questions to ask when evaluating one.',
   },
   {
     q: 'Is this service only for women already in perimenopause?',
@@ -96,7 +96,7 @@ const faqs = [
       <div class="page-hero-inner">
         <div class="page-eyebrow">✦ The Second Spring</div>
         <h1>How The Second Spring works</h1>
-        <p>A private, empathetic companion for every Indian woman navigating perimenopause, from first questions to finding the right care.</p>
+        <p>A private symptom check and guide library for every Indian woman navigating perimenopause, from first questions to finding the right care.</p>
       </div>
     </div>
   </section>
@@ -128,7 +128,7 @@ const faqs = [
       </div>
 
       <div class="step-cta">
-        <a href="/chat" class="btn btn-peach btn-lg">Try it now, it's free →</a>
+        <a href="/quiz" class="btn btn-peach btn-lg">Try it now, it's free →</a>
       </div>
     </div>
   </section>
@@ -139,7 +139,7 @@ const faqs = [
       <div class="section-header center">
         <span class="section-label">Why us</span>
         <h2 class="section-title">What makes us different</h2>
-        <p class="section-sub">There are many health chatbots. There is only one designed specifically for Indian women navigating perimenopause.</p>
+        <p class="section-sub">There are many general health resources online. There is only one designed specifically for Indian women navigating perimenopause.</p>
       </div>
 
       <div class="diff-grid">
@@ -162,7 +162,7 @@ const faqs = [
           <span class="section-label">Pricing</span>
           <h2 class="section-title">Completely free to use</h2>
           <p class="body-text">
-            The Second Spring companion (including unlimited private conversations, the full guide library, symptom information, and doctor preparation resources) is completely free. No subscription, no hidden fees, no credit card.
+            The Second Spring (including the free symptom check, the full guide library, symptom information, and doctor preparation resources) is completely free. No subscription, no hidden fees, no credit card.
           </p>
           <p class="body-text">
             We believe access to good information about your own body should not be gated behind ability to pay. Every Indian woman deserves this.
@@ -170,15 +170,15 @@ const faqs = [
           <p class="body-text">
             In the future, we will offer optional paid connections to verified specialists, gynaecologists, menopause specialists, and therapists experienced in this transition. These will be clearly labelled and always optional.
           </p>
-          <a href="/chat" class="btn btn-primary btn-lg" style="margin-top:1rem;">Start chatting, it's free →</a>
+          <a href="/quiz" class="btn btn-primary btn-lg" style="margin-top:1rem;">Take the quiz, it's free →</a>
         </div>
         <div class="pricing-card">
           <div class="pricing-label">What's included, always free</div>
           <ul class="pricing-features">
             {[
-              'Unlimited private conversations',
+              'Free symptom check',
               'Symptom library & explanations',
-              'Personalised information',
+              'Personalised results',
               'Doctor preparation guides',
               'Full guide library',
               'No account required',
@@ -227,9 +227,9 @@ const faqs = [
       <div class="cta-block">
         <div>
           <h2 class="section-title">Ready to start?</h2>
-          <p class="section-sub">No sign-up needed. Just open the chat and ask whatever's on your mind.</p>
+          <p class="section-sub">No sign-up needed. Just take the free symptom check and see where you stand.</p>
         </div>
-        <a href="/chat" class="btn btn-peach btn-lg">Start a private conversation →</a>
+        <a href="/quiz" class="btn btn-peach btn-lg">Take the Free Quiz →</a>
       </div>
     </div>
   </section>

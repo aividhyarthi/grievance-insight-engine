@@ -60,9 +60,10 @@ jobs:
           cp "$SRC/ss-page-how-it-works.astro"           "src/pages/how-it-works.astro"
           mkdir -p src/pages/blog
           cp "$SRC/ss-page-blog-index.astro"             "src/pages/blog/index.astro"
-          mkdir -p src/pages/api
-          cp "$SRC/ss-chat.astro"                        "src/pages/chat.astro"
-          cp "$SRC/ss-chat-api.ts"                       "src/pages/api/chat.ts"
+
+      - name: Remove chat (costs API credits per message; source kept in staging for later)
+        run: |
+          rm -f src/pages/chat.astro src/pages/api/chat.ts
 
       - name: Copy voices pages
         run: |

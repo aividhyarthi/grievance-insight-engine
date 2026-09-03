@@ -62,13 +62,13 @@ const posts = allPosts
     </div>
   </section>
 
-  <!-- ── 2. CHAT PREVIEW ── -->
+  <!-- ── 2. SYMPTOM PREVIEW ── -->
   <section class="section chat-preview-section">
     <div class="container">
       <div class="section-header center">
         <span class="section-label">Private &amp; Confidential</span>
-        <h2 class="section-title">Ask Anything. No Judgement.</h2>
-        <p class="section-sub">Real questions from real women. Our companion listens first, then helps you understand.</p>
+        <h2 class="section-title">Check Your Symptoms. No Judgement.</h2>
+        <p class="section-sub">The questions real women ask us most. Our free symptom check helps you understand what's happening.</p>
       </div>
       <div class="chat-preview-inner">
         <div class="cp-prompts">
@@ -77,8 +77,8 @@ const posts = allPosts
             "Why do I wake up at 3AM?",
             "Why am I gaining belly fat despite dieting?",
           ].map(q => (
-            <a href="/chat" class="cp-prompt">
-              <span class="cp-icon">💬</span>
+            <a href="/quiz" class="cp-prompt">
+              <span class="cp-icon">✅</span>
               <span>{q}</span>
               <svg class="cp-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -87,10 +87,10 @@ const posts = allPosts
         <div class="cp-cta-col">
           <div class="cp-card">
             <div class="cp-card-top">
-              <span class="cp-bubble cp-bubble-user">Why do I feel so unlike myself lately?</span>
-              <span class="cp-bubble cp-bubble-bot">What you're feeling is real, and it has a name. Let's talk about what might be happening with your hormones...</span>
+              <span class="cp-bubble cp-bubble-user">Do you experience mood swings or feel emotionally unlike yourself?</span>
+              <span class="cp-bubble cp-bubble-bot">That's exactly the kind of symptom our free check maps, along with sleep, energy, and 10 other everyday signs...</span>
             </div>
-            <a href="/chat" class="btn btn-peach cp-start-btn">Start Chatting →</a>
+            <a href="/quiz" class="btn btn-peach cp-start-btn">Take the Free Quiz →</a>
             <p class="cp-note">🔒 Anonymous · No login needed</p>
           </div>
         </div>
@@ -107,10 +107,10 @@ const posts = allPosts
       </div>
       <div class="steps-4">
         {[
-          { n: '1', icon: '💬', title: 'Chat',                 desc: 'Understand your symptoms' },
-          { n: '2', icon: '✅', title: 'Health Check',         desc: 'Take a quick assessment' },
-          { n: '3', icon: '🩺', title: 'Expert Consultation',  desc: 'Talk to specialists if needed' },
-          { n: '4', icon: '🌿', title: 'Ongoing Guidance',     desc: 'Feel supported through your journey' },
+          { n: '1', icon: '✅', title: 'Symptom Check',        desc: 'Take our free 2-minute quiz' },
+          { n: '2', icon: '🌿', title: 'Personalised Result',  desc: 'Understand what your body is telling you' },
+          { n: '3', icon: '🩺', title: 'Expert Guidance',      desc: 'Learn how to prepare for a doctor visit' },
+          { n: '4', icon: '👥', title: 'Ongoing Support',      desc: 'Connect with our community of women' },
         ].map((s, i) => (
           <div class="step-box">
             <div class="step-connector" aria-hidden="true"></div>
@@ -198,7 +198,7 @@ const posts = allPosts
           <p class="reassurance-body">
             <strong>What you're experiencing is real, and support exists.</strong>
           </p>
-          <a href="/chat" class="btn btn-peach btn-lg">Understand What's Happening →</a>
+          <a href="/quiz" class="btn btn-peach btn-lg">Understand What's Happening →</a>
         </div>
       </div>
     </div>

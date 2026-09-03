@@ -71,11 +71,11 @@ cp "$SRC/ss-page-how-it-works.astro"           "src/pages/how-it-works.astro"
 mkdir -p src/pages/blog
 cp "$SRC/ss-page-blog-index.astro"             "src/pages/blog/index.astro"
 
-# 2f. Chat page + chat API (rebrand fix + Failed-to-fetch hardening)
-echo "→ Chat page + API..."
-mkdir -p src/pages/api
-cp "$SRC/ss-chat.astro"                        "src/pages/chat.astro"
-cp "$SRC/ss-chat-api.ts"                       "src/pages/api/chat.ts"
+# 2f. Chat removed for now (costs API credits per message, unpredictable
+# under paid marketing traffic). Source kept in staging as ss-chat.astro /
+# ss-chat-api.ts in case it comes back later.
+echo "→ Removing chat page + API..."
+rm -f src/pages/chat.astro src/pages/api/chat.ts
 
 # 3. Voices — remove old flat file to avoid routing conflict, then create subdirectory pages
 echo "→ Voices pages..."
