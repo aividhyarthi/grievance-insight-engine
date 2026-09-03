@@ -2,6 +2,11 @@ name: Sync content from staging
 
 on:
   workflow_dispatch:
+  schedule:
+    # Runs daily at 05:00 UTC (~10:30am IST), a few hours after the automated
+    # blog-writing job pushes each day's new posts to staging, so this pulls
+    # the latest content and deploys it without anyone needing to click Run.
+    - cron: '0 5 * * *'
 
 permissions:
   contents: write
