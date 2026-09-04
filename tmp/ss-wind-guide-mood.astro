@@ -17,7 +17,7 @@ import Layout from '../../../layouts/LayoutWind.astro';
 
   <section class="g-section">
     <div class="container">
-      <span class="g-label">Why it happens</span>
+      <span class="g-label">01 / Why It Happens</span>
       <h2 class="g-title">Testosterone influences mood-regulating brain chemistry</h2>
       <p class="g-sub">Testosterone interacts with serotonin and dopamine pathways in the brain, the same systems involved in mood, motivation, and focus. When levels decline, these systems can become less balanced, independent of what's happening in your life.</p>
       <div class="g-steps">
@@ -42,13 +42,33 @@ import Layout from '../../../layouts/LayoutWind.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>Signs to watch for</h3>
-          <ul>
-            <li>Irritability that feels disproportionate to the trigger</li>
-            <li>Loss of interest in hobbies or things you used to enjoy</li>
-            <li>Trouble focusing on tasks that used to be easy</li>
-            <li>A general low-grade flatness, not full sadness</li>
-            <li>Coincides with other changes: energy, sleep, libido</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">😤</span>
+              <h4>Disproportionate Irritability</h4>
+              <p>Irritability that feels disproportionate to the trigger.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🎯</span>
+              <h4>Lost Interest in Hobbies</h4>
+              <p>Loss of interest in hobbies or things you used to enjoy.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🧠</span>
+              <h4>Trouble Focusing</h4>
+              <p>Trouble focusing on tasks that used to be easy.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🌫️</span>
+              <h4>Low-Grade Flatness</h4>
+              <p>A general low-grade flatness, not full sadness.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🔗</span>
+              <h4>Coincides With Other Changes</h4>
+              <p>Coincides with other changes: energy, sleep, libido.</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>What actually helps</h3>
@@ -64,6 +84,16 @@ import Layout from '../../../layouts/LayoutWind.astro';
 
       <div class="g-callout">
         <strong>If low mood feels severe or persistent,</strong> please speak with a doctor or mental health professional. In India, iCall (9152987821) offers free, confidential counselling support. This guide is for awareness, not a substitute for professional care.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">~1-2%</span><span class="stat-label">approximate annual testosterone decline from age 30</span></div>
+        <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">major brain chemical pathways it interacts with: dopamine & serotonin</span></div>
+        <div class="stat-item"><span class="stat-num">7-9 hrs</span><span class="stat-label">nightly sleep target, since poor sleep sharply worsens irritability</span></div>
       </div>
     </div>
   </section>
@@ -112,4 +142,17 @@ import Layout from '../../../layouts/LayoutWind.astro';
   .g-cta .btn-primary:hover { background: #E8E8E8; }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Archivo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

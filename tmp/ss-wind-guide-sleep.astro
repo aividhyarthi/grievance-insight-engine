@@ -17,7 +17,7 @@ import Layout from '../../../layouts/LayoutWind.astro';
 
   <section class="g-section">
     <div class="container">
-      <span class="g-label">Why it happens</span>
+      <span class="g-label">01 / Why It Happens</span>
       <h2 class="g-title">A two-way relationship, not a one-way symptom</h2>
       <p class="g-sub">Roughly 70% of a man's daily testosterone release happens during sleep, concentrated in REM cycles. Poor sleep quality or short sleep duration directly reduces the next day's testosterone levels, and low testosterone itself is linked to fragmented, lighter sleep.</p>
       <div class="g-steps">
@@ -42,13 +42,33 @@ import Layout from '../../../layouts/LayoutWind.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>Signs to watch for</h3>
-          <ul>
-            <li>Waking up frequently through the night</li>
-            <li>Loud snoring or gasping (possible sleep apnea signs)</li>
-            <li>Feeling unrefreshed even after 7 to 8 hours</li>
-            <li>Sleep quality has worsened gradually over years</li>
-            <li>Coincides with fatigue, low mood, or reduced libido</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">🌙</span>
+              <h4>Frequent Night Waking</h4>
+              <p>Waking up frequently through the night.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">😮‍💨</span>
+              <h4>Loud Snoring or Gasping</h4>
+              <p>Loud snoring or gasping (possible sleep apnea signs).</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">😴</span>
+              <h4>Unrefreshing Sleep</h4>
+              <p>Feeling unrefreshed even after 7 to 8 hours.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">📉</span>
+              <h4>Gradual Decline Over Years</h4>
+              <p>Sleep quality has worsened gradually over years.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🔗</span>
+              <h4>Coincides With Other Symptoms</h4>
+              <p>Coincides with fatigue, low mood, or reduced libido.</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>What actually helps</h3>
@@ -64,6 +84,16 @@ import Layout from '../../../layouts/LayoutWind.astro';
 
       <div class="g-callout">
         <strong>Suspect sleep apnea?</strong> Talk to your doctor about a sleep study. It's a common, treatable condition that's often mistaken for "just getting older."
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">~70%</span><span class="stat-label">of daily testosterone release happens during deep/REM sleep</span></div>
+        <div class="stat-item"><span class="stat-num">7-9 hrs</span><span class="stat-label">recommended nightly sleep for healthy testosterone levels</span></div>
+        <div class="stat-item"><span class="stat-num">1 in 4</span><span class="stat-label">men with disrupted sleep may have undiagnosed sleep apnea (illustrative)</span></div>
       </div>
     </div>
   </section>
@@ -112,4 +142,17 @@ import Layout from '../../../layouts/LayoutWind.astro';
   .g-cta .btn-primary:hover { background: #E8E8E8; }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Archivo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

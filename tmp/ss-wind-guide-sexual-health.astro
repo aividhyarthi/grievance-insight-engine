@@ -17,7 +17,7 @@ import Layout from '../../../layouts/LayoutWind.astro';
 
   <section class="g-section">
     <div class="container">
-      <span class="g-label">Why it happens</span>
+      <span class="g-label">01 / Why It Happens</span>
       <h2 class="g-title">Testosterone is central to sexual desire and function</h2>
       <p class="g-sub">Testosterone drives libido directly, and supports the blood flow mechanisms involved in erections. As levels decline, both desire and physical response can be affected, though the two don't always change together or at the same pace.</p>
       <div class="g-steps">
@@ -42,13 +42,33 @@ import Layout from '../../../layouts/LayoutWind.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>Signs to watch for</h3>
-          <ul>
-            <li>Noticeably lower interest compared to a few years ago</li>
-            <li>Erections that are less firm or less frequent</li>
-            <li>Fewer or absent morning erections</li>
-            <li>Comes with other symptoms: fatigue, low mood, muscle loss</li>
-            <li>It's been gradual, not tied to one specific event</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">📉</span>
+              <h4>Lower Interest Than Before</h4>
+              <p>Noticeably lower interest compared to a few years ago.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">💠</span>
+              <h4>Less Firm Erections</h4>
+              <p>Erections that are less firm or less frequent.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🌅</span>
+              <h4>Fewer Morning Erections</h4>
+              <p>Fewer or absent morning erections.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🔗</span>
+              <h4>Comes With Other Symptoms</h4>
+              <p>Comes with other symptoms: fatigue, low mood, muscle loss.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">📆</span>
+              <h4>Gradual, Not Sudden</h4>
+              <p>It's been gradual, not tied to one specific event.</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>What actually helps</h3>
@@ -64,6 +84,16 @@ import Layout from '../../../layouts/LayoutWind.astro';
 
       <div class="g-callout">
         <strong>This is a medical topic, not a taboo one.</strong> Erectile changes can also signal cardiovascular issues, so it's worth a proper doctor's evaluation, not just symptom management on your own.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">~1-2%</span><span class="stat-label">approximate annual testosterone decline from age 30</span></div>
+        <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">factors erectile changes are often linked to: hormonal & vascular health</span></div>
+        <div class="stat-item"><span class="stat-num">7-9 hrs</span><span class="stat-label">nightly sleep that supports healthy testosterone and libido</span></div>
       </div>
     </div>
   </section>
@@ -112,4 +142,17 @@ import Layout from '../../../layouts/LayoutWind.astro';
   .g-cta .btn-primary:hover { background: #E8E8E8; }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Archivo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

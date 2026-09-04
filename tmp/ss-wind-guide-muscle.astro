@@ -142,4 +142,17 @@ import Layout from '../../../layouts/LayoutWind.astro';
   .g-cta .btn-primary:hover { background: #E8E8E8; }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Archivo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

@@ -17,7 +17,7 @@ import Layout from '../../../layouts/LayoutWind.astro';
 
   <section class="g-section">
     <div class="container">
-      <span class="g-label">Before your appointment</span>
+      <span class="g-label">01 / Before Your Appointment</span>
       <h2 class="g-title">Come prepared with specifics, not just "I feel off"</h2>
       <p class="g-sub">Vague descriptions are easy to dismiss. A specific, written account of what's changed and when makes it much harder to wave away, and gives your doctor something concrete to work from.</p>
       <div class="g-steps">
@@ -42,13 +42,33 @@ import Layout from '../../../layouts/LayoutWind.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>What to ask for</h3>
-          <ul>
-            <li>A morning total testosterone blood test</li>
-            <li>A repeat test if the first result is borderline</li>
-            <li>Free testosterone or SHBG, if total is inconclusive</li>
-            <li>A thyroid panel, to rule out an overlapping cause</li>
-            <li>A discussion of lifestyle factors alongside any test result</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">🧪</span>
+              <h4>Morning Testosterone Test</h4>
+              <p>A morning total testosterone blood test.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🔁</span>
+              <h4>A Repeat Test if Borderline</h4>
+              <p>A repeat test if the first result is borderline.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🧬</span>
+              <h4>Free Testosterone or SHBG</h4>
+              <p>Free testosterone or SHBG, if total is inconclusive.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🦋</span>
+              <h4>A Thyroid Panel</h4>
+              <p>A thyroid panel, to rule out an overlapping cause.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🗣️</span>
+              <h4>A Lifestyle Discussion</h4>
+              <p>A discussion of lifestyle factors alongside any test result.</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>If you feel dismissed</h3>
@@ -64,6 +84,16 @@ import Layout from '../../../layouts/LayoutWind.astro';
 
       <div class="g-callout">
         <strong>This guide helps you prepare for a conversation,</strong> it doesn't replace one. Only a doctor can interpret your blood test results and recommend treatment.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">AM</span><span class="stat-label">testosterone peaks in the morning, so ask for a morning blood draw</span></div>
+        <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">extra tests worth asking about if borderline: free testosterone & SHBG</span></div>
+        <div class="stat-item"><span class="stat-num">2 min</span><span class="stat-label">to complete the free symptom check before your visit</span></div>
       </div>
     </div>
   </section>
@@ -112,4 +142,17 @@ import Layout from '../../../layouts/LayoutWind.astro';
   .g-cta .btn-primary:hover { background: #E8E8E8; }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Archivo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>
