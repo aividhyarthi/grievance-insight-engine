@@ -17,7 +17,7 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
 
   <section class="g-section">
     <div class="container">
-      <span class="g-label">The fundamentals</span>
+      <span class="g-label">01 / The Fundamentals</span>
       <h2 class="g-title">Why chronic stress accelerates aging</h2>
       <p class="g-sub">Occasional stress is normal and even useful. It's sustained, unmanaged stress that causes harm, keeping cortisol elevated, disrupting sleep and digestion, and contributing to inflammation over time.</p>
       <div class="g-steps">
@@ -42,13 +42,33 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>Simple daily practices</h3>
-          <ul>
-            <li>10 minutes of meditation or focused breathing</li>
-            <li>A short walk without your phone</li>
-            <li>Journaling or naming what's actually causing stress</li>
-            <li>Time with people who feel restorative to be around</li>
-            <li>Saying no to commitments that consistently drain you</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">🧘</span>
+              <h4>10-Minute Breathing or Meditation</h4>
+              <p>10 minutes of meditation or focused breathing.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🚶</span>
+              <h4>A Phone-Free Walk</h4>
+              <p>A short walk without your phone.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">📓</span>
+              <h4>Journal the Real Cause</h4>
+              <p>Journaling or naming what's actually causing stress.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🤝</span>
+              <h4>Time With Restorative People</h4>
+              <p>Time with people who feel restorative to be around.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🙅</span>
+              <h4>Say No to What Drains You</h4>
+              <p>Saying no to commitments that consistently drain you.</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>Signs stress needs more attention</h3>
@@ -64,6 +84,16 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
 
       <div class="g-callout">
         <strong>If stress feels unmanageable</strong> on your own, professional support helps. iCall (9152987821) offers free, confidential counselling support in India.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">10 min</span><span class="stat-label">a day of focused breathing or meditation can measurably lower stress over weeks</span></div>
+        <div class="stat-item"><span class="stat-num">2–3x</span><span class="stat-label">approximate rise in inflammatory markers associated with chronic, unmanaged stress (illustrative)</span></div>
+        <div class="stat-item"><span class="stat-num">80+ yrs</span><span class="stat-label">some of the longest-running health studies link strong relationships to longevity</span></div>
       </div>
     </div>
   </section>
@@ -111,4 +141,17 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
   .g-cta .btn-primary:hover { background: var(--accent-pale); }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-family: 'Lora', serif; font-size: .95rem; font-weight: 700; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent-deep); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

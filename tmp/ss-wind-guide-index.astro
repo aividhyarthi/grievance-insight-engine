@@ -41,6 +41,16 @@ const topics = [
 
   <section class="g-section" style="padding-top:0;">
     <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">~1-2%</span><span class="stat-label">average annual testosterone decline from age 30</span></div>
+        <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">symptom areas covered across this guide</span></div>
+        <div class="stat-item"><span class="stat-num">2 min</span><span class="stat-label">to check your own symptoms with our free quiz</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
       <div class="g-callout" style="margin-top:0;">
         <strong>Not sure where to start?</strong> <a href="/wind/quiz">Take the free symptom check</a> first, it takes 2 minutes and points you toward the guide sections most relevant to you.
       </div>
@@ -99,4 +109,10 @@ const topics = [
 
   @media (max-width: 900px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } .g-cols { grid-template-columns: 1fr; } }
   @media (max-width: 560px) { .topics-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Archivo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

@@ -50,14 +50,38 @@ import Layout from '../../layouts/LayoutWind.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>Commonly affected</h3>
-          <ul>
-            <li>Energy levels and stamina</li>
-            <li>Muscle mass and strength</li>
-            <li>Mood, motivation, and focus</li>
-            <li>Sleep quality</li>
-            <li>Libido and sexual function</li>
-            <li>Body composition (more fat, especially around the belly)</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">⚡</span>
+              <h4>Energy & Stamina</h4>
+              <p>Energy levels and stamina.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">💪</span>
+              <h4>Muscle Mass & Strength</h4>
+              <p>Muscle mass and strength.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🙂</span>
+              <h4>Mood, Motivation & Focus</h4>
+              <p>Mood, motivation, and focus.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🌙</span>
+              <h4>Sleep Quality</h4>
+              <p>Sleep quality.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">❤️</span>
+              <h4>Libido & Sexual Function</h4>
+              <p>Libido and sexual function.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🍩</span>
+              <h4>Body Composition</h4>
+              <p>Body composition (more fat, especially around the belly).</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>What it isn't</h3>
@@ -98,6 +122,16 @@ import Layout from '../../layouts/LayoutWind.astro';
 
       <div class="g-callout">
         <strong>Where to go next:</strong> <a href="/wind/quiz">take the 2-minute symptom check</a> to see how your symptoms line up, or jump straight into the <a href="/wind/guide">full guide</a> by topic.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">~1-2%</span><span class="stat-label">approximate annual testosterone decline from age 30</span></div>
+        <div class="stat-item"><span class="stat-num">~30%</span><span class="stat-label">possible total decline by your 60s (illustrative)</span></div>
+        <div class="stat-item"><span class="stat-num">6+</span><span class="stat-label">body systems testosterone influences: energy, mood, muscle, sleep, libido & more</span></div>
       </div>
     </div>
   </section>
@@ -147,4 +181,17 @@ import Layout from '../../layouts/LayoutWind.astro';
   .g-cta .btn-primary:hover { background: #E8E8E8; }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Archivo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>
