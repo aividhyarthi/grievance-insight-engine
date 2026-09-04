@@ -1,0 +1,115 @@
+---
+import Layout from '../../../layouts/LayoutWind.astro';
+---
+
+<Layout
+  title="Sleep & Testosterone in Men – Second Wind"
+  description="The two-way relationship between poor sleep and low testosterone in men, and practical steps to improve both."
+>
+
+  <section class="g-hero">
+    <div class="container">
+      <span class="g-eyebrow">Guide · Sleep</span>
+      <h1>Poor sleep and low testosterone feed each other</h1>
+      <p>Most testosterone production happens during deep sleep. Disrupt one, and you disrupt the other, a cycle that quietly gets worse over time if left unaddressed.</p>
+    </div>
+  </section>
+
+  <section class="g-section">
+    <div class="container">
+      <span class="g-label">Why it happens</span>
+      <h2 class="g-title">A two-way relationship, not a one-way symptom</h2>
+      <p class="g-sub">Roughly 70% of a man's daily testosterone release happens during sleep, concentrated in REM cycles. Poor sleep quality or short sleep duration directly reduces the next day's testosterone levels, and low testosterone itself is linked to fragmented, lighter sleep.</p>
+      <div class="g-steps">
+        <div class="g-step">
+          <div class="g-step-num">1</div>
+          <div><h3>Less deep sleep, less production</h3><p>Testosterone synthesis peaks during deep and REM sleep stages. Fragmented sleep cuts this window short.</p></div>
+        </div>
+        <div class="g-step">
+          <div class="g-step-num">2</div>
+          <div><h3>Sleep apnea is a common hidden cause</h3><p>Undiagnosed sleep apnea, more common with age and weight gain, is strongly linked to low testosterone and often goes unrecognised.</p></div>
+        </div>
+        <div class="g-step">
+          <div class="g-step-num">3</div>
+          <div><h3>A compounding cycle</h3><p>Low testosterone worsens sleep quality, which further lowers testosterone the next day, and the cycle continues.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="background:var(--bg-mid);">
+    <div class="container">
+      <div class="g-cols">
+        <div class="g-col">
+          <h3>Signs to watch for</h3>
+          <ul>
+            <li>Waking up frequently through the night</li>
+            <li>Loud snoring or gasping (possible sleep apnea signs)</li>
+            <li>Feeling unrefreshed even after 7 to 8 hours</li>
+            <li>Sleep quality has worsened gradually over years</li>
+            <li>Coincides with fatigue, low mood, or reduced libido</li>
+          </ul>
+        </div>
+        <div class="g-col">
+          <h3>What actually helps</h3>
+          <ul>
+            <li>A consistent sleep and wake time, even on weekends</li>
+            <li>Limiting screens and caffeine in the evening</li>
+            <li>Getting screened for sleep apnea if snoring is loud</li>
+            <li>Reducing alcohol, which fragments sleep architecture</li>
+            <li>Aiming for 7 to 9 hours consistently, not just on weekends</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="g-callout">
+        <strong>Suspect sleep apnea?</strong> Talk to your doctor about a sleep study. It's a common, treatable condition that's often mistaken for "just getting older."
+      </div>
+    </div>
+  </section>
+
+  <section class="g-cta">
+    <div class="container">
+      <h2>See how your symptoms line up</h2>
+      <p>2 minutes, completely private, no login needed.</p>
+      <a href="/wind/quiz" class="btn btn-primary btn-lg">Take the Free Symptom Check →</a>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  .g-hero { background: var(--bg-mid); padding: 4rem 0 3.5rem; }
+  .g-eyebrow { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); background: #fff; border: 1px solid var(--line); padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.25rem; }
+  .g-hero h1 { font-family: 'Archivo', sans-serif; font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: 1rem; }
+  .g-hero p { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.7; max-width: 620px; }
+
+  .g-section { padding: 4rem 0; }
+  .g-label { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: #fff; display: inline-block; padding: .3rem .9rem; border-radius: 99px; margin-bottom: 1rem; }
+  .g-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: .75rem; }
+  .g-sub { font-size: .97rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 2rem; max-width: 680px; }
+
+  .g-steps { display: flex; flex-direction: column; gap: .9rem; }
+  .g-step { display: flex; gap: 1rem; align-items: flex-start; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .g-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 800; font-size: .9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .g-step h3 { font-size: 1rem; font-weight: 800; margin-bottom: .35rem; }
+  .g-step p { font-size: .87rem; color: var(--ink-soft); line-height: 1.6; }
+
+  .g-callout { background: #fff; border-left: 4px solid var(--dark); border-radius: 0 12px 12px 0; padding: 1.1rem 1.4rem; margin-top: 1.5rem; font-size: .9rem; line-height: 1.65; }
+  .g-callout a { color: var(--ink); text-decoration: underline; font-weight: 700; }
+
+  .g-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .g-col { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
+  .g-col h3 { font-size: .95rem; font-weight: 800; margin-bottom: .85rem; }
+  .g-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .g-col li { font-size: .87rem; color: var(--ink-soft); padding-left: 1rem; position: relative; line-height: 1.55; }
+  .g-col li::before { content: '•'; position: absolute; left: 0; color: var(--dark); font-weight: 900; }
+
+  .g-cta { background: var(--dark); padding: 3.5rem 0; text-align: center; }
+  .g-cta h2 { font-family: 'Archivo', sans-serif; font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: .75rem; }
+  .g-cta p { color: #B0B0B0; margin-bottom: 1.5rem; }
+  .g-cta .btn-primary { background: #fff; color: #111; border-color: #fff; }
+  .g-cta .btn-primary:hover { background: #E8E8E8; }
+
+  @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,102 @@
+---
+import Layout from '../../../layouts/LayoutWind.astro';
+
+const topics = [
+  { href: '/wind/guide/energy', icon: '🔋', title: 'Energy & Fatigue', desc: 'Why testosterone decline leaves you drained, and what actually restores energy.' },
+  { href: '/wind/guide/muscle', icon: '💪', title: 'Muscle & Strength', desc: 'Preventing and reversing the muscle loss that comes with declining testosterone.' },
+  { href: '/wind/guide/mood', icon: '😔', title: 'Mood & Mind', desc: 'Irritability, low motivation, and focus, the hormonal link nobody explains.' },
+  { href: '/wind/guide/sleep', icon: '🌙', title: 'Sleep', desc: 'The two-way relationship between poor sleep and low testosterone.' },
+  { href: '/wind/guide/sexual-health', icon: '❤️', title: 'Sexual Health', desc: 'Libido and erectile changes, explained without embarrassment.' },
+  { href: '/wind/guide/talk-to-doctor', icon: '🩺', title: 'Talk to Your Doctor', desc: 'What to ask for, and how to make sure you\'re taken seriously.' },
+];
+---
+
+<Layout
+  title="The Complete Guide to Andropause – Second Wind"
+  description="Everything Indian men need to know about testosterone decline, energy, muscle, mood, sleep, and sexual health, explained clearly and without judgement."
+>
+
+  <section class="g-hero">
+    <div class="container">
+      <span class="g-eyebrow">The Guide</span>
+      <h1>Understand what's happening, symptom by symptom</h1>
+      <p>Andropause affects more than one part of you at once. This guide breaks it down by symptom, why it happens, and what actually helps, so you can make sense of what you're experiencing.</p>
+    </div>
+  </section>
+
+  <section class="g-section">
+    <div class="container">
+      <div class="topics-grid">
+        {topics.map(t => (
+          <a href={t.href} class="topic-card">
+            <span class="topic-icon">{t.icon}</span>
+            <h3>{t.title}</h3>
+            <p>{t.desc}</p>
+            <span class="topic-link">Read guide →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="g-callout" style="margin-top:0;">
+        <strong>Not sure where to start?</strong> <a href="/wind/quiz">Take the free symptom check</a> first, it takes 2 minutes and points you toward the guide sections most relevant to you.
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  /* HERO */
+  .g-hero { background: var(--bg-mid); padding: 4rem 0 3.5rem; }
+  .g-eyebrow { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); background: #fff; border: 1px solid var(--line); padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.25rem; }
+  .g-hero h1 { font-family: 'Archivo', sans-serif; font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: 1rem; }
+  .g-hero p { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.7; max-width: 620px; }
+
+  /* SECTIONS */
+  .g-section { padding: 4rem 0; }
+  .g-label { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: var(--bg-mid); display: inline-block; padding: .3rem .9rem; border-radius: 99px; margin-bottom: 1rem; }
+  .g-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: .75rem; }
+  .g-sub { font-size: .97rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 2rem; max-width: 640px; }
+
+  /* STEPS */
+  .g-steps { display: flex; flex-direction: column; gap: .9rem; }
+  .g-step { display: flex; gap: 1rem; align-items: flex-start; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .g-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--dark); color: #fff; font-weight: 800; font-size: .9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .g-step h3 { font-size: 1rem; font-weight: 800; margin-bottom: .35rem; }
+  .g-step p { font-size: .87rem; color: var(--ink-soft); line-height: 1.6; }
+
+  /* CALLOUT */
+  .g-callout { background: var(--bg-mid); border-left: 4px solid var(--dark); border-radius: 0 12px 12px 0; padding: 1.1rem 1.4rem; margin-top: 1.5rem; font-size: .9rem; line-height: 1.65; }
+  .g-callout a { color: var(--ink); text-decoration: underline; font-weight: 700; }
+
+  /* COLS */
+  .g-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .g-col { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
+  .g-col h3 { font-size: .95rem; font-weight: 800; margin-bottom: .85rem; }
+  .g-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .g-col li { font-size: .87rem; color: var(--ink-soft); padding-left: 1rem; position: relative; line-height: 1.55; }
+  .g-col li::before { content: '•'; position: absolute; left: 0; color: var(--dark); font-weight: 900; }
+
+  /* CTA */
+  .g-cta { background: var(--dark); padding: 3.5rem 0; text-align: center; }
+  .g-cta h2 { font-family: 'Archivo', sans-serif; font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: .75rem; }
+  .g-cta p { color: #B0B0B0; margin-bottom: 1.5rem; }
+  .g-cta .btn-primary { background: #fff; color: #111; border-color: #fff; }
+  .g-cta .btn-primary:hover { background: #E8E8E8; }
+
+  /* TOPICS GRID (overview page only) */
+  .topics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .topic-card { display: flex; flex-direction: column; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-lg); padding: 1.75rem 1.5rem; transition: transform .18s, border-color .18s; }
+  .topic-card:hover { transform: translateY(-3px); border-color: var(--dark); }
+  .topic-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .topic-card h3 { font-family: 'Archivo', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: .5rem; }
+  .topic-card p { font-size: .87rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 1.25rem; }
+  .topic-link { font-size: .82rem; font-weight: 700; color: var(--ink); margin-top: auto; }
+
+  @media (max-width: 900px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } .g-cols { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .topics-grid { grid-template-columns: 1fr; } }
+</style>

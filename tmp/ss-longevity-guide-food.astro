@@ -1,0 +1,119 @@
+---
+import Layout from '../../../layouts/LayoutLongevity.astro';
+---
+
+<Layout
+  title="Food & Nutrition for Longevity – The Longevity Guide"
+  description="What to eat for steady energy, gut health, and long-term vitality, explained clearly and rooted in Indian food traditions."
+>
+
+  <section class="g-hero">
+    <div class="container">
+      <span class="g-eyebrow">Guide · Food & Nutrition</span>
+      <h1>Eating for the next 30 years, not just today</h1>
+      <p>You don't need a foreign diet trend. Traditional Indian eating patterns already hold most of what longevity science recommends, when the basics are done well.</p>
+    </div>
+  </section>
+
+  <section class="g-section">
+    <div class="container">
+      <span class="g-label">The fundamentals</span>
+      <h2 class="g-title">Four habits that matter more than any single food</h2>
+      <p class="g-sub">Longevity nutrition isn't about superfoods or elimination diets. It's about consistent patterns that keep blood sugar steady, protect gut health, and supply enough protein and fibre every day.</p>
+      <div class="g-steps">
+        <div class="g-step">
+          <div class="g-step-num">1</div>
+          <div><h3>Protein at every meal</h3><p>Dals, paneer, curd, eggs, and lean meats support muscle maintenance, which becomes more important, not less, with age.</p></div>
+        </div>
+        <div class="g-step">
+          <div class="g-step-num">2</div>
+          <div><h3>Fibre and fermented foods for gut health</h3><p>Vegetables, whole grains, and traditional ferments like curd and idli batter support a healthy gut microbiome, linked to immunity and mood.</p></div>
+        </div>
+        <div class="g-step">
+          <div class="g-step-num">3</div>
+          <div><h3>Minimise ultra-processed food</h3><p>Packaged snacks and refined sugar drive inflammation and blood sugar spikes. Home-cooked meals, even simple ones, are consistently better.</p></div>
+        </div>
+        <div class="g-step">
+          <div class="g-step-num">4</div>
+          <div><h3>Eat with a consistent rhythm</h3><p>Regular meal timing supports metabolic health more than any specific food choice. Avoid long gaps followed by large meals.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="background:var(--bg-mid);">
+    <div class="container">
+      <div class="g-cols">
+        <div class="g-col">
+          <h3>Everyday choices that add up</h3>
+          <ul>
+            <li>Add a protein source to every meal, not just dinner</li>
+            <li>Fill half your plate with vegetables where possible</li>
+            <li>Choose whole grains over refined flour most days</li>
+            <li>Keep a fermented food like curd as a daily staple</li>
+            <li>Cook in traditional fats (ghee, mustard, coconut oil) in moderation</li>
+          </ul>
+        </div>
+        <div class="g-col">
+          <h3>Worth cutting back on</h3>
+          <ul>
+            <li>Sugary drinks and packaged juices</li>
+            <li>Deep-fried snacks as a daily habit, not an occasional one</li>
+            <li>Excess refined carbohydrates (maida-heavy foods)</li>
+            <li>Skipping meals and then overeating later</li>
+            <li>Relying on supplements instead of whole foods</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="g-callout">
+        <strong>Not sure where to start?</strong> Pick one habit from the list above and build it for a month before adding another. Small, consistent changes outlast big overhauls.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-cta">
+    <div class="container">
+      <h2>Explore the rest of the guide</h2>
+      <p>Movement, sleep, mind, and Ayurvedic wisdom.</p>
+      <a href="/longevity/guide" class="btn btn-primary btn-lg">Back to the Guide →</a>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  .g-hero { background: var(--bg-mid); padding: 4rem 0 3.5rem; }
+  .g-eyebrow { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); background: #fff; border: 1px solid var(--line); padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.25rem; }
+  .g-hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: 1rem; }
+  .g-hero p { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.7; max-width: 620px; }
+
+  .g-section { padding: 4rem 0; }
+  .g-label { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: #fff; display: inline-block; padding: .3rem .9rem; border-radius: 99px; margin-bottom: 1rem; }
+  .g-title { font-family: 'Lora', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: .75rem; }
+  .g-sub { font-size: .97rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 2rem; max-width: 680px; }
+
+  .g-steps { display: flex; flex-direction: column; gap: .9rem; }
+  .g-step { display: flex; gap: 1rem; align-items: flex-start; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .g-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent-deep); color: #fff; font-weight: 800; font-size: .9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .g-step h3 { font-size: 1rem; font-weight: 800; margin-bottom: .35rem; }
+  .g-step p { font-size: .87rem; color: var(--ink-soft); line-height: 1.6; }
+
+  .g-callout { background: var(--accent-pale); border-left: 4px solid var(--accent-deep); border-radius: 0 12px 12px 0; padding: 1.1rem 1.4rem; margin-top: 1.5rem; font-size: .9rem; line-height: 1.65; }
+  .g-callout a { color: var(--accent-deep); text-decoration: underline; font-weight: 700; }
+
+  .g-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .g-col { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
+  .g-col h3 { font-size: .95rem; font-weight: 800; margin-bottom: .85rem; }
+  .g-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .g-col li { font-size: .87rem; color: var(--ink-soft); padding-left: 1rem; position: relative; line-height: 1.55; }
+  .g-col li::before { content: '•'; position: absolute; left: 0; color: var(--accent-deep); font-weight: 900; }
+
+  .g-cta { background: var(--accent-deep); padding: 3.5rem 0; text-align: center; }
+  .g-cta h2 { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: .75rem; }
+  .g-cta p { color: #D9E5D5; margin-bottom: 1.5rem; }
+  .g-cta .btn-primary { background: #fff; color: var(--accent-deep); border-color: #fff; }
+  .g-cta .btn-primary:hover { background: var(--accent-pale); }
+
+  @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+</style>

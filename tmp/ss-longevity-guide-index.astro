@@ -1,0 +1,94 @@
+---
+import Layout from '../../../layouts/LayoutLongevity.astro';
+
+const topics = [
+  { href: '/longevity/guide/food', icon: '🥗', title: 'Food & Nutrition', desc: 'What to eat for steady energy, gut health, and long-term vitality, the Indian way.' },
+  { href: '/longevity/guide/movement', icon: '🏃', title: 'Movement & Fitness', desc: 'Why strength and mobility matter more than cardio alone as you age.' },
+  { href: '/longevity/guide/sleep-rhythm', icon: '🌙', title: 'Sleep & Rhythm', desc: 'Circadian habits that protect your hormones, recovery, and mental clarity.' },
+  { href: '/longevity/guide/mind-stress', icon: '🧘', title: 'Mind & Stress', desc: 'Chronic stress ages the body. Practical ways to build resilience daily.' },
+  { href: '/longevity/guide/ayurveda', icon: '🌿', title: 'Ayurvedic Wisdom', desc: 'Time-tested principles from Ayurveda, explained alongside modern evidence.' },
+];
+---
+
+<Layout
+  title="The Complete Longevity Guide – Food, Movement, Mind & Ayurveda"
+  description="Everything you need for a longer, steadier life: food, movement, sleep, stress, and Ayurvedic wisdom, explained clearly and rooted in Indian tradition."
+>
+
+  <section class="g-hero">
+    <div class="container">
+      <span class="g-eyebrow">The Guide</span>
+      <h1>Build a longer, steadier life, one pillar at a time</h1>
+      <p>Longevity isn't one big change, it's a handful of daily habits compounding over years. This guide breaks it down by pillar, so you can start with what matters most to you right now.</p>
+    </div>
+  </section>
+
+  <section class="g-section">
+    <div class="container">
+      <div class="topics-grid">
+        {topics.map(t => (
+          <a href={t.href} class="topic-card">
+            <span class="topic-icon">{t.icon}</span>
+            <h3>{t.title}</h3>
+            <p>{t.desc}</p>
+            <span class="topic-link">Read guide →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="g-callout" style="margin-top:0;">
+        <strong>New to longevity habits?</strong> Start with <a href="/longevity/guide/food">Food & Nutrition</a> or <a href="/longevity/guide/movement">Movement & Fitness</a>, the two pillars with the biggest early impact.
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  .g-hero { background: var(--bg-mid); padding: 4rem 0 3.5rem; }
+  .g-eyebrow { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); background: #fff; border: 1px solid var(--line); padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.25rem; }
+  .g-hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: 1rem; }
+  .g-hero p { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.7; max-width: 620px; }
+
+  .g-section { padding: 4rem 0; }
+  .g-label { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: var(--bg-mid); display: inline-block; padding: .3rem .9rem; border-radius: 99px; margin-bottom: 1rem; }
+  .g-title { font-family: 'Lora', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: .75rem; }
+  .g-sub { font-size: .97rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 2rem; max-width: 640px; }
+
+  .g-steps { display: flex; flex-direction: column; gap: .9rem; }
+  .g-step { display: flex; gap: 1rem; align-items: flex-start; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .g-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent-deep); color: #fff; font-weight: 800; font-size: .9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .g-step h3 { font-size: 1rem; font-weight: 800; margin-bottom: .35rem; }
+  .g-step p { font-size: .87rem; color: var(--ink-soft); line-height: 1.6; }
+
+  .g-callout { background: var(--accent-pale); border-left: 4px solid var(--accent-deep); border-radius: 0 12px 12px 0; padding: 1.1rem 1.4rem; margin-top: 1.5rem; font-size: .9rem; line-height: 1.65; }
+  .g-callout a { color: var(--accent-deep); text-decoration: underline; font-weight: 700; }
+
+  .g-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .g-col { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
+  .g-col h3 { font-size: .95rem; font-weight: 800; margin-bottom: .85rem; }
+  .g-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .g-col li { font-size: .87rem; color: var(--ink-soft); padding-left: 1rem; position: relative; line-height: 1.55; }
+  .g-col li::before { content: '•'; position: absolute; left: 0; color: var(--accent-deep); font-weight: 900; }
+
+  .g-cta { background: var(--accent-deep); padding: 3.5rem 0; text-align: center; }
+  .g-cta h2 { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: .75rem; }
+  .g-cta p { color: #D9E5D5; margin-bottom: 1.5rem; }
+  .g-cta .btn-primary { background: #fff; color: var(--accent-deep); border-color: #fff; }
+  .g-cta .btn-primary:hover { background: var(--accent-pale); }
+
+  .topics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .topic-card { display: flex; flex-direction: column; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-lg); padding: 1.75rem 1.5rem; transition: transform .18s, border-color .18s; }
+  .topic-card:hover { transform: translateY(-3px); border-color: var(--accent-deep); }
+  .topic-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .topic-card h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+  .topic-card p { font-size: .87rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 1.25rem; }
+  .topic-link { font-size: .82rem; font-weight: 700; color: var(--accent-deep); margin-top: auto; }
+
+  @media (max-width: 900px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } .g-cols { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .topics-grid { grid-template-columns: 1fr; } }
+</style>

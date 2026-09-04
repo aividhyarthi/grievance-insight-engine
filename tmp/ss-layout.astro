@@ -226,6 +226,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         </ul>
 
         <div class="navbar-right">
+          <a href="/" class="all-programs-link">All programs ↗</a>
           <a href="/quiz" class="btn btn-primary navbar-cta">Take the Quiz</a>
           <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
             <svg id="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -282,6 +283,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
               <li><a href="/for-employers">For Employers</a></li>
               <li><a href="/team">Team</a></li>
               <li><a href="/contact">Contact</a></li>
+              <li><a href="/">All Programs (Men's & Longevity)</a></li>
             </ul>
           </div>
 
@@ -685,7 +687,10 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
     padding: .5rem .9rem .25rem; margin-bottom: .15rem;
   }
 
-  .navbar-right { display: flex; align-items: center; gap: .75rem; margin-left: auto; }
+  .navbar-right { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
+  .all-programs-link { font-size: .78rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+  .all-programs-link:hover { color: var(--green-dark); }
+  @media (max-width: 900px) { .all-programs-link { display: none; } }
   .mobile-toggle {
     display: none; background: none; border: none;
     cursor: pointer; padding: .35rem; color: var(--green-dark);
