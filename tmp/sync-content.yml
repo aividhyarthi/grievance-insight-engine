@@ -48,12 +48,15 @@ jobs:
       - name: Copy rebranded pages (color fix)
         run: |
           mkdir -p src/pages/guide src/pages/community
-          mkdir -p src/pages/spring src/pages/wind
+          mkdir -p src/pages/spring src/pages/wind src/pages/longevity
           cp "$SRC/ss-root.astro"                        "src/pages/index.astro"
           cp "$SRC/ss-spring-index.astro"                "src/pages/spring/index.astro"
           cp "$SRC/ss-layout-wind.astro"                 "src/layouts/LayoutWind.astro"
           cp "$SRC/ss-wind-index.astro"                  "src/pages/wind/index.astro"
           cp "$SRC/ss-favicon-wind.svg"                  "public/favicon-wind.svg"
+          cp "$SRC/ss-layout-longevity.astro"            "src/layouts/LayoutLongevity.astro"
+          cp "$SRC/ss-longevity-index.astro"             "src/pages/longevity/index.astro"
+          cp "$SRC/ss-favicon-longevity.svg"             "public/favicon-longevity.svg"
           cp "$SRC/ss-page-menopause.astro"              "src/pages/menopause.astro"
           cp "$SRC/ss-page-guide-sexual-wellness.astro"  "src/pages/guide/sexual-wellness.astro"
           cp "$SRC/ss-page-guide-hair-skin.astro"        "src/pages/guide/hair-skin.astro"
@@ -116,6 +119,9 @@ jobs:
             src/layouts/LayoutWind.astro
             src/pages/wind/index.astro
             public/favicon-wind.svg
+            src/layouts/LayoutLongevity.astro
+            src/pages/longevity/index.astro
+            public/favicon-longevity.svg
             src/pages/menopause.astro
             src/pages/guide/sexual-wellness.astro
             src/pages/guide/hair-skin.astro
