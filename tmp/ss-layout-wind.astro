@@ -1,0 +1,209 @@
+---
+const SITE_URL = 'https://www.thesecondspring.org';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  structuredData?: any;
+  canonical?: string;
+}
+
+const {
+  title = 'Second Wind – Andropause & Midlife Vitality for Indian Men',
+  description = 'Testosterone decline, energy, mood, and strength in midlife, explained clearly for Indian men. Part of Ritu.',
+  image = 'https://thesecondspring.org/og-default.jpg',
+  structuredData,
+  canonical,
+} = Astro.props;
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => href === '/wind' ? path === '/wind' : path.startsWith(href);
+
+const canonicalPath = path !== '/wind' && path.endsWith('/') ? path.slice(0, -1) : path;
+const canonicalUrl = canonical || `${SITE_URL}${canonicalPath}`;
+
+const pageNodes = structuredData
+  ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+  : [];
+const orgNode = {
+  '@type': 'Organization',
+  '@id': `${SITE_URL}/wind#organization`,
+  name: 'Second Wind',
+  url: `${SITE_URL}/wind`,
+  logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon-wind.svg` },
+  description: "India's private companion for men navigating andropause and midlife hormonal change, honest, science-backed support for Indian men.",
+  email: 'thesecondspringofficial@gmail.com',
+  areaServed: 'IN',
+};
+const websiteNode = {
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/wind#website`,
+  url: `${SITE_URL}/wind`,
+  name: 'Second Wind',
+  inLanguage: 'en-IN',
+  publisher: { '@id': `${SITE_URL}/wind#organization` },
+};
+const jsonLdGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [orgNode, websiteNode, ...pageNodes],
+};
+const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={image} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <script type="application/ld+json" set:html={jsonLd} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Work+Sans:wght@400;500;600;700&display=optional" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-wind.svg" />
+    <title>{title}</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NK9589CRHZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NK9589CRHZ');
+    </script>
+  </head>
+  <body>
+
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <a href="/wind" class="brand">
+          <svg class="brand-icon" width="26" height="26" viewBox="0 0 32 32" fill="none">
+            <path d="M6 20c4-8 8-12 10-12s6 4 10 12" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 24c4-6 8-9 10-9s6 3 10 9" stroke="#111111" stroke-width="2" stroke-linecap="round" opacity=".45"/>
+          </svg>
+          <span class="brand-name">Second Wind</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/wind" class:list={[{ active: isActive('/wind') && path === '/wind' }]}>Home</a></li>
+        </ul>
+        <a href="/" class="ritu-link">Ritu ↗</a>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-about">
+          <div class="footer-brand">Second Wind</div>
+          <p class="footer-tagline">The strength doesn't have to fade quietly.</p>
+          <p class="footer-sub-tagline">Andropause and midlife vitality support for Indian men. Information and support, not medical advice.</p>
+          <div class="footer-disclaimer">
+            This service provides general health information only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your doctor or a qualified healthcare professional.
+          </div>
+          <p class="footer-ritu-link"><a href="/">Part of Ritu, health for every season of life →</a></p>
+        </div>
+        <div>
+          <h4>Talk to Us</h4>
+          <ul>
+            <li><a href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+            <li><a href="mailto:thesecondspringofficial@gmail.com">thesecondspringofficial@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} Second Wind. General health information only, not medical advice.</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg:           #FFFFFF;
+    --bg-mid:       #F4F4F3;
+    --ink:          #111111;
+    --ink-soft:     #5C5C5C;
+    --ink-muted:    #8A8A8A;
+    --line:         #E4E4E4;
+    --line-dark:    #2A2A2A;
+    --dark:         #111111;
+    --dark-mid:     #1C1C1C;
+    --radius-sm:    8px;
+    --radius:       14px;
+    --radius-lg:    22px;
+    --nav-h:        68px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--ink); text-decoration: none; }
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    font-weight: 700; font-size: .95rem; text-decoration: none; cursor: pointer;
+    padding: .8rem 1.75rem; border-radius: var(--radius-sm); border: 1.5px solid transparent;
+    transition: transform .15s, background .15s;
+  }
+  .btn-primary { background: var(--dark); color: #fff; border-color: var(--dark); }
+  .btn-primary:hover { transform: translateY(-1px); background: #000; }
+  .btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .btn-outline:hover { background: var(--bg-mid); }
+  .btn-lg { padding: 1rem 2.2rem; font-size: 1rem; }
+
+  /* Nav */
+  .navbar { border-bottom: 1.5px solid var(--line); position: sticky; top: 0; background: #fff; z-index: 200; }
+  .navbar-inner { display: flex; align-items: center; height: var(--nav-h); gap: 1.5rem; }
+  .brand { display: flex; align-items: center; gap: .55rem; margin-right: auto; }
+  .brand-name { font-family: 'Archivo', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+  .nav-links a { color: var(--ink-soft); font-size: .88rem; font-weight: 600; padding: .5rem .75rem; border-radius: var(--radius-sm); transition: background .15s; }
+  .nav-links a:hover, .nav-links a.active { background: var(--bg-mid); color: var(--ink); }
+  .ritu-link { font-size: .78rem; font-weight: 600; color: var(--ink-muted); }
+  .ritu-link:hover { color: var(--ink); }
+
+  /* Footer */
+  .footer { background: var(--dark); color: #C9C9C9; padding: 4rem 0 2rem; margin-top: 5rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--line-dark); }
+  .footer-brand { font-family: 'Archivo', sans-serif; font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: .75rem; }
+  .footer-tagline { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: .5rem; font-style: italic; }
+  .footer-sub-tagline { font-size: .88rem; line-height: 1.65; margin-bottom: 1.25rem; }
+  .footer-disclaimer { font-size: .78rem; line-height: 1.65; color: #9C9C9C; padding: 1rem; background: var(--dark-mid); border-radius: 8px; border-left: 3px solid #fff; }
+  .footer-ritu-link { margin-top: 1rem; font-size: .78rem; }
+  .footer-ritu-link a { color: #9C9C9C; text-decoration: underline; }
+  .footer-ritu-link a:hover { color: #fff; }
+  .footer h4 { color: #fff; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
+  .footer ul { list-style: none; }
+  .footer ul li { margin-bottom: .4rem; }
+  .footer ul li a { color: #C9C9C9; font-size: .87rem; }
+  .footer ul li a:hover { color: #fff; }
+  .footer-bottom { padding-top: 1.5rem; font-size: .82rem; color: #7A7A7A; text-align: center; }
+
+  @media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>

@@ -1,0 +1,221 @@
+---
+import Layout from '../../layouts/LayoutWind.astro';
+
+const structuredData = [
+  {
+    '@type': 'WebPage',
+    name: 'Second Wind – Andropause & Midlife Vitality for Indian Men',
+    description: 'Testosterone decline, energy, mood, and strength in midlife, explained clearly for Indian men.',
+    url: 'https://www.thesecondspring.org/wind',
+  },
+];
+---
+
+<Layout
+  title="Second Wind – Andropause & Midlife Vitality for Indian Men"
+  description="Testosterone decline, energy, mood, and strength in midlife, explained clearly for Indian men. Not male menopause, something more gradual, and just as real."
+  structuredData={structuredData}
+>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="eyebrow">For Indian Men, 35 and Up</span>
+        <h1>The strength doesn't have to fade quietly.</h1>
+        <p class="hero-sub">Low energy, low mood, low drive, a body that doesn't respond the way it used to. It's often andropause, a slow, treatable hormonal shift. Not weakness. Not just age.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Talk to Us on WhatsApp</a>
+          <a href="#what-it-is" class="btn btn-outline">What's actually happening →</a>
+        </div>
+        <p class="hero-trust">Private · No judgement · Built for Indian men</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASSURANCE -->
+  <section class="section">
+    <div class="container reassure-inner">
+      <h2>You're Not Imagining It</h2>
+      <p class="reassure-body">Most men are never told that testosterone declines with age, roughly 1% a year from your 30s or 40s onward, and that this can bring real, physical, and emotional changes. When no one names it, it's easy to write it off as stress, ageing, or a personal failing.</p>
+      <p class="reassure-body"><strong>It's none of those things. It's hormonal, and it's manageable.</strong></p>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section id="what-it-is" class="section section-dark">
+    <div class="container">
+      <span class="label-light">The Science</span>
+      <h2 class="dark-title">What's Actually Happening</h2>
+      <div class="steps-4">
+        <div class="step-box">
+          <div class="step-num">1</div>
+          <h3 class="step-title">It's gradual, not sudden</h3>
+          <p class="step-desc">Unlike menopause, which marks a defined end to a woman's reproductive cycle, testosterone decline in men happens slowly over decades. There's no single dividing line.</p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">2</div>
+          <h3 class="step-title">The correct term is andropause</h3>
+          <p class="step-desc">Sometimes called "male menopause" informally, but that name is misleading. The medical terms are andropause or late-onset hypogonadism (LOH), a testosterone deficiency that develops with age.</p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">3</div>
+          <h3 class="step-title">Not every man is affected the same way</h3>
+          <p class="step-desc">Some men have barely noticeable symptoms even with lower testosterone. Others feel it significantly. Genetics, weight, sleep, and stress all play a role.</p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">4</div>
+          <h3 class="step-title">A blood test can confirm it</h3>
+          <p class="step-desc">A simple testosterone blood test, along with a review of your symptoms, is how doctors diagnose it. It's not guesswork, and it's not something you have to self-diagnose.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYMPTOMS -->
+  <section class="section" id="symptoms">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Does this feel familiar?</span>
+        <h2 class="section-title">These are recognised symptoms,<br/>not personal failings.</h2>
+      </div>
+      <div class="symptoms-grid">
+        {[
+          { emoji: '🔋', label: 'Low Energy & Fatigue' },
+          { emoji: '💪', label: 'Reduced Muscle & Strength' },
+          { emoji: '😔', label: 'Low Mood or Irritability' },
+          { emoji: '🌙', label: 'Disrupted Sleep' },
+          { emoji: '❤️', label: 'Lower Sex Drive' },
+          { emoji: '⚡', label: 'Erectile Changes' },
+          { emoji: '🧠', label: 'Reduced Focus' },
+          { emoji: '⚖️', label: 'Weight Gain' },
+        ].map(s => (
+          <div class="sym-card">
+            <span class="sym-emoji">{s.emoji}</span>
+            <span class="sym-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT HELPS -->
+  <section class="section section-mid">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Taking Action</span>
+        <h2 class="section-title">What Actually Helps</h2>
+      </div>
+      <div class="helps-grid">
+        <div class="helps-card">
+          <h3>Get tested</h3>
+          <p>A morning blood test for total testosterone is the starting point. Ask your doctor for it directly, most won't offer it unprompted.</p>
+        </div>
+        <div class="helps-card">
+          <h3>Strength train</h3>
+          <p>Resistance training is one of the most effective natural levers for energy, mood, and muscle mass, and it directly supports healthy testosterone levels.</p>
+        </div>
+        <div class="helps-card">
+          <h3>Fix sleep first</h3>
+          <p>Testosterone production happens largely during sleep. Poor sleep alone can suppress it significantly, before any hormonal decline even factors in.</p>
+        </div>
+        <div class="helps-card">
+          <h3>Discuss treatment options</h3>
+          <p>If levels are confirmed low and symptoms are significant, testosterone replacement therapy (TRT) is an option to discuss with your doctor, along with its risks and benefits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <h2 class="cta-title">You Don't Have to Push Through This Alone</h2>
+        <p class="cta-desc">Talk to us privately, no judgement, and no need to have it figured out first.</p>
+        <a href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Talk to Us on WhatsApp →</a>
+        <p class="cta-fine">Private · Not medical advice · Built for Indian men</p>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* HERO */
+  .hero { padding: 5rem 0 4rem; border-bottom: 1.5px solid var(--line); }
+  .hero-content { max-width: 640px; }
+  .eyebrow {
+    display: inline-block; font-size: .76rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-soft); background: var(--bg-mid);
+    padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Archivo', sans-serif; font-size: clamp(2.1rem, 5vw, 3.2rem); font-weight: 900;
+    line-height: 1.12; letter-spacing: -.02em; margin-bottom: 1.25rem;
+  }
+  .hero-sub { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 2rem; max-width: 520px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+  .hero-trust { font-size: .85rem; color: var(--ink-muted); }
+
+  .section { padding: 5rem 0; }
+  .section-header.center { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+  .section-label {
+    display: inline-block; font-size: .76rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: .85rem;
+  }
+  .section-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; letter-spacing: -.02em; line-height: 1.2; }
+
+  /* REASSURANCE */
+  .reassure-inner { max-width: 640px; text-align: center; }
+  .reassure-inner h2 { font-family: 'Archivo', sans-serif; font-size: 2rem; font-weight: 900; margin-bottom: 1.25rem; }
+  .reassure-body { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 1rem; }
+  .reassure-body strong { color: var(--ink); }
+
+  /* DARK SECTION */
+  .section-dark { background: var(--dark); color: #E4E4E4; }
+  .label-light {
+    display: inline-block; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: #A8A8A8; background: rgba(255,255,255,.08); padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1rem;
+  }
+  .dark-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: #fff; margin-bottom: 2.5rem; }
+  .steps-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .step-box { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: 1.75rem 1.4rem; }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; background: #fff; color: #111; font-size: 1rem; font-weight: 900; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+  .step-title { font-size: .98rem; font-weight: 800; color: #fff; margin-bottom: .5rem; }
+  .step-desc { font-size: .84rem; color: #B0B0B0; line-height: 1.6; }
+
+  /* SYMPTOMS */
+  .symptoms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .sym-card {
+    background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius);
+    padding: 1.75rem 1.25rem; display: flex; flex-direction: column; align-items: center;
+    gap: .6rem; text-align: center; transition: all .18s;
+  }
+  .sym-card:hover { border-color: var(--ink); transform: translateY(-3px); }
+  .sym-emoji { font-size: 2rem; }
+  .sym-label { font-weight: 700; font-size: .9rem; color: var(--ink); }
+
+  /* WHAT HELPS */
+  .section-mid { background: var(--bg-mid); }
+  .helps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .helps-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.75rem 1.5rem; }
+  .helps-card h3 { font-family: 'Archivo', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: .6rem; }
+  .helps-card p { font-size: .87rem; color: var(--ink-soft); line-height: 1.65; }
+
+  /* FINAL CTA */
+  .cta-section { background: var(--dark); padding: 6rem 0; text-align: center; }
+  .cta-inner { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; max-width: 600px; margin: 0 auto; }
+  .cta-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 900; color: #fff; line-height: 1.2; }
+  .cta-desc { font-size: 1.02rem; color: #B0B0B0; }
+  .cta-fine { font-size: .78rem; color: #7A7A7A; margin-top: .5rem; }
+  .cta-section .btn-primary { background: #fff; color: #111; border-color: #fff; }
+  .cta-section .btn-primary:hover { background: #E8E8E8; }
+
+  @media (max-width: 880px) {
+    .steps-4, .symptoms-grid, .helps-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .steps-4, .symptoms-grid, .helps-grid { grid-template-columns: 1fr; }
+  }
+</style>
