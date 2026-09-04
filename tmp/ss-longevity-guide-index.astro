@@ -40,6 +40,16 @@ const topics = [
 
   <section class="g-section" style="padding-top:0;">
     <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">pillars covered in this guide, from food to Ayurvedic wisdom</span></div>
+        <div class="stat-item"><span class="stat-num">1,000s</span><span class="stat-label">of years of Ayurvedic daily-living wisdom this guide draws on</span></div>
+        <div class="stat-item"><span class="stat-num">10–30 min</span><span class="stat-label">a day is often enough to start most habits in this guide</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
       <div class="g-callout" style="margin-top:0;">
         <strong>New to longevity habits?</strong> Start with <a href="/longevity/guide/food">Food & Nutrition</a> or <a href="/longevity/guide/movement">Movement & Fitness</a>, the two pillars with the biggest early impact.
       </div>
@@ -91,4 +101,10 @@ const topics = [
 
   @media (max-width: 900px) { .topics-grid { grid-template-columns: repeat(2, 1fr); } .g-cols { grid-template-columns: 1fr; } }
   @media (max-width: 560px) { .topics-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent-deep); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

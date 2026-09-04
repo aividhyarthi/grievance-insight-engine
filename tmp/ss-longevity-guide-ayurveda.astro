@@ -42,13 +42,33 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>Easy principles to start with</h3>
-          <ul>
-            <li>Wake and eat at consistent times each day</li>
-            <li>Eat your largest meal earlier in the day, when digestion is strongest</li>
-            <li>Favour warm, freshly cooked food over cold or processed food</li>
-            <li>Take a few mindful breaths before eating, rather than eating in a rush</li>
-            <li>Adjust your routine gently with the seasons</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">🌅</span>
+              <h4>Consistent Daily Timing</h4>
+              <p>Wake and eat at consistent times each day.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🍛</span>
+              <h4>Eat Your Largest Meal Early</h4>
+              <p>Eat your largest meal earlier in the day, when digestion is strongest.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🍲</span>
+              <h4>Warm, Fresh-Cooked Food</h4>
+              <p>Favour warm, freshly cooked food over cold or processed food.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🙏</span>
+              <h4>A Few Mindful Breaths First</h4>
+              <p>Take a few mindful breaths before eating, rather than eating in a rush.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🍂</span>
+              <h4>Adjust Gently With the Seasons</h4>
+              <p>Adjust your routine gently with the seasons.</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>A balanced approach</h3>
@@ -63,6 +83,16 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
 
       <div class="g-callout">
         <strong>Ayurveda and modern medicine aren't in competition.</strong> The most effective approach for most people combines evidence-based daily habits with a qualified doctor's guidance for any specific health concern.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">5,000+ yrs</span><span class="stat-label">of continuous Ayurvedic practice and observation</span></div>
+        <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">core principles this page covers: dinacharya, agni, and ritucharya</span></div>
+        <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">ritus (seasons) traditionally recognised in Ayurveda's seasonal calendar</span></div>
       </div>
     </div>
   </section>
@@ -110,4 +140,17 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
   .g-cta .btn-primary:hover { background: var(--accent-pale); }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-family: 'Lora', serif; font-size: .95rem; font-weight: 700; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent-deep); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

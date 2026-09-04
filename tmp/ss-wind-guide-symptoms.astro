@@ -2,16 +2,16 @@
 import Layout from '../../../layouts/LayoutWind.astro';
 
 const symptoms = [
-  { title: 'Persistent low energy', body: 'Feeling tired even after a full night\'s sleep, or needing more caffeine than before just to get through the day.' },
-  { title: 'Reduced muscle mass or strength', body: 'Noticing you\'re weaker in the gym than you used to be, or that muscle is turning into fat despite similar habits.' },
-  { title: 'Low mood or irritability', body: 'A flatter mood, shorter temper, or a general sense of "what\'s the point" that wasn\'t there a few years ago.' },
-  { title: 'Poor or disrupted sleep', body: 'Trouble falling asleep, waking up at 3am, or sleep that doesn\'t feel restorative anymore.' },
-  { title: 'Reduced libido', body: 'A noticeable drop in sexual desire compared to your 20s and 30s, not tied to a specific relationship issue.' },
-  { title: 'Erectile changes', body: 'Erections that are less firm, less frequent, or less reliable, especially morning erections.' },
-  { title: 'Increased belly fat', body: 'Fat accumulating around the midsection even without major changes to diet, often alongside muscle loss.' },
-  { title: 'Difficulty concentrating', body: 'Brain fog, trouble focusing on tasks that used to be easy, or feeling mentally "slower."' },
-  { title: 'Reduced motivation or drive', body: 'Less interest in things you used to enjoy, or a general dip in ambition and competitiveness.' },
-  { title: 'Hot flushes or sweating', body: 'Less common than in female menopause, but some men do experience episodes of unexplained warmth or sweating.' },
+  { icon: '🔋', title: 'Persistent low energy', body: 'Feeling tired even after a full night\'s sleep, or needing more caffeine than before just to get through the day.' },
+  { icon: '💪', title: 'Reduced muscle mass or strength', body: 'Noticing you\'re weaker in the gym than you used to be, or that muscle is turning into fat despite similar habits.' },
+  { icon: '😔', title: 'Low mood or irritability', body: 'A flatter mood, shorter temper, or a general sense of "what\'s the point" that wasn\'t there a few years ago.' },
+  { icon: '🌙', title: 'Poor or disrupted sleep', body: 'Trouble falling asleep, waking up at 3am, or sleep that doesn\'t feel restorative anymore.' },
+  { icon: '❤️', title: 'Reduced libido', body: 'A noticeable drop in sexual desire compared to your 20s and 30s, not tied to a specific relationship issue.' },
+  { icon: '📉', title: 'Erectile changes', body: 'Erections that are less firm, less frequent, or less reliable, especially morning erections.' },
+  { icon: '🍩', title: 'Increased belly fat', body: 'Fat accumulating around the midsection even without major changes to diet, often alongside muscle loss.' },
+  { icon: '🧠', title: 'Difficulty concentrating', body: 'Brain fog, trouble focusing on tasks that used to be easy, or feeling mentally "slower."' },
+  { icon: '🎯', title: 'Reduced motivation or drive', body: 'Less interest in things you used to enjoy, or a general dip in ambition and competitiveness.' },
+  { icon: '🌡️', title: 'Hot flushes or sweating', body: 'Less common than in female menopause, but some men do experience episodes of unexplained warmth or sweating.' },
 ];
 ---
 
@@ -30,17 +30,28 @@ const symptoms = [
 
   <section class="g-section">
     <div class="container">
-      <div class="sym-list">
-        {symptoms.map((s, i) => (
-          <div class="sym-item">
-            <div class="sym-num">{String(i + 1).padStart(2, '0')}</div>
-            <div><h3>{s.title}</h3><p>{s.body}</p></div>
+      <div class="sign-grid sign-grid--symptoms">
+        {symptoms.map((s) => (
+          <div class="sign-card">
+            <span class="sign-icon">{s.icon}</span>
+            <h4>{s.title}</h4>
+            <p>{s.body}</p>
           </div>
         ))}
       </div>
 
       <div class="g-callout">
         <strong>Recognise a few of these?</strong> <a href="/wind/quiz">Take the free symptom check</a> to see how your pattern compares, or browse specific topics in the <a href="/wind/guide">full guide</a>.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">10</span><span class="stat-label">recognised signs of declining testosterone</span></div>
+        <div class="stat-item"><span class="stat-num">2-3</span><span class="stat-label">is roughly how many most men actually notice, not all ten</span></div>
+        <div class="stat-item"><span class="stat-num">2 min</span><span class="stat-label">to check how your own pattern compares</span></div>
       </div>
     </div>
   </section>
@@ -76,4 +87,17 @@ const symptoms = [
   .g-cta p { color: #B0B0B0; margin-bottom: 1.5rem; }
   .g-cta .btn-primary { background: #fff; color: #111; border-color: #fff; }
   .g-cta .btn-primary:hover { background: #E8E8E8; }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Archivo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>
