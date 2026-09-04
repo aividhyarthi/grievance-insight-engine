@@ -82,6 +82,19 @@ cp "$SRC/ss-longevity-guide-movement.astro"    "src/pages/longevity/guide/moveme
 cp "$SRC/ss-longevity-guide-sleep-rhythm.astro" "src/pages/longevity/guide/sleep-rhythm.astro"
 cp "$SRC/ss-longevity-guide-mind-stress.astro" "src/pages/longevity/guide/mind-stress.astro"
 cp "$SRC/ss-longevity-guide-ayurveda.astro"    "src/pages/longevity/guide/ayurveda.astro"
+
+# 2e-3. Second Wind + Longevity journals
+echo "→ Second Wind + Longevity journals..."
+mkdir -p src/pages/wind/blog src/pages/longevity/blog
+cp "$SRC/ss-content-config.ts"                 "src/content/config.ts"
+cp "$SRC/ss-wind-blog-index.astro"             "src/pages/wind/blog/index.astro"
+cp "$SRC/ss-wind-blog-slug.astro"              "src/pages/wind/blog/[slug].astro"
+cp "$SRC/ss-longevity-blog-index.astro"        "src/pages/longevity/blog/index.astro"
+cp "$SRC/ss-longevity-blog-slug.astro"         "src/pages/longevity/blog/[slug].astro"
+mkdir -p src/content/wind-blog src/content/longevity-blog
+cp "$SRC"/wind-blog/*.md src/content/wind-blog/ 2>/dev/null || echo "  (no wind-blog posts yet)"
+cp "$SRC"/longevity-blog/*.md src/content/longevity-blog/ 2>/dev/null || echo "  (no longevity-blog posts yet)"
+
 cp "$SRC/ss-page-menopause.astro"              "src/pages/menopause.astro"
 cp "$SRC/ss-page-guide-sexual-wellness.astro"  "src/pages/guide/sexual-wellness.astro"
 cp "$SRC/ss-page-guide-hair-skin.astro"        "src/pages/guide/hair-skin.astro"

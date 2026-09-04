@@ -41,7 +41,9 @@ const staticPages = [
   { path: '/wind/guide/sleep',          changefreq: 'monthly', priority: '0.7' },
   { path: '/wind/guide/sexual-health',  changefreq: 'monthly', priority: '0.7' },
   { path: '/wind/guide/talk-to-doctor', changefreq: 'monthly', priority: '0.7' },
+  { path: '/wind/blog',                 changefreq: 'weekly',  priority: '0.8' },
   { path: '/longevity',                 changefreq: 'weekly',  priority: '1.0' },
+  { path: '/longevity/blog',            changefreq: 'weekly',  priority: '0.8' },
   { path: '/longevity/guide',           changefreq: 'monthly', priority: '0.8' },
   { path: '/longevity/guide/food',          changefreq: 'monthly', priority: '0.7' },
   { path: '/longevity/guide/movement',      changefreq: 'monthly', priority: '0.7' },
@@ -127,6 +129,26 @@ export const GET: APIRoute = async () => {
   // Journal / blog posts
   for (const post of posts) {
     xml += urlEntry(`${SITE}/blog/${post.slug}`, {
+      lastmod: formatDate(post.data.pubDate),
+      changefreq: 'yearly',
+      priority: '0.7',
+    });
+  }
+
+  // Second Wind journal posts
+  const windPosts = (await getCollection('wind-blog')).filter(p => p.data.pubDate <= now);
+  for (const post of windPosts) {
+    xml += urlEntry(`${SITE}/wind/blog/${post.slug}`, {
+      lastmod: formatDate(post.data.pubDate),
+      changefreq: 'yearly',
+      priority: '0.7',
+    });
+  }
+
+  // Longevity journal posts
+  const longevityPosts = (await getCollection('longevity-blog')).filter(p => p.data.pubDate <= now);
+  for (const post of longevityPosts) {
+    xml += urlEntry(`${SITE}/longevity/blog/${post.slug}`, {
       lastmod: formatDate(post.data.pubDate),
       changefreq: 'yearly',
       priority: '0.7',

@@ -17,7 +17,7 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
 
   <section class="g-section">
     <div class="container">
-      <span class="g-label">The fundamentals</span>
+      <span class="g-label">01 / The Fundamentals</span>
       <h2 class="g-title">Why strength training deserves priority</h2>
       <p class="g-sub">From your 30s onward, muscle mass declines gradually if not actively maintained, a process called sarcopenia. This affects mobility, metabolism, and injury risk far more than most people realise until later in life.</p>
       <div class="g-steps">
@@ -42,13 +42,33 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>Easy ways to start</h3>
-          <ul>
-            <li>Two 20 to 30 minute strength sessions a week</li>
-            <li>A daily 20 to 30 minute walk, ideally outdoors</li>
-            <li>10 minutes of stretching or yoga most mornings</li>
-            <li>Taking stairs instead of the lift where practical</li>
-            <li>Standing up and moving every hour if you sit for work</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">🏋️</span>
+              <h4>Two Strength Sessions a Week</h4>
+              <p>Two 20 to 30 minute strength sessions a week.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🚶</span>
+              <h4>A Daily Outdoor Walk</h4>
+              <p>A daily 20 to 30 minute walk, ideally outdoors.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🧘</span>
+              <h4>Morning Stretch or Yoga</h4>
+              <p>10 minutes of stretching or yoga most mornings.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🪜</span>
+              <h4>Take the Stairs</h4>
+              <p>Taking stairs instead of the lift where practical.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">⏰</span>
+              <h4>Move Every Hour</h4>
+              <p>Standing up and moving every hour if you sit for work.</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>Common mistakes to avoid</h3>
@@ -64,6 +84,16 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
 
       <div class="g-callout">
         <strong>New to strength training?</strong> Bodyweight exercises like squats, push-ups, and planks are an effective starting point, no gym membership required.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">2x</span><span class="stat-label">resistance training sessions a week is a widely cited starting point for strength</span></div>
+        <div class="stat-item"><span class="stat-num">3–8%</span><span class="stat-label">approximate muscle mass that can decline per decade after 30 without training (illustrative)</span></div>
+        <div class="stat-item"><span class="stat-num">20–30 min</span><span class="stat-label">a daily walk of this length supports metabolic and heart health</span></div>
       </div>
     </div>
   </section>
@@ -111,4 +141,17 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
   .g-cta .btn-primary:hover { background: var(--accent-pale); }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-family: 'Lora', serif; font-size: .95rem; font-weight: 700; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent-deep); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

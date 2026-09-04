@@ -1,0 +1,118 @@
+---
+import Layout from '../../../layouts/LayoutLongevity.astro';
+import { getCollection } from 'astro:content';
+
+const SITE_URL = 'https://www.thesecondspring.org';
+const now = new Date();
+const posts = (await getCollection('longevity-blog'))
+  .filter(p => p.data.pubDate <= now)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+const structuredData = [
+  {
+    '@type': 'CollectionPage',
+    '@id': `${SITE_URL}/longevity/blog#webpage`,
+    name: 'The Longevity Journal',
+    description: 'Food, movement, sleep, and Ayurvedic wisdom for a longer, steadier life, written for Indian readers.',
+    url: `${SITE_URL}/longevity/blog`,
+    isPartOf: { '@id': `${SITE_URL}/longevity#website` },
+    inLanguage: 'en-IN',
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/longevity` },
+      { '@type': 'ListItem', position: 2, name: 'Journal', item: `${SITE_URL}/longevity/blog` },
+    ],
+  },
+];
+---
+
+<Layout
+  title="The Longevity Journal – Food, Movement & Ayurvedic Wisdom"
+  description="Food, movement, sleep, and Ayurvedic wisdom for a longer, steadier life, written for Indian readers."
+  structuredData={structuredData}
+>
+
+  <section class="jh">
+    <div class="container">
+      <span class="jh-label">The Journal</span>
+      <h1>Notes on living longer, and living well</h1>
+      <p class="jh-sub">Short, practical reads on food, movement, sleep, stress, and Ayurvedic wisdom, rooted in Indian tradition and modern evidence.</p>
+    </div>
+  </section>
+
+  <section class="jg-section">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="jg-empty">New articles are on the way. Check back soon.</p>
+      ) : (
+        <div class="jg-grid">
+          {posts.map(post => (
+            <a href={`/longevity/blog/${post.slug}`} class="jg-card">
+              {post.data.image ? (
+                <div class="jg-card-img"><img src={post.data.image} alt={post.data.imageAlt || post.data.title} loading="lazy" /></div>
+              ) : (
+                <div class="jg-card-img jg-card-img--fallback" aria-hidden="true">
+                  <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M16 4C21 4 25 9 25 15C25 22 21 27 16 27C11 27 7 22 7 15C7 9 11 4 16 4Z" fill="#fff" opacity=".85"/></svg>
+                </div>
+              )}
+              <div class="jg-card-body">
+                <div class="jg-card-tags">
+                  {post.data.tags.slice(0, 2).map(t => <span class="jg-tag">{t}</span>)}
+                </div>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+                <div class="jg-card-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="g-cta">
+    <div class="container">
+      <h2>Ready to start with one pillar?</h2>
+      <p>Food, movement, sleep, mind, and Ayurvedic wisdom, all in one guide.</p>
+      <a href="/longevity/guide" class="btn btn-primary btn-lg">Explore the Guide →</a>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  .jh { background: var(--bg-mid); padding: 4rem 0 3.5rem; }
+  .jh-label { display: inline-block; font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); background: #fff; border: 1px solid var(--line); padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.25rem; }
+  .jh h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: 1rem; }
+  .jh-sub { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.7; max-width: 620px; }
+
+  .jg-section { padding: 4rem 0; }
+  .jg-empty { text-align: center; color: var(--ink-soft); padding: 3rem 0; }
+  .jg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .jg-card { display: flex; flex-direction: column; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; transition: transform .18s, border-color .18s; }
+  .jg-card:hover { transform: translateY(-3px); border-color: var(--accent-deep); }
+  .jg-card-img { aspect-ratio: 16/10; overflow: hidden; background: var(--accent-deep); }
+  .jg-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .jg-card-img--fallback { display: flex; align-items: center; justify-content: center; }
+  .jg-card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+  .jg-card-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .jg-tag { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); background: var(--bg-mid); padding: .2rem .6rem; border-radius: 99px; }
+  .jg-card-body h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.35; }
+  .jg-card-body p { font-size: .87rem; color: var(--ink-soft); line-height: 1.6; flex: 1; }
+  .jg-card-meta { font-size: .78rem; color: var(--ink-muted); margin-top: auto; padding-top: .4rem; }
+
+  .g-cta { background: var(--accent-deep); padding: 3.5rem 0; text-align: center; }
+  .g-cta h2 { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: .75rem; }
+  .g-cta p { color: #D9E5D5; margin-bottom: 1.5rem; }
+  .g-cta .btn-primary { background: #fff; color: var(--accent-deep); border-color: #fff; }
+  .g-cta .btn-primary:hover { background: var(--accent-pale); }
+
+  @media (max-width: 900px) { .jg-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .jg-grid { grid-template-columns: 1fr; } }
+</style>

@@ -85,7 +85,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
   </head>
   <body>
 
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="container navbar-inner">
         <a href="/longevity" class="brand">
           <svg class="brand-icon" width="26" height="26" viewBox="0 0 32 32" fill="none">
@@ -94,7 +94,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
           </svg>
           <span class="brand-name">Longevity</span>
         </a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
           <li><a href="/longevity" class:list={[{ active: isActive('/longevity') && path === '/longevity' }]}>Home</a></li>
           <li class="has-dropdown">
             <a href="/longevity/guide" class:list={[{ active: isActive('/longevity/guide') }]}>
@@ -102,16 +102,27 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
               <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
             <div class="dropdown">
-              <a href="/longevity/guide" class="dropdown-item"><span class="di-title">Guide Overview</span><span class="di-desc">Start your learning journey</span></a>
-              <a href="/longevity/guide/food" class="dropdown-item"><span class="di-title">Food & Nutrition</span><span class="di-desc">Eating for the long run</span></a>
-              <a href="/longevity/guide/movement" class="dropdown-item"><span class="di-title">Movement & Fitness</span><span class="di-desc">What actually extends healthspan</span></a>
-              <a href="/longevity/guide/sleep-rhythm" class="dropdown-item"><span class="di-title">Sleep & Rhythm</span><span class="di-desc">Dinacharya and circadian health</span></a>
-              <a href="/longevity/guide/mind-stress" class="dropdown-item"><span class="di-title">Mind & Stress</span><span class="di-desc">Why stress ages you faster</span></a>
-              <a href="/longevity/guide/ayurveda" class="dropdown-item"><span class="di-title">Ayurvedic Wisdom</span><span class="di-desc">Traditional practices, evaluated</span></a>
+              <a href="/longevity/guide" class="dropdown-item"><span class="di-icon">📖</span><span><span class="di-title">Guide Overview</span><span class="di-desc">Start your learning journey</span></span></a>
+              <a href="/longevity/guide/food" class="dropdown-item"><span class="di-icon">🥗</span><span><span class="di-title">Food & Nutrition</span><span class="di-desc">Eating for the long run</span></span></a>
+              <a href="/longevity/guide/movement" class="dropdown-item"><span class="di-icon">🏃</span><span><span class="di-title">Movement & Fitness</span><span class="di-desc">What actually extends healthspan</span></span></a>
+              <a href="/longevity/guide/sleep-rhythm" class="dropdown-item"><span class="di-icon">🌙</span><span><span class="di-title">Sleep & Rhythm</span><span class="di-desc">Dinacharya and circadian health</span></span></a>
+              <a href="/longevity/guide/mind-stress" class="dropdown-item"><span class="di-icon">🧘</span><span><span class="di-title">Mind & Stress</span><span class="di-desc">Why stress ages you faster</span></span></a>
+              <a href="/longevity/guide/ayurveda" class="dropdown-item"><span class="di-icon">🌿</span><span><span class="di-title">Ayurvedic Wisdom</span><span class="di-desc">Traditional practices, evaluated</span></span></a>
             </div>
           </li>
+          <li><a href="/longevity/blog" class:list={[{ active: isActive('/longevity/blog') }]}>Journal</a></li>
+          <li class="mob-menu-cta">
+            <a href="/longevity/guide" class="btn btn-primary mob-menu-cta-btn">Explore the Guide</a>
+          </li>
         </ul>
-        <a href="/" class="ritu-link">All programs ↗</a>
+        <div class="navbar-right">
+          <a href="/" class="all-programs-link">All programs ↗</a>
+          <a href="/longevity/guide" class="btn btn-primary navbar-cta">Explore the Guide</a>
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+            <svg id="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
       </div>
     </nav>
 
@@ -128,7 +139,27 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
           <div class="footer-disclaimer">
             This service provides general health information only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your doctor or a qualified healthcare professional.
           </div>
-          <p class="footer-ritu-link"><a href="/">Explore our other programs →</a></p>
+          <p class="footer-programs-link"><a href="/">Explore our other programs →</a></p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/longevity">Home</a></li>
+            <li><a href="/longevity/guide">Guide</a></li>
+            <li><a href="/longevity/blog">Journal</a></li>
+            <li><a href="/">All Programs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Guide</h4>
+          <ul>
+            <li><a href="/longevity/guide">Overview</a></li>
+            <li><a href="/longevity/guide/food">Food & Nutrition</a></li>
+            <li><a href="/longevity/guide/movement">Movement & Fitness</a></li>
+            <li><a href="/longevity/guide/sleep-rhythm">Sleep & Rhythm</a></li>
+            <li><a href="/longevity/guide/mind-stress">Mind & Stress</a></li>
+            <li><a href="/longevity/guide/ayurveda">Ayurvedic Wisdom</a></li>
+          </ul>
         </div>
         <div>
           <h4>Talk to Us</h4>
@@ -145,6 +176,41 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
 
   </body>
 </html>
+
+<script>
+  const toggle    = document.getElementById('mobile-toggle');
+  const links     = document.getElementById('nav-links');
+  const iconMenu  = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+
+  function closeMenu() {
+    links?.classList.remove('open');
+    if (iconMenu)  (iconMenu as HTMLElement).style.display  = 'block';
+    if (iconClose) (iconClose as HTMLElement).style.display = 'none';
+  }
+
+  toggle?.addEventListener('click', () => {
+    const open = links?.classList.toggle('open');
+    if (iconMenu)  (iconMenu as HTMLElement).style.display  = open ? 'none'  : 'block';
+    if (iconClose) (iconClose as HTMLElement).style.display = open ? 'block' : 'none';
+  });
+
+  document.addEventListener('click', (e) => {
+    if (toggle && links && !toggle.contains(e.target as Node) && !links.contains(e.target as Node)) {
+      closeMenu();
+    }
+  });
+
+  document.querySelectorAll('.has-dropdown > a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const li = link.parentElement as HTMLElement;
+        li.classList.toggle('mob-open');
+      }
+    });
+  });
+</script>
 
 <style is:global>
   :root {
@@ -209,23 +275,30 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
     display: flex; flex-direction: column; gap: .1rem;
   }
   .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
-  .dropdown-item { display: block; padding: .65rem .85rem; border-radius: var(--radius-sm); }
+  .dropdown-item { display: flex; align-items: flex-start; gap: .75rem; padding: .65rem .85rem; border-radius: var(--radius-sm); }
   .dropdown-item:hover { background: var(--accent-pale); }
+  .di-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
   .di-title { display: block; font-weight: 700; font-size: .87rem; color: var(--ink); }
   .di-desc { display: block; font-size: .76rem; color: var(--ink-muted); margin-top: .1rem; }
-  .ritu-link { font-size: .78rem; font-weight: 600; color: var(--ink-muted); }
-  .ritu-link:hover { color: var(--accent-deep); }
+
+  .navbar-right { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
+  .all-programs-link { font-size: .78rem; font-weight: 600; color: var(--ink-muted); white-space: nowrap; }
+  .all-programs-link:hover { color: var(--accent-deep); }
+  .navbar-cta { padding: .55rem 1.2rem; font-size: .84rem; }
+  @media (max-width: 900px) { .all-programs-link { display: none; } }
+  .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: .35rem; color: var(--accent-deep); }
+  .mob-menu-cta { display: none; }
 
   /* Footer */
   .footer { background: var(--accent-deep); color: #D3E0D0; padding: 4rem 0 2rem; margin-top: 5rem; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.15); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.15); }
   .footer-brand { font-family: 'Lora', serif; font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: .75rem; }
   .footer-tagline { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: .5rem; font-style: italic; }
   .footer-sub-tagline { font-size: .88rem; line-height: 1.65; margin-bottom: 1.25rem; }
   .footer-disclaimer { font-size: .78rem; line-height: 1.65; color: #B7C8B4; padding: 1rem; background: rgba(0,0,0,.15); border-radius: 8px; border-left: 3px solid #fff; }
-  .footer-ritu-link { margin-top: 1rem; font-size: .78rem; }
-  .footer-ritu-link a { color: #B7C8B4; text-decoration: underline; }
-  .footer-ritu-link a:hover { color: #fff; }
+  .footer-programs-link { margin-top: 1rem; font-size: .78rem; }
+  .footer-programs-link a { color: #B7C8B4; text-decoration: underline; }
+  .footer-programs-link a:hover { color: #fff; }
   .footer h4 { color: #fff; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
   .footer ul { list-style: none; }
   .footer ul li { margin-bottom: .4rem; }
@@ -233,8 +306,38 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
   .footer ul li a:hover { color: #fff; }
   .footer-bottom { padding-top: 1.5rem; font-size: .82rem; color: #8FA48C; text-align: center; }
 
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; flex-direction: column; align-items: stretch;
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      background: #fff; border-bottom: 2px solid var(--line);
+      box-shadow: 0 12px 32px rgba(0,0,0,.14); z-index: 199;
+      max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links > li { width: 100%; border-bottom: 1px solid var(--line); }
+    .nav-links > li > a {
+      width: 100%; padding: 1rem 1.5rem; font-size: 1rem; font-weight: 600;
+      color: var(--ink); border-radius: 0; background: transparent;
+    }
+    .nav-links > li > a:hover, .nav-links > li > a.active { background: var(--accent-pale); color: var(--accent-deep); }
+    .dropdown {
+      display: none; position: static; transform: none; opacity: 1; visibility: visible;
+      box-shadow: none; border: none; border-top: 1px solid var(--line);
+      background: var(--bg-mid); border-radius: 0; padding: .5rem; margin: 0;
+    }
+    .has-dropdown.mob-open .dropdown { display: flex; }
+    .has-dropdown.mob-open .chevron { transform: rotate(180deg); }
+    .mob-menu-cta { display: block; border-bottom: none !important; padding: 1.25rem 1.5rem; }
+    .mob-menu-cta-btn { width: 100%; justify-content: center; font-size: 1rem; }
+    .mobile-toggle { display: block; }
+    .navbar-cta { display: none; }
+    .navbar-inner { position: relative; }
+  }
   @media (max-width: 640px) {
     .footer-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
   }
 </style>

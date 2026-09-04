@@ -17,7 +17,7 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
 
   <section class="g-section">
     <div class="container">
-      <span class="g-label">The fundamentals</span>
+      <span class="g-label">01 / The Fundamentals</span>
       <h2 class="g-title">Four habits that matter more than any single food</h2>
       <p class="g-sub">Longevity nutrition isn't about superfoods or elimination diets. It's about consistent patterns that keep blood sugar steady, protect gut health, and supply enough protein and fibre every day.</p>
       <div class="g-steps">
@@ -46,13 +46,33 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
       <div class="g-cols">
         <div class="g-col">
           <h3>Everyday choices that add up</h3>
-          <ul>
-            <li>Add a protein source to every meal, not just dinner</li>
-            <li>Fill half your plate with vegetables where possible</li>
-            <li>Choose whole grains over refined flour most days</li>
-            <li>Keep a fermented food like curd as a daily staple</li>
-            <li>Cook in traditional fats (ghee, mustard, coconut oil) in moderation</li>
-          </ul>
+          <div class="sign-grid">
+            <div class="sign-card">
+              <span class="sign-icon">🍳</span>
+              <h4>Protein at Every Meal</h4>
+              <p>Add a protein source to every meal, not just dinner.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🥦</span>
+              <h4>Half a Plate of Vegetables</h4>
+              <p>Fill half your plate with vegetables where possible.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🌾</span>
+              <h4>Whole Grains Over Refined Flour</h4>
+              <p>Choose whole grains over refined flour most days.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🥣</span>
+              <h4>A Daily Fermented Food</h4>
+              <p>Keep a fermented food like curd as a daily staple.</p>
+            </div>
+            <div class="sign-card">
+              <span class="sign-icon">🫒</span>
+              <h4>Traditional Fats, in Moderation</h4>
+              <p>Cook in traditional fats (ghee, mustard, coconut oil) in moderation.</p>
+            </div>
+          </div>
         </div>
         <div class="g-col">
           <h3>Worth cutting back on</h3>
@@ -68,6 +88,16 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
 
       <div class="g-callout">
         <strong>Not sure where to start?</strong> Pick one habit from the list above and build it for a month before adding another. Small, consistent changes outlast big overhauls.
+      </div>
+    </div>
+  </section>
+
+  <section class="g-section" style="padding-top:0;">
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-item"><span class="stat-num">20–30g</span><span class="stat-label">protein per meal is a commonly cited target for muscle maintenance (approximate)</span></div>
+        <div class="stat-item"><span class="stat-num">25–30g</span><span class="stat-label">daily fibre intake often recommended for gut and metabolic health (approximate)</span></div>
+        <div class="stat-item"><span class="stat-num">80/20</span><span class="stat-label">a simple rule of thumb: whole foods most of the time, treats occasionally</span></div>
       </div>
     </div>
   </section>
@@ -116,4 +146,17 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
   .g-cta .btn-primary:hover { background: var(--accent-pale); }
 
   @media (max-width: 900px) { .g-cols { grid-template-columns: 1fr; } }
+
+  .sign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .sign-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.4rem; }
+  .sign-icon { font-size: 1.6rem; display: block; margin-bottom: .6rem; }
+  .sign-card h4 { font-family: 'Lora', serif; font-size: .95rem; font-weight: 700; margin-bottom: .35rem; }
+  .sign-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+  @media (max-width: 700px) { .sign-grid { grid-template-columns: 1fr; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .stat-item { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; }
+  .stat-num { display: block; font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent-deep); margin-bottom: .35rem; }
+  .stat-label { display: block; font-size: .82rem; color: var(--ink-soft); line-height: 1.4; }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
 </style>

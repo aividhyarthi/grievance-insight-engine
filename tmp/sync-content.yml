@@ -95,6 +95,18 @@ jobs:
           cp "$SRC/ss-longevity-guide-mind-stress.astro" "src/pages/longevity/guide/mind-stress.astro"
           cp "$SRC/ss-longevity-guide-ayurveda.astro"    "src/pages/longevity/guide/ayurveda.astro"
 
+      - name: Copy Second Wind + Longevity journals
+        run: |
+          mkdir -p src/pages/wind/blog src/pages/longevity/blog
+          cp "$SRC/ss-content-config.ts"                 "src/content/config.ts"
+          cp "$SRC/ss-wind-blog-index.astro"             "src/pages/wind/blog/index.astro"
+          cp "$SRC/ss-wind-blog-slug.astro"              "src/pages/wind/blog/[slug].astro"
+          cp "$SRC/ss-longevity-blog-index.astro"        "src/pages/longevity/blog/index.astro"
+          cp "$SRC/ss-longevity-blog-slug.astro"         "src/pages/longevity/blog/[slug].astro"
+          mkdir -p src/content/wind-blog src/content/longevity-blog
+          cp "$SRC"/wind-blog/*.md src/content/wind-blog/ 2>/dev/null || echo "  (no wind-blog posts yet)"
+          cp "$SRC"/longevity-blog/*.md src/content/longevity-blog/ 2>/dev/null || echo "  (no longevity-blog posts yet)"
+
       - name: Remove chat (costs API credits per message; source kept in staging for later)
         run: |
           rm -f src/pages/chat.astro src/pages/api/chat.ts
@@ -158,6 +170,13 @@ jobs:
             src/pages/longevity/guide/sleep-rhythm.astro
             src/pages/longevity/guide/mind-stress.astro
             src/pages/longevity/guide/ayurveda.astro
+            src/content/config.ts
+            src/pages/wind/blog/index.astro
+            "src/pages/wind/blog/[slug].astro"
+            src/pages/longevity/blog/index.astro
+            "src/pages/longevity/blog/[slug].astro"
+            src/content/wind-blog
+            src/content/longevity-blog
             src/pages/menopause.astro
             src/pages/guide/sexual-wellness.astro
             src/pages/guide/hair-skin.astro

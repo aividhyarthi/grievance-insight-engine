@@ -1,0 +1,209 @@
+---
+import Layout from '../../../layouts/LayoutWind.astro';
+import { getCollection } from 'astro:content';
+
+const SITE_URL = 'https://www.thesecondspring.org';
+const now = new Date();
+const { slug } = Astro.params;
+const posts = await getCollection('wind-blog');
+const post = posts.find(p => p.slug === slug);
+
+if (!post || post.data.pubDate > now) return Astro.redirect('/wind/blog');
+
+const { Content } = await post.render();
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+const related = posts
+  .filter(p => p.slug !== slug && p.data.pubDate <= now && p.data.tags.some(t => post.data.tags.includes(t)))
+  .slice(0, 2);
+
+const postUrl = `/wind/blog/${post.slug}`;
+const structuredData = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${SITE_URL}${postUrl}#article`,
+    headline: post.data.title,
+    description: post.data.description,
+    ...(post.data.image ? { image: [post.data.image] } : {}),
+    datePublished: post.data.pubDate.toISOString(),
+    dateModified: post.data.pubDate.toISOString(),
+    author: { '@type': 'Organization', name: post.data.author === 'Journal Desk' ? 'Second Wind' : post.data.author, url: `${SITE_URL}/wind` },
+    publisher: { '@id': `${SITE_URL}/wind#organization` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${postUrl}` },
+    ...(post.data.tags?.length ? { keywords: post.data.tags.join(', ') } : {}),
+    isPartOf: { '@id': `${SITE_URL}/wind#website` },
+    inLanguage: 'en-IN',
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/wind` },
+      { '@type': 'ListItem', position: 2, name: 'Journal', item: `${SITE_URL}/wind/blog` },
+      { '@type': 'ListItem', position: 3, name: post.data.title, item: `${SITE_URL}${postUrl}` },
+    ],
+  },
+];
+---
+
+<Layout
+  title={`${post.data.title} – Second Wind Journal`}
+  description={post.data.description}
+  image={post.data.image}
+  structuredData={structuredData}
+>
+
+  <section class="post-hero" class:list={[{ 'post-hero-img': !!post.data.image }]}>
+    {post.data.image && (
+      <div class="post-hero-bg">
+        <img src={post.data.image} alt={post.data.imageAlt || post.data.title} />
+        <div class="post-hero-overlay"></div>
+      </div>
+    )}
+    <div class="container post-hero-content">
+      <a href="/wind/blog" class="back-link">← Back to Journal</a>
+      <div class="post-tags">
+        {post.data.tags.slice(0, 3).map(t => <span class="ptag">{t}</span>)}
+      </div>
+      <h1 class="post-title">{post.data.title}</h1>
+      <p class="post-desc">{post.data.description}</p>
+      <div class="post-byline">
+        <span class="author-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="post-body-section">
+    <div class="container">
+      <div class="post-layout">
+        <article class="post-content prose">
+          <Content />
+        </article>
+
+        <aside class="post-sidebar">
+          <div class="sidebar-card">
+            <div class="sc-icon">✅</div>
+            <p class="sc-eyebrow">Not sure where you stand?</p>
+            <h3 class="sc-title">Free symptom check</h3>
+            <p class="sc-body">2 minutes. Instant, private result.</p>
+            <a href="/wind/quiz" class="btn btn-primary sc-btn">Check my symptoms →</a>
+          </div>
+          <div class="sidebar-card sidebar-alt">
+            <div class="sc-icon">📖</div>
+            <p class="sc-eyebrow">New here?</p>
+            <h3 class="sc-title">Read the full guide</h3>
+            <p class="sc-body">Energy, muscle, mood, sleep, and more, explained.</p>
+            <a href="/wind/guide" class="btn btn-outline sc-btn">Explore the guide →</a>
+          </div>
+          <div class="sidebar-tags">
+            <p class="st-label">Topics in this article</p>
+            <div class="st-list">
+              {post.data.tags.map(t => <span class="st-tag">{t}</span>)}
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="post-footer">
+        <div class="pf-disclaimer">
+          <p>⚕️ <strong>Medical disclaimer:</strong> This article is for informational purposes only and does not constitute medical advice. Always consult a qualified doctor for personal medical guidance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="related-section">
+      <div class="container">
+        <p class="related-label">You might also like</p>
+        <div class="related-grid">
+          {related.map(p => (
+            <a href={`/wind/blog/${p.slug}`} class="related-card">
+              <h3>{p.data.title}</h3>
+              <p>{p.data.description}</p>
+              <span class="related-meta">{formatDate(p.data.pubDate)} · {p.data.readTime}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+</Layout>
+
+<style is:global>
+  .post-hero { background: var(--dark); padding: 3.5rem 0 4rem; position: relative; overflow: hidden; }
+  .post-hero-img { padding: 5rem 0 4.5rem; min-height: 420px; display: flex; align-items: flex-end; }
+  .post-hero-bg { position: absolute; inset: 0; }
+  .post-hero-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .post-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.6) 50%, rgba(0,0,0,.3) 100%); }
+  .post-hero-content { position: relative; z-index: 2; max-width: 760px; }
+  .back-link { font-size: .84rem; color: rgba(255,255,255,.55); text-decoration: none; font-weight: 500; display: inline-flex; margin-bottom: 1.75rem; }
+  .back-link:hover { color: rgba(255,255,255,.9); }
+  .post-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .ptag { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: rgba(255,255,255,.9); background: rgba(255,255,255,.15); padding: .25rem .75rem; border-radius: 100px; border: 1px solid rgba(255,255,255,.2); }
+  .post-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.75rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -.02em; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+  .post-desc { font-size: 1.02rem; color: rgba(255,255,255,.75); line-height: 1.7; margin-bottom: 1.25rem; }
+  .author-meta { font-size: .82rem; color: rgba(255,255,255,.6); }
+
+  .post-body-section { padding: 4rem 0 5rem; background: #fff; }
+  .post-layout { display: grid; grid-template-columns: 1fr 290px; gap: 4rem; align-items: start; }
+
+  .prose { font-size: 1.03rem; line-height: 1.82; color: var(--ink-soft); }
+  .prose :global(h2) { font-family: 'Archivo', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1.3; margin: 2.6rem 0 .9rem; padding-top: .5rem; border-top: 2px solid var(--line); }
+  .prose :global(h3) { font-size: 1.08rem; font-weight: 700; color: var(--ink); margin: 1.8rem 0 .6rem; }
+  .prose :global(p) { margin-bottom: 1.3rem; }
+  .prose :global(strong) { color: var(--ink); font-weight: 700; }
+  .prose :global(ul) { padding-left: 0; margin-bottom: 1.3rem; display: flex; flex-direction: column; gap: .5rem; list-style: none; }
+  .prose :global(ul li) { padding-left: 1.4rem; position: relative; }
+  .prose :global(ul li)::before { content: '→'; position: absolute; left: 0; color: var(--ink); font-weight: 700; }
+  .prose :global(a) { color: var(--ink); text-decoration: underline; font-weight: 600; }
+  .prose :global(hr) { border: none; border-top: 2px solid var(--line); margin: 3rem 0; }
+  .prose :global(em) { font-style: italic; }
+
+  /* Embedded infographic block, reused across posts */
+  .prose :global(.ig) { border-radius: 14px; overflow: hidden; margin: 2rem 0; border: 1.5px solid var(--line); }
+  .prose :global(.ig-head) { background: var(--dark); color: #fff; padding: .85rem 1.5rem; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; }
+  .prose :global(.ig-body) { background: var(--bg-mid); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .prose :global(.ig-row) { display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+  .prose :global(.ig-row > span:first-child) { flex-shrink: 0; min-width: 220px; font-weight: 700; font-size: .85rem; padding: .4rem .8rem; border-radius: 8px; color: #fff; }
+  .prose :global(.ig-row > span:last-child) { flex: 1; font-size: .88rem; color: var(--ink-soft); line-height: 1.6; }
+  .prose :global(.ig-fill-green) { background: #3D7A5F; }
+  .prose :global(.ig-fill-peach) { background: #C06030; }
+  .prose :global(.ig-fill-muted) { background: var(--line-dark); }
+
+  /* Sidebar */
+  .post-sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+  .sidebar-card { background: var(--bg-mid); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
+  .sidebar-alt { background: #fff; border: 1.5px solid var(--line); }
+  .sc-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+  .sc-eyebrow { font-size: .78rem; color: var(--ink-muted); margin-bottom: .3rem; }
+  .sc-title { font-family: 'Archivo', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: .4rem; }
+  .sc-body { font-size: .85rem; color: var(--ink-soft); margin-bottom: 1rem; }
+  .sc-btn { width: 100%; font-size: .85rem; padding: .7rem 1rem; }
+  .sidebar-tags { padding: 1.25rem; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); }
+  .st-label { font-size: .78rem; font-weight: 700; color: var(--ink-muted); margin-bottom: .75rem; }
+  .st-list { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .st-tag { font-size: .74rem; background: var(--bg-mid); color: var(--ink-soft); padding: .25rem .65rem; border-radius: 99px; }
+
+  .post-footer { margin-top: 3rem; }
+  .pf-disclaimer { background: var(--bg-mid); border-radius: var(--radius); padding: 1.25rem 1.5rem; font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
+
+  .related-section { padding: 3rem 0 5rem; background: var(--bg-mid); }
+  .related-label { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); margin-bottom: 1.25rem; }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .related-card { display: block; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
+  .related-card:hover { border-color: var(--dark); }
+  .related-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: .4rem; }
+  .related-card p { font-size: .87rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: .6rem; }
+  .related-meta { font-size: .78rem; color: var(--ink-muted); }
+
+  @media (max-width: 900px) {
+    .post-layout { grid-template-columns: 1fr; }
+    .post-sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+    .sidebar-card, .sidebar-tags { flex: 1; min-width: 240px; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>
