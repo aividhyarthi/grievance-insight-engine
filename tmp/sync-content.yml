@@ -65,6 +65,7 @@ jobs:
           cp "$SRC/ss-page-how-it-works.astro"           "src/pages/how-it-works.astro"
           mkdir -p src/pages/blog
           cp "$SRC/ss-page-blog-index.astro"             "src/pages/blog/index.astro"
+          cp "$SRC/ss-sitemap.ts"                        "src/pages/sitemap.xml.ts"
 
       - name: Remove chat (costs API credits per message; source kept in staging for later)
         run: |
@@ -121,6 +122,7 @@ jobs:
             src/pages/for-employers.astro
             src/pages/how-it-works.astro
             src/pages/blog/index.astro
+            src/pages/sitemap.xml.ts
             src/pages/chat.astro
             src/pages/api/chat.ts
             src/pages/voices/index.astro

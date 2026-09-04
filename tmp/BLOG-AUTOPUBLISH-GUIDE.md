@@ -18,7 +18,7 @@ You are firing as a scheduled daily job with no memory of any prior conversation
 ## House style (non-negotiable)
 
 - **Author**: `"Journal Desk"` always.
-- **pubDate**: today's actual date (check with `date +%Y-%m-%d`), so posts land as the newest content on the homepage.
+- **pubDate**: full timestamps, staggered 2 hours apart across the 5 posts, not just today's date. Get the current UTC time (`date -u +%Y-%m-%dT%H:%M:%SZ`) and use that exact timestamp for post 1, then +2h for post 2, +4h for post 3, +6h for post 4, +8h for post 5 (e.g. if you start at `2026-09-05T02:13:00Z`, the five values are `02:13:00Z`, `04:13:00Z`, `06:13:00Z`, `08:13:00Z`, `10:13:00Z` on the same date). The site hides any post whose `pubDate` is still in the future, so pushing all 5 at once with staggered future timestamps is what makes them appear spaced out through the day without needing 5 separate runs. Write the frontmatter value as the full ISO string, e.g. `pubDate: 2026-09-05T04:13:00Z`, not a bare date.
 - **No em dashes ever.** Zero tolerance — this has been a recurring, explicitly-flagged problem. Before finishing each file, run `grep -c "—" <file>` and confirm it returns 0. Use commas, colons, semicolons, or parentheses instead, whatever reads most naturally.
 - **No brand or drug names.** Refer to "HRT" / "hormone therapy" generically, generic/chemical drug-class names are fine (e.g. "semaglutide-based medications") but never trade names (no "Ozempic", "Wegovy", "Mounjaro", etc.).
 - **"Doctor" or "gynaecologist", never "GP".**
@@ -29,7 +29,7 @@ You are firing as a scheduled daily job with no memory of any prior conversation
   ---
   title: "..."
   description: "... (1-2 sentences, matches meta description length)"
-  pubDate: YYYY-MM-DD
+  pubDate: YYYY-MM-DDTHH:MM:SSZ
   author: "Journal Desk"
   tags: ["tag1", "tag2", "tag3"]
   readTime: "X min read"

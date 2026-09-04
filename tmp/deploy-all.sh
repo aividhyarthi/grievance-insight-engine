@@ -70,6 +70,7 @@ cp "$SRC/ss-page-for-employers.astro"          "src/pages/for-employers.astro"
 cp "$SRC/ss-page-how-it-works.astro"           "src/pages/how-it-works.astro"
 mkdir -p src/pages/blog
 cp "$SRC/ss-page-blog-index.astro"             "src/pages/blog/index.astro"
+cp "$SRC/ss-sitemap.ts"                        "src/pages/sitemap.xml.ts"
 
 # 2f. Chat removed for now (costs API credits per message, unpredictable
 # under paid marketing traffic). Source kept in staging as ss-chat.astro /

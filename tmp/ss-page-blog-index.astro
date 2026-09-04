@@ -4,9 +4,10 @@ import { getCollection } from 'astro:content';
 import { CATEGORIES, postsForCategory as postsInCategory } from '../../lib/blog-categories';
 import { breadcrumbSchema, collectionPageSchema, itemListSchema } from '../../lib/schema';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const now = new Date();
+const posts = (await getCollection('blog'))
+  .filter(p => p.data.pubDate <= now)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // Featured slider: up to 3 posts with featured:true, fall back to 3 most-recent
 const featuredPosts = (() => {

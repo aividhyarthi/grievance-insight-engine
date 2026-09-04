@@ -12,8 +12,10 @@ const structuredData = [
 ];
 
 const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main';
+const now = new Date();
 const allPosts = await getCollection('blog');
 const posts = allPosts
+  .filter(p => p.data.pubDate <= now)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 8);
 ---

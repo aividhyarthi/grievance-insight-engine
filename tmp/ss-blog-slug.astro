@@ -3,11 +3,12 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 
+const now = new Date();
 const { slug } = Astro.params;
 const posts = await getCollection('blog');
 const post  = posts.find(p => p.slug === slug);
 
-if (!post) return Astro.redirect('/blog');
+if (!post || post.data.pubDate > now) return Astro.redirect('/blog');
 
 const { Content } = await post.render();
 
@@ -16,7 +17,7 @@ function formatDate(d: Date) {
 }
 
 const related = posts
-  .filter(p => p.slug !== slug && p.data.tags.some(t => post.data.tags.includes(t)))
+  .filter(p => p.slug !== slug && p.data.pubDate <= now && p.data.tags.some(t => post.data.tags.includes(t)))
   .slice(0, 2);
 
 // ─── Structured data ───
