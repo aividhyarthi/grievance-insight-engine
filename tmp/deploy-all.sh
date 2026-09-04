@@ -53,7 +53,9 @@ cp "$SRC/ss-favicon.svg" "public/favicon.svg"
 # 2e. Rebrand fix — pages with page-specific hardcoded colors
 echo "→ Rebranded pages..."
 mkdir -p src/pages/guide src/pages/community
-cp "$SRC/ss-page-index.astro"                  "src/pages/index.astro"
+mkdir -p src/pages/spring
+cp "$SRC/ss-root.astro"                        "src/pages/index.astro"
+cp "$SRC/ss-spring-index.astro"                "src/pages/spring/index.astro"
 cp "$SRC/ss-page-menopause.astro"              "src/pages/menopause.astro"
 cp "$SRC/ss-page-guide-sexual-wellness.astro"  "src/pages/guide/sexual-wellness.astro"
 cp "$SRC/ss-page-guide-hair-skin.astro"        "src/pages/guide/hair-skin.astro"

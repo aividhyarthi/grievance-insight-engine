@@ -6,7 +6,8 @@ const SITE = 'https://www.thesecondspring.org';
 
 // Static pages with their priority and change frequency
 const staticPages = [
-  { path: '/',                          changefreq: 'weekly',  priority: '1.0' },
+  { path: '/',                          changefreq: 'weekly',  priority: '0.9' },
+  { path: '/spring',                    changefreq: 'weekly',  priority: '1.0' },
   { path: '/perimenopause',             changefreq: 'monthly', priority: '0.9' },
   { path: '/perimenopause-explained',   changefreq: 'monthly', priority: '0.8' },
   { path: '/menopause',                 changefreq: 'monthly', priority: '0.8' },

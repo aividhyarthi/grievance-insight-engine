@@ -1,0 +1,707 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { webPageSchema } from '../../lib/schema';
+
+const structuredData = [
+  webPageSchema({
+    name: 'The Second Spring – Perimenopause Support for Indian Women',
+    description: "Mood swings, poor sleep, anxiety, brain fog, weight gain: understand what your body may be trying to tell you. India's perimenopause companion.",
+    url: '/spring',
+  }),
+];
+
+const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main';
+const now = new Date();
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(p => p.data.pubDate <= now)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 8);
+---
+
+<Layout
+  title="The Second Spring – Perimenopause Support for Indian Women"
+  description="Mood swings, poor sleep, anxiety, brain fog, weight gain: understand what your body may be trying to tell you. India's perimenopause companion."
+  structuredData={structuredData}
+>
+
+  <!-- ── 1. HERO ── -->
+  <section class="hero">
+    <div class="hero-shapes">
+      <div class="hs hs-1"></div>
+      <div class="hs hs-2"></div>
+    </div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="eyebrow">🌸 India's perimenopause companion</div>
+          <h1>
+            <span class="h1-line">It may not be stress.</span>
+            <span class="h1-line h1-accent">It could be your</span>
+            <span class="h1-line h1-accent"><span class="rotate-word" id="rotateWord">hormones</span></span>
+          </h1>
+          <p class="hero-sub">Mood swings, poor sleep, anxiety, brain fog, weight gain, irregular periods: understand what your body may be trying to tell you.</p>
+          <div class="hero-actions">
+            <a href="/quiz" class="btn btn-peach btn-lg">Take the Free Quiz →</a>
+            <a href="/guide" class="btn btn-outline">Explore</a>
+          </div>
+          <p class="hero-trust">Private &bull; Science-backed &bull; Judgment-free</p>
+        </div>
+        <div class="hero-photo-col">
+          <div class="hero-video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/hRYemB6E5X4"
+              title="The Second Spring: Perimenopause Support for Indian Women"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. SYMPTOM PREVIEW ── -->
+  <section class="section chat-preview-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Private &amp; Confidential</span>
+        <h2 class="section-title">Check Your Symptoms. No Judgement.</h2>
+        <p class="section-sub">The questions real women ask us most. Our free symptom check helps you understand what's happening.</p>
+      </div>
+      <div class="chat-preview-inner">
+        <div class="cp-prompts">
+          {[
+            "Why am I suddenly angry all the time?",
+            "Why do I wake up at 3AM?",
+            "Why am I gaining belly fat despite dieting?",
+          ].map(q => (
+            <a href="/quiz" class="cp-prompt">
+              <span class="cp-icon">✅</span>
+              <span>{q}</span>
+              <svg class="cp-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          ))}
+        </div>
+        <div class="cp-cta-col">
+          <div class="cp-card">
+            <div class="cp-card-top">
+              <span class="cp-bubble cp-bubble-user">Do you experience mood swings or feel emotionally unlike yourself?</span>
+              <span class="cp-bubble cp-bubble-bot">That's exactly the kind of symptom our free check maps, along with sleep, energy, and 10 other everyday signs...</span>
+            </div>
+            <a href="/quiz" class="btn btn-peach cp-start-btn">Take the Free Quiz →</a>
+            <p class="cp-note">🔒 Anonymous · No login needed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. HOW IT WORKS ── -->
+  <section class="section how-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="label-light">Simple. Private. Warm.</span>
+        <h2 class="section-title">Your Journey with The Second Spring</h2>
+      </div>
+      <div class="steps-4">
+        {[
+          { n: '1', icon: '✅', title: 'Symptom Check',        desc: 'Take our free 2-minute quiz' },
+          { n: '2', icon: '🌿', title: 'Personalised Result',  desc: 'Understand what your body is telling you' },
+          { n: '3', icon: '🩺', title: 'Expert Guidance',      desc: 'Learn how to prepare for a doctor visit' },
+          { n: '4', icon: '👥', title: 'Ongoing Support',      desc: 'Connect with our community of women' },
+        ].map((s, i) => (
+          <div class="step-box">
+            <div class="step-connector" aria-hidden="true"></div>
+            <div class="step-num">{s.n}</div>
+            <div class="step-icon">{s.icon}</div>
+            <h3 class="step-title">{s.title}</h3>
+            <p class="step-desc">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. SYMPTOMS ── -->
+  <section class="section symptoms-section" id="symptoms">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Does this feel familiar?</span>
+        <h2 class="section-title">These are not personality flaws.<br/>They are symptoms.</h2>
+      </div>
+      <div class="symptoms-grid">
+        {[
+          { emoji: '😤', label: 'Mood Swings' },
+          { emoji: '😰', label: 'Anxiety' },
+          { emoji: '🌙', label: 'Poor Sleep' },
+          { emoji: '🧠', label: 'Brain Fog' },
+          { emoji: '⚖️', label: 'Weight Gain' },
+          { emoji: '😴', label: 'Fatigue' },
+          { emoji: '🔥', label: 'Hot Flashes' },
+          { emoji: '🔄', label: 'Irregular Periods' },
+        ].map(s => (
+          <div class="sym-card">
+            <span class="sym-emoji">{s.emoji}</span>
+            <span class="sym-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+      <div class="symptoms-cta">
+        <a href="/quiz" class="btn btn-peach btn-lg">Check My Symptoms →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. TRUST ── -->
+  <section class="trust-section">
+    <div class="container">
+      <h2 class="trust-heading">Why Women Trust The Second Spring</h2>
+      <div class="trust-items">
+        {[
+          'Menopause-focused care',
+          'Confidential consultations',
+          'Science-backed guidance',
+          'Compassionate support',
+          'Expert-led care',
+        ].map(t => (
+          <div class="trust-item">
+            <span class="trust-check">✓</span>
+            <span>{t}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. EMOTIONAL REASSURANCE ── -->
+  <section class="section reassurance-section">
+    <div class="container">
+      <div class="reassurance-inner">
+        <div class="reassurance-deco" aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(60,60)">
+              <ellipse rx="14" ry="26" fill="#F0AEBE" opacity=".15"/>
+              <ellipse rx="14" ry="26" fill="#F0AEBE" opacity=".15" transform="rotate(60)"/>
+              <ellipse rx="14" ry="26" fill="#F0AEBE" opacity=".15" transform="rotate(120)"/>
+              <circle r="15" fill="#F0AEBE" opacity=".18"/>
+            </g>
+          </svg>
+        </div>
+        <div class="reassurance-content">
+          <span class="section-label">You are not imagining it</span>
+          <h2 class="section-title">You Are Not Imagining It</h2>
+          <p class="reassurance-body">
+            Many women spend years feeling confused, unheard, or dismissed during perimenopause and menopause.
+          </p>
+          <p class="reassurance-body">
+            <strong>What you're experiencing is real, and support exists.</strong>
+          </p>
+          <a href="/quiz" class="btn btn-peach btn-lg">Understand What's Happening →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6b. JOURNAL SLIDER ── -->
+  <section class="section journal-section">
+    <div class="container">
+      <div class="journal-header">
+        <div>
+          <span class="section-label">From the journal</span>
+          <h2 class="section-title">Answers to questions<br/>you didn't know how to ask</h2>
+        </div>
+        <a href="/blog" class="btn btn-outline journal-all-btn">Read all journals →</a>
+      </div>
+
+      <div class="slider-wrap">
+        <div class="slider-track" id="sliderTrack">
+          {posts.map(post => (
+            <a href={`/blog/${post.slug}`} class="slide-card">
+              {post.data.image && (
+                <div class="slide-img-wrap">
+                  <img src={post.data.image} alt={post.data.imageAlt || post.data.title} class="slide-img" loading="lazy" />
+                  <div class="slide-img-overlay"></div>
+                </div>
+              )}
+              <div class="slide-body">
+                <div class="slide-tags">
+                  {post.data.tags.slice(0,2).map(tag => (
+                    <span class="slide-tag">{tag}</span>
+                  ))}
+                </div>
+                <h3 class="slide-title">{post.data.title}</h3>
+                <p class="slide-desc">{post.data.description}</p>
+                <div class="slide-meta">
+                  <span class="slide-read">{post.data.readTime}</span>
+                  <span class="slide-arrow">Read →</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <button class="slider-btn" id="sliderPrev" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-btn" id="sliderNext" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. COMMUNITY ── -->
+  <section class="section community-section">
+    <div class="container">
+      <div class="community-inner">
+
+        <div class="community-left">
+          <span class="comm-eyebrow">👥 Community</span>
+          <h2 class="comm-title">You're not alone<br/>in this.</h2>
+          <p class="comm-sub">Thousands of Indian women sharing questions, experiences, and answers, together through every stage of perimenopause.</p>
+          <a href="/community" class="btn btn-peach btn-lg comm-cta">Join the community →</a>
+          <p class="comm-note">Free · Anonymous · No judgement</p>
+        </div>
+
+        <div class="community-feed">
+          <div class="cf-card">
+            <p class="cf-q">"I've been waking up at 3am almost every night for 4 months. Is this really perimenopause or am I overthinking it?"</p>
+            <div class="cf-meta">
+              <span class="cf-avatar">S</span>
+              <span class="cf-replies">47 women replied</span>
+            </div>
+          </div>
+          <div class="cf-card">
+            <p class="cf-q">"My doctor says my tests are normal but I feel completely unlike myself. What should I actually ask at my next appointment?"</p>
+            <div class="cf-meta">
+              <span class="cf-avatar">R</span>
+              <span class="cf-replies">31 women replied</span>
+            </div>
+          </div>
+          <div class="cf-card">
+            <p class="cf-q">"Joint pain and sudden mood swings together at 39, could this really be perimenopause starting this early?"</p>
+            <div class="cf-meta">
+              <span class="cf-avatar">P</span>
+              <span class="cf-replies">28 women replied</span>
+            </div>
+          </div>
+          <a href="/community" class="cf-see-all">See all conversations →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 8. FAQ ── -->
+  <section class="section faq-section bg-cream">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Common questions</span>
+        <h2 class="section-title">You've been wondering.<br/>Here are answers.</h2>
+      </div>
+      <div class="faq-list" id="faq-list">
+        {[
+          { q: 'Can menopause start at 35?',              a: 'Yes. Perimenopause, the transition before menopause, can begin in your mid-30s. Early perimenopause is more common than most women are told, and symptoms can appear years before periods stop.' },
+          { q: 'Why am I suddenly gaining weight?',       a: 'Hormonal shifts during perimenopause, especially declining oestrogen, change where your body stores fat, often moving it to the abdomen. Diet and exercise alone may not be enough; hormone levels matter.' },
+          { q: 'Can perimenopause cause anxiety?',        a: 'Absolutely. Oestrogen regulates serotonin and other mood chemicals. As levels fluctuate, anxiety, irritability, and low mood are very common, and often misdiagnosed as a mental health condition.' },
+          { q: 'Why can\'t I sleep properly?',            a: 'Night sweats, hormonal fluctuations, and changes in melatonin production all disrupt sleep during perimenopause. Waking at 3 to 4am is one of the most reported symptoms.' },
+          { q: 'What are the first signs of perimenopause?', a: 'Changes in period regularity are often the first sign: lighter, heavier, or skipping months. Mood changes, sleep disruption, and brain fog frequently appear before any hot flashes.' },
+          { q: 'Do I need hormone tests?',                a: 'Hormone tests can be helpful but are not always necessary. Perimenopause is largely a clinical diagnosis based on symptoms. FSH, LH, and oestradiol levels can provide context but fluctuate widely day to day.' },
+          { q: 'Can menopause affect mood?',              a: 'Yes, significantly. Hormonal changes directly affect brain chemistry. Many women experience mood swings, depression, anxiety, and emotional sensitivity, all of which are hormonal, not character flaws.' },
+          { q: 'When should I talk to an expert?',        a: 'If symptoms are affecting your sleep, relationships, work, or quality of life, that\'s the time. You don\'t need to wait until things are unbearable. Early support leads to better outcomes.' },
+        ].map((item, i) => (
+          <div class="faq-item" data-faq={i}>
+            <button class="faq-q" aria-expanded="false">
+              <span>{item.q}</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a" hidden>
+              <p>{item.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 8. FINAL CTA ── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-leaf">🌿</div>
+        <h2 class="cta-title">You Don't Have To Figure This Out Alone</h2>
+        <p class="cta-desc">Understand your symptoms and get the support you deserve.</p>
+        <a href="/quiz" class="btn btn-primary btn-lg">Start My Symptom Check →</a>
+        <p class="cta-fine">Private · No login required · Not medical advice</p>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // ── HERO ROTATING WORD ──
+  (function() {
+    const el = document.getElementById('rotateWord');
+    if (!el) return;
+    const words = ['hormones', 'mood', 'sleep', 'hot flashes', 'anxiety', 'brain fog', 'energy', 'body'];
+    let i = 0;
+    el.classList.add('is-in');
+    setInterval(() => {
+      el.classList.remove('is-in');
+      el.classList.add('is-out');
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.classList.remove('is-out');
+        el.classList.add('is-in');
+      }, 350);
+    }, 2200);
+  })();
+
+  // ── JOURNAL SLIDER ──
+  (function() {
+    const track = document.getElementById('sliderTrack') as HTMLElement;
+    const prevBtn = document.getElementById('sliderPrev') as HTMLButtonElement;
+    const nextBtn = document.getElementById('sliderNext') as HTMLButtonElement;
+    const dotsWrap = document.getElementById('sliderDots') as HTMLElement;
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.slide-card') as NodeListOf<HTMLElement>;
+    const cardW = () => (cards[0]?.offsetWidth || 300) + 20; // card + gap
+    const visible = () => Math.floor(track.parentElement!.offsetWidth / cardW()) || 1;
+    const maxIdx = () => Math.max(0, cards.length - visible());
+
+    let cur = 0;
+
+    // Build dots
+    const totalDots = () => maxIdx() + 1;
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < totalDots(); i++) {
+        const d = document.createElement('button');
+        d.className = 'slider-dot' + (i === cur ? ' active' : '');
+        d.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(d);
+      }
+    }
+
+    function go(idx: number) {
+      cur = Math.max(0, Math.min(idx, maxIdx()));
+      track.style.transform = `translateX(-${cur * cardW()}px)`;
+      dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+    }
+
+    prevBtn.addEventListener('click', () => go(cur - 1));
+    nextBtn.addEventListener('click', () => go(cur + 1));
+
+    // Auto-play
+    let timer = setInterval(() => go(cur >= maxIdx() ? 0 : cur + 1), 4000);
+    track.addEventListener('mouseenter', () => clearInterval(timer));
+    track.addEventListener('mouseleave', () => { timer = setInterval(() => go(cur >= maxIdx() ? 0 : cur + 1), 4000); });
+
+    buildDots();
+    window.addEventListener('resize', () => { buildDots(); go(0); });
+  })();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement!;
+      const answer = item.querySelector('.faq-a') as HTMLElement;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(el => {
+        el.classList.remove('open');
+        (el.querySelector('.faq-q') as HTMLElement).setAttribute('aria-expanded', 'false');
+        (el.querySelector('.faq-a') as HTMLElement).hidden = true;
+      });
+
+      // Open clicked (if was closed)
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        answer.hidden = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ── HERO ── */
+  .hero {
+    background: #FFFFFF;
+    color: var(--text); padding: 7rem 0 6rem; position: relative; overflow: hidden;
+  }
+  .hero-shapes { position: absolute; inset: 0; pointer-events: none; }
+  .hs { position: absolute; border-radius: 50%; opacity: .5; }
+  .hs-1 { width: 600px; height: 600px; background: radial-gradient(circle, var(--peach-light), transparent); right: -150px; top: -150px; }
+  .hs-2 { width: 400px; height: 400px; background: radial-gradient(circle, var(--green-light), transparent); left: -100px; bottom: -100px; }
+  .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 340px; gap: 4rem; align-items: center; }
+  .hero-content { max-width: 580px; }
+  .hero-photo-col { display: flex; justify-content: center; }
+  .hero-video-frame {
+    width: 280px;
+    aspect-ratio: 9 / 16;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 3px solid var(--border);
+    box-shadow: 0 24px 60px rgba(43,34,38,.14), 0 0 0 8px var(--cream-mid);
+    background: var(--cream-mid);
+    position: relative;
+  }
+  .hero-video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green-dark); background: var(--green-light); border: 1px solid var(--border); padding: .4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.18; letter-spacing: -.03em; color: var(--text); margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0; }
+  .h1-line { display: block; }
+  .h1-accent { color: var(--green); font-style: italic; }
+  .rotate-word {
+    display: inline-block;
+    color: var(--green);
+    position: relative;
+    transition: opacity .35s ease, transform .35s ease;
+    will-change: opacity, transform;
+  }
+  .rotate-word.is-out { opacity: 0; transform: translateY(-8px); }
+  .rotate-word.is-in  { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .rotate-word { transition: none; }
+  }
+  .hero-sub { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 2rem; max-width: 520px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+  .hero-trust { font-size: .85rem; color: var(--text-muted); letter-spacing: .01em; }
+
+  /* ── CHAT PREVIEW ── */
+  .chat-preview-section { background: #fff; }
+  .chat-preview-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+  .cp-prompts { display: flex; flex-direction: column; gap: .85rem; }
+  .cp-prompt {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--cream-mid); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 1rem 1.25rem;
+    text-decoration: none; color: var(--text); font-size: .95rem; font-weight: 500;
+    transition: all .18s; cursor: pointer;
+  }
+  .cp-prompt:hover { border-color: var(--green); background: var(--green-light); color: var(--green-dark); transform: translateX(4px); }
+  .cp-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .cp-arrow { margin-left: auto; flex-shrink: 0; opacity: .4; transition: opacity .18s; }
+  .cp-prompt:hover .cp-arrow { opacity: 1; }
+  .cp-card { background: var(--cream-mid); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .cp-card-top { display: flex; flex-direction: column; gap: .85rem; }
+  .cp-bubble { display: block; padding: .85rem 1.1rem; border-radius: var(--radius-sm); font-size: .9rem; line-height: 1.6; max-width: 88%; }
+  .cp-bubble-user { background: var(--green); color: #fff; align-self: flex-end; border-radius: var(--radius-sm) var(--radius-sm) 4px var(--radius-sm); }
+  .cp-bubble-bot  { background: #fff; border: 1.5px solid var(--border); color: var(--text-secondary); align-self: flex-start; border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) 4px; font-style: italic; }
+  .cp-start-btn { width: 100%; justify-content: center; }
+  .cp-note { font-size: .76rem; color: var(--text-muted); text-align: center; }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background: var(--cream-mid); }
+  .label-light { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green-dark); background: #fff; border: 1px solid var(--border); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
+  .steps-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .step-box { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center; position: relative; }
+  .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--green-dark); color: #fff; font-size: 1.1rem; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  .step-icon { font-size: 2rem; margin-bottom: .75rem; display: block; }
+  .step-title { font-weight: 800; font-size: 1rem; color: var(--text); margin-bottom: .5rem; }
+  .step-desc  { font-size: .85rem; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ── SYMPTOMS ── */
+  .symptoms-section { background: var(--cream-mid); }
+  .symptoms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
+  .sym-card {
+    background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius);
+    padding: 1.75rem 1.25rem; display: flex; flex-direction: column; align-items: center;
+    gap: .6rem; text-align: center; transition: all .18s;
+  }
+  .sym-card:hover { border-color: var(--peach); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(212,132,90,.12); }
+  .sym-emoji { font-size: 2rem; }
+  .sym-label { font-weight: 700; font-size: .95rem; color: var(--text); }
+  .symptoms-cta { text-align: center; }
+
+  /* ── TRUST ── */
+  .trust-section { background: var(--green-dark); padding: 3.5rem 0; }
+  .trust-heading { font-size: 1.25rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 2rem; letter-spacing: -.01em; }
+  .trust-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem 3rem; }
+  .trust-item { display: flex; align-items: center; gap: .6rem; font-size: .95rem; color: rgba(255,255,255,.88); font-weight: 500; }
+  .trust-check { font-size: 1.1rem; color: #FFB6C9; font-weight: 900; flex-shrink: 0; }
+
+  /* ── REASSURANCE ── */
+  .reassurance-section { background: var(--peach-light); border-top: 1px solid #FCE8ED; border-bottom: 1px solid #FCE8ED; }
+  .reassurance-inner { display: grid; grid-template-columns: 180px 1fr; gap: 4rem; align-items: center; max-width: 820px; margin: 0 auto; }
+  .reassurance-deco { width: 120px; height: 120px; opacity: .8; }
+  .reassurance-content { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .reassurance-body { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75; }
+  .reassurance-body strong { color: var(--text); }
+
+  /* ── COMMUNITY ── */
+  .community-section { background: #fff; }
+  .community-inner {
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center;
+  }
+  .comm-eyebrow {
+    display: inline-block; font-size: .76rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--green-dark);
+    margin-bottom: 1.25rem;
+  }
+  .comm-title {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -.035em;
+    color: var(--text); line-height: 1.12; margin-bottom: 1.1rem;
+  }
+  .comm-sub { font-size: .97rem; color: var(--text-secondary); line-height: 1.78; margin-bottom: 2rem; }
+  .comm-cta { display: inline-flex; width: auto; }
+  .comm-note { font-size: .76rem; color: var(--text-muted); margin-top: .75rem; }
+
+  .community-feed { display: flex; flex-direction: column; gap: 1rem; }
+  .cf-card {
+    background: var(--cream-mid); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 1.35rem 1.5rem;
+    transition: background .2s;
+  }
+  .cf-card:hover { background: var(--peach-light); }
+  .cf-q { font-size: .96rem; color: var(--text); line-height: 1.65; margin-bottom: .9rem; font-style: italic; }
+  .cf-meta { display: flex; align-items: center; gap: .65rem; }
+  .cf-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--peach); color: #fff;
+    font-size: .72rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .cf-replies { font-size: .78rem; font-weight: 600; color: var(--text-muted); }
+  .cf-see-all {
+    font-size: .84rem; font-weight: 600; color: var(--green-dark);
+    text-decoration: none; text-align: right; padding-top: .25rem;
+    transition: color .15s;
+  }
+  .cf-see-all:hover { color: var(--green); }
+
+  @media (max-width: 860px) {
+    .community-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .comm-title { font-size: 2rem; }
+  }
+
+  /* ── FAQ ── */
+  .faq-section { }
+  .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 1.5px solid var(--border); }
+  .faq-item:first-child { border-top: 1.5px solid var(--border); }
+  .faq-q {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    background: none; border: none; padding: 1.25rem 0;
+    font-size: 1rem; font-weight: 600; color: var(--text); cursor: pointer;
+    text-align: left; transition: color .15s;
+  }
+  .faq-q:hover { color: var(--green-dark); }
+  .faq-item.open .faq-q { color: var(--green-dark); }
+  .faq-chevron { flex-shrink: 0; transition: transform .25s; color: var(--text-muted); }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--green); }
+  .faq-a { padding: 0 0 1.25rem; }
+  .faq-a p { font-size: .95rem; color: var(--text-secondary); line-height: 1.78; }
+
+  /* ── FINAL CTA ── */
+  .cta-section { background: var(--green); padding: 6rem 0; text-align: center; }
+  .cta-inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; max-width: 640px; margin: 0 auto; }
+  .cta-leaf  { font-size: 3rem; }
+  .cta-title { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -.03em; color: #fff; line-height: 1.2; }
+  .cta-desc  { font-size: 1.05rem; color: rgba(255,255,255,.85); line-height: 1.72; }
+  .cta-fine  { font-size: .78rem; color: rgba(255,255,255,.65); }
+  .cta-section .btn-primary { background: #fff; color: var(--green-dark); border-color: #fff; }
+  .cta-section .btn-primary:hover { background: var(--green-light); border-color: var(--green-light); color: var(--green-dark); }
+
+  /* ── SHARED ── */
+  .section { padding: 5.5rem 0; }
+  .bg-cream { background: var(--cream-mid); }
+  .section-header { margin-bottom: 3rem; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+  .section-label { display: inline-flex; font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: .3rem .85rem; border-radius: 100px; margin-bottom: .85rem; }
+  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 900; letter-spacing: -.025em; color: var(--text); line-height: 1.18; margin-bottom: .75rem; }
+  .section-sub { font-size: 1rem; color: var(--text-secondary); line-height: 1.72; max-width: 560px; }
+
+  /* ── JOURNAL SLIDER ── */
+  .journal-section { background: var(--cream); }
+  .journal-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .journal-all-btn { flex-shrink: 0; }
+
+  .slider-wrap { overflow: hidden; border-radius: var(--radius-lg); }
+  .slider-track {
+    display: flex;
+    gap: 1.25rem;
+    transition: transform .45s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+  .slide-card {
+    flex: 0 0 300px;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--border-light);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .slide-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+
+  .slide-img-wrap { position: relative; height: 170px; overflow: hidden; }
+  .slide-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .slide-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.35), transparent); }
+
+  .slide-body { padding: 1.1rem; display: flex; flex-direction: column; flex: 1; gap: .6rem; }
+  .slide-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .slide-tag { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: var(--green-light); color: var(--green); padding: .2rem .55rem; border-radius: 99px; }
+  .slide-title { font-size: .92rem; font-weight: 800; color: var(--text); line-height: 1.4; letter-spacing: -.01em; }
+  .slide-desc { font-size: .8rem; color: var(--text-secondary); line-height: 1.6; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .slide-meta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: .5rem; border-top: 1px solid var(--border-light); }
+  .slide-read { font-size: .75rem; color: var(--text-muted); }
+  .slide-arrow { font-size: .78rem; font-weight: 700; color: var(--green); }
+
+  .slider-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+  .slider-btn { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--border); background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); transition: all .18s; }
+  .slider-btn:hover { background: var(--green); color: #fff; border-color: var(--green); }
+  .slider-dots { display: flex; gap: .45rem; align-items: center; }
+  .slider-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; padding: 0; transition: all .2s; }
+  .slider-dot.active { background: var(--green); width: 20px; border-radius: 99px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1000px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-photo-col { display: flex; justify-content: center; margin-top: 2rem; }
+    .hero-video-frame { width: 200px; }
+    .chat-preview-inner { grid-template-columns: 1fr; }
+    .steps-4 { grid-template-columns: 1fr 1fr; }
+    .symptoms-grid { grid-template-columns: repeat(4, 1fr); }
+    .reassurance-inner { grid-template-columns: 1fr; text-align: center; }
+    .reassurance-deco { display: none; }
+    .reassurance-content { align-items: center; }
+  }
+  @media (max-width: 640px) {
+    .hero { padding: 4.5rem 0 4rem; }
+    .section { padding: 3.5rem 0; }
+    .steps-4 { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .symptoms-grid { grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+    .sym-card { padding: 1.25rem .75rem; }
+    .sym-emoji { font-size: 1.5rem; }
+    .sym-label { font-size: .8rem; }
+    .trust-items { gap: 1rem 2rem; }
+    .faq-q { font-size: .93rem; }
+  }
+  @media (max-width: 420px) {
+    .symptoms-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-4 { grid-template-columns: 1fr; }
+  }
+</style>
