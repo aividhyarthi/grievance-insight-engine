@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title = 'Second Wind – Andropause & Midlife Vitality for Indian Men',
-  description = 'Testosterone decline, energy, mood, and strength in midlife, explained clearly for Indian men. Part of Ritu.',
+  description = 'Testosterone decline, energy, mood, and strength in midlife, explained clearly for Indian men.',
   image = 'https://thesecondspring.org/og-default.jpg',
   structuredData,
   canonical,
@@ -96,8 +96,9 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         </a>
         <ul class="nav-links">
           <li><a href="/wind" class:list={[{ active: isActive('/wind') && path === '/wind' }]}>Home</a></li>
+          <li><a href="/wind/quiz" class:list={[{ active: isActive('/wind/quiz') }]}>Symptom Check</a></li>
         </ul>
-        <a href="/" class="ritu-link">Ritu ↗</a>
+        <a href="/" class="ritu-link">All programs ↗</a>
       </div>
     </nav>
 
@@ -114,7 +115,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
           <div class="footer-disclaimer">
             This service provides general health information only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your doctor or a qualified healthcare professional.
           </div>
-          <p class="footer-ritu-link"><a href="/">Part of Ritu, health for every season of life →</a></p>
+          <p class="footer-ritu-link"><a href="/">Explore our other programs →</a></p>
         </div>
         <div>
           <h4>Talk to Us</h4>

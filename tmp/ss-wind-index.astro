@@ -25,20 +25,51 @@ const structuredData = [
         <h1>The strength doesn't have to fade quietly.</h1>
         <p class="hero-sub">Low energy, low mood, low drive, a body that doesn't respond the way it used to. It's often andropause, a slow, treatable hormonal shift. Not weakness. Not just age.</p>
         <div class="hero-actions">
-          <a href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Talk to Us on WhatsApp</a>
-          <a href="#what-it-is" class="btn btn-outline">What's actually happening →</a>
+          <a href="/wind/quiz" class="btn btn-primary btn-lg">Take the Free Symptom Check →</a>
+          <a href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Talk to Us on WhatsApp</a>
         </div>
-        <p class="hero-trust">Private · No judgement · Built for Indian men</p>
+        <p class="hero-trust">Private · 2 minutes · Built for Indian men</p>
       </div>
     </div>
   </section>
 
-  <!-- REASSURANCE -->
+  <!-- AWARENESS GAP -->
   <section class="section">
-    <div class="container reassure-inner">
-      <h2>You're Not Imagining It</h2>
-      <p class="reassure-body">Most men are never told that testosterone declines with age, roughly 1% a year from your 30s or 40s onward, and that this can bring real, physical, and emotional changes. When no one names it, it's easy to write it off as stress, ageing, or a personal failing.</p>
-      <p class="reassure-body"><strong>It's none of those things. It's hormonal, and it's manageable.</strong></p>
+    <div class="container">
+      <div class="aware-grid">
+        <div class="aware-copy">
+          <span class="section-label">The Awareness Gap</span>
+          <h2 class="aware-title">Almost no one talks about this. Not doctors, not friends, not even men themselves.</h2>
+          <p class="reassure-body">Most men are never told that testosterone declines with age, and that this can bring real, physical, and emotional changes. When no one names it, it's easy to write it off as stress, ageing, or a personal failing.</p>
+          <p class="reassure-body"><strong>It's none of those things. It's hormonal, and it's manageable.</strong></p>
+        </div>
+        <div class="aware-chart">
+          <p class="chart-label">Average total testosterone by age, relative to your 20s</p>
+          <div class="chart">
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height:100%"><span class="chart-val">100%</span></div>
+              <span class="chart-age">20s</span>
+            </div>
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height:88%"><span class="chart-val">~88%</span></div>
+              <span class="chart-age">30s</span>
+            </div>
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height:76%"><span class="chart-val">~76%</span></div>
+              <span class="chart-age">40s</span>
+            </div>
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height:64%"><span class="chart-val">~64%</span></div>
+              <span class="chart-age">50s</span>
+            </div>
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height:52%"><span class="chart-val">~52%</span></div>
+              <span class="chart-age">60s+</span>
+            </div>
+          </div>
+          <p class="chart-note">Illustrative average trend. Individual levels vary widely by genetics, weight, sleep, and health.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -132,9 +163,9 @@ const structuredData = [
     <div class="container">
       <div class="cta-inner">
         <h2 class="cta-title">You Don't Have to Push Through This Alone</h2>
-        <p class="cta-desc">Talk to us privately, no judgement, and no need to have it figured out first.</p>
-        <a href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Talk to Us on WhatsApp →</a>
-        <p class="cta-fine">Private · Not medical advice · Built for Indian men</p>
+        <p class="cta-desc">Start with the free symptom check, or talk to us privately, no judgement, and no need to have it figured out first.</p>
+        <a href="/wind/quiz" class="btn btn-primary btn-lg">Take the Free Symptom Check →</a>
+        <p class="cta-fine"><a href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer">Or talk to us on WhatsApp</a> · Private · Not medical advice</p>
       </div>
     </div>
   </section>
@@ -167,10 +198,23 @@ const structuredData = [
   .section-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; letter-spacing: -.02em; line-height: 1.2; }
 
   /* REASSURANCE */
-  .reassure-inner { max-width: 640px; text-align: center; }
-  .reassure-inner h2 { font-family: 'Archivo', sans-serif; font-size: 2rem; font-weight: 900; margin-bottom: 1.25rem; }
   .reassure-body { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 1rem; }
   .reassure-body strong { color: var(--ink); }
+
+  /* AWARENESS GAP + CHART */
+  .aware-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3.5rem; align-items: center; }
+  .aware-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; letter-spacing: -.02em; line-height: 1.25; margin: .75rem 0 1.25rem; }
+  .aware-chart { background: var(--bg-mid); border: 1.5px solid var(--line); border-radius: var(--radius-lg); padding: 1.75rem 1.75rem 1.5rem; }
+  .chart-label { font-size: .78rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 1.5rem; }
+  .chart { display: flex; align-items: flex-end; justify-content: space-between; gap: .85rem; height: 160px; }
+  .chart-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+  .chart-bar { width: 100%; background: var(--dark); border-radius: 6px 6px 0 0; display: flex; align-items: flex-start; justify-content: center; position: relative; }
+  .chart-val { position: absolute; top: -1.5rem; font-size: .72rem; font-weight: 800; color: var(--ink); white-space: nowrap; }
+  .chart-age { margin-top: .6rem; font-size: .76rem; font-weight: 700; color: var(--ink-muted); }
+  .chart-note { font-size: .72rem; color: var(--ink-muted); margin-top: 1.25rem; line-height: 1.5; }
+  @media (max-width: 880px) {
+    .aware-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
 
   /* DARK SECTION */
   .section-dark { background: var(--dark); color: #E4E4E4; }
@@ -208,7 +252,9 @@ const structuredData = [
   .cta-inner { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; max-width: 600px; margin: 0 auto; }
   .cta-title { font-family: 'Archivo', sans-serif; font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 900; color: #fff; line-height: 1.2; }
   .cta-desc { font-size: 1.02rem; color: #B0B0B0; }
-  .cta-fine { font-size: .78rem; color: #7A7A7A; margin-top: .5rem; }
+  .cta-fine { font-size: .78rem; color: #9C9C9C; margin-top: .5rem; }
+  .cta-fine a { color: #C9C9C9; text-decoration: underline; }
+  .cta-fine a:hover { color: #fff; }
   .cta-section .btn-primary { background: #fff; color: #111; border-color: #fff; }
   .cta-section .btn-primary:hover { background: #E8E8E8; }
 

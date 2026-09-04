@@ -53,6 +53,7 @@ jobs:
           cp "$SRC/ss-spring-index.astro"                "src/pages/spring/index.astro"
           cp "$SRC/ss-layout-wind.astro"                 "src/layouts/LayoutWind.astro"
           cp "$SRC/ss-wind-index.astro"                  "src/pages/wind/index.astro"
+          cp "$SRC/ss-wind-quiz.astro"                    "src/pages/wind/quiz.astro"
           cp "$SRC/ss-favicon-wind.svg"                  "public/favicon-wind.svg"
           cp "$SRC/ss-layout-longevity.astro"            "src/layouts/LayoutLongevity.astro"
           cp "$SRC/ss-longevity-index.astro"             "src/pages/longevity/index.astro"
@@ -118,6 +119,7 @@ jobs:
             src/pages/spring/index.astro
             src/layouts/LayoutWind.astro
             src/pages/wind/index.astro
+            src/pages/wind/quiz.astro
             public/favicon-wind.svg
             src/layouts/LayoutLongevity.astro
             src/pages/longevity/index.astro

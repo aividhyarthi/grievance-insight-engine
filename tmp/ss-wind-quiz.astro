@@ -1,0 +1,582 @@
+---
+import Layout from '../../layouts/LayoutWind.astro';
+---
+
+<Layout
+  title="Free Testosterone & Andropause Symptom Check: Second Wind"
+  description="Take our free andropause symptom quiz designed for Indian men. 10 questions, 2 minutes, instant results. Understand if your symptoms could be linked to declining testosterone."
+>
+
+<div class="quiz-shell">
+
+  <!-- ── INTRO ── -->
+  <div class="q-screen active" id="s-intro">
+    <div class="q-wrap">
+      <div class="intro-badge">Free · 2 min · Private</div>
+      <h1 class="intro-h1">Could your symptoms<br/>be linked to testosterone?</h1>
+      <p class="intro-sub">10 simple questions. Instant personalised result. Nothing stored or shared.</p>
+      <div class="intro-pills">
+        <span>🔋 Low energy</span>
+        <span>💪 Muscle loss</span>
+        <span>😔 Low mood</span>
+        <span>🌙 Poor sleep</span>
+        <span>❤️ Low drive</span>
+        <span>⚖️ Weight gain</span>
+      </div>
+      <button class="btn-main" id="btn-start">Begin symptom check →</button>
+      <p class="intro-lock">🔒 Anonymous · No login · Not medical advice</p>
+      <div class="intro-trust">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Based on symptom patterns doctors use to evaluate andropause and late-onset hypogonadism
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRIVACY ── -->
+  <div class="q-screen" id="s-privacy">
+    <div class="q-wrap">
+      <button class="btn-back" id="btn-privacy-back">← Back</button>
+      <div class="prv-top">
+        <div class="prv-icon">🔒</div>
+        <h2 class="prv-h2">Your data, your control</h2>
+        <p class="prv-sub">This quiz is completely private. Here is exactly what we do (and do not) do with any information you share.</p>
+      </div>
+      <div class="prv-cards">
+        <div class="prv-card">
+          <span class="prv-card-icon">✅</span>
+          <div class="prv-card-body">
+            <p class="prv-card-title">What you choose to share</p>
+            <p class="prv-card-text">If you enter your phone or email, we use it only to send you your personalised result. Nothing else, ever.</p>
+          </div>
+        </div>
+        <div class="prv-card">
+          <span class="prv-card-icon">🚫</span>
+          <div class="prv-card-body">
+            <p class="prv-card-title">What we never collect</p>
+            <p class="prv-card-text">Your quiz answers are never stored or linked to your identity. We cannot see which options you chose.</p>
+          </div>
+        </div>
+        <div class="prv-card">
+          <span class="prv-card-icon">🤝</span>
+          <div class="prv-card-body">
+            <p class="prv-card-title">We never sell your data</p>
+            <p class="prv-card-text">Your information is never sold, rented, or shared with third parties. You can unsubscribe from any message instantly.</p>
+          </div>
+        </div>
+        <div class="prv-card">
+          <span class="prv-card-icon">📧</span>
+          <div class="prv-card-body">
+            <p class="prv-card-title">Questions about your data?</p>
+            <p class="prv-card-text">Write to us at <strong>thesecondspringofficial@gmail.com</strong> and we will respond within 48 hours.</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn-main" id="btn-privacy-ok">I understand, continue →</button>
+      <button class="btn-ghost" id="btn-privacy-anon">Skip, take quiz without sharing data</button>
+    </div>
+  </div>
+
+  <!-- ── LEAD CAPTURE ── -->
+  <div class="q-screen" id="s-lead">
+    <div class="q-wrap">
+      <button class="btn-back" id="btn-lead-back">← Back</button>
+      <div class="lead-top">
+        <div class="lead-icon">📩</div>
+        <h2 class="lead-h2">Where should we send your result?</h2>
+        <p class="lead-sub">Get your personalised report on WhatsApp or email, matched to your symptoms.</p>
+      </div>
+      <form id="lead-form" novalidate>
+        <div class="field">
+          <label class="field-label" for="f-phone">WhatsApp / Mobile <span class="field-opt">India +91</span></label>
+          <input class="field-input" type="tel" id="f-phone" placeholder="9876543210" inputmode="numeric" maxlength="10" />
+        </div>
+        <div class="field">
+          <label class="field-label" for="f-email">Email address</label>
+          <input class="field-input" type="email" id="f-email" placeholder="you@example.com" />
+        </div>
+        <p class="lead-err" id="lead-err" style="display:none">Please enter at least your phone or email.</p>
+        <p class="field-note">🔒 We never sell or share your details. Unsubscribe any time.</p>
+        <button type="submit" class="btn-main">Continue to quiz →</button>
+      </form>
+      <button class="btn-ghost" id="btn-skip">Skip, take quiz anonymously</button>
+    </div>
+  </div>
+
+  <!-- ── QUESTION ── -->
+  <div class="q-screen" id="s-question">
+    <div class="q-wrap">
+      <div class="qhdr">
+        <button class="btn-back" id="btn-back">← Back</button>
+        <span class="q-count" id="q-count">1 / 10</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="q-card" id="q-card">
+        <p class="q-label" id="q-label">Question 1</p>
+        <h2 class="q-text" id="q-text"></h2>
+        <p class="q-hint" id="q-hint"></p>
+        <div class="q-opts" id="q-opts"></div>
+      </div>
+      <div class="meter-wrap" id="meter-wrap" hidden>
+        <p class="meter-label">Your pattern so far</p>
+        <div class="meter-track">
+          <div class="meter-fill" id="meter-fill"></div>
+          <span class="meter-emoji" id="meter-emoji">🟢</span>
+        </div>
+      </div>
+      <p class="q-foot">🔒 Your answers are private and not stored</p>
+    </div>
+  </div>
+
+  <!-- ── RESULT ── -->
+  <div class="q-screen" id="s-result">
+    <div class="q-wrap q-wrap--result">
+
+      <div class="res-hero" id="res-hero">
+        <div class="res-emoji" id="res-emoji"></div>
+        <div class="res-badge" id="res-badge"></div>
+        <h2 class="res-title" id="res-title"></h2>
+        <div class="res-meter" id="res-meter">
+          <div class="rm-track">
+            <div class="rm-fill" id="rm-fill"></div>
+          </div>
+          <div class="rm-labels">
+            <span>Mild</span><span>Moderate</span><span>Likely</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="res-body">
+        <p class="res-desc" id="res-desc"></p>
+
+        <div class="res-steps" id="res-steps">
+          <p class="res-steps-label">Your personalised next steps</p>
+        </div>
+
+        <a class="btn-main res-cta" id="res-cta" href="https://wa.me/919266032660" target="_blank" rel="noopener noreferrer">Talk to Us on WhatsApp →</a>
+        <p class="res-lock">🔒 Private · Confidential · No login needed</p>
+
+        <div class="res-foot">
+          <button class="btn-ghost" id="btn-retake">← Retake quiz</button>
+          <p class="res-disc">This is a symptom awareness tool, not a medical diagnosis. Always consult a qualified doctor.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- SEO section -->
+<section class="seo-wrap">
+  <div class="container">
+    <div class="seo-intro">
+      <h2>What Is This Andropause Quiz?</h2>
+      <p>This free symptom quiz helps Indian men understand whether the changes they are experiencing, low energy, low mood, reduced strength, could be linked to declining testosterone. The quiz takes 2 minutes, asks 10 questions, and gives an instant personalised result.</p>
+    </div>
+    <div class="seo-cards">
+      <div class="seo-card"><div class="seo-icon">🩺</div><h3>For Indian Men</h3><p>Testosterone naturally declines by about 1% a year from your 30s or 40s onward. This quiz accounts for how that shows up in daily life, not just lab numbers.</p></div>
+      <div class="seo-card"><div class="seo-icon">🔬</div><h3>Symptom-Informed</h3><p>Questions are based on recognised symptom patterns used to evaluate andropause and late-onset hypogonadism (LOH).</p></div>
+      <div class="seo-card"><div class="seo-icon">🔒</div><h3>Completely Private</h3><p>Nothing is saved or shared. No account needed. Answers disappear when you close the tab.</p></div>
+    </div>
+    <div class="seo-faqs">
+      <h2>Common Questions</h2>
+      <div class="seo-faq"><h3>Is this quiz accurate?</h3><p>It is a symptom awareness tool, not a medical diagnosis. It identifies patterns that align with declining testosterone based on recognised symptoms. A definitive assessment requires a blood test and a doctor's evaluation.</p></div>
+      <div class="seo-faq"><h3>What age should I take this quiz?</h3><p>If you're 35 or older and noticing changes in energy, mood, strength, or drive, it's worth checking. Testosterone decline is gradual and can begin well before symptoms feel obvious.</p></div>
+      <div class="seo-faq"><h3>Is this the same as menopause?</h3><p>No. It's sometimes informally called "male menopause," but that's misleading. Andropause is a slow, gradual decline, not an abrupt change like female menopause. The correct medical terms are andropause or late-onset hypogonadism.</p></div>
+      <div class="seo-faq"><h3>What do I do after the quiz?</h3><p>Talk to us on WhatsApp for a private conversation, and ask your doctor for a morning total testosterone blood test if your symptoms are affecting your daily life.</p></div>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<script>
+const Q = [
+  { q:'How old are you?', hint:'Testosterone typically starts declining by about 1% a year from your 30s or 40s onward.', opts:[{t:'Under 30',s:0},{t:'30 to 39',s:2},{t:'40 to 49',s:4},{t:'50 to 59',s:6},{t:'60 or older',s:5}] },
+  { q:'How are your energy levels?', hint:'Persistent low energy, not just occasional tiredness, is one of the most common signs of declining testosterone.', opts:[{t:'Good, energetic most days',s:0},{t:'I tire more easily than I used to',s:2},{t:'I feel exhausted most days',s:4},{t:'Severe fatigue, hard to explain',s:5}] },
+  { q:'Have you noticed changes in your muscle or strength?', hint:'Testosterone plays a direct role in maintaining muscle mass. Loss of strength despite consistent effort is a recognised symptom.', opts:[{t:'No change',s:0},{t:'Slightly less strength or muscle tone',s:2},{t:'Noticeably harder to maintain muscle despite exercise',s:4},{t:'Significant loss of strength and muscle mass',s:5}] },
+  { q:'Are you experiencing mood changes or irritability?', hint:'Testosterone affects brain chemistry linked to mood and motivation. Changes here are common but rarely connected back to hormones.', opts:[{t:'Not really, I feel like myself',s:0},{t:'Occasionally more irritable or flat',s:2},{t:'Often, mood swings that don\'t feel like me',s:4},{t:'Very unpredictable and distressing',s:5}] },
+  { q:'How is your sleep?', hint:'Poor sleep and low testosterone often reinforce each other, each one makes the other worse.', opts:[{t:'I sleep well and wake refreshed',s:0},{t:'Occasionally restless or unrefreshed',s:2},{t:'I regularly wake at night or struggle to fall asleep',s:4},{t:'Sleep is a constant struggle affecting my days',s:5}] },
+  { q:'Has your interest in sex changed?', hint:'Lower libido is one of the most reported and least discussed symptoms of declining testosterone.', opts:[{t:'No change',s:0},{t:'Slightly lower interest',s:2},{t:'Noticeably lower',s:4},{t:'Very low, rarely think about it',s:5}] },
+  { q:'Have you noticed changes in erectile function?', hint:'Testosterone is one of several factors involved here. Changes are worth mentioning to a doctor, not something to just live with.', opts:[{t:'No change',s:0},{t:'Occasional difficulty',s:2},{t:'Regular difficulty',s:4},{t:'Significant, ongoing difficulty',s:5}] },
+  { q:'Have you noticed weight gain, especially around the belly?', hint:'Declining testosterone can shift how your body stores fat, even without changes to diet or exercise.', opts:[{t:'No change',s:0},{t:'A little extra around the belly',s:2},{t:'Noticeable weight gain despite no diet changes',s:4},{t:'Significant and very hard to manage',s:5}] },
+  { q:'Do you have trouble concentrating or staying focused?', hint:'Low testosterone can affect focus and mental sharpness, often mistaken for stress or simply getting older.', opts:[{t:'No, memory and focus are fine',s:0},{t:'Occasionally lose focus or forget things',s:2},{t:'Often, it affects work or daily tasks',s:4},{t:'Severe, I feel like I\'ve lost my edge',s:5}] },
+  { q:'Overall, do you feel like yourself?', hint:'This is the question most men skip asking themselves. It matters as much as any single symptom.', opts:[{t:'Yes, full of my usual drive',s:0},{t:'Somewhat flat, missing my usual drive',s:2},{t:'Noticeably diminished, going through the motions',s:4},{t:'I feel like a different, less capable version of myself',s:6}] },
+];
+
+const Q_MAX_TOTAL = Q.reduce((sum, item) => sum + Math.max(...item.opts.map(o => o.s)), 0);
+
+function updateMeter() {
+  const wrap = document.getElementById('meter-wrap') as HTMLElement;
+  if (answers.length < 1) { wrap.hidden = true; return; }
+  wrap.hidden = false;
+  const runningScore = answers.reduce((a: number, b: number) => a + (b || 0), 0);
+  const pct = Math.max(5, Math.min(100, Math.round((runningScore / Q_MAX_TOTAL) * 100)));
+  const projected = Math.round(runningScore * (Q.length / answers.length));
+  const fill = document.getElementById('meter-fill') as HTMLElement;
+  const emoji = document.getElementById('meter-emoji') as HTMLElement;
+  fill.style.width = pct + '%';
+  fill.style.backgroundPosition = pct + '% 0%';
+  emoji.style.left = pct + '%';
+  emoji.textContent = projected < 15 ? '🟢' : projected < 33 ? '🟡' : '🔴';
+}
+
+const RESULTS = [
+  { max:15, emoji:'🟢', level:'Low likelihood right now', meterPct:15, heroGrad:'linear-gradient(135deg,#E8F0E8,#C3D9C3)', badgeColor:'#3D7A5F', title:'Your symptoms are mild right now', desc:'Your answers suggest a low likelihood of significant testosterone decline at this stage, but symptoms can evolve, and some changes may still relate to sleep, stress, or other factors. It\'s worth staying aware.', steps:[{i:'💪',t:'Keep up strength training, it directly supports healthy testosterone'},{i:'🌙',t:'Protect your sleep, it\'s the foundation everything else builds on'},{i:'🩺',t:'Mention any new changes to your doctor at your next visit'}] },
+  { max:33, emoji:'🟡', level:'Possible testosterone decline', meterPct:50, heroGrad:'linear-gradient(135deg,#F5EEDF,#EAD4A8)', badgeColor:'#C06030', title:'Your symptoms may be linked to testosterone', desc:'Your symptoms align with early andropause, a gradual, common, and treatable shift. This is not weakness or "just getting older", it\'s hormonal, and it deserves proper understanding.', steps:[{i:'🩺',t:'Ask your doctor for a morning total testosterone blood test'},{i:'💪',t:'Strength train and prioritise sleep, both directly support testosterone'},{i:'💬',t:'Talk to us privately about what you\'re experiencing'}] },
+  { max:Infinity, emoji:'🔴', level:'Likely significant decline', meterPct:90, heroGrad:'linear-gradient(135deg,#F5E2E2,#E5A8A8)', badgeColor:'#9B2C2C', title:'Your symptoms strongly suggest low testosterone', desc:'Based on your answers, your symptoms strongly suggest low testosterone or late-onset hypogonadism. The good news: this is well understood and very manageable with the right support. Men who seek help early do significantly better.', steps:[{i:'🩺',t:'Get a testosterone blood test as soon as possible'},{i:'💬',t:'Talk to us privately, no judgement, before or after that appointment'},{i:'📋',t:'Ask your doctor about treatment options, including TRT if appropriate'}] },
+];
+
+let answers: number[] = [];
+let cur = 0;
+let ageAnswer = '';
+
+const sIntro    = document.getElementById('s-intro')!;
+const sPrivacy  = document.getElementById('s-privacy')!;
+const sLead     = document.getElementById('s-lead')!;
+const sQuestion = document.getElementById('s-question')!;
+const sResult   = document.getElementById('s-result')!;
+
+function show(el: HTMLElement) {
+  [sIntro, sPrivacy, sLead, sQuestion, sResult].forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('btn-start')!.onclick = () => show(sPrivacy);
+document.getElementById('btn-privacy-back')!.onclick = () => show(sIntro);
+
+document.getElementById('btn-privacy-ok')!.onclick = () => {
+  try {
+    const existing = JSON.parse(sessionStorage.getItem('tss_lead') || '{}');
+    if (existing && (existing.phone || existing.email)) {
+      fetch('/api/collect-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({phone: existing.phone || '', email: existing.email || '', stage:'wind_quiz_start_prefilled'}) }).catch(()=>{});
+      startQuiz();
+      return;
+    }
+  } catch(_) {}
+  show(sLead);
+};
+
+document.getElementById('btn-privacy-anon')!.onclick = () => startQuiz();
+document.getElementById('btn-lead-back')!.onclick = () => show(sPrivacy);
+
+document.getElementById('lead-form')!.addEventListener('submit', e => {
+  e.preventDefault();
+  const phone = (document.getElementById('f-phone') as HTMLInputElement).value.trim();
+  const email = (document.getElementById('f-email') as HTMLInputElement).value.trim();
+  const err = document.getElementById('lead-err')!;
+  if (!phone && !email) { err.style.display = 'block'; return; }
+  err.style.display = 'none';
+  try {
+    sessionStorage.setItem('tss_lead', JSON.stringify({phone, email}));
+    fetch('/api/collect-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({phone,email,stage:'wind_quiz_start'}) }).catch(()=>{});
+  } catch(_) {}
+  startQuiz();
+});
+
+document.getElementById('btn-skip')!.onclick = () => startQuiz();
+
+function startQuiz() {
+  cur = 0; answers = [];
+  renderQ();
+  show(sQuestion);
+}
+
+document.getElementById('btn-back')!.onclick = () => {
+  if (cur > 0) { cur--; answers = answers.slice(0, cur); renderQ(); }
+  else { show(sLead); }
+};
+
+function renderQ() {
+  const q = Q[cur];
+  const pct = Math.round((cur / Q.length) * 100);
+  (document.getElementById('prog-fill') as HTMLElement).style.width = pct + '%';
+  (document.getElementById('q-count') as HTMLElement).textContent = `${cur + 1} / ${Q.length}`;
+  (document.getElementById('q-label') as HTMLElement).textContent = `Question ${cur + 1} of ${Q.length}`;
+  (document.getElementById('q-text') as HTMLElement).textContent = q.q;
+  (document.getElementById('q-hint') as HTMLElement).textContent = q.hint;
+  updateMeter();
+
+  const opts = document.getElementById('q-opts')!;
+  opts.innerHTML = '';
+
+  const card = document.getElementById('q-card')!;
+  card.classList.remove('q-in');
+  void card.offsetWidth;
+  card.classList.add('q-in');
+
+  q.opts.forEach(opt => {
+    const b = document.createElement('button');
+    b.className = 'q-opt';
+    b.innerHTML = `<span class="q-opt-radio"></span><span>${opt.t}</span>`;
+    b.onclick = () => {
+      opts.querySelectorAll('.q-opt').forEach((x:any) => x.disabled = true);
+      b.classList.add('sel');
+      if (cur === 0) ageAnswer = opt.t;
+      answers[cur] = opt.s;
+      cur++;
+      setTimeout(() => cur < Q.length ? renderQ() : showResult(), 420);
+    };
+    opts.appendChild(b);
+  });
+}
+
+function showResult() {
+  const score = answers.reduce((a,b) => a+b, 0);
+  const r = RESULTS.find(x => score < x.max)!;
+
+  (document.getElementById('res-emoji') as HTMLElement).textContent = r.emoji;
+  const badge = document.getElementById('res-badge')!;
+  badge.textContent = r.level;
+  badge.style.background = r.badgeColor;
+  (document.getElementById('res-title') as HTMLElement).textContent = r.title;
+  (document.getElementById('res-hero') as HTMLElement).style.background = r.heroGrad;
+  (document.getElementById('res-desc') as HTMLElement).textContent = r.desc;
+  (document.getElementById('rm-fill') as HTMLElement).style.width = r.meterPct + '%';
+
+  const stepsEl = document.getElementById('res-steps')!;
+  stepsEl.innerHTML = '<p class="res-steps-label">Your personalised next steps</p>';
+  r.steps.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'res-step';
+    d.innerHTML = `<span class="res-step-icon">${s.i}</span><span class="res-step-text">${s.t}</span>`;
+    stepsEl.appendChild(d);
+  });
+
+  document.getElementById('btn-retake')!.onclick = () => {
+    cur = 0; answers = [];
+    show(sIntro);
+  };
+
+  try {
+    const lead = JSON.parse(sessionStorage.getItem('tss_lead') || '{}');
+    fetch('/api/collect-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:lead.email||'',phone:lead.phone||'',age:ageAnswer,score,level:r.level,vertical:'wind'}) }).catch(()=>{});
+    sessionStorage.removeItem('tss_lead');
+  } catch(_) {}
+
+  show(sResult);
+}
+</script>
+
+<style is:global>
+  /* ── SHELL ── */
+  .quiz-shell {
+    background: var(--bg);
+    min-height: calc(100vh - var(--nav-h, 68px));
+  }
+  .q-screen { display: none; }
+  .q-screen.active { display: flex; flex-direction: column; align-items: center; padding: 2.5rem 1.25rem 3rem; }
+  .q-wrap { width: 100%; max-width: 560px; }
+  .q-wrap--result { max-width: 580px; }
+
+  /* ── INTRO ── */
+  .intro-badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: #fff; background: var(--dark);
+    padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.5rem;
+  }
+  .intro-h1 {
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(2rem, 6vw, 2.8rem); font-weight: 900;
+    letter-spacing: -.03em; line-height: 1.12;
+    color: var(--ink); margin-bottom: 1rem;
+  }
+  .intro-sub { font-size: 1rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 1.75rem; }
+  .intro-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+  .intro-pills span {
+    font-size: .8rem; font-weight: 600;
+    background: #fff; border: 1.5px solid var(--line);
+    border-radius: 99px; padding: .3rem .85rem; color: var(--ink-soft);
+  }
+  .intro-lock { font-size: .78rem; color: var(--ink-muted); margin-top: .75rem; margin-bottom: 1.25rem; }
+  .intro-trust {
+    display: flex; align-items: flex-start; gap: .6rem;
+    font-size: .76rem; color: var(--ink-soft); line-height: 1.6;
+    background: var(--bg-mid); border: 1.5px solid var(--line);
+    border-radius: 10px; padding: .85rem 1rem;
+  }
+  .intro-trust svg { flex-shrink: 0; margin-top: .15rem; color: var(--ink); }
+
+  /* ── PRIVACY / LEAD ── */
+  .prv-top, .lead-top { margin-bottom: 1.75rem; }
+  .prv-icon, .lead-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+  .prv-h2, .lead-h2 { font-family: 'Archivo', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: -.02em; color: var(--ink); margin-bottom: .5rem; }
+  .prv-sub, .lead-sub { font-size: .92rem; color: var(--ink-soft); line-height: 1.65; }
+  .prv-cards { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.75rem; }
+  .prv-card {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: #fff; border: 1.5px solid var(--line);
+    border-radius: 14px; padding: 1rem 1.1rem;
+  }
+  .prv-card-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .05rem; }
+  .prv-card-body { display: flex; flex-direction: column; gap: .2rem; }
+  .prv-card-title { font-size: .84rem; font-weight: 800; color: var(--ink); }
+  .prv-card-text { font-size: .81rem; color: var(--ink-soft); line-height: 1.6; }
+  .prv-card-text strong { color: var(--ink); font-weight: 700; }
+
+  .field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+  .field-label { font-size: .82rem; font-weight: 700; color: var(--ink); }
+  .field-opt { font-weight: 400; color: var(--ink-muted); }
+  .field-input {
+    padding: .9rem 1rem; font-size: 1rem;
+    border: 1.5px solid var(--line); border-radius: 12px;
+    background: #fff; color: var(--ink); outline: none;
+    transition: border-color .15s; width: 100%;
+  }
+  .field-input:focus { border-color: var(--dark); }
+  .field-note { font-size: .76rem; color: var(--ink-muted); margin-bottom: 1.25rem; }
+  .lead-err { font-size: .82rem; color: #c0392b; background: #fdf0f0; border: 1px solid #f5c6cb; border-radius: 8px; padding: .6rem .9rem; margin-bottom: .75rem; }
+
+  /* ── QUESTION ── */
+  .qhdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .q-count { font-size: .88rem; font-weight: 700; color: var(--ink-muted); }
+  .prog-bar { height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin-bottom: 1.75rem; }
+  .prog-fill { height: 100%; background: var(--dark); border-radius: 99px; transition: width .4s ease; width: 0; }
+  .q-card {
+    background: #fff; border-radius: 20px;
+    border: 1.5px solid var(--line);
+    padding: 2rem 1.75rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  }
+  .q-card.q-in { animation: fadeUp .3s ease both; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  .q-label { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-muted); margin-bottom: .5rem; }
+  .q-text { font-family: 'Archivo', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--ink); line-height: 1.32; margin-bottom: .5rem; }
+  .q-hint { font-size: .92rem; color: var(--ink-muted); line-height: 1.55; margin-bottom: 1.5rem; font-style: italic; }
+  .q-opts { display: flex; flex-direction: column; gap: .7rem; }
+  .q-opt {
+    display: flex; align-items: center; gap: 1rem; width: 100%;
+    background: var(--bg-mid); border: 2px solid var(--line);
+    border-radius: 14px; padding: 1.25rem 1.3rem;
+    font-size: 1.15rem; color: var(--ink); font-weight: 600; line-height: 1.35;
+    cursor: pointer; text-align: left; min-height: 64px;
+    transition: border-color .15s, background .15s, transform .1s;
+  }
+  .q-opt:active:not(:disabled) { transform: scale(.98); }
+  .q-opt:hover:not(:disabled) { border-color: var(--dark); background: #fff; }
+  .q-opt.sel { border-color: var(--dark); background: var(--dark); color: #fff; }
+  .q-opt:disabled { cursor: default; }
+  .q-opt:not(.sel):disabled { opacity: .4; }
+  .q-opt-radio {
+    width: 30px; height: 30px; border-radius: 8px;
+    border: 2.5px solid var(--line); flex-shrink: 0; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+  }
+  .q-opt-radio::after {
+    content: ''; width: 16px; height: 16px;
+    background: transparent; transition: all .15s;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+  .q-opt:hover:not(:disabled) .q-opt-radio { border-color: var(--dark); }
+  .q-opt.sel .q-opt-radio { border-color: #fff; background: #fff; }
+  .q-opt.sel .q-opt-radio::after { background: var(--dark); }
+  .q-foot { font-size: .74rem; color: var(--ink-muted); text-align: center; margin-top: 1.25rem; }
+
+  /* ── LIVE MOMENTUM METER ── */
+  .meter-wrap { margin-top: 1.35rem; padding-top: 1.1rem; border-top: 1px dashed var(--line); animation: meterIn .4s ease both; }
+  @media (prefers-reduced-motion: reduce) { .meter-wrap { animation: none; } }
+  @keyframes meterIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .meter-label {
+    font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--ink-muted); margin-bottom: .55rem; text-align: center;
+  }
+  .meter-track { position: relative; height: 14px; background: var(--line); border-radius: 99px; overflow: visible; }
+  .meter-fill {
+    height: 100%; width: 4%; border-radius: 99px;
+    background: linear-gradient(90deg, #3D7A5F, #C06030 65%, #9B2C2C);
+    background-size: 300% 100%; background-position: 0% 0%;
+    transition: width .6s cubic-bezier(.34,1.3,.64,1);
+  }
+  .meter-emoji {
+    position: absolute; top: 50%; left: 4%; transform: translate(-50%,-50%);
+    font-size: 1.3rem; transition: left .6s cubic-bezier(.34,1.3,.64,1);
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,.25));
+  }
+
+  /* ── RESULT ── */
+  .res-hero {
+    border-radius: 20px 20px 0 0;
+    padding: 2.5rem 2rem 2rem;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+  }
+  .res-emoji { font-size: 3.5rem; line-height: 1; }
+  .res-badge {
+    display: inline-flex; font-size: .72rem; font-weight: 800;
+    letter-spacing: .07em; text-transform: uppercase;
+    color: #fff; padding: .4rem 1rem; border-radius: 99px;
+  }
+  .res-title { font-family: 'Archivo', sans-serif; font-size: 1.55rem; font-weight: 900; letter-spacing: -.02em; color: var(--ink); line-height: 1.2; }
+
+  .res-meter { width: 100%; }
+  .rm-track { height: 8px; background: rgba(0,0,0,.1); border-radius: 99px; overflow: hidden; margin-bottom: .5rem; }
+  .rm-fill { height: 100%; background: var(--ink); border-radius: 99px; opacity: .5; transition: width .6s ease .2s; width: 0; }
+  .rm-labels { display: flex; justify-content: space-between; font-size: .7rem; font-weight: 600; color: var(--ink-muted); }
+
+  .res-body {
+    background: #fff; border: 1.5px solid var(--line); border-top: none;
+    border-radius: 0 0 20px 20px; padding: 2rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  }
+  .res-desc { font-size: .97rem; color: var(--ink-soft); line-height: 1.78; }
+  .res-steps { display: flex; flex-direction: column; gap: .65rem; }
+  .res-steps-label { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: var(--ink); margin-bottom: .25rem; }
+  .res-step { display: flex; align-items: center; gap: 1rem; background: var(--bg-mid); border: 1.5px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; }
+  .res-step-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .res-step-text { font-size: .92rem; font-weight: 600; color: var(--ink); line-height: 1.45; }
+  .res-lock { font-size: .78rem; color: var(--ink-muted); text-align: center; }
+  .res-foot { display: flex; flex-direction: column; align-items: center; gap: .75rem; border-top: 1.5px solid var(--line); padding-top: 1.25rem; }
+  .res-disc { font-size: .73rem; color: var(--ink-muted); text-align: center; line-height: 1.6; max-width: 400px; }
+
+  /* ── SHARED BUTTONS ── */
+  .btn-main {
+    display: flex; align-items: center; justify-content: center; width: 100%;
+    background: var(--dark); color: #fff;
+    border: none; border-radius: 99px;
+    padding: 1rem 2rem; font-size: 1rem; font-weight: 800;
+    cursor: pointer; text-decoration: none;
+    transition: opacity .18s, transform .18s;
+    letter-spacing: -.01em;
+  }
+  .btn-main:hover { opacity: .88; transform: translateY(-1px); }
+  .btn-back { background: none; border: none; cursor: pointer; font-size: .84rem; color: var(--ink-muted); font-weight: 500; padding: .35rem 0; transition: color .15s; }
+  .btn-back:hover { color: var(--ink); }
+  .btn-ghost { display: block; width: 100%; text-align: center; background: none; border: none; cursor: pointer; font-size: .84rem; color: var(--ink-muted); padding: .5rem; margin-top: .25rem; text-decoration: underline; transition: color .15s; }
+  .btn-ghost:hover { color: var(--ink); }
+  .res-cta { margin-top: .25rem; }
+
+  /* ── SEO ── */
+  .seo-wrap { background: var(--bg-mid); padding: 4rem 0; border-top: 1.5px solid var(--line); }
+  .seo-intro { max-width: 680px; margin: 0 auto 3rem; text-align: center; }
+  .seo-intro h2 { font-family: 'Archivo', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--ink); margin-bottom: .75rem; }
+  .seo-intro p { font-size: .95rem; color: var(--ink-soft); line-height: 1.75; }
+  .seo-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-bottom: 3rem; }
+  .seo-card { background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 1.5rem; }
+  .seo-icon { font-size: 1.75rem; margin-bottom: .75rem; }
+  .seo-card h3 { font-size: .95rem; font-weight: 800; color: var(--ink); margin-bottom: .4rem; }
+  .seo-card p { font-size: .85rem; color: var(--ink-soft); line-height: 1.65; }
+  .seo-faqs h2 { font-family: 'Archivo', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--ink); margin-bottom: 1.5rem; }
+  .seo-faq { border-bottom: 1.5px solid var(--line); padding: 1rem 0; }
+  .seo-faq h3 { font-size: .95rem; font-weight: 700; color: var(--ink); margin-bottom: .4rem; }
+  .seo-faq p { font-size: .88rem; color: var(--ink-soft); line-height: 1.7; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .q-screen.active { padding: 1.25rem .9rem 2.5rem; }
+    .intro-h1 { font-size: 1.85rem; }
+    .q-card { padding: 1.5rem 1.1rem; border-radius: 16px; }
+    .q-text { font-size: 1.3rem; }
+    .q-hint { font-size: .9rem; }
+    .q-opt { padding: 1.15rem 1.2rem; }
+    .q-count { font-size: .88rem; }
+    .res-hero { padding: 2rem 1.25rem 1.5rem; border-radius: 16px 16px 0 0; }
+    .res-title { font-size: 1.25rem; }
+    .res-body { padding: 1.25rem; border-radius: 0 0 16px 16px; }
+    .res-step { padding: .85rem .95rem; }
+    .res-step-text { font-size: .88rem; }
+    .seo-cards { grid-template-columns: 1fr; }
+  }
+</style>

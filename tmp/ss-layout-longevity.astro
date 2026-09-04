@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title = 'Longevity – Natural Vitality for Every Stage of Life',
-  description = 'Food, Ayurveda, and daily habits for a longer, steadier life. Practical, evidence-aware, and rooted in Indian tradition. Part of Ritu.',
+  description = 'Food, Ayurveda, and daily habits for a longer, steadier life. Practical, evidence-aware, and rooted in Indian tradition.',
   image = 'https://thesecondspring.org/og-default.jpg',
   structuredData,
   canonical,
@@ -97,7 +97,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         <ul class="nav-links">
           <li><a href="/longevity" class:list={[{ active: isActive('/longevity') && path === '/longevity' }]}>Home</a></li>
         </ul>
-        <a href="/" class="ritu-link">Ritu ↗</a>
+        <a href="/" class="ritu-link">All programs ↗</a>
       </div>
     </nav>
 
@@ -114,7 +114,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
           <div class="footer-disclaimer">
             This service provides general health information only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your doctor or a qualified healthcare professional.
           </div>
-          <p class="footer-ritu-link"><a href="/">Part of Ritu, health for every season of life →</a></p>
+          <p class="footer-ritu-link"><a href="/">Explore our other programs →</a></p>
         </div>
         <div>
           <h4>Talk to Us</h4>
