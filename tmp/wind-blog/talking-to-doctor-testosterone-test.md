@@ -4,6 +4,8 @@ description: "A practical guide to raising low testosterone with your doctor, wh
 pubDate: 2026-09-04T15:00:00Z
 author: "Journal Desk"
 tags: ["testosterone test", "doctor visit", "andropause", "health advocacy", "midlife health"]
+image: "https://images.unsplash.com/photo-GBcLdqOBbXE?w=1200&h=675&fit=crop&q=80"
+imageAlt: "A doctor consulting with a male patient across a desk"
 readTime: "6 min read"
 featured: false
 ---

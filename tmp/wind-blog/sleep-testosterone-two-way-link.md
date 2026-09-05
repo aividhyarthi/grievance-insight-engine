@@ -4,6 +4,8 @@ description: "Poor sleep lowers testosterone, and low testosterone disrupts slee
 pubDate: 2026-09-04T13:00:00Z
 author: "Journal Desk"
 tags: ["sleep", "testosterone", "andropause", "sleep apnoea", "midlife health"]
+image: "https://images.unsplash.com/photo-8bn3C9xTGBo?w=1200&h=675&fit=crop&q=80"
+imageAlt: "A man sleeping peacefully in a bed in a softly lit bedroom"
 readTime: "6 min read"
 featured: false
 ---

@@ -4,6 +4,8 @@ description: "Declining testosterone accelerates muscle and strength loss after 
 pubDate: 2026-09-04T11:00:00Z
 author: "Journal Desk"
 tags: ["strength training", "muscle loss", "testosterone", "andropause", "fitness"]
+image: "https://images.unsplash.com/photo-B1PSsBQPC2A?w=1200&h=675&fit=crop&q=80"
+imageAlt: "A middle-aged man training with weights in a gym"
 readTime: "6 min read"
 featured: false
 ---

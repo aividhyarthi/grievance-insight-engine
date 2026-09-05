@@ -4,6 +4,8 @@ description: "Low testosterone fatigue is not the same as ordinary tiredness. He
 pubDate: 2026-09-04T09:00:00Z
 author: "Journal Desk"
 tags: ["fatigue", "testosterone", "andropause", "energy", "midlife health"]
+image: "https://images.unsplash.com/photo-Sc3-m7imKoY?w=1200&h=675&fit=crop&q=80"
+imageAlt: "A tired man resting his head at his desk beside a cup of coffee"
 readTime: "6 min read"
 featured: false
 ---
