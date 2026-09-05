@@ -61,21 +61,16 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- Brain fog vs ADHD: how to tell the difference
 - Brain fog at work: managing cognitive symptoms on the job
 - Cognitive symptoms with "normal" hormone tests, why it still happens
-- Doctors refusing HRT: what to do and how to push back
 - Finding a menopause specialist in India: a practical guide
 - Testosterone HRT for women: does it help and how to get it
 - Starting HRT while still getting periods
-- Common HRT myths, debunked
 - SSRIs vs HRT for perimenopause mood symptoms: how to decide
 - When antidepressants aren't working, could it be hormonal
-- "You're too young for menopause": responding to medical dismissal
 - Misdiagnosed: when perimenopause gets called ADHD, stress, or depression
 - Nobody told me brain fog would feel like this
 - Nobody told me about the rage
-- Nobody told me HRT was even an option
 - Feeling older overnight: perimenopause and the fear of aging
 - Feeling disconnected from your own body
 - Perimenopause with regular periods: is that possible
@@ -100,7 +95,11 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 - Why perimenopause hits women with ADHD earlier and harder
 
 ### Written (fill in as used)
-(none yet, first run in progress)
+- Brain fog vs ADHD: how to tell the difference (`tmp/blog/brain-fog-vs-adhd-perimenopause.md`)
+- Doctors refusing HRT: what to do and how to push back (`tmp/blog/doctors-refusing-hrt-how-to-push-back.md`)
+- "You're too young for menopause": responding to medical dismissal (`tmp/blog/too-young-for-menopause-medical-dismissal.md`)
+- Nobody told me HRT was even an option (`tmp/blog/nobody-told-me-hrt-was-an-option.md`)
+- Common HRT myths, debunked (`tmp/blog/common-hrt-myths-debunked.md`)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 
