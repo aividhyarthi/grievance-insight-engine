@@ -4,6 +4,8 @@ description: "Long-term unmanaged stress accelerates ageing at a biological leve
 pubDate: 2026-09-04T15:00:00Z
 author: "Journal Desk"
 tags: ["stress management", "mental health", "resilience", "longevity"]
+image: "https://images.unsplash.com/photo-W41K5XbAmPU?w=1200&h=675&fit=crop&q=80"
+imageAlt: "Woman sitting cross-legged in a calm meditation pose"
 readTime: "6 min read"
 featured: false
 ---

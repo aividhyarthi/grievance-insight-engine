@@ -4,6 +4,8 @@ description: "Consistent sleep and wake times keep your body's internal clock st
 pubDate: 2026-09-04T13:00:00Z
 author: "Journal Desk"
 tags: ["sleep", "circadian rhythm", "longevity", "sleep hygiene"]
+image: "https://images.unsplash.com/photo-poFg8UOTNDY?w=1200&h=675&fit=crop&q=80"
+imageAlt: "Person sleeping peacefully in a softly lit bedroom"
 readTime: "6 min read"
 featured: false
 ---

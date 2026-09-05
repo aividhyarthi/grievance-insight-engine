@@ -4,6 +4,8 @@ description: "Cardio protects your heart, but muscle protects your independence.
 pubDate: 2026-09-04T11:00:00Z
 author: "Journal Desk"
 tags: ["strength training", "exercise", "longevity", "muscle health", "movement"]
+image: "https://images.unsplash.com/photo-qfjuh4OLdxw?w=1200&h=675&fit=crop&q=80"
+imageAlt: "Man lifting a barbell during a strength training session"
 readTime: "6 min read"
 featured: false
 ---

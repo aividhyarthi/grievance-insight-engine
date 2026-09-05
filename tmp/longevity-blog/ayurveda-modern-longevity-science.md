@@ -4,6 +4,8 @@ description: "Long before circadian biology had a name, Ayurveda built its daily
 pubDate: 2026-09-04T17:00:00Z
 author: "Journal Desk"
 tags: ["Ayurveda", "longevity", "traditional medicine", "wellness"]
+image: "https://images.unsplash.com/photo-8iU3wtMJEcI?w=1200&h=675&fit=crop&q=80"
+imageAlt: "Vendor selling colorful traditional spices at an Indian market"
 readTime: "7 min read"
 featured: false
 ---
