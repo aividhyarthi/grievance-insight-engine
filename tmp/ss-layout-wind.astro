@@ -10,7 +10,7 @@ interface Props {
 }
 
 const {
-  title = 'Second Wind – Andropause & Midlife Vitality for Indian Men',
+  title = 'His Midlife – Andropause & Vitality for Indian Men',
   description = 'Testosterone decline, energy, mood, and strength in midlife, explained clearly for Indian men.',
   image = 'https://thesecondspring.org/og-default.jpg',
   structuredData,
@@ -29,7 +29,7 @@ const pageNodes = structuredData
 const orgNode = {
   '@type': 'Organization',
   '@id': `${SITE_URL}/wind#organization`,
-  name: 'Second Wind',
+  name: 'His Midlife',
   url: `${SITE_URL}/wind`,
   logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon-wind.svg` },
   description: "India's private companion for men navigating andropause and midlife hormonal change, honest, science-backed support for Indian men.",
@@ -40,7 +40,7 @@ const websiteNode = {
   '@type': 'WebSite',
   '@id': `${SITE_URL}/wind#website`,
   url: `${SITE_URL}/wind`,
-  name: 'Second Wind',
+  name: 'His Midlife',
   inLanguage: 'en-IN',
   publisher: { '@id': `${SITE_URL}/wind#organization` },
 };
@@ -92,7 +92,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
             <path d="M6 20c4-8 8-12 10-12s6 4 10 12" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
             <path d="M6 24c4-6 8-9 10-9s6 3 10 9" stroke="#111111" stroke-width="2" stroke-linecap="round" opacity=".45"/>
           </svg>
-          <span class="brand-name">Second Wind</span>
+          <span class="brand-name">His Midlife</span>
         </a>
         <ul class="nav-links" id="nav-links">
           <li><a href="/wind" class:list={[{ active: isActive('/wind') && path === '/wind' }]}>Home</a></li>
@@ -137,7 +137,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
     <footer class="footer">
       <div class="container footer-grid">
         <div class="footer-about">
-          <div class="footer-brand">Second Wind</div>
+          <div class="footer-brand">His Midlife</div>
           <p class="footer-tagline">The strength doesn't have to fade quietly.</p>
           <p class="footer-sub-tagline">Andropause and midlife vitality support for Indian men. Information and support, not medical advice.</p>
           <div class="footer-disclaimer">
@@ -177,7 +177,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Second Wind. General health information only, not medical advice.</p>
+        <p>&copy; {new Date().getFullYear()} His Midlife. General health information only, not medical advice.</p>
       </div>
     </footer>
 

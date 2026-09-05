@@ -10,7 +10,7 @@ interface Props {
 }
 
 const {
-  title = 'Longevity – Natural Vitality for Every Stage of Life',
+  title = 'Life Begins After 40 – Natural Vitality for Every Stage of Life',
   description = 'Food, Ayurveda, and daily habits for a longer, steadier life. Practical, evidence-aware, and rooted in Indian tradition.',
   image = 'https://thesecondspring.org/og-default.jpg',
   structuredData,
@@ -29,7 +29,7 @@ const pageNodes = structuredData
 const orgNode = {
   '@type': 'Organization',
   '@id': `${SITE_URL}/longevity#organization`,
-  name: 'Longevity',
+  name: 'Life Begins After 40',
   url: `${SITE_URL}/longevity`,
   logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon-longevity.svg` },
   description: "Practical, India-rooted longevity guidance, food, Ayurveda, and daily habits for a longer, steadier life.",
@@ -40,7 +40,7 @@ const websiteNode = {
   '@type': 'WebSite',
   '@id': `${SITE_URL}/longevity#website`,
   url: `${SITE_URL}/longevity`,
-  name: 'Longevity',
+  name: 'Life Begins After 40',
   inLanguage: 'en-IN',
   publisher: { '@id': `${SITE_URL}/longevity#organization` },
 };
@@ -92,7 +92,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
             <path d="M16 4C21 4 25 9 25 15C25 22 21 27 16 27C11 27 7 22 7 15C7 9 11 4 16 4Z" fill="#2F5D44"/>
             <path d="M16 12V27" stroke="#F4F8F3" stroke-width="1.3"/>
           </svg>
-          <span class="brand-name">Longevity</span>
+          <span class="brand-name">Life Begins After 40</span>
         </a>
         <ul class="nav-links" id="nav-links">
           <li><a href="/longevity" class:list={[{ active: isActive('/longevity') && path === '/longevity' }]}>Home</a></li>
@@ -133,7 +133,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
     <footer class="footer">
       <div class="container footer-grid">
         <div class="footer-about">
-          <div class="footer-brand">Longevity</div>
+          <div class="footer-brand">Life Begins After 40</div>
           <p class="footer-tagline">Small habits, decades of difference.</p>
           <p class="footer-sub-tagline">Food, Ayurveda, and daily habits for a longer, steadier life. Information and support, not medical advice.</p>
           <div class="footer-disclaimer">
@@ -170,7 +170,7 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Longevity. General health information only, not medical advice.</p>
+        <p>&copy; {new Date().getFullYear()} Life Begins After 40. General health information only, not medical advice.</p>
       </div>
     </footer>
 
@@ -257,8 +257,9 @@ const jsonLd = JSON.stringify(jsonLdGraph).replace(/</g, '\\u003c');
   /* Nav */
   .navbar { border-bottom: 1.5px solid var(--line); position: sticky; top: 0; background: #fff; z-index: 200; }
   .navbar-inner { display: flex; align-items: center; height: var(--nav-h); gap: 1.5rem; }
-  .brand { display: flex; align-items: center; gap: .55rem; margin-right: auto; }
-  .brand-name { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+  .brand { display: flex; align-items: center; gap: .55rem; margin-right: auto; min-width: 0; }
+  .brand-name { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -.01em; color: var(--ink); white-space: nowrap; }
+  @media (max-width: 1080px) { .brand-name { font-size: .96rem; } .nav-links { gap: .9rem; } }
   .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
   .nav-links a { color: var(--ink-soft); font-size: .88rem; font-weight: 600; padding: .5rem .75rem; border-radius: var(--radius-sm); transition: background .15s; }
   .nav-links a:hover, .nav-links a.active { background: var(--accent-pale); color: var(--accent-deep); }

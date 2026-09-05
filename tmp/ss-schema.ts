@@ -1,9 +1,9 @@
-// Centralised JSON-LD structured-data helpers for The Second Spring.
+// Centralised JSON-LD structured-data helpers for Her Midlife.
 // Every builder returns a plain schema.org node (no @context). The Layout
 // collects the global nodes + any page-specific nodes into a single @graph.
 
 export const SITE_URL = 'https://www.thesecondspring.org';
-export const SITE_NAME = 'The Second Spring';
+export const SITE_NAME = 'Her Midlife';
 export const SITE_LOGO = `${SITE_URL}/favicon.svg`;
 export const ORG_ID = `${SITE_URL}/#organization`;
 export const SITE_ID = `${SITE_URL}/#website`;

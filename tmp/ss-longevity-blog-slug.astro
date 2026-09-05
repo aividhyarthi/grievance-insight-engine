@@ -30,7 +30,7 @@ const structuredData = [
     ...(post.data.image ? { image: [post.data.image] } : {}),
     datePublished: post.data.pubDate.toISOString(),
     dateModified: post.data.pubDate.toISOString(),
-    author: { '@type': 'Organization', name: post.data.author === 'Journal Desk' ? 'Longevity' : post.data.author, url: `${SITE_URL}/longevity` },
+    author: { '@type': 'Organization', name: post.data.author === 'Journal Desk' ? 'Life Begins After 40' : post.data.author, url: `${SITE_URL}/longevity` },
     publisher: { '@id': `${SITE_URL}/longevity#organization` },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${postUrl}` },
     ...(post.data.tags?.length ? { keywords: post.data.tags.join(', ') } : {}),
@@ -49,7 +49,7 @@ const structuredData = [
 ---
 
 <Layout
-  title={`${post.data.title} – Longevity Journal`}
+  title={`${post.data.title} – Life Begins After 40 Journal`}
   description={post.data.description}
   image={post.data.image}
   structuredData={structuredData}
