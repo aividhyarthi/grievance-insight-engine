@@ -38,9 +38,27 @@ You are firing as a scheduled daily job with no memory of any prior conversation
   ---
   ```
   For `image`, reuse a photo ID already used elsewhere in `tmp/longevity-blog/*.md` that thematically fits (grep `^image:` across existing posts) rather than guessing a new Unsplash ID blind, since an invalid ID renders broken. Slight image reuse across posts is fine.
-- **Structure**: intro paragraph (no heading) → 3-5 `##` sections → closing paragraph → horizontal rule → this exact closing line in italics:
+- **Structure, in this exact order** (this is AEO/answer-engine-optimised, not just a plain essay, non-negotiable):
+  1. **Intro** (no heading): 1-2 short paragraphs that hook the reader and state what the article covers.
+  2. **Quick answer box**, immediately after the intro, before the first `##` heading. Directly answers the core question the title implies in plain language, 2-3 sentences, plus 3-5 one-line key-takeaway bullets. Use this exact HTML:
+     ```html
+     <div class="tldr">
+     <p class="tldr-label">Quick Answer</p>
+     <p>Direct 2-3 sentence answer to the article's core question, in plain language, no hedging preamble.</p>
+     <ul>
+     <li>Key takeaway 1</li>
+     <li>Key takeaway 2</li>
+     <li>Key takeaway 3</li>
+     </ul>
+     </div>
+     ```
+  3. **4-6 `##` sections** with descriptive, conversational headings that read like real questions or statements a reader would search for (e.g. "Does walking actually count as exercise?" not just "Movement"), each with `###` sub-headings where a section covers more than one idea, and **bold labels** at the start of key paragraphs (not every paragraph, just the ones stating a key claim).
+  4. At least **one table** somewhere in the body where genuinely useful (a comparison, a range of numbers, a step-by-step checklist with a status column). Use standard markdown table syntax. Don't force a table where one doesn't fit naturally, a 2-column list is not a table.
+  5. **At least one `.ig` infographic block** in every post (not optional anymore), placed where a visual breaks up the densest section of text, using the syntax below.
+  6. **`## Frequently Asked Questions`** section at the end, 3-4 Q&A pairs, **bold question** on its own line followed by a 2-4 sentence answer. Pick questions a reader would actually type into a search engine.
+  7. Closing paragraph, then horizontal rule, then this exact closing line in italics:
   `*Life Begins After 40 is an information resource, not a medical provider. For personal advice, speak with your doctor. Write to us at thesecondspringofficial@gmail.com*`
-- Optionally embed ONE `.ig` infographic block in 1-2 of the 5 posts (not all), reusing this exact HTML pattern:
+- Reuse this exact HTML pattern for `.ig` blocks:
   ```html
   <div class="ig">
   <div class="ig-head">SHORT ALL-CAPS LABEL</div>
@@ -51,8 +69,9 @@ You are firing as a scheduled daily job with no memory of any prior conversation
   </div>
   </div>
   ```
-- Length: 700-1000 words per post.
+- Length: 900-1300 words per post (the added quick-answer box, table, and FAQ section mean these run a bit longer than before).
 - Medical/health claims should stay confident but appropriately hedged ("can", "may", "for many people"), never absolute, always pointing toward a doctor for any specific health concern or diagnosis. Never suggest a specific supplement dosage or unregulated product.
+- **Tags matter beyond categorisation**: the site automatically surfaces related articles across all three verticals (women's, men's, longevity) by matching tags. When a topic genuinely overlaps with a universal midlife theme (sleep, stress, weight/body composition, brain fog, mood, fatigue), include that as one of your tags even alongside more longevity-specific tags, so readers get a genuinely relevant cross-link, not a forced one. Don't add a cross-cutting tag if the post doesn't actually substantively cover that theme.
 
 ## Tone signal
 

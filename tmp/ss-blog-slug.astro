@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+import { findRelated, VERTICAL_META } from '../../lib/blog-related';
 
 const now = new Date();
 const { slug } = Astro.params;
@@ -16,9 +17,15 @@ function formatDate(d: Date) {
   return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-const related = posts
-  .filter(p => p.slug !== slug && p.data.pubDate <= now && p.data.tags.some(t => post.data.tags.includes(t)))
-  .slice(0, 2);
+const [windPosts, longevityPosts] = await Promise.all([
+  getCollection('wind-blog'),
+  getCollection('longevity-blog'),
+]);
+const related = findRelated(post, 'women', {
+  women: posts.filter(p => p.data.pubDate <= now),
+  men: windPosts.filter(p => p.data.pubDate <= now),
+  longevity: longevityPosts.filter(p => p.data.pubDate <= now),
+}, 3);
 
 // ─── Structured data ───
 const postUrl = `/blog/${post.slug}`;
@@ -141,18 +148,20 @@ const structuredData = [
         <p class="related-label">You might also like</p>
         <div class="related-grid">
           {related.map(p => (
-            <a href={`/blog/${p.slug}`} class="related-card">
-              {p.data.image && (
+            <a href={p.url} class="related-card">
+              {p.image && (
                 <div class="related-image">
-                  <img src={p.data.image} alt={p.data.imageAlt || p.data.title} loading="lazy" />
+                  <img src={p.image} alt={p.imageAlt || p.title} loading="lazy" />
                 </div>
               )}
               <div class="related-body">
                 <div class="related-tags">
-                  {p.data.tags.slice(0,1).map(t => <span class="rtag">{t}</span>)}
+                  {!p.sameVertical
+                    ? <span class="rtag rtag-vertical">From {VERTICAL_META[p.vertical].label}</span>
+                    : p.tags.slice(0,1).map(t => <span class="rtag">{t}</span>)}
                 </div>
-                <h3 class="related-title">{p.data.title}</h3>
-                <p class="related-meta">{p.data.author} · {p.data.readTime}</p>
+                <h3 class="related-title">{p.title}</h3>
+                <p class="related-meta">{p.author} · {p.readTime}</p>
               </div>
             </a>
           ))}
@@ -206,6 +215,19 @@ const structuredData = [
   .prose :global(a:hover) { color: var(--green-dark); }
   .prose :global(blockquote) { border-left: 4px solid var(--peach); background: var(--peach-light); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text); font-size: 1.05rem; line-height: 1.75; }
   .prose :global(hr) { border: none; border-top: 2px solid var(--border); margin: 3rem 0; }
+
+  /* ── TABLES ── */
+  .prose :global(table) { display: block; overflow-x: auto; width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: .92rem; -webkit-overflow-scrolling: touch; }
+  .prose :global(th), .prose :global(td) { padding: .65rem .9rem; border: 1px solid var(--border-light); text-align: left; }
+  .prose :global(th) { background: var(--cream-mid); font-weight: 700; color: var(--text); white-space: nowrap; }
+  .prose :global(tr:nth-child(even) td) { background: var(--cream-mid); }
+
+  /* ── QUICK-ANSWER / KEY TAKEAWAYS ── */
+  .prose :global(.tldr) { background: var(--green-light); border: 1.5px solid var(--border); border-left: 4px solid var(--green); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 1.4rem 1.6rem; margin: 1.75rem 0 2rem; }
+  .prose :global(.tldr-label) { font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--green-dark); margin-bottom: .5rem !important; }
+  .prose :global(.tldr p:not(.tldr-label)) { font-size: 1rem; color: var(--text); font-weight: 600; margin-bottom: .9rem !important; }
+  .prose :global(.tldr ul) { margin-bottom: 0 !important; }
+  .prose :global(.tldr ul li)::before { content: '✓'; color: var(--green-dark); }
 
   /* ── INFOGRAPHICS ── */
   .prose :global(.ig) { margin: 2.5rem 0; border-radius: 16px; overflow: hidden; border: 1.5px solid var(--border-light); }
@@ -305,7 +327,7 @@ const structuredData = [
   /* ── RELATED ── */
   .related-section { background: var(--cream-mid); padding: 3.5rem 0; }
   .related-label   { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 1.5rem; }
-  .related-grid    { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .related-grid    { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   .related-card    { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: all .18s; }
   .related-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(61,122,95,.1); }
   .related-image   { height: 140px; overflow: hidden; flex-shrink: 0; }
@@ -314,6 +336,7 @@ const structuredData = [
   .related-body    { padding: 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
   .related-tags    { display: flex; gap: .4rem; }
   .rtag { font-size: .68rem; font-weight: 700; text-transform: uppercase; color: var(--green); background: var(--green-light); padding: .2rem .6rem; border-radius: 100px; }
+  .rtag-vertical { color: var(--text-muted); background: var(--cream-mid); }
   .related-title   { font-size: .97rem; font-weight: 700; color: var(--text); line-height: 1.35; }
   .related-meta    { font-size: .75rem; color: var(--text-muted); }
 

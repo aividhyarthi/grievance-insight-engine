@@ -38,8 +38,26 @@ You are firing as a scheduled daily job with no memory of any prior conversation
   ---
   ```
   For `image`, reuse a photo ID already used elsewhere in `tmp/blog/*.md` that thematically fits (grep `^image:` across existing posts) rather than guessing a new Unsplash ID blind, since an invalid ID renders broken. Slight image reuse across posts is fine and already happens throughout the site.
-- **Tags**: check `tmp/ss-blog-categories.ts` for the registered category tag lists and include at least one matching tag where the topic genuinely fits a category (helps the post surface on category pages), but don't force a mismatched tag just to fit.
-- **Structure**: intro paragraph(s) → at least one `.ig` infographic block (see syntax below) → sectioned body with `##`/`###` headings and **bold labels** → "In the Indian context" notes woven in naturally → FAQ section (`## Frequently Asked Questions` with **bold question** / answer pairs) at the end.
+- **Tags**: check `tmp/ss-blog-categories.ts` for the registered category tag lists and include at least one matching tag where the topic genuinely fits a category (helps the post surface on category pages), but don't force a mismatched tag just to fit. Beyond that, the site also surfaces related articles across all three verticals (women's, men's, longevity) by matching tags: when a topic genuinely overlaps with a universal midlife theme (sleep, stress, weight, brain fog, mood, fatigue, libido), include that as one of your tags too, so readers get a genuinely relevant cross-link to the men's or longevity vertical where it fits, not a forced one.
+- **Structure, in this exact order** (AEO/answer-engine-optimised, not just a plain essay):
+  1. Intro paragraph(s), a hook, no heading.
+  2. **Quick answer box**, right after the intro, before the first `.ig` block or `##` heading: a direct 2-3 sentence answer to the core question the title implies, plus 3-5 one-line key takeaways. Use this exact HTML:
+     ```html
+     <div class="tldr">
+     <p class="tldr-label">Quick Answer</p>
+     <p>Direct 2-3 sentence answer to the article's core question, in plain language.</p>
+     <ul>
+     <li>Key takeaway 1</li>
+     <li>Key takeaway 2</li>
+     <li>Key takeaway 3</li>
+     </ul>
+     </div>
+     ```
+  3. At least one `.ig` infographic block (see syntax below).
+  4. Sectioned body with `##`/`###` headings (phrase headings conversationally, like real questions a reader would search) and **bold labels** at the start of key paragraphs.
+  5. A markdown **table** where a genuine comparison, range of numbers, or checklist fits naturally, don't force one otherwise.
+  6. "In the Indian context" notes woven in naturally.
+  7. FAQ section (`## Frequently Asked Questions` with **bold question** / answer pairs) at the end.
 - **`.ig` component syntax** (copy this pattern, don't invent new classes):
   ```html
   <div class="ig">

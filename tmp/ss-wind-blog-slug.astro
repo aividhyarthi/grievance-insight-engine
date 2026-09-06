@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/LayoutWind.astro';
 import { getCollection } from 'astro:content';
+import { findRelated, VERTICAL_META } from '../../../lib/blog-related';
 
 const SITE_URL = 'https://www.thesecondspring.org';
 const now = new Date();
@@ -16,9 +17,15 @@ function formatDate(d: Date) {
   return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-const related = posts
-  .filter(p => p.slug !== slug && p.data.pubDate <= now && p.data.tags.some(t => post.data.tags.includes(t)))
-  .slice(0, 2);
+const [womenPosts, longevityPosts] = await Promise.all([
+  getCollection('blog'),
+  getCollection('longevity-blog'),
+]);
+const related = findRelated(post, 'men', {
+  women: womenPosts.filter(p => p.data.pubDate <= now),
+  men: posts.filter(p => p.data.pubDate <= now),
+  longevity: longevityPosts.filter(p => p.data.pubDate <= now),
+}, 3);
 
 const postUrl = `/wind/blog/${post.slug}`;
 const structuredData = [
@@ -120,10 +127,11 @@ const structuredData = [
         <p class="related-label">You might also like</p>
         <div class="related-grid">
           {related.map(p => (
-            <a href={`/wind/blog/${p.slug}`} class="related-card">
-              <h3>{p.data.title}</h3>
-              <p>{p.data.description}</p>
-              <span class="related-meta">{formatDate(p.data.pubDate)} · {p.data.readTime}</span>
+            <a href={p.url} class="related-card">
+              {!p.sameVertical && <span class="related-badge">From {VERTICAL_META[p.vertical].label}</span>}
+              <h3>{p.title}</h3>
+              <p>{p.description}</p>
+              <span class="related-meta">{formatDate(p.pubDate)} · {p.readTime}</span>
             </a>
           ))}
         </div>
@@ -163,6 +171,19 @@ const structuredData = [
   .prose :global(hr) { border: none; border-top: 2px solid var(--line); margin: 3rem 0; }
   .prose :global(em) { font-style: italic; }
 
+  /* Tables */
+  .prose :global(table) { display: block; overflow-x: auto; width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: .92rem; -webkit-overflow-scrolling: touch; }
+  .prose :global(th), .prose :global(td) { padding: .65rem .9rem; border: 1px solid var(--line); text-align: left; }
+  .prose :global(th) { background: var(--bg-mid); font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .prose :global(tr:nth-child(even) td) { background: var(--bg-mid); }
+
+  /* Quick-answer / key-takeaways callout, meant to sit right after the intro */
+  .prose :global(.tldr) { background: var(--bg-mid); border: 1.5px solid var(--line); border-left: 4px solid var(--dark); border-radius: 0 12px 12px 0; padding: 1.4rem 1.6rem; margin: 1.75rem 0 2rem; }
+  .prose :global(.tldr-label) { font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: .5rem !important; }
+  .prose :global(.tldr p:not(.tldr-label)) { font-size: 1rem; color: var(--ink); font-weight: 600; margin-bottom: .9rem !important; }
+  .prose :global(.tldr ul) { margin-bottom: 0 !important; }
+  .prose :global(.tldr ul li)::before { content: '✓'; color: var(--dark); }
+
   /* Embedded infographic block, reused across posts */
   .prose :global(.ig) { border-radius: 14px; overflow: hidden; margin: 2rem 0; border: 1.5px solid var(--line); }
   .prose :global(.ig-head) { background: var(--dark); color: #fff; padding: .85rem 1.5rem; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; }
@@ -193,9 +214,10 @@ const structuredData = [
 
   .related-section { padding: 3rem 0 5rem; background: var(--bg-mid); }
   .related-label { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); margin-bottom: 1.25rem; }
-  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   .related-card { display: block; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
   .related-card:hover { border-color: var(--dark); }
+  .related-badge { display: inline-block; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-muted); background: var(--bg-mid); padding: .2rem .6rem; border-radius: 99px; margin-bottom: .6rem; }
   .related-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: .4rem; }
   .related-card p { font-size: .87rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: .6rem; }
   .related-meta { font-size: .78rem; color: var(--ink-muted); }

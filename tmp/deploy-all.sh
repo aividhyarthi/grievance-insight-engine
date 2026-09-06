@@ -87,6 +87,7 @@ cp "$SRC/ss-longevity-guide-ayurveda.astro"    "src/pages/longevity/guide/ayurve
 echo "→ Second Wind + Longevity journals..."
 mkdir -p src/pages/wind/blog src/pages/longevity/blog
 cp "$SRC/ss-content-config.ts"                 "src/content/config.ts"
+cp "$SRC/ss-blog-related.ts"                   "src/lib/blog-related.ts"
 cp "$SRC/ss-wind-blog-index.astro"             "src/pages/wind/blog/index.astro"
 cp "$SRC/ss-wind-blog-slug.astro"              "src/pages/wind/blog/[slug].astro"
 cp "$SRC/ss-longevity-blog-index.astro"        "src/pages/longevity/blog/index.astro"
