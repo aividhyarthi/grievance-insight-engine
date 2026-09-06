@@ -10,7 +10,7 @@ readTime: "7 min read"
 featured: false
 ---
 
-For most of medical history, the gut was treated as a simple tube that broke food down and moved waste along. That picture has changed considerably. Your intestines host trillions of bacteria, collectively called the gut microbiome, that influence digestion, immune function, inflammation, and even mood.
+For most of medical history, the gut was treated as a simple tube that broke food down and moved waste along. That picture has changed. Your intestines host trillions of bacteria, collectively called the gut microbiome, that influence digestion, immune function, inflammation, and even mood.
 
 Does any of that actually matter for how long you live, or is "gut health" just the latest wellness trend? Longevity researchers increasingly treat the microbiome as one of the more promising, modifiable levers on healthy ageing, and much of what helps is already familiar to anyone who grew up eating home-cooked Indian food.
 
@@ -27,9 +27,9 @@ Does any of that actually matter for how long you live, or is "gut health" just 
 
 ## What does the gut microbiome actually do for the body?
 
-A healthy, diverse gut microbiome does several jobs that matter for long-term health. It helps break down fibre into short-chain fatty acids that reduce inflammation throughout the body. It trains and regulates the immune system, since a large share of immune tissue sits in the gut lining. It influences how your body handles blood sugar and stores fat. And it produces some vitamins and neurotransmitter precursors that affect mood and brain function.
+A healthy, diverse gut microbiome does several jobs that matter for long-term health. It helps break down fibre into short-chain fatty acids that reduce inflammation. It trains and regulates the immune system, since a large share of immune tissue sits in the gut lining. It influences how your body handles blood sugar and stores fat, and produces some vitamins and neurotransmitter precursors that affect mood and brain function.
 
-**Studies comparing older adults who age well against those who develop more chronic disease** consistently find differences in microbiome diversity. People with more varied gut bacteria tend to show lower markers of inflammation and better metabolic health, and low-grade chronic inflammation is itself linked to faster biological ageing, heart disease, and cognitive decline. Your microbiome alone does not determine how long you live, genetics and activity levels matter too, but it is one of the few systems you can meaningfully shift within weeks through diet.
+**Studies comparing older adults who age well against those who develop more chronic disease** consistently find differences in microbiome diversity. People with more varied gut bacteria tend to show lower inflammation markers and better metabolic health, and chronic inflammation is itself linked to faster biological ageing, heart disease, and cognitive decline. Your microbiome alone does not determine how long you live, but it is one of the few systems you can meaningfully shift within weeks through diet.
 
 ## Is fibre really the biggest lever, more than any supplement?
 
@@ -60,13 +60,13 @@ Fermented foods introduce live bacterial cultures directly into your gut, and tr
 
 ## Where does gut health advice get overhyped?
 
-Gut health has become a marketing category, and not everything sold under that label is backed by solid research. **Many probiotic supplements have weak evidence for healthy adults specifically**, the strains and doses used in studies rarely match what is on store shelves, and lab effects do not always translate into a real-world benefit. Restrictive elimination diets marketed as gut resets are usually unnecessary without a diagnosed condition and can create more anxiety around food than benefit. Persistent digestive symptoms, unexplained weight change, or blood in your stool are reasons to see a doctor for proper evaluation, not reasons to try another supplement.
+Gut health has become a marketing category, and not everything sold under that label is backed by solid research. **Many probiotic supplements have weak evidence for healthy adults specifically**, the strains and doses used in studies rarely match what is on store shelves. Restrictive elimination diets marketed as gut resets are usually unnecessary without a diagnosed condition. Persistent digestive symptoms, unexplained weight change, or blood in your stool are reasons to see a doctor, not reasons to try another supplement.
 
-Overuse of antibiotics is a genuine and underappreciated threat to gut health. Antibiotics do not distinguish between harmful and beneficial bacteria, and repeated or unnecessary courses can reduce microbiome diversity for months. This is not a reason to avoid antibiotics when a doctor prescribes them for a real infection, they are important medicines, but it is a reason to be cautious about taking them without a clear medical need, and to focus on fibre and fermented foods to help your gut recover afterward.
+Overuse of antibiotics is a genuine and underappreciated threat to gut health. Antibiotics do not distinguish between harmful and beneficial bacteria, and repeated or unnecessary courses can reduce microbiome diversity for months. This is not a reason to avoid antibiotics when a doctor prescribes them for a real infection, but it is a reason to be cautious about taking them without a clear medical need, and to focus on fibre and fermented foods to help your gut recover afterward.
 
 ## How do you build the habit without overcomplicating it?
 
-You do not need a special gut health diet to support your microbiome, you need consistency around foods many Indian kitchens already prepare regularly. Add a vegetable or legume to meals that currently lack one. Keep curd as a daily habit rather than an occasional addition. Choose whole grains and millets over refined flour more often. Treat fermented pickles as a garnish, not a meal component. None of this requires new ingredients or a dramatic overhaul, it requires eating more like the varied, whole-food, home-cooked pattern that has always been available in Indian food culture, just done consistently rather than occasionally.
+You do not need a special gut health diet, you need consistency around foods many Indian kitchens already prepare regularly. Add a vegetable or legume to meals that lack one. Keep curd as a daily habit. Choose whole grains and millets over refined flour more often, and treat fermented pickles as a garnish, not a meal component. None of this requires new ingredients, just the varied, home-cooked pattern already available in Indian food culture, done consistently.
 
 ## Frequently Asked Questions
 

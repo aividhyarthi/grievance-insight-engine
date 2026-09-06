@@ -10,7 +10,7 @@ readTime: "6 min read"
 featured: false
 ---
 
-Longevity science keeps circling back to a short list of things that predict how long, and how well, people live: enough protein to keep muscle as you age, enough fibre to keep your gut and metabolism healthy, and minimal ultra-processed food. Much of this was already built into traditional Indian eating, structured around dals, seasonal vegetables, fermented foods, and home-cooked meals, long before "healthspan" became a word anyone used.
+Longevity science keeps circling back to a short list of things that predict how long, and how well, people live: enough protein to keep muscle as you age, enough fibre for gut and metabolic health, and minimal ultra-processed food. Much of this was already built into traditional Indian eating, structured around dals, seasonal vegetables, fermented foods, and home-cooked meals, long before "healthspan" became a word anyone used.
 
 So does eating for longevity mean abandoning Indian food for something imported and unfamiliar? Not at all. It means leaning further into the traditional foundation, while fixing a few genuine gaps that modern convenience eating has created.
 
@@ -29,7 +29,7 @@ So does eating for longevity mean abandoning Indian food for something imported 
 
 Protein needs do not stay flat across life. As you move into your thirties, forties, and beyond, your body becomes less efficient at using dietary protein to build and maintain muscle, a process researchers call anabolic resistance. This makes adequate protein intake more important with age, not less, and it is one of the more consistent findings across longevity and ageing research: people who maintain more muscle mass tend to stay stronger, more mobile, and more metabolically healthy into later life.
 
-**Traditional vegetarian Indian diets can absolutely meet these needs**, but many modern plates fall short simply on quantity. A small bowl of dal, a couple of rotis, and some rice does not add up to enough protein for most adults, especially those who are active. Building meals around a clear protein source at each sitting, dal, curd, paneer, sprouted legumes, eggs, fish, or chicken depending on your preferences, and eating that source in a meaningful portion rather than a token spoonful, is one of the simplest corrections most people can make.
+**Traditional vegetarian Indian diets can absolutely meet these needs**, but many modern plates fall short simply on quantity. A small bowl of dal, a couple of rotis, and some rice does not add up to enough protein for most active adults. Building meals around a clear protein source at each sitting, dal, curd, paneer, sprouted legumes, eggs, fish, or chicken, and eating a meaningful portion rather than a token spoonful, is one of the simplest corrections most people can make.
 
 ## Do fibre and fermented foods really support a longer life?
 
@@ -60,7 +60,7 @@ A practical day does not need to be elaborate: a protein source and a fibre sour
 
 ## Is ghee really the problem, or is something else driving the numbers?
 
-Traditional fats used in moderation, ghee, mustard oil, coconut oil, are not the primary driver of India's rising rates of diabetes and heart disease, despite often being singled out. **The bigger shift has been the flood of ultra-processed food** into daily diets: packaged namkeens, sugary beverages, refined flour products, and snacks engineered for shelf life and craveability rather than nutrition. These foods are typically low in fibre and protein, high in refined carbohydrates and added sugar, and easy to overeat because they are designed that way.
+Traditional fats used in moderation, ghee, mustard oil, coconut oil, are not the primary driver of India's rising rates of diabetes and heart disease, despite often being singled out. **The bigger shift has been the flood of ultra-processed food** into daily diets: packaged namkeens, sugary beverages, refined flour products, and snacks engineered for shelf life rather than nutrition. These foods are typically low in fibre and protein, high in refined carbohydrates and added sugar, and easy to overeat by design.
 
 This does not mean every packaged item is harmful or that traditional fried snacks need to disappear from festivals and family gatherings. It means that when these foods make up the bulk of daily eating, rather than an occasional indulgence, the effects on metabolic health compound over years. The goal is not perfection, it is proportion.
 

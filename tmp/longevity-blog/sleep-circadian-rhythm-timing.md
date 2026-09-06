@@ -10,7 +10,7 @@ readTime: "6 min read"
 featured: false
 ---
 
-Most advice about sleep and longevity focuses on one number: seven to nine hours a night. That number matters, but it is not the whole story. Two people who both average eight hours a night can have very different health outcomes if one sleeps roughly the same hours every night and the other's schedule swings by two or three hours depending on the day.
+Most advice about sleep and longevity focuses on one number: seven to nine hours a night. That number matters, but it is not the whole story. Two people who both average eight hours a night can have very different health outcomes if one sleeps roughly the same hours nightly and the other's schedule swings by two or three hours depending on the day.
 
 So does timing really matter as much as duration? A growing body of research suggests yes, and the irregular sleeper tends to fare worse even when the total hours look identical on paper.
 
@@ -27,25 +27,25 @@ So does timing really matter as much as duration? A growing body of research sug
 
 ## Does your body really run on an internal clock, not just a tally of hours?
 
-Every cell in your body follows a roughly 24-hour rhythm called the circadian clock, coordinated by a master clock in the brain that responds primarily to light. This clock does not just control when you feel sleepy, it times the release of hormones, regulates body temperature, influences digestion, and affects how your body processes glucose throughout the day.
+Every cell in your body follows a roughly 24-hour rhythm called the circadian clock, coordinated by a master clock in the brain that responds primarily to light. This clock does not just control when you feel sleepy, it times hormone release, regulates body temperature, influences digestion, and affects how your body processes glucose.
 
 **When your sleep and wake times shift around**, this internal clock effectively receives conflicting signals about what time it is, a state sometimes described as social jet lag, similar in effect to mild, chronic time zone changes. Your body ends up working to align systems that are being told different things by your behaviour, and that misalignment has measurable costs over time.
 
 ## What does irregular sleep timing actually do over years?
 
-Research on sleep regularity, tracking how consistent a person's sleep and wake times are rather than just total hours, has linked irregular sleep patterns to higher risks of obesity, type 2 diabetes, high blood pressure, and cardiovascular disease, independent of total sleep duration. Some studies have found sleep regularity to be a stronger predictor of these outcomes than sleep duration alone.
+Research on sleep regularity, tracking how consistent a person's sleep and wake times are rather than just total hours, has linked irregular sleep patterns to higher risks of obesity, type 2 diabetes, high blood pressure, and cardiovascular disease, independent of duration. Some studies find sleep regularity a stronger predictor of these outcomes than duration alone.
 
-The proposed mechanisms make biological sense. Circadian misalignment disrupts insulin sensitivity, alters appetite-regulating hormones, and increases inflammation over time, all of which are pathways implicated in chronic disease and accelerated ageing. This does not mean an occasional late night or weekend lie-in is dangerous, it means a chronically erratic sleep schedule, common among shift workers, frequent travellers, and anyone whose weekday and weekend sleep times differ dramatically, carries real long-term costs.
+The proposed mechanisms make biological sense. Circadian misalignment disrupts insulin sensitivity, alters appetite-regulating hormones, and increases inflammation over time, all pathways implicated in chronic disease and accelerated ageing. This does not mean an occasional late night is dangerous, it means a chronically erratic schedule, common among shift workers and anyone whose weekday and weekend sleep times differ dramatically, carries real long-term costs.
 
 ### Why weekend "social jet lag" adds up
 
-Many people sleep and wake noticeably later on weekends than on weekdays, then reset abruptly for Monday. This pattern, sometimes shifting the body's clock by two hours or more twice a week, has been linked in research to some of the same metabolic and cardiovascular risks seen in shift workers, even though it feels far less disruptive day to day.
+Many people sleep and wake noticeably later on weekends than weekdays, then reset abruptly for Monday. This pattern, sometimes shifting the body's clock by two hours or more twice a week, has been linked to some of the same metabolic risks seen in shift workers, even though it feels far less disruptive day to day.
 
 ## Do light and meal timing matter as much as sleep timing?
 
-Sleep timing is the most visible circadian cue, but not the only one. Morning light exposure helps anchor your internal clock, signalling to your brain that the day has started and helping set the timing for melatonin release roughly fourteen to sixteen hours later. Late-night exposure to bright screens does the opposite, delaying that signal and pushing your body's sense of "night" later.
+Sleep timing is the most visible circadian cue, but not the only one. Morning light helps anchor your internal clock, signalling that the day has started and helping set melatonin release roughly fourteen to sixteen hours later. Late-night exposure to bright screens does the opposite, delaying that signal and pushing your body's sense of "night" later.
 
-Meal timing plays a role too. Eating late at night, when your body's metabolic systems are winding down for rest, is associated with poorer blood sugar control than eating the same food earlier in the day. None of these cues work in isolation, they reinforce or undermine each other, which is why a consistent daily rhythm, not just a sleep target, tends to serve circadian health better than optimising any single factor alone.
+Meal timing plays a role too. Eating late at night, when metabolic systems are winding down for rest, is associated with poorer blood sugar control than eating the same food earlier. None of these cues work in isolation, they reinforce or undermine each other, which is why a consistent daily rhythm serves circadian health better than optimising any single factor alone.
 
 | Circadian cue | Helps set the clock | Disrupts the clock |
 |---|---|---|
@@ -66,7 +66,7 @@ Meal timing plays a role too. Eating late at night, when your body's metabolic s
 
 ## How do you build a consistent sleep rhythm in real life?
 
-You do not need a rigid, unchanging schedule to benefit, small consistency goes a long way. **Try to keep your wake-up time within roughly the same one-hour window every day**, including weekends, since a consistent wake time helps anchor the whole rhythm even when bedtime varies slightly. Get natural light exposure within an hour of waking, even ten to fifteen minutes on a balcony or during a walk makes a difference. Dim lights and reduce screen brightness in the hour or two before bed. Keep your last substantial meal a few hours before sleep where practical. And if your work involves shifts or irregular hours, focus on keeping as much consistency as your schedule allows, and prioritise catching up on sleep debt rather than letting it accumulate across weeks.
+You do not need a rigid, unchanging schedule to benefit, small consistency goes a long way. **Try to keep your wake-up time within roughly the same one-hour window every day**, including weekends, since a consistent wake time anchors the whole rhythm even when bedtime varies slightly. Get natural light within an hour of waking, even ten to fifteen minutes on a balcony makes a difference. Dim lights and reduce screen brightness in the hour or two before bed, and keep your last substantial meal a few hours before sleep where practical. If your work involves shifts or irregular hours, focus on keeping as much consistency as your schedule allows, and prioritise catching up on sleep debt rather than letting it accumulate across weeks.
 
 If you consistently struggle to fall asleep, wake frequently through the night, or feel unrefreshed despite adequate hours in bed, these can be signs of an underlying sleep disorder rather than simple habit issues, and are worth discussing with your doctor rather than managing alone indefinitely.
 

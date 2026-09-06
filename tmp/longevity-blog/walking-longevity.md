@@ -29,15 +29,15 @@ Does walking actually count as meaningful exercise for a longer life, or is it j
 
 Large studies tracking step counts and health outcomes over years have found a fairly consistent pattern, risk of early death drops substantially as daily steps rise from very low levels, with the steepest gains happening between roughly two thousand and seven to eight thousand steps a day. Beyond that range, benefits continue but at a slower rate. This means the biggest gains in longevity come from moving people out of a sedentary pattern rather than from chasing an arbitrary ten thousand step target, a number that, incidentally, originated from a Japanese pedometer marketing campaign rather than a specific piece of research.
 
-**What matters as much as total steps is consistency.** Studies comparing people who exercise intensely but irregularly against those who move moderately but daily often find the daily movers have better cardiovascular and metabolic markers over time. Long, unbroken periods of sitting are independently linked to higher risk of heart disease and early death, even in people who exercise regularly elsewhere in the day. Frequent movement breaks throughout the day, walking to another room, taking stairs, a short walk after a meal, appear to matter in their own right, separate from any dedicated workout.
+**What matters as much as total steps is consistency.** Studies comparing people who exercise intensely but irregularly against those who move moderately but daily often find the daily movers have better cardiovascular and metabolic markers over time. Long, unbroken periods of sitting are independently linked to higher risk of heart disease and early death, even in people who exercise regularly elsewhere in the day. Frequent movement breaks, walking to another room, taking stairs, a short walk after a meal, appear to matter in their own right, separate from any dedicated workout.
 
 ## Why does walking work so well specifically, compared to other exercise?
 
-Walking is a weight-bearing, moderate-intensity activity your body can sustain daily without significant recovery time, which is precisely why it accumulates such a strong evidence base. It supports cardiovascular health by improving circulation and helping regulate blood pressure. It helps manage blood sugar, particularly when a walk follows a meal, since muscle contraction pulls glucose out of the bloodstream independent of insulin. It maintains joint mobility and bone density without the injury risk that comes with higher-impact or higher-load activity. And because it requires no equipment, membership, or specific skill, it is one of the few forms of exercise that people can realistically sustain for decades, which matters enormously for a habit whose benefits compound over a lifetime rather than a few months.
+Walking is a weight-bearing, moderate-intensity activity your body can sustain daily without significant recovery time, which is precisely why it accumulates such a strong evidence base. It supports cardiovascular health by improving circulation and helping regulate blood pressure. It maintains joint mobility and bone density without the injury risk of higher-impact activity. And because it requires no equipment, membership, or specific skill, it is one of the few forms of exercise people can realistically sustain for decades, which matters for a habit whose benefits compound over a lifetime rather than a few months.
 
 ### Why a walk after a meal is especially useful
 
-A short walk in the twenty to thirty minutes after eating has a specific benefit beyond general activity, muscle contraction during movement helps pull glucose out of the bloodstream without needing extra insulin, which can noticeably blunt the blood sugar spike that follows a meal. This makes an after-dinner walk a particularly high-value version of the habit, not just any walk at any time.
+A short walk in the twenty to thirty minutes after eating has a specific extra benefit, muscle contraction helps pull glucose out of the bloodstream without needing extra insulin, noticeably blunting the blood sugar spike that follows a meal. This makes an after-dinner walk a particularly high-value version of the habit, not just any walk at any time.
 
 | Daily step range | Typical effect on early death risk |
 |---|---|
@@ -58,9 +58,9 @@ A short walk in the twenty to thirty minutes after eating has a specific benefit
 
 ## How do you make walking a habit that actually sticks?
 
-The biggest advantage walking has over other forms of exercise is how little friction it takes to start. A walk requires no special clothing, no membership, and can be done almost anywhere, which removes most of the excuses that derail other fitness plans. **Attaching a walk to an existing routine**, right after breakfast, during a work call, after dropping children at school, tends to work better than treating it as a separate task competing for time in an already full day.
+The biggest advantage walking has over other forms of exercise is how little friction it takes to start. A walk requires no special clothing or membership, which removes most of the excuses that derail other fitness plans. **Attaching a walk to an existing routine**, right after breakfast, during a work call, after dropping children at school, tends to work better than treating it as a separate task competing for time in an already full day.
 
-For people managing joint pain, cardiovascular conditions, or other health concerns, walking pace and duration should be built up gradually and, where a specific condition is involved, discussed with a doctor first. For most healthy adults, though, walking is close to a risk-free habit to increase, and it is one of the few pieces of health advice that requires no special knowledge or equipment to act on today.
+For people managing joint pain, cardiovascular conditions, or other health concerns, walking pace and duration should be built up gradually and discussed with a doctor first. For most healthy adults, walking is close to a risk-free habit to increase.
 
 ## Where does walking fit alongside strength training?
 

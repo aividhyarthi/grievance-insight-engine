@@ -12,7 +12,7 @@ featured: false
 
 Longevity advice tends to focus on things you can measure, blood sugar, step counts, sleep hours, protein grams. Relationships rarely make the list.
 
-Yet some of the most rigorous, longest-running health studies ever conducted keep arriving at the same surprising conclusion: the quality of your relationships predicts how long and how well you live about as strongly as many of the physical factors we spend far more time discussing. This is not a soft, feel-good claim, it comes from decades of hard data, and it deserves a place in how we think about ageing well.
+Yet some of the most rigorous, longest-running health studies ever conducted keep arriving at the same conclusion: the quality of your relationships predicts how long and how well you live about as strongly as many of the physical factors we discuss far more often. This is not a soft, feel-good claim, it comes from decades of hard data.
 
 <div class="tldr">
 <p class="tldr-label">Quick Answer</p>
@@ -29,11 +29,11 @@ Yet some of the most rigorous, longest-running health studies ever conducted kee
 
 The Harvard Study of Adult Development, one of the longest studies of human life ever conducted, has followed participants for over eighty years, tracking their health alongside their relationships, careers, and life circumstances. **Its central finding, repeated across multiple generations of participants**, is that people with warmer, more secure relationships in midlife were physically healthier and lived longer than those who were more isolated, and this held even after accounting for factors like social class, IQ, and genetics.
 
-This is not an isolated result. A large analysis pooling data from more than 300,000 people across many separate studies found that strong social relationships were associated with a reduction in risk of early death comparable to quitting smoking, and larger than the effect of many well-known risk factors like physical inactivity or obesity. Loneliness and social isolation, on the other hand, have been independently linked to higher rates of heart disease, depression, and cognitive decline, including a measurably higher risk of dementia in older adults who report chronic loneliness.
+This is not an isolated result. A large analysis pooling data from more than 300,000 people found that strong social relationships were associated with a reduction in early death risk comparable to quitting smoking, larger than the effect of physical inactivity or obesity. Loneliness and isolation, on the other hand, are independently linked to higher rates of heart disease, depression, and cognitive decline, including a measurably higher dementia risk in older adults who report chronic loneliness.
 
 ## Why would connection affect the body, not just the mood?
 
-The mechanisms linking relationships to physical health are becoming clearer. Chronic loneliness keeps the body's stress response system activated more of the time, similar to the effects of chronic stress described elsewhere in longevity research, raising inflammation and putting sustained strain on the cardiovascular system. People with strong social support also tend to recover faster from illness and surgery, are more likely to seek medical care when something feels wrong rather than dismissing it, and are more likely to sustain healthy habits like regular exercise or medication adherence because someone in their life is checking in or doing it alongside them.
+The mechanisms linking relationships to physical health are becoming clearer. Chronic loneliness keeps the body's stress response system activated more of the time, similar to chronic stress, raising inflammation and putting sustained strain on the cardiovascular system. People with strong social support also tend to recover faster from illness and surgery, seek medical care sooner rather than dismissing symptoms, and are more likely to sustain healthy habits like regular exercise because someone in their life is doing it alongside them.
 
 ### Is being alone the same as being lonely?
 
@@ -58,7 +58,7 @@ There is a distinction worth noting between being alone and being lonely. Solitu
 
 ## Why does this get harder after 40, and what actually helps?
 
-Building and maintaining relationships tends to get structurally harder in midlife. Careers demand more time, children need attention, ageing parents need care, and the natural social scaffolding of school or early-career life, where friendships form easily around shared daily proximity, disappears. Many people find their social circles quietly shrinking through their forties and fifties, not through any single event but through years of other priorities taking precedence.
+Building and maintaining relationships tends to get structurally harder in midlife. Careers demand more time, children need attention, ageing parents need care, and the natural social scaffolding of school or early career, where friendships form easily around shared proximity, disappears. Many people find their social circles quietly shrinking through their forties and fifties, not through any single event but through years of other priorities taking precedence.
 
 **A few practical habits genuinely help counter this drift.** Scheduling time with friends with the same seriousness you would give a medical appointment, rather than waiting for free time to appear on its own, tends to work better than good intentions. Joining a recurring group activity, a walking group, a religious or community gathering, a hobby class, creates natural repeated contact that builds relationships without requiring constant effort to organise. Reaching out first, even with something small like a message checking in, matters more than most people assume, since many people overestimate how unwelcome that first move will seem to the other person. And maintaining a small number of close relationships tends to matter more for wellbeing than having a large number of casual ones.
 
