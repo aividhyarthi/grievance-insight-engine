@@ -80,12 +80,7 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 ## Gap List
 
 ### Not yet written
-- Sleep apnoea and testosterone: the connection most men don't know about
-- Alcohol and testosterone: how much is actually too much
-- Cortisol and testosterone: why chronic stress lowers your levels
-- Protein intake after 40: how much you actually need and why it changes
-- Diabetes, metabolic syndrome, and low testosterone: the shared root cause
-- Heart health and testosterone: what the connection really is
+- Sleep apnoea and testosterone: the connection most men don't know about (note: substantially overlaps with existing `sleep-testosterone-two-way-link.md`, which already has a dedicated sleep apnoea section; skip or angle very differently if picked up)
 - Understanding your testosterone blood test: what the numbers actually mean
 - Testosterone replacement therapy: risks, benefits, and who it's actually for
 - Natural ways to support testosterone: what has real evidence and what doesn't
@@ -102,4 +97,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Building a morning routine that actually supports hormonal health
 
 ### Written (fill in as used)
-(none yet, first run in progress)
+- Alcohol and testosterone: how much is actually too much -> `alcohol-and-testosterone-how-much-is-too-much.md`
+- Cortisol and testosterone: why chronic stress lowers your levels -> `cortisol-stress-and-testosterone.md`
+- Protein intake after 40: how much you actually need and why it changes -> `protein-intake-after-40.md`
+- Diabetes, metabolic syndrome, and low testosterone: the shared root cause -> `diabetes-metabolic-syndrome-low-testosterone.md`
+- Heart health and testosterone: what the connection really is -> `heart-health-and-testosterone.md`

@@ -79,11 +79,6 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- Brain fog at work: managing cognitive symptoms on the job
-- Cognitive symptoms with "normal" hormone tests, why it still happens
-- Finding a menopause specialist in India: a practical guide
-- Testosterone HRT for women: does it help and how to get it
-- Starting HRT while still getting periods
 - SSRIs vs HRT for perimenopause mood symptoms: how to decide
 - When antidepressants aren't working, could it be hormonal
 - Misdiagnosed: when perimenopause gets called ADHD, stress, or depression
@@ -118,6 +113,11 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 - "You're too young for menopause": responding to medical dismissal (`tmp/blog/too-young-for-menopause-medical-dismissal.md`)
 - Nobody told me HRT was even an option (`tmp/blog/nobody-told-me-hrt-was-an-option.md`)
 - Common HRT myths, debunked (`tmp/blog/common-hrt-myths-debunked.md`)
+- Brain fog at work: managing cognitive symptoms on the job (`tmp/blog/brain-fog-at-work-managing-cognitive-symptoms.md`)
+- Cognitive symptoms with "normal" hormone tests, why it still happens (`tmp/blog/cognitive-symptoms-normal-hormone-tests.md`)
+- Finding a menopause specialist in India: a practical guide (`tmp/blog/finding-menopause-specialist-in-india.md`)
+- Testosterone HRT for women: does it help and how to get it (`tmp/blog/testosterone-hrt-for-women.md`)
+- Starting HRT while still getting periods (`tmp/blog/starting-hrt-while-still-getting-periods.md`)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 

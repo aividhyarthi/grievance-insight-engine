@@ -80,11 +80,6 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 ## Gap List
 
 ### Not yet written
-- Intermittent fasting and longevity: what the evidence actually shows
-- Alcohol and longevity: how much is actually too much
-- Sauna and heat exposure: an emerging longevity habit, explained
-- Cold exposure and cold showers: hype versus evidence
-- Hydration and healthy ageing: how much water you actually need
 - Sugar, inflammation, and ageing: the real connection
 - Sedentary behaviour: why sitting all day undoes your workout
 - Cognitive health habits: what actually protects your brain as you age
@@ -106,4 +101,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Screen time and eye health as you age
 
 ### Written (fill in as used)
-(none yet, first run in progress)
+- Intermittent fasting and longevity: what the evidence actually shows -> `intermittent-fasting-longevity.md`
+- Alcohol and longevity: how much is actually too much -> `alcohol-longevity-how-much-too-much.md`
+- Sauna and heat exposure: an emerging longevity habit, explained -> `sauna-heat-exposure-longevity.md`
+- Cold exposure and cold showers: hype versus evidence -> `cold-exposure-cold-showers-longevity.md`
+- Hydration and healthy ageing: how much water you actually need -> `hydration-healthy-ageing.md`
