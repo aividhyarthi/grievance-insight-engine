@@ -81,11 +81,6 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 
 ### Not yet written
 - Sleep apnoea and testosterone: the connection most men don't know about (note: substantially overlaps with existing `sleep-testosterone-two-way-link.md`, which already has a dedicated sleep apnoea section; skip or angle very differently if picked up)
-- Understanding your testosterone blood test: what the numbers actually mean
-- Testosterone replacement therapy: risks, benefits, and who it's actually for
-- Natural ways to support testosterone: what has real evidence and what doesn't
-- Hair loss and skin changes in andropause: what's hormonal, what's just ageing
-- Snoring and your partner: why sleep issues affect more than just you
 - Comparing yourself to your younger self: the psychology of midlife physical change
 - Getting your doctor to take you seriously: a practical advocacy guide
 - Cost of testosterone testing and treatment in India: what to expect
@@ -102,3 +97,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Protein intake after 40: how much you actually need and why it changes -> `protein-intake-after-40.md`
 - Diabetes, metabolic syndrome, and low testosterone: the shared root cause -> `diabetes-metabolic-syndrome-low-testosterone.md`
 - Heart health and testosterone: what the connection really is -> `heart-health-and-testosterone.md`
+- Understanding your testosterone blood test: what the numbers actually mean -> `understanding-testosterone-blood-test-numbers.md`
+- Testosterone replacement therapy: risks, benefits, and who it's actually for -> `testosterone-replacement-therapy-risks-benefits.md`
+- Natural ways to support testosterone: what has real evidence and what doesn't -> `natural-ways-to-support-testosterone.md`
+- Hair loss and skin changes in andropause: what's hormonal, what's just ageing -> `hair-loss-skin-changes-andropause.md`
+- Snoring and your partner: why sleep issues affect more than just you -> `snoring-and-your-partner.md`

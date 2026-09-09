@@ -80,11 +80,6 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 ## Gap List
 
 ### Not yet written
-- Sugar, inflammation, and ageing: the real connection
-- Sedentary behaviour: why sitting all day undoes your workout
-- Cognitive health habits: what actually protects your brain as you age
-- Blood sugar and metabolic health: monitoring what matters
-- Bone density and osteoporosis prevention: starting before you need to
 - Supplements worth considering versus those that aren't, an honest look
 - Sleep apnoea and ageing: an underdiagnosed longevity risk
 - Air quality and pollution in Indian cities: practical steps for your lungs and heart
@@ -106,3 +101,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Sauna and heat exposure: an emerging longevity habit, explained -> `sauna-heat-exposure-longevity.md`
 - Cold exposure and cold showers: hype versus evidence -> `cold-exposure-cold-showers-longevity.md`
 - Hydration and healthy ageing: how much water you actually need -> `hydration-healthy-ageing.md`
+- Sugar, inflammation, and ageing: the real connection -> `sugar-inflammation-ageing.md`
+- Sedentary behaviour: why sitting all day undoes your workout -> `sedentary-behaviour-sitting-longevity.md`
+- Cognitive health habits: what actually protects your brain as you age -> `cognitive-health-brain-ageing.md`
+- Blood sugar and metabolic health: monitoring what matters -> `blood-sugar-metabolic-health-monitoring.md`
+- Bone density and osteoporosis prevention: starting before you need to -> `bone-density-osteoporosis-prevention.md`

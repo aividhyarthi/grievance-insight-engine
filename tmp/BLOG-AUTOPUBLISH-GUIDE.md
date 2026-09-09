@@ -79,12 +79,7 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- SSRIs vs HRT for perimenopause mood symptoms: how to decide
-- When antidepressants aren't working, could it be hormonal
-- Misdiagnosed: when perimenopause gets called ADHD, stress, or depression
-- Nobody told me brain fog would feel like this
 - Nobody told me about the rage
-- Feeling older overnight: perimenopause and the fear of aging
 - Feeling disconnected from your own body
 - Perimenopause with regular periods: is that possible
 - Why symptoms come and go: good months, bad months
@@ -118,6 +113,11 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 - Finding a menopause specialist in India: a practical guide (`tmp/blog/finding-menopause-specialist-in-india.md`)
 - Testosterone HRT for women: does it help and how to get it (`tmp/blog/testosterone-hrt-for-women.md`)
 - Starting HRT while still getting periods (`tmp/blog/starting-hrt-while-still-getting-periods.md`)
+- SSRIs vs HRT for perimenopause mood symptoms: how to decide (`tmp/blog/ssris-vs-hrt-perimenopause-mood-symptoms.md`)
+- When antidepressants aren't working, could it be hormonal (`tmp/blog/antidepressants-not-working-could-be-hormonal.md`)
+- Misdiagnosed: when perimenopause gets called ADHD, stress, or depression (`tmp/blog/misdiagnosed-perimenopause-adhd-stress-depression.md`)
+- Nobody told me brain fog would feel like this (`tmp/blog/nobody-told-me-brain-fog-would-feel-like-this.md`)
+- Feeling older overnight: perimenopause and the fear of aging (`tmp/blog/feeling-older-overnight-perimenopause-fear-of-aging.md`)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 
