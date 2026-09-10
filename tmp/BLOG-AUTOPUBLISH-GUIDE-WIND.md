@@ -81,14 +81,9 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 
 ### Not yet written
 - Sleep apnoea and testosterone: the connection most men don't know about (note: substantially overlaps with existing `sleep-testosterone-two-way-link.md`, which already has a dedicated sleep apnoea section; skip or angle very differently if picked up)
-- Comparing yourself to your younger self: the psychology of midlife physical change
-- Getting your doctor to take you seriously: a practical advocacy guide
-- Cost of testosterone testing and treatment in India: what to expect
-- Joint pain and inflammation in midlife men: is testosterone involved
-- Motivation and goal-setting when your body doesn't respond like it used to
-- Depression in men: the andropause link nobody talks about
-- Relationship and intimacy changes: talking to your partner about what's happening
-- Workplace performance and energy: managing a demanding job with declining energy
+- Getting your doctor to take you seriously: a practical advocacy guide (note: substantially overlaps with existing `talking-to-doctor-testosterone-test.md`; skip or angle very differently, e.g. toward systemic dismissal/stigma rather than the blood-test conversation itself, if picked up)
+- Motivation and goal-setting when your body doesn't respond like it used to (note: closely adjacent to `comparing-yourself-to-younger-self-midlife-psychology.md`; angle toward practical goal-setting mechanics, not body-image psychology, if picked up)
+- Workplace performance and energy: managing a demanding job with declining energy (note: adjacent to `testosterone-fatigue-what-helps.md`; angle specifically toward workplace/career context, e.g. concentration in meetings, presenteeism, career-stage pressure, not general fatigue causes)
 - Building a morning routine that actually supports hormonal health
 
 ### Written (fill in as used)
@@ -102,3 +97,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Natural ways to support testosterone: what has real evidence and what doesn't -> `natural-ways-to-support-testosterone.md`
 - Hair loss and skin changes in andropause: what's hormonal, what's just ageing -> `hair-loss-skin-changes-andropause.md`
 - Snoring and your partner: why sleep issues affect more than just you -> `snoring-and-your-partner.md`
+- Comparing yourself to your younger self: the psychology of midlife physical change -> `comparing-yourself-to-younger-self-midlife-psychology.md`
+- Cost of testosterone testing and treatment in India: what to expect -> `cost-of-testosterone-testing-treatment-india.md`
+- Joint pain and inflammation in midlife men: is testosterone involved -> `joint-pain-inflammation-midlife-testosterone.md`
+- Depression in men: the andropause link nobody talks about -> `depression-in-men-andropause-link.md`
+- Relationship and intimacy changes: talking to your partner about what's happening -> `relationship-intimacy-changes-talking-to-partner.md`

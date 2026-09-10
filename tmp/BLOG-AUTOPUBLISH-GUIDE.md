@@ -79,21 +79,16 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- Nobody told me about the rage
-- Feeling disconnected from your own body
 - Perimenopause with regular periods: is that possible
 - Why symptoms come and go: good months, bad months
 - Bleeding after sex in perimenopause: causes and when to worry
-- How do you know you've had your last period (retrospective diagnosis)
 - Muscle loss and body composition changes in perimenopause
 - Low libido and the estrogen-testosterone link
 - Testosterone in women: what it does and when testing matters
 - Estrogen dominance: what the term means and whether it holds up
-- Birth control vs HRT in perimenopause
 - Pregnancy scares in perimenopause: why they happen, what to do
 - Miscarriage risk and perimenopause: what the data shows
 - Fear of losing your job: perimenopause, performance, and confidence at work
-- Explaining perimenopause to in-laws and extended family (Indian joint-family angle)
 - Why does everyone wake up at 3am? The science of early perimenopause waking
 - The rage nobody warns you about: irritability and anger in perimenopause
 - Perimenopause and loneliness: why friendships change
@@ -118,6 +113,11 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 - Misdiagnosed: when perimenopause gets called ADHD, stress, or depression (`tmp/blog/misdiagnosed-perimenopause-adhd-stress-depression.md`)
 - Nobody told me brain fog would feel like this (`tmp/blog/nobody-told-me-brain-fog-would-feel-like-this.md`)
 - Feeling older overnight: perimenopause and the fear of aging (`tmp/blog/feeling-older-overnight-perimenopause-fear-of-aging.md`)
+- Nobody told me about the rage (`tmp/blog/nobody-told-me-about-the-rage.md`)
+- Birth control vs HRT in perimenopause (`tmp/blog/birth-control-vs-hrt-perimenopause.md`)
+- Feeling disconnected from your own body (`tmp/blog/feeling-disconnected-from-your-own-body.md`)
+- Explaining perimenopause to in-laws and extended family (Indian joint-family angle) (`tmp/blog/explaining-perimenopause-to-in-laws-extended-family.md`)
+- How do you know you've had your last period (retrospective diagnosis) (`tmp/blog/how-do-you-know-last-period-retrospective-diagnosis.md`)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 

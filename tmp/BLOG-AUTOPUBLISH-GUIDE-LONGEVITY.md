@@ -80,11 +80,6 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 ## Gap List
 
 ### Not yet written
-- Supplements worth considering versus those that aren't, an honest look
-- Sleep apnoea and ageing: an underdiagnosed longevity risk
-- Air quality and pollution in Indian cities: practical steps for your lungs and heart
-- Muscle protein synthesis and ageing: why protein needs change after 40
-- Balance and fall prevention: an overlooked longevity habit
 - Yoga specifically, versus general movement: what the evidence says
 - Meditation and mindfulness beyond stress relief: cognitive and cellular ageing
 - Dental health and longevity: an underrated connection
@@ -106,3 +101,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Cognitive health habits: what actually protects your brain as you age -> `cognitive-health-brain-ageing.md`
 - Blood sugar and metabolic health: monitoring what matters -> `blood-sugar-metabolic-health-monitoring.md`
 - Bone density and osteoporosis prevention: starting before you need to -> `bone-density-osteoporosis-prevention.md`
+- Supplements worth considering versus those that aren't, an honest look -> `supplements-worth-considering-honest-look.md`
+- Sleep apnoea and ageing: an underdiagnosed longevity risk -> `sleep-apnoea-ageing-longevity-risk.md`
+- Air quality and pollution in Indian cities: practical steps for your lungs and heart -> `air-quality-pollution-indian-cities-lungs-heart.md`
+- Muscle protein synthesis and ageing: why protein needs change after 40 -> `muscle-protein-synthesis-ageing-protein-needs.md`
+- Balance and fall prevention: an overlooked longevity habit -> `balance-fall-prevention-longevity-habit.md`
