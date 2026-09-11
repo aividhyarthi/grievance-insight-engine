@@ -82,13 +82,9 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 ### Not yet written
 - Yoga specifically, versus general movement: what the evidence says
 - Meditation and mindfulness beyond stress relief: cognitive and cellular ageing
-- Dental health and longevity: an underrated connection
-- Skin ageing and sun protection: what actually works
-- Purpose and retirement: why having a reason to get up matters for lifespan
 - Traditional fermented foods of India beyond curd: an underused resource
 - Spices with real evidence: turmeric, and what the research actually supports
 - Water quality in India: what to know for long-term health
-- Screen time and eye health as you age
 
 ### Written (fill in as used)
 - Intermittent fasting and longevity: what the evidence actually shows -> `intermittent-fasting-longevity.md`
@@ -106,3 +102,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Air quality and pollution in Indian cities: practical steps for your lungs and heart -> `air-quality-pollution-indian-cities-lungs-heart.md`
 - Muscle protein synthesis and ageing: why protein needs change after 40 -> `muscle-protein-synthesis-ageing-protein-needs.md`
 - Balance and fall prevention: an overlooked longevity habit -> `balance-fall-prevention-longevity-habit.md`
+- Dental health and longevity: an underrated connection -> `dental-health-longevity-connection.md`
+- Skin ageing and sun protection: what actually works -> `skin-ageing-sun-protection-longevity.md`
+- Screen time and eye health as you age -> `screen-time-eye-health-ageing.md`
+- Purpose and retirement: why having a reason to get up matters for lifespan -> `purpose-retirement-longevity.md`
+- Decade-by-decade longevity priorities: what changes in your 40s, 50s, and 60s -> `decade-by-decade-longevity-40s-50s-60s.md`

@@ -102,3 +102,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Joint pain and inflammation in midlife men: is testosterone involved -> `joint-pain-inflammation-midlife-testosterone.md`
 - Depression in men: the andropause link nobody talks about -> `depression-in-men-andropause-link.md`
 - Relationship and intimacy changes: talking to your partner about what's happening -> `relationship-intimacy-changes-talking-to-partner.md`
+- Andropause in your 40s, 50s, and 60s: how symptoms and priorities shift -> `andropause-symptoms-by-decade-40s-50s-60s.md`
+- Frequent business travel and testosterone: jet lag, time zones, and hormonal health -> `business-travel-jet-lag-testosterone.md`
+- Fatherhood after 40: fertility, family planning, and testosterone decline -> `fatherhood-after-40-fertility-family-planning.md`
+- Prostate health and testosterone: what every midlife man should know -> `prostate-health-and-testosterone.md`
+- Talking to your adult children about what you're going through -> `talking-to-adult-children-about-andropause.md`

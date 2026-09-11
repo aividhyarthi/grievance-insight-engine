@@ -79,23 +79,20 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- Perimenopause with regular periods: is that possible
-- Why symptoms come and go: good months, bad months
-- Bleeding after sex in perimenopause: causes and when to worry
 - Muscle loss and body composition changes in perimenopause
 - Low libido and the estrogen-testosterone link
-- Testosterone in women: what it does and when testing matters
+- Testosterone in women: what it does and when testing matters (note: overlaps heavily with the already-written "Testosterone HRT for Women", check for near-duplication before using)
 - Estrogen dominance: what the term means and whether it holds up
 - Pregnancy scares in perimenopause: why they happen, what to do
 - Miscarriage risk and perimenopause: what the data shows
 - Fear of losing your job: perimenopause, performance, and confidence at work
 - Why does everyone wake up at 3am? The science of early perimenopause waking
-- The rage nobody warns you about: irritability and anger in perimenopause
-- Perimenopause and loneliness: why friendships change
-- Low ferritin and iron deficiency: the fatigue cause doctors miss
-- Heart palpitations in perimenopause: when it's hormonal, when to worry
 - What actually works for the 3am wake-up (practical sleep guide)
 - Why perimenopause hits women with ADHD earlier and harder
+
+Note: two items previously on this list were found already covered by existing posts and have been removed rather than written again:
+- "The rage nobody warns you about" is already covered by `nobody-told-me-about-the-rage.md` and `menopause-rage-anger-perimenopause.md`.
+- "Heart palpitations in perimenopause: when it's hormonal, when to worry" is already covered by `heart-palpitations-perimenopause.md` ("Heart Palpitations in Perimenopause: Why Your Heart Races and When to Worry").
 
 ### Written (fill in as used)
 - Brain fog vs ADHD: how to tell the difference (`tmp/blog/brain-fog-vs-adhd-perimenopause.md`)
@@ -118,6 +115,11 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 - Feeling disconnected from your own body (`tmp/blog/feeling-disconnected-from-your-own-body.md`)
 - Explaining perimenopause to in-laws and extended family (Indian joint-family angle) (`tmp/blog/explaining-perimenopause-to-in-laws-extended-family.md`)
 - How do you know you've had your last period (retrospective diagnosis) (`tmp/blog/how-do-you-know-last-period-retrospective-diagnosis.md`)
+- Bleeding after sex in perimenopause: causes and when to worry (`tmp/blog/bleeding-after-sex-perimenopause-causes-when-to-worry.md`)
+- Perimenopause with regular periods: is that possible (`tmp/blog/perimenopause-with-regular-periods-is-that-possible.md`)
+- Why symptoms come and go: good months, bad months (`tmp/blog/why-perimenopause-symptoms-come-and-go-good-bad-months.md`)
+- Perimenopause and loneliness: why friendships change (`tmp/blog/perimenopause-and-loneliness-why-friendships-change.md`)
+- Low ferritin and iron deficiency: the fatigue cause doctors miss (`tmp/blog/low-ferritin-iron-deficiency-fatigue-doctors-miss.md`)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 
