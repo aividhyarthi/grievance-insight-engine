@@ -107,3 +107,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Screen time and eye health as you age -> `screen-time-eye-health-ageing.md`
 - Purpose and retirement: why having a reason to get up matters for lifespan -> `purpose-retirement-longevity.md`
 - Decade-by-decade longevity priorities: what changes in your 40s, 50s, and 60s -> `decade-by-decade-longevity-40s-50s-60s.md`
+- Hearing loss and ageing: why your ears deserve as much attention as your heart -> `hearing-loss-ageing-longevity.md`
+- Grip strength: the simple longevity marker doctors are increasingly watching -> `grip-strength-longevity-marker.md`
+- Caring for ageing parents without losing your own health: a guide for the sandwich generation -> `caregiving-ageing-parents-sandwich-generation.md`
+- Pranayama for longevity: what the breathing practices actually do to your body -> `pranayama-breathing-longevity.md`
+- Monsoon to summer: navigating India's seasonal health transitions for long-term wellbeing -> `monsoon-summer-seasonal-health-transitions-india.md`

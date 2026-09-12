@@ -107,3 +107,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Fatherhood after 40: fertility, family planning, and testosterone decline -> `fatherhood-after-40-fertility-family-planning.md`
 - Prostate health and testosterone: what every midlife man should know -> `prostate-health-and-testosterone.md`
 - Talking to your adult children about what you're going through -> `talking-to-adult-children-about-andropause.md`
+- Long-haul drivers, shift workers, and testosterone: the occupational toll of irregular hours -> `long-haul-drivers-shift-work-testosterone.md`
+- Fasting, festivals, and testosterone: what men with low levels should know before Navratri or Ramzan -> `fasting-festivals-hormonal-health-andropause.md`
+- Financial stress and testosterone: the breadwinner pressure most Indian men never discuss -> `financial-stress-testosterone-breadwinner-pressure.md`
+- Retirement and testosterone: the hormonal side of losing a professional identity -> `retirement-transition-testosterone-identity.md`
+- The midlife health checkup: what to actually test for after 40, and where testosterone fits in -> `midlife-health-checkup-after-40-testosterone.md`

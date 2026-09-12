@@ -79,15 +79,10 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- Muscle loss and body composition changes in perimenopause
 - Low libido and the estrogen-testosterone link
 - Testosterone in women: what it does and when testing matters (note: overlaps heavily with the already-written "Testosterone HRT for Women", check for near-duplication before using)
-- Estrogen dominance: what the term means and whether it holds up
-- Pregnancy scares in perimenopause: why they happen, what to do
-- Miscarriage risk and perimenopause: what the data shows
-- Fear of losing your job: perimenopause, performance, and confidence at work
-- Why does everyone wake up at 3am? The science of early perimenopause waking
-- What actually works for the 3am wake-up (practical sleep guide)
+- Pregnancy scares in perimenopause: why they happen, what to do (note: overlaps somewhat with `can-i-get-pregnant-during-perimenopause.md` and `false-positive-pregnancy-test-perimenopause.md`, check for near-duplication before using)
+- Fear of losing your job: perimenopause, performance, and confidence at work (note: overlaps with `losing-confidence-perimenopause.md`, `perimenopause-working-women-india.md`, and `brain-fog-at-work-managing-cognitive-symptoms.md`, check for near-duplication before using)
 - Why perimenopause hits women with ADHD earlier and harder
 
 Note: two items previously on this list were found already covered by existing posts and have been removed rather than written again:
@@ -120,6 +115,11 @@ Note: two items previously on this list were found already covered by existing p
 - Why symptoms come and go: good months, bad months (`tmp/blog/why-perimenopause-symptoms-come-and-go-good-bad-months.md`)
 - Perimenopause and loneliness: why friendships change (`tmp/blog/perimenopause-and-loneliness-why-friendships-change.md`)
 - Low ferritin and iron deficiency: the fatigue cause doctors miss (`tmp/blog/low-ferritin-iron-deficiency-fatigue-doctors-miss.md`)
+- Why does everyone wake up at 3am? The science of early perimenopause waking (`tmp/blog/why-does-everyone-wake-up-at-3am-perimenopause.md`)
+- What actually works for the 3am wake-up (practical sleep guide) (`tmp/blog/what-actually-works-for-the-3am-wake-up.md`)
+- Estrogen dominance: what the term means and whether it holds up (`tmp/blog/oestrogen-dominance-what-it-means-does-it-hold-up.md`)
+- Miscarriage risk and perimenopause: what the data shows (`tmp/blog/miscarriage-risk-perimenopause-what-data-shows.md`)
+- Muscle loss and body composition changes in perimenopause (`tmp/blog/muscle-loss-body-composition-perimenopause.md`)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 
