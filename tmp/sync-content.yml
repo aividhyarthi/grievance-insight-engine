@@ -32,11 +32,12 @@ jobs:
             exit 1
           fi
 
-      - name: Copy layout, ads.txt, favicon
+      - name: Copy layout, ads.txt, robots.txt, favicon
         run: |
           cp "$SRC/ss-layout.astro" "src/layouts/Layout.astro"
           mkdir -p public
           cp "$SRC/ss-ads.txt" "public/ads.txt"
+          cp "$SRC/ss-robots.txt" "public/robots.txt"
           cp "$SRC/ss-favicon.svg" "public/favicon.svg"
 
       - name: Copy symptoms, check, quiz pages
@@ -75,6 +76,7 @@ jobs:
           mkdir -p src/pages/blog
           cp "$SRC/ss-page-blog-index.astro"             "src/pages/blog/index.astro"
           cp "$SRC/ss-sitemap.ts"                        "src/pages/sitemap.xml.ts"
+          cp "$SRC/ss-news-sitemap.ts"                    "src/pages/news-sitemap.xml.ts"
 
       - name: Copy Second Wind + Longevity guide pages
         run: |
@@ -143,6 +145,7 @@ jobs:
           PATHS=(
             src/layouts/Layout.astro
             public/ads.txt
+            public/robots.txt
             public/favicon.svg
             src/pages/symptoms.astro
             src/pages/check.astro
@@ -195,6 +198,7 @@ jobs:
             src/pages/how-it-works.astro
             src/pages/blog/index.astro
             src/pages/sitemap.xml.ts
+            src/pages/news-sitemap.xml.ts
             src/pages/chat.astro
             src/pages/api/chat.ts
             src/pages/voices/index.astro

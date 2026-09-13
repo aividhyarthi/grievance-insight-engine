@@ -34,6 +34,10 @@ echo "→ ads.txt..."
 mkdir -p public
 cp "$SRC/ss-ads.txt" "public/ads.txt"
 
+# 1c. robots.txt (allows all crawlers, points to sitemap + news sitemap)
+echo "→ robots.txt..."
+cp "$SRC/ss-robots.txt" "public/robots.txt"
+
 # 2. Symptoms page
 echo "→ Symptoms page..."
 cp "$SRC/ss-symptoms-cards.astro" "src/pages/symptoms.astro"
@@ -113,6 +117,7 @@ cp "$SRC/ss-page-how-it-works.astro"           "src/pages/how-it-works.astro"
 mkdir -p src/pages/blog
 cp "$SRC/ss-page-blog-index.astro"             "src/pages/blog/index.astro"
 cp "$SRC/ss-sitemap.ts"                        "src/pages/sitemap.xml.ts"
+cp "$SRC/ss-news-sitemap.ts"                    "src/pages/news-sitemap.xml.ts"
 
 # 2f. Chat removed for now (costs API credits per message, unpredictable
 # under paid marketing traffic). Source kept in staging as ss-chat.astro /

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.thesecondspring.org/sitemap.xml
+Sitemap: https://www.thesecondspring.org/news-sitemap.xml
