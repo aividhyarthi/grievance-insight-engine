@@ -79,11 +79,9 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- Low libido and the estrogen-testosterone link
 - Testosterone in women: what it does and when testing matters (note: overlaps heavily with the already-written "Testosterone HRT for Women", check for near-duplication before using)
 - Pregnancy scares in perimenopause: why they happen, what to do (note: overlaps somewhat with `can-i-get-pregnant-during-perimenopause.md` and `false-positive-pregnancy-test-perimenopause.md`, check for near-duplication before using)
 - Fear of losing your job: perimenopause, performance, and confidence at work (note: overlaps with `losing-confidence-perimenopause.md`, `perimenopause-working-women-india.md`, and `brain-fog-at-work-managing-cognitive-symptoms.md`, check for near-duplication before using)
-- Why perimenopause hits women with ADHD earlier and harder
 
 Note: two items previously on this list were found already covered by existing posts and have been removed rather than written again:
 - "The rage nobody warns you about" is already covered by `nobody-told-me-about-the-rage.md` and `menopause-rage-anger-perimenopause.md`.
@@ -120,6 +118,11 @@ Note: two items previously on this list were found already covered by existing p
 - Estrogen dominance: what the term means and whether it holds up (`tmp/blog/oestrogen-dominance-what-it-means-does-it-hold-up.md`)
 - Miscarriage risk and perimenopause: what the data shows (`tmp/blog/miscarriage-risk-perimenopause-what-data-shows.md`)
 - Muscle loss and body composition changes in perimenopause (`tmp/blog/muscle-loss-body-composition-perimenopause.md`)
+- Why perimenopause hits women with ADHD earlier and harder (`tmp/blog/why-perimenopause-hits-adhd-women-earlier-harder.md`)
+- Low libido and the estrogen-testosterone link (`tmp/blog/low-libido-perimenopause-estrogen-testosterone-link.md`)
+- Autoimmune flare-ups in perimenopause: when your body turns on itself (`tmp/blog/autoimmune-flare-ups-in-perimenopause.md`, generated fresh, not on the original gap list)
+- Brain fog and driving in perimenopause: the safety conversation nobody has (`tmp/blog/brain-fog-and-driving-perimenopause-safety.md`, generated fresh, not on the original gap list)
+- Dating and remarriage in perimenopause: starting over in your 40s (`tmp/blog/dating-remarriage-perimenopause-starting-over-40s.md`, generated fresh, not on the original gap list)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 

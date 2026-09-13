@@ -112,3 +112,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Caring for ageing parents without losing your own health: a guide for the sandwich generation -> `caregiving-ageing-parents-sandwich-generation.md`
 - Pranayama for longevity: what the breathing practices actually do to your body -> `pranayama-breathing-longevity.md`
 - Monsoon to summer: navigating India's seasonal health transitions for long-term wellbeing -> `monsoon-summer-seasonal-health-transitions-india.md`
+- Cataracts and glaucoma: the eye diseases of ageing worth knowing about before symptoms start -> `cataracts-glaucoma-eye-disease-ageing.md`
+- Kalaripayattu, mallakhamb, and gada: what India's traditional strength practices get right -> `traditional-indian-strength-practices-longevity.md`
+- Jet lag after 50: why travel hits harder as you age, and how to recover faster -> `jet-lag-travel-fatigue-after-50.md`
+- Journaling for a longer life: what writing regularly does to your brain and stress levels -> `journaling-longevity-brain-stress.md`
+- Encore careers: why starting something new after 50 might add years to your life -> `encore-careers-second-act-after-50.md`

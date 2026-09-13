@@ -112,3 +112,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Financial stress and testosterone: the breadwinner pressure most Indian men never discuss -> `financial-stress-testosterone-breadwinner-pressure.md`
 - Retirement and testosterone: the hormonal side of losing a professional identity -> `retirement-transition-testosterone-identity.md`
 - The midlife health checkup: what to actually test for after 40, and where testosterone fits in -> `midlife-health-checkup-after-40-testosterone.md`
+- Andropause care for NRI and expat Indian men: getting diagnosed and treated abroad -> `nri-expat-men-andropause-care-abroad.md`
+- Second marriages and blended families in midlife: testosterone, intimacy, and starting over -> `second-marriages-blended-families-midlife-testosterone.md`
+- Hobbies, identity, and testosterone: why what you do for fun matters more after 40 -> `hobbies-identity-testosterone-after-40.md`
+- Social isolation and male friendships in midlife: the hormonal cost of losing touch -> `social-isolation-male-friendships-midlife-testosterone.md`
+- Chronic pain and testosterone: the two-way connection most men never get told about -> `chronic-pain-and-testosterone-connection.md`
