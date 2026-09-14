@@ -117,3 +117,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Hobbies, identity, and testosterone: why what you do for fun matters more after 40 -> `hobbies-identity-testosterone-after-40.md`
 - Social isolation and male friendships in midlife: the hormonal cost of losing touch -> `social-isolation-male-friendships-midlife-testosterone.md`
 - Chronic pain and testosterone: the two-way connection most men never get told about -> `chronic-pain-and-testosterone-connection.md`
+- Caring for ageing parents while your own health is declining: the sandwich generation squeeze -> `sandwich-generation-caring-for-ageing-parents-testosterone.md`
+- Career plateau and being passed over for promotion: the hidden hormonal and emotional toll -> `career-plateau-passed-over-promotion-testosterone.md`
+- Gym injuries and recovery time after 40: training smart when your body doesn't bounce back -> `gym-injuries-recovery-time-after-40.md`
+- Screen time, pornography habits, and libido in midlife: what's actually going on -> `screen-time-porn-habits-libido-midlife.md`
+- Long stretches away from family for work: loneliness, marriage strain, and testosterone -> `long-stretches-away-from-family-work-testosterone.md`

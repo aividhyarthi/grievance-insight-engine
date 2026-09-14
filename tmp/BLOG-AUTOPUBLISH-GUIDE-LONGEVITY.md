@@ -117,3 +117,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Jet lag after 50: why travel hits harder as you age, and how to recover faster -> `jet-lag-travel-fatigue-after-50.md`
 - Journaling for a longer life: what writing regularly does to your brain and stress levels -> `journaling-longevity-brain-stress.md`
 - Encore careers: why starting something new after 50 might add years to your life -> `encore-careers-second-act-after-50.md`
+- Kidney health and ageing: why this organ deserves more attention after 40 -> `kidney-health-ageing.md`
+- Cooking oil choices and heart health: what the evidence actually supports -> `cooking-oil-choices-heart-health.md`
+- Home safety modifications for ageing in place: a practical room-by-room guide -> `home-safety-modifications-ageing-in-place.md`
+- Pet ownership and companionship: what the research on longevity actually shows -> `pet-ownership-companionship-longevity.md`
+- Digital literacy after 50: staying connected with family without the overwhelm -> `digital-literacy-staying-connected-family.md`

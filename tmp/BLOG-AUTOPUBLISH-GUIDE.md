@@ -79,9 +79,10 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- Testosterone in women: what it does and when testing matters (note: overlaps heavily with the already-written "Testosterone HRT for Women", check for near-duplication before using)
 - Pregnancy scares in perimenopause: why they happen, what to do (note: overlaps somewhat with `can-i-get-pregnant-during-perimenopause.md` and `false-positive-pregnancy-test-perimenopause.md`, check for near-duplication before using)
 - Fear of losing your job: perimenopause, performance, and confidence at work (note: overlaps with `losing-confidence-perimenopause.md`, `perimenopause-working-women-india.md`, and `brain-fog-at-work-managing-cognitive-symptoms.md`, check for near-duplication before using)
+
+Note: "Testosterone in women: what it does and when testing matters" was used on 2026-09-14, angled distinctly as a diagnostic/testing piece (`testosterone-testing-in-women-perimenopause.md`) rather than the treatment focus of the already-written "Testosterone HRT for Women", so it has been moved to Written below.
 
 Note: two items previously on this list were found already covered by existing posts and have been removed rather than written again:
 - "The rage nobody warns you about" is already covered by `nobody-told-me-about-the-rage.md` and `menopause-rage-anger-perimenopause.md`.
@@ -123,6 +124,11 @@ Note: two items previously on this list were found already covered by existing p
 - Autoimmune flare-ups in perimenopause: when your body turns on itself (`tmp/blog/autoimmune-flare-ups-in-perimenopause.md`, generated fresh, not on the original gap list)
 - Brain fog and driving in perimenopause: the safety conversation nobody has (`tmp/blog/brain-fog-and-driving-perimenopause-safety.md`, generated fresh, not on the original gap list)
 - Dating and remarriage in perimenopause: starting over in your 40s (`tmp/blog/dating-remarriage-perimenopause-starting-over-40s.md`, generated fresh, not on the original gap list)
+- Testosterone testing in women: what the numbers actually mean and when it's worth checking (`tmp/blog/testosterone-testing-in-women-perimenopause.md`, from the gap list, angled as diagnostic/testing rather than treatment)
+- Nobody told me I'd have to grieve my fertility before I was ready (`tmp/blog/nobody-told-me-id-have-to-grieve-my-fertility.md`, generated fresh, not on the original gap list)
+- When your husband doesn't believe what you're going through (`tmp/blog/when-your-husband-doesnt-believe-perimenopause.md`, generated fresh, not on the original gap list)
+- Brain fog and money: when perimenopause affects your financial decisions (`tmp/blog/brain-fog-and-money-perimenopause-financial-decisions.md`, generated fresh, not on the original gap list)
+- Why perimenopause brain fog gets worse right before your period (`tmp/blog/brain-fog-worse-before-period-perimenopause.md`, generated fresh, not on the original gap list)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 
