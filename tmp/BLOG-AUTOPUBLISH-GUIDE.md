@@ -79,8 +79,8 @@ Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, va
 ## Gap List
 
 ### Not yet written
-- Pregnancy scares in perimenopause: why they happen, what to do (note: overlaps somewhat with `can-i-get-pregnant-during-perimenopause.md` and `false-positive-pregnancy-test-perimenopause.md`, check for near-duplication before using)
-- Fear of losing your job: perimenopause, performance, and confidence at work (note: overlaps with `losing-confidence-perimenopause.md`, `perimenopause-working-women-india.md`, and `brain-fog-at-work-managing-cognitive-symptoms.md`, check for near-duplication before using)
+
+(empty as of 2026-09-15; both remaining entries have been written with distinct angles and moved to Written below, see notes there)
 
 Note: "Testosterone in women: what it does and when testing matters" was used on 2026-09-14, angled distinctly as a diagnostic/testing piece (`testosterone-testing-in-women-perimenopause.md`) rather than the treatment focus of the already-written "Testosterone HRT for Women", so it has been moved to Written below.
 
@@ -129,6 +129,11 @@ Note: two items previously on this list were found already covered by existing p
 - When your husband doesn't believe what you're going through (`tmp/blog/when-your-husband-doesnt-believe-perimenopause.md`, generated fresh, not on the original gap list)
 - Brain fog and money: when perimenopause affects your financial decisions (`tmp/blog/brain-fog-and-money-perimenopause-financial-decisions.md`, generated fresh, not on the original gap list)
 - Why perimenopause brain fog gets worse right before your period (`tmp/blog/brain-fog-worse-before-period-perimenopause.md`, generated fresh, not on the original gap list)
+- Pregnancy scares in perimenopause: why they happen, what to do (`tmp/blog/pregnancy-scare-perimenopause-what-to-do.md`, from the gap list, angled distinctly as a practical "first 48 hours" crisis-response guide rather than the fertility-biology focus of `can-i-get-pregnant-during-perimenopause.md` or the hCG-science focus of `false-positive-pregnancy-test-perimenopause.md`)
+- Fear of losing your job: perimenopause, performance, and confidence at work (`tmp/blog/fear-of-losing-your-job-perimenopause.md`, from the gap list, angled distinctly around job-security fear, Indian workplace rights/protections, and documentation strategy, rather than the general symptom overview in `perimenopause-working-women-india.md`, the confidence-rebuilding focus of `losing-confidence-perimenopause.md`, or the cognitive-management focus of `brain-fog-at-work-managing-cognitive-symptoms.md`)
+- Hobbies and creative outlets as stress relief in perimenopause (`tmp/blog/hobbies-creative-outlets-perimenopause-stress-relief.md`, generated fresh, not on the original gap list)
+- Handwriting and fine motor changes in perimenopause (`tmp/blog/handwriting-fine-motor-changes-perimenopause.md`, generated fresh, not on the original gap list; distinct from the general spatial/gross-motor focus of `clumsiness-coordination-perimenopause.md`)
+- Festival season and social obligations when you have no energy (`tmp/blog/festival-season-social-obligations-low-energy-perimenopause.md`, generated fresh, not on the original gap list; distinct from the religious-fasting/blood-sugar focus of `fasting-festivals-perimenopause.md`)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 

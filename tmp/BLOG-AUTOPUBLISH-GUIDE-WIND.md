@@ -122,3 +122,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Gym injuries and recovery time after 40: training smart when your body doesn't bounce back -> `gym-injuries-recovery-time-after-40.md`
 - Screen time, pornography habits, and libido in midlife: what's actually going on -> `screen-time-porn-habits-libido-midlife.md`
 - Long stretches away from family for work: loneliness, marriage strain, and testosterone -> `long-stretches-away-from-family-work-testosterone.md`
+- Gum disease and testosterone: the midlife dental health connection nobody told you about -> `dental-gum-health-andropause-testosterone.md`
+- Desk job snacking: how sedentary work habits are quietly undermining your testosterone -> `desk-job-snacking-habits-testosterone.md`
+- When your wife is the patient: men as primary caregivers for a sick spouse, and their own health -> `men-caregivers-for-sick-spouse-testosterone.md`
+- Hair transplants and cosmetic procedures: what's behind the midlife grooming trend in Indian men -> `hair-transplants-cosmetic-procedures-midlife-men.md`
+- Long commutes and traffic stress: the hidden cortisol tax on Indian men's testosterone -> `long-commutes-traffic-stress-testosterone.md`

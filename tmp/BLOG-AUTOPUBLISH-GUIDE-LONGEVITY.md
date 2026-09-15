@@ -122,3 +122,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Home safety modifications for ageing in place: a practical room-by-room guide -> `home-safety-modifications-ageing-in-place.md`
 - Pet ownership and companionship: what the research on longevity actually shows -> `pet-ownership-companionship-longevity.md`
 - Digital literacy after 50: staying connected with family without the overwhelm -> `digital-literacy-staying-connected-family.md`
+- Liver health and ageing: why this silent organ deserves attention after 40 -> `liver-health-ageing.md`
+- Vaccinations after 40: the shots doctors recommend that most Indians skip -> `vaccinations-older-adults-longevity.md`
+- Loneliness versus solitude: why the difference matters for how long you live -> `loneliness-solitude-longevity.md`
+- Abhyanga: what the evidence actually says about Ayurvedic oil massage -> `abhyanga-ayurvedic-oil-massage-evidence.md`
+- Growing your own food: an underrated longevity habit -> `gardening-growing-food-longevity.md`
