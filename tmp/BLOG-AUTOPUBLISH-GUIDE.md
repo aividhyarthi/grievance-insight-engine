@@ -134,6 +134,11 @@ Note: two items previously on this list were found already covered by existing p
 - Hobbies and creative outlets as stress relief in perimenopause (`tmp/blog/hobbies-creative-outlets-perimenopause-stress-relief.md`, generated fresh, not on the original gap list)
 - Handwriting and fine motor changes in perimenopause (`tmp/blog/handwriting-fine-motor-changes-perimenopause.md`, generated fresh, not on the original gap list; distinct from the general spatial/gross-motor focus of `clumsiness-coordination-perimenopause.md`)
 - Festival season and social obligations when you have no energy (`tmp/blog/festival-season-social-obligations-low-energy-perimenopause.md`, generated fresh, not on the original gap list; distinct from the religious-fasting/blood-sugar focus of `fasting-festivals-perimenopause.md`)
+- Perimenopause and public speaking: performance anxiety and word-finding under pressure at work (`tmp/blog/perimenopause-public-speaking-work-confidence.md`, generated fresh, not on the original gap list; distinct from the general confidence focus of `losing-confidence-perimenopause.md` and the job-security focus of `fear-of-losing-your-job-perimenopause.md`)
+- The sandwich generation: perimenopause while raising teenagers and caring for ageing parents at the same time (`tmp/blog/sandwich-generation-perimenopause-teens-ageing-parents.md`, generated fresh, not on the original gap list; distinct from the single-generation focus of `caring-for-ageing-parents-perimenopause.md`)
+- Perimenopause and Ramzan: fasting through Ramadan in your 40s (`tmp/blog/perimenopause-ramzan-fasting-ramadan.md`, generated fresh, not on the original gap list; distinct religious/community angle from the Navratri/Karva Chauth focus of `fasting-festivals-perimenopause.md`)
+- Hyperosmia: heightened smell sensitivity in perimenopause (`tmp/blog/hyperosmia-smell-sensitivity-perimenopause.md`, generated fresh, not on the original gap list; distinct from the body-odour focus of `body-odour-changes-perimenopause.md` and the oral/taste focus of `metallic-taste-burning-mouth-perimenopause.md`)
+- Voice changes in perimenopause: why you sound different now (`tmp/blog/voice-changes-perimenopause.md`, generated fresh, not on the original gap list)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 

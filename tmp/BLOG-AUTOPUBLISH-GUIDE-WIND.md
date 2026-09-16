@@ -127,3 +127,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - When your wife is the patient: men as primary caregivers for a sick spouse, and their own health -> `men-caregivers-for-sick-spouse-testosterone.md`
 - Hair transplants and cosmetic procedures: what's behind the midlife grooming trend in Indian men -> `hair-transplants-cosmetic-procedures-midlife-men.md`
 - Long commutes and traffic stress: the hidden cortisol tax on Indian men's testosterone -> `long-commutes-traffic-stress-testosterone.md`
+- Blurry menus and tiny text: vision changes in midlife men and what's actually going on -> `vision-changes-reading-glasses-midlife-men.md`
+- Why are you suddenly allergic to things in your 40s: the midlife immune shift explained -> `sudden-allergies-in-your-40s.md`
+- Why your back hurts more than it used to: posture, desk jobs, and testosterone in midlife -> `posture-back-pain-desk-job-testosterone.md`
+- When your doctor says it's just stress: what to do next -> `doctors-dismiss-symptoms-as-stress.md`
+- When you're both going through it: supporting your wife's menopause while managing your own andropause -> `supporting-wife-menopause-while-managing-andropause.md`

@@ -127,3 +127,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Loneliness versus solitude: why the difference matters for how long you live -> `loneliness-solitude-longevity.md`
 - Abhyanga: what the evidence actually says about Ayurvedic oil massage -> `abhyanga-ayurvedic-oil-massage-evidence.md`
 - Growing your own food: an underrated longevity habit -> `gardening-growing-food-longevity.md`
+- Vision health and cataract prevention: the daily habits that actually help -> `vision-health-cataract-prevention-daily-habits.md`
+- Religious fasting traditions (Navratri, Ekadashi, Ramzan) and what they share with longevity science -> `religious-fasting-traditions-longevity.md`
+- Noise and hearing protection in daily Indian life -> `noise-hearing-protection-daily-life.md`
+- Traditional Indian breakfast foods and metabolic health -> `traditional-indian-breakfast-metabolic-health.md`
+- Afternoon napping culture and health: what the evidence on siestas actually shows -> `afternoon-napping-health-siesta.md`
