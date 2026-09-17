@@ -132,3 +132,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Noise and hearing protection in daily Indian life -> `noise-hearing-protection-daily-life.md`
 - Traditional Indian breakfast foods and metabolic health -> `traditional-indian-breakfast-metabolic-health.md`
 - Afternoon napping culture and health: what the evidence on siestas actually shows -> `afternoon-napping-health-siesta.md`
+- Traditional Indian dance forms (Bharatanatyam, Kathak, Garba) as exercise for healthy ageing -> `traditional-indian-dance-forms-exercise-ageing.md`
+- Religious and spiritual community involvement and longevity: what satsang and temple groups do for your health -> `religious-spiritual-community-longevity.md`
+- Air travel and cabin pressure: what altitude and flying actually do to an ageing body -> `air-travel-cabin-pressure-ageing-body.md`
+- Floor-sitting versus chair-sitting and joint health: which is actually better after 40 -> `floor-sitting-chair-sitting-joint-health.md`
+- Post-monsoon detox traditions: what the evidence actually says -> `seasonal-detox-traditions-evidence.md`

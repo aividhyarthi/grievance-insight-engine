@@ -87,6 +87,11 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Building a morning routine that actually supports hormonal health
 
 ### Written (fill in as used)
+- Gut health and bloating in midlife men: why digestion changes after 40 -> `gut-health-bloating-digestion-changes-midlife-men.md`
+- Wedding season exhaustion: why back-to-back family events hit harder after 40 -> `wedding-season-family-event-fatigue-testosterone.md`
+- Why highway driving feels different after 40: reaction time, confidence, and testosterone -> `driving-confidence-reaction-time-highway-midlife-men.md`
+- Navigating andropause alone: single and divorced men without a partner at home -> `single-divorced-men-midlife-andropause-without-partner.md`
+- Why you keep avoiding that blood test: the fear behind testosterone testing -> `avoiding-blood-tests-health-anxiety-testosterone.md`
 - Alcohol and testosterone: how much is actually too much -> `alcohol-and-testosterone-how-much-is-too-much.md`
 - Cortisol and testosterone: why chronic stress lowers your levels -> `cortisol-stress-and-testosterone.md`
 - Protein intake after 40: how much you actually need and why it changes -> `protein-intake-after-40.md`
