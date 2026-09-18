@@ -87,6 +87,11 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Building a morning routine that actually supports hormonal health
 
 ### Written (fill in as used)
+- Why coffee hits differently after 40: caffeine sensitivity and testosterone -> `caffeine-sensitivity-testosterone-midlife-men.md`
+- Relocating in midlife: the hidden toll of starting over in a new city or house -> `relocating-cities-homes-midlife-starting-over.md`
+- Why your appetite feels different after 40: andropause and your relationship with food -> `appetite-changes-relationship-with-food-midlife-men.md`
+- Becoming the decision-maker for your in-laws: finances, healthcare, and the hormonal toll -> `decision-maker-ageing-in-laws-finances-healthcare.md`
+- Losing your sense of humor: emotional flatness and andropause -> `losing-sense-of-humor-emotional-flatness-andropause.md`
 - Gut health and bloating in midlife men: why digestion changes after 40 -> `gut-health-bloating-digestion-changes-midlife-men.md`
 - Wedding season exhaustion: why back-to-back family events hit harder after 40 -> `wedding-season-family-event-fatigue-testosterone.md`
 - Why highway driving feels different after 40: reaction time, confidence, and testosterone -> `driving-confidence-reaction-time-highway-midlife-men.md`

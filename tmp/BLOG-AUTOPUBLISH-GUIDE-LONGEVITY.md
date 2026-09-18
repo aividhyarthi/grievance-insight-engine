@@ -137,3 +137,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Air travel and cabin pressure: what altitude and flying actually do to an ageing body -> `air-travel-cabin-pressure-ageing-body.md`
 - Floor-sitting versus chair-sitting and joint health: which is actually better after 40 -> `floor-sitting-chair-sitting-joint-health.md`
 - Post-monsoon detox traditions: what the evidence actually says -> `seasonal-detox-traditions-evidence.md`
+- What your nails and skin texture might be telling you about internal health -> `nail-skin-texture-internal-health-indicators.md`
+- Caffeine sensitivity and longevity: how tolerance changes after 40 -> `caffeine-sensitivity-longevity-after-40.md`
+- Ashwagandha, tulsi, and amla: what the evidence actually says beyond turmeric -> `ashwagandha-tulsi-amla-evidence.md`
+- Handwriting and fine motor skills as an early marker of ageing worth watching -> `handwriting-fine-motor-skills-early-marker.md`
+- City versus village living: what longevity outcomes in India actually show -> `city-village-living-longevity-india.md`
