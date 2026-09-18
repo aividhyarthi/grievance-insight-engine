@@ -1,7 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { webPageSchema } from '../../lib/schema';
+import { webPageSchema, faqSchema, breadcrumbSchema } from '../../lib/schema';
+
+const faqs = [
+  { q: 'Can menopause start at 35?',              a: 'Yes. Perimenopause, the transition before menopause, can begin in your mid-30s. Early perimenopause is more common than most women are told, and symptoms can appear years before periods stop.' },
+  { q: 'Why am I suddenly gaining weight?',       a: 'Hormonal shifts during perimenopause, especially declining oestrogen, change where your body stores fat, often moving it to the abdomen. Diet and exercise alone may not be enough; hormone levels matter.' },
+  { q: 'Can perimenopause cause anxiety?',        a: 'Absolutely. Oestrogen regulates serotonin and other mood chemicals. As levels fluctuate, anxiety, irritability, and low mood are very common, and often misdiagnosed as a mental health condition.' },
+  { q: 'Why can\'t I sleep properly?',            a: 'Night sweats, hormonal fluctuations, and changes in melatonin production all disrupt sleep during perimenopause. Waking at 3 to 4am is one of the most reported symptoms.' },
+  { q: 'What are the first signs of perimenopause?', a: 'Changes in period regularity are often the first sign: lighter, heavier, or skipping months. Mood changes, sleep disruption, and brain fog frequently appear before any hot flashes.' },
+  { q: 'Do I need hormone tests?',                a: 'Hormone tests can be helpful but are not always necessary. Perimenopause is largely a clinical diagnosis based on symptoms. FSH, LH, and oestradiol levels can provide context but fluctuate widely day to day.' },
+  { q: 'Can menopause affect mood?',              a: 'Yes, significantly. Hormonal changes directly affect brain chemistry. Many women experience mood swings, depression, anxiety, and emotional sensitivity, all of which are hormonal, not character flaws.' },
+  { q: 'When should I talk to an expert?',        a: 'If symptoms are affecting your sleep, relationships, work, or quality of life, that\'s the time. You don\'t need to wait until things are unbearable. Early support leads to better outcomes.' },
+];
 
 const structuredData = [
   webPageSchema({
@@ -9,6 +20,11 @@ const structuredData = [
     description: "Mood swings, poor sleep, anxiety, brain fog, weight gain: understand what your body may be trying to tell you. India's perimenopause companion.",
     url: '/spring',
   }),
+  breadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Her Midlife', url: '/spring' },
+  ]),
+  faqSchema(faqs.map(f => ({ question: f.q, answer: f.a }))),
 ];
 
 const RAW = 'https://raw.githubusercontent.com/aividhyarthi/thesecondspring/main';
@@ -41,7 +57,7 @@ const posts = allPosts
             <span class="h1-line h1-accent">It could be your</span>
             <span class="h1-line h1-accent"><span class="rotate-word" id="rotateWord">hormones</span></span>
           </h1>
-          <p class="hero-sub">Mood swings, poor sleep, anxiety, brain fog, weight gain, irregular periods: understand what your body may be trying to tell you.</p>
+          <p class="hero-sub">Mood swings, poor sleep, anxiety, brain fog, weight gain, irregular periods: classic signs of perimenopause. Understand what your body may be trying to tell you, and what actually helps.</p>
           <div class="hero-actions">
             <a href="/quiz" class="btn btn-peach btn-lg">Take the Free Quiz →</a>
             <a href="/guide" class="btn btn-outline">Explore</a>
@@ -307,16 +323,7 @@ const posts = allPosts
         <h2 class="section-title">You've been wondering.<br/>Here are answers.</h2>
       </div>
       <div class="faq-list" id="faq-list">
-        {[
-          { q: 'Can menopause start at 35?',              a: 'Yes. Perimenopause, the transition before menopause, can begin in your mid-30s. Early perimenopause is more common than most women are told, and symptoms can appear years before periods stop.' },
-          { q: 'Why am I suddenly gaining weight?',       a: 'Hormonal shifts during perimenopause, especially declining oestrogen, change where your body stores fat, often moving it to the abdomen. Diet and exercise alone may not be enough; hormone levels matter.' },
-          { q: 'Can perimenopause cause anxiety?',        a: 'Absolutely. Oestrogen regulates serotonin and other mood chemicals. As levels fluctuate, anxiety, irritability, and low mood are very common, and often misdiagnosed as a mental health condition.' },
-          { q: 'Why can\'t I sleep properly?',            a: 'Night sweats, hormonal fluctuations, and changes in melatonin production all disrupt sleep during perimenopause. Waking at 3 to 4am is one of the most reported symptoms.' },
-          { q: 'What are the first signs of perimenopause?', a: 'Changes in period regularity are often the first sign: lighter, heavier, or skipping months. Mood changes, sleep disruption, and brain fog frequently appear before any hot flashes.' },
-          { q: 'Do I need hormone tests?',                a: 'Hormone tests can be helpful but are not always necessary. Perimenopause is largely a clinical diagnosis based on symptoms. FSH, LH, and oestradiol levels can provide context but fluctuate widely day to day.' },
-          { q: 'Can menopause affect mood?',              a: 'Yes, significantly. Hormonal changes directly affect brain chemistry. Many women experience mood swings, depression, anxiety, and emotional sensitivity, all of which are hormonal, not character flaws.' },
-          { q: 'When should I talk to an expert?',        a: 'If symptoms are affecting your sleep, relationships, work, or quality of life, that\'s the time. You don\'t need to wait until things are unbearable. Early support leads to better outcomes.' },
-        ].map((item, i) => (
+        {faqs.map((item, i) => (
           <div class="faq-item" data-faq={i}>
             <button class="faq-q" aria-expanded="false">
               <span>{item.q}</span>

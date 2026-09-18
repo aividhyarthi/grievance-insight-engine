@@ -9,11 +9,10 @@ const posts = (await getCollection('blog'))
   .filter(p => p.data.pubDate <= now)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Featured slider: up to 3 posts with featured:true, fall back to 3 most-recent
-const featuredPosts = (() => {
-  const f = posts.filter(p => p.data.featured);
-  return (f.length >= 3 ? f : posts).slice(0, 3);
-})();
+// Latest Articles slider: always the most recent posts, so this section
+// stays fresh every day instead of getting stuck on old featured picks.
+const featuredPosts = posts.slice(0, 3);
+const latestUpdated = posts[0] ? formatDate(posts[0].data.pubDate) : '';
 
 function postsForCategory(cat: typeof CATEGORIES[number]) {
   return postsInCategory(posts, cat).slice(0, 4);
@@ -69,7 +68,10 @@ function tagColor(tag: string) { return TAG_COLORS[tag.toLowerCase()] || '#3D7A5
     <section class="section featured-section bg-white">
       <div class="container">
         <div class="featured-header">
-          <p class="grid-label">✦ Featured journals</p>
+          <div>
+            <p class="grid-label">🆕 Latest Articles</p>
+            {latestUpdated && <p class="grid-updated">Updated {latestUpdated}</p>}
+          </div>
           <div class="slider-controls" id="sliderControls">
             <button class="slider-btn" id="prevBtn" aria-label="Previous" disabled>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9L11 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -240,6 +242,11 @@ function tagColor(tag: string) { return TAG_COLORS[tag.toLowerCase()] || '#3D7A5
     letter-spacing: .1em;
     color: var(--text-muted, #888);
     margin-bottom: 0;
+  }
+  .grid-updated {
+    font-size: .78rem;
+    color: var(--text-muted, #888);
+    margin: .2rem 0 0;
   }
 
   /* ─── Featured Slider ─── */

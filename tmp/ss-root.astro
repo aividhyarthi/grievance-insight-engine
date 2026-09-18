@@ -1,7 +1,61 @@
 ---
-const title = 'Choose Your Path: Perimenopause, Andropause & Longevity Support';
-const description = 'Three companions for three stages of life: perimenopause and menopause support for women, andropause and midlife vitality for men, and longevity guidance for everyone.';
+const title = 'Perimenopause, Andropause & Longevity Support for India';
+const description = 'Choose your path: perimenopause and menopause support for Indian women, andropause and testosterone care for Indian men, and longevity guidance for everyone.';
 const SITE_URL = 'https://www.thesecondspring.org';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#hub-website`,
+      url: `${SITE_URL}/`,
+      name: 'The Second Spring',
+      description,
+      inLanguage: 'en-IN',
+    },
+    {
+      '@type': 'ItemList',
+      name: 'The Second Spring family of platforms',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          item: {
+            '@type': 'Brand',
+            name: 'Her Midlife',
+            url: `${SITE_URL}/spring`,
+            logo: `${SITE_URL}/favicon.svg`,
+            slogan: 'Perimenopause and menopause support for Indian women',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          item: {
+            '@type': 'Brand',
+            name: 'His Midlife',
+            url: `${SITE_URL}/wind`,
+            logo: `${SITE_URL}/favicon-wind.svg`,
+            slogan: 'Andropause and testosterone support for Indian men',
+          },
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          item: {
+            '@type': 'Brand',
+            name: 'Life Begins After 40',
+            url: `${SITE_URL}/longevity`,
+            logo: `${SITE_URL}/favicon-longevity.svg`,
+            slogan: 'Longevity and healthy ageing guidance for every stage of life',
+          },
+        },
+      ],
+    },
+  ],
+};
+const jsonLdString = JSON.stringify(jsonLd);
 ---
 
 <!doctype html>
@@ -20,6 +74,7 @@ const SITE_URL = 'https://www.thesecondspring.org';
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700;800&display=optional" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={jsonLdString} />
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NK9589CRHZ"></script>
     <script>
@@ -39,8 +94,8 @@ const SITE_URL = 'https://www.thesecondspring.org';
 
     <div class="hero">
       <span class="kicker">One family, three journeys</span>
-      <h1>Health moves in seasons.<br/>Which one are you in?</h1>
-      <p>Three companions, each built for a different stage of life, sharing one standard of care.</p>
+      <h1>Perimenopause, andropause, or longevity: which season are you in?</h1>
+      <p>Three companions, each built for a different stage of life: perimenopause and menopause support for women, andropause and testosterone care for men, and longevity guidance for everyone, all sharing one standard of care for India.</p>
     </div>
 
     <div class="doors">

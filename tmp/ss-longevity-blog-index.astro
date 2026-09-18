@@ -12,6 +12,26 @@ function formatDate(d: Date) {
   return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
+// Latest Articles widget: always the newest posts, shown first for freshness.
+const latestPosts = posts.slice(0, 6);
+const olderPosts = posts.slice(6);
+const latestUpdated = posts[0] ? formatDate(posts[0].data.pubDate) : '';
+
+// Break the rest up into month sections so the page reads as continuously updated.
+function monthLabel(d: Date) {
+  return d.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+}
+const monthGroups: { label: string; posts: typeof posts }[] = [];
+for (const post of olderPosts) {
+  const label = monthLabel(post.data.pubDate);
+  const last = monthGroups[monthGroups.length - 1];
+  if (last && last.label === label) {
+    last.posts.push(post);
+  } else {
+    monthGroups.push({ label, posts: [post] });
+  }
+}
+
 const structuredData = [
   {
     '@type': 'CollectionPage',
@@ -21,6 +41,7 @@ const structuredData = [
     url: `${SITE_URL}/longevity/blog`,
     isPartOf: { '@id': `${SITE_URL}/longevity#website` },
     inLanguage: 'en-IN',
+    dateModified: posts[0] ? posts[0].data.pubDate.toISOString() : undefined,
   },
   {
     '@type': 'BreadcrumbList',
@@ -46,35 +67,70 @@ const structuredData = [
     </div>
   </section>
 
-  <section class="jg-section">
-    <div class="container">
-      {posts.length === 0 ? (
-        <p class="jg-empty">New articles are on the way. Check back soon.</p>
-      ) : (
-        <div class="jg-grid">
-          {posts.map(post => (
-            <a href={`/longevity/blog/${post.slug}`} class="jg-card">
-              {post.data.image ? (
-                <div class="jg-card-img"><img src={post.data.image} alt={post.data.imageAlt || post.data.title} loading="lazy" /></div>
-              ) : (
-                <div class="jg-card-img jg-card-img--fallback" aria-hidden="true">
-                  <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M16 4C21 4 25 9 25 15C25 22 21 27 16 27C11 27 7 22 7 15C7 9 11 4 16 4Z" fill="#fff" opacity=".85"/></svg>
+  {posts.length === 0 ? (
+    <section class="jg-section"><div class="container"><p class="jg-empty">New articles are on the way. Check back soon.</p></div></section>
+  ) : (
+    <>
+      <section class="jg-section jg-latest">
+        <div class="container">
+          <div class="jg-section-head">
+            <p class="jg-section-label">🆕 Latest Articles</p>
+            {latestUpdated && <p class="jg-section-updated">Updated {latestUpdated}</p>}
+          </div>
+          <div class="jg-grid">
+            {latestPosts.map(post => (
+              <a href={`/longevity/blog/${post.slug}`} class="jg-card">
+                {post.data.image ? (
+                  <div class="jg-card-img"><img src={post.data.image} alt={post.data.imageAlt || post.data.title} loading="lazy" /></div>
+                ) : (
+                  <div class="jg-card-img jg-card-img--fallback" aria-hidden="true">
+                    <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M16 4C21 4 25 9 25 15C25 22 21 27 16 27C11 27 7 22 7 15C7 9 11 4 16 4Z" fill="#fff" opacity=".85"/></svg>
+                  </div>
+                )}
+                <div class="jg-card-body">
+                  <div class="jg-card-tags">
+                    {post.data.tags.slice(0, 2).map(t => <span class="jg-tag">{t}</span>)}
+                  </div>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.description}</p>
+                  <div class="jg-card-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</div>
                 </div>
-              )}
-              <div class="jg-card-body">
-                <div class="jg-card-tags">
-                  {post.data.tags.slice(0, 2).map(t => <span class="jg-tag">{t}</span>)}
-                </div>
-                <h3>{post.data.title}</h3>
-                <p>{post.data.description}</p>
-                <div class="jg-card-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
-      )}
-    </div>
-  </section>
+      </section>
+
+      {monthGroups.map(group => (
+        <section class="jg-section jg-month">
+          <div class="container">
+            <h2 class="jg-section-label jg-month-label">{group.label}</h2>
+            <div class="jg-grid">
+              {group.posts.map(post => (
+                <a href={`/longevity/blog/${post.slug}`} class="jg-card">
+                  {post.data.image ? (
+                    <div class="jg-card-img"><img src={post.data.image} alt={post.data.imageAlt || post.data.title} loading="lazy" /></div>
+                  ) : (
+                    <div class="jg-card-img jg-card-img--fallback" aria-hidden="true">
+                      <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M16 4C21 4 25 9 25 15C25 22 21 27 16 27C11 27 7 22 7 15C7 9 11 4 16 4Z" fill="#fff" opacity=".85"/></svg>
+                    </div>
+                  )}
+                  <div class="jg-card-body">
+                    <div class="jg-card-tags">
+                      {post.data.tags.slice(0, 2).map(t => <span class="jg-tag">{t}</span>)}
+                    </div>
+                    <h3>{post.data.title}</h3>
+                    <p>{post.data.description}</p>
+                    <div class="jg-card-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+    </>
+  )}
 
   <section class="g-cta">
     <div class="container">
@@ -92,8 +148,14 @@ const structuredData = [
   .jh h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 700; letter-spacing: -.01em; margin-bottom: 1rem; }
   .jh-sub { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.7; max-width: 620px; }
 
-  .jg-section { padding: 4rem 0; }
+  .jg-section { padding: 2.5rem 0; }
+  .jg-latest { padding-top: 4rem; }
   .jg-empty { text-align: center; color: var(--ink-soft); padding: 3rem 0; }
+  .jg-section-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+  .jg-section-label { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); margin: 0; }
+  .jg-section-updated { font-size: .78rem; color: var(--ink-muted); margin: 0; }
+  .jg-month { border-top: 1px solid var(--line); }
+  .jg-month-label { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700; text-transform: none; letter-spacing: -.01em; color: var(--ink); margin-bottom: 1.5rem; }
   .jg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .jg-card { display: flex; flex-direction: column; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; transition: transform .18s, border-color .18s; }
   .jg-card:hover { transform: translateY(-3px); border-color: var(--accent-deep); }
