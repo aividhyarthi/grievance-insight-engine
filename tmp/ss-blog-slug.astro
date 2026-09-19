@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { articleSchema, breadcrumbSchema } from '../../lib/schema';
 import { findRelated, VERTICAL_META } from '../../lib/blog-related';
+import { WOMEN_TOPICS, pickPostGroups } from '../../lib/interlink-topics';
 
 const now = new Date();
 const { slug } = Astro.params;
@@ -26,6 +27,8 @@ const related = findRelated(post, 'women', {
   men: windPosts.filter(p => p.data.pubDate <= now),
   longevity: longevityPosts.filter(p => p.data.pubDate <= now),
 }, 3);
+
+const interlinkGroups = pickPostGroups(WOMEN_TOPICS, post.data.tags);
 
 // ─── Structured data ───
 const postUrl = `/blog/${post.slug}`;
@@ -103,6 +106,23 @@ const structuredData = [
             <h3 class="sc-title">Free symptom check</h3>
             <p class="sc-body">2 minutes. Instant personalised results.</p>
             <a href="/quiz" class="btn btn-outline sc-btn">Check my symptoms →</a>
+          </div>
+          <!-- Most Searched Topics -->
+          <div class="sidebar-topics">
+            <p class="sct-eyebrow">Most Searched Topics</p>
+            {interlinkGroups.map(group => (
+              <div class="sct-group">
+                <p class="sct-group-label">{group.label}</p>
+                <div class="sct-list">
+                  {group.links.map(l => (
+                    <a href={l.url} class="sct-link">
+                      <span>{l.kw}</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
           <!-- Tags -->
           <div class="sidebar-tags">
@@ -303,6 +323,18 @@ const structuredData = [
   .st-label  { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: .6rem; }
   .st-list   { display: flex; flex-wrap: wrap; gap: .4rem; }
   .st-tag    { font-size: .74rem; font-weight: 600; color: var(--green-dark); background: var(--green-light); padding: .25rem .7rem; border-radius: 100px; }
+
+  /* ── Most Searched Topics ── */
+  .sidebar-topics { background: var(--cream-mid); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem 1.35rem 1.1rem; }
+  .sct-eyebrow { font-size: .7rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--green-dark); margin: 0 0 1rem; }
+  .sct-group + .sct-group { margin-top: 1.05rem; padding-top: 1.05rem; border-top: 1px solid var(--border); }
+  .sct-group-label { font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 .5rem; }
+  .sct-link { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding: .5rem 0; text-decoration: none; border-bottom: 1px solid var(--border); }
+  .sct-group .sct-list > .sct-link:last-child { border-bottom: none; }
+  .sct-link span:first-child { font-size: .85rem; font-weight: 600; color: var(--text); line-height: 1.35; transition: color .15s; }
+  .sct-link svg { flex-shrink: 0; color: var(--green-dark); opacity: .55; transition: transform .15s, opacity .15s; }
+  .sct-link:hover span:first-child { color: var(--green-dark); }
+  .sct-link:hover svg { opacity: 1; transform: translateX(2px); }
 
   /* ── YOU'RE NOT ALONE ── */
   .post-reassure {

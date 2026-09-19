@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/LayoutWind.astro';
 import { getCollection } from 'astro:content';
+import { MEN_TOPICS } from '../../../lib/interlink-topics';
 
 const SITE_URL = 'https://www.thesecondspring.org';
 const now = new Date();
@@ -73,30 +74,52 @@ const structuredData = [
     <>
       <section class="jg-section jg-latest">
         <div class="container">
-          <div class="jg-section-head">
-            <p class="jg-section-label">🆕 Latest Articles</p>
-            {latestUpdated && <p class="jg-section-updated">Updated {latestUpdated}</p>}
-          </div>
-          <div class="jg-grid">
-            {latestPosts.map(post => (
-              <a href={`/wind/blog/${post.slug}`} class="jg-card">
-                {post.data.image ? (
-                  <div class="jg-card-img"><img src={post.data.image} alt={post.data.imageAlt || post.data.title} loading="lazy" /></div>
-                ) : (
-                  <div class="jg-card-img jg-card-img--fallback" aria-hidden="true">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 20c4-8 8-12 10-12s6 4 10 12" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M6 24c4-6 8-9 10-9s6 3 10 9" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>
+          <div class="jg-latest-layout">
+            <div class="jg-latest-main">
+              <div class="jg-section-head">
+                <p class="jg-section-label">🆕 Latest Articles</p>
+                {latestUpdated && <p class="jg-section-updated">Updated {latestUpdated}</p>}
+              </div>
+              <div class="jg-grid">
+                {latestPosts.map(post => (
+                  <a href={`/wind/blog/${post.slug}`} class="jg-card">
+                    {post.data.image ? (
+                      <div class="jg-card-img"><img src={post.data.image} alt={post.data.imageAlt || post.data.title} loading="lazy" /></div>
+                    ) : (
+                      <div class="jg-card-img jg-card-img--fallback" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 20c4-8 8-12 10-12s6 4 10 12" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M6 24c4-6 8-9 10-9s6 3 10 9" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>
+                      </div>
+                    )}
+                    <div class="jg-card-body">
+                      <div class="jg-card-tags">
+                        {post.data.tags.slice(0, 2).map(t => <span class="jg-tag">{t}</span>)}
+                      </div>
+                      <h3>{post.data.title}</h3>
+                      <p>{post.data.description}</p>
+                      <div class="jg-card-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <aside class="topics-widget">
+              <p class="sct-eyebrow">Most Searched Topics</p>
+              <p class="sct-sub">One keyword from every corner of the Journal.</p>
+              {MEN_TOPICS.map(group => (
+                <div class="sct-group">
+                  <p class="sct-group-label">{group.label}</p>
+                  <div class="sct-list">
+                    {group.links.map(l => (
+                      <a href={l.url} class="sct-link">
+                        <span>{l.kw}</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                      </a>
+                    ))}
                   </div>
-                )}
-                <div class="jg-card-body">
-                  <div class="jg-card-tags">
-                    {post.data.tags.slice(0, 2).map(t => <span class="jg-tag">{t}</span>)}
-                  </div>
-                  <h3>{post.data.title}</h3>
-                  <p>{post.data.description}</p>
-                  <div class="jg-card-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</div>
                 </div>
-              </a>
-            ))}
+              ))}
+            </aside>
           </div>
         </div>
       </section>
@@ -156,6 +179,24 @@ const structuredData = [
   .jg-section-updated { font-size: .78rem; color: var(--ink-muted); margin: 0; }
   .jg-month { border-top: 1px solid var(--line); }
   .jg-month-label { font-family: 'Archivo', sans-serif; font-size: 1.05rem; font-weight: 800; text-transform: none; letter-spacing: -.01em; color: var(--ink); margin-bottom: 1.5rem; }
+
+  /* Latest Articles + Most Searched Topics */
+  .jg-latest-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2.5rem; align-items: start; }
+  .topics-widget { background: var(--bg-mid); border: 1.5px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.35rem 1.1rem; position: sticky; top: 1.5rem; }
+  .sct-eyebrow { font-size: .7rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 .4rem; }
+  .sct-sub { font-size: .79rem; color: var(--ink-muted); margin: 0 0 1rem; }
+  .sct-group + .sct-group { margin-top: 1.05rem; padding-top: 1.05rem; border-top: 1px solid var(--line); }
+  .sct-group-label { font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 .5rem; }
+  .sct-link { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding: .5rem 0; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .sct-group .sct-list > .sct-link:last-child { border-bottom: none; }
+  .sct-link span:first-child { font-family: 'Archivo', sans-serif; font-size: .84rem; font-weight: 700; color: var(--ink); line-height: 1.35; transition: color .15s; }
+  .sct-link svg { flex-shrink: 0; color: var(--ink); opacity: .5; transition: transform .15s, opacity .15s; }
+  .sct-link:hover span:first-child { text-decoration: underline; }
+  .sct-link:hover svg { opacity: 1; transform: translateX(2px); }
+  @media (max-width: 960px) {
+    .jg-latest-layout { grid-template-columns: 1fr; }
+    .topics-widget { position: static; }
+  }
   .jg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .jg-card { display: flex; flex-direction: column; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; transition: transform .18s, border-color .18s; }
   .jg-card:hover { transform: translateY(-3px); border-color: var(--dark); }
