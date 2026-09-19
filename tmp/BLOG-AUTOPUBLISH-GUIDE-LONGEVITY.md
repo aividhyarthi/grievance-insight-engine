@@ -142,3 +142,8 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Ashwagandha, tulsi, and amla: what the evidence actually says beyond turmeric -> `ashwagandha-tulsi-amla-evidence.md`
 - Handwriting and fine motor skills as an early marker of ageing worth watching -> `handwriting-fine-motor-skills-early-marker.md`
 - City versus village living: what longevity outcomes in India actually show -> `city-village-living-longevity-india.md`
+- Monsoon season joint pain and immunity: why joints ache more in the rains and how to protect yourself -> `monsoon-joint-pain-immunity-arthritis.md`
+- Road safety and reaction time after 40: the overlooked longevity factor -> `road-safety-reaction-time-longevity.md`
+- Padabhyanga and traditional Indian foot care: what Ayurvedic foot massage and modern podiatry both get right -> `foot-care-reflexology-padabhyanga-longevity.md`
+- Creative hobbies and flow states: what a regular creative practice does for your brain as you age -> `creative-hobbies-flow-longevity-brain.md`
+- Polypharmacy after 50: why taking more medicines is not automatically safer -> `polypharmacy-medication-review-ageing.md`

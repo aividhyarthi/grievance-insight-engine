@@ -142,3 +142,8 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Why your back hurts more than it used to: posture, desk jobs, and testosterone in midlife -> `posture-back-pain-desk-job-testosterone.md`
 - When your doctor says it's just stress: what to do next -> `doctors-dismiss-symptoms-as-stress.md`
 - When you're both going through it: supporting your wife's menopause while managing your own andropause -> `supporting-wife-menopause-while-managing-andropause.md`
+- Why monsoon season hits harder after 40: joint pain, mood, and testosterone -> `monsoon-season-joint-pain-mood-midlife-testosterone.md`
+- Andropause without health insurance: navigating testosterone care in India's out-of-pocket system -> `andropause-without-health-insurance-india.md`
+- Bone density and testosterone: the osteoporosis risk men don't know about -> `bone-density-osteoporosis-testosterone-men.md`
+- Shaky signatures: handwriting, fine motor confidence, and testosterone in midlife -> `handwriting-signing-documents-fine-motor-confidence-midlife-men.md`
+- Do men get hot flashes? Night sweats, temperature regulation, and andropause -> `hot-flashes-night-sweats-temperature-regulation-andropause-men.md`
