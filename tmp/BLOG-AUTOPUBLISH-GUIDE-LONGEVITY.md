@@ -90,7 +90,13 @@ One-off kickoff batch, 2026-09-19, to build out homeopathy coverage from zero (l
 - Is It Safe to Combine Homeopathy With Your Regular Medicines? -> `homeopathy-combining-regular-medicines-safety.md`
 - Ayurvedic Doshas and Healthy Ageing: Does the Framework Hold Up? -> `ayurvedic-doshas-healthy-ageing-framework.md` (seed topic, used)
 
-Still open from this section's seed list for future batches: "Fibre and gut health for longevity: how much Indian adults actually need" (note: general gut microbiome piece already exists, `gut-health-longevity.md`, but fibre-specific angle is still fresh), "Micronutrient gaps common in Indian diets after 40", "Portion size and mindful eating for longevity", "Dinacharya..." (note: a dinacharya/agni/ritucharya piece already exists, `ayurveda-modern-longevity-science.md`, check it before reusing this seed), "Triphala for digestion and longevity: traditional use versus current evidence" (still open, genuinely fresh). Homeopathy now has 4 posts; keep adding occasional homeopathy posts in future batches until the topic list below feels exhausted (e.g. homeopathy for menopause-adjacent symptoms in the women's vertical if relevant there, homeopathic first-aid/acute-use culture in India, the placebo effect explained in plain language, regulation and training of homeopathic doctors in India).
+Still open from this section's seed list for future batches: "Fibre and gut health for longevity: how much Indian adults actually need" (note: general gut microbiome piece already exists, `gut-health-longevity.md`, but fibre-specific angle is still fresh), "Micronutrient gaps common in Indian diets after 40", "Portion size and mindful eating for longevity", "Dinacharya..." (note: a dinacharya/agni/ritucharya piece already exists, `ayurveda-modern-longevity-science.md`, check it before reusing this seed), "Triphala for digestion and longevity: traditional use versus current evidence" (still open, genuinely fresh).
+
+Batch 2026-09-20, two more homeopathy angles added:
+- Homeopathy for Coughs, Colds, and Minor Ailments: India's First-Aid Habit, Examined -> `homeopathic-first-aid-acute-use-india.md`
+- The Placebo Effect, Explained: Why It Matters When You Weigh Up Homeopathy and Other Remedies -> `placebo-effect-explained-homeopathy-evidence.md`
+
+Homeopathy now has 6 posts; keep adding occasional homeopathy posts in future batches until the topic list below feels exhausted (e.g. homeopathy for menopause-adjacent symptoms in the women's vertical if relevant there, regulation and training of homeopathic doctors in India as a standalone deep-dive).
 
 One-off kickoff batch, 2026-09-19 (second batch same day), to build out the supplements pillar beyond the existing general overview (`supplements-worth-considering-honest-look.md`) and the vitamin D post (`vitamin-d-sunlight-india.md`), going deep on specific named supplements per user request:
 - Omega-3 Supplements and Longevity: What the Evidence Actually Shows -> `omega-3-supplements-longevity-evidence.md` (seed topic, used)
@@ -108,13 +114,13 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 ## Gap List
 
 ### Not yet written
-- Yoga specifically, versus general movement: what the evidence says
-- Meditation and mindfulness beyond stress relief: cognitive and cellular ageing
 - Traditional fermented foods of India beyond curd: an underused resource
 - Spices with real evidence: turmeric, and what the research actually supports
-- Water quality in India: what to know for long-term health
 
 ### Written (fill in as used)
+- Yoga versus general movement: what the evidence says -> `yoga-versus-general-movement-evidence.md`
+- Meditation and mindfulness beyond stress relief: cognitive and cellular ageing -> `meditation-mindfulness-cognitive-cellular-ageing.md`
+- Water quality in India: what to know for long-term health -> `water-quality-india-long-term-health.md`
 - Intermittent fasting and longevity: what the evidence actually shows -> `intermittent-fasting-longevity.md`
 - Alcohol and longevity: how much is actually too much -> `alcohol-longevity-how-much-too-much.md`
 - Sauna and heat exposure: an emerging longevity habit, explained -> `sauna-heat-exposure-longevity.md`
