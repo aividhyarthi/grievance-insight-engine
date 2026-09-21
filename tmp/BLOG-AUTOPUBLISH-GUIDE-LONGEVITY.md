@@ -105,7 +105,11 @@ One-off kickoff batch, 2026-09-19 (second batch same day), to build out the supp
 - Magnesium Supplements: What They Can and Cannot Do for Sleep, Muscles, and Stress -> `magnesium-supplements-sleep-muscles-stress.md` (close variant of seed list, used)
 - Creatine After 40: An Old Sports Supplement With New Longevity Evidence -> `creatine-older-adults-longevity-evidence.md` (close variant of seed list, used)
 
-Still open from the supplements seed list for future batches: "Supplement quality and regulation in India: what to check before you buy" (still open, genuinely fresh, distinct from the general overview post since it can go deeper on regulatory specifics), "Multivitamins after 50: are they actually worth it" (still open; the general overview post touches multivitamins briefly but a dedicated deep-dive is still fresh). Other close-variant named-supplement angles not yet covered: probiotics/prebiotics for gut and immune health, resveratrol and polyphenol supplements, protein powder/whey for older adults (muscle-protein-synthesis post already covers dietary protein broadly, so a protein-powder-specific supplement angle would need to stay clearly distinct from that), zinc and immune ageing, vitamin B12 as a standalone deep-dive (currently only covered briefly inside the general overview post).
+Still open from the supplements seed list for future batches: "Supplement quality and regulation in India: what to check before you buy" (still open, genuinely fresh, distinct from the general overview post since it can go deeper on regulatory specifics). Other close-variant named-supplement angles not yet covered: probiotics/prebiotics for gut and immune health, resveratrol and polyphenol supplements, protein powder/whey for older adults (muscle-protein-synthesis post already covers dietary protein broadly, so a protein-powder-specific supplement angle would need to stay clearly distinct from that), zinc and immune ageing, vitamin B12 as a standalone deep-dive (currently only covered briefly inside the general overview post and the multivitamins post below).
+
+Batch 2026-09-21, one more homeopathy angle (regulation/training, a fresh angle distinct from first-aid/placebo/versus-Ayurveda/joint-sleep-energy/combining-medicines already covered) plus the multivitamins supplements seed topic, alongside three fresh non-pillar gap topics:
+- Who Can Call Themselves a Homeopathic Doctor in India? Training, Regulation, and What to Check -> `homeopathic-doctors-india-training-regulation.md` (fresh homeopathy angle: BHMS training and regulation, not yet covered; homeopathy now has 7 posts)
+- Multivitamins After 50: Are They Actually Worth Taking? -> `multivitamins-after-50-worth-it.md` (seed topic, used, now closed)
 
 ## Tone signal
 
@@ -181,3 +185,6 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 - Padabhyanga and traditional Indian foot care: what Ayurvedic foot massage and modern podiatry both get right -> `foot-care-reflexology-padabhyanga-longevity.md`
 - Creative hobbies and flow states: what a regular creative practice does for your brain as you age -> `creative-hobbies-flow-longevity-brain.md`
 - Polypharmacy after 50: why taking more medicines is not automatically safer -> `polypharmacy-medication-review-ageing.md`
+- Winter and cold weather transitions: why ageing bodies feel it more, and what actually helps -> `winter-cold-weather-transitions-healthy-ageing.md`
+- Pain tolerance and chronic pain management as you age: what actually changes -> `chronic-pain-pain-tolerance-ageing.md`
+- Char Dham and other high-altitude pilgrimages after 60: health considerations for seniors -> `char-dham-pilgrimage-travel-health-seniors.md`
