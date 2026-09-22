@@ -106,6 +106,9 @@ Remaining unused seed topics for future batches: foods — "Calcium and vitamin 
 ### Ayurveda pillar update (2026-09-21)
 - Ayurveda: "Dinacharya, the Ayurvedic daily routine, for perimenopause: what it is and whether it helps" (`tmp/blog/dinacharya-ayurvedic-daily-routine-perimenopause.md`), used as this batch's pillar post. Remaining unused Ayurveda seed topics: "Ayurvedic doshas and perimenopause: does the framework hold up", "Seasonal Ayurvedic eating (ritucharya) for hormonal balance".
 
+### Ayurveda pillar update (2026-09-22)
+- Ayurveda: "Ayurvedic doshas and perimenopause: does the framework hold up" (`tmp/blog/ayurvedic-doshas-perimenopause-framework.md`), used as this batch's pillar post. Remaining unused Ayurveda seed topic: "Seasonal Ayurvedic eating (ritucharya) for hormonal balance".
+
 ## Do not revisit (already well/over-covered)
 
 Periods/menstrual basics, body pain (joint/back/hip), skin/hair/nails basics, vaginal/urinary basics, GI symptoms basics, heart/circulation basics, exercise/fitness basics, food/nutrition basics, the general "less obvious symptoms" list. Check existing titles before assuming a sub-angle within these is still open, some may be, but they're lower priority than the gap list below.
@@ -196,6 +199,10 @@ Note: two items previously on this list were found already covered by existing p
 - Perimenopause and winter: managing cold-weather joint pain, temperature swings, and mood through India's winter months (`tmp/blog/perimenopause-winter-cold-weather-india.md`, generated fresh, not on the original gap list; distinct seasonal angle from the rainy-season focus of `monsoon-perimenopause-india.md`)
 - Perimenopause and your sudden need for silence: why alone time feels different now (`tmp/blog/perimenopause-need-for-silence-alone-time.md`, generated fresh, not on the original gap list; distinct from the friendship-focused `perimenopause-and-loneliness-why-friendships-change.md`, angled instead around needing more solitude, sensory sensitivity, and joint-family space negotiation)
 - Packing anxiety and perimenopause: why planning a trip feels so much harder now (`tmp/blog/perimenopause-packing-anxiety-travel-planning.md`, generated fresh, not on the original gap list; distinct from the on-the-go symptom management focus of `travelling-during-perimenopause.md`, angled instead around pre-trip brain fog and anticipatory anxiety during the packing/planning stage itself)
+- Why crowds and noise suddenly feel unbearable in perimenopause (`tmp/blog/crowds-noise-sensory-overload-perimenopause.md`, generated fresh, not on the original gap list; distinct from the home/family-space solitude focus of `perimenopause-need-for-silence-alone-time.md`, angled instead around public sensory overload from noise and crowds specifically)
+- Perimenopause and gardening: why growing something helps when nothing else does (`tmp/blog/gardening-plant-care-perimenopause-coping-outlet.md`, generated fresh, not on the original gap list; distinct from the general hobbies focus of `hobbies-creative-outlets-perimenopause-stress-relief.md`, angled instead specifically around plant care and gardening as a grounding coping outlet)
+- Hosting overnight guests in perimenopause: when you have less energy for a full house (`tmp/blog/hosting-overnight-guests-perimenopause-low-energy.md`, generated fresh, not on the original gap list; distinct from the general household-delegation focus of `eldest-daughter-in-law-perimenopause-household.md`, angled instead specifically around the physical and cognitive load of overnight/multi-day guests staying)
+- Perimenopause and your relationship with makeup: why beauty rituals change now (`tmp/blog/perimenopause-makeup-beauty-rituals-changing.md`, generated fresh, not on the original gap list; distinct from the visual/reflection focus of `not-recognising-yourself-in-mirror-perimenopause.md`, angled instead around the behavioural shift in makeup and grooming rituals themselves, both pulling back and leaning in)
 
 ## Reddit signal (for tone and future topic generation, not for direct topic scraping once the list above is exhausted)
 
