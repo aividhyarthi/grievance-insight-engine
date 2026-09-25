@@ -83,6 +83,7 @@ Starting 2026-09-20, these four pillars get steady recurring coverage, not a sin
 - **Supplements**: the existing `natural-ways-to-support-testosterone.md` post is a broad overview, so new posts here should go deeper on specific, named supplements rather than repeat that survey. Evidence-aware and honest: separate supplements with genuine evidence behind them (e.g. vitamin D, zinc, magnesium) from "testosterone booster" products marketed heavily with weak evidence, flag that India's supplement market is loosely regulated so quality and purity vary by brand, always say to tell your doctor before starting any supplement (interaction risk with TRT and other medications), and never name or recommend a specific brand or dosage. Seed topics: "Supplement quality and regulation in India: what men should check before buying", "Creatine after 40: what the evidence actually shows beyond bodybuilding marketing", "Fenugreek and testosterone: what the research actually shows", "'Testosterone booster' supplements: reading the label critically", "Vitamin D supplementation and testosterone: when it actually helps".
 
 ### Pillar posts written
+- Foods: "Foods that may worsen belly fat and testosterone decline together" -> `foods-worsen-belly-fat-testosterone-decline.md`
 - Foods: "Zinc-rich Indian foods and testosterone: what the evidence actually shows" -> `zinc-rich-indian-foods-testosterone.md`
 - Foods: "Healthy fats and testosterone: ghee, nuts, and what the research supports" -> `healthy-fats-ghee-nuts-testosterone.md`
 - Ayurveda: "Ashwagandha and testosterone: what the research actually shows, beyond the supplement marketing" -> `ashwagandha-testosterone-evidence.md`
@@ -100,7 +101,7 @@ Starting 2026-09-20, these four pillars get steady recurring coverage, not a sin
 
 - Supplements: "Zinc supplementation specifically (as a supplement, distinct from the food-sourced angle in the zinc foods post)" -> `zinc-supplements-testosterone-when-food-isnt-enough.md`
 
-Remaining unused seed topics for future batches: "Vitamin D deficiency and low testosterone: the connection and what to eat or do about it" (foods, note: the supplementation angle on vitamin D is now covered by the supplements-pillar post above, so if picked up this should stay strictly food-source focused, similar to how the zinc food post relates to zinc), "Foods that may worsen belly fat and testosterone decline together" (foods), "Should you tell your doctor you're using homeopathic remedies alongside TRT" (homeopathy, largely folded into the "what men try" post above via its FAQ, but still open for a dedicated deeper piece), "Supplement quality and regulation in India: what men should check before buying" (supplements, largely folded into the booster-label post above via its regulation section, but still open for a dedicated deeper piece on quality/certification specifically), "D-aspartic acid" and "Tribulus terrestris" (supplements, both covered as ingredients within the booster-label post's table, but open for standalone deeper pieces if warranted).
+Remaining unused seed topics for future batches: "Vitamin D deficiency and low testosterone: the connection and what to eat or do about it" (foods, note: the supplementation angle on vitamin D is now covered by the supplements-pillar post above, so if picked up this should stay strictly food-source focused, similar to how the zinc food post relates to zinc), "Should you tell your doctor you're using homeopathic remedies alongside TRT" (homeopathy, largely folded into the "what men try" post above via its FAQ, but still open for a dedicated deeper piece), "Supplement quality and regulation in India: what men should check before buying" (supplements, largely folded into the booster-label post above via its regulation section, but still open for a dedicated deeper piece on quality/certification specifically), "D-aspartic acid" and "Tribulus terrestris" (supplements, both covered as ingredients within the booster-label post's table, but open for standalone deeper pieces if warranted).
 
 ## Tone signal
 
@@ -111,8 +112,6 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 ### Not yet written
 - Sleep apnoea and testosterone: the connection most men don't know about (note: substantially overlaps with existing `sleep-testosterone-two-way-link.md`, which already has a dedicated sleep apnoea section; skip or angle very differently if picked up)
 - Getting your doctor to take you seriously: a practical advocacy guide (note: substantially overlaps with existing `talking-to-doctor-testosterone-test.md`; skip or angle very differently, e.g. toward systemic dismissal/stigma rather than the blood-test conversation itself, if picked up)
-- Starting a second career or side business in midlife: energy, confidence, and testosterone (new idea, not yet written)
-- Eyebrow and facial hair thinning patterns in midlife men: distinct from head hair loss, what's hormonal (new idea, not yet written)
 
 ### Written (fill in as used)
 - Building a morning routine that actually supports hormonal health -> `morning-routine-hormonal-health-midlife-men.md`
@@ -195,3 +194,7 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Why small, enclosed spaces feel more uncomfortable after 40: claustrophobia and testosterone (new, not from the original gap list; distinct from the existing crowds/noise-tolerance post, which covers busy public spaces rather than enclosed spaces specifically) -> `claustrophobia-small-spaces-discomfort-midlife-men.md`
 - Why you second-guess yourself at the bank now: financial and legal confidence after 40 (new, not from the original gap list; angled toward financial/legal decision-making confidence, distinct from the existing handwriting/fine-motor-confidence post) -> `financial-legal-confidence-signing-documents-midlife-men.md`
 - Why strong perfumes and cologne suddenly bother you after 40: scent sensitivity and testosterone (new, not from the original gap list) -> `scent-sensitivity-cologne-tolerance-changes-midlife-men.md`
+- Starting a second career or side business in midlife: energy, confidence, and testosterone -> `second-career-side-business-midlife-testosterone.md`
+- Eyebrow and facial hair thinning patterns in midlife men: distinct from head hair loss, what's hormonal -> `eyebrow-facial-hair-thinning-midlife-men.md`
+- Why multitasking feels harder after 40: focus, task-switching, and testosterone (new, not from the original gap list) -> `multitasking-focus-task-switching-midlife-men.md`
+- Being called "uncle": how your relationship with authority and age changes in midlife (new, not from the original gap list) -> `being-called-uncle-authority-figure-identity-midlife-men.md`
