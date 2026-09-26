@@ -101,7 +101,9 @@ Starting 2026-09-20, these four pillars get steady recurring coverage, not a sin
 
 - Supplements: "Zinc supplementation specifically (as a supplement, distinct from the food-sourced angle in the zinc foods post)" -> `zinc-supplements-testosterone-when-food-isnt-enough.md`
 
-Remaining unused seed topics for future batches: "Vitamin D deficiency and low testosterone: the connection and what to eat or do about it" (foods, note: the supplementation angle on vitamin D is now covered by the supplements-pillar post above, so if picked up this should stay strictly food-source focused, similar to how the zinc food post relates to zinc), "Should you tell your doctor you're using homeopathic remedies alongside TRT" (homeopathy, largely folded into the "what men try" post above via its FAQ, but still open for a dedicated deeper piece), "Supplement quality and regulation in India: what men should check before buying" (supplements, largely folded into the booster-label post above via its regulation section, but still open for a dedicated deeper piece on quality/certification specifically), "D-aspartic acid" and "Tribulus terrestris" (supplements, both covered as ingredients within the booster-label post's table, but open for standalone deeper pieces if warranted).
+- Foods: "Vitamin D deficiency and low testosterone: the connection and what to eat or do about it" (kept strictly food-source and sunlight focused, since the supplementation angle is already covered by the supplements-pillar vitamin D post) -> `vitamin-d-deficiency-foods-sunlight-testosterone.md`
+
+Remaining unused seed topics for future batches: "Should you tell your doctor you're using homeopathic remedies alongside TRT" (homeopathy, largely folded into the "what men try" post above via its FAQ, but still open for a dedicated deeper piece), "Supplement quality and regulation in India: what men should check before buying" (supplements, largely folded into the booster-label post above via its regulation section, but still open for a dedicated deeper piece on quality/certification specifically), "D-aspartic acid" and "Tribulus terrestris" (supplements, both covered as ingredients within the booster-label post's table, but open for standalone deeper pieces if warranted).
 
 ## Tone signal
 
@@ -111,9 +113,12 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 
 ### Not yet written
 - Sleep apnoea and testosterone: the connection most men don't know about (note: substantially overlaps with existing `sleep-testosterone-two-way-link.md`, which already has a dedicated sleep apnoea section; skip or angle very differently if picked up)
-- Getting your doctor to take you seriously: a practical advocacy guide (note: substantially overlaps with existing `talking-to-doctor-testosterone-test.md`; skip or angle very differently, e.g. toward systemic dismissal/stigma rather than the blood-test conversation itself, if picked up)
 
 ### Written (fill in as used)
+- Getting your doctor to take you seriously: a practical advocacy guide (angled toward the decision to switch doctors entirely and finding a new one, rather than the blood-test conversation covered by `talking-to-doctor-testosterone-test.md` or the push-for-evaluation angle in `doctors-dismiss-symptoms-as-stress.md`) -> `switching-doctors-finding-one-who-takes-you-seriously.md`
+- Health insurance claims and medical paperwork navigation for testosterone-related care (new, not from the original gap list; distinct from `andropause-without-health-insurance-india.md`, which covers the out-of-pocket/uninsured angle, this one covers the claims and paperwork process for men who do have insurance) -> `health-insurance-claims-medical-paperwork-testosterone-care.md`
+- Decision fatigue from daily choices in midlife (new, not from the original gap list) -> `decision-fatigue-daily-choices-midlife-men.md`
+- Gratitude and contentment changing in midlife: the positive emotional shift (new, not from the original gap list; distinct from the negative-mood angle of `losing-sense-of-humor-emotional-flatness-andropause.md` and `depression-in-men-andropause-link.md`) -> `gratitude-contentment-changing-midlife-men.md`
 - Building a morning routine that actually supports hormonal health -> `morning-routine-hormonal-health-midlife-men.md`
 - Workplace performance and energy: managing a demanding job with declining energy -> `workplace-performance-energy-declining-testosterone.md`
 - The pressure to stay stoic: hiding andropause symptoms behind a strong face (new, not from the original gap list; addresses the stoic-masculinity/emotional-masking angle) -> `pressure-to-stay-stoic-hiding-andropause-symptoms.md`
