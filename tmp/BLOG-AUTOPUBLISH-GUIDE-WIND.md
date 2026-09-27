@@ -101,9 +101,11 @@ Starting 2026-09-20, these four pillars get steady recurring coverage, not a sin
 
 - Supplements: "Zinc supplementation specifically (as a supplement, distinct from the food-sourced angle in the zinc foods post)" -> `zinc-supplements-testosterone-when-food-isnt-enough.md`
 
+- Supplements: "Supplement quality and regulation in India: what men should check before buying" (dedicated deeper piece on quality/certification specifically, distinct from the booster-label post's brief regulation mention) -> `supplement-quality-regulation-india-what-to-check.md`
+
 - Foods: "Vitamin D deficiency and low testosterone: the connection and what to eat or do about it" (kept strictly food-source and sunlight focused, since the supplementation angle is already covered by the supplements-pillar vitamin D post) -> `vitamin-d-deficiency-foods-sunlight-testosterone.md`
 
-Remaining unused seed topics for future batches: "Should you tell your doctor you're using homeopathic remedies alongside TRT" (homeopathy, largely folded into the "what men try" post above via its FAQ, but still open for a dedicated deeper piece), "Supplement quality and regulation in India: what men should check before buying" (supplements, largely folded into the booster-label post above via its regulation section, but still open for a dedicated deeper piece on quality/certification specifically), "D-aspartic acid" and "Tribulus terrestris" (supplements, both covered as ingredients within the booster-label post's table, but open for standalone deeper pieces if warranted).
+Remaining unused seed topics for future batches: "Should you tell your doctor you're using homeopathic remedies alongside TRT" (homeopathy, largely folded into the "what men try" post above via its FAQ, but still open for a dedicated deeper piece), "D-aspartic acid" and "Tribulus terrestris" (supplements, both covered as ingredients within the booster-label post's table, but open for standalone deeper pieces if warranted).
 
 ## Tone signal
 
@@ -203,3 +205,7 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Eyebrow and facial hair thinning patterns in midlife men: distinct from head hair loss, what's hormonal -> `eyebrow-facial-hair-thinning-midlife-men.md`
 - Why multitasking feels harder after 40: focus, task-switching, and testosterone (new, not from the original gap list) -> `multitasking-focus-task-switching-midlife-men.md`
 - Being called "uncle": how your relationship with authority and age changes in midlife (new, not from the original gap list) -> `being-called-uncle-authority-figure-identity-midlife-men.md`
+- Family WhatsApp group fatigue: why constant notifications wear on men after 40 (new, not from the original gap list) -> `family-whatsapp-group-fatigue-midlife-men.md`
+- Home renovation and DIY projects after 40: the physical strain nobody warns you about (new, not from the original gap list) -> `home-renovation-diy-physical-strain-midlife-men.md`
+- Attending a wedding without your family: why solo events hit differently after 40 (new, not from the original gap list; distinct from `wedding-season-family-event-fatigue-testosterone.md`, which covers back-to-back events with family in tow, this one covers solo attendance and the loneliness of no shared debrief) -> `attending-weddings-without-family-midlife-men.md`
+- The pressure to always have the answer: being the "practical one" in your family after 40 (new, not from the original gap list; distinct from `decision-maker-ageing-in-laws-finances-healthcare.md`, which is specific to in-laws' finances/healthcare, and from `decision-fatigue-daily-choices-midlife-men.md`, which is about the volume of the reader's own personal daily choices, this one is about the social role of being everyone else's default decision-maker) -> `pressure-to-always-have-answers-practical-one-family-midlife-men.md`
