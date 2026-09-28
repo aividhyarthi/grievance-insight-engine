@@ -153,6 +153,13 @@ Batch 2026-09-27, foods/Ayurveda/homeopathy/supplements pillars left untouched t
 - Quiet at Home After 40: Why Background Noise Affects Focus and Rest More Than You Think -> `background-noise-home-environment-focus-rest.md` (fresh: home acoustic environment and auditory filtering for focus/sleep, distinct from `noise-hearing-protection-daily-life.md`, which is about hearing-damage prevention, and `crowd-noise-tolerance-healthy-ageing.md`, which is about sensory overload in crowded public settings, not the home environment)
 - The Family's "Practical One": What It Costs You to Always Be the Problem-Solver -> `family-practical-one-problem-solver-burnout.md` (fresh: the functional "fixer" role and its chronic-stress cost, distinct from `becoming-family-elder-authority-role.md`, which is about ceremonial elder status and respect, not who does the practical problem-solving)
 
+Batch 2026-09-28, both remaining classic Gap List items closed out (fermented foods and turmeric), plus three fresh non-pillar topics picked from a user-suggested angle list and checked against all 119 existing titles first (humidity tolerance was considered but dropped since `temperature-tolerance-ac-heat-ageing.md`, `monsoon-joint-pain-immunity-arthritis.md`, and `monsoon-summer-seasonal-health-transitions-india.md` already cover heat/humidity/seasonal ground closely; adapting to sudden change/last-minute plan changes was considered but set aside in favour of the other three angles this round):
+- Traditional Fermented Foods of India Beyond Curd: An Underused Resource for Gut Health -> `fermented-foods-india-beyond-curd-longevity.md` (Gap List item, used, now closed)
+- Turmeric and Healthy Ageing: What the Research Actually Supports -> `turmeric-evidence-healthy-ageing.md` (Gap List item, used, now closed)
+- Why Exercise Motivation Fades After 40, and How to Actually Stay Consistent -> `exercise-motivation-consistency-after-40.md` (fresh: habit formation, motivation, and consistency psychology, distinct from `walking-longevity.md`, `yoga-versus-general-movement-evidence.md`, `strength-training-longevity.md`, and `sedentary-behaviour-sitting-longevity.md`, all of which are about which movement to do, not staying consistent with it)
+- The Empty Nest After 50: Adjusting When Your Children Move Out, and Becoming a Long-Distance Grandparent -> `empty-nest-long-distance-grandparents-after-50.md` (fresh: the empty-nest transition itself, marital rebuilding, and long-distance grandparenting, distinct from `purpose-retirement-longevity.md` (purpose after retirement broadly), `loneliness-solitude-longevity.md` (alone versus lonely distinction), and `relocating-later-life-new-social-ties.md` (parents themselves moving to a new home, not children moving out))
+- Caring for a Spouse While Managing Your Own Health: A Guide for Midlife Couples -> `caring-for-spouse-managing-own-health.md` (fresh: spousal caregiving specifically, role reversal within a marriage, and ambiguous grief, distinct from `caregiving-ageing-parents-sandwich-generation.md`, which is about adult children caring for ageing parents, not spouse-to-spouse caregiving)
+
 ## Tone signal
 
 Direct, calm, evidence-aware, practical, written for Indian readers who want a longer and healthier life without falling for extreme biohacking trends or vague "eat healthy, sleep well" advice. Ground everything in specifics: what to actually do, how often, and why it works, drawing on both modern longevity research and genuinely relevant Indian/Ayurvedic tradition. Avoid marketing-speak ("biohack", "optimize your biology") and avoid extremes (expensive supplement stacks, rigid protocols).
@@ -160,10 +167,11 @@ Direct, calm, evidence-aware, practical, written for Indian readers who want a l
 ## Gap List
 
 ### Not yet written
-- Traditional fermented foods of India beyond curd: an underused resource
-- Spices with real evidence: turmeric, and what the research actually supports
+(none remaining as of 2026-09-28; the two Gap List items below were the last of the original list, see the pillar/fresh-topic batches above and below for how new topics are now being sourced)
 
 ### Written (fill in as used)
+- Traditional fermented foods of India beyond curd: an underused resource -> `fermented-foods-india-beyond-curd-longevity.md`
+- Spices with real evidence: turmeric, and what the research actually supports -> `turmeric-evidence-healthy-ageing.md`
 - Yoga versus general movement: what the evidence says -> `yoga-versus-general-movement-evidence.md`
 - Meditation and mindfulness beyond stress relief: cognitive and cellular ageing -> `meditation-mindfulness-cognitive-cellular-ageing.md`
 - Water quality in India: what to know for long-term health -> `water-quality-india-long-term-health.md`

@@ -105,6 +105,8 @@ Starting 2026-09-20, these four pillars get steady recurring coverage, not a sin
 
 - Foods: "Vitamin D deficiency and low testosterone: the connection and what to eat or do about it" (kept strictly food-source and sunlight focused, since the supplementation angle is already covered by the supplements-pillar vitamin D post) -> `vitamin-d-deficiency-foods-sunlight-testosterone.md`
 
+- Supplements/Foods: "Omega-3 fatty acids and fish oil for testosterone: what the evidence shows" (new, not from the original seed list; distinct from `healthy-fats-ghee-nuts-testosterone.md`, which only mentions omega-3s in passing within its broader ghee/nuts survey) -> `omega-3-fish-oil-testosterone-evidence.md`
+
 Remaining unused seed topics for future batches: "Should you tell your doctor you're using homeopathic remedies alongside TRT" (homeopathy, largely folded into the "what men try" post above via its FAQ, but still open for a dedicated deeper piece), "D-aspartic acid" and "Tribulus terrestris" (supplements, both covered as ingredients within the booster-label post's table, but open for standalone deeper pieces if warranted).
 
 ## Tone signal
@@ -117,6 +119,10 @@ Direct, calm, evidence-aware, respectful, written for Indian men navigating midl
 - Sleep apnoea and testosterone: the connection most men don't know about (note: substantially overlaps with existing `sleep-testosterone-two-way-link.md`, which already has a dedicated sleep apnoea section; skip or angle very differently if picked up)
 
 ### Written (fill in as used)
+- When a child leaves for college: empty nest syndrome in midlife fathers (new, not from the original gap list; distinct from the broader identity/hobbies posts, angled specifically at the child-leaving-home transition for fathers) -> `empty-nest-child-leaves-college-fathers-midlife.md`
+- Why last-minute changes and surprises rattle you more after 40: adaptability and testosterone (new, not from the original gap list; distinct from `restlessness-fidgeting-nervous-energy-midlife-men.md` and `crowds-noise-tolerance-changes-midlife-men.md`, which cover sensory/environmental tolerance rather than tolerance for disrupted plans specifically) -> `last-minute-changes-adaptability-midlife-men.md`
+- Why humidity and heat feel harder to handle after 40, year-round (new, not from the original gap list; deliberately distinct from `monsoon-season-joint-pain-mood-midlife-testosterone.md`, which is season- and rain-specific, and from `hot-flashes-night-sweats-temperature-regulation-andropause-men.md`, which covers sudden internal hot flashes rather than external heat/humidity tolerance) -> `humidity-heat-intolerance-year-round-midlife-men.md`
+- Headaches in midlife men: is testosterone involved (new, not from the original gap list; a symptom-specific piece with no prior dedicated post, covering the cluster-headache evidence link specifically) -> `headaches-migraines-midlife-testosterone.md`
 - Getting your doctor to take you seriously: a practical advocacy guide (angled toward the decision to switch doctors entirely and finding a new one, rather than the blood-test conversation covered by `talking-to-doctor-testosterone-test.md` or the push-for-evaluation angle in `doctors-dismiss-symptoms-as-stress.md`) -> `switching-doctors-finding-one-who-takes-you-seriously.md`
 - Health insurance claims and medical paperwork navigation for testosterone-related care (new, not from the original gap list; distinct from `andropause-without-health-insurance-india.md`, which covers the out-of-pocket/uninsured angle, this one covers the claims and paperwork process for men who do have insurance) -> `health-insurance-claims-medical-paperwork-testosterone-care.md`
 - Decision fatigue from daily choices in midlife (new, not from the original gap list) -> `decision-fatigue-daily-choices-midlife-men.md`
