@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Executive Search &amp; Talent Advisory – AppStudioX</title>
+  <meta name="description" content="AppStudioX's Executive Search and Talent Advisory practice places CXOs, senior executives, and functional leaders for ambitious brands across India and global markets. Relationship-first. Results-driven." />
+  <link rel="canonical" href="https://appstudiox.com/talent-advisory.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ===== Talent Advisory page styles ===== */
+    .ta-hero { background: var(--primary); padding: 140px 0 100px; position: relative; overflow: hidden; }
+    .ta-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+    .ta-hero__inner { position: relative; z-index: 2; max-width: 720px; }
+    .ta-hero .section-badge { margin-bottom: 24px; }
+    .ta-hero h1 { font-family: var(--font-head); font-size: clamp(2.6rem,6vw,4.2rem); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; }
+    .ta-hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .ta-hero p { font-size: 1.15rem; color: rgba(255,255,255,0.65); max-width: 580px; line-height: 1.75; margin-bottom: 40px; }
+    .ta-hero__stats { display: flex; gap: 48px; flex-wrap: wrap; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .ta-hero__stat-num { font-family: var(--font-head); font-size: 2.4rem; font-weight: 900; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .ta-hero__stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+    .ta-section { padding: 80px 0; }
+    .ta-section--alt { background: var(--off-white); }
+    .ta-section--dark { background: var(--primary); }
+
+    .ta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    @media (max-width: 768px) { .ta-grid { grid-template-columns: 1fr; gap: 32px; } .ta-hero__stats { gap: 28px; } }
+
+    .ta-text h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.5rem); font-weight: 800; color: var(--text-dark); line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .ta-text h2.light { color: var(--white); }
+    .ta-text p { font-size: 1rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 16px; }
+    .ta-text p.light { color: rgba(255,255,255,0.65); }
+    .ta-text ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .ta-text ul li { font-size: 0.95rem; color: var(--text-mid); display: flex; gap: 12px; align-items: flex-start; }
+    .ta-text ul li.light { color: rgba(255,255,255,0.7); }
+    .ta-text ul li::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+
+    .process-step-ta { display: flex; gap: 24px; padding: 28px; background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); margin-bottom: 16px; }
+    .process-step-ta__num { font-family: var(--font-head); font-size: 1.6rem; font-weight: 900; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0; line-height: 1; }
+    .process-step-ta h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .process-step-ta p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; margin: 0; }
+
+    .industry-tag-ta { display: inline-block; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 8px 20px; font-size: 0.85rem; font-weight: 500; margin: 4px; }
+
+    .ta-cta { text-align: center; padding: 96px 0; background: var(--primary); }
+    .ta-cta h2 { font-family: var(--font-head); font-size: clamp(2rem,4vw,3rem); font-weight: 900; color: var(--white); margin-bottom: 16px; letter-spacing: -0.02em; }
+    .ta-cta p { font-size: 1.1rem; color: rgba(255,255,255,0.65); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .ta-cta__actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    .role-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 24px 28px; }
+    .role-card h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .role-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; margin: 0; }
+
+    .roles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  </style>
+</head>
+<body>
+
+  <header class="nav scrolled" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__logo">
+        <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html#services">What We Do</a>
+        <a href="about.html">About</a>
+        <a href="index.html#results">Results</a>
+        <a href="index.html#clients">Clients</a>
+        <a href="talent-advisory.html" style="color:var(--white)">Talent Advisory</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a href="index.html#contact" class="btn btn--sm btn--accent nav__cta">Talk to a Strategist</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="ta-hero">
+    <div class="container">
+      <div class="ta-hero__inner">
+        <div class="section-badge">Executive Search &amp; Talent Advisory</div>
+        <h1>We place the leaders<br />who build <span>what's next.</span></h1>
+        <p>AppStudioX partners with founders, boards, and HR leaders to place exceptional executives and senior professionals across India's most ambitious organisations. Relationship-first. Results-driven.</p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="index.html#contact" class="btn btn--primary btn--lg">Start Your Search</a>
+          <a href="#how-we-work" class="btn btn--ghost btn--lg">Our Process →</a>
+        </div>
+        <div class="ta-hero__stats">
+          <div>
+            <div class="ta-hero__stat-num">45+</div>
+            <div class="ta-hero__stat-label">Brands Worked With</div>
+          </div>
+          <div>
+            <div class="ta-hero__stat-num">20+</div>
+            <div class="ta-hero__stat-label">Years of Industry Access</div>
+          </div>
+          <div>
+            <div class="ta-hero__stat-num">6</div>
+            <div class="ta-hero__stat-label">Global Markets</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE DO ===== -->
+  <section class="ta-section">
+    <div class="container ta-grid">
+      <div class="ta-text">
+        <h2>Senior talent placement for organisations that can't afford the wrong hire</h2>
+        <p>The cost of a wrong CXO or senior executive hire is enormous — in time, culture, momentum, and capital. The right one changes everything. We take that seriously.</p>
+        <p>Our talent advisory practice brings together deep industry networks, a rigorous vetting methodology, and 20+ years of relationships with exceptional leaders across India, APAC, MENA, and the US.</p>
+        <p>We work on retained, relationship-based mandates with the founders and leadership teams of brands we believe in — and we stay close to the placement long after the contract is signed.</p>
+        <ul>
+          <li>CXO, VP, and Director-level executive search</li>
+          <li>Founding team and early leadership advisory</li>
+          <li>Board and advisory panel placements</li>
+          <li>Leadership succession planning</li>
+          <li>Talent landscape mapping and competitive benchmarking</li>
+          <li>Interim and fractional leadership solutions</li>
+        </ul>
+      </div>
+      <div>
+        <div style="background: var(--primary); border-radius: var(--radius-lg); padding: 40px; color: white;">
+          <div class="section-badge section-badge--dark" style="margin-bottom:24px;">Roles We Place</div>
+          <div class="roles-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px;">
+              <div style="font-family:var(--font-head); font-weight:700; color:white; margin-bottom:4px; font-size:0.95rem;">CEO / MD</div>
+              <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">Chief Executive</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px;">
+              <div style="font-family:var(--font-head); font-weight:700; color:white; margin-bottom:4px; font-size:0.95rem;">CMO</div>
+              <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">Chief Marketing Officer</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px;">
+              <div style="font-family:var(--font-head); font-weight:700; color:white; margin-bottom:4px; font-size:0.95rem;">CTO</div>
+              <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">Chief Technology Officer</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px;">
+              <div style="font-family:var(--font-head); font-weight:700; color:white; margin-bottom:4px; font-size:0.95rem;">CFO</div>
+              <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">Chief Financial Officer</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px;">
+              <div style="font-family:var(--font-head); font-weight:700; color:white; margin-bottom:4px; font-size:0.95rem;">VP Marketing</div>
+              <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">VP / Head of Marketing</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px;">
+              <div style="font-family:var(--font-head); font-weight:700; color:white; margin-bottom:4px; font-size:0.95rem;">VP Growth</div>
+              <div style="font-size:0.8rem; color:rgba(255,255,255,0.5);">VP / Head of Growth</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="ta-section ta-section--alt" id="how-we-work">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">How We Work</div>
+        <h2 class="section-title">A rigorous process. <span class="gradient-text">A personal approach.</span></h2>
+        <p class="section-sub">We work on a retained, relationship basis. Every mandate gets our full attention — not a database search and a shortlist.</p>
+      </div>
+      <div style="max-width:720px; margin:0 auto;">
+        <div class="process-step-ta">
+          <div class="process-step-ta__num">01</div>
+          <div>
+            <h3>Define the Brief</h3>
+            <p>We spend time with your leadership team to understand not just the role requirements, but the culture, the challenges, and what makes this opportunity distinctive for a high-calibre candidate.</p>
+          </div>
+        </div>
+        <div class="process-step-ta">
+          <div class="process-step-ta__num">02</div>
+          <div>
+            <h3>Source &amp; Map</h3>
+            <p>Active sourcing through our networks — not passive database matching. We approach candidates who aren't necessarily looking, because the best leaders rarely are.</p>
+          </div>
+        </div>
+        <div class="process-step-ta">
+          <div class="process-step-ta__num">03</div>
+          <div>
+            <h3>Vet &amp; Assess</h3>
+            <p>Rigorous interviews, reference checks, and assessment against the role's success criteria. We present a small, high-quality shortlist — not a volume of profiles to wade through.</p>
+          </div>
+        </div>
+        <div class="process-step-ta">
+          <div class="process-step-ta__num">04</div>
+          <div>
+            <h3>Place &amp; Partner</h3>
+            <p>We support the offer, negotiation, and onboarding — and stay in contact with both client and placed leader to ensure a successful transition and long-term fit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INDUSTRIES ===== -->
+  <section class="ta-section ta-section--dark">
+    <div class="container" style="text-align:center;">
+      <div class="section-badge section-badge--dark" style="margin-bottom:20px;">Industries We Place In</div>
+      <h2 class="section-title" style="color:var(--white); margin-bottom:12px;">Deep networks across<br /><span class="gradient-text">India's most active sectors</span></h2>
+      <p style="color:rgba(255,255,255,0.55); margin-bottom:40px; font-size:1rem;">Built over 20+ years of working with brands across these industries.</p>
+      <div style="margin-top:32px;">
+        <span class="industry-tag-ta">Media &amp; Publishing</span>
+        <span class="industry-tag-ta">E-Commerce &amp; D2C</span>
+        <span class="industry-tag-ta">FinTech &amp; BFSI</span>
+        <span class="industry-tag-ta">EdTech</span>
+        <span class="industry-tag-ta">Travel &amp; Hospitality</span>
+        <span class="industry-tag-ta">Health &amp; Wellness</span>
+        <span class="industry-tag-ta">B2B SaaS</span>
+        <span class="industry-tag-ta">Retail &amp; Fashion</span>
+        <span class="industry-tag-ta">Automotive</span>
+        <span class="industry-tag-ta">Manufacturing</span>
+        <span class="industry-tag-ta">Real Estate</span>
+        <span class="industry-tag-ta">Food &amp; Delivery</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="ta-cta">
+    <div class="container">
+      <h2>The right leader changes<br />everything. Let's find them.</h2>
+      <p>Tell us about the role you need to fill. A senior talent advisor will reach out personally within 24 hours.</p>
+      <div class="ta-cta__actions">
+        <a href="index.html#contact" class="btn btn--primary btn--lg">Start Your Search</a>
+        <a href="mailto:strategy@appstudiox.com" class="btn btn--ghost btn--lg">Email Our Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo footer__logo">
+            <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
+          </a>
+          <p class="footer__tagline">Strategy. Analytics. Growth. Talent.</p>
+          <div class="footer__social">
+            <a href="https://linkedin.com/company/appstudiox-entertainment-pvt-limited/?originalSubdomain=in" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Instagram">Ig</a>
+          </div>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4>Services</h4>
+            <a href="services/business-strategy.html">Business Strategy</a>
+            <a href="services/content-strategy-marketing.html">Content Strategy</a>
+            <a href="services/pr-communications.html">PR &amp; Communications</a>
+            <a href="services/orm.html">Reputation Management</a>
+            <a href="services/search-discovery-strategy.html">Search Strategy</a>
+            <a href="services/ai-agents.html">AI Agent Development</a>
+            <a href="talent-advisory.html">Talent Advisory</a>
+          </div>
+          <div class="footer__col">
+            <h4>Company</h4>
+            <a href="about.html">About AppStudioX</a>
+            <a href="index.html#clients">Clients</a>
+            <a href="index.html#locations">Offices</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+          <div class="footer__col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> AppStudioX. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('navLinks');
+    if (ham && nav) ham.addEventListener('click', () => nav.classList.toggle('open'));
+  </script>
+</body>
+</html>

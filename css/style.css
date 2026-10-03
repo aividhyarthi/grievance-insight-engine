@@ -306,8 +306,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
 }
@@ -320,12 +320,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .hero__orb--1 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 70%);
   top: -100px; left: -150px;
 }
 .hero__orb--2 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%);
   bottom: -100px; right: -100px;
 }
 
@@ -666,6 +666,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--accent);
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+.service-card__link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: color var(--transition);
+}
+.service-card__link:hover {
+  color: var(--accent-light);
 }
 
 /* ============================

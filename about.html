@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About AppStudioX – Strategy, Analytics &amp; Growth Consulting</title>
+  <meta name="description" content="AppStudioX is a strategy, analytics and growth consulting firm with offices in Hyderabad, Bengaluru, Delhi, Brisbane, Amman and Chicago. We partner with ambitious brands and CXOs to drive measurable business growth." />
+  <link rel="canonical" href="https://appstudiox.com/about.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .about-hero { background: var(--primary); padding: 140px 0 100px; position: relative; overflow: hidden; }
+    .about-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+    .about-hero__inner { position: relative; z-index: 2; max-width: 780px; }
+    .about-hero .section-badge { margin-bottom: 24px; }
+    .about-hero h1 { font-family: var(--font-head); font-size: clamp(2.6rem,6vw,4.2rem); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; }
+    .about-hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .about-hero p { font-size: 1.15rem; color: rgba(255,255,255,0.65); max-width: 620px; line-height: 1.8; }
+
+    .about-section { padding: 80px 0; }
+    .about-section--alt { background: var(--off-white); }
+    .about-section--dark { background: var(--primary); }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    .about-text h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: var(--text-dark); line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .about-text h2.light { color: var(--white); }
+    .about-text p { font-size: 1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 16px; }
+    .about-text p.light { color: rgba(255,255,255,0.65); }
+
+    .value-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 28px 24px; display: flex; gap: 20px; align-items: flex-start; }
+    .value-card__icon { font-size: 1.6rem; flex-shrink: 0; }
+    .value-card h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .value-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; margin: 0; }
+    .values-grid { display: flex; flex-direction: column; gap: 16px; }
+
+    .office-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); padding: 28px 24px; }
+    .office-flag { font-size: 2rem; margin-bottom: 12px; }
+    .office-city { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .office-addr { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .office-badge { display: inline-block; background: rgba(99,102,241,0.2); color: var(--accent-light); border-radius: 100px; padding: 3px 12px; font-size: 0.72rem; font-weight: 600; margin-top: 8px; }
+    .offices-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+
+    .about-cta { text-align: center; padding: 80px 0; background: var(--primary); }
+    .about-cta h2 { font-family: var(--font-head); font-size: clamp(2rem,4vw,2.8rem); font-weight: 800; color: var(--white); margin-bottom: 16px; letter-spacing: -0.02em; }
+    .about-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.65); margin-bottom: 36px; }
+  </style>
+</head>
+<body>
+
+  <header class="nav scrolled" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__logo">
+        <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html#services">What We Do</a>
+        <a href="about.html" style="color:var(--white)">About</a>
+        <a href="index.html#results">Results</a>
+        <a href="index.html#clients">Clients</a>
+        <a href="talent-advisory.html">Talent Advisory</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a href="index.html#contact" class="btn btn--sm btn--accent nav__cta">Talk to a Strategist</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero__inner">
+        <div class="section-badge">About AppStudioX</div>
+        <h1>We're the partner<br />CXOs <span>call first.</span></h1>
+        <p>AppStudioX is a strategy, analytics and growth consulting firm. We partner with ambitious brands and leadership teams to accelerate growth — through strategy, content, PR, reputation management, search visibility, and executive talent advisory.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats-bar">
+    <div class="container stats-bar__inner">
+      <div class="stat-item">
+        <span class="stat-num">47</span><span class="stat-plus">+</span>
+        <span class="stat-label">Brands Partnered</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">20</span><span class="stat-plus">+</span>
+        <span class="stat-label">Years of Expertise</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Global Offices</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">50</span><span class="stat-plus">+</span>
+        <span class="stat-label">Consultants</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHO WE ARE ===== -->
+  <section class="about-section">
+    <div class="container about-grid">
+      <div class="about-text">
+        <h2>Built by practitioners. Run for clients.</h2>
+        <p>AppStudioX was founded with a simple conviction: that the brands and leaders who deserve to win often lose not because they lack ambition or capability, but because they lack the right strategic partner at the right moment.</p>
+        <p>We're a consulting firm, not a traditional agency. That means every engagement is led by someone who has done it before — a senior practitioner with relevant industry experience, real accountability, and a genuine stake in your success.</p>
+        <p>Our team spans strategy, content, PR, brand management, search, analytics, AI, and talent advisory. We bring the full range of capabilities that modern growth demands — under one roof, with one point of contact, and one shared set of objectives.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-card__icon">🎯</div>
+          <div>
+            <h3>Outcomes over outputs</h3>
+            <p>We don't measure success by deliverable volume. We measure it by business impact — revenue, market share, brand perception, and talent quality.</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-card__icon">🤝</div>
+          <div>
+            <h3>Long-term partnerships</h3>
+            <p>Our average client relationship is 2+ years. We invest in understanding your business deeply — because that's where the best advice comes from.</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-card__icon">💡</div>
+          <div>
+            <h3>Honest counsel</h3>
+            <p>We tell clients what they need to hear, not what they want to hear. Candour, backed by data and experience, is the most valuable thing a consultant can offer.</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-card__icon">📊</div>
+          <div>
+            <h3>Analytics-driven</h3>
+            <p>Every recommendation has evidence behind it. We build strategies from data — market intelligence, competitive analysis, and performance measurement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OFFICES ===== -->
+  <section class="about-section about-section--dark">
+    <div class="container">
+      <div class="section-header" style="text-align:center;">
+        <div class="section-badge section-badge--dark">Global Presence</div>
+        <h2 class="section-title" style="color:var(--white);">Where You'll <span class="gradient-text">Find Us</span></h2>
+        <p style="color:rgba(255,255,255,0.55); font-size:1rem; max-width:500px; margin:0 auto;">Headquartered in India with offices across APAC, MENA, and North America.</p>
+      </div>
+      <div class="offices-grid" style="margin-top:48px;">
+        <div class="office-card">
+          <div class="office-flag">🇮🇳</div>
+          <div class="office-city">Hyderabad</div>
+          <div class="office-addr">Plot 589, Aurora Colony, Banjara Hills</div>
+          <span class="office-badge">Headquarters</span>
+        </div>
+        <div class="office-card">
+          <div class="office-flag">🇮🇳</div>
+          <div class="office-city">Bengaluru</div>
+          <div class="office-addr">JP Nagar, Bengaluru</div>
+          <span class="office-badge">South India</span>
+        </div>
+        <div class="office-card">
+          <div class="office-flag">🇮🇳</div>
+          <div class="office-city">New Delhi</div>
+          <div class="office-addr">7th Floor, Sector 107, Noida</div>
+          <span class="office-badge">North India</span>
+        </div>
+        <div class="office-card">
+          <div class="office-flag">🇦🇺</div>
+          <div class="office-city">Brisbane</div>
+          <div class="office-addr">Everton Park, QLD 4053</div>
+          <span class="office-badge">APAC Hub</span>
+        </div>
+        <div class="office-card">
+          <div class="office-flag">🇯🇴</div>
+          <div class="office-city">Amman</div>
+          <div class="office-addr">Amman, Jordan</div>
+          <span class="office-badge">MENA &amp; Arabic</span>
+        </div>
+        <div class="office-card">
+          <div class="office-flag">🇺🇸</div>
+          <div class="office-city">Chicago</div>
+          <div class="office-addr">Chicago, Illinois</div>
+          <span class="office-badge">North America</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="about-cta">
+    <div class="container">
+      <h2>Ready to work with<br />a partner who gets it?</h2>
+      <p>Tell us about your business and what you're trying to achieve. A senior consultant will respond personally.</p>
+      <a href="index.html#contact" class="btn btn--primary btn--lg">Talk to a Strategist</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo footer__logo">
+            <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
+          </a>
+          <p class="footer__tagline">Strategy. Analytics. Growth. Talent.</p>
+          <div class="footer__social">
+            <a href="https://linkedin.com/company/appstudiox-entertainment-pvt-limited/?originalSubdomain=in" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Instagram">Ig</a>
+          </div>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4>Services</h4>
+            <a href="services/business-strategy.html">Business Strategy</a>
+            <a href="services/content-strategy-marketing.html">Content Strategy</a>
+            <a href="services/pr-communications.html">PR &amp; Communications</a>
+            <a href="services/orm.html">Reputation Management</a>
+            <a href="services/search-discovery-strategy.html">Search Strategy</a>
+            <a href="services/ai-agents.html">AI Agent Development</a>
+            <a href="talent-advisory.html">Talent Advisory</a>
+          </div>
+          <div class="footer__col">
+            <h4>Company</h4>
+            <a href="about.html">About AppStudioX</a>
+            <a href="index.html#why-us">Why Us</a>
+            <a href="index.html#process">Our Process</a>
+            <a href="index.html#clients">Clients</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+          <div class="footer__col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> AppStudioX. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('navLinks');
+    if (ham && nav) ham.addEventListener('click', () => nav.classList.toggle('open'));
+  </script>
+</body>
+</html>
