@@ -948,8 +948,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .why-card__icon {
-  font-size: 2.2rem;
-  margin-bottom: 18px;
+  width: 44px; height: 44px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+.why-card__icon svg {
+  width: 22px; height: 22px;
 }
 
 .why-card h3 {
@@ -1000,8 +1009,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .team-card__icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.85);
+}
+.team-card__icon svg {
+  width: 24px; height: 24px;
 }
 
 .team-card__num {

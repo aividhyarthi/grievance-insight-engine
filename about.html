@@ -33,7 +33,8 @@
     .about-text p.light { color: rgba(255,255,255,0.65); }
 
     .value-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 28px 24px; display: flex; gap: 20px; align-items: flex-start; }
-    .value-card__icon { font-size: 1.6rem; flex-shrink: 0; }
+    .value-card__icon { width:40px; height:40px; background:rgba(0,0,0,0.05); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--text-dark); }
+    .value-card__icon svg { width:20px; height:20px; }
     .value-card h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
     .value-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; margin: 0; }
     .values-grid { display: flex; flex-direction: column; gap: 16px; }
@@ -42,7 +43,7 @@
     .office-flag { font-size: 2rem; margin-bottom: 12px; }
     .office-city { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
     .office-addr { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
-    .office-badge { display: inline-block; background: rgba(99,102,241,0.2); color: var(--accent-light); border-radius: 100px; padding: 3px 12px; font-size: 0.72rem; font-weight: 600; margin-top: 8px; }
+    .office-badge { display: inline-block; background: rgba(0,0,0,0.06); color: var(--gray-500); border-radius: 100px; padding: 3px 12px; font-size: 0.72rem; font-weight: 600; margin-top: 8px; }
     .offices-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
 
     .about-cta { text-align: center; padding: 80px 0; background: var(--primary); }
@@ -119,28 +120,28 @@
       </div>
       <div class="values-grid">
         <div class="value-card">
-          <div class="value-card__icon">🎯</div>
+          <div class="value-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="24" height="24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg></div>
           <div>
             <h3>Outcomes over outputs</h3>
             <p>We don't measure success by deliverable volume. We measure it by business impact — revenue, market share, brand perception, and talent quality.</p>
           </div>
         </div>
         <div class="value-card">
-          <div class="value-card__icon">🤝</div>
+          <div class="value-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="24" height="24"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l1.06 1.06L12 21.23l7.36-7.94 1.06-1.06a5.4 5.4 0 0 0 0-7.65z"/></svg></div>
           <div>
             <h3>Long-term partnerships</h3>
             <p>Our average client relationship is 2+ years. We invest in understanding your business deeply — because that's where the best advice comes from.</p>
           </div>
         </div>
         <div class="value-card">
-          <div class="value-card__icon">💡</div>
+          <div class="value-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="24" height="24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 5 11.95V15a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2v-1.05A7 7 0 0 1 12 2z"/></svg></div>
           <div>
             <h3>Honest counsel</h3>
             <p>We tell clients what they need to hear, not what they want to hear. Candour, backed by data and experience, is the most valuable thing a consultant can offer.</p>
           </div>
         </div>
         <div class="value-card">
-          <div class="value-card__icon">📊</div>
+          <div class="value-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" width="24" height="24"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="8" width="4" height="13" rx="1"/><rect x="17" y="4" width="4" height="17" rx="1"/></svg></div>
           <div>
             <h3>Analytics-driven</h3>
             <p>Every recommendation has evidence behind it. We build strategies from data — market intelligence, competitive analysis, and performance measurement.</p>
