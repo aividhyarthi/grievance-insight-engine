@@ -839,66 +839,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Hidden Netlify form for AI chat lead capture -->
-  <form name="chat-lead" netlify hidden>
-    <input type="hidden" name="form-name" value="chat-lead" />
-    <input type="text" name="brand" />
-    <input type="url" name="website" />
-    <input type="text" name="challenge" />
-    <input type="text" name="goal" />
-    <input type="email" name="email" />
-  </form>
-
-  <!-- ===== AI CHAT WIDGET ===== -->
-  <div class="chat-widget" id="chatWidget">
-    <div class="chat-hint" id="chatHint">👋 Need growth advice? Let's chat.</div>
-    <button class="chat-toggle" id="chatToggle" aria-label="Chat with Sara, AppStudioX Growth Strategist">
-      <!-- Sara face avatar (shown when closed) -->
-      <svg class="icon-sara" viewBox="0 0 44 44" fill="none" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
-        <!-- Face circle with gradient overlay - bg provided by button -->
-        <!-- Hair -->
-        <path d="M8 22 Q8 8 22 7 Q36 8 36 22" fill="rgba(255,255,255,0.18)" stroke="none"/>
-        <!-- Eyes -->
-        <circle cx="16.5" cy="21" r="2.2" fill="white"/>
-        <circle cx="27.5" cy="21" r="2.2" fill="white"/>
-        <circle cx="17.2" cy="20.4" r="0.9" fill="rgba(99,102,241,1)"/>
-        <circle cx="28.2" cy="20.4" r="0.9" fill="rgba(99,102,241,1)"/>
-        <!-- Smile -->
-        <path d="M15.5 28 Q22 33.5 28.5 28" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <!-- Cheek blush -->
-        <ellipse cx="13" cy="27" rx="3" ry="1.8" fill="rgba(255,255,255,0.15)"/>
-        <ellipse cx="31" cy="27" rx="3" ry="1.8" fill="rgba(255,255,255,0.15)"/>
-      </svg>
-      <!-- Close icon (shown when open) -->
-      <svg class="icon-close" viewBox="0 0 24 24" fill="none" width="20" height="20">
-        <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
-      <span class="chat-toggle__badge">1</span>
-    </button>
-    <div class="chat-window" id="chatWindow">
-      <div class="chat-header">
-        <div class="chat-header__avatar">
-          <div class="chat-avatar">S</div>
-          <div class="chat-status"></div>
-        </div>
-        <div class="chat-header__info">
-          <h4>Sara · AppStudioX AI</h4>
-          <span>Growth Strategist · Online now</span>
-        </div>
-        <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
-      </div>
-      <div class="chat-messages" id="chatMessages"></div>
-      <div class="chat-quick-replies" id="quickReplies"></div>
-      <div class="chat-input-wrap" id="chatInputWrap" style="display:none">
-        <input type="text" id="chatInput" class="chat-input" placeholder="Type your answer…" autocomplete="off" />
-        <button class="chat-send" id="chatSend" aria-label="Send">
-          <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M4 10h12M10 4l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

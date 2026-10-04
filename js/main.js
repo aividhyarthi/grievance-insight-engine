@@ -28,7 +28,8 @@ window.tickerLogoFallback = function(img) {
     }
   }, { passive: true });
 
-  hamburger?.addEventListener('click', () => {
+  hamburger?.addEventListener('click', (e) => {
+    e.stopPropagation();
     navLinks.classList.toggle('open');
   });
 
@@ -36,18 +37,17 @@ window.tickerLogoFallback = function(img) {
   navLinks?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => navLinks.classList.remove('open'));
   });
+
+  // Close menu when tapping outside
+  document.addEventListener('click', (e) => {
+    if (navLinks?.classList.contains('open') &&
+        !navLinks.contains(e.target) &&
+        !hamburger.contains(e.target)) {
+      navLinks.classList.remove('open');
+    }
+  });
 })();
 
-/* ---- Chat widget auto-hint after 30s ---- */
-(function initChatHint() {
-  setTimeout(() => {
-    const hint = document.getElementById('chatHint');
-    const widget = document.getElementById('chatWidget');
-    if (!hint || !widget) return;
-    hint.classList.add('show');
-    setTimeout(() => hint.classList.remove('show'), 6000);
-  }, 30000);
-})();
 
 /* ---- Reveal on scroll (IntersectionObserver) ---- */
 (function initReveal() {
@@ -411,155 +411,3 @@ function animateCounter(el, target, duration = 1800) {
   });
 })();
 
-/* ---- AI Chat Widget ---- */
-(function initChatWidget() {
-  const STEPS = [
-    {
-      id: 'brand',
-      message: "Hi! I'm Sara, AppStudioX's AI Growth Strategist. 👋\n\nI help brands dominate search, build authority, and grow faster. Quick question — what's your brand or company name?",
-      type: 'text',
-      placeholder: 'Enter your brand name…',
-    },
-    {
-      id: 'website',
-      message: (d) => `Lovely to meet you, ${d.brand}! 🚀\n\nWhat's your website URL?`,
-      type: 'text',
-      placeholder: 'https://yoursite.com',
-    },
-    {
-      id: 'service',
-      message: "Which area are you looking to grow? We cover everything from organic search to brand reputation.",
-      type: 'quick',
-      options: ['SEO & Search Rankings', 'AEO / AI Visibility', 'Content Marketing', 'PR & Branding', 'Reputation Management', 'Growth Strategy'],
-    },
-    {
-      id: 'challenge',
-      message: "Got it! What's your biggest challenge right now?",
-      type: 'quick',
-      options: ['Not ranking on Google', 'Invisible to AI engines', 'Weak content pipeline', 'Negative brand sentiment', 'Low organic traffic', 'No clear growth plan'],
-    },
-    {
-      id: 'goal',
-      message: "Understood. What's your primary 12-month goal?",
-      type: 'quick',
-      options: ['Top 3 on Google', 'AI & AEO Visibility', 'Dominant Brand Authority', 'All of the Above'],
-    },
-    {
-      id: 'email',
-      message: (d) => `Love that ambition for ${d.brand}! 🎯\n\nDrop your work email — our senior strategist will reach out personally within 24 hours.`,
-      type: 'email',
-      placeholder: 'yourname@company.com',
-    },
-  ];
-
-  const widget    = document.getElementById('chatWidget');
-  const toggleBtn = document.getElementById('chatToggle');
-  const closeBtn  = document.getElementById('chatClose');
-  const chatWin   = document.getElementById('chatWindow');
-  const msgsEl    = document.getElementById('chatMessages');
-  const inputEl   = document.getElementById('chatInput');
-  const sendBtn   = document.getElementById('chatSend');
-  const qrEl      = document.getElementById('quickReplies');
-  const inputWrap = document.getElementById('chatInputWrap');
-  if (!widget) return;
-
-  let step = 0, data = {}, isOpen = false, hasGreeted = false;
-
-  toggleBtn.addEventListener('click', () => {
-    isOpen = !isOpen;
-    chatWin.classList.toggle('open', isOpen);
-    toggleBtn.classList.toggle('active', isOpen);
-    if (isOpen && !hasGreeted) { hasGreeted = true; setTimeout(startConversation, 500); }
-  });
-
-  closeBtn.addEventListener('click', () => {
-    isOpen = false;
-    chatWin.classList.remove('open');
-    toggleBtn.classList.remove('active');
-  });
-
-  function startConversation() { showStep(0); }
-
-  function addMsg(text, who) {
-    const d = document.createElement('div');
-    d.className = 'chat-msg chat-msg--' + who;
-    d.innerHTML = text.replace(/\n/g, '<br>');
-    msgsEl.appendChild(d);
-    msgsEl.scrollTop = msgsEl.scrollHeight;
-  }
-
-  function showTyping() {
-    const t = document.createElement('div');
-    t.className = 'chat-msg chat-typing';
-    t.innerHTML = '<span></span><span></span><span></span>';
-    msgsEl.appendChild(t);
-    msgsEl.scrollTop = msgsEl.scrollHeight;
-    return t;
-  }
-
-  function setInput(show, placeholder, type) {
-    inputWrap.style.display = show ? 'flex' : 'none';
-    if (placeholder) { inputEl.placeholder = placeholder; inputEl.type = type || 'text'; }
-  }
-
-  function setQR(options) {
-    qrEl.innerHTML = '';
-    options.forEach(opt => {
-      const b = document.createElement('button');
-      b.className = 'chat-qr-btn';
-      b.textContent = opt;
-      b.addEventListener('click', () => { setQR([]); addMsg(opt, 'user'); data[STEPS[step].id] = opt; step++; setTimeout(() => showStep(step), 350); });
-      qrEl.appendChild(b);
-    });
-  }
-
-  function showStep(i) {
-    if (i >= STEPS.length) { finishConversation(); return; }
-    const s = STEPS[i];
-    const t = showTyping();
-    setTimeout(() => {
-      t.remove();
-      addMsg(typeof s.message === 'function' ? s.message(data) : s.message, 'bot');
-      if (s.type === 'quick') { setQR(s.options); setInput(false); }
-      else { setQR([]); setInput(true, s.placeholder, s.type); setTimeout(() => inputEl.focus(), 50); }
-    }, 750);
-  }
-
-  function handleSend() {
-    const val = inputEl.value.trim();
-    if (!val) return;
-    const s = STEPS[step];
-    if (s.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-      inputEl.style.borderColor = '#EF4444';
-      inputEl.value = '';
-      inputEl.placeholder = 'Please enter a valid email…';
-      setTimeout(() => { inputEl.style.borderColor = ''; inputEl.placeholder = 'yourname@company.com'; }, 2000);
-      return;
-    }
-    addMsg(val, 'user');
-    data[s.id] = val;
-    inputEl.value = '';
-    step++;
-    setTimeout(() => showStep(step), 350);
-  }
-
-  sendBtn.addEventListener('click', handleSend);
-  inputEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
-
-  function finishConversation() {
-    const payload = new URLSearchParams(Object.assign({ 'form-name': 'chat-lead' }, data));
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: payload.toString() }).catch(() => {});
-    const t = showTyping();
-    setTimeout(() => {
-      t.remove();
-      addMsg(
-        `You're all set, ${data.brand || 'there'}! ✨<br><br>` +
-        `Our senior strategist will personally review your brief and reach out to <strong>${data.email}</strong> within 24 hours.<br><br>` +
-        `Expect something genuinely useful — not a pitch deck.`,
-        'bot'
-      );
-      setInput(false);
-      setQR([]);
-    }, 1000);
-  }
-})();
