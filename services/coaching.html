@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership Coaching &amp; Advisory – AppStudioX</title>
+  <meta name="description" content="AppStudioX's leadership coaching practice works with CXOs, founders, and senior executives to develop the clarity, capability, and confidence to lead organisations through complexity and scale." />
+  <link rel="canonical" href="https://appstudiox.com/services/coaching.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .sp-hero { background: var(--primary); padding: 140px 0 80px; }
+    .sp-hero .service-breadcrumb { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+    .sp-hero .service-breadcrumb a { color: rgba(255,255,255,0.5); }
+    .sp-hero .service-breadcrumb a:hover { color: rgba(255,255,255,0.85); }
+    .sp-hero .section-badge { margin-bottom: 20px; }
+    .sp-hero h1 { font-family: var(--font-head); font-size: clamp(2.4rem,5vw,3.8rem); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
+    .sp-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 600px; line-height: 1.75; margin-bottom: 36px; }
+    .sp-section { padding: 80px 0; }
+    .sp-section--alt { background: var(--off-white); }
+    .sp-section--dark { background: var(--primary); }
+    .sp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 768px) { .sp-grid { grid-template-columns: 1fr; } }
+    .sp-text h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: var(--text-dark); line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .sp-text p { font-size: 1rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 16px; }
+    .sp-text ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .sp-text ul li { font-size: 0.95rem; color: var(--text-mid); display: flex; gap: 12px; align-items: flex-start; }
+    .sp-text ul li::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+    .pillar-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 28px; }
+    .pillar-card__num { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: #111111; margin-bottom: 12px; }
+    .pillar-card h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .pillar-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    .programme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
+    @media (max-width: 768px) { .programme-grid { grid-template-columns: 1fr; } }
+    .programme-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 28px; position: relative; }
+    .programme-card__tag { display: inline-block; background: var(--gray-50); border: 1px solid var(--border-light); border-radius: 100px; padding: 3px 12px; font-size: 0.72rem; font-weight: 600; color: var(--gray-500); margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .programme-card h4 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .programme-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    .principle-row { display: flex; flex-direction: column; gap: 0; max-width: 720px; margin: 0 auto; }
+    .principle-item { display: flex; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border-light); align-items: flex-start; }
+    .principle-item:first-child { padding-top: 0; }
+    .principle-item:last-child { border-bottom: none; }
+    .principle-item__num { font-family: var(--font-head); font-size: 2.5rem; font-weight: 900; color: rgba(0,0,0,0.06); min-width: 56px; }
+    .principle-item h4 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .principle-item p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.7; }
+    .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    @media (max-width: 768px) { .who-grid { grid-template-columns: 1fr; } }
+    .who-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); padding: 24px; }
+    .who-card h4 { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .who-card p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .sp-cta { text-align: center; padding: 80px 0; background: var(--primary); }
+    .sp-cta h2 { font-family: var(--font-head); font-size: clamp(2rem,4vw,2.8rem); font-weight: 800; color: var(--white); margin-bottom: 16px; letter-spacing: -0.02em; }
+    .sp-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.65); margin-bottom: 36px; }
+  </style>
+</head>
+<body>
+
+  <header class="nav scrolled" id="nav">
+    <div class="nav__inner container">
+      <a href="../index.html" class="nav__logo">
+        <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="../index.html#services">What We Do</a>
+        <a href="../about.html">About</a>
+        <a href="../talent-advisory.html">Talent Advisory</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../index.html#contact" class="btn btn--sm btn--accent nav__cta">Talk to a Strategist</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="sp-hero">
+    <div class="container">
+      <p class="service-breadcrumb"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../index.html#services">Services</a> &nbsp;/&nbsp; Leadership Coaching</p>
+      <div class="section-badge">Leadership Coaching &amp; Advisory</div>
+      <h1>Leadership Coaching<br />&amp; Advisory</h1>
+      <p>We work with founders, CXOs, and senior leaders to develop the clarity, judgment, and confidence that high-stakes leadership demands. Not theory, not frameworks. Applied leadership development built around your reality.</p>
+      <a href="../index.html#contact" class="btn btn--primary btn--lg">Start the Conversation</a>
+    </div>
+  </section>
+
+  <!-- MAIN SECTION -->
+  <section class="sp-section">
+    <div class="container sp-grid">
+      <div class="sp-text">
+        <h2>The most consequential investment you can make is in the quality of your own leadership</h2>
+        <p>Business strategy only delivers if the leaders executing it are operating at their full capacity. The most successful executives we've worked with invest seriously in their own development, not because they lack capability, but because they understand that self-awareness, decision quality, and team leadership are learnable skills with compounding returns.</p>
+        <p>Our coaching practice works with senior leaders on the challenges that matter most: leading through uncertainty, building and scaling high-performance teams, navigating board relationships, managing stakeholder complexity, and developing the executive presence that instils confidence at every level of the organisation.</p>
+        <ul>
+          <li>One-to-one executive coaching for CXOs, MDs, and founders</li>
+          <li>Leadership development programmes for senior leadership teams</li>
+          <li>Board and investor relationship coaching</li>
+          <li>High-potential executive acceleration programmes</li>
+          <li>Team dynamics and culture transformation advisory</li>
+          <li>Executive presence and communications development</li>
+          <li>Transition coaching for newly appointed leaders</li>
+          <li>Founder-to-CEO and founder-scaling advisory</li>
+        </ul>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div class="pillar-card">
+          <div class="pillar-card__num">01</div>
+          <h3>Deep Diagnostic</h3>
+          <p>We begin by understanding the leader in full: their history, their strengths, their patterns under pressure, and the specific challenges they are navigating right now. This is not a generic assessment. It's a genuine conversation between experienced practitioners.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-card__num">02</div>
+          <h3>Coaching Programme Design</h3>
+          <p>Each programme is built around the individual's specific leadership context. We identify the two or three areas where development will have the greatest impact on their effectiveness and the performance of the organisation around them.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-card__num">03</div>
+          <h3>Sustained Engagement</h3>
+          <p>Real leadership development happens over time, not in a workshop. Our programmes typically run for six to twelve months, with structured sessions, between-session assignments, and ongoing availability when critical decisions arise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMES -->
+  <section class="sp-section sp-section--alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Coaching Programmes</div>
+        <h2 class="section-title">Built around the leader, not a model</h2>
+        <p class="section-sub">Every leader is different. Every engagement is designed from first principles around the individual's context, challenges, and growth objectives.</p>
+      </div>
+      <div class="programme-grid">
+        <div class="programme-card">
+          <span class="programme-card__tag">Individual</span>
+          <h4>CXO &amp; Founder Coaching</h4>
+          <p>Intensive one-to-one coaching for chief executives, managing directors, and founders navigating scale, succession, board complexity, or significant strategic transition. Confidential. Senior practitioner-led. Results-focused.</p>
+        </div>
+        <div class="programme-card">
+          <span class="programme-card__tag">Individual</span>
+          <h4>New Leader Transition</h4>
+          <p>A structured 90-day programme for leaders stepping into a new CXO or Director role. We help new leaders establish credibility quickly, build stakeholder relationships, and define their leadership approach for the organisation they've joined.</p>
+        </div>
+        <div class="programme-card">
+          <span class="programme-card__tag">Team</span>
+          <h4>Senior Leadership Team Development</h4>
+          <p>Group coaching and facilitation for leadership teams that need to work better together, align on strategy, or develop a shared approach to culture and performance. Diagnostic-led, with tailored interventions for the specific team dynamic.</p>
+        </div>
+        <div class="programme-card">
+          <span class="programme-card__tag">Team</span>
+          <h4>High-Potential Accelerator</h4>
+          <p>A development programme for Directors and Senior Directors identified as future CXOs. Builds the strategic thinking, stakeholder management, and executive presence skills required to make the step up to enterprise leadership.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHING PRINCIPLES -->
+  <section class="sp-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">How We Work</div>
+        <h2 class="section-title">Our approach to leadership development</h2>
+      </div>
+      <div class="principle-row">
+        <div class="principle-item">
+          <div class="principle-item__num">01</div>
+          <div>
+            <h4>Senior practitioners, not certified intermediaries</h4>
+            <p>Our coaches have held leadership positions in real organisations and navigated the challenges they work on with clients. We bring direct experience, not academic frameworks. You work with someone who has led at the level you are operating at.</p>
+          </div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-item__num">02</div>
+          <div>
+            <h4>The work happens between sessions</h4>
+            <p>Coaching is a catalyst, not a solution. The value is realised through what you do between sessions, the decisions you make differently, the conversations you approach with new intention, the patterns you interrupt. We design the in-between work as carefully as we design the sessions themselves.</p>
+          </div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-item__num">03</div>
+          <div>
+            <h4>Absolute confidentiality</h4>
+            <p>Everything discussed in a coaching engagement remains entirely confidential. We do not report to boards, HR functions, or organisational sponsors on the content of sessions. Genuine development requires genuine safety. We protect that unconditionally.</p>
+          </div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-item__num">04</div>
+          <div>
+            <h4>Outcomes, not hours</h4>
+            <p>We measure the success of a coaching engagement by the leader's changed behaviour and improved organisational outcomes, not by session count or completion certificates. We will tell you when the work is done, and when it is not.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE WORK WITH -->
+  <section class="sp-section sp-section--dark">
+    <div class="container">
+      <div class="section-header section-header--light">
+        <div class="section-badge section-badge--dark">Who We Work With</div>
+        <h2 class="section-title" style="color: var(--white);">Leaders at inflection points</h2>
+        <p class="section-sub" style="color: rgba(255,255,255,0.55);">The leaders who benefit most from coaching are those who are already good and want to be great, not those who need remediation.</p>
+      </div>
+      <div class="who-grid">
+        <div class="who-card">
+          <h4>Founders Scaling to Enterprise</h4>
+          <p>Founders who built their business on instinct and personal execution, now leading 200-person organisations that require a different kind of leadership.</p>
+        </div>
+        <div class="who-card">
+          <h4>New CXO Appointees</h4>
+          <p>Leaders stepping into their first chief executive or CXO role, navigating board relationships, inherited teams, and an organisation that has its own momentum.</p>
+        </div>
+        <div class="who-card">
+          <h4>Leaders Managing Complexity</h4>
+          <p>Senior executives dealing with rapid scale, market expansion, M&A integration, or a business model transition that demands a new quality of leadership decision-making.</p>
+        </div>
+        <div class="who-card">
+          <h4>High-Potential Directors</h4>
+          <p>Senior Directors and Directors identified for CXO succession who need to develop the strategic perspective and executive presence required at the next level.</p>
+        </div>
+        <div class="who-card">
+          <h4>Leadership Teams Under Pressure</h4>
+          <p>Senior teams that need to build alignment, improve their working dynamic, or develop a shared approach to culture and performance in a rapidly changing business.</p>
+        </div>
+        <div class="who-card">
+          <h4>Executives in Transition</h4>
+          <p>Leaders navigating a significant role change, career pivot, or the personal reinvention that often follows a major business milestone, exit, or period of sustained high performance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sp-cta">
+    <div class="container">
+      <h2>Invest in the quality<br />of your own leadership.</h2>
+      <p>The most effective leaders we know never stop developing. Tell us where you are, and we'll tell you how we can help.</p>
+      <a href="../index.html#contact" class="btn btn--primary btn--lg">Start the Conversation</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="../index.html" class="nav__logo footer__logo">
+            <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
+          </a>
+          <p class="footer__tagline">Strategy. Analytics. Growth. Talent.</p>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4>Services</h4>
+            <a href="business-strategy.html">Business Strategy</a>
+            <a href="content-strategy-marketing.html">Content Strategy</a>
+            <a href="pr-communications.html">PR &amp; Communications</a>
+            <a href="orm.html">Reputation Management</a>
+            <a href="search-discovery-strategy.html">Search Strategy</a>
+            <a href="ai-agents.html">AI Agent Development</a>
+            <a href="../talent-advisory.html">Talent Advisory</a>
+          </div>
+          <div class="footer__col">
+            <h4>Company</h4>
+            <a href="../about.html">About AppStudioX</a>
+            <a href="../index.html#clients">Clients</a>
+            <a href="../index.html#contact">Contact</a>
+          </div>
+          <div class="footer__col">
+            <h4>Legal</h4>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> AppStudioX. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('navLinks');
+    if (ham && nav) ham.addEventListener('click', () => nav.classList.toggle('open'));
+  </script>
+</body>
+</html>
