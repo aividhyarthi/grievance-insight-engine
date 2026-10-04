@@ -772,6 +772,46 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ============================
+   PHILOSOPHY
+   ============================ */
+.philosophy {
+  background: var(--primary);
+  color: #fff;
+}
+.philosophy__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.philosophy__mark {
+  font-size: 6rem;
+  line-height: 0.5;
+  color: var(--accent);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+.philosophy__quote h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+}
+.philosophy__body p {
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+@media (max-width: 768px) {
+  .philosophy__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ============================
    CLIENTS
    ============================ */
 .clients {

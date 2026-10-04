@@ -123,7 +123,7 @@ function animateCounter(el, target, duration = 1800) {
     'Month 15','Month 18','Month 21','Month 24'
   ];
 
-  const data = [100, 115, 145, 195, 265, 305, 345, 380, 420];
+  const data = [100, 118, 148, 200, 270, 310, 355, 390, 430];
 
   const gradient = canvas.getContext('2d').createLinearGradient(0, 0, 0, 280);
   gradient.addColorStop(0, 'rgba(99,102,241,0.35)');
@@ -134,7 +134,7 @@ function animateCounter(el, target, duration = 1800) {
     data: {
       labels,
       datasets: [{
-        label: 'Organic Traffic Index',
+        label: 'Revenue Index',
         data,
         borderColor: '#818CF8',
         backgroundColor: gradient,
@@ -160,7 +160,7 @@ function animateCounter(el, target, duration = 1800) {
           padding: 12,
           cornerRadius: 8,
           callbacks: {
-            label: (ctx) => ` ${ctx.parsed.y}% of baseline`
+            label: (ctx) => ` ${ctx.parsed.y}% of baseline revenue`
           }
         }
       },
@@ -204,7 +204,7 @@ function animateCounter(el, target, duration = 1800) {
   new Chart(canvas, {
     type: 'bar',
     data: {
-      labels: ['Organic Traffic', 'Domain Authority', 'Backlink Profile', 'Branded Searches', 'Conversions'],
+      labels: ['Revenue Growth', 'Brand Equity', 'Market Position', 'Pipeline Value', 'Team Performance'],
       datasets: [
         {
           label: 'Before',
