@@ -409,8 +409,25 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  color: rgba(255,255,255,0.45);
+  color: rgba(0,0,0,0.45);
   font-size: 0.85rem;
+}
+
+.hero__trust-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  align-items: center;
+}
+.hero__trust-names span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.55);
+  letter-spacing: 0.04em;
+}
+.hero__trust-names span:last-child {
+  color: rgba(0,0,0,0.35);
+  font-weight: 500;
 }
 
 .hero__trust-logos {
@@ -500,6 +517,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
   padding: 16px 56px;
   text-align: center;
+}
+
+.stat-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
 }
 
 .stat-num {
