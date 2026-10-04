@@ -184,11 +184,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .btn--ghost {
+  background: rgba(255,255,255,0.08);
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.25);
+}
+.btn--ghost:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-2px);
+}
+.btn--ghost--light {
   background: transparent;
   color: #111111;
   border: 1.5px solid rgba(0,0,0,0.25);
 }
-.btn--ghost:hover {
+.btn--ghost--light:hover {
   background: rgba(0,0,0,0.04);
   border-color: #111111;
   transform: translateY(-2px);
