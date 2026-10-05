@@ -283,6 +283,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .nav__logo {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
 .logo-text {

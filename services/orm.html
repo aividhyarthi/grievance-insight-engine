@@ -20,7 +20,8 @@
     .sp-hero h1 { font-family: var(--font-head); font-size: clamp(2.4rem,5vw,3.8rem); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
     .sp-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 600px; line-height: 1.75; margin-bottom: 36px; }
     .sp-section { padding: 80px 0; }
-    .sp-section--alt { background: var(--off-white); }
+    .sp-section--alt { background: #F8F8F8; }
+    .sp-section--light { background: var(--off-white); }
     .sp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
     @media (max-width: 768px) { .sp-grid { grid-template-columns: 1fr; } }
     .sp-text h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: var(--text-dark); line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.02em; }
@@ -32,9 +33,43 @@
     .pillar-card__num { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: #111111; margin-bottom: 12px; }
     .pillar-card h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
     .pillar-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    /* Practice areas grid */
+    .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    @media (max-width: 900px) { .practice-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .practice-grid { grid-template-columns: 1fr; } }
+    .practice-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 28px 24px; }
+    .practice-card h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .practice-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
+    /* Metrics row */
+    .metrics-row { display: flex; gap: 0; }
+    @media (max-width: 768px) { .metrics-row { flex-direction: column; } }
+    .metric-box { flex: 1; padding: 48px 36px; border-right: 1px solid rgba(255,255,255,0.08); }
+    .metric-box:last-child { border-right: none; }
+    @media (max-width: 768px) { .metric-box { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 36px 24px; } }
+    .metric-box__value { font-family: var(--font-head); font-size: clamp(2.4rem,4vw,3.2rem); font-weight: 900; color: var(--white); letter-spacing: -0.03em; margin-bottom: 12px; line-height: 1; }
+    .metric-box__label { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 12px; }
+    .metric-box__source { font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 0.02em; }
+    /* Methodology timeline */
+    .method-wrap { max-width: 840px; margin: 0 auto; }
+    .method-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 48px; }
+    .method-step { display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border-light); }
+    .method-step:last-child { border-bottom: none; padding-bottom: 0; }
+    .method-step__num { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: rgba(0,0,0,0.07); min-width: 48px; flex-shrink: 0; line-height: 1.1; }
+    .method-step h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .method-step p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    /* Persona cards */
+    .persona-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
+    @media (max-width: 640px) { .persona-grid { grid-template-columns: 1fr; } }
+    .persona-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 28px; }
+    .persona-card h4 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .persona-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    /* Section header */
+    .section-header { margin-bottom: 8px; }
+    .section-header h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: var(--text-dark); line-height: 1.2; margin-bottom: 0; letter-spacing: -0.02em; }
+    /* CTA */
     .sp-cta { text-align: center; padding: 80px 0; background: var(--primary); }
     .sp-cta h2 { font-family: var(--font-head); font-size: clamp(2rem,4vw,2.8rem); font-weight: 800; color: var(--white); margin-bottom: 16px; letter-spacing: -0.02em; }
-    .sp-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.65); margin-bottom: 36px; }
+    .sp-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.65); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
   </style>
 </head>
 <body>
@@ -42,13 +77,12 @@
   <header class="nav scrolled" id="nav">
     <div class="nav__inner container">
       <a href="../index.html" class="nav__logo">
+        <img src="../favicon.svg" class="logo-icon" alt="" aria-hidden="true">
         <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
       </a>
       <nav class="nav__links" id="navLinks">
         <a href="../index.html#services">What We Do</a>
         <a href="../about.html">About</a>
-        <a href="../index.html#results">Results</a>
-        <a href="../index.html#clients">Clients</a>
         <a href="../talent-advisory.html">Talent Advisory</a>
         <a href="../index.html#contact">Contact</a>
       </nav>
@@ -59,57 +93,178 @@
     </div>
   </header>
 
+  <!-- 1. HERO -->
   <section class="sp-hero">
     <div class="container">
-      <p class="service-breadcrumb"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../index.html#services">Services</a> &nbsp;/&nbsp; Reputation Management</p>
-      <div class="section-badge">Reputation &amp; Brand</div>
+      <p class="service-breadcrumb"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../index.html#services">Services</a> &nbsp;/&nbsp; Reputation &amp; Brand Management</p>
+      <div class="section-badge">Reputation &amp; Brand Management</div>
       <h1>Reputation &amp; Brand<br />Management</h1>
-      <p>We protect and shape what the world finds when it looks for you, suppressing harmful content, amplifying positive narratives, and building a reputation that withstands scrutiny.</p>
-      <a href="../index.html#contact" class="btn btn--primary btn--lg">Start the Conversation</a>
+      <p>One negative article. One viral tweet. One bad review cycle. Reputation is the most fragile and most valuable asset a brand owns.</p>
+      <a href="../index.html#contact" class="btn btn--primary btn--lg">Protect Your Reputation &rarr;</a>
     </div>
   </section>
 
+  <!-- 2. THE BUSINESS PROBLEM -->
   <section class="sp-section">
     <div class="container sp-grid">
       <div class="sp-text">
-        <h2>Your reputation is your most valuable asset. Protect it accordingly.</h2>
-        <p>In a world where a Google search shapes first impressions more than any advertisement, what appears when someone searches for your brand, your executives, or your company matters enormously to customers, investors, partners, and talent.</p>
-        <p>We take a proactive, strategic approach to reputation management, not just reacting to negative content, but building a sustained presence that reflects the brand you've worked to create.</p>
-        <ul>
-          <li>SERP management and negative content suppression</li>
-          <li>Review strategy and management across platforms</li>
-          <li>Sentiment monitoring and brand intelligence</li>
-          <li>Brand narrative strategy and positioning</li>
-          <li>Executive and personal brand reputation management</li>
-          <li>Crisis communications and rapid response</li>
-          <li>Proactive positive content and authority building</li>
-        </ul>
+        <h2>The brands that don't own their narrative get defined by others</h2>
+        <p>94% of consumers research a brand online before purchase or partnership. What they find in the first 10 search results is your de facto brand. Senior executives google potential employers. Investors google founders. A single damaging article on page one is worth more than a marketing budget in lost trust.</p>
+        <p>Reputation management is not crisis management. The firms that come to us after a crisis have already lost ground. The firms that come to us before have built defences that make crises less likely and less damaging.</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:20px;">
         <div class="pillar-card">
           <div class="pillar-card__num">01</div>
-          <h3>Audit &amp; Monitor</h3>
-          <p>A complete audit of your current digital reputation, what's ranking, what's being said, and where the risks and opportunities lie.</p>
+          <h3>Audit &amp; Baseline</h3>
+          <p>Map your entire digital footprint, identify vulnerabilities, and benchmark sentiment across search results, review platforms, and social channels.</p>
         </div>
         <div class="pillar-card">
           <div class="pillar-card__num">02</div>
-          <h3>Suppress &amp; Build</h3>
-          <p>Strategic suppression of harmful content combined with a systematic programme to build positive, authoritative presence across relevant channels.</p>
+          <h3>Suppress &amp; Displace</h3>
+          <p>Systematically push harmful content below the fold through authoritative positive content, digital PR, and citation building across high-authority publications.</p>
         </div>
         <div class="pillar-card">
           <div class="pillar-card__num">03</div>
-          <h3>Maintain &amp; Protect</h3>
-          <p>Ongoing monitoring, alerting, and proactive management to keep your reputation strong through business cycles and external challenges.</p>
+          <h3>Monitor &amp; Protect</h3>
+          <p>24/7 brand mention monitoring with escalation protocols and quarterly brand health reviews to keep your reputation strong through any business cycle.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- 3. PRACTICE AREAS -->
+  <section class="sp-section sp-section--alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge" style="margin-bottom:16px;">What We Do</div>
+        <h2 style="font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--text-dark);line-height:1.2;letter-spacing:-0.02em;">Six disciplines. One integrated practice.</h2>
+      </div>
+      <div class="practice-grid">
+        <div class="practice-card">
+          <h4>Crisis Response Planning</h4>
+          <p>Before a crisis hits, we map your vulnerabilities, build response playbooks, and prepare your leadership team for media and stakeholder engagement.</p>
+        </div>
+        <div class="practice-card">
+          <h4>Negative Content Suppression</h4>
+          <p>Systematic displacement of harmful search results through high-authority content placement, digital PR, and citation building.</p>
+        </div>
+        <div class="practice-card">
+          <h4>Brand SERP Management</h4>
+          <p>Owning the first page of your branded search results — company listings, knowledge panels, social profiles, reviews, and press.</p>
+        </div>
+        <div class="practice-card">
+          <h4>Review &amp; Rating Strategy</h4>
+          <p>Building authentic positive review volume across Google, Glassdoor, G2, Trustpilot, and sector-specific platforms that matter to your audience.</p>
+        </div>
+        <div class="practice-card">
+          <h4>Executive Reputation Management</h4>
+          <p>Protecting and building the personal brand of founders, C-suite, and board members whose online presence directly affects the business.</p>
+        </div>
+        <div class="practice-card">
+          <h4>Proactive PR &amp; Authority Building</h4>
+          <p>Building a consistent stream of positive press, thought leadership, and brand mentions that crowd out negative content permanently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. METRICS ROW -->
+  <div style="background:#0D0D0D; padding:60px 0;">
+    <div class="container">
+      <div class="metrics-row">
+        <div class="metric-box">
+          <div class="metric-box__value">94%</div>
+          <div class="metric-box__label">of consumers research a brand online before purchase or partnership</div>
+          <div class="metric-box__source">Source: BrightLocal Consumer Review Survey</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-box__value">22%</div>
+          <div class="metric-box__label">average brand value loss from a major PR crisis without active reputation management</div>
+          <div class="metric-box__source">Source: Deloitte Global Risk Survey</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-box__value">Top 10</div>
+          <div class="metric-box__label">search results repositioned within 90 days as a portfolio average for our retained clients</div>
+          <div class="metric-box__source">AppStudioX portfolio data</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. METHODOLOGY -->
+  <section class="sp-section">
+    <div class="container">
+      <div class="method-wrap">
+        <div class="section-badge" style="margin-bottom:20px;">Our Methodology</div>
+        <h2 style="font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--text-dark);line-height:1.2;letter-spacing:-0.02em;margin-bottom:40px;">A systematic approach, not ad-hoc firefighting</h2>
+        <div class="method-card">
+          <div class="method-step">
+            <div class="method-step__num">01</div>
+            <div>
+              <h4>Brand &amp; Risk Audit</h4>
+              <p>A complete audit of your digital footprint: search results, social mentions, review platforms, news archives, and executive profiles. We identify every vulnerability before your clients do.</p>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-step__num">02</div>
+            <div>
+              <h4>Strategy &amp; Content Architecture</h4>
+              <p>A bespoke suppression and authority-building strategy, mapped to your specific risk profile. Content types, target publications, keyword targets, and timeline — all set before a single piece of content is written.</p>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-step__num">03</div>
+            <div>
+              <h4>Execution &amp; Placement</h4>
+              <p>Senior-led content creation, media outreach, digital PR, and review acquisition. Every asset is designed to rank, be shared, and build long-term authority that compounds over time.</p>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-step__num">04</div>
+            <div>
+              <h4>Monitor, Report &amp; Iterate</h4>
+              <p>Monthly brand health dashboards, keyword ranking reports, and sentiment tracking. We adapt the strategy as the landscape changes — because reputation management is never static.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. WHO WE WORK WITH -->
+  <section class="sp-section sp-section--light">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge" style="margin-bottom:16px;">Who We Work With</div>
+        <h2 style="font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--text-dark);line-height:1.2;letter-spacing:-0.02em;">Leaders who take reputation seriously</h2>
+      </div>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <h4>Pre-IPO &amp; Listed Companies</h4>
+          <p>Managing brand perception during fundraising, IPO roadshows, and investor relations. Protecting shareholder confidence through controlled narrative at every stage of the capital markets journey.</p>
+        </div>
+        <div class="persona-card">
+          <h4>Founders &amp; CXOs</h4>
+          <p>Individual reputation management for executives whose personal brand directly affects fundraising, talent acquisition, and deal flow. Your name is your most portable asset.</p>
+        </div>
+        <div class="persona-card">
+          <h4>Brands Recovering from Crisis</h4>
+          <p>Post-crisis reputation reconstruction — from product recalls to leadership scandals. Systematic rebuild of trust over 12–24 months, with measurable progress at every milestone.</p>
+        </div>
+        <div class="persona-card">
+          <h4>M&amp;A Targets &amp; Acquirers</h4>
+          <p>Reputation due diligence and clean-up in advance of acquisition, merger, or significant investment. Ensuring the digital record reflects the quality of the business being valued.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CTA -->
   <section class="sp-cta">
     <div class="container">
-      <h2>Protect the reputation<br />you've earned.</h2>
-      <p>Tell us about your current reputation challenges. A senior consultant will reach out personally.</p>
-      <a href="../index.html#contact" class="btn btn--primary btn--lg">Talk to a Strategist</a>
+      <h2>Your reputation is being shaped right now.</h2>
+      <p>The question is whether you're shaping it or your critics are. Talk to a senior reputation strategist.</p>
+      <a href="../index.html#contact" class="btn btn--primary btn--lg">Start the Conversation &rarr;</a>
     </div>
   </section>
 
@@ -118,6 +273,7 @@
       <div class="footer__top">
         <div class="footer__brand">
           <a href="../index.html" class="nav__logo footer__logo">
+            <img src="../favicon.svg" class="logo-icon" alt="" aria-hidden="true">
             <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
           </a>
           <p class="footer__tagline">Strategy. Analytics. Growth. Talent.</p>

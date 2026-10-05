@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Business Strategy &amp; Transformation – AppStudioX</title>
-  <meta name="description" content="AppStudioX's business strategy and transformation consulting helps ambitious brands identify growth levers, assess market position, and build roadmaps that deliver measurable outcomes." />
+  <title>Strategy &amp; Transformation – AppStudioX</title>
+  <meta name="description" content="AppStudioX's Strategy &amp; Transformation practice works as embedded strategic partners — closing the gap between strategic intent and operational execution for ambitious leadership teams." />
   <link rel="canonical" href="https://appstudiox.com/services/business-strategy.html" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,24 +20,46 @@
     .sp-hero h1 { font-family: var(--font-head); font-size: clamp(2.4rem,5vw,3.8rem); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
     .sp-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 600px; line-height: 1.75; margin-bottom: 36px; }
     .sp-section { padding: 80px 0; }
-    .sp-section--alt { background: var(--off-white); }
-    .sp-section--dark { background: var(--primary); }
+    .sp-section--alt { background: #F8F8F8; }
+    .sp-section--light { background: var(--off-white); }
     .sp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-    .sp-grid--3 { grid-template-columns: repeat(3, 1fr); gap: 32px; }
-    @media (max-width: 768px) { .sp-grid, .sp-grid--3 { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .sp-grid { grid-template-columns: 1fr; } }
     .sp-text h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: var(--text-dark); line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.02em; }
     .sp-text p { font-size: 1rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 16px; }
-    .sp-text ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .sp-text ul li { font-size: 0.95rem; color: var(--text-mid); display: flex; gap: 12px; align-items: flex-start; }
-    .sp-text ul li::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
     .pillar-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 28px; }
     .pillar-card__num { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: #111111; margin-bottom: 12px; }
     .pillar-card h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
     .pillar-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    @media (max-width: 900px) { .practice-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .practice-grid { grid-template-columns: 1fr; } }
+    .practice-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 28px 24px; }
+    .practice-card h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .practice-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
+    .metrics-row { display: flex; gap: 0; }
+    @media (max-width: 768px) { .metrics-row { flex-direction: column; } }
+    .metric-box { flex: 1; padding: 48px 36px; border-right: 1px solid rgba(255,255,255,0.08); }
+    .metric-box:last-child { border-right: none; }
+    @media (max-width: 768px) { .metric-box { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 36px 24px; } }
+    .metric-box__value { font-family: var(--font-head); font-size: clamp(2.4rem,4vw,3.2rem); font-weight: 900; color: var(--white); letter-spacing: -0.03em; margin-bottom: 12px; line-height: 1; }
+    .metric-box__label { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 12px; }
+    .metric-box__source { font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 0.02em; }
+    .method-wrap { max-width: 840px; margin: 0 auto; }
+    .method-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 48px; }
+    .method-step { display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border-light); }
+    .method-step:last-child { border-bottom: none; padding-bottom: 0; }
+    .method-step__num { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: rgba(0,0,0,0.07); min-width: 48px; flex-shrink: 0; line-height: 1.1; }
+    .method-step h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .method-step p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    .persona-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
+    @media (max-width: 640px) { .persona-grid { grid-template-columns: 1fr; } }
+    .persona-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 28px; }
+    .persona-card h4 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .persona-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+    .section-header { margin-bottom: 8px; }
     .sp-cta { text-align: center; padding: 80px 0; background: var(--primary); }
     .sp-cta h2 { font-family: var(--font-head); font-size: clamp(2rem,4vw,2.8rem); font-weight: 800; color: var(--white); margin-bottom: 16px; letter-spacing: -0.02em; }
-    .sp-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.65); margin-bottom: 36px; }
-    .industry-tag { display: inline-block; background: rgba(0,0,0,0.04); color: var(--text-dark); border: 1px solid var(--border-light); border-radius: 100px; padding: 6px 16px; font-size: 0.82rem; font-weight: 600; margin: 4px; }
+    .sp-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.65); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
   </style>
 </head>
 <body>
@@ -45,13 +67,12 @@
   <header class="nav scrolled" id="nav">
     <div class="nav__inner container">
       <a href="../index.html" class="nav__logo">
+        <img src="../favicon.svg" class="logo-icon" alt="" aria-hidden="true">
         <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
       </a>
       <nav class="nav__links" id="navLinks">
         <a href="../index.html#services">What We Do</a>
         <a href="../about.html">About</a>
-        <a href="../index.html#results">Results</a>
-        <a href="../index.html#clients">Clients</a>
         <a href="../talent-advisory.html">Talent Advisory</a>
         <a href="../index.html#contact">Contact</a>
       </nav>
@@ -62,79 +83,185 @@
     </div>
   </header>
 
+  <!-- 1. HERO -->
   <section class="sp-hero">
     <div class="container">
-      <p class="service-breadcrumb"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../index.html#services">Services</a> &nbsp;/&nbsp; Business Strategy</p>
+      <p class="service-breadcrumb"><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../index.html#services">Services</a> &nbsp;/&nbsp; Strategy &amp; Transformation</p>
       <div class="section-badge">Strategy &amp; Transformation</div>
-      <h1>Business Strategy &amp;<br />Transformation</h1>
-      <p>We partner with founders, CMOs, and CXOs to identify growth levers, clarify market position, and build strategies that translate ambition into measurable outcomes.</p>
-      <a href="../index.html#contact" class="btn btn--primary btn--lg">Start the Conversation</a>
+      <h1>Strategy &amp;<br />Transformation</h1>
+      <p>Most strategy dies in the slide deck. The gap between strategic intent and operational reality is where businesses lose years of growth. We close that gap.</p>
+      <a href="../index.html#contact" class="btn btn--primary btn--lg">Start a Strategy Conversation &rarr;</a>
     </div>
   </section>
 
+  <!-- 2. THE BUSINESS PROBLEM -->
   <section class="sp-section">
     <div class="container sp-grid">
       <div class="sp-text">
-        <h2>Strategy that starts with your business, not a template</h2>
-        <p>Most consulting briefs begin with a framework. Ours begin with your business, your context, your constraints, your competition, and your ambitions. We believe strategy is earned through deep understanding, not borrowed from a deck.</p>
-        <p>Our strategy practice spans market assessment, brand positioning, digital transformation advisory, competitive landscape analysis, and go-to-market planning, brought together into a clear, prioritised roadmap you can act on.</p>
-        <ul>
-          <li>Market &amp; competitive landscape analysis</li>
-          <li>Brand positioning and differentiation strategy</li>
-          <li>Digital maturity assessment and transformation roadmap</li>
-          <li>Go-to-market planning for new categories or geographies</li>
-          <li>Growth prioritisation and resource allocation</li>
-          <li>CXO advisory and board-level strategic input</li>
-        </ul>
+        <h2>The strategy problem isn't insight — it's execution</h2>
+        <p>Most leadership teams know roughly what needs to change. The challenge is prioritisation, sequencing, and building the organisational capability to execute at pace. External pressure — from competitors, technology shifts, and market disruption — means the window for transformation is shorter than ever.</p>
+        <p>We work as embedded strategic partners, not project consultants who deliver a document and leave. Our engagements combine rigorous analysis with operational discipline, ensuring strategy becomes a living system that the organisation can execute and adapt — not a document that collects dust after the board presentation.</p>
       </div>
-      <div>
-        <div class="sp-grid--3" style="display:flex; flex-direction:column; gap:20px;">
-          <div class="pillar-card">
-            <div class="pillar-card__num">01</div>
-            <h3>Assess</h3>
-            <p>A structured review of your market position, competitive gaps, brand equity, and organisational readiness.</p>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div class="pillar-card">
+          <div class="pillar-card__num">01</div>
+          <h3>Strategic Clarity</h3>
+          <p>Where are you going, why, and what trade-offs does that require? We help leadership teams build alignment around a strategy that is genuinely differentiated — not consensus-diluted.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-card__num">02</div>
+          <h3>Execution Architecture</h3>
+          <p>Strategy without a delivery system fails. We design the OKR frameworks, governance structures, and decision-making rhythms that translate ambition into quarterly progress.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-card__num">03</div>
+          <h3>Embedded Partnership</h3>
+          <p>We stay through implementation — joining board reviews, challenging management teams, and ensuring the strategy adapts as markets and conditions change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PRACTICE AREAS -->
+  <section class="sp-section sp-section--alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge" style="margin-bottom:16px;">What We Do</div>
+        <h2 style="font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--text-dark);line-height:1.2;letter-spacing:-0.02em;">Six disciplines. One strategic partnership.</h2>
+      </div>
+      <div class="practice-grid">
+        <div class="practice-card">
+          <h4>Business Transformation</h4>
+          <p>End-to-end transformation programmes for organisations navigating market disruption, digital change, or significant structural shifts — with senior advisors embedded at board level.</p>
+        </div>
+        <div class="practice-card">
+          <h4>Market Entry Strategy</h4>
+          <p>Rigorous market assessment, competitive positioning, go-to-market design, and partnership strategy for companies entering new geographies or adjacent markets.</p>
+        </div>
+        <div class="practice-card">
+          <h4>Competitive Positioning</h4>
+          <p>Mapping the competitive landscape, identifying white space, and defining a position that is defensible, differentiated, and translatable into sales and marketing execution.</p>
+        </div>
+        <div class="practice-card">
+          <h4>Growth Roadmap Design</h4>
+          <p>A sequenced, prioritised 3-year roadmap that connects strategic ambition to quarterly milestones — with the resource and investment model to make it credible.</p>
+        </div>
+        <div class="practice-card">
+          <h4>OKR Frameworks &amp; Governance</h4>
+          <p>Designing and implementing OKR systems that create genuine accountability across leadership teams — with the review cadences and escalation structures that make them stick.</p>
+        </div>
+        <div class="practice-card">
+          <h4>M&amp;A Strategy Support</h4>
+          <p>Strategic rationale development, target identification, integration planning, and post-merger value realisation for acquisitions, mergers, and corporate carve-outs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. METRICS ROW -->
+  <div style="background:#0D0D0D; padding:60px 0;">
+    <div class="container">
+      <div class="metrics-row">
+        <div class="metric-box">
+          <div class="metric-box__value">2.8×</div>
+          <div class="metric-box__label">average revenue multiple for Strategy &amp; Transformation clients measured at 24 months</div>
+          <div class="metric-box__source">AppStudioX portfolio data</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-box__value">60%</div>
+          <div class="metric-box__label">of major transformation programmes fail without external advisory and governance support</div>
+          <div class="metric-box__source">Source: McKinsey Global Institute</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-box__value">90 days</div>
+          <div class="metric-box__label">strategy review cadence used by companies in the top performance quartile globally</div>
+          <div class="metric-box__source">Source: Bain &amp; Company research</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. METHODOLOGY -->
+  <section class="sp-section">
+    <div class="container">
+      <div class="method-wrap">
+        <div class="section-badge" style="margin-bottom:20px;">Our Methodology</div>
+        <h2 style="font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--text-dark);line-height:1.2;letter-spacing:-0.02em;margin-bottom:40px;">Rigorous analysis. Operational discipline. Long-term partnership.</h2>
+        <div class="method-card">
+          <div class="method-step">
+            <div class="method-step__num">01</div>
+            <div>
+              <h4>Strategic Diagnostic</h4>
+              <p>A structured assessment of your current position: business model, competitive dynamics, internal capabilities, and strategic options. We identify where the real constraints are — and they are rarely where leadership assumes.</p>
+            </div>
           </div>
-          <div class="pillar-card">
-            <div class="pillar-card__num">02</div>
-            <h3>Design</h3>
-            <p>A tailored strategy blueprint covering the levers most likely to move your key metrics in 6–18 months.</p>
+          <div class="method-step">
+            <div class="method-step__num">02</div>
+            <div>
+              <h4>Market &amp; Opportunity Assessment</h4>
+              <p>Deep market analysis combining primary research, competitive intelligence, and financial modelling to size the opportunity and identify the strategic moves with the highest risk-adjusted return.</p>
+            </div>
           </div>
-          <div class="pillar-card">
-            <div class="pillar-card__num">03</div>
-            <h3>Execute &amp; Iterate</h3>
-            <p>Senior-led execution, progress tracking, and strategic course-correction as market conditions evolve.</p>
+          <div class="method-step">
+            <div class="method-step__num">03</div>
+            <div>
+              <h4>Strategy Design &amp; Stress-Testing</h4>
+              <p>Co-designing the strategy with leadership — not presenting it to them. We build alternative scenarios, stress-test assumptions, and create the narrative that will align boards, investors, and teams.</p>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-step__num">04</div>
+            <div>
+              <h4>Roadmap, OKR Architecture &amp; Governance</h4>
+              <p>Translating strategy into a sequenced execution roadmap with quarterly milestones, resource requirements, and the governance system to keep the organisation accountable over time.</p>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-step__num">05</div>
+            <div>
+              <h4>Embedded Advisory &amp; Course Correction</h4>
+              <p>Quarterly strategy reviews, board-level advisory, and real-time support when the market changes. Strategy is a dynamic system — we stay engaged to ensure it remains relevant and executable.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sp-section sp-section--alt">
+  <!-- 6. WHO WE WORK WITH -->
+  <section class="sp-section sp-section--light">
     <div class="container">
       <div class="section-header">
-        <div class="section-badge">Industries</div>
-        <h2 class="section-title">Industries We've Advised</h2>
+        <div class="section-badge" style="margin-bottom:16px;">Who We Work With</div>
+        <h2 style="font-family:var(--font-head);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--text-dark);line-height:1.2;letter-spacing:-0.02em;">Leaders navigating consequential decisions</h2>
       </div>
-      <div style="text-align:center; margin-top:32px;">
-        <span class="industry-tag">Media &amp; Publishing</span>
-        <span class="industry-tag">E-Commerce &amp; D2C</span>
-        <span class="industry-tag">FinTech &amp; BFSI</span>
-        <span class="industry-tag">EdTech</span>
-        <span class="industry-tag">Travel &amp; Hospitality</span>
-        <span class="industry-tag">Health &amp; Wellness</span>
-        <span class="industry-tag">B2B SaaS</span>
-        <span class="industry-tag">Retail &amp; Fashion</span>
-        <span class="industry-tag">Manufacturing</span>
-        <span class="industry-tag">Real Estate</span>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <h4>Founders at Series B to D</h4>
+          <p>Companies that have found product-market fit and are now building the strategic infrastructure for scale. Moving from founder-led intuition to institutionalised strategy requires external discipline.</p>
+        </div>
+        <div class="persona-card">
+          <h4>CXOs of Listed Companies</h4>
+          <p>Boards and executive teams entering new markets, navigating disruption, or managing activist shareholders. Rigorous external analysis strengthens internal conviction and stakeholder confidence.</p>
+        </div>
+        <div class="persona-card">
+          <h4>PE-Backed Businesses Post-Acquisition</h4>
+          <p>Portfolio companies that need to deliver on the investment thesis within a compressed timeframe. We help new management teams inherit strategy and accelerate execution from day one.</p>
+        </div>
+        <div class="persona-card">
+          <h4>Family Businesses in Transition</h4>
+          <p>Multi-generational businesses navigating leadership succession, professionalisation, and strategic pivots — where external advisory provides objectivity that internal stakeholders cannot.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- 7. CTA -->
   <section class="sp-cta">
     <div class="container">
-      <h2>Ready to build a strategy<br />that actually gets executed?</h2>
-      <p>Tell us about your business context and what you're trying to achieve. A senior consultant will reach out personally.</p>
-      <a href="../index.html#contact" class="btn btn--primary btn--lg">Talk to a Strategist</a>
+      <h2>Strategy that gets executed.</h2>
+      <p>If your current strategy isn't closing the gap between where you are and where you need to be, let's talk. No decks. No jargon. Just a direct conversation.</p>
+      <a href="../index.html#contact" class="btn btn--primary btn--lg">Start the Conversation &rarr;</a>
     </div>
   </section>
 
@@ -143,6 +270,7 @@
       <div class="footer__top">
         <div class="footer__brand">
           <a href="../index.html" class="nav__logo footer__logo">
+            <img src="../favicon.svg" class="logo-icon" alt="" aria-hidden="true">
             <span class="logo-text">AppStudio<span class="logo-x">X</span></span>
           </a>
           <p class="footer__tagline">Strategy. Analytics. Growth. Talent.</p>
