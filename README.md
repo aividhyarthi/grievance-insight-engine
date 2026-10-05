@@ -59,7 +59,7 @@ Data sources → Cloud Storage → BigQuery (ObjectRef) → AI.GENERATE_TABLE �
 
 ## 👥 Team
 **AI Vidhyarthi** – India’s first student-led AI literacy initiative  
-Founded by **Rudra Prasad Kasturi**, Chief Strategy & Growth Leader (ex-Google partner, Times Internet, Cars24).
+Founded by the Chief Strategy & Growth Leader (ex-Google partner, Times Internet, Cars24).
 
 ---
 
