@@ -98,8 +98,6 @@ cp "$SRC/ss-wind-blog-slug.astro"              "src/pages/wind/blog/[slug].astro
 cp "$SRC/ss-longevity-blog-index.astro"        "src/pages/longevity/blog/index.astro"
 cp "$SRC/ss-longevity-blog-slug.astro"         "src/pages/longevity/blog/[slug].astro"
 mkdir -p src/content/wind-blog src/content/longevity-blog
-cp "$SRC"/wind-blog/*.md src/content/wind-blog/ 2>/dev/null || echo "  (no wind-blog posts yet)"
-cp "$SRC"/longevity-blog/*.md src/content/longevity-blog/ 2>/dev/null || echo "  (no longevity-blog posts yet)"
 
 cp "$SRC/ss-page-menopause.astro"              "src/pages/menopause.astro"
 cp "$SRC/ss-page-guide-sexual-wellness.astro"  "src/pages/guide/sexual-wellness.astro"
@@ -141,10 +139,27 @@ cp "$SRC/ss-blog-slug.astro" "src/pages/blog/[slug].astro"
 echo "→ Blog categories..."
 cp "$SRC/ss-blog-categories.ts" "src/lib/blog-categories.ts"
 
-# 5. All blog posts — copy the whole folder at once
-echo "→ Blog posts ($(ls "$SRC/blog" | wc -l | tr -d ' ') files)..."
+# 5. Blog posts — staggered by pubDate, same gating as the automated
+# sync-content.yml workflow, so a manual deploy doesn't dump every
+# future-dated post live all at once either.
+echo "→ Blog posts (staggered by pubDate)..."
 mkdir -p src/content/blog
-cp "$SRC"/blog/*.md src/content/blog/
+now_epoch=$(date -u +%s)
+copy_due() {
+  local src_dir="$1" dest_dir="$2" f pubdate pub_epoch
+  mkdir -p "$dest_dir"
+  for f in "$src_dir"/*.md; do
+    [ -e "$f" ] || continue
+    pubdate=$(grep -m1 '^pubDate:' "$f" 2>/dev/null | sed -E 's/^pubDate:[[:space:]]*//; s/^"//; s/"$//') || true
+    pub_epoch=$(date -u -d "$pubdate" +%s 2>/dev/null) || pub_epoch=0
+    if [ "$pub_epoch" -le "$now_epoch" ]; then
+      cp "$f" "$dest_dir"/
+    fi
+  done
+}
+copy_due "$SRC/blog" "src/content/blog"
+copy_due "$SRC/wind-blog" "src/content/wind-blog"
+copy_due "$SRC/longevity-blog" "src/content/longevity-blog"
 
 # Clean up
 rm -rf "$WORK"

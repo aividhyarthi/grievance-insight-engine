@@ -3,10 +3,14 @@ name: Sync content from staging
 on:
   workflow_dispatch:
   schedule:
-    # Runs daily at 05:00 UTC (~10:30am IST), a few hours after the automated
-    # blog-writing job pushes each day's new posts to staging, so this pulls
-    # the latest content and deploys it without anyone needing to click Run.
-    - cron: '0 5 * * *'
+    # Runs every 2 hours so a day's new posts go live gradually, matching
+    # each post's staggered pubDate, instead of all ~15 of them appearing
+    # on the site in one single deploy (which reads as a bulk content dump
+    # to Google rather than organic publishing, and can slow indexing).
+    # The "Copy blog posts (staggered by pubDate)" step below only copies a
+    # post once its pubDate has actually arrived; a future-dated post is
+    # skipped and picked up automatically by a later run once its time comes.
+    - cron: '0 */2 * * *'
 
 permissions:
   contents: write
@@ -108,8 +112,6 @@ jobs:
           cp "$SRC/ss-longevity-blog-index.astro"        "src/pages/longevity/blog/index.astro"
           cp "$SRC/ss-longevity-blog-slug.astro"         "src/pages/longevity/blog/[slug].astro"
           mkdir -p src/content/wind-blog src/content/longevity-blog
-          cp "$SRC"/wind-blog/*.md src/content/wind-blog/ 2>/dev/null || echo "  (no wind-blog posts yet)"
-          cp "$SRC"/longevity-blog/*.md src/content/longevity-blog/ 2>/dev/null || echo "  (no longevity-blog posts yet)"
 
       - name: Remove chat (costs API credits per message; source kept in staging for later)
         run: |
@@ -130,7 +132,25 @@ jobs:
         run: |
           cp "$SRC/ss-blog-categories.ts" "src/lib/blog-categories.ts"
           mkdir -p src/content/blog
-          cp "$SRC"/blog/*.md src/content/blog/
+
+      - name: Copy blog posts (staggered by pubDate)
+        run: |
+          now_epoch=$(date -u +%s)
+          copy_due() {
+            local src_dir="$1" dest_dir="$2" f pubdate pub_epoch
+            mkdir -p "$dest_dir"
+            for f in "$src_dir"/*.md; do
+              [ -e "$f" ] || continue
+              pubdate=$(grep -m1 '^pubDate:' "$f" 2>/dev/null | sed -E 's/^pubDate:[[:space:]]*//; s/^"//; s/"$//') || true
+              pub_epoch=$(date -u -d "$pubdate" +%s 2>/dev/null) || pub_epoch=0
+              if [ "$pub_epoch" -le "$now_epoch" ]; then
+                cp "$f" "$dest_dir"/
+              fi
+            done
+          }
+          copy_due "$SRC/blog" "src/content/blog"
+          copy_due "$SRC/wind-blog" "src/content/wind-blog"
+          copy_due "$SRC/longevity-blog" "src/content/longevity-blog"
 
       - name: Commit and push
         run: |
