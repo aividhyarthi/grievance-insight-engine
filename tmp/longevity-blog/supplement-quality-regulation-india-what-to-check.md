@@ -2,7 +2,7 @@
 title: "Supplement Quality and Regulation in India: What to Check Before You Buy"
 description: "India's supplement market has grown fast, and regulation has not fully kept pace. Here is what the rules actually require, where the gaps are, and practical checks before you buy."
 pubDate: 2026-10-04T06:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["supplements", "India", "consumer health", "nutrition", "healthy ageing"]
 readTime: "8 min read"
 featured: false

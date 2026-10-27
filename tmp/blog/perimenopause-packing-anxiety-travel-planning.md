@@ -2,7 +2,7 @@
 title: "Packing Anxiety and Perimenopause: Why Planning a Trip Feels So Much Harder Now"
 description: "Rewriting the same packing list five times, forgetting essentials despite it, and dreading a trip you actually want to take are common perimenopause patterns tied to brain fog and heightened anxiety, not disorganisation."
 pubDate: 2026-09-21T10:17:37Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "travel", "brain fog", "anxiety"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

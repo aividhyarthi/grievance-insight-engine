@@ -2,7 +2,7 @@
 title: "Perimenopause and Your Appetite: Why Some Days You're Starving and Others You Forget to Eat"
 description: "One week you're ravenous by 11am, the next you barely notice you haven't eaten until evening. Here's why perimenopause makes your appetite so unpredictable, and how to eat well through the swings."
 pubDate: 2026-09-18T10:16:04Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["symptoms", "hormones", "lifestyle", "weight", "India"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Pranayama for Longevity: What the Breathing Practices Actually Do to Your Body"
 description: "Pranayama, the yogic tradition of controlled breathing, has a growing body of modern research behind some of its core techniques. Here is what it can realistically offer for long-term health."
 pubDate: 2026-09-12T15:30:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["pranayama", "breathing exercises", "longevity", "stress management", "heart health"]
 readTime: "8 min read"
 featured: false

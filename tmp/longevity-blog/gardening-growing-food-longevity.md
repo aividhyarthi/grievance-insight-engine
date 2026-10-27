@@ -2,7 +2,7 @@
 title: "Why Growing Your Own Food Might Be an Underrated Longevity Habit"
 description: "Gardening combines movement, sunlight, stress relief, and fresh produce access, a rare combination that shows up repeatedly in healthy-ageing research."
 pubDate: 2026-09-15T10:16:52Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["gardening", "movement", "mental health", "longevity", "nutrition"]
 readTime: "7 min read"
 featured: false

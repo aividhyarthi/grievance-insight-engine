@@ -2,7 +2,7 @@
 title: "Caring for a Spouse While Managing Your Own Health: A Guide for Midlife Couples"
 description: "When one partner develops a chronic illness in midlife, the other often becomes a caregiver overnight, while still needing to look after their own ageing body. Here is how to do both without losing yourself."
 pubDate: 2026-09-28T10:17:46Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["caregiving", "family health", "stress management", "mental health", "longevity"]
 readTime: "9 min read"
 featured: false

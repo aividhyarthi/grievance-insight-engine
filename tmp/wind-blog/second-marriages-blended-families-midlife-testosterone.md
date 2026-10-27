@@ -2,7 +2,7 @@
 title: "Second Marriages and Blended Families in Midlife: Testosterone, Intimacy, and Starting Over"
 description: "Remarrying or blending a family in your 40s or 50s brings its own emotional and physical pressures, and testosterone decline can complicate intimacy and confidence right when a man is trying to build something new."
 pubDate: 2026-09-13T04:16:46Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["second marriage", "blended family", "intimacy", "testosterone", "andropause"]
 readTime: "8 min read"
 featured: false

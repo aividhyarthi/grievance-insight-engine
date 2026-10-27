@@ -2,7 +2,7 @@
 title: "Resveratrol and Polyphenol Supplements: Hype Versus Evidence for Longevity"
 description: "Resveratrol became famous as the 'red wine molecule' that might slow ageing. Here is what the actual human evidence shows, and what to know before considering a polyphenol supplement."
 pubDate: 2026-10-05T11:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "resveratrol", "antioxidants", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

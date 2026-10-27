@@ -2,7 +2,7 @@
 title: "Reporting to a Younger Boss: Ego, Identity, and Testosterone in Midlife"
 description: "More Indian men in their forties and fifties now report to managers a decade or more younger than them. Here is why it stings more than it should, and what helps."
 pubDate: 2026-10-22T04:17:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["workplace", "identity", "testosterone", "andropause", "midlife health", "stress"]
 readTime: "9 min read"
 featured: false

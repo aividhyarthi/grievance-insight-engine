@@ -2,7 +2,7 @@
 title: "Gokshura (Tribulus) for Perimenopause: Traditional Use and What the Evidence Shows"
 description: "Gokshura, or Tribulus terrestris, is an Ayurvedic herb long used for urinary and reproductive health that has recently been repackaged as a women's libido and hormone supplement. Here is what the tradition says and what the research actually supports."
 pubDate: 2026-10-20T02:17:38Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "libido", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

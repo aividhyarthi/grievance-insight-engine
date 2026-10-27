@@ -2,7 +2,7 @@
 title: "Gratitude and Contentment: What They Actually Do for Healthy Ageing"
 description: "Gratitude practices are often dismissed as a soft wellness trend, but a genuine body of research links them to measurable benefits for stress, sleep, and even heart health. Here is what actually holds up."
 pubDate: 2026-09-26T08:16:34Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["gratitude", "mental health", "healthy ageing", "longevity", "stress management"]
 readTime: "6 min read"
 featured: false

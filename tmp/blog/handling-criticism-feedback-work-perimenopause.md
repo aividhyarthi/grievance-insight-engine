@@ -2,7 +2,7 @@
 title: "Perimenopause and Handling Criticism at Work: Why Feedback Suddenly Feels Unbearable"
 description: "Feedback you would once have shrugged off now feels like a personal attack, and the reaction lingers for hours. Here is why perimenopause changes how criticism lands, and how to steady your response."
 pubDate: 2026-09-23T08:17:38Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["mental health", "working women", "mood swings", "brain fog"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

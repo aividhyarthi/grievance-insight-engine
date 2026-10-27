@@ -2,7 +2,7 @@
 title: "Public Speaking Getting Harder After 40: Confidence, Cortisol, and Testosterone"
 description: "Many midlife men notice they dread presentations and speeches more than they used to, even with decades of experience. Here is why nerves can intensify after 40 and what actually helps."
 pubDate: 2026-10-06T06:00:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["public speaking", "confidence", "cortisol", "testosterone", "andropause", "workplace"]
 readTime: "9 min read"
 featured: false

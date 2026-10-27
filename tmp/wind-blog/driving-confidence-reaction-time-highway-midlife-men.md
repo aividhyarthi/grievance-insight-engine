@@ -2,7 +2,7 @@
 title: "Why Highway Driving Feels Different After 40: Reaction Time, Confidence, and Testosterone"
 description: "Many midlife men notice they hesitate more, tire faster, and feel less sure behind the wheel on highways than they used to. Here's what's actually changing, and what isn't cause for alarm."
 pubDate: 2026-09-17T06:16:51Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["reaction time", "driving", "confidence", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Do Household Chores Count as Exercise? What Daily Movement Actually Adds Up To After 40"
 description: "Sweeping, washing, cooking, and climbing stairs at home all add up to real movement. Here is what counts, what does not, and where structured exercise still cannot be skipped."
 pubDate: 2026-09-30T04:16:48Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["movement", "exercise", "healthy ageing", "longevity", "sedentary behaviour"]
 readTime: "7 min read"
 featured: false

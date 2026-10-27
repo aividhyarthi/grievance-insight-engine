@@ -2,7 +2,7 @@
 title: "Festival Market Shopping Fatigue: Navigating Crowded Bazaars and Gift Lists After 40"
 description: "Diwali and Navratri shopping trips through packed markets used to be routine. For many midlife men they now feel exhausting, and it's more than just the crowds."
 pubDate: 2026-09-29T08:17:48Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["festivals", "crowds", "decision fatigue", "sensory tolerance", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

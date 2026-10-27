@@ -2,7 +2,7 @@
 title: "Getting Used to a CPAP Machine in Midlife: The Equipment, the Ego, and Your Testosterone"
 description: "A sleep study diagnosis and a CPAP machine can feel like an unwelcome milestone in midlife. Here is what the mask, the noise, and the adjustment period actually mean for your sleep and your testosterone."
 pubDate: 2026-10-14T06:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["sleep apnoea", "CPAP", "sleep", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

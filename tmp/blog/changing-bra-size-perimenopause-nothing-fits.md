@@ -2,7 +2,7 @@
 title: "Why Nothing Fits the Way It Used to: Perimenopause and Your Changing Bra Size"
 description: "If bras that fit perfectly last year now dig in, gap, or feel wrong in every direction, you're not imagining it. Here's why breast size and shape genuinely change in perimenopause, and how to get properly refitted."
 pubDate: 2026-10-05T10:20:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["symptoms", "body", "breast", "weight"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"

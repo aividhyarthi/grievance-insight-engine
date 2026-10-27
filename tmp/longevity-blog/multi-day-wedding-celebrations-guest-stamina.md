@@ -2,7 +2,7 @@
 title: "Attending Multi-Day Weddings and Family Celebrations After 50: How to Enjoy Every Function Without Burning Out"
 description: "Sangeet, mehendi, haldi, the wedding, and the reception across three cities in five days can wear out even healthy older guests. Here is how to actually pace yourself through a multi-day Indian wedding without missing the joy of it."
 pubDate: 2026-09-23T10:17:42Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["travel health", "fatigue", "family health", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

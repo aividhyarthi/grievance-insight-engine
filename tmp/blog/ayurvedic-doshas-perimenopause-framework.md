@@ -2,7 +2,7 @@
 title: "Ayurvedic Doshas and Perimenopause: Does the Framework Hold Up?"
 description: "Vata, pitta, and kapha are often invoked to explain perimenopause symptoms in Indian households. Here is what the dosha framework actually claims, and how it holds up against what we know hormonally."
 pubDate: 2026-09-22T02:17:29Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "india", "stress"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

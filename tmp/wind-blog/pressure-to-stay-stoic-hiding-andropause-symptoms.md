@@ -2,7 +2,7 @@
 title: "The Pressure to Stay Stoic: Hiding Andropause Symptoms Behind a Strong Face"
 description: "Many midlife Indian men keep hormonal symptoms hidden behind a calm, capable exterior. Here is why that pressure exists, what it costs, and what a more honest approach can look like."
 pubDate: 2026-09-21T08:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["stoicism", "masculinity", "mental health", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

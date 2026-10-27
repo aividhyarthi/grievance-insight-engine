@@ -2,7 +2,7 @@
 title: "When Your Husband Doesn't Believe What You're Going Through"
 description: "Some husbands don't just misunderstand perimenopause, they actively doubt it's real. Here is how to respond when you're not just unheard, but disbelieved, and what to do if it doesn't change."
 pubDate: 2026-09-14T06:18:09Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["relationships", "perimenopause", "mental health", "India", "stress"]
 readTime: "9 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

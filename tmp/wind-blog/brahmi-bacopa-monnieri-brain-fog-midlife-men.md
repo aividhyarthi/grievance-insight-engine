@@ -2,7 +2,7 @@
 title: "Brahmi (Bacopa Monnieri) for Brain Fog in Midlife Men: What the Evidence Actually Shows"
 description: "Brahmi, the Ayurvedic herb also known as Bacopa monnieri, is widely used in India for memory and focus. Here is what the actual research says about it for midlife brain fog, and where testosterone fits in."
 pubDate: 2026-10-14T04:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["brahmi", "bacopa monnieri", "ayurveda", "brain fog", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

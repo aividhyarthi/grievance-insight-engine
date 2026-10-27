@@ -2,7 +2,7 @@
 title: "Supplement Quality and Regulation in India: What Men Should Check Before Buying"
 description: "India's supplement market is loosely regulated compared to prescription medicine, which means quality and purity vary widely by brand. Here's what to actually check before buying anything marketed for testosterone or midlife health."
 pubDate: 2026-09-27T10:17:25Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplement regulation", "supplement quality", "supplements", "testosterone", "andropause", "health advocacy", "midlife health"]
 readTime: "9 min read"
 featured: false

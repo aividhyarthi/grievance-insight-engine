@@ -2,7 +2,7 @@
 title: "Festival Shopping in Perimenopause: Surviving Crowded Markets and Malls Before Diwali and Navratri"
 description: "Stuffy trial rooms, packed lanes, and a decision fatigue that makes choosing between two identical sarees feel impossible. Here's how to get through festival shopping season when perimenopause has changed how your body handles heat and crowds."
 pubDate: 2026-09-29T08:17:08Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["lifestyle", "hot flashes", "fatigue", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"

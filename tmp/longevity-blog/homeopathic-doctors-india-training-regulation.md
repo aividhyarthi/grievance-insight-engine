@@ -2,7 +2,7 @@
 title: "Who Can Call Themselves a Homeopathic Doctor in India? Training, Regulation, and What to Check"
 description: "India has more registered homeopathic doctors than any country in the world. Here's how their training actually works, how the field is regulated, and what to check before you consult one."
 pubDate: 2026-09-21T08:16:52Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["homeopathy", "complementary medicine", "healthcare regulation", "preventive health", "healthy ageing"]
 readTime: "7 min read"
 featured: false

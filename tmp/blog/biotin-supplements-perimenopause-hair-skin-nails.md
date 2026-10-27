@@ -2,7 +2,7 @@
 title: "Biotin Supplements in Perimenopause: What the Evidence Actually Shows for Hair, Skin, and Nails"
 description: "Biotin is marketed heavily for hair, skin, and nail changes, exactly the symptoms many women notice in perimenopause. Here is what the evidence actually supports, and when it genuinely helps."
 pubDate: 2026-10-22T06:17:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "hair loss", "skin", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

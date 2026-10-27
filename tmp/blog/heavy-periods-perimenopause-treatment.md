@@ -2,7 +2,7 @@
 title: "Heavy Periods During Perimenopause, Treatment Options and When to Seek Urgent Care"
 description: "Flooding, clots, soaking through clothes, heavy periods in perimenopause are common but not something you have to simply endure. Here's what works, what's available in India, and when it becomes an emergency."
 pubDate: 2025-05-19
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["heavy periods", "menorrhagia", "perimenopause", "treatment", "urgent care"]
 readTime: "9 min read"
 featured: true

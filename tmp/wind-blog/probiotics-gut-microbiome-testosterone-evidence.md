@@ -2,7 +2,7 @@
 title: "Probiotics and the Gut Microbiome's Role in Testosterone: What the Emerging Research Shows"
 description: "Gut bacteria are now being studied for their link to hormone levels. Here's what the early evidence on probiotics and testosterone actually says, and what it doesn't."
 pubDate: 2026-10-09T04:17:26Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "gut health", "probiotics", "testosterone", "andropause"]
 readTime: "8 min read"
 featured: false

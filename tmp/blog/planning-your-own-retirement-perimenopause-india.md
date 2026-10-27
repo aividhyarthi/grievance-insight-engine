@@ -2,7 +2,7 @@
 title: "Planning Your Own Retirement in Perimenopause: Why Indian Women Fall Behind, and How to Catch Up"
 description: "Many Indian women reach their forties with a retirement plan built around their husband's pension or savings, not their own. Here is why that gap exists, and practical steps to start closing it now, even with brain fog in the mix."
 pubDate: 2026-10-26T22:43:13Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "working women", "india", "brain fog"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=675&fit=crop&q=80"

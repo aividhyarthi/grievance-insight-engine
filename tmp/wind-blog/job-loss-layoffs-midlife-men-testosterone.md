@@ -2,7 +2,7 @@
 title: "Losing a Job in Your 40s and 50s: Layoffs, Identity, and Testosterone"
 description: "A layoff hits differently once you have a home loan, children's school fees, and a joint family watching. Here is what the stress of job loss actually does to a midlife man's body, and how to get through the first few months."
 pubDate: 2026-10-11T06:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["career", "job loss", "stress", "mental health", "testosterone", "andropause", "fatigue"]
 readTime: "9 min read"
 featured: false

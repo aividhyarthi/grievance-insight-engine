@@ -2,7 +2,7 @@
 title: "Guduchi (Giloy) for Perimenopause: What It's Traditionally Used For and What the Evidence Shows"
 description: "Giloy has become a household name in Indian kitchens for immunity, but is there anything to its traditional use for perimenopause symptoms? Here's what Ayurveda says and what research actually supports."
 pubDate: 2026-10-06T04:18:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["natural remedies", "lifestyle", "immune system"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

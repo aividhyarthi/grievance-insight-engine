@@ -2,7 +2,7 @@
 title: "Comparing Yourself to Other Men on Social Media: LinkedIn Promotions, Instagram Fitness, and Midlife Confidence"
 description: "Scrolling past a college friend's promotion or a stranger's gym transformation can hit harder after 40. Here is why, and what it has to do with testosterone and stress."
 pubDate: 2026-10-13T09:00:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["social media", "comparison", "confidence", "stress", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

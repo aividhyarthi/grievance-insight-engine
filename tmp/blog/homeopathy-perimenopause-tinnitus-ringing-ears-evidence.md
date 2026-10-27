@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Tinnitus: What Women Try, and What the Evidence Shows"
 description: "Ringing or buzzing in the ears is an under-discussed perimenopause symptom, and some women turn to homeopathy for it. Here's what the evidence situation actually looks like, and why a hearing check matters first."
 pubDate: 2026-10-25T08:17:42Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "tinnitus", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

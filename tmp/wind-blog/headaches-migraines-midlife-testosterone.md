@@ -2,7 +2,7 @@
 title: "Headaches in Midlife Men: Is Testosterone Involved?"
 description: "More frequent headaches after 40 aren't always just stress or screen time. Declining testosterone can be a genuine, under-discussed contributor for some men."
 pubDate: 2026-09-28T10:17:43Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["headaches", "migraines", "testosterone", "andropause", "stress", "midlife health"]
 readTime: "7 min read"
 featured: false

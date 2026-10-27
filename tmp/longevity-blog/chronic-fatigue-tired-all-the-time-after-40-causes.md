@@ -2,7 +2,7 @@
 title: "Why You Feel Tired All the Time After 40: A Guide to the Most Common, Checkable Causes"
 description: "Feeling persistently tired, even after a full night's sleep, is one of the most common complaints after 40. Here is a practical guide to the usual, checkable causes, and when it's time to see a doctor rather than push through."
 pubDate: 2026-10-22T17:00:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["fatigue", "thyroid health", "sleep", "mood", "healthy ageing"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "The Placebo Effect, Explained: Why It Matters When You Weigh Up Homeopathy and Other Remedies"
 description: "The placebo effect is real, measurable, and often misunderstood. Here is what it actually is, why it makes evaluating remedies like homeopathy so difficult, and how to think about it without dismissing your own experience."
 pubDate: 2026-09-20T08:17:17Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["placebo effect", "homeopathy", "evidence-based medicine", "preventive health", "longevity"]
 readTime: "7 min read"
 featured: false

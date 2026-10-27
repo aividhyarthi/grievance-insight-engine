@@ -2,7 +2,7 @@
 title: "Moringa (Sahjan) for Perimenopause: Nutrition Profile and What the Evidence Shows"
 description: "Moringa, known as sahjan or drumstick in most Indian kitchens, is often called a superfood. Here is what its nutrition actually offers a perimenopausal body, and what the research supports."
 pubDate: 2026-10-15T06:30:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "nutrition", "india", "bone health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

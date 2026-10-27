@@ -2,7 +2,7 @@
 title: "Why Last-Minute Changes Rattle You More After 40: Adaptability and Testosterone"
 description: "A cancelled flight or a sudden change of plan used to be a minor annoyance. In midlife it can feel disproportionately stressful, and declining testosterone plays a real role in why."
 pubDate: 2026-09-28T04:17:43Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["adaptability", "flexibility", "stress", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

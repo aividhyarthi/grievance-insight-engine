@@ -2,7 +2,7 @@
 title: "Eggs, Dietary Cholesterol, and Testosterone: Why Avoiding Egg Yolks After 40 May Be the Wrong Move"
 description: "Many midlife men quietly drop egg yolks from their diet over cholesterol fears. Here's what dietary cholesterol actually has to do with testosterone production, and what the evidence really shows."
 pubDate: 2026-10-19T04:18:22Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["nutrition", "cholesterol", "testosterone", "diet", "andropause", "heart health"]
 readTime: "8 min read"
 featured: false

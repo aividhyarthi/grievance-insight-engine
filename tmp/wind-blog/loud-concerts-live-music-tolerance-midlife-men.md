@@ -2,7 +2,7 @@
 title: "Why Loud Concerts and Live Music Feel Like Too Much After 40"
 description: "A man who used to stand front row at a concert without a second thought now reaches for earplugs and leaves early, and that shift in tolerance for loud music is more common, and more explainable, than he might think."
 pubDate: 2026-10-02T06:18:34Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["noise sensitivity", "hearing health", "live music", "sensory tolerance", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Why Perimenopause Brain Fog Gets Worse Right Before Your Period"
 description: "If your concentration and memory take a nosedive in the days before your period, you are not imagining a pattern. Here is the hormonal reason brain fog spikes in the late luteal phase, and what actually helps."
 pubDate: 2026-09-14T10:18:09Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["brain fog", "symptoms", "cycles", "progesterone", "hormones"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=1200&h=675&fit=crop&q=80"

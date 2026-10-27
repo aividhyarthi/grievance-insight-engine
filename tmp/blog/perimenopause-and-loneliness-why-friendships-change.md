@@ -2,7 +2,7 @@
 title: "Perimenopause and Loneliness: Why Friendships Change"
 description: "Perimenopause can quietly shrink your social world, from cancelled plans to friendships that fade. Here's why it happens and how to rebuild connection without forcing energy you don't have."
 pubDate: 2026-09-11T17:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["identity", "mental health", "relationships", "life", "community"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=675&fit=crop&q=80"

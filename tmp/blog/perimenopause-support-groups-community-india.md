@@ -2,7 +2,7 @@
 title: "Finding Perimenopause Support and Community in India"
 description: "Beyond information, many women simply need people, others going through the same thing, or professionals who take them seriously. Here is how to find real support and community for perimenopause in India."
 pubDate: 2026-07-13
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian women finding community and support during perimenopause"
 tags: ["life", "community", "when to see doctor", "mental health"]

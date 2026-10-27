@@ -2,7 +2,7 @@
 title: "Going Quiet Instead of Arguing: Emotional Withdrawal in Midlife Marriages"
 description: "Many midlife men respond to conflict or stress at home by going quiet rather than arguing. Here is why this pattern becomes more common after 40, how it affects a marriage, and what's worth changing."
 pubDate: 2026-10-14T10:17:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["marriage", "relationships", "emotional health", "testosterone", "andropause", "mood"]
 readTime: "9 min read"
 featured: false

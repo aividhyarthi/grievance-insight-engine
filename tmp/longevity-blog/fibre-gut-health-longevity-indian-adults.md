@@ -2,7 +2,7 @@
 title: "Fibre and Gut Health for Longevity: How Much Indian Adults Actually Need"
 description: "Most Indian adults eat well under the fibre their gut and metabolism actually need, even on a traditionally plant-heavy diet. Here is the realistic daily target, and how to close the gap with food first."
 pubDate: 2026-10-02T02:18:45Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["fibre", "gut health", "nutrition", "Indian diet", "digestive health"]
 readTime: "7 min read"
 featured: false

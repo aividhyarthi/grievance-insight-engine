@@ -2,7 +2,7 @@
 title: "Alcohol and Testosterone: How Much Is Actually Too Much"
 description: "A weekend drink with friends is not the same as a nightly habit when it comes to hormones. Here is what the evidence says about alcohol and testosterone, and where the real risk begins."
 pubDate: 2026-09-08T09:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["alcohol", "testosterone", "andropause", "liver health", "midlife health"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Visiting Your Childhood Home in Perimenopause: Why Going Back to Your Parents' House Feels Different Now"
 description: "The room that used to be yours is a storeroom now, the stairs feel steeper, and you find yourself oddly emotional walking through a house you've visited hundreds of times. Here is why visiting your childhood home hits differently during perimenopause."
 pubDate: 2026-09-30T10:17:33Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "family", "identity", "mental health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509927083803-4bd519298ac4?w=1200&h=675&fit=crop&q=80"

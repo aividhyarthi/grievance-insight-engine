@@ -2,7 +2,7 @@
 title: "'Testosterone Booster' Supplements: Reading the Label Critically"
 description: "Testosterone booster products line pharmacy shelves and flood social media ads, but most are proprietary blends of ingredients with weak or mixed evidence. Here is how to actually read one of these labels."
 pubDate: 2026-09-19T12:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["testosterone booster", "supplements", "supplement regulation", "testosterone", "andropause", "health advocacy", "midlife health"]
 readTime: "10 min read"
 featured: false

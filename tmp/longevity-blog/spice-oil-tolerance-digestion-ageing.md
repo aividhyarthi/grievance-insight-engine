@@ -2,7 +2,7 @@
 title: "Why Spicy and Oily Food Hits Harder After 40: What Changes in Digestion, and What Actually Helps"
 description: "The same plate of chole bhature or a fiery curry that never bothered you at 25 can leave you bloated, refluxy, or wide awake at 2am after 40. Here is what actually changes in digestion, and how to keep enjoying the food you love."
 pubDate: 2026-09-23T02:17:42Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["digestive health", "nutrition", "Indian diet", "healthy ageing", "longevity"]
 readTime: "8 min read"
 featured: false

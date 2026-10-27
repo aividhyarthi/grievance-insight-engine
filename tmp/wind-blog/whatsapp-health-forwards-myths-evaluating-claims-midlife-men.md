@@ -2,7 +2,7 @@
 title: "WhatsApp Health Forwards and Miracle Cures: How to Evaluate What You Read Before You Try It"
 description: "Family WhatsApp groups are full of forwarded health claims and miracle fixes. Here's a practical way for midlife men to tell a genuinely useful tip from a dangerous one, before trying anything."
 pubDate: 2026-10-24T04:17:14Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["health literacy", "supplements", "testosterone", "andropause", "mental health"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Char Dham and Other Pilgrimages After 60: What Seniors Should Know Before They Go"
 description: "High-altitude pilgrimages like Char Dham and Amarnath see a real number of medical emergencies among older devotees every year. Here's what actually raises the risk, and how to prepare sensibly."
 pubDate: 2026-09-21T06:16:52Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["travel health", "pilgrimage", "heart health", "healthy ageing", "preventive health"]
 readTime: "7 min read"
 featured: false

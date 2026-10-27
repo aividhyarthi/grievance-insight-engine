@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Headaches and Migraines: What Women Try, and What the Evidence Shows"
 description: "Hormonal headaches that won't respond to the usual painkillers send many Indian women toward homeopathy. Here is an honest, evidence-aware look at what's tried and what the research actually supports."
 pubDate: 2026-10-19T08:17:26Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "headaches", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Why Visiting Your Childhood Home Feels Different After 40"
 description: "Walking into your parents' house now brings up a strange mix of nostalgia, physical tiredness, and worry you didn't notice a decade ago. Here's why that visit hits differently in midlife, and what's actually going on."
 pubDate: 2026-09-30T08:17:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["parents", "childhood home", "nostalgia", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

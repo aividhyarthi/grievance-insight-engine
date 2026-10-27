@@ -2,7 +2,7 @@
 title: "Traditional Fermented Foods of India Beyond Curd: An Underused Resource for Gut Health"
 description: "India's fermented food traditions go far beyond curd, from idli batter to kanji to pickles, and many carry genuine gut-health benefits that modern nutrition science is only now catching up to."
 pubDate: 2026-09-28T02:17:46Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["fermented foods", "gut health", "nutrition", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

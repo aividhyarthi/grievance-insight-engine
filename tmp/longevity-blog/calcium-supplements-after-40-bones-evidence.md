@@ -2,7 +2,7 @@
 title: "Calcium Supplements After 40: What They Can and Cannot Do for Your Bones"
 description: "A closer look at calcium supplements after 40: when they actually help bone health, when food alone is enough, and the real risks of taking more than you need."
 pubDate: 2026-10-21T02:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "bone health", "calcium", "longevity after 40", "ageing"]
 readTime: "9 min read"
 featured: false

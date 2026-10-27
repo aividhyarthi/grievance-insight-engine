@@ -2,7 +2,7 @@
 title: "Cataracts and Glaucoma: What to Know Before Your Vision Starts Changing"
 description: "Cataracts and glaucoma are two of the most common age-related eye conditions among Indian adults, and both are far more manageable when caught early. Here is what actually raises your risk, what screening looks like, and when to see an eye doctor."
 pubDate: 2026-09-13T02:18:07Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["eye health", "cataracts", "glaucoma", "vision", "healthy ageing"]
 readTime: "7 min read"
 featured: false

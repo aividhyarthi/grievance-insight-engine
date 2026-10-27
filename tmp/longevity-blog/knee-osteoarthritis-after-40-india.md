@@ -2,7 +2,7 @@
 title: "Knee Osteoarthritis After 40: Why It's So Common in India, and What Actually Helps"
 description: "Knee pain while climbing stairs or sitting on the floor is often an early sign of osteoarthritis, a condition that affects Indian adults earlier than global averages suggest. Here is what causes it and what genuinely helps."
 pubDate: 2026-10-14T10:16:56Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["joint health", "osteoarthritis", "exercise", "healthy ageing", "pain management"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Gallstones After 40: Diet, Weight, and What They Actually Have to Do With Your Hormones"
 description: "Gallstones become more common in midlife, often alongside weight gain and metabolic changes. Here's the real connection to testosterone, the warning signs that need urgent care, and what actually helps."
 pubDate: 2026-10-23T10:18:19Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["digestive health", "weight", "testosterone", "diet", "men's health"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Financial Scams Targeting Older Adults in India: Common Tactics, and How to Protect Yourself and Your Family"
 description: "Fraudsters increasingly target people over 40 and their ageing parents with phone, SMS, and digital payment scams. Here is how the common tactics actually work, and practical steps to protect your finances."
 pubDate: 2026-10-26T14:45:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["financial health", "scams and fraud", "family", "healthy ageing", "safety"]
 readTime: "8 min read"
 featured: false

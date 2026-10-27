@@ -2,7 +2,7 @@
 title: "Nasya: The Ayurvedic Nasal Oil Therapy, Examined"
 description: "Nasya, the Ayurvedic practice of applying oil or herbal preparations into the nostrils, is said to support everything from sinus health to mental clarity. Here is what it actually involves, and what current evidence does and does not support."
 pubDate: 2026-10-12T04:18:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["ayurveda", "nasya", "sinus health", "healthy ageing", "traditional medicine"]
 readTime: "8 min read"
 featured: false

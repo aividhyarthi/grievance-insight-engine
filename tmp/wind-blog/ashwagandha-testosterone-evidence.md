@@ -2,7 +2,7 @@
 title: "Ashwagandha and Testosterone: What the Research Actually Shows, Beyond the Supplement Marketing"
 description: "Ashwagandha is one of the most heavily marketed herbs for men's testosterone, but the actual research is more modest and specific than the marketing suggests. Here is what current evidence supports and where it stops."
 pubDate: 2026-09-19T07:10:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["ashwagandha", "Ayurveda", "testosterone", "andropause", "supplements", "midlife health"]
 readTime: "8 min read"
 featured: false

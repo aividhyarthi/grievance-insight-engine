@@ -2,7 +2,7 @@
 title: "Dinacharya, Agni, and Ritucharya: What Ayurveda and Modern Longevity Science Agree On"
 description: "Long before circadian biology had a name, Ayurveda built its daily and seasonal routines around similar principles. Here is a balanced look at dinacharya, agni, and ritucharya alongside modern longevity research, and where the two genuinely align."
 pubDate: 2026-09-04T17:00:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["Ayurveda", "longevity", "traditional medicine", "wellness"]
 image: "https://images.unsplash.com/photo-8iU3wtMJEcI?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Vendor selling colorful traditional spices at an Indian market"

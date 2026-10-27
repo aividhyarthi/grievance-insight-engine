@@ -2,7 +2,7 @@
 title: "Ashwagandha and Stress in Perimenopause: What the Research Actually Supports"
 description: "Ashwagandha is one of the most studied Ayurvedic herbs for stress. Here is what the research genuinely shows about its effect on stress and sleep in perimenopause, and where the evidence stops."
 pubDate: 2026-09-19T09:08:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "stress", "mental health", "sleep"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

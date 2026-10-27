@@ -2,7 +2,7 @@
 title: "Depression in Men: The Andropause Link Nobody Talks About"
 description: "Low mood, loss of interest, and irritability in midlife men are often dismissed as stress or a bad phase. Here is the real, underdiscussed link between declining testosterone and depression."
 pubDate: 2026-09-10T15:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["depression", "mental health", "mood", "testosterone", "andropause"]
 readTime: "7 min read"
 featured: false

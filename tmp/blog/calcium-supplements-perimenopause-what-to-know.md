@@ -2,7 +2,7 @@
 title: "Calcium Supplements in Perimenopause: What to Know Before You Start"
 description: "Falling oestrogen speeds up bone loss, and many Indian women don't get enough calcium from food alone. Here is what the evidence actually shows about calcium supplements, dosing, and what to check before you buy one."
 pubDate: 2026-10-02T10:18:36Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "bone health", "natural remedies", "calcium", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

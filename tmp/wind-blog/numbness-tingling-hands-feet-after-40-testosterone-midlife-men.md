@@ -2,7 +2,7 @@
 title: "Numbness and Tingling in Hands and Feet After 40: Nerve Changes and Testosterone"
 description: "Occasional numbness or tingling in the hands or feet after 40 usually has a simple explanation, but persistent symptoms deserve attention. Here's what's actually going on, and where testosterone fits."
 pubDate: 2026-10-08T08:20:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["numbness", "nerve health", "diabetes", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Bone Density and Osteoporosis Prevention: Starting Before You Need To"
 description: "Bone loss is silent and usually painless until a fracture reveals it. Here is what actually builds and protects bone density in midlife, and why starting now matters more than starting after a diagnosis."
 pubDate: 2026-09-09T17:30:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["bone health", "osteoporosis", "longevity", "strength training", "vitamin D"]
 readTime: "6 min read"
 featured: false

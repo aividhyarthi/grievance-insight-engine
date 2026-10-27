@@ -2,7 +2,7 @@
 title: "Perimenopause When You're Single or Divorced: Getting Through It Without a Partner's Support"
 description: "No spouse to notice the mood swings, sit through the doctor's appointment, or take over on a bad night. Here is how to build real support for perimenopause when you are navigating it alone."
 pubDate: 2026-09-17T02:17:48Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["relationships", "community", "mental health", "life"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=675&fit=crop&q=80"

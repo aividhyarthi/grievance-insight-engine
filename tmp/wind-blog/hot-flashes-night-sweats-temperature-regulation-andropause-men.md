@@ -2,7 +2,7 @@
 title: "Do Men Get Hot Flashes? Night Sweats, Temperature Regulation, and Andropause"
 description: "Waking up drenched or suddenly overheated in a meeting isn't just a women's experience. Some midlife men get genuine hot flashes and night sweats as testosterone declines, and few know that's what's happening."
 pubDate: 2026-09-19T10:16:45Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["night sweats", "hot flashes", "temperature regulation", "testosterone", "andropause", "midlife health", "sleep"]
 readTime: "6 min read"
 featured: false

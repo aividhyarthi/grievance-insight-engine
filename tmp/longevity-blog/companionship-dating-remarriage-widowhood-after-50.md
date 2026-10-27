@@ -2,7 +2,7 @@
 title: "Finding Companionship Again After 50: Dating, Remarriage, and Widowhood in Later Life"
 description: "More Indians in their 50s, 60s, and beyond are openly considering new relationships after widowhood, divorce, or separation. Here is why it is becoming more visible, what actually holds people back, and what is worth thinking through first."
 pubDate: 2026-10-10T10:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["relationships", "widowhood", "social connection", "healthy ageing", "mental health"]
 readTime: "8 min read"
 featured: false

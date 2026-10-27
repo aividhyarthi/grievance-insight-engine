@@ -2,7 +2,7 @@
 title: "Grip Strength: The Simple Longevity Marker Doctors Are Increasingly Watching"
 description: "A firm handshake might reveal more about your long-term health than you expect. Here is why grip strength has become a genuine marker of ageing well, and how to build it."
 pubDate: 2026-09-12T11:30:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["grip strength", "muscle health", "longevity", "strength training", "healthy ageing"]
 readTime: "8 min read"
 featured: false

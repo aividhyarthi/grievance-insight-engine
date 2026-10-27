@@ -2,7 +2,7 @@
 title: "Gallstones and Perimenopause: Why Your Risk Goes Up Now"
 description: "A sudden sharp pain under your right ribs after a heavy meal could be a gallstone, and perimenopause genuinely raises the odds. Here's the oestrogen link, the warning signs, and when to get it checked."
 pubDate: 2026-10-05T02:20:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["symptoms", "abdominal pain", "hormones", "when to see doctor"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1525904097878-94fb15835963?w=1200&h=675&fit=crop&q=80"

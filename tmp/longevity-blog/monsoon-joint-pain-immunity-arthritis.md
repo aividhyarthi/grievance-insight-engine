@@ -2,7 +2,7 @@
 title: "Why Do Your Joints Hurt More During Monsoon? The Season's Effect on Pain and Immunity"
 description: "Monsoon brings a real, well-documented rise in joint pain and infections for people over 40. Here is why it happens and what actually helps, drawing on both modern research and Ayurvedic seasonal wisdom."
 pubDate: 2026-09-19T02:16:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["joint health", "immunity", "monsoon health", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

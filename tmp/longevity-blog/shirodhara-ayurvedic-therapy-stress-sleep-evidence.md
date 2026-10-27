@@ -2,7 +2,7 @@
 title: "Shirodhara and Ayurvedic Oil-Pour Therapies for Stress and Sleep: What the Evidence Actually Shows"
 description: "Shirodhara, the Ayurvedic practice of pouring warm oil in a slow stream across the forehead, is increasingly marketed as a stress and sleep fix. Here is what it actually involves, and what the evidence says about it."
 pubDate: 2026-10-11T02:19:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["ayurveda", "stress", "sleep", "healthy ageing", "relaxation"]
 readTime: "9 min read"
 featured: false

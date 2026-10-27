@@ -2,7 +2,7 @@
 title: "Lectins and Antinutrients in Dal and Legumes: Should You Actually Worry?"
 description: "Lectins and other antinutrients in dal, rajma, and chana have become a wellness-trend talking point. Here is what the evidence actually says, and why Indian cooking methods already address most of the concern."
 pubDate: 2026-10-20T06:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["foods", "gut health", "Indian diet", "healthy ageing"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Brown and Whole Foods You Should Eat During Perimenopause"
 description: "Ragi, bajra, dals, til, nuts — the whole grains, legumes, and seeds of a traditional Indian kitchen offer fibre, protein, and phytoestrogens that genuinely support a perimenopausal body. Here is why brown belongs on your plate."
 pubDate: 2026-07-15
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Whole grains, legumes, and seeds like ragi, dal, and til for perimenopause nutrition"
 tags: ["natural remedies", "diet", "whole grains", "protein", "phytoestrogens", "nutrition"]

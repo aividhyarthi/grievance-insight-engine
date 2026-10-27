@@ -2,7 +2,7 @@
 title: "Why Perimenopause Hits Women With ADHD Earlier and Harder"
 description: "For women with ADHD, perimenopause often arrives as a sudden collapse of coping strategies that worked for decades. Here is the dopamine-oestrogen link behind it, and what actually helps."
 pubDate: 2026-09-13T02:17:08Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["ADHD", "brain fog", "mental health", "hormones", "identity"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&h=675&fit=crop&q=80"

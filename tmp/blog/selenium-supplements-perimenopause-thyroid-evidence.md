@@ -2,7 +2,7 @@
 title: "Selenium Supplements in Perimenopause: Thyroid Support and What the Evidence Shows"
 description: "Selenium gets recommended often for thyroid health, which matters since thyroid problems and perimenopause symptoms overlap so much. Here's what the evidence actually supports, and why more isn't automatically better."
 pubDate: 2026-10-25T06:17:42Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "fatigue", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

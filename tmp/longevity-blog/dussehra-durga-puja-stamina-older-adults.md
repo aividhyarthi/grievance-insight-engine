@@ -2,7 +2,7 @@
 title: "Dussehra and Durga Puja After 50: Enjoying the Pandals Without Running Out of Steam"
 description: "Pandal hopping, Ramlila grounds, and immersion processions ask a lot of an ageing body. Here's how to pace Dussehra and Durga Puja celebrations so you can enjoy every bit of them."
 pubDate: 2026-10-02T06:18:45Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["festival health", "mobility", "fatigue", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

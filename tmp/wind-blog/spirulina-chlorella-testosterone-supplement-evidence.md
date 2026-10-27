@@ -2,7 +2,7 @@
 title: "Spirulina and Chlorella for Midlife Men: What the Evidence Shows Beyond the Superfood Hype"
 description: "Spirulina and chlorella are marketed as green superfoods for energy and hormones. Here's what the research actually supports, and where India's supplement market quality concerns matter most."
 pubDate: 2026-10-26T17:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "spirulina", "chlorella", "testosterone", "andropause"]
 readTime: "8 min read"
 featured: false

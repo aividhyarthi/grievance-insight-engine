@@ -2,7 +2,7 @@
 title: "Perimenopause and Your Skin: Dryness, Ageing, and Collagen Loss"
 description: "Drier skin, more visible lines, a loss of firmness, and a sudden change in texture — your skin changes noticeably in perimenopause because oestrogen drives collagen and moisture. Here is what happens and what genuinely helps."
 pubDate: 2026-07-07
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing skin changes and dryness during perimenopause"
 tags: ["symptoms", "skin", "collagen", "dryness", "hormones"]

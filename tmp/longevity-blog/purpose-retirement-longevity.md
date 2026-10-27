@@ -2,7 +2,7 @@
 title: "Purpose and Retirement: Why Having a Reason to Get Up Matters for a Longer Life"
 description: "A sense of purpose is one of the more consistent predictors of healthy longevity in research, and retirement is often when it quietly disappears. Here is why it matters and how to build it deliberately."
 pubDate: 2026-09-11T15:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["purpose", "retirement", "mental health", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

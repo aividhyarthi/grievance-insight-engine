@@ -2,7 +2,7 @@
 title: "Vitamin B12 and Perimenopause Fatigue: When Supplementation Actually Helps"
 description: "B12 deficiency and perimenopausal fatigue can feel identical, which is exactly the problem. Here is when a B12 supplement genuinely helps, and when it's the wrong thing to reach for."
 pubDate: 2026-09-19T10:28:30Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "supplements", "fatigue", "when to see doctor", "nutrition"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

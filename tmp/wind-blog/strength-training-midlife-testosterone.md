@@ -2,7 +2,7 @@
 title: "Why Strength Training Matters More Than Ever in Midlife"
 description: "Declining testosterone accelerates muscle and strength loss after 40, but resistance training is one of the most effective tools men have to slow it down. Here is what the science says and where to start."
 pubDate: 2026-09-04T11:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["strength training", "muscle loss", "testosterone", "andropause", "fitness"]
 image: "https://images.unsplash.com/photo-B1PSsBQPC2A?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A middle-aged man training with weights in a gym"

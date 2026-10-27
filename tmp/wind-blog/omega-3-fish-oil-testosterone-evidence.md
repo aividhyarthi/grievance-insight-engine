@@ -2,7 +2,7 @@
 title: "Omega-3 Fatty Acids and Fish Oil for Testosterone: What the Evidence Shows"
 description: "Fish oil is heavily marketed for hormonal health, but the real evidence for omega-3s and testosterone is more specific and more modest than the marketing suggests."
 pubDate: 2026-09-28T08:17:43Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["omega-3", "fish oil", "supplements", "nutrition", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

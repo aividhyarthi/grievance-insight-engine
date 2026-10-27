@@ -2,7 +2,7 @@
 title: "Indian Diet During Perimenopause, What to Eat More Of and What to Cut Back"
 description: "The Indian kitchen already has much of what perimenopause needs, phytoestrogens in dal, calcium in til and ragi, anti-inflammatory turmeric and ginger. Here's how to use it intentionally."
 pubDate: 2026-06-03
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["lifestyle", "perimenopause", "diet", "nutrition", "India"]
 image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Colourful array of Indian spices, lentils, and vegetables, nourishing foods for perimenopause"

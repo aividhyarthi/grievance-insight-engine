@@ -2,7 +2,7 @@
 title: "New Year's Resolutions After 40: Realistic Goal-Setting for Healthy Ageing"
 description: "Most New Year's resolutions fail within weeks, and after 40 the standard all-or-nothing approach fails even faster. Here is a more realistic way to set health goals that actually stick."
 pubDate: 2026-09-30T10:16:48Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["habit formation", "mental health", "healthy ageing", "longevity", "exercise motivation"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "City Versus Village Living: What Do Longevity Outcomes in India Actually Show?"
 description: "Rural India has better air and less traffic stress, but cities have hospitals and specialists nearby. Here is what the evidence on where you live and how long you live actually suggests."
 pubDate: 2026-09-18T10:16:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["healthy ageing", "longevity", "air pollution", "preventive health", "social connection"]
 readTime: "9 min read"
 featured: false

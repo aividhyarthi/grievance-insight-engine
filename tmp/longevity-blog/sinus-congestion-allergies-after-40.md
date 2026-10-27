@@ -2,7 +2,7 @@
 title: "Chronic Sinus Congestion and Allergies After 40: Why They Get Worse, and What Actually Helps"
 description: "Sinus congestion and allergies often feel worse after 40, especially in India's polluted cities. Here is why that happens, and what genuinely helps versus what just masks the symptoms."
 pubDate: 2026-10-09T10:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["respiratory health", "allergies", "air quality", "healthy ageing"]
 readTime: "9 min read"
 featured: false

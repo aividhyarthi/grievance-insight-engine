@@ -2,7 +2,7 @@
 title: "Homeopathy for Coughs, Colds, and Minor Ailments: India's First-Aid Habit, Examined"
 description: "Many Indian households keep homeopathic remedies for everyday complaints like colds, minor injuries, and stomach upset. Here is what that habit actually involves, and what the evidence situation looks like."
 pubDate: 2026-09-20T06:17:17Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "complementary medicine", "preventive health", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

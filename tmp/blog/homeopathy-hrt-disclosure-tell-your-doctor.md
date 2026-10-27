@@ -2,7 +2,7 @@
 title: "Should You Tell Your Doctor You're Using Homeopathic Remedies Alongside Hormone Therapy?"
 description: "Many women quietly use homeopathic remedies while also on hormone therapy, without mentioning either to the other provider. Here is why that disclosure matters, why women avoid it, and how to actually have the conversation."
 pubDate: 2026-10-07T04:18:50Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "HRT", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"

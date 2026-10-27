@@ -2,7 +2,7 @@
 title: "Hair Loss and Skin Changes in Andropause: What's Hormonal, What's Just Ageing"
 description: "How to tell whether thinning hair, drier skin, and other visible changes in midlife are connected to declining testosterone or simply the ordinary process of ageing."
 pubDate: 2026-09-09T15:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["hair loss", "skin changes", "andropause", "ageing", "midlife health"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Filing a Health Insurance Claim in Perimenopause: When Brain Fog Meets Paperwork"
 description: "Perimenopausal brain fog can turn a routine health insurance claim or reimbursement form into an exhausting, error-prone task. Here is why it happens and how to get through the paperwork without losing your claim to a missed signature."
 pubDate: 2026-09-26T02:18:08Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["brain fog", "stress", "india", "when to see doctor"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=675&fit=crop&q=80"

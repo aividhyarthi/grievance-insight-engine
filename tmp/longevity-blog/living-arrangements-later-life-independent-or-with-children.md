@@ -2,7 +2,7 @@
 title: "Living With Your Children, or Living Alone? Choosing Living Arrangements in Later Life"
 description: "Joint families, multigenerational households, and older adults choosing to live independently for longer are all growing trends in India. Here is how to think through the decision in terms of actual health outcomes, not just tradition or guilt."
 pubDate: 2026-10-03T10:16:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["family health", "social connection", "mental health", "healthy ageing", "longevity"]
 readTime: "9 min read"
 featured: false

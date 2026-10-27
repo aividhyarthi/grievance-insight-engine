@@ -2,7 +2,7 @@
 title: "Triphala for Digestion in Midlife Men: Traditional Use and What the Evidence Actually Shows"
 description: "Triphala is one of the most commonly reached-for Ayurvedic formulations for digestion in India. Here's what it is, what research actually supports, and why it has nothing to do with testosterone."
 pubDate: 2026-10-19T02:18:22Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["ayurveda", "digestion", "gut health", "andropause", "testosterone", "midlife health"]
 readTime: "8 min read"
 featured: false

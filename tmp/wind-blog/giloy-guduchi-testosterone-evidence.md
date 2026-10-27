@@ -2,7 +2,7 @@
 title: "Giloy (Guduchi) and Testosterone: The Immunity Herb's Hype Versus the Evidence"
 description: "Giloy became a household name during the pandemic as an immunity booster. Here's what the evidence actually says about this Ayurvedic herb and testosterone, separate from its immune claims."
 pubDate: 2026-10-25T04:20:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["ayurveda", "giloy guduchi", "testosterone", "andropause", "immunity"]
 readTime: "7 min read"
 featured: false

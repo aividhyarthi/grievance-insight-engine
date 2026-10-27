@@ -2,7 +2,7 @@
 title: "7 Signs of Perimenopause Every Indian Woman Should Know"
 description: "From period changes to brain fog to vaginal dryness, the 7 most important signs of perimenopause, explained with the hormonal reason behind each one, and why they're so often missed in India."
 pubDate: 2025-05-21
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["symptoms", "signs", "perimenopause", "Indian women"]
 readTime: "7 min read"
 featured: true

@@ -2,7 +2,7 @@
 title: "Why Everyone Else's Forties Look Easier Online: Perimenopause and Social Media Comparison"
 description: "Scrolling through other women's curated forties while you're in the middle of a hot flash and a bad brain fog day can make perimenopause feel like a personal failure. Here is why that comparison feels so much sharper now, and how to manage it."
 pubDate: 2026-10-08T10:17:14Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["mental health", "mood", "life", "social media"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

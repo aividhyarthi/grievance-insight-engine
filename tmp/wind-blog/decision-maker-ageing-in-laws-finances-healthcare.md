@@ -2,7 +2,7 @@
 title: "Becoming the Decision-Maker for Your In-Laws: Finances, Healthcare, and the Hormonal Toll"
 description: "Many Indian men in midlife quietly become the primary decision-maker for their ageing in-laws' money and medical care, often with little acknowledgment. Here's the hidden strain, and how to manage it."
 pubDate: 2026-09-18T08:16:17Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["caregiving", "in-laws", "financial stress", "family", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

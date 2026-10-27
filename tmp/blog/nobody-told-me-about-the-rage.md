@@ -2,7 +2,7 @@
 title: "Nobody Told Me About the Rage"
 description: "Not irritation, not a bad mood, but a sudden, frightening fury that feels nothing like you. Real accounts of perimenopausal rage, why it happens, and why nobody warns women about it in advance."
 pubDate: 2026-09-10T11:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["mental health", "anger", "mood", "perimenopause"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541199249251-f713e6145474?w=1200&h=675&fit=crop&q=80"

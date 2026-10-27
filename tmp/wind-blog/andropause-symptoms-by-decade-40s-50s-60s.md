@@ -2,7 +2,7 @@
 title: "Andropause in Your 40s, 50s, and 60s: How Symptoms and Priorities Shift"
 description: "Andropause does not feel the same at 42 as it does at 58. Here is what typically changes decade by decade, and what to focus on at each stage."
 pubDate: 2026-09-11T09:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["andropause", "ageing", "testosterone", "late-onset hypogonadism", "midlife health"]
 readTime: "7 min read"
 featured: false

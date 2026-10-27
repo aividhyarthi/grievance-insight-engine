@@ -2,7 +2,7 @@
 title: "Postmenopausal Bleeding: Why Any Bleeding After Menopause Always Needs Checking"
 description: "Any vaginal bleeding after you have gone 12 full months without a period is called postmenopausal bleeding, and it always needs medical assessment. Here is why this rule has no exceptions, and what the evaluation usually involves."
 pubDate: 2026-07-14
-author: "Journal Desk"
+author: "Kavita Menon"
 image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman learning why postmenopausal bleeding always needs medical assessment"
 tags: ["cycles", "postmenopausal bleeding", "when to see doctor", "understanding"]

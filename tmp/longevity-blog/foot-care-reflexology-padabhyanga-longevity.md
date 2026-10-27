@@ -2,7 +2,7 @@
 title: "Padabhyanga and Foot Care After 40: What Ayurvedic Foot Massage and Modern Podiatry Both Get Right"
 description: "Foot health quietly affects balance, sleep, and mobility as you age. Here is what Ayurvedic foot massage (padabhyanga) and modern podiatry both recommend, and where the evidence actually stands."
 pubDate: 2026-09-19T06:16:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["Ayurveda", "foot health", "traditional practices", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

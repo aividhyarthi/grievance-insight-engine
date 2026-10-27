@@ -2,7 +2,7 @@
 title: "Spermidine Supplements and Autophagy: Hype Versus Evidence for Longevity"
 description: "Spermidine has become one of the most talked-about new longevity supplements, promoted on the idea that it triggers cellular 'self-cleaning'. Here is an honest look at what the research actually shows."
 pubDate: 2026-10-14T04:16:56Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "longevity", "healthy ageing", "preventive health"]
 readTime: "9 min read"
 featured: false

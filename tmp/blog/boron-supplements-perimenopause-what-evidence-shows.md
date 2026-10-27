@@ -2,7 +2,7 @@
 title: "Boron Supplements and Perimenopause: What the Evidence Actually Shows"
 description: "Boron is marketed online as a mineral that balances hormones and strengthens bone in midlife women. Here is what the research actually supports, what it doesn't, and what to check before you buy a bottle."
 pubDate: 2026-10-23T06:18:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "bone health", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

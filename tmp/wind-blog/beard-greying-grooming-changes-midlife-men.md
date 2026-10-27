@@ -2,7 +2,7 @@
 title: "Grey Beard, Changing Texture: What's Hormonal in Midlife Grooming, and What's Just Ageing"
 description: "Beard greying, coarser texture, and slower growth are common after 40. Here's what's driven by ageing pigment cells, what may connect to testosterone, and what men are doing about it."
 pubDate: 2026-09-20T04:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["beard greying", "grooming", "hair changes", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

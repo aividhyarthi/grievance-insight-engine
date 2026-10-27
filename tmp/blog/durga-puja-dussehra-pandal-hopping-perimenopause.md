@@ -2,7 +2,7 @@
 title: "Pandal-Hopping in Perimenopause: Surviving Durga Puja and Dussehra's Late Nights"
 description: "Five nights of pandal-hopping, late dinners, and standing in queues used to feel effortless. In perimenopause, the same Durga Puja and Dussehra schedule can leave you running on empty by night three."
 pubDate: 2026-10-02T04:18:36Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "fatigue", "festivals", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"

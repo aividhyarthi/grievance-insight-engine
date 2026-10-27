@@ -2,7 +2,7 @@
 title: "Getting Winded Climbing Stairs After 40: What It Means for Your Fitness, and What to Do About It"
 description: "Feeling breathless after a flight of stairs that used to be effortless is a common midlife moment. Here is what it actually signals about your fitness, when it needs a doctor's attention, and how to improve it."
 pubDate: 2026-10-08T10:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["fitness", "heart health", "cardiorespiratory health", "exercise", "healthy ageing"]
 readTime: "9 min read"
 featured: false

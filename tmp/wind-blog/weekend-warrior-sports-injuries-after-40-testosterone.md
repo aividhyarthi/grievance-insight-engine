@@ -2,7 +2,7 @@
 title: "Weekend Warrior Injuries After 40: Why Cricket and Badminton Hurt More Than They Used To"
 description: "A weekend cricket match or badminton session that never used to leave a mark now leaves you limping for days. Here's why recovery changes after 40, and what helps."
 pubDate: 2026-10-09T10:17:26Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["fitness", "injury recovery", "testosterone", "exercise", "midlife men"]
 readTime: "8 min read"
 featured: false

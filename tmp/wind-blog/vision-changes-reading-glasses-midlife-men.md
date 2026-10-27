@@ -2,7 +2,7 @@
 title: "Blurry Menus and Tiny Text: Vision Changes in Midlife Men and What's Actually Going On"
 description: "Struggling to read a menu or a WhatsApp message without holding it at arm's length? Here's why vision changes accelerate in your 40s, and how hormones and ageing both play a part."
 pubDate: 2026-09-16T02:15:48Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["vision changes", "presbyopia", "eye health", "andropause", "ageing", "midlife health"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "The Habit of the Annual Health Checkup: Why Year-End Medical Reviews Matter More After 40"
 description: "Many Indian men treat the annual health checkup as an optional errand they keep postponing. Here's why a yearly review matters more after 40, and how to actually make it a habit."
 pubDate: 2026-09-30T02:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["health checkup", "preventive care", "testosterone test", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

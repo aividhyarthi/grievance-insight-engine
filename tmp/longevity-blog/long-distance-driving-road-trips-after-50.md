@@ -2,7 +2,7 @@
 title: "Long-Distance Driving and Road Trips After 50: How to Make the Journey Easier on Your Body"
 description: "An eight-hour drive that felt routine at 30 can leave your back, legs, and concentration wrecked after 50. Here is what actually changes for the body on long drives, and practical steps that make road trips comfortable again."
 pubDate: 2026-09-23T04:17:42Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["travel health", "road safety", "joint health", "healthy ageing", "longevity"]
 readTime: "8 min read"
 featured: false

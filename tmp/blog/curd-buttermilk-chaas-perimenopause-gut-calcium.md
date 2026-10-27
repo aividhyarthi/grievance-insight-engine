@@ -2,7 +2,7 @@
 title: "Curd and Buttermilk (Chaas) for Perimenopause: Gut Health, Calcium, and Cooling the Body"
 description: "Curd and chaas are Indian kitchen staples, but do they actually help with perimenopause symptoms? Here's what the calcium, probiotic, and cooling claims hold up to."
 pubDate: 2026-10-14T02:16:30Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "bone health", "diet", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

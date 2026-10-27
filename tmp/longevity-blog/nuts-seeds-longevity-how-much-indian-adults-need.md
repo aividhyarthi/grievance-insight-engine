@@ -2,7 +2,7 @@
 title: "Nuts and Seeds for Longevity: How Much Should Indian Adults Actually Eat"
 description: "Almonds, walnuts, flaxseeds, and more are often called longevity foods, but portion size and freshness matter more than most people realise. Here is a practical, evidence-based guide."
 pubDate: 2026-10-16T11:00:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["foods", "nutrition", "heart health", "longevity", "India"]
 readTime: "7 min read"
 featured: false

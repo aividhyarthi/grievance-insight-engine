@@ -2,7 +2,7 @@
 title: "Why Hair Starts Growing in New Places After 40: Ear and Nose Hair Explained"
 description: "Many men notice thicker ear and nose hair in midlife even as scalp hair thins. Here is the hormonal explanation, why it happens, and how to deal with it practically."
 pubDate: 2026-10-12T06:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["andropause", "hair loss", "testosterone", "grooming"]
 readTime: "8 min read"
 featured: false

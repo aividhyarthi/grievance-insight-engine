@@ -2,7 +2,7 @@
 title: "Rasayana: The Ayurvedic Science of Rejuvenation, Explained"
 description: "What Rasayana actually means in Ayurveda, how it differs from a single herb or tonic, and what modern evidence says about this rejuvenation-focused branch of traditional medicine."
 pubDate: 2026-10-21T04:30:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["ayurveda", "healthy ageing", "longevity after 40", "traditional medicine"]
 readTime: "9 min read"
 featured: false

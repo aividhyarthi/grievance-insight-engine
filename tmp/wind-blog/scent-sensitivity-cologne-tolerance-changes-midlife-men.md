@@ -2,7 +2,7 @@
 title: "Why Strong Perfumes and Cologne Suddenly Bother You After 40: Scent Sensitivity in Midlife"
 description: "A cologne you wore for years, or a colleague's strong perfume, can start feeling overwhelming rather than pleasant in midlife. Here is why smell tolerance changes and what it has to do with testosterone."
 pubDate: 2026-09-24T10:16:43Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["scent sensitivity", "smell changes", "cologne", "sensory tolerance", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

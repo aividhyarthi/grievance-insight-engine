@@ -2,7 +2,7 @@
 title: "Your Caffeine Tolerance Changes After 40, and It Is Worth Paying Attention To"
 description: "The two cups of chai or coffee you have relied on for decades may start affecting your sleep, heart rate, and anxiety differently as you age. Here is what changes and why."
 pubDate: 2026-09-18T04:16:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["caffeine", "sleep", "longevity", "heart health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Volunteering After 40: What Giving Back Actually Does for a Longer, Healthier Life"
 description: "From temple seva to NGO mentoring, volunteering is woven into Indian life. Here is what the research actually shows about why giving back may genuinely add years and quality of life."
 pubDate: 2026-10-18T06:17:48Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["volunteering", "purpose", "social connection", "stress", "longevity"]
 readTime: "7 min read"
 featured: false

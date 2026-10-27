@@ -2,7 +2,7 @@
 title: "Nirgundi for Perimenopause: Traditional Use for Joint Pain, and What the Evidence Shows"
 description: "Nirgundi (Vitex negundo) is a common Ayurvedic shrub used for centuries for joint and muscle pain. Here is what it's traditionally used for, what the modern research actually shows, and why it should never be confused with the Western supplement vitex/chasteberry."
 pubDate: 2026-10-26T14:43:13Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "joint pain", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

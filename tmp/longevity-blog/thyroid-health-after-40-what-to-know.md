@@ -2,7 +2,7 @@
 title: "Thyroid Health After 40: Why This Gland Deserves More Attention"
 description: "The thyroid quietly influences weight, energy, mood, and heart rate, and problems with it become more common after 40, often mistaken for ordinary ageing. Here is what actually changes, how it is tested, and what helps."
 pubDate: 2026-10-10T06:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["thyroid health", "hormones", "metabolism", "healthy ageing", "preventive health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Becoming a Grandmother While You're Still in Perimenopause: When Two Life Stages Collide"
 description: "Your own body is still going through hormonal upheaval, and now you're also expected to help raise the next generation. Here is how to navigate becoming a grandmother while still in perimenopause yourself."
 pubDate: 2026-09-17T10:17:48Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["relationships", "identity", "life", "community"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

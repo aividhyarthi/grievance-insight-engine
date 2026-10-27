@@ -2,7 +2,7 @@
 title: "Perimenopause and Exercise Motivation: Why You Can't Talk Yourself Into a Workout Anymore"
 description: "It's not laziness. Perimenopause genuinely changes the brain chemistry behind motivation, which is why the walk or workout you used to look forward to now feels like a negotiation you keep losing."
 pubDate: 2026-09-28T02:18:04Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["lifestyle", "exercise", "motivation", "mood"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1200&h=675&fit=crop&q=80"

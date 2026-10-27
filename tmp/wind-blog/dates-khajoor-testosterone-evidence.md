@@ -2,7 +2,7 @@
 title: "Dates (Khajoor) and Testosterone: What This Winter Favourite Actually Does for Midlife Men"
 description: "Dates are a winter staple in Indian kitchens, and WhatsApp forwards claim they boost testosterone and stamina. Here's what the nutrition and the evidence actually show."
 pubDate: 2026-10-25T02:20:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["foods", "dates khajoor", "testosterone", "andropause", "fatigue"]
 readTime: "7 min read"
 featured: false

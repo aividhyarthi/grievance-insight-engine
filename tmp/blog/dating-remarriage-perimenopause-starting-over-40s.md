@@ -2,7 +2,7 @@
 title: "Dating and Remarriage in Perimenopause: Starting Over in Your 40s"
 description: "Divorced, widowed, or newly single in your forties, dating while perimenopausal brings its own layer of hormones, family pressure, and identity questions. Here is how to navigate it."
 pubDate: 2026-09-13T10:17:08Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["identity", "relationships", "life", "community", "mental health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

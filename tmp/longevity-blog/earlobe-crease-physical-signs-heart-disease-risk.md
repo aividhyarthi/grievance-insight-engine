@@ -2,7 +2,7 @@
 title: "The Earlobe Crease and Other Odd Physical Signs Linked to Heart Disease Risk"
 description: "A diagonal earlobe crease, yellowish eyelid patches, and a few other unusual physical signs have real, if modest, links to heart disease risk. Here is what the evidence actually shows."
 pubDate: 2026-10-20T08:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["heart health", "ageing markers", "healthy ageing", "India"]
 readTime: "7 min read"
 featured: false

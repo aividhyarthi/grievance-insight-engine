@@ -2,7 +2,7 @@
 title: "Cognitive Health Habits: What Actually Protects Your Brain As You Age"
 description: "Forgetting names occasionally is normal ageing, not decline. Here is what research actually supports for protecting memory and thinking speed over the decades ahead, and what does not have strong evidence behind it."
 pubDate: 2026-09-09T13:30:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["brain health", "cognitive health", "longevity", "brain fog", "mental health"]
 readTime: "6 min read"
 featured: false

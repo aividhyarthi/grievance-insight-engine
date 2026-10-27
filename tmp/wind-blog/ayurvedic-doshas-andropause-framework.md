@@ -2,7 +2,7 @@
 title: "Ayurvedic Doshas and Andropause: Does the Framework Hold Up"
 description: "A clear-eyed look at what Vata, Pitta, and Kapha are said to explain about midlife hormonal change in men, and where that framework meets modern evidence."
 pubDate: 2026-09-23T02:16:51Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["Ayurveda", "doshas", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

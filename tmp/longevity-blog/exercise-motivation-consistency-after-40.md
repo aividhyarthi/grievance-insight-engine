@@ -2,7 +2,7 @@
 title: "Why Exercise Motivation Fades After 40, and How to Actually Stay Consistent"
 description: "Knowing you should exercise and actually keeping it up are two different problems, and the second one gets harder after 40. Here is what changes, and what genuinely helps you stick with it."
 pubDate: 2026-09-28T06:17:46Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["exercise motivation", "movement", "healthy ageing", "longevity", "mental health"]
 readTime: "8 min read"
 featured: false

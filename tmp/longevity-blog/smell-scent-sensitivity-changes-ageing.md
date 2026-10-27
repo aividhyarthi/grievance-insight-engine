@@ -2,7 +2,7 @@
 title: "Why Strong Smells and Perfumes Feel More Overwhelming After 40"
 description: "A colleague's perfume, a crowded lift, or a relative's aftershave can suddenly feel much harder to tolerate in midlife. Here is what is actually changing in your sense of smell, and what it might mean for your health."
 pubDate: 2026-09-24T06:16:56Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["sensory health", "healthy ageing", "longevity", "brain health", "preventive health"]
 readTime: "7 min read"
 featured: false

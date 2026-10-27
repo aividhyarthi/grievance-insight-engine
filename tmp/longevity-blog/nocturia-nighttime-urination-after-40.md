@@ -2,7 +2,7 @@
 title: "Needing to Pee More at Night After 40: Why It Happens, and What Actually Helps"
 description: "Waking up once or more a night to urinate becomes common after 40, for both men and women. Here is what actually causes nocturia, when it is worth seeing a doctor, and what genuinely helps."
 pubDate: 2026-10-08T06:00:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["sleep", "bladder health", "nocturia", "prostate health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

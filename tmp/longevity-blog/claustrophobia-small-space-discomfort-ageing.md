@@ -2,7 +2,7 @@
 title: "Why Small Spaces Can Feel More Uncomfortable As You Age: Claustrophobia After 40"
 description: "Lifts, MRI scanners, and crowded local trains can start to feel harder to tolerate after midlife, even for people who never minded them before. Here is what actually changes, and what genuinely helps."
 pubDate: 2026-09-24T02:16:56Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["anxiety", "mental health", "healthy ageing", "longevity", "sensory health"]
 readTime: "7 min read"
 featured: false

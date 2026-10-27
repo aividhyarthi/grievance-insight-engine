@@ -2,7 +2,7 @@
 title: "Testosterone Replacement Therapy: Risks, Benefits, and Who It's Actually For"
 description: "An honest look at testosterone replacement therapy for andropause: who genuinely benefits, what the real risks are, and why it's not a fix for every man with low energy."
 pubDate: 2026-09-09T11:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["testosterone replacement therapy", "TRT", "andropause", "late-onset hypogonadism", "midlife health"]
 readTime: "8 min read"
 featured: false

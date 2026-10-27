@@ -2,7 +2,7 @@
 title: "Frozen Shoulder After 40: Why It Happens, and How Long Recovery Actually Takes"
 description: "Frozen shoulder quietly becomes far more common after 40, especially in people with diabetes. Here is why the shoulder locks up, how long recovery genuinely takes, and what actually speeds it along."
 pubDate: 2026-10-07T02:18:46Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["frozen shoulder", "joint health", "physiotherapy", "chronic pain", "healthy ageing"]
 readTime: "8 min read"
 featured: false

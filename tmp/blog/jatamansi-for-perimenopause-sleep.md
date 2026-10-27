@@ -2,7 +2,7 @@
 title: "Jatamansi for Perimenopause Sleep: What It's Traditionally Used For, and What the Evidence Shows"
 description: "Jatamansi is an Ayurvedic herb reached for when perimenopause turns sleep upside down. Here is what it's traditionally used for, what the research actually supports, and what a doctor would want you to know first."
 pubDate: 2026-10-08T02:17:14Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "sleep", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

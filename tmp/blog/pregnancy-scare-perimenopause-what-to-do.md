@@ -2,7 +2,7 @@
 title: "Pregnancy Scare in Perimenopause: What to Actually Do in the First 48 Hours"
 description: "A late period and a positive-looking pregnancy test can trigger real panic in your 40s. Here is a step-by-step guide to what to do right now, medically and emotionally, when perimenopause and a pregnancy scare collide."
 pubDate: 2026-09-15T02:18:02Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["pregnancy", "fertility", "contraception", "anxiety", "understanding"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Do 'Hormone Balance' Supplement Blends Actually Work? Reading the Label Critically"
 description: "Bottles promising to 'balance your hormones' are everywhere in perimenopause marketing. Here is how to actually read the label, and what the evidence behind these blends really shows."
 pubDate: 2026-09-19T12:28:30Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "supplements", "hormones", "when to see doctor"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=675&fit=crop&q=80"

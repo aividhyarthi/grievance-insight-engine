@@ -2,7 +2,7 @@
 title: "Mucuna Pruriens (Kapikacchu) and Testosterone: What the Research Actually Shows"
 description: "Mucuna pruriens, known as kapikacchu in Ayurveda, is widely sold for men's vitality and fertility. Here's what the actual research says about its effect on testosterone, separate from the marketing."
 pubDate: 2026-10-10T02:18:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["mucuna pruriens", "kapikacchu", "Ayurveda", "testosterone", "supplements", "andropause"]
 readTime: "9 min read"
 featured: false

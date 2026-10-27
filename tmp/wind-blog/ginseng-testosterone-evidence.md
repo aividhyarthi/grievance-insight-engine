@@ -2,7 +2,7 @@
 title: "Ginseng and Testosterone: What the Research Actually Shows"
 description: "Ginseng is sold everywhere from pharmacy counters to wellness apps as an energy and virility herb, but does it actually raise testosterone? Here is what the evidence supports and where the marketing runs ahead of the science."
 pubDate: 2026-10-11T02:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["ginseng", "supplements", "testosterone", "andropause", "libido", "fatigue"]
 readTime: "8 min read"
 featured: false

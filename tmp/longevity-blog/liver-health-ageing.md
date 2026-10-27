@@ -2,7 +2,7 @@
 title: "Liver Health and Ageing: Why This Silent Organ Deserves Attention After 40"
 description: "The liver rarely shows symptoms until damage is advanced, yet it quietly shapes how well you age. Here's what protects it and what wears it down."
 pubDate: 2026-09-15T02:16:52Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["liver health", "longevity", "metabolic health", "alcohol", "healthy ageing"]
 readTime: "8 min read"
 featured: false

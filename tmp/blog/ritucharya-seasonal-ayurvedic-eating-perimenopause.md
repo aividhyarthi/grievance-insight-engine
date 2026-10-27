@@ -2,7 +2,7 @@
 title: "Ritucharya: Seasonal Ayurvedic Eating for Perimenopause Hormonal Balance"
 description: "Ritucharya, the Ayurvedic practice of adjusting diet and routine with the seasons, is often suggested for perimenopause symptom management. Here is what it actually involves and what the evidence situation looks like."
 pubDate: 2026-09-23T10:17:38Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "india", "diet"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

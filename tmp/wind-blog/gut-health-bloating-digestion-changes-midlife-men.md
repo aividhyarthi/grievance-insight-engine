@@ -2,7 +2,7 @@
 title: "Gut Health and Bloating in Midlife Men: Why Your Digestion Changes After 40"
 description: "Bloating after meals, new food sensitivities, and a gut that suddenly feels unpredictable are common in midlife men. Here's how testosterone decline, muscle loss, and stress tie into it."
 pubDate: 2026-09-17T02:16:51Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["gut health", "bloating", "digestion", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Parenting a Teenager in Your Own Midlife: Patience, Mood, and Testosterone"
 description: "Raising a teenager while your own hormones, energy, and patience are shifting is a specific kind of hard. Here's why it feels harder than it used to, and what actually helps."
 pubDate: 2026-10-20T10:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["family communication", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

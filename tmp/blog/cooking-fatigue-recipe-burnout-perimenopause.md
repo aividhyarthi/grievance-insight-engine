@@ -2,7 +2,7 @@
 title: "Why You've Stopped Trying New Recipes: Perimenopause and Cooking Fatigue"
 description: "If you used to enjoy experimenting in the kitchen and now just want to make the same five meals on repeat, perimenopause-linked decision fatigue and dwindling mental bandwidth are a real, common reason."
 pubDate: 2026-10-01T02:17:34Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["brain fog", "fatigue", "lifestyle", "diet", "stress"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"

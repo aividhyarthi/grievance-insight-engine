@@ -2,7 +2,7 @@
 title: "When Your Wife Is the Patient: Men as Caregivers for a Sick Spouse, and Their Own Health"
 description: "When a wife's illness turns a husband into her primary caregiver, his own hormonal and physical health often gets pushed aside entirely. Here's why that's risky, and what to do about it."
 pubDate: 2026-09-15T06:16:58Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["spousal caregiving", "caregiving", "stress", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

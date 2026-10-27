@@ -2,7 +2,7 @@
 title: "Perimenopause on the Commute: Hot Flashes, Dizziness, and Getting Through Public Transport"
 description: "A packed local train or bus is hard enough without a sudden hot flash or wave of dizziness. Here is how to manage a perimenopausal commute in India with less dread."
 pubDate: 2026-09-20T10:17:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["life", "hot flashes", "dizziness", "working women", "India"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

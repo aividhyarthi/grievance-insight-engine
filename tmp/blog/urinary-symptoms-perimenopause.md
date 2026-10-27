@@ -2,7 +2,7 @@
 title: "Urinary Leaks, Urgency, and Frequent UTIs in Perimenopause, What's Actually Happening"
 description: "If you're leaking when you sneeze, rushing to the bathroom urgently, or getting UTIs more often in your 40s, oestrogen loss is the likely reason. Here's the biology and what you can do."
 pubDate: 2026-06-03
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["symptoms", "perimenopause", "urinary health", "pelvic floor", "GSM"]
 image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman in quiet reflection, representing the private and often unspoken experience of urinary symptoms in perimenopause"

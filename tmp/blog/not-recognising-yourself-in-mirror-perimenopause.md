@@ -2,7 +2,7 @@
 title: "Not Recognising Yourself in the Mirror: Body Image in Perimenopause"
 description: "Catching your reflection and feeling like a stranger is looking back is a real and common perimenopause experience. Here is why it happens and how to make peace with a changing reflection."
 pubDate: 2026-09-19T08:17:24Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["identity", "mental health", "body image", "symptoms"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Mirror Checking and Mirror Avoidance in Perimenopause: The Habit Nobody Names"
 description: "Some women start avoiding mirrors entirely in perimenopause, others can't stop checking one. Here is why both behaviours show up now, and how to tell when it's a normal adjustment versus something worth mentioning to your doctor."
 pubDate: 2026-09-30T02:17:33Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["identity", "mental health", "body image", "symptoms"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

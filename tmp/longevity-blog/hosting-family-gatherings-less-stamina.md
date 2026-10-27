@@ -2,7 +2,7 @@
 title: "Hosting Family Gatherings With Less Stamina: How to Enjoy Get-Togethers Without Exhausting Yourself"
 description: "Hosting a full house for a festival or a family function can leave you wiped out for days in a way it never used to. Here is why stamina for hosting genuinely changes with age, and how to keep the joy without the crash."
 pubDate: 2026-09-22T08:18:51Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["fatigue", "healthy ageing", "longevity", "family health", "stress management"]
 readTime: "8 min read"
 featured: false

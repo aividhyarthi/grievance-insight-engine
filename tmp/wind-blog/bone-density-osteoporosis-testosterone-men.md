@@ -2,7 +2,7 @@
 title: "Bone Density and Testosterone: The Osteoporosis Risk Men Don't Know About"
 description: "Osteoporosis isn't just a women's health issue. Declining testosterone quietly thins bone in midlife men too, and most never get screened for it until after a fracture."
 pubDate: 2026-09-19T06:16:45Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["bone density", "osteoporosis", "testosterone", "andropause", "midlife health"]
 readTime: "6 min read"
 featured: false

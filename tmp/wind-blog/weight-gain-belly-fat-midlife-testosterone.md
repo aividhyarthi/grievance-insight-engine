@@ -2,7 +2,7 @@
 title: "Why Testosterone Decline Shifts Weight to Your Belly, and What Actually Helps"
 description: "Midlife weight gain is not just about eating more or moving less. Here is how declining testosterone reshapes body composition, why fat settles around the belly, and what genuinely works."
 pubDate: 2026-09-05T09:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["weight gain", "belly fat", "testosterone", "andropause", "body composition"]
 readTime: "7 min read"
 featured: false

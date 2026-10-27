@@ -2,7 +2,7 @@
 title: "Cholesterol, Statins, and Testosterone: What Midlife Men on Lipid Medication Should Know"
 description: "Many Indian men start statins in their forties and wonder what it means for testosterone. Here's the real connection between cholesterol medication and hormone levels."
 pubDate: 2026-10-09T06:17:26Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["heart health", "cholesterol", "testosterone", "medication", "andropause"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Screen Time, Pornography Habits, and Libido in Midlife: What's Actually Going On"
 description: "Many midlife men quietly wonder if their screen habits are affecting their libido and their relationship, but rarely say so out loud. Here's an honest, non-judgmental look at what's known and what to do about it."
 pubDate: 2026-09-14T08:16:35Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["libido", "sexual health", "screen habits", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Job Interviews and Performance Reviews: Navigating High-Stakes Work Moments With Declining Energy"
 description: "How to prepare for and get through interviews, appraisals, and high-pressure work conversations when andropause fatigue and brain fog make you doubt your own sharpness."
 pubDate: 2026-09-23T04:16:51Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["career", "workplace stress", "fatigue", "brain fog", "confidence", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

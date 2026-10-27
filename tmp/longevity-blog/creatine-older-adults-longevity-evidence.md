@@ -2,7 +2,7 @@
 title: "Creatine After 40: An Old Sports Supplement With New Longevity Evidence"
 description: "Long known as a bodybuilding supplement, creatine now has growing evidence for muscle and possibly brain health in older adults. Here is an honest look at what the research actually supports."
 pubDate: 2026-09-19T12:28:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["creatine", "supplements", "muscle health", "strength training", "longevity"]
 readTime: "9 min read"
 featured: false

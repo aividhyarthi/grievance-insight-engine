@@ -2,7 +2,7 @@
 title: "What Does Progesterone Do During Perimenopause?"
 description: "Progesterone is the first hormone to fall in perimenopause, and its decline explains anxiety, poor sleep, heavy periods, and more. A clear guide to what it does and why it matters."
 pubDate: 2025-05-22
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["progesterone", "hormones", "perimenopause", "HRT"]
 readTime: "8 min read"
 featured: false

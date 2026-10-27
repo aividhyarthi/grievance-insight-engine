@@ -2,7 +2,7 @@
 title: "Attending a Wedding Without Your Family: Why Solo Events Hit Differently After 40"
 description: "Flying alone to a relative's wedding while your spouse and kids stay home for school or work is common in Indian families. Here's why these solo trips can feel unexpectedly hard in midlife, and how to get through them well."
 pubDate: 2026-09-27T06:17:25Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["weddings", "family events", "loneliness", "social isolation", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

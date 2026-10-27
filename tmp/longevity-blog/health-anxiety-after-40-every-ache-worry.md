@@ -2,7 +2,7 @@
 title: "Health Anxiety After 40: When Every Ache Starts to Feel Like Something Serious"
 description: "A mild headache becomes a worry about something serious, a new ache sends you straight to a search engine. Here is why health anxiety tends to rise after 40, and what actually helps calm it."
 pubDate: 2026-10-17T10:15:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["mental health", "anxiety", "stress", "healthy ageing"]
 readTime: "8 min read"
 featured: false

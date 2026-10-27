@@ -2,7 +2,7 @@
 title: "Turmeric and Testosterone: What the Research on Curcumin Actually Shows"
 description: "Turmeric is in almost every Indian kitchen and is often credited with hormonal benefits. Here is what the evidence on curcumin and testosterone actually supports for midlife men."
 pubDate: 2026-10-13T05:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["foods", "Ayurveda", "turmeric", "testosterone", "andropause", "inflammation", "midlife health"]
 readTime: "9 min read"
 featured: false

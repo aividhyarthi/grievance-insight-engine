@@ -2,7 +2,7 @@
 title: "Road Safety and Reaction Time After 40: The Longevity Factor Nobody Talks About"
 description: "Reaction time and visual processing speed change gradually after 40, affecting driving and pedestrian safety in ways most people never think to check. Here is what actually changes and how to adapt."
 pubDate: 2026-09-19T04:16:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["road safety", "reaction time", "cognitive health", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

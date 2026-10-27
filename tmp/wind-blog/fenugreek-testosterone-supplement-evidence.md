@@ -2,7 +2,7 @@
 title: "Fenugreek and Testosterone: What the Research Actually Shows"
 description: "Fenugreek is a familiar kitchen spice in most Indian homes, but as a concentrated supplement extract for testosterone, the research is more specific and more limited than the marketing suggests. Here is the actual evidence."
 pubDate: 2026-09-19T06:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["fenugreek", "supplements", "testosterone", "andropause", "libido", "midlife health"]
 readTime: "9 min read"
 featured: false

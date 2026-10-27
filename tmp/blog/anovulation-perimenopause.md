@@ -2,7 +2,7 @@
 title: "What Is Anovulation, And What Does It Have to Do With Perimenopause?"
 description: "Your period arrives, but no egg was released. Anovulation is one of the most misunderstood aspects of perimenopause, and it explains a lot about what's happening to your body."
 pubDate: 2025-05-21
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["anovulation", "hormones", "perimenopause", "ovulation"]
 readTime: "7 min read"
 featured: false

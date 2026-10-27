@@ -2,7 +2,7 @@
 title: "Funding a Child's Education Abroad: The Financial and Emotional Toll on Midlife Fathers"
 description: "Sending a child abroad for higher studies has become a defining financial event for many Indian families. Here is why it hits midlife fathers so hard, and how to manage the pressure."
 pubDate: 2026-10-15T08:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["financial stress", "testosterone", "andropause", "fatherhood", "family"]
 readTime: "9 min read"
 featured: false

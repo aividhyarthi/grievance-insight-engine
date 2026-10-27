@@ -2,7 +2,7 @@
 title: "Cooking Through Diwali in Perimenopause: Managing Heat, Hot Flashes, and Marathon Kitchen Days"
 description: "Standing over a hot stove for hours making mithai and snacks during Diwali is hard enough without hormonal hot flashes. Here is how to get through the kitchen marathon with less misery."
 pubDate: 2026-09-20T08:17:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["life", "festivals", "hot flashes", "lifestyle", "India"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Travelling During Perimenopause: How to Manage Symptoms on the Go"
 description: "Hot flashes on a flight, disrupted sleep across time zones, or unpredictable periods far from home, travel adds its own challenges to perimenopause. Here is how to plan ahead so symptoms do not derail your trip."
 pubDate: 2026-07-12
-author: "Journal Desk"
+author: "Kavita Menon"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman prepared and confident while travelling during perimenopause"
 tags: ["life", "travel", "lifestyle", "hot flashes"]

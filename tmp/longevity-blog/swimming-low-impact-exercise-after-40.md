@@ -2,7 +2,7 @@
 title: "Swimming After 40: Is It the Best Low-Impact Exercise for Joints and Heart Health?"
 description: "Swimming combines cardio and resistance training with almost no impact on your joints. Here is what the evidence says about swimming after 40, and how to start safely in India."
 pubDate: 2026-10-24T02:17:50Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["exercise", "joint health", "heart health", "weight"]
 readTime: "7 min read"
 featured: false

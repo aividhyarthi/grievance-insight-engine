@@ -2,7 +2,7 @@
 title: "Retirement and Testosterone: The Hormonal Side of Losing a Professional Identity"
 description: "Retirement often arrives around the same years as declining testosterone, and the loss of routine, status, and daily purpose can make hormonal symptoms harder to separate from the transition itself."
 pubDate: 2026-09-12T15:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["retirement", "identity", "mood", "testosterone", "andropause"]
 readTime: "6 min read"
 featured: false

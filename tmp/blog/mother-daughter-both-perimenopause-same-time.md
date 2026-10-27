@@ -2,7 +2,7 @@
 title: "When You and Your Mother Are Both Going Through Menopause at the Same Time"
 description: "If you and your own mother are both navigating hormonal change together, hers later than expected or yours earlier, it can be disorienting for both of you. Here is how to navigate it."
 pubDate: 2026-09-19T04:17:24Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["relationships", "india", "mental health", "identity"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509927083803-4bd519298ac4?w=1200&h=675&fit=crop&q=80"

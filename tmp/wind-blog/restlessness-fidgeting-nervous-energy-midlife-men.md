@@ -2,7 +2,7 @@
 title: "Restlessness and Fidgeting: Why Some Midlife Men Feel More Nervous Energy After 40"
 description: "Some men become noticeably restless or fidgety in midlife, others become unusually still and low-energy. Here's how andropause, cortisol, and mood changes connect to both patterns."
 pubDate: 2026-09-20T10:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["restlessness", "anxiety", "nervous habits", "mood", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

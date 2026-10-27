@@ -2,7 +2,7 @@
 title: "The Family WhatsApp Group in Perimenopause: Forwards, Guilt, and the Pressure to Always Reply"
 description: "The ping of the family WhatsApp group can feel unbearable in a way it never used to. Here's why perimenopause makes this specific kind of low-level social pressure harder to tolerate, and how to set limits without guilt."
 pubDate: 2026-10-04T10:17:23Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "relationships", "stress"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

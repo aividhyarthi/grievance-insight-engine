@@ -2,7 +2,7 @@
 title: "Sleep Divorce in Perimenopause: When Separate Bedrooms Save Your Marriage, Not End It"
 description: "Night sweats, restless legs, and 3am wake-ups don't just disrupt your sleep, they disrupt your partner's too. Here's why some couples move to separate rooms in perimenopause, and how to talk about it without the guilt."
 pubDate: 2026-10-06T08:18:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["relationships", "sleep", "lifestyle"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?w=1200&h=675&fit=crop&q=80"

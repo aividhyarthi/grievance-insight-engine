@@ -2,7 +2,7 @@
 title: "Long Commutes and Traffic Stress: The Hidden Cortisol Tax on Indian Men's Testosterone"
 description: "Two to three hours a day stuck in traffic isn't just a scheduling headache. For midlife men, chronic commute stress can quietly add up to real hormonal cost."
 pubDate: 2026-09-15T10:16:58Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["commuting", "traffic stress", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

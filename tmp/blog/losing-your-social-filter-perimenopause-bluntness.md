@@ -2,7 +2,7 @@
 title: "Why You Suddenly Say Exactly What You Think: Perimenopause and Losing Your Social Filter"
 description: "You used to bite your tongue without even trying. Now the diplomatic version of what you're thinking doesn't arrive in time, and the blunt version just comes out. Here is why perimenopause changes your social filter, and how to manage it."
 pubDate: 2026-10-11T10:19:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "mood swings", "relationships", "symptoms"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"

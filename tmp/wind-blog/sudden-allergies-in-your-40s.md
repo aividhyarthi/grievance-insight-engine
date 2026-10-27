@@ -2,7 +2,7 @@
 title: "Why Are You Suddenly Allergic to Things in Your 40s? The Midlife Immune Shift Explained"
 description: "Never had allergies in your life, and now you're sneezing through every dust season or breaking out after foods you've always eaten? Here's why new allergies appear in midlife men, and where hormones fit in."
 pubDate: 2026-09-16T04:15:48Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["allergies", "immune health", "inflammation", "andropause", "testosterone", "midlife health"]
 readTime: "7 min read"
 featured: false

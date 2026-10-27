@@ -2,7 +2,7 @@
 title: "Vitamin D Supplementation and Testosterone: When It Actually Helps"
 description: "Vitamin D deficiency is extremely common among Indian men despite plenty of sunshine, and it is linked to lower testosterone. Here is when supplementation actually makes a measurable difference, and when it doesn't."
 pubDate: 2026-09-19T08:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["vitamin D", "supplements", "testosterone", "andropause", "bone health", "midlife health"]
 readTime: "9 min read"
 featured: false

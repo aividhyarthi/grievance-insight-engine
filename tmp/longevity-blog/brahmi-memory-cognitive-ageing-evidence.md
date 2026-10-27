@@ -2,7 +2,7 @@
 title: "Brahmi for Memory and Cognitive Ageing: Traditional Use Versus Current Evidence"
 description: "Brahmi has been used in Ayurveda for memory and mental clarity for centuries. Here is what it actually is, and what current research says about its effect on cognitive ageing."
 pubDate: 2026-10-15T04:17:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["ayurveda", "brahmi", "cognitive health", "memory", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

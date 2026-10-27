@@ -2,7 +2,7 @@
 title: "Starting HRT While Still Getting Periods: What You Need to Know"
 description: "You do not have to wait for your periods to stop to start hormone therapy. Here is how HRT works while you are still cycling, what changes, and what to discuss with your doctor first."
 pubDate: 2026-09-08T19:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["HRT", "hormones", "cycles", "perimenopause basics"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=675&fit=crop&q=80"

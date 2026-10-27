@@ -2,7 +2,7 @@
 title: "Mentoring Younger Colleagues After 40: Why Guiding Others Is Good for Your Own Wellbeing"
 description: "Mentoring at work is usually framed as a gift to the person being mentored. Research suggests the mentor benefits just as much, in ways that matter for long-term wellbeing after 40."
 pubDate: 2026-10-24T10:17:50Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["purpose", "mood", "stress", "workplace"]
 readTime: "7 min read"
 featured: false

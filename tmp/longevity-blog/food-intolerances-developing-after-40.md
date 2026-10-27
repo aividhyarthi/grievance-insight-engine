@@ -2,7 +2,7 @@
 title: "Developing Food Intolerances After 40: Why Your Stomach Suddenly Disagrees With Foods You Used to Eat"
 description: "Why some people start reacting to milk, wheat, or spicy food only after 40, what's actually changing inside the gut, and when it's worth seeing a doctor rather than just cutting out foods."
 pubDate: 2026-10-21T06:30:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["digestion", "gut health", "longevity after 40", "ageing"]
 readTime: "8 min read"
 featured: false

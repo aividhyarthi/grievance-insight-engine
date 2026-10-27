@@ -2,7 +2,7 @@
 title: "Gardening and Outdoor Hobbies as a Coping Outlet for Midlife Men"
 description: "Why gardening, terrace farming, and other outdoor hobbies are turning out to be an effective, low-cost way for midlife men to manage stress and support testosterone."
 pubDate: 2026-09-22T08:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["gardening", "outdoor hobbies", "stress", "sunlight", "vitamin D", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

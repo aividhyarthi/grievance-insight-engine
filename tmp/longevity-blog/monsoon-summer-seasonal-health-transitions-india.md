@@ -2,7 +2,7 @@
 title: "Monsoon to Summer: Navigating India's Seasonal Health Transitions for Long-Term Wellbeing"
 description: "India's sharp seasonal swings, from harsh summer heat to monsoon humidity to winter cold, each bring specific health risks for people over 40. Here is how to adjust through the year."
 pubDate: 2026-09-12T17:30:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["seasonal health", "immunity", "longevity", "healthy ageing", "heart health"]
 readTime: "9 min read"
 featured: false

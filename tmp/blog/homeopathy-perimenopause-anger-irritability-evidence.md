@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Anger and Irritability: What Women Try, and What the Evidence Shows"
 description: "Sudden, intense anger is one of the more distressing perimenopausal symptoms, and some women look to homeopathy for help. Here is what is tried, and an honest look at what the evidence actually supports."
 pubDate: 2026-10-22T08:17:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "mental health", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

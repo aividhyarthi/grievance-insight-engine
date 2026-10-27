@@ -2,7 +2,7 @@
 title: "New Year's Resolutions When Your Energy Is Unpredictable: A Different Way to Set Goals After 40"
 description: "January 1 arrives with the usual pressure to commit to big fitness and career goals, but when your energy swings unpredictably day to day, rigid resolutions tend to fail fast. Here's a more realistic approach for midlife men."
 pubDate: 2026-09-30T10:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["New Year's resolutions", "goal-setting", "energy", "planning", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

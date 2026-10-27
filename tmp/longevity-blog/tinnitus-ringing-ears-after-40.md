@@ -2,7 +2,7 @@
 title: "Tinnitus After 40: Why Your Ears Might Start Ringing, and What Actually Helps"
 description: "A persistent ring, hiss, or hum in the ears with no outside source is more common after 40 than most people realise. Here is what causes tinnitus, when it needs a doctor's attention, and what genuinely helps manage it."
 pubDate: 2026-10-07T06:18:46Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["tinnitus", "hearing health", "ear health", "stress", "healthy ageing"]
 readTime: "8 min read"
 featured: false

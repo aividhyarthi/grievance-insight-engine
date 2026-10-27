@@ -2,7 +2,7 @@
 title: "Micronutrient Gaps in Indian Diets After 40, and How to Close Them"
 description: "Vitamin D, B12, calcium, and a handful of other micronutrients fall short in a surprising number of Indian diets after 40. Here is what actually tends to run low, and the realistic way to fix it."
 pubDate: 2026-10-04T02:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["micronutrients", "nutrition", "Indian diet", "fatigue", "healthy ageing"]
 readTime: "8 min read"
 featured: false

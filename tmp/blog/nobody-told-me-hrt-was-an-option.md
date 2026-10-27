@@ -2,7 +2,7 @@
 title: "Nobody Told Me HRT Was Even an Option"
 description: "So many women suffer through years of perimenopause symptoms before anyone mentions hormone therapy as a possibility, sometimes only finding out by accident. Here is why that happens, and what to ask for so it doesn't happen to you."
 pubDate: 2026-09-05T17:30:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["HRT", "hormones", "when to see doctor", "treatment", "perimenopause"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1550831107-1553da8c8464?w=1200&h=675&fit=crop&q=80"

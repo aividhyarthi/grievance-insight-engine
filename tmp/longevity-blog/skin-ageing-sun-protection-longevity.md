@@ -2,7 +2,7 @@
 title: "Skin Ageing and Sun Protection: What Actually Works After 40"
 description: "Most visible skin ageing comes from sun exposure, not just the passage of time. Here is what the research actually supports for protecting your skin in India's climate, and what is marketing noise."
 pubDate: 2026-09-11T11:30:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["skin health", "skin ageing", "sun protection", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

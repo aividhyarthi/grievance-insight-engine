@@ -2,7 +2,7 @@
 title: "School and College Reunions After 40: Why Seeing Old Friends Can Hit Harder Than You Expect"
 description: "Reunions bring comparison, nostalgia, and sometimes a hormonal low afterward. Here is why they can feel harder in midlife, and how to actually enjoy them."
 pubDate: 2026-10-12T08:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["andropause", "mental health", "testosterone", "relationships", "stress"]
 readTime: "9 min read"
 featured: false

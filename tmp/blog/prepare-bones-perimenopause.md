@@ -2,7 +2,7 @@
 title: "How to Prepare Your Bones for Perimenopause"
 description: "The years around perimenopause are when bone loss accelerates the most. They are also the years you have the most power to slow it down. Here is what actually protects your bones, and what to do now rather than later."
 pubDate: 2026-06-27
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman doing strength training to protect bone health through perimenopause"
 tags: ["symptoms", "bone health", "osteoporosis", "exercise", "lifestyle"]

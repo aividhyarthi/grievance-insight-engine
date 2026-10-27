@@ -2,7 +2,7 @@
 title: "Why Repetitive Household Chores Feel Harder to Push Through After 40"
 description: "It's not the one big renovation project, it's the monthly leaky tap, the recurring bulb change, the same fix every season. Here's why repetitive maintenance tasks wear on midlife men more than they used to."
 pubDate: 2026-09-30T04:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["household chores", "DIY maintenance", "patience", "fatigue", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

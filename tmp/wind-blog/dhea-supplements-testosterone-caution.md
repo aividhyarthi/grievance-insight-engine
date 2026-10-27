@@ -2,7 +2,7 @@
 title: "DHEA Supplements and Testosterone: Why This One Needs Extra Caution"
 description: "DHEA is sold as an anti-ageing supplement that claims to raise testosterone, but it is a hormone precursor, not a vitamin, and that changes how carefully it needs to be handled. Here is what the evidence actually shows."
 pubDate: 2026-10-14T02:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["DHEA", "supplements", "testosterone", "andropause", "hormone health", "late-onset hypogonadism"]
 readTime: "9 min read"
 featured: false

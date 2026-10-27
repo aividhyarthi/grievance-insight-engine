@@ -2,7 +2,7 @@
 title: "Why You Forget Names Right After Hearing Them: Memory, Social Anxiety, and Testosterone After 40"
 description: "You shake hands, hear a name clearly, and ten seconds later it is gone. Here is why names specifically are so easy to forget after 40, what role testosterone and stress play, and when it's worth mentioning to a doctor."
 pubDate: 2026-10-11T10:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["brain fog", "memory", "social anxiety", "testosterone", "andropause"]
 readTime: "8 min read"
 featured: false

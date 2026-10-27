@@ -2,7 +2,7 @@
 title: "Manjistha for Perimenopause: Traditional Use for Skin and Blood Health, and What the Evidence Shows"
 description: "Manjistha (Indian madder) is used in Ayurveda for skin clarity and blood purification. Here's what it's traditionally used for in perimenopause, and what the research actually supports."
 pubDate: 2026-10-14T04:16:30Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "india", "skin", "symptoms"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

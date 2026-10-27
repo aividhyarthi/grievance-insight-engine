@@ -2,7 +2,7 @@
 title: "Sugar, Inflammation, and Ageing: What Is the Real Connection"
 description: "Sugar does not directly cause wrinkles or a shorter life, but the pathway from excess sugar to chronic inflammation to accelerated ageing is real and well studied. Here is what actually happens, and what is worth changing."
 pubDate: 2026-09-09T09:30:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["sugar", "inflammation", "longevity", "metabolic health", "nutrition"]
 readTime: "6 min read"
 featured: false

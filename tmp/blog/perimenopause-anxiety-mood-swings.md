@@ -2,7 +2,7 @@
 title: "Why Perimenopause Causes Anxiety and Mood Swings, And What to Do"
 description: "Sudden anxiety, rage, crying for no reason, perimenopause can feel like a mental health crisis. It isn't. Here's what's driving the mood changes and how to cope."
 pubDate: 2025-05-08
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["anxiety", "mood swings", "mental health", "hormones"]
 readTime: "7 min read"
 featured: true

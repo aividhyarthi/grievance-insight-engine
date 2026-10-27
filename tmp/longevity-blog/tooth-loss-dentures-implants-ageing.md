@@ -2,7 +2,7 @@
 title: "Missing Teeth, Dentures, and Implants After 50: What Actually Matters for Long-Term Health"
 description: "Losing one or more teeth is common with age, but it is rarely 'just cosmetic'. Here is why tooth loss affects nutrition, jawbone, and confidence, and what dentures and implants actually involve."
 pubDate: 2026-09-23T08:17:42Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["dental health", "oral health", "nutrition", "healthy ageing", "longevity"]
 readTime: "8 min read"
 featured: false

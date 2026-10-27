@@ -2,7 +2,7 @@
 title: "Are There Effective Treatments for Hormonal Symptoms During Perimenopause?"
 description: "Yes, and you deserve to know about all of them. A structured guide to HRT, non-hormonal options, targeted treatments, and lifestyle approaches, with honest information about what's available in India."
 pubDate: 2025-05-21
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["treatment", "HRT", "hormones", "perimenopause"]
 readTime: "9 min read"
 featured: true

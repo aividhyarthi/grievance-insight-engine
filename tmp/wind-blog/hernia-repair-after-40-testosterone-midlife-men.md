@@ -2,7 +2,7 @@
 title: "Hernia Repair After 40: The Surgery Many Indian Men Keep Postponing"
 description: "An inguinal hernia is common after 40 and usually needs surgery eventually, but embarrassment and denial make many Indian men delay it for years. Here's what to know, and why waiting carries real risk."
 pubDate: 2026-10-25T08:20:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["hernia", "surgery", "andropause", "testosterone", "health anxiety"]
 readTime: "8 min read"
 featured: false

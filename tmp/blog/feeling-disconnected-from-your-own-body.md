@@ -2,7 +2,7 @@
 title: "Feeling Disconnected From Your Own Body in Perimenopause"
 description: "A strange sense of estrangement from your own skin, shape, and sensations is a real and common perimenopause experience. Here is why it happens and how women find their way back to feeling at home in their body."
 pubDate: 2026-09-10T15:00:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["identity", "mental health", "emotional wellbeing", "symptoms"]
 readTime: "6 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

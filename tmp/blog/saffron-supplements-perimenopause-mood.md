@@ -2,7 +2,7 @@
 title: "Saffron Supplements for Perimenopause Mood: What the Evidence Actually Shows"
 description: "Saffron (kesar) has some of the better clinical evidence among mood-focused supplements. Here is what the research actually supports for perimenopausal mood swings and low mood, and what still needs caution."
 pubDate: 2026-10-18T06:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "mood", "mental health", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

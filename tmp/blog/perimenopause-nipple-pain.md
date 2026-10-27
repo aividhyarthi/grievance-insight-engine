@@ -2,7 +2,7 @@
 title: "Does Perimenopause Cause Nipple Pain?"
 description: "Sharp, burning, or hypersensitive nipple pain that seems to have no cause — oestrogen fluctuation directly affects nipple and areola tissue, and this symptom is far more common in perimenopause than most women are told."
 pubDate: 2026-06-19
-author: "Journal Desk"
+author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing breast and nipple discomfort during perimenopause"
 tags: ["symptoms", "nipple pain", "breast", "hormones"]

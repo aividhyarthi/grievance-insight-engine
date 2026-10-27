@@ -2,7 +2,7 @@
 title: "Talking to Your Daughter About Her Period While You're in Perimenopause"
 description: "Guiding your daughter through her first period while your own body is going through its final ones is a strange, tender overlap many mothers do not expect. Here is how to hold both experiences, and talk to her, with honesty and care."
 pubDate: 2026-07-12
-author: "Journal Desk"
+author: "Ananya Rao"
 image: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Mother having an honest conversation with her daughter about periods while going through perimenopause herself"
 tags: ["life", "daughters", "community", "cycles"]

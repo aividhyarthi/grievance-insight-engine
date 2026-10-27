@@ -2,7 +2,7 @@
 title: "Perimenopause and Your New Aversion to Phone Calls: Why You'd Rather Text"
 description: "If you now let calls ring out and reply with a text instead, or dread being asked to 'hop on a quick call', this is a common perimenopause shift in social energy, not rudeness or a sign you have become distant."
 pubDate: 2026-09-26T04:18:08Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "mood", "stress", "relationships"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1580281658223-9b93f18ae9ae?w=1200&h=675&fit=crop&q=80"

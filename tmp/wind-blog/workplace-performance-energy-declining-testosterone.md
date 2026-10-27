@@ -2,7 +2,7 @@
 title: "Workplace Performance and Energy: Managing a Demanding Job With Declining Testosterone"
 description: "Career-stage pressure and declining energy often collide in a man's late 40s and 50s. Here is how testosterone decline shows up specifically at work, and what to do about it."
 pubDate: 2026-09-21T04:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["career", "workplace performance", "fatigue", "brain fog", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

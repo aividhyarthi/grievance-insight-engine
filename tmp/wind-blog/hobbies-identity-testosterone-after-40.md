@@ -2,7 +2,7 @@
 title: "Hobbies, Identity, and Testosterone: Why What You Do For Fun Matters More After 40"
 description: "As testosterone declines, many men quietly drop the hobbies and hands-on activities that once gave them a sense of competence and identity. Here's why that matters and how to rebuild it."
 pubDate: 2026-09-13T06:16:46Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["hobbies", "identity", "mood", "testosterone", "andropause"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Perimenopause and Caffeine Sensitivity: Why Your Morning Coffee Suddenly Doesn't Agree With You"
 description: "The same cup of coffee that once felt harmless now leaves you jittery, anxious, or wide awake at midnight. Here's why caffeine tolerance changes in perimenopause and what to do about it."
 pubDate: 2026-09-18T02:16:04Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["symptoms", "anxiety", "sleep", "hormones", "lifestyle"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"

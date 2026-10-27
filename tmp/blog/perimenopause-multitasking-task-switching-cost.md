@@ -2,7 +2,7 @@
 title: "Perimenopause and Multitasking: Why Switching Between Tasks Costs So Much More Now"
 description: "It's not that you can't multitask anymore, it's that every switch between tasks now takes a bigger mental toll. Here's why perimenopause makes task-switching specifically harder, and what actually helps."
 pubDate: 2026-10-04T06:17:23Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["brain fog", "mental health", "working women"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

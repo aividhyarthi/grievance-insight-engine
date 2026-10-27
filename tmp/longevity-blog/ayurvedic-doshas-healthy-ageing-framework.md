@@ -2,7 +2,7 @@
 title: "Ayurvedic Doshas and Healthy Ageing: Does the Framework Hold Up?"
 description: "Vata, pitta, and kapha shape how many Indians think about their bodies and ageing. Here is what the dosha framework actually claims, and how it holds up against modern evidence."
 pubDate: 2026-09-19T11:08:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["Ayurveda", "healthy ageing", "longevity", "traditional practices", "preventive health"]
 readTime: "8 min read"
 featured: false

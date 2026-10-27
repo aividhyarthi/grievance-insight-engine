@@ -2,7 +2,7 @@
 title: "Healthy Fats and Testosterone: Ghee, Nuts, and What the Research Supports"
 description: "Dietary fat has a genuine, well-studied relationship with testosterone production, and it is more nuanced than either 'eat more ghee' or 'avoid all fat'. Here is what the research actually supports for midlife men."
 pubDate: 2026-09-19T05:10:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["nutrition", "healthy fats", "diet", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

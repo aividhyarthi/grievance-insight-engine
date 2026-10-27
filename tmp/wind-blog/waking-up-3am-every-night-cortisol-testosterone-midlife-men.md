@@ -2,7 +2,7 @@
 title: "Waking Up at 3 AM Every Night: Cortisol, Sleep Architecture, and Testosterone in Midlife Men"
 description: "If you keep waking at almost the exact same hour every night and can't easily fall back asleep, here's what's actually happening with your sleep architecture, stress hormones, and testosterone."
 pubDate: 2026-10-20T08:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["sleep", "stress", "testosterone", "andropause", "fatigue", "midlife health"]
 readTime: "8 min read"
 featured: false

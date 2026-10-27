@@ -2,7 +2,7 @@
 title: "The Noise Around You Is Ageing Your Ears: Practical Hearing Protection for Daily Indian Life"
 description: "Traffic, construction, festival speakers, and earphones at high volume add up. Here's how everyday noise exposure damages hearing, and the practical steps that actually reduce it."
 pubDate: 2026-09-16T06:16:39Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["hearing health", "noise exposure", "longevity", "healthy ageing", "prevention"]
 readTime: "7 min read"
 featured: false

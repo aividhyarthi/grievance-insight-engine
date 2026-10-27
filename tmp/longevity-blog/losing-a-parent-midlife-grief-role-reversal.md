@@ -2,7 +2,7 @@
 title: "Losing a Parent in Midlife: Grief, Role Reversal, and What Actually Helps"
 description: "Losing a parent after 40 brings a distinct kind of grief, often tangled with years of caregiving and a sudden shift in family role. Here is what that grief can look like, and what genuinely helps."
 pubDate: 2026-10-25T08:18:43Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["grief", "mental health", "family", "mood", "ageing"]
 readTime: "6 min read"
 featured: false

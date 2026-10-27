@@ -2,7 +2,7 @@
 title: "Brain Fog in Andropause: The Hormonal Link and What Actually Helps"
 description: "Struggling to focus, forgetting simple things, feeling mentally slower than you used to. Here is how declining testosterone contributes to brain fog and what genuinely improves it."
 pubDate: 2026-09-05T13:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["brain fog", "focus", "concentration", "testosterone", "andropause"]
 readTime: "7 min read"
 featured: false

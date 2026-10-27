@@ -2,7 +2,7 @@
 title: "Water Quality in India: What Long-Term Health Actually Requires You to Know"
 description: "Drinking enough water gets most of the attention, but what is actually in that water matters just as much for long-term health. Here is what to know about water quality in India as you age."
 pubDate: 2026-09-20T10:17:17Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["water quality", "kidney health", "preventive health", "longevity", "healthy ageing"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Foot Pain After 40: Plantar Fasciitis, Bunions, and Why Your Feet Change Shape"
 description: "Foot pain and changing foot shape become more common after 40. Here is why it happens, what plantar fasciitis and bunions actually are, and what genuinely helps."
 pubDate: 2026-10-15T10:17:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["foot health", "joint health", "longevity", "healthy ageing"]
 readTime: "7 min read"
 featured: false

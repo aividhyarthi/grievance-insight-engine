@@ -2,7 +2,7 @@
 title: "How Homeopathic Remedies Are Made: Dilution, Potency, and What 'Ultra-Dilution' Actually Means"
 description: "Homeopathic remedies are prepared through a specific dilution and shaking process that often leaves little or no original substance behind. Here is how that process actually works, and why it sits at the centre of the scientific debate."
 pubDate: 2026-10-13T02:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["homeopathy", "evidence-based medicine", "healthy ageing", "preventive health"]
 readTime: "8 min read"
 featured: false

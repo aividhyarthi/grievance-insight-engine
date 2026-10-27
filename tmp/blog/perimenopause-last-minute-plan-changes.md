@@ -2,7 +2,7 @@
 title: "Why Last-Minute Plan Changes Suddenly Feel Unbearable in Perimenopause"
 description: "A cancelled plan, a moved dinner, a guest arriving a day early: things that once felt like minor adjustments can now trigger genuine distress in perimenopause. Here is why, and how to build in flexibility without falling apart."
 pubDate: 2026-09-28T04:18:04Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["mental health", "anxiety", "stress", "life"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=675&fit=crop&q=80"

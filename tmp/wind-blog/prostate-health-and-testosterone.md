@@ -2,7 +2,7 @@
 title: "Prostate Health and Testosterone: What Every Midlife Man Should Know"
 description: "Prostate changes and testosterone decline often arrive in the same decade. Here is how they relate, what tests actually measure, and when to see a doctor."
 pubDate: 2026-09-11T13:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["prostate health", "testosterone", "andropause", "late-onset hypogonadism", "midlife health"]
 readTime: "6 min read"
 featured: false

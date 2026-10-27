@@ -2,7 +2,7 @@
 title: "Navratri Fasting After 50: Managing Nine Days of Blood Sugar and Energy Safely"
 description: "Nine days of Navratri fasting is a longer commitment than most religious fasts. Here's how older adults can manage blood sugar, energy dips, and medication timing without giving up the observance."
 pubDate: 2026-10-01T02:17:49Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["Navratri", "religious fasting", "blood sugar", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Talking to Your Adult Children About What You're Going Through"
 description: "When a father is quieter, more irritable, or visibly struggling, adult children notice, even if nobody says anything. Here is how to open that conversation."
 pubDate: 2026-09-11T17:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["family communication", "mood", "andropause", "testosterone", "midlife health"]
 readTime: "6 min read"
 featured: false

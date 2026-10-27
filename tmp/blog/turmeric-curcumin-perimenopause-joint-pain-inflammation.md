@@ -2,7 +2,7 @@
 title: "Turmeric and Curcumin for Perimenopause Joint Pain: What the Evidence Actually Shows"
 description: "Turmeric milk has been the household fix for aching joints for generations. Here is what curcumin, its active compound, actually does for perimenopause inflammation, and where the evidence still falls short."
 pubDate: 2026-10-10T02:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "joint pain", "inflammation", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=675&fit=crop&q=80"

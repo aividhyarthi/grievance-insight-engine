@@ -2,7 +2,7 @@
 title: "Joint Pain and Inflammation in Midlife Men: Is Testosterone Involved?"
 description: "Aching knees on the stairs, stiff shoulders after a workout that never used to bother you. Here is what the evidence says about the link between declining testosterone and joint pain in midlife men."
 pubDate: 2026-09-10T13:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["joint pain", "inflammation", "testosterone", "andropause", "midlife health"]
 readTime: "6 min read"
 featured: false

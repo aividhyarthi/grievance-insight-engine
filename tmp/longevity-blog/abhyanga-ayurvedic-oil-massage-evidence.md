@@ -2,7 +2,7 @@
 title: "Abhyanga: What the Evidence Actually Says About Ayurvedic Oil Massage"
 description: "Warm oil self-massage is a daily ritual in Ayurveda. Here's what modern research does and doesn't support about its benefits for ageing bodies."
 pubDate: 2026-09-15T08:16:52Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["Ayurveda", "abhyanga", "traditional practices", "stress management", "longevity"]
 readTime: "8 min read"
 featured: false

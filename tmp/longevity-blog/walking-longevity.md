@@ -2,7 +2,7 @@
 title: "Walking Might Be the Most Underrated Habit in Longevity Science"
 description: "It is not glamorous and it will not get you a six-pack, but the evidence for daily walking as a longevity habit is stronger and more consistent than for almost any other form of exercise. Here is why consistency beats intensity."
 pubDate: 2026-09-05T11:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["walking", "exercise", "longevity", "movement", "cardiovascular health"]
 image: "https://images.unsplash.com/photo-kM97y3aWWQw?w=1200&h=675&fit=crop&q=80"
 imageAlt: "People walking along a path in a green park"

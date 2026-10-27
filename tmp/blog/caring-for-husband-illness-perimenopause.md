@@ -2,7 +2,7 @@
 title: "When Your Husband Falls Ill: Caregiving for a Spouse While You're in Perimenopause Yourself"
 description: "Becoming your husband's caregiver during a health crisis while your own hormones are in flux is a specific, exhausting kind of double duty. Here's how to get through it without disappearing from your own care entirely."
 pubDate: 2026-10-09T08:18:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "relationships", "fatigue", "stress", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1509927083803-4bd519298ac4?w=1200&h=675&fit=crop&q=80"

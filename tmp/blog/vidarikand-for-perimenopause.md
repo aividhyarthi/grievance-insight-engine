@@ -2,7 +2,7 @@
 title: "Vidarikand for Perimenopause: Traditional Use as a Female Rasayana, and What the Evidence Shows"
 description: "Vidarikand, the tuberous root of Pueraria tuberosa, has long been used in Ayurveda as a rejuvenating tonic for women. Here is what the tradition says and what modern research actually supports for perimenopause."
 pubDate: 2026-10-21T02:17:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "hormones", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "The Voicemail You Can't Bring Yourself to Play: Perimenopause and Call-Back Anxiety"
 description: "A missed call notification sits unopened for days, a voicemail goes unplayed for a week. If calling back now feels disproportionately dreadful, perimenopause-linked anxiety is a common, rarely named reason."
 pubDate: 2026-10-03T08:15:45Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["anxiety", "mental health", "mood", "relationships"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1580281658223-9b93f18ae9ae?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Arjuna Bark for Perimenopause: Traditional Use for Heart Health, and What the Evidence Shows"
 description: "Arjuna bark has a long history in Ayurveda as a heart tonic. As cardiovascular risk genuinely rises after menopause, here is what the tradition claims and what modern research actually supports."
 pubDate: 2026-10-16T04:17:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "heart health", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Starting Therapy in Perimenopause: What to Expect, and How to Find a Counsellor in India"
 description: "If a friend has suggested therapy, or you have quietly wondered about it yourself, here is what starting counselling actually looks like in perimenopause, and how to find a qualified professional in India without guesswork."
 pubDate: 2026-10-23T10:18:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["mental health", "stress", "when to see doctor", "india"]
 readTime: "9 min read"
 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Social Isolation and Male Friendships in Midlife: The Hormonal Cost of Losing Touch"
 description: "Many Indian men reach their 40s and 50s with a shrinking circle of real friends, and the resulting loneliness can quietly interact with testosterone, mood, and overall health."
 pubDate: 2026-09-13T08:16:46Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["male friendships", "loneliness", "mood", "testosterone", "andropause"]
 readTime: "7 min read"
 featured: false

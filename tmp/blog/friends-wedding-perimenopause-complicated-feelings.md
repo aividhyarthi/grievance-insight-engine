@@ -2,7 +2,7 @@
 title: "Going to a Friend's Wedding in Perimenopause: The Complicated Feelings Nobody Mentions"
 description: "You're happy for her, genuinely. So why do you also feel unexpectedly tearful, irritable, or strangely distant at your friend's wedding? Here's what's actually going on emotionally, separate from the outfit and the standing around."
 pubDate: 2026-09-27T06:17:08Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "mood", "relationships", "life", "identity"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

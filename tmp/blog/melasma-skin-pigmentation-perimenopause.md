@@ -2,7 +2,7 @@
 title: "Melasma and Skin Pigmentation Changes in Perimenopause"
 description: "New dark patches on the face, or existing pigmentation that suddenly gets worse, are a common but frustrating perimenopause skin change, especially for Indian skin tones. Here is why it happens and what genuinely helps."
 pubDate: 2026-07-13
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing melasma and pigmentation changes during perimenopause"
 tags: ["symptoms", "melasma", "pigmentation", "skin", "hormones"]

@@ -2,7 +2,7 @@
 title: "Cooking for One or Two After 40: Why Meal Planning Fatigue Is a Real Nutrition Risk"
 description: "Cooking three meals a day loses its appeal when the household shrinks. Here's why 'I'll just have toast' becomes a habit after 40, and practical ways to keep nutrition on track without daily menu planning."
 pubDate: 2026-10-01T04:17:49Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["nutrition", "cooking fatigue", "empty nest", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

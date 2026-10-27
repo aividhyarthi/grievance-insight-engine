@@ -2,7 +2,7 @@
 title: "Diabetes, Metabolic Syndrome, and Low Testosterone: The Shared Root Cause"
 description: "Low testosterone and type 2 diabetes show up together far more often than coincidence explains. Here is how the two conditions drive each other, and why checking for one should mean checking for both."
 pubDate: 2026-09-08T15:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["diabetes", "metabolic syndrome", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

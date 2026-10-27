@@ -2,7 +2,7 @@
 title: "After the Festival Season Ends: Getting Your Body Back on Track After Weeks of Celebration"
 description: "Navratri, Dussehra, and Diwali back to back take a real cumulative toll after 40. Here's a practical way to recover your sleep, blood sugar, and routine once the festival season is over."
 pubDate: 2026-10-01T08:17:49Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["festival health", "recovery", "blood sugar", "sleep", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

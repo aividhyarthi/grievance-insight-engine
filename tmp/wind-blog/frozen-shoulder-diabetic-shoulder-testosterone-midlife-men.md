@@ -2,7 +2,7 @@
 title: "Frozen Shoulder After 40: Why It's Called the 'Diabetic Shoulder,' and What It Has to Do With Your Hormones"
 description: "Frozen shoulder hits men in their 40s and 50s hard, and it's closely tied to diabetes and thyroid problems. Here's why it happens and what it has to do with your broader hormonal health."
 pubDate: 2026-10-25T06:20:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["joint pain", "frozen shoulder", "andropause", "testosterone", "diabetes"]
 readTime: "8 min read"
 featured: false

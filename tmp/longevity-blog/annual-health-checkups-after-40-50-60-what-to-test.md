@@ -2,7 +2,7 @@
 title: "Annual Health Checkups After 40, 50, and 60: What to Actually Get Tested For"
 description: "A yearly checkup only helps if it includes the right tests for your age. Here is a practical, decade-specific guide to what to actually ask for after 40, 50, and 60."
 pubDate: 2026-09-30T02:16:48Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["preventive health", "screening", "healthy ageing", "longevity", "midlife health"]
 readTime: "8 min read"
 featured: false

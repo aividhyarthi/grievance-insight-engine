@@ -2,7 +2,7 @@
 title: "The Family's 'Practical One': What It Costs You to Always Be the Problem-Solver"
 description: "Why being seen as the reliable, practical family member who fixes everything can quietly wear down your health, and how to hold onto the role without losing yourself in it."
 pubDate: 2026-09-27T10:16:25Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["family health", "mental health", "stress management", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Is the Afternoon Nap Good for You? What Science Says About India's Siesta Habit"
 description: "The post-lunch nap is a familiar ritual across much of India. Here's what the research actually shows about napping, heart health, and when a nap helps versus hurts."
 pubDate: 2026-09-16T10:16:39Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["napping", "sleep", "longevity", "healthy ageing", "fatigue"]
 readTime: "7 min read"
 featured: false

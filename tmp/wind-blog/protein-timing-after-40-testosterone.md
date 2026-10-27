@@ -2,7 +2,7 @@
 title: "Protein Timing After 40: Does When You Eat Matter as Much as How Much"
 description: "Total daily protein still matters most for midlife men, but new research suggests spreading protein evenly across meals may help preserve muscle as testosterone declines. Here's what the evidence actually shows."
 pubDate: 2026-09-20T02:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["protein", "nutrition", "meal timing", "muscle loss", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

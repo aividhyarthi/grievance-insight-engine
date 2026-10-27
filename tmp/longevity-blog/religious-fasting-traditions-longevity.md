@@ -2,7 +2,7 @@
 title: "Navratri, Ekadashi, and Ramzan: What Religious Fasting Traditions Share With Longevity Science"
 description: "Long before intermittent fasting became a wellness trend, Indian religious traditions had their own fasting calendars. Here's what the overlap with modern research actually shows."
 pubDate: 2026-09-16T04:16:39Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["fasting", "religious fasting", "longevity", "metabolic health", "Indian diet"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Perimenopause and Winter: Managing Cold-Weather Joint Pain, Temperature Swings, and Mood Through India's Winter Months"
 description: "From achier joints to a dip in mood as the days shorten, winter can hit perimenopause symptoms harder than you expect. Here is why the cold months feel different in your 40s and what helps across India's varied winter climates."
 pubDate: 2026-09-21T06:17:37Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["joint pain", "india", "mood", "sleep"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1483664852095-d6cc6870702d?w=1200&h=675&fit=crop&q=80"

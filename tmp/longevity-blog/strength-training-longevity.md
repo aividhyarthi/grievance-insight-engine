@@ -2,7 +2,7 @@
 title: "Why Strength Training, Not Just Cardio, Is the Real Longevity Exercise"
 description: "Cardio protects your heart, but muscle protects your independence. Here is why strength training and daily movement deserve equal billing in a longevity-focused exercise routine, and how to start without a gym membership."
 pubDate: 2026-09-04T11:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["strength training", "exercise", "longevity", "muscle health", "movement"]
 image: "https://images.unsplash.com/photo-qfjuh4OLdxw?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Man lifting a barbell during a strength training session"

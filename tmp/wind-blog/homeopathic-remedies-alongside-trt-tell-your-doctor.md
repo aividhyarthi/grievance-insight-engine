@@ -2,7 +2,7 @@
 title: "Should You Tell Your Doctor You're Using Homeopathic Remedies Alongside TRT?"
 description: "Many men on testosterone replacement therapy also quietly use homeopathic remedies without mentioning it. Here is why disclosure matters, and how to raise it without expecting judgment."
 pubDate: 2026-10-04T08:20:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "testosterone replacement therapy", "andropause", "doctor communication", "health advocacy", "midlife health"]
 readTime: "8 min read"
 featured: false

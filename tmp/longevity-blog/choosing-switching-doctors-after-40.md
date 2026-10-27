@@ -2,7 +2,7 @@
 title: "Choosing the Right Doctor After 40: What to Look For, and When It Is Time to Switch"
 description: "As health needs get more complex with age, the doctor you see matters more, not less. Here is how to choose one thoughtfully, and how to recognise when it is time to change."
 pubDate: 2026-09-26T10:16:34Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["preventive health", "healthy ageing", "longevity", "midlife health", "healthcare regulation"]
 readTime: "6 min read"
 featured: false

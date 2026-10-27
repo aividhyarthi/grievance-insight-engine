@@ -2,7 +2,7 @@
 title: "Perimenopause and Zoom Fatigue: Why You Can't Stop Staring at Your Own Face on Video Calls"
 description: "Video calls have always been tiring, but perimenopause adds a specific layer: a fixation on your own changing face, flushing skin, and tired eyes on screen, on top of the usual cognitive load. Here is why, and what actually helps."
 pubDate: 2026-09-24T04:17:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["mental health", "brain fog", "working women", "mood", "self-image"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

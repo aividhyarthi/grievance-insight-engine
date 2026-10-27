@@ -2,7 +2,7 @@
 title: "Perimenopause and Social Drinking: Why One Glass at a Wedding Hits Differently Now"
 description: "It's not that alcohol affects you generally more in perimenopause, it's that one specific glass at one specific event, standing for hours, dancing, heat, and heavy food, can tip you over in a way home drinking never does. Here is why, and how to plan around it."
 pubDate: 2026-09-28T08:18:04Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["lifestyle", "alcohol", "hot flashes", "sleep"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Hearing Loss and Ageing: Why Your Ears Deserve as Much Attention as Your Heart"
 description: "Hearing loss after 40 is common, gradual, and often ignored, but it is also linked to cognitive decline, social isolation, and fall risk. Here is what actually helps."
 pubDate: 2026-09-12T09:30:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["hearing health", "healthy ageing", "longevity", "brain health", "cognitive health"]
 readTime: "8 min read"
 featured: false

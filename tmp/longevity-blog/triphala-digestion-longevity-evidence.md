@@ -2,7 +2,7 @@
 title: "Triphala for Digestion and Longevity: Traditional Use Versus Current Evidence"
 description: "Triphala is one of Ayurveda's most widely used digestive formulations. Here is what it actually is, what current research supports, and how to think about it as a complement to modern medical care."
 pubDate: 2026-10-04T04:17:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["Ayurveda", "digestion", "gut health", "traditional medicine", "healthy ageing"]
 readTime: "8 min read"
 featured: false

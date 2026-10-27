@@ -2,7 +2,7 @@
 title: "Ginkgo Biloba and Testosterone: What the Evidence Shows for Memory and Blood Flow in Midlife Men"
 description: "Ginkgo biloba is widely sold for memory and circulation, and some men wonder if it helps testosterone too. Here's what the actual research shows, and where it falls short."
 pubDate: 2026-10-25T10:20:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "ginkgo biloba", "testosterone", "andropause", "brain fog"]
 readTime: "7 min read"
 featured: false

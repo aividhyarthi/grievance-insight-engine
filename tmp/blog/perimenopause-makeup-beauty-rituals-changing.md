@@ -2,7 +2,7 @@
 title: "Perimenopause and Your Relationship With Makeup: Why Beauty Rituals Change Now"
 description: "Some women abandon makeup entirely in perimenopause, others suddenly invest in skincare and rituals they never bothered with before. Here is why your relationship with beauty routines shifts during this stage, and what to do with either reaction."
 pubDate: 2026-09-22T10:17:29Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["identity", "mental health", "skin", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&h=675&fit=crop&q=80"

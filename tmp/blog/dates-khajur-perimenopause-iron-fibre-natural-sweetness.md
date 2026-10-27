@@ -2,7 +2,7 @@
 title: "Dates (Khajur) for Perimenopause: Iron, Fibre, and Natural Sweetness"
 description: "Dates are an everyday Indian kitchen staple, eaten during fasts, added to desserts, and recommended for iron. Here is what the evidence actually shows for perimenopausal fatigue, digestion, and blood sugar."
 pubDate: 2026-10-19T04:17:26Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "nutrition", "fatigue", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "CoQ10 and Ageing: What the Evidence Actually Shows"
 description: "Coenzyme Q10 is one of the more heavily marketed 'anti-ageing' supplements in India. Here is what the research actually supports, who may genuinely benefit, and what to ask your doctor before you start."
 pubDate: 2026-10-06T02:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "ageing", "heart health", "energy", "fatigue"]
 readTime: "9 min read"
 featured: false

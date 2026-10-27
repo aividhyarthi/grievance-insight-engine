@@ -2,7 +2,7 @@
 title: "Iron Deficiency and Fatigue After 40: Why It's Often Mistaken for Low Testosterone"
 description: "Persistent tiredness in midlife men gets blamed on testosterone far more often than it gets checked against iron levels. Here is why iron deficiency is a common, overlooked, and easily tested alternative explanation."
 pubDate: 2026-10-16T04:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "testosterone", "fatigue", "andropause", "nutrition"]
 readTime: "9 min read"
 featured: false

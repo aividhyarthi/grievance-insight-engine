@@ -2,7 +2,7 @@
 title: "Why Your Rings Suddenly Feel Tight: What Changing Jewellery Fit Can Tell You About Your Health"
 description: "Rings that no longer slide off, bangles that leave a mark, a mangalsutra chain that feels snug by evening. Here is what changing jewellery fit can actually indicate after 40, and when it is worth a doctor's attention."
 pubDate: 2026-10-03T02:16:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["water retention", "skin health", "hormonal health", "healthy ageing", "preventive health"]
 readTime: "8 min read"
 featured: false

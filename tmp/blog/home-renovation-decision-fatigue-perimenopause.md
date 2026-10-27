@@ -2,7 +2,7 @@
 title: "Redoing the House in Perimenopause: Renovation Decisions When You Have Nothing Left to Give"
 description: "Tile samples, contractor calls, and everyone's opinion on the new kitchen, all while your brain feels like it's running on empty. Here's why home renovation decisions feel so much harder in perimenopause, and how to get through one without losing your mind."
 pubDate: 2026-09-27T02:17:08Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["brain fog", "stress", "life", "family", "decision fatigue"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

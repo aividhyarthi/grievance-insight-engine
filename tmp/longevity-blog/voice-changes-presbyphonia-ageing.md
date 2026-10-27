@@ -2,7 +2,7 @@
 title: "Why Your Voice Sounds Different After 50: Presbyphonia and Vocal Ageing Explained"
 description: "A voice that sounds thinner, shakier, or tires faster than it used to is more common than most people realise after 50. Here is what presbyphonia actually is, and what genuinely helps."
 pubDate: 2026-09-24T10:16:56Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["voice health", "healthy ageing", "longevity", "communication", "preventive health"]
 readTime: "7 min read"
 featured: false

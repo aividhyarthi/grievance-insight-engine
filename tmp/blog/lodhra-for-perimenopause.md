@@ -2,7 +2,7 @@
 title: "Lodhra for Perimenopause: What It's Traditionally Used For, and What the Evidence Shows"
 description: "Lodhra bark is a lesser-known name outside Ayurvedic circles, but it has a long traditional history in treating menstrual irregularity. Here is what it is actually used for, and how far the evidence goes."
 pubDate: 2026-10-10T06:17:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "india", "cycles", "bleeding"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

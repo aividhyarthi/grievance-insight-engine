@@ -2,7 +2,7 @@
 title: "Perimenopause and Public Speaking: When the Words Won't Come in the Meeting Room"
 description: "Blanking mid-presentation, losing your train of thought in front of your team, or dreading a meeting you'd normally walk into confidently: here is why perimenopause makes public speaking harder, and what genuinely helps."
 pubDate: 2026-09-16T02:16:49Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["brain fog", "working women", "mental health", "confidence"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"

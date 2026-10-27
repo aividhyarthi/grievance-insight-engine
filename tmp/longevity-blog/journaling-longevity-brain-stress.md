@@ -2,7 +2,7 @@
 title: "Journaling for a Longer Life: What Writing Regularly Actually Does to Your Brain and Stress Levels"
 description: "Journaling is one of the few longevity habits that costs nothing and takes minutes a day, yet the evidence behind it for stress, sleep, and even physical health markers is more solid than most people expect."
 pubDate: 2026-09-13T08:18:07Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["mental health", "stress management", "longevity", "cognitive health", "sleep"]
 readTime: "7 min read"
 featured: false

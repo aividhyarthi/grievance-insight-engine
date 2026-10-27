@@ -2,7 +2,7 @@
 title: "What Perimenopause Can Give You: A Hopeful Look at This Stage"
 description: "Alongside the very real symptoms, many women find perimenopause also brings something unexpected: clarity, confidence, and a shedding of things that no longer serve them. Here is the hopeful side of this transition, honestly told."
 pubDate: 2026-07-14
-author: "Journal Desk"
+author: "Sunita Reddy"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman finding clarity and confidence during perimenopause"
 tags: ["life", "mental health", "community", "confidence"]

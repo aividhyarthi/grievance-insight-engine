@@ -2,7 +2,7 @@
 title: "Amla (Indian Gooseberry) and Testosterone: What the Evidence Actually Shows"
 description: "Amla is sold everywhere from fresh fruit to murabba to capsules, often with claims about boosting testosterone. Here is what the nutrition and hormone research actually supports."
 pubDate: 2026-10-20T02:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["ayurveda", "foods", "testosterone", "nutrition", "andropause"]
 readTime: "8 min read"
 featured: false

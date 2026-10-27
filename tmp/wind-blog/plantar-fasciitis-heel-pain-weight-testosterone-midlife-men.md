@@ -2,7 +2,7 @@
 title: "Plantar Fasciitis and Heel Pain After 40: The Weight, Testosterone, and Foot Health Connection"
 description: "Stepping out of bed and feeling a stab of pain in your heel is a common, often-ignored midlife complaint. Here is why plantar fasciitis becomes more common after 40, and how it connects to weight and muscle changes linked to testosterone."
 pubDate: 2026-10-16T08:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["andropause", "testosterone", "weight", "exercise", "fatigue"]
 readTime: "9 min read"
 featured: false

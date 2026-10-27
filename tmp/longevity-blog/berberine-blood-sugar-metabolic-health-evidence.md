@@ -2,7 +2,7 @@
 title: "Berberine for Blood Sugar and Metabolic Health: Hype Versus Evidence"
 description: "Berberine, a plant compound sometimes called 'nature's metformin' online, has a genuine research base on blood sugar. Here is what the evidence actually shows, and what the hype gets wrong."
 pubDate: 2026-10-16T09:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "blood sugar", "metabolic health", "longevity", "India"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Hosting Overnight Guests in Perimenopause: When You Have Less Energy for a Full House"
 description: "Relatives staying over used to be manageable, now it feels like more than you can handle. Here is why perimenopause makes hosting harder, and how to manage guests without running yourself into the ground."
 pubDate: 2026-09-22T08:17:29Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "family", "fatigue", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"

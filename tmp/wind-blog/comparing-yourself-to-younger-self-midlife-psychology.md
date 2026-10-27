@@ -2,7 +2,7 @@
 title: "Comparing Yourself to Your Younger Self: The Psychology of Midlife Physical Change"
 description: "The gym numbers are lower, recovery takes longer, and the mirror looks different. Here is why comparing your current body to your 25-year-old self is a psychological trap, and what to do instead."
 pubDate: 2026-09-10T09:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["body image", "self-perception", "andropause", "testosterone", "midlife health"]
 readTime: "7 min read"
 featured: false

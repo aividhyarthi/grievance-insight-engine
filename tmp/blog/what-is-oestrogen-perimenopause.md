@@ -2,7 +2,7 @@
 title: "What Is Oestrogen, And What Happens To It During Perimenopause?"
 description: "Oestrogen does far more than control your periods. When it starts to shift during perimenopause, it affects your brain, bones, heart, skin, and sleep. Here's what every Indian woman should understand."
 pubDate: 2025-05-19
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["oestrogen", "hormones", "perimenopause", "science"]
 readTime: "8 min read"
 featured: true

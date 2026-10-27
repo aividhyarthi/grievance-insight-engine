@@ -2,7 +2,7 @@
 title: "Fatherhood After 40: Fertility, Family Planning, and Testosterone Decline"
 description: "More Indian men are becoming fathers later in life. Here is how declining testosterone can affect fertility, and what to know before trying to conceive after 40."
 pubDate: 2026-09-11T11:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["fertility", "family planning", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

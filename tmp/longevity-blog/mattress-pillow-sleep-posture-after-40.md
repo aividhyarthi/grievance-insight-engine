@@ -2,7 +2,7 @@
 title: "Choosing the Right Mattress and Pillow After 40: Why Your Sleep Posture Needs to Change"
 description: "The mattress and pillow that suited you at 25 may now be working against your back and sleep quality. Here is how sleep support needs actually change after 40, and what to look for."
 pubDate: 2026-10-24T04:17:50Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["sleep", "back pain", "home environment"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Giloy and Guduchi for Immunity and Ageing: Traditional Use Versus Current Evidence"
 description: "Giloy became a household name during the pandemic, grown on balconies and boiled into daily decoctions. Here is what Ayurveda says about this herb, what current research actually shows, and the caution worth knowing before you use it."
 pubDate: 2026-10-10T02:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["Ayurveda", "immunity", "herbal medicine", "healthy ageing", "traditional medicine"]
 readTime: "8 min read"
 featured: false

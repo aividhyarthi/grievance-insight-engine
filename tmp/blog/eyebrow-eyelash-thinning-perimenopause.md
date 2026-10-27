@@ -2,7 +2,7 @@
 title: "Eyebrow and Eyelash Thinning in Perimenopause: Why It Happens"
 description: "Sparser eyebrows and eyelashes, alongside thinning hair elsewhere, are a small but real part of the hormonal changes of perimenopause. Here is why it happens and what genuinely helps."
 pubDate: 2026-07-14
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing thinning eyebrows and eyelashes during perimenopause"
 tags: ["symptoms", "eyebrows", "eyelashes", "hair", "hormones"]

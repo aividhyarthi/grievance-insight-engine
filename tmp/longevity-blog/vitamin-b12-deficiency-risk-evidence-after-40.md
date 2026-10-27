@@ -2,7 +2,7 @@
 title: "Vitamin B12 After 40: Who Is at Risk, and What the Evidence Shows"
 description: "Vitamin B12 deficiency is common, often missed, and easy to mistake for normal ageing. Here is who is actually at risk after 40, and what current evidence says about testing and supplementation."
 pubDate: 2026-10-04T10:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["vitamin B12", "supplements", "nutrition", "fatigue", "vegetarian diet"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Saffron (Kesar) for Libido and Testosterone: Traditional Use Versus Evidence"
 description: "Saffron has a long history in Indian kitchens and traditional medicine as a mood and vitality ingredient. Here is what modern research actually shows about saffron, libido, and testosterone."
 pubDate: 2026-10-17T06:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["ayurveda", "foods", "testosterone", "andropause", "libido"]
 readTime: "9 min read"
 featured: false

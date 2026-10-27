@@ -2,7 +2,7 @@
 title: "Cortisol and Testosterone: Why Chronic Stress Lowers Your Levels"
 description: "Ongoing work pressure and family responsibility do more than exhaust you. Here is how chronically high cortisol actively suppresses testosterone, and what genuinely helps break the cycle."
 pubDate: 2026-09-08T11:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["cortisol", "stress", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

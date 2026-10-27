@@ -2,7 +2,7 @@
 title: "Amla (Indian Gooseberry) for Perimenopause: Vitamin C, Antioxidants, and What the Evidence Shows"
 description: "Amla turns up constantly as a passing mention in Indian wellness advice, for hair, skin, and immunity. Here is what it actually offers for perimenopause specifically, and what remains more tradition than proof."
 pubDate: 2026-10-11T06:19:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "india", "bone health", "symptoms"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Shilajit for Testosterone: Traditional Use Versus Current Evidence"
 description: "Shilajit is a heavily marketed Ayurvedic substance for men's vitality and testosterone. Here is what its traditional use actually involves and what modern research does and doesn't support."
 pubDate: 2026-09-21T06:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["shilajit", "Ayurveda", "testosterone", "supplements", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

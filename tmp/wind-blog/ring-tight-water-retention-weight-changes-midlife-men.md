@@ -2,7 +2,7 @@
 title: "Why Your Ring Suddenly Feels Tight: Water Retention, Weight Changes, and Testosterone After 40"
 description: "Wedding rings and watches that fit for twenty years can start pinching in midlife. Here's why fluid retention and shifting body composition make jewellery and accessories feel different after 40."
 pubDate: 2026-10-03T02:16:24Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["water retention", "weight gain", "body composition", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

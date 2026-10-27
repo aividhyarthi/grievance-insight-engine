@@ -2,7 +2,7 @@
 title: "Perimenopause and Your Relationship With Screens: Why Scrolling Feels Different Now"
 description: "Your phone feels harder to put down, or suddenly overwhelming to even look at. Here is why perimenopause changes how your brain handles screens, notifications, and scrolling."
 pubDate: 2026-09-20T06:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["brain fog", "mental health", "technology", "attention", "life"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Why Night Driving Gets Harder After 40: Glare, Night Vision, and When to Get Your Eyes Checked"
 description: "Oncoming headlights feel sharper, road signs feel blurrier, and night drives feel more tiring after 40. Here is what actually changes in your eyes, and what genuinely helps versus what just feels like it does."
 pubDate: 2026-10-13T10:00:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["eye health", "road safety", "healthy ageing", "longevity"]
 readTime: "8 min read"
 featured: false

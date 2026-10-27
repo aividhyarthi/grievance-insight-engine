@@ -2,7 +2,7 @@
 title: "Brain Fog at Work: Managing Cognitive Symptoms on the Job"
 description: "Forgetting names mid-sentence, losing your train of thought in a meeting, rereading the same email three times: perimenopausal brain fog at work is common, real, and manageable. Here is what helps."
 pubDate: 2026-09-08T11:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["brain fog", "working women", "symptoms", "mental health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

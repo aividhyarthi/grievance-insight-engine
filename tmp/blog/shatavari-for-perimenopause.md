@@ -2,7 +2,7 @@
 title: "Shatavari for Perimenopause: What It's Traditionally Used For and What the Evidence Shows"
 description: "Shatavari is one of the most recommended Ayurvedic herbs for women's health in India. Here is what it is traditionally used for, what modern research actually shows, and where the limits are."
 pubDate: 2026-09-19T07:08:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "hot flashes", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Am I Burnt Out, or Is It Perimenopause? How to Tell the Difference"
 description: "Exhaustion, brain fog, irritability, and a loss of motivation can look identical whether they come from burnout or perimenopause, and the two often happen at the same time. Here is how to think about the overlap, and why the distinction matters less than you might expect."
 pubDate: 2026-07-14
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1494883759339-0b042055a4ee?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman wondering if she is experiencing burnout or perimenopause"
 tags: ["mental health", "burnout", "fatigue", "brain fog", "understanding"]

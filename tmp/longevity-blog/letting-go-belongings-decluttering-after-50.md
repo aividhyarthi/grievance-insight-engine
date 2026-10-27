@@ -2,7 +2,7 @@
 title: "Letting Go of Belongings After 50: Why Decluttering Gets Harder, Not Easier"
 description: "Sorting through decades of possessions after 50 is rarely just a tidying task. Here is the psychology behind why it feels so hard, and a practical way to approach it without the guilt."
 pubDate: 2026-10-25T10:18:43Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "family", "home", "stress", "ageing"]
 readTime: "6 min read"
 featured: false

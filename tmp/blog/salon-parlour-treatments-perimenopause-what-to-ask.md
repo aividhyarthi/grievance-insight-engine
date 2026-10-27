@@ -2,7 +2,7 @@
 title: "Getting a Facial or Salon Treatment in Perimenopause: What to Tell Your Parlour, and What to Ask About"
 description: "Threading that stings more, facials that trigger a hot flash, hair colour that reacts differently: perimenopause changes how your skin and hair respond to routine salon treatments. Here is what to flag before your next appointment."
 pubDate: 2026-10-17T10:16:53Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["skin", "lifestyle", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&h=675&fit=crop&q=80"

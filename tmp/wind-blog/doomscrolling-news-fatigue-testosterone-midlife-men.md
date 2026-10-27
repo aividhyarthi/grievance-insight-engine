@@ -2,7 +2,7 @@
 title: "Why Doomscrolling and Bad News Feel So Much Heavier After 40"
 description: "The news cycle hasn't gotten worse overnight, but many midlife men find they can no longer shrug it off the way they used to. Here's the link between andropause and tolerance for bad news."
 pubDate: 2026-10-03T06:16:24Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["doomscrolling", "news fatigue", "mood", "cortisol", "screen habits", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

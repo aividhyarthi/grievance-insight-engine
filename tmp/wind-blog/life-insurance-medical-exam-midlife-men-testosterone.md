@@ -2,7 +2,7 @@
 title: "Life Insurance Medical Exams in Midlife: What the Blood Tests Reveal, and What They Don't"
 description: "Buying life insurance after 40 means a medical exam and blood work. Here is what those tests actually check, how they connect to testosterone, and why they are not a substitute for your own health checkup."
 pubDate: 2026-10-12T10:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["testosterone", "andropause", "health anxiety", "heart health"]
 readTime: "9 min read"
 featured: false

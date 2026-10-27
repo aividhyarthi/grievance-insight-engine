@@ -2,7 +2,7 @@
 title: "Phytoestrogens and Soy: What the Evidence Actually Shows for Perimenopause"
 description: "Soy comes up in almost every conversation about natural perimenopause relief. Here is what phytoestrogens actually are, what the research really shows, and how they fit an Indian diet."
 pubDate: 2026-09-20T02:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "diet", "phytoestrogens", "nutrition", "hormones"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1200&h=675&fit=crop&q=80"

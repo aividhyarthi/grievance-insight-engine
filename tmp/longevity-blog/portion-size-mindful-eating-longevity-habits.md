@@ -2,7 +2,7 @@
 title: "Portion Size and Mindful Eating for Longevity: Practical Habits, Not Rigid Rules"
 description: "You do not need a food scale or a strict diet to eat the right amount. Here is what actually helps Indian adults manage portion size and eat more mindfully after 40."
 pubDate: 2026-10-05T09:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["nutrition", "mindful eating", "weight management", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

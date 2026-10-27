@@ -2,7 +2,7 @@
 title: "Work Travel and Conferences After 50: How to Stay Sharp and Healthy on the Road"
 description: "Back-to-back flights, late dinners, and a packed conference agenda hit differently after 50. Here's how to protect your energy, sleep, and health on work trips without turning down the opportunities."
 pubDate: 2026-09-29T02:17:33Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["travel health", "healthy ageing", "longevity", "fatigue", "stress management"]
 readTime: "8 min read"
 featured: false

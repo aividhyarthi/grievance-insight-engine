@@ -2,7 +2,7 @@
 title: "Birth Control vs HRT in Perimenopause: Which Makes Sense Now"
 description: "Hormonal birth control and hormone therapy both use hormones, but they do very different jobs in perimenopause. Here is how they compare, and how to think about which one, or both, might fit your situation."
 pubDate: 2026-09-10T13:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["HRT", "contraception", "hormones", "perimenopause basics"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1200&h=675&fit=crop&q=80"

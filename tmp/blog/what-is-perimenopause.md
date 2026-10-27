@@ -2,7 +2,7 @@
 title: "What Is Perimenopause? Everything Indian Women Need to Know"
 description: "Perimenopause can start years before your last period, and most Indian women have never heard of it. Here's what's actually happening in your body."
 pubDate: 2025-05-01
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["perimenopause", "basics", "hormones", "Indian women"]
 readTime: "6 min read"
 featured: true

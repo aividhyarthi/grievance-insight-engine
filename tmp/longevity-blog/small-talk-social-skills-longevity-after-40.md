@@ -2,7 +2,7 @@
 title: "Why Small Talk Is a Longevity Skill Worth Keeping Sharp After 40"
 description: "Casual conversation with strangers and acquaintances tends to shrink as life gets busier after 40. Here's why that skill matters for healthy ageing, and how to keep it from quietly fading."
 pubDate: 2026-10-01T10:17:49Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["social connection", "small talk", "mental health", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

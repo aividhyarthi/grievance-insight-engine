@@ -2,7 +2,7 @@
 title: "Decision Fatigue After 40: Why Small Choices Feel Harder, and How to Simplify Your Day"
 description: "By evening, even simple choices like what to cook or wear can feel exhausting. Here is why decision fatigue tends to get more noticeable with age, and practical ways to reduce it."
 pubDate: 2026-09-26T06:16:34Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["decision fatigue", "mental health", "healthy ageing", "longevity", "stress management"]
 readTime: "6 min read"
 featured: false

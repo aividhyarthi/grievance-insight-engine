@@ -2,7 +2,7 @@
 title: "Iodine and Thyroid Health in Midlife Men: What to Know Before You Supplement"
 description: "Iodine keeps coming up in supplement stacks marketed for energy and hormones. Here's what iodine actually does for thyroid and testosterone health, and why more isn't automatically better."
 pubDate: 2026-10-24T06:17:14Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "thyroid", "testosterone", "fatigue", "midlife health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Low Libido in Perimenopause: The Estrogen-Testosterone Link Explained"
 description: "Falling desire in perimenopause is rarely about one hormone alone. Here is how oestrogen and testosterone interact to affect libido, and what genuinely helps before considering testosterone therapy."
 pubDate: 2026-09-13T04:17:08Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["libido", "testosterone", "oestrogen", "hormones", "sexual health"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"

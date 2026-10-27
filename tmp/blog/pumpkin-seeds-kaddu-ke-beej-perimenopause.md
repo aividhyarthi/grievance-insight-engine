@@ -2,7 +2,7 @@
 title: "Pumpkin Seeds (Kaddu ke Beej) for Perimenopause: Magnesium, Zinc, and What the Evidence Shows"
 description: "Pumpkin seeds keep showing up in perimenopause advice, from sleep tips to 'seed cycling' trends. Here is what their actual nutrient profile offers, and where the bigger claims outrun the evidence."
 pubDate: 2026-10-16T02:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "nutrition", "sleep", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

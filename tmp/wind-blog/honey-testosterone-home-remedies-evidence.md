@@ -2,7 +2,7 @@
 title: "Honey and Testosterone: What Traditional Home Remedies Claim, and What the Evidence Shows"
 description: "Honey mixed with garlic, ginger, or warm milk circulates widely as a home remedy for low testosterone in India. Here is what the actual evidence says about honey and male hormonal health."
 pubDate: 2026-10-18T04:16:49Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["foods", "testosterone", "andropause", "ayurveda", "energy"]
 readTime: "7 min read"
 featured: false

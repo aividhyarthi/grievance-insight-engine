@@ -2,7 +2,7 @@
 title: "Millets for Perimenopause: What Ragi, Jowar, and Bajra Actually Offer"
 description: "Millets have moved from being seen as old-fashioned grains to a nutrition trend, but what do ragi, jowar, and bajra specifically offer a perimenopausal body? Here is the evidence-based answer."
 pubDate: 2026-10-13T07:14:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["nutrition", "natural remedies", "india", "bone health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1200&h=675&fit=crop&q=80"

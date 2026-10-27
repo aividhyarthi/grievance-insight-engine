@@ -2,7 +2,7 @@
 title: "When It's Time to Switch Doctors: Finding One Who Actually Takes You Seriously"
 description: "Some men stay with a doctor who dismisses their symptoms for years, out of loyalty or awkwardness. Here's how to recognize when it's time to switch, and how to find someone better."
 pubDate: 2026-09-26T02:17:35Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["health advocacy", "doctor visit", "second opinion", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

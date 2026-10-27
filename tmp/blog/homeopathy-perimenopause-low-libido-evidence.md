@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Low Libido: What Women Try, and What the Evidence Shows"
 description: "Low sex drive is one of the most common, and least discussed, perimenopause complaints, and some women turn to homeopathy for it. Here is what the evidence situation actually looks like, and why the cause matters more than the remedy."
 pubDate: 2026-10-24T08:17:07Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "libido", "sexual health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Understanding Your Testosterone Blood Test: What the Numbers Actually Mean"
 description: "A plain-language guide to reading a testosterone lab report, from total versus free testosterone to what 'low normal' really means for a man in his 40s or 50s."
 pubDate: 2026-09-09T09:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["testosterone test", "blood test results", "andropause", "late-onset hypogonadism", "midlife health"]
 readTime: "7 min read"
 featured: false

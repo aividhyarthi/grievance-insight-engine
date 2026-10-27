@@ -2,7 +2,7 @@
 title: "Swimming and Water-Based Exercise for Perimenopause"
 description: "If joint pain, hot flashes, or simply finding the motivation to move have made exercise feel harder, swimming and water-based workouts offer a genuinely well-suited option for the perimenopausal body. Here is why."
 pubDate: 2026-07-16
-author: "Journal Desk"
+author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman swimming as exercise during perimenopause"
 tags: ["natural remedies", "exercise", "swimming", "joint pain", "hot flashes"]

@@ -2,7 +2,7 @@
 title: "Fenugreek (Methi) for Perimenopause: Hot Flashes, Blood Sugar, and What the Evidence Shows"
 description: "Methi seeds sit in most Indian kitchen cabinets already, and fenugreek comes up often as a natural option for hot flashes and blood sugar swings in perimenopause. Here is what the research actually supports."
 pubDate: 2026-10-07T08:18:50Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "hot flashes", "blood sugar", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

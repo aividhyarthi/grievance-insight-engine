@@ -2,7 +2,7 @@
 title: "Tribulus Terrestris for Testosterone: What the Research Actually Shows"
 description: "Tribulus terrestris appears in many 'testosterone booster' supplements sold in India, but the clinical evidence behind it is thinner than the marketing suggests. Here is the honest picture."
 pubDate: 2026-10-04T10:20:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["tribulus terrestris", "supplements", "testosterone", "andropause", "evidence", "midlife health"]
 readTime: "8 min read"
 featured: false

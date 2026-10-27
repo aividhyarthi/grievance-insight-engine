@@ -2,7 +2,7 @@
 title: "Chyawanprash for Immunity and Ageing: Traditional Use Versus Current Evidence"
 description: "Chyawanprash is one of India's most familiar Ayurvedic preparations, eaten through generations for immunity and vitality. Here is what it actually contains, what evidence exists, and what to watch for after 40."
 pubDate: 2026-10-09T04:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["ayurveda", "immunity", "healthy ageing", "indian traditions"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Do Perimenopause Symptoms Last the Entire Time Between Two Periods?"
 description: "Hot flashes, mood swings, fatigue, do these symptoms run continuously or do they come and go? Understanding how symptoms track with the hormonal cycle in perimenopause helps make sense of the pattern."
 pubDate: 2026-06-04
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["understanding", "perimenopause", "symptoms", "hormones", "cycles"]
 image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Calendar and notes representing tracking perimenopause symptoms across the menstrual cycle"

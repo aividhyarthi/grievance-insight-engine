@@ -2,7 +2,7 @@
 title: "Perimenopause and Elevator Anxiety: Why Small, Closed Spaces Suddenly Feel Unbearable"
 description: "A lift ride that never bothered you now leaves you sweating and counting floors. New or worsened claustrophobia in small spaces is a real, under-discussed perimenopause anxiety pattern, not a personality change."
 pubDate: 2026-09-24T06:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["mental health", "anxiety", "symptoms", "mood"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

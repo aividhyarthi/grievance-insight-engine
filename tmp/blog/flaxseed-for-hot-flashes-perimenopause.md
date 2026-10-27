@@ -2,7 +2,7 @@
 title: "Flaxseed for Hot Flashes: Does It Actually Work?"
 description: "Flaxseed comes up constantly as a natural fix for hot flashes. Here is what the research actually shows, how much you would need to eat, and where the evidence runs out."
 pubDate: 2026-09-19T03:08:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "nutrition", "hot flashes", "vasomotor", "diet"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

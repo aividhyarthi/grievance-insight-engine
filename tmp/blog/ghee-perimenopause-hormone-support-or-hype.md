@@ -2,7 +2,7 @@
 title: "Ghee in Perimenopause: Healthy Fat, Hormone Support, or Hype?"
 description: "Your mother says more ghee will fix your hormones, your Instagram feed says the same thing with a price tag attached. Here is what ghee actually does in perimenopause, and what it doesn't."
 pubDate: 2026-10-23T04:18:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "nutrition", "india", "hormones"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

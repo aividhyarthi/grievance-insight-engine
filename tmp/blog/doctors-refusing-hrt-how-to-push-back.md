@@ -2,7 +2,7 @@
 title: "Doctors Refusing HRT: What to Do and How to Push Back"
 description: "If a doctor has waved away your questions about hormone therapy, or refused to discuss it at all, you are not out of options. Here is why this refusal happens, how to respond, and how to find a doctor who will actually engage with you."
 pubDate: 2026-09-05T13:30:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["HRT", "when to see doctor", "hormones", "gynaecologist", "advocacy"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&h=675&fit=crop&q=80"

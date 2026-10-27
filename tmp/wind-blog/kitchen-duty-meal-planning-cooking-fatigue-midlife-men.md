@@ -2,7 +2,7 @@
 title: "Kitchen Duty Fatigue: Why Meal Planning and Cooking Feel Harder When You're Sharing the Load After 40"
 description: "As more Indian men take on daily meal planning and cooking duties at home, many notice the mental and physical load hits harder after 40. Here's what's actually going on, and how to make it sustainable."
 pubDate: 2026-10-01T02:17:35Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["cooking", "meal planning", "decision fatigue", "andropause", "testosterone", "midlife health"]
 readTime: "7 min read"
 featured: false

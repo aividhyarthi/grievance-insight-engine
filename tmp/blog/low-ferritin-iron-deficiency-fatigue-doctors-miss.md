@@ -2,7 +2,7 @@
 title: "Low Ferritin and Iron Deficiency: The Fatigue Cause Doctors Miss"
 description: "Your haemoglobin came back normal, but you're still exhausted. Low ferritin, your body's iron storage marker, is a common and frequently overlooked cause of perimenopausal fatigue."
 pubDate: 2026-09-11T19:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["fatigue", "when to see doctor", "symptoms", "testing", "hormones"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Your Handwriting Might Be an Early Marker of Ageing Worth Watching"
 description: "Shakier signatures and smaller, cramped handwriting are not just about getting older. Here is what changing handwriting and fine motor skills can actually indicate."
 pubDate: 2026-09-18T08:16:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["cognitive health", "brain health", "healthy ageing", "longevity", "preventive health"]
 readTime: "8 min read"
 featured: false

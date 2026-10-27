@@ -2,7 +2,7 @@
 title: "The Pressure to Always Have the Answer: Being the 'Practical One' in Your Family After 40"
 description: "If you're the person your family calls for every decision, big or small, the role can quietly become exhausting in midlife. Here's why that pressure builds now, and how to hand some of it back without letting anyone down."
 pubDate: 2026-09-27T08:17:25Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["family pressure", "identity", "decision fatigue", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

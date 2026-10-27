@@ -2,7 +2,7 @@
 title: "Why You Can't Finish a Book Anymore: Perimenopause and Reading Concentration"
 description: "You used to finish a novel in a weekend. Now you reread the same paragraph three times and still can't tell anyone what happened. Here is why reading concentration specifically takes a hit in perimenopause, and what actually helps."
 pubDate: 2026-10-11T08:19:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["brain fog", "symptoms", "mental health", "cognitive"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=1200&h=675&fit=crop&q=80"

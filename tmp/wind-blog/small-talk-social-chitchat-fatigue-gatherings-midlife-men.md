@@ -2,7 +2,7 @@
 title: "Why Small Talk at Gatherings Feels So Draining After 40: Social Battery and Testosterone"
 description: "Many midlife men find they can handle a meaningful conversation but dread an hour of small talk at a family gathering. Here's why casual chit-chat specifically feels more draining after 40, and how to manage it."
 pubDate: 2026-10-01T10:17:35Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["mood", "social energy", "andropause", "testosterone", "midlife health", "identity"]
 readTime: "6 min read"
 featured: false

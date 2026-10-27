@@ -2,7 +2,7 @@
 title: "Why You Keep Avoiding That Blood Test: The Fear Behind Testosterone Testing"
 description: "Many men put off testosterone and other blood tests for years, not out of laziness, but out of a genuine fear of what the results might say. Here's why that avoidance happens and how to work through it."
 pubDate: 2026-09-17T10:16:51Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["health anxiety", "testosterone test", "avoidance", "andropause", "health advocacy", "midlife health"]
 readTime: "7 min read"
 featured: false

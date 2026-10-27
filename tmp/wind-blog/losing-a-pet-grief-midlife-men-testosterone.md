@@ -2,7 +2,7 @@
 title: "Losing a Pet in Midlife: Grief, Companionship, and Testosterone"
 description: "Grief over a pet's death is often dismissed as a lesser loss, but for many midlife men it hits harder than expected. Here is why, and how it connects to andropause and testosterone."
 pubDate: 2026-10-05T10:20:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["grief", "pets", "testosterone", "andropause", "mental health", "midlife health"]
 readTime: "8 min read"
 featured: false

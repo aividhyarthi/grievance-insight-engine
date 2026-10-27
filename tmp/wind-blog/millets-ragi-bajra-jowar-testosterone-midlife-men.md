@@ -2,7 +2,7 @@
 title: "Millets and Testosterone: What Ragi, Bajra, and Jowar Actually Do for Midlife Men's Hormones"
 description: "Millets like ragi, bajra, and jowar are back on Indian plates. Here's what the nutrition in these grains actually does for a midlife man's blood sugar, weight, and testosterone, and what it doesn't."
 pubDate: 2026-10-23T02:18:19Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["foods", "Indian diet", "testosterone", "weight", "metabolic health"]
 readTime: "8 min read"
 featured: false

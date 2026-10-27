@@ -2,7 +2,7 @@
 title: "Why Spontaneity Feels Harder After 40, and What to Do When Plans Change at the Last Minute"
 description: "A sudden change of plan that once felt exciting can now feel unsettling. Here's why your tolerance for spontaneity genuinely shifts with age, and how to stay flexible without losing the routine your body has come to rely on."
 pubDate: 2026-09-29T04:17:33Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["routine", "mental health", "healthy ageing", "longevity", "stress management"]
 readTime: "8 min read"
 featured: false

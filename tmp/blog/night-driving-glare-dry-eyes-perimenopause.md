@@ -2,7 +2,7 @@
 title: "Night Driving in Perimenopause: Headlight Glare, Dry Eyes, and Why After-Dark Driving Feels Harder Now"
 description: "If oncoming headlights suddenly feel blinding and your eyes burn by the time you park, perimenopause may be part of the reason. Here is why night driving changes now, and what actually helps."
 pubDate: 2026-10-12T10:17:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "symptoms", "fatigue", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

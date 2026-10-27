@@ -2,7 +2,7 @@
 title: "Breathless Climbing Stairs After 40: Fitness, Heart Health, and Testosterone"
 description: "Getting winded climbing stairs you used to take without thought is a common midlife moment, and it can mean several different things. Here is how fitness, your heart, and testosterone all factor in, and when to get it checked."
 pubDate: 2026-10-07T10:20:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["heart health", "fitness", "testosterone", "cardiovascular health", "andropause", "weight"]
 readTime: "9 min read"
 featured: false

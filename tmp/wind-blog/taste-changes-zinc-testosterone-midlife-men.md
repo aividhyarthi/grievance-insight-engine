@@ -2,7 +2,7 @@
 title: "Why Food Tastes Different After 40: Taste Changes, Zinc, and Testosterone"
 description: "Food that used to taste vibrant now seems flat or oddly salty, and you're reaching for extra spice or salt to compensate. Taste changes are a real, under-discussed part of midlife, often tied to zinc and hormones."
 pubDate: 2026-09-29T10:17:48Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["taste changes", "zinc", "nutrition", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

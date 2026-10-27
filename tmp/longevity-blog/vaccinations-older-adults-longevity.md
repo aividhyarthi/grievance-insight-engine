@@ -2,7 +2,7 @@
 title: "Vaccinations After 40: The Shots Doctors Recommend That Most Indians Skip"
 description: "Vaccination isn't just for children. Several vaccines meaningfully reduce the risk of serious illness after midlife, yet awareness and uptake remain low in India."
 pubDate: 2026-09-15T04:16:52Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["vaccinations", "preventive health", "longevity", "immunity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

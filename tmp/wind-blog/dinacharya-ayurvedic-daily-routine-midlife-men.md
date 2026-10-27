@@ -2,7 +2,7 @@
 title: "Dinacharya, the Ayurvedic Daily Routine, for Midlife Men: What It Is and Whether It Helps Energy and Testosterone"
 description: "Dinacharya, the Ayurvedic practice of a structured daily routine, is gaining renewed attention from midlife men looking for steadier energy. Here is what it actually involves and what the evidence around it looks like."
 pubDate: 2026-09-19T09:10:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["Ayurveda", "dinacharya", "daily routine", "sleep", "energy", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

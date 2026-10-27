@@ -2,7 +2,7 @@
 title: "Earwax Buildup After 40: Why It Happens More, and What Actually Helps"
 description: "Earwax buildup becomes more common with age and is often made worse by well-meaning cleaning habits. Here is why it happens, what actually helps, and when it is worth seeing a doctor."
 pubDate: 2026-10-09T08:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["ear health", "hearing", "healthy ageing", "everyday habits"]
 readTime: "8 min read"
 featured: false

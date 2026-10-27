@@ -2,7 +2,7 @@
 title: "Health Insurance and Medical Paperwork After 50: What Actually Changes, and How to Stay on Top of It"
 description: "Health insurance gets more complicated, and more important, as you age. Here is what changes about coverage, claims, and paperwork for older adults in India, and how to keep it manageable."
 pubDate: 2026-09-26T04:16:34Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["health insurance", "preventive health", "healthy ageing", "longevity", "financial health"]
 readTime: "7 min read"
 featured: false

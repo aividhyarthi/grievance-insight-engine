@@ -2,7 +2,7 @@
 title: "SSRIs vs HRT for Perimenopause Mood Symptoms: How to Decide"
 description: "When mood swings, anxiety, and low moments show up in perimenopause, doctors often reach for an antidepressant first. Here is how SSRIs and hormone therapy actually compare, and how to think through which one fits your situation."
 pubDate: 2026-09-09T11:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["HRT", "mental health", "depression", "mood swings", "hormones"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"

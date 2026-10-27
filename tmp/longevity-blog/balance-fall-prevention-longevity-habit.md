@@ -2,7 +2,7 @@
 title: "Balance and Fall Prevention: The Overlooked Longevity Habit You Should Start Now"
 description: "Falls are a leading cause of serious injury and loss of independence in older adults, but balance training in your 40s and 50s can dramatically lower that future risk. Here is how to start."
 pubDate: 2026-09-10T17:30:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["balance training", "fall prevention", "longevity", "bone health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

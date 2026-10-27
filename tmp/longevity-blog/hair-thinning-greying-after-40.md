@@ -2,7 +2,7 @@
 title: "Hair Thinning and Greying After 40: What's Normal, and What's Worth Checking"
 description: "Greying temples and a wider parting line are common after 40, but how do you tell normal ageing apart from a deficiency or condition worth treating? A practical guide."
 pubDate: 2026-10-06T06:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["ageing", "skin and hair", "nutrition", "appearance"]
 readTime: "9 min read"
 featured: false

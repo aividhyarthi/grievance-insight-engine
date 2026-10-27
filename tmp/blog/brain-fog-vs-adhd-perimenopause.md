@@ -2,7 +2,7 @@
 title: "Brain Fog vs ADHD: How to Tell the Difference in Perimenopause"
 description: "Forgetting appointments, losing your train of thought mid-sentence, struggling to focus at work: perimenopause brain fog and adult ADHD can look almost identical. Here is how doctors tell them apart, and why many women are misdiagnosed with one when it is really the other."
 pubDate: 2026-09-05T11:30:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["brain fog", "mental health", "ADHD", "cognitive symptoms", "perimenopause"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

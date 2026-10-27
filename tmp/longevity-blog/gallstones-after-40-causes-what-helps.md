@@ -2,7 +2,7 @@
 title: "Gallstones After 40: Why They Become More Common, and What Actually Helps"
 description: "Gallstones often cause no symptoms at all until a sudden attack of pain sends someone to the emergency room. Here is why they become more common after 40, who is actually at higher risk, and what genuinely helps lower that risk."
 pubDate: 2026-10-12T08:18:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["gallstones", "digestive health", "healthy ageing", "women's health", "metabolic health"]
 readTime: "8 min read"
 featured: false

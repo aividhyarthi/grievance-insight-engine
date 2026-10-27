@@ -2,7 +2,7 @@
 title: "Explaining Perimenopause to In-Laws and Extended Family"
 description: "In a joint-family household, perimenopause isn't just your experience to manage privately. Here is how to explain it to in-laws and extended family in a way that reduces friction and builds real support."
 pubDate: 2026-09-10T17:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["India", "relationships", "family", "life", "community"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

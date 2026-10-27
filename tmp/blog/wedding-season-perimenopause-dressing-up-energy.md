@@ -2,7 +2,7 @@
 title: "Wedding Season and Perimenopause: Dressing Up, Standing All Day, and Getting Through the Functions"
 description: "Heavy silk, blouses that no longer fit the way they used to, hot flashes under stage lights, and three days of functions back to back. Here is how to get through Indian wedding season while perimenopausal."
 pubDate: 2026-09-17T04:17:48Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["life", "lifestyle", "hot flashes", "community"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

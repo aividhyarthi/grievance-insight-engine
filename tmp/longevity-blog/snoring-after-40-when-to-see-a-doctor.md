@@ -2,7 +2,7 @@
 title: "Snoring After 40: When It's Just Noise, and When It Needs a Doctor's Attention"
 description: "Snoring tends to get louder and more frequent after 40 for both men and women. Here is what usually causes it, when it's harmless, and when it's actually a warning sign worth checking."
 pubDate: 2026-10-22T13:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["snoring", "sleep", "sleep apnoea", "heart health", "longevity"]
 readTime: "6 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Maca Root for Perimenopause: What It's Traditionally Used For, and What the Evidence Shows"
 description: "Maca root is marketed heavily for energy and libido during the menopause transition. Here is what it actually is, what the research supports, and where the evidence runs thin."
 pubDate: 2026-10-15T04:30:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "fatigue", "libido"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Testicular Self-Exams After 40: Why Indian Men Skip Them, and Why They Still Matter"
 description: "Most Indian men have never done a testicular self-exam and feel awkward even considering it. Here's what a two-minute monthly check actually involves, what's normal after 40, and when a change needs a doctor."
 pubDate: 2026-10-21T02:17:52Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["testicular health", "andropause", "preventive health", "testosterone", "doctor visits"]
 readTime: "7 min read"
 featured: false

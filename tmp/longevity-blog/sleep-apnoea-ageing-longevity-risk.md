@@ -2,7 +2,7 @@
 title: "Sleep Apnoea and Ageing: The Underdiagnosed Longevity Risk"
 description: "Sleep apnoea becomes more common with age and quietly raises the risk of heart disease, stroke, and cognitive decline, yet most cases in India go undiagnosed. Here is what to watch for."
 pubDate: 2026-09-10T11:30:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["sleep apnoea", "sleep", "longevity", "heart health", "fatigue"]
 readTime: "8 min read"
 featured: false

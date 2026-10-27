@@ -2,7 +2,7 @@
 title: "Kumari (Aloe Vera) for Perimenopause: Traditional Use and What the Evidence Shows"
 description: "Aloe vera, known as kumari in Ayurveda, grows on balconies across India and is reached for everything from skin to periods. Here is what it is traditionally used for in perimenopause and what the evidence actually supports."
 pubDate: 2026-10-17T04:16:53Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "skin", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

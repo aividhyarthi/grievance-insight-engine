@@ -2,7 +2,7 @@
 title: "Skin Picking and Nervous Habits in Perimenopause: Why They Start Now"
 description: "Picking at your skin, cuticles, or hair more than you used to isn't just a bad habit. Here is the hormonal and anxiety link behind new or worsening nervous habits in perimenopause."
 pubDate: 2026-09-20T04:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["mental health", "anxiety", "skin", "nervous system", "symptoms"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1200&h=675&fit=crop&q=80"

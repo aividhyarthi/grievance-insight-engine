@@ -2,7 +2,7 @@
 title: "Eggs After 40: Cholesterol Myths, Protein Benefits, and How Many Are Actually Safe"
 description: "Eggs have spent decades being blamed for high cholesterol, then partly forgiven by nutrition science. Here is what current evidence actually says about eating them regularly after 40."
 pubDate: 2026-10-14T06:16:56Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["foods", "heart health", "healthy ageing", "nutrition"]
 readTime: "8 min read"
 featured: false

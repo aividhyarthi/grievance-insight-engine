@@ -2,7 +2,7 @@
 title: "Why You Keep Forgetting Where You Parked: Perimenopause and Spatial Memory"
 description: "If you've started wandering a mall parking lot pressing the key fob and praying for a honk, you're not imagining it. Here's why perimenopause can affect spatial memory, and what actually helps."
 pubDate: 2026-10-15T10:30:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["brain fog", "symptoms", "mental health", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Night Leg Cramps After 40: Why They Happen, and What Actually Helps"
 description: "Why sudden, painful leg cramps during the night become more common after 40, what typically causes them, and the practical steps that actually reduce them."
 pubDate: 2026-10-23T10:20:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["joint and muscle health", "sleep", "muscle cramps"]
 readTime: "7 min read"
 featured: false

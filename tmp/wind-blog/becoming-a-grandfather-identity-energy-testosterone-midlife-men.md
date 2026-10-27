@@ -2,7 +2,7 @@
 title: "Becoming a Grandfather: Identity, Energy, and Testosterone in a New Life Stage"
 description: "Becoming a grandfather brings real joy alongside a quieter identity shift and a physical reality check. Here is what changes, why energy and mood can wobble, and how testosterone fits into the picture."
 pubDate: 2026-10-06T04:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["grandfather", "andropause", "identity", "fatigue", "mood", "family life"]
 readTime: "9 min read"
 featured: false

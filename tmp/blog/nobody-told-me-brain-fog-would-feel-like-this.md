@@ -2,7 +2,7 @@
 title: "Nobody Told Me Brain Fog Would Feel Like This"
 description: "Not just forgetting where you put your keys. Real accounts of what perimenopausal brain fog actually feels like, why it happens, and what helps, from women who were never warned."
 pubDate: 2026-09-09T17:00:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["brain fog", "symptoms", "cognitive", "mental health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Starting a Second Career or Side Business in Perimenopause: Is Your 40s Too Late?"
 description: "Brain fog and fatigue make the idea feel riskier, but many Indian women start a second career or side business precisely in their 40s. Here is how to weigh the timing honestly and set yourself up to actually succeed."
 pubDate: 2026-09-24T08:17:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["working women", "lifestyle", "brain fog", "fatigue", "mood"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

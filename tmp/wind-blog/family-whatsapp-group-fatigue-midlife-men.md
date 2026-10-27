@@ -2,7 +2,7 @@
 title: "Family WhatsApp Group Fatigue: Why the Constant Notifications Wear on Men After 40"
 description: "The family WhatsApp group used to be background noise. In midlife, many men find its endless forwards and notifications genuinely draining. Here's why, and how to manage it without cutting family off."
 pubDate: 2026-09-27T02:17:25Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["family communication", "digital fatigue", "stress", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

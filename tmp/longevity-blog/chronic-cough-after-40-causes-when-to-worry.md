@@ -2,7 +2,7 @@
 title: "That Nagging Cough That Won't Go Away After 40: Common Causes, and When to Worry"
 description: "A cough that lingers for weeks after 40 usually has a specific, treatable cause. Here is what typically explains a persistent cough, and the warning signs that mean it is time to see a doctor."
 pubDate: 2026-10-25T04:18:43Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["respiratory health", "digestive health", "sleep", "ageing"]
 readTime: "6 min read"
 featured: false

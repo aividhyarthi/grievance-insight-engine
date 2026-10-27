@@ -2,7 +2,7 @@
 title: "PCOS and Perimenopause, When They Happen at the Same Time and What It Means"
 description: "PCOS is very common in Indian women. When perimenopause arrives, the two conditions overlap in ways that can be confusing, some PCOS symptoms ease, others worsen. Here is what to expect."
 pubDate: 2026-06-03
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["understanding", "perimenopause", "PCOS", "hormones", "India"]
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Medical illustration concept representing hormonal complexity of PCOS and perimenopause"

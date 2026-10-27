@@ -2,7 +2,7 @@
 title: "Intermittent Fasting and Testosterone: What the 16:8 Trend Actually Does for Midlife Men"
 description: "Intermittent fasting has become a popular weight-loss trend among Indian men in their 40s and 50s. Here's what the evidence actually shows about its effect on testosterone, separate from religious fasting."
 pubDate: 2026-10-10T04:18:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["intermittent fasting", "nutrition", "testosterone", "weight gain", "wellness trends", "andropause"]
 readTime: "9 min read"
 featured: false

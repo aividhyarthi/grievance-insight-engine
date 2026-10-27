@@ -2,7 +2,7 @@
 title: "What Are the First Signs of Perimenopause, And How Early Can They Start?"
 description: "The earliest signs of perimenopause are often dismissed as stress, thyroid, or 'just getting older.' Here's what they actually are, why they happen, and why they can start in your mid-30s."
 pubDate: 2025-05-21
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["symptoms", "early perimenopause", "signs", "periods"]
 readTime: "7 min read"
 featured: true

@@ -2,7 +2,7 @@
 title: "Why a Regular Creative Hobby Might Be Doing More for Your Brain Than You Think"
 description: "Painting, music, pottery, and other creative hobbies are linked to better cognitive and emotional health in ageing adults. Here is what the research actually shows and how to build the habit."
 pubDate: 2026-09-19T08:16:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["cognitive health", "mental health", "hobbies", "longevity", "healthy ageing"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Coming Off HRT: How and When to Stop Safely"
 description: "Whether you are considering stopping HRT after a few years, or wondering if you will need it forever, here is an honest guide to how and when women typically come off HRT, and what to expect."
 pubDate: 2026-07-13
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1550831107-1553da8c8464?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman discussing coming off HRT with her doctor"
 tags: ["understanding", "HRT", "hormones", "treatment"]

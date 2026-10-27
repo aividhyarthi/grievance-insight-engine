@@ -2,7 +2,7 @@
 title: "Desk Job Snacking: How Sedentary Work Habits Are Quietly Undermining Your Testosterone"
 description: "The biscuits with every chai, the vending machine run at 4pm, the late dinner after a long commute: desk job snacking patterns can add up to real hormonal consequences after 40."
 pubDate: 2026-09-15T04:16:58Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["snacking habits", "desk job", "nutrition", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

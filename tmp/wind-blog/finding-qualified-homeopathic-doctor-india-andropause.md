@@ -2,7 +2,7 @@
 title: "Finding a Qualified Homeopathic Doctor in India: Registration, Credentials, and Red Flags"
 description: "If you're exploring homeopathy alongside conventional care for andropause symptoms, here is how to check whether a practitioner is actually registered and qualified in India."
 pubDate: 2026-10-20T04:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "health advocacy", "andropause", "testosterone", "midlife health"]
 readTime: "8 min read"
 featured: false

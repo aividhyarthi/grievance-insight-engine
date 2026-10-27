@@ -2,7 +2,7 @@
 title: "When a New Daughter-in-Law or Son-in-Law Joins the Family: Adjusting Well After 50"
 description: "A child's marriage reshapes the household in ways that go beyond the wedding itself. Here's how parents can navigate the early adjustment with a new daughter-in-law or son-in-law without unnecessary friction."
 pubDate: 2026-10-02T10:18:45Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["family health", "mental health", "social connection", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

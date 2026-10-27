@@ -2,7 +2,7 @@
 title: "How to Talk to Your Husband About Perimenopause — A Practical Guide for Indian Women"
 description: "The silence around perimenopause inside marriages is almost as exhausting as the symptoms themselves. Here is how to have the conversation — what to say, what not to, and what to ask for."
 pubDate: 2026-06-03
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["relationships", "perimenopause", "mental health", "India", "support"]
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian couple sitting together in conversation, representing the dialogue needed around perimenopause"

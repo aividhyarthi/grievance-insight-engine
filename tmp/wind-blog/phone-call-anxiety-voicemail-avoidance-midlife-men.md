@@ -2,7 +2,7 @@
 title: "Why You Let Calls Go to Voicemail Now: Phone Anxiety and Testosterone After 40"
 description: "A ringing phone used to be routine. For many midlife men it now triggers a small jolt of dread. Here's why phone-call avoidance becomes more common after 40, and what it might mean."
 pubDate: 2026-10-03T08:16:24Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["phone anxiety", "communication", "social anxiety", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Why Perimenopause Symptoms Come and Go: Good Months and Bad Months"
 description: "One month you feel almost like yourself, the next it all comes back at once. Here's the hormonal reason perimenopause symptoms fluctuate instead of steadily worsening."
 pubDate: 2026-09-11T15:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["symptoms", "hormones", "perimenopause", "understanding"]
 readTime: "6 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

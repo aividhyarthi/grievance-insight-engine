@@ -2,7 +2,7 @@
 title: "Chyawanprash in Winter: What This Ayurvedic Staple Actually Does for a Midlife Man's Energy"
 description: "Every winter, Indian households reach for chyawanprash as an immunity ritual. Here is what the evidence actually supports for energy, immunity, and testosterone in midlife men, and what it does not."
 pubDate: 2026-10-16T02:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["ayurveda", "testosterone", "andropause", "nutrition", "fatigue"]
 readTime: "9 min read"
 featured: false

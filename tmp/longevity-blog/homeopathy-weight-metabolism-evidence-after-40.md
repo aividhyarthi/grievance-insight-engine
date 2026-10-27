@@ -2,7 +2,7 @@
 title: "Homeopathy for Weight and Slow Metabolism After 40: What People Try, and What the Evidence Shows"
 description: "A factual look at what Indian readers commonly try in homeopathy for weight gain and a sluggish metabolism after 40, and what the research actually supports."
 pubDate: 2026-10-23T02:20:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "weight management", "metabolism"]
 readTime: "7 min read"
 featured: false

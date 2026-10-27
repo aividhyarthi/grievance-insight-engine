@@ -2,7 +2,7 @@
 title: "Autoimmune Flare-Ups in Perimenopause: When Your Body Turns on Itself"
 description: "Conditions like rheumatoid arthritis, lupus, and psoriasis can flare or even first appear during perimenopause. Here is the immune-hormone link doctors often miss, and what to do about it."
 pubDate: 2026-09-13T06:17:08Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["autoimmune", "immune system", "hormones", "when to see doctor", "understanding"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&h=675&fit=crop&q=80"

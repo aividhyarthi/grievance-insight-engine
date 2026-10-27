@@ -2,7 +2,7 @@
 title: "Can a Pet Help You Live Longer? What the Research on Companionship Actually Shows"
 description: "Owning a dog or cat is associated with better heart health, more physical activity, and less loneliness in several studies. Here is what the research on pets and longevity actually supports, and does not."
 pubDate: 2026-09-14T08:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["pet ownership", "social connection", "mental health", "longevity", "healthy ageing"]
 readTime: "6 min read"
 featured: false

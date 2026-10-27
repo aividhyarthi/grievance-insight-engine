@@ -2,7 +2,7 @@
 title: "Erectile Dysfunction and Testosterone: The Real Connection, and When to See a Doctor"
 description: "Erectile difficulty after 40 is common and often has more than one cause. Here is how testosterone fits in, what else to rule out, and why seeing a doctor beats guessing."
 pubDate: 2026-10-04T02:20:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["erectile dysfunction", "testosterone", "andropause", "libido", "sexual health", "midlife health"]
 readTime: "9 min read"
 featured: false

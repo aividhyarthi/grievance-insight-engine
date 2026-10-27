@@ -2,7 +2,7 @@
 title: "Smoking and Testosterone: What Quitting Actually Does for Your Hormones After 40"
 description: "Smoking and chewing tobacco remain common among Indian men in midlife. Here is what the research actually shows about their effect on testosterone, and what changes after you quit."
 pubDate: 2026-10-15T04:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["andropause", "testosterone", "smoking", "heart health", "lifestyle"]
 readTime: "9 min read"
 featured: false

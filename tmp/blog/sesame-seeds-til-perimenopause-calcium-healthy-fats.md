@@ -2,7 +2,7 @@
 title: "Sesame Seeds (Til) for Perimenopause: Calcium, Healthy Fats, and What the Evidence Actually Shows"
 description: "Til, or sesame seeds, are a staple of Indian winters and festival sweets, and they also happen to be one of the richest plant sources of calcium. Here is what the evidence says about til for perimenopausal bone health, hormones, and skin."
 pubDate: 2026-10-08T04:17:14Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "bone health", "diet", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

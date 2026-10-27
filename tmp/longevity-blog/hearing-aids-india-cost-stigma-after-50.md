@@ -2,7 +2,7 @@
 title: "Hearing Aids in India After 50: Cost, Types, and Getting Past the Stigma of Wearing One"
 description: "Most Indians who could benefit from a hearing aid never get one, often for years longer than necessary. Here is what hearing aids actually cost in India, the main types available, and why the stigma around wearing one is worth pushing past."
 pubDate: 2026-10-17T06:15:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["hearing health", "healthy ageing", "ageing in place"]
 readTime: "8 min read"
 featured: false

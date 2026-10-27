@@ -2,7 +2,7 @@
 title: "Homeopathy for Low Testosterone and Andropause: What Men Try, and What the Evidence Actually Says"
 description: "Many Indian men explore homeopathy alongside or before seeing a doctor about andropause symptoms. Here is an honest, evidence-aware look at why, and what the actual scientific evidence situation looks like."
 pubDate: 2026-09-19T11:10:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "andropause", "testosterone", "evidence", "health advocacy", "midlife health"]
 readTime: "8 min read"
 featured: false

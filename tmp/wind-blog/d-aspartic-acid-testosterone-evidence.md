@@ -2,7 +2,7 @@
 title: "D-Aspartic Acid and Testosterone: What the Research Actually Shows"
 description: "D-aspartic acid shows up in many testosterone booster supplements sold in India. Here is what the clinical evidence actually supports, and where the marketing gets ahead of the science."
 pubDate: 2026-10-05T02:20:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["d-aspartic acid", "supplements", "testosterone", "andropause", "evidence", "midlife health"]
 readTime: "8 min read"
 featured: false

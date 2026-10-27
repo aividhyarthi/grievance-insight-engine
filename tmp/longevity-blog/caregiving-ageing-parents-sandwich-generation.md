@@ -2,7 +2,7 @@
 title: "Caring for Ageing Parents Without Losing Your Own Health: A Guide for the Sandwich Generation"
 description: "Many Indians in their 40s and 50s are caring for ageing parents while raising children of their own, often at the cost of their own health. Here is how to protect your own longevity while doing it."
 pubDate: 2026-09-12T13:30:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["caregiving", "mental health", "stress management", "longevity", "family health"]
 readTime: "9 min read"
 featured: false

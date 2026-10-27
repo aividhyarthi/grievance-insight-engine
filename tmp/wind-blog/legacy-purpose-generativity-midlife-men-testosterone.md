@@ -2,7 +2,7 @@
 title: "The Urge to Leave a Legacy After 40: Purpose, Generativity, and Testosterone"
 description: "Many midlife men suddenly feel pulled toward mentoring, writing things down, or building something that outlasts them. Here is the psychology behind that urge, and how it connects to hormonal and emotional health."
 pubDate: 2026-10-14T08:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["midlife psychology", "purpose", "identity", "testosterone", "andropause", "mental health"]
 readTime: "9 min read"
 featured: false

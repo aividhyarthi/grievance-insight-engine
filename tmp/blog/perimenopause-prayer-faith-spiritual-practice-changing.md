@@ -2,7 +2,7 @@
 title: "Perimenopause and Your Changing Relationship With Prayer and Faith"
 description: "Some women find themselves praying more than ever in perimenopause, others find the rituals they've kept for decades suddenly feel hollow or exhausting. Here's why your spiritual practice may be shifting now, and what to do with that."
 pubDate: 2026-09-27T04:17:08Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["mental health", "identity", "life", "community", "mood"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&h=675&fit=crop&q=80"

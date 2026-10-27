@@ -2,7 +2,7 @@
 title: "Why Am I Losing Words? Word-Finding Trouble in Perimenopause"
 description: "Forgetting words mid-sentence, blanking on names, losing your train of thought mid-meeting. Why this specific kind of brain fog happens in perimenopause, and what actually helps."
 pubDate: 2026-09-03
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["brain fog", "symptoms", "cognitive", "perimenopause"]
 readTime: "6 min read"
 image: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=1200&h=675&fit=crop&q=80"

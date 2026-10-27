@@ -2,7 +2,7 @@
 title: "Why Body Odor Changes After 40, and What It Can (and Can't) Tell You"
 description: "Many people notice their natural body odor shifts after 40, sometimes becoming stronger or just different. Here is what's actually behind the change, and when it's worth mentioning to a doctor."
 pubDate: 2026-10-18T08:17:48Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["body odor", "hormonal changes", "skin health", "ageing markers", "healthy ageing"]
 readTime: "7 min read"
 featured: false

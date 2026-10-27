@@ -2,7 +2,7 @@
 title: "Vivid Dreams and Nightmares in Perimenopause: Why Your Sleep Gets Stranger, Not Just Shorter"
 description: "It's not just that you're waking up at 3am anymore, the dreams themselves have changed. Here's why perimenopause makes dreams more vivid, disturbing, or memorable, and what actually helps."
 pubDate: 2026-10-06T06:18:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["sleep", "symptoms", "hormones"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=675&fit=crop&q=80"

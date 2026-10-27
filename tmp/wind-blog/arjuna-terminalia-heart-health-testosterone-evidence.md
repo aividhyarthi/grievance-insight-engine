@@ -2,7 +2,7 @@
 title: "Arjuna (Terminalia Arjuna) for Heart Health in Midlife Men: Traditional Use, Evidence, and the Testosterone Question"
 description: "Arjuna bark is one of Ayurveda's most established heart-health herbs. What the research actually supports, why heart health and testosterone are linked in midlife men, and what the evidence does not yet show."
 pubDate: 2026-10-21T10:17:52Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["ayurveda", "arjuna", "heart health", "testosterone", "andropause"]
 readTime: "8 min read"
 featured: false

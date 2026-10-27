@@ -2,7 +2,7 @@
 title: "\"You're Too Young for Menopause\": Responding to Medical Dismissal"
 description: "If a doctor has told you that you are too young for your symptoms to be perimenopause, here is why that response is often wrong, what the actual age range looks like, and how to respond so you get properly evaluated."
 pubDate: 2026-09-05T15:30:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["when to see doctor", "perimenopause basics", "signs", "early perimenopause", "understanding"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&h=675&fit=crop&q=80"

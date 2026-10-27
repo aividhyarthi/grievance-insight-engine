@@ -2,7 +2,7 @@
 title: "Helping With Homework in Perimenopause: When Brain Fog Meets Exam Season"
 description: "Sitting with your child's maths homework and losing your train of thought mid-sentence is a specific, common perimenopause experience. Here's why it happens and practical ways to get through exam season without the guilt."
 pubDate: 2026-10-04T08:17:23Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["brain fog", "relationships", "mental health"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1509927083803-4bd519298ac4?w=1200&h=675&fit=crop&q=80"

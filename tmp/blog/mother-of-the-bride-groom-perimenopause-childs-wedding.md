@@ -2,7 +2,7 @@
 title: "Your Child's Wedding in Perimenopause: Being the Mother of the Bride or Groom With No Energy Left"
 description: "Hosting duties, endless guest coordination, hot flashes under the mandap lights, and the emotional weight of your child's wedding, all while your body is going through its own transition. Here is how to get through it."
 pubDate: 2026-10-19T10:17:26Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "family", "relationships", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

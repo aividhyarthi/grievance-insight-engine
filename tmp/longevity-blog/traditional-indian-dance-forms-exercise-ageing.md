@@ -2,7 +2,7 @@
 title: "Bharatanatyam, Kathak, and Garba: Can Traditional Indian Dance Count as Real Exercise?"
 description: "Traditional Indian dance forms combine cardio, balance, and strength training in ways few people give them credit for. Here is what the evidence says about dancing as a genuine longevity practice after 40."
 pubDate: 2026-09-17T02:17:06Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["dance", "movement", "longevity", "balance training", "healthy ageing"]
 readTime: "8 min read"
 featured: false

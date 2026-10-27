@@ -2,7 +2,7 @@
 title: "Protecting Your Eyesight After 40: The Daily Habits That Actually Help Prevent Cataracts"
 description: "Cataracts are not just an old-age inevitability. Here are the daily, evidence-backed habits that genuinely slow the process, from sunglasses to blood sugar control."
 pubDate: 2026-09-16T02:16:39Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["eye health", "cataract prevention", "vision", "longevity", "healthy ageing"]
 readTime: "7 min read"
 featured: false

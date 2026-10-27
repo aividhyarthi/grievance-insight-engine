@@ -2,7 +2,7 @@
 title: "Omega-3 Supplements Versus Fish and Walnuts: Does It Matter Which You Choose"
 description: "Fish oil capsules and a plate of grilled fish both deliver omega-3s, but not in quite the same way. Here is what the evidence says about choosing food, supplements, or both in perimenopause."
 pubDate: 2026-09-19T08:28:30Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "supplements", "nutrition", "mood", "heart health"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

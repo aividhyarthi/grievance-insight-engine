@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Sleep Problems: What Women Try, and What the Evidence Actually Shows"
 description: "Many Indian women reach for homeopathic drops or tablets when 3am waking becomes routine. Here is what women commonly try for perimenopause sleep problems, and what the evidence situation actually looks like."
 pubDate: 2026-10-10T04:17:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "sleep", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

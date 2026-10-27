@@ -2,7 +2,7 @@
 title: "Safed Musli and Testosterone: Traditional Use Versus Current Evidence"
 description: "Safed musli is an Ayurvedic herb long used as a vitality tonic in India. Here's what it's traditionally used for, and what current scientific evidence actually shows about testosterone."
 pubDate: 2026-10-08T04:20:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["safed musli", "ayurveda", "testosterone", "supplements", "andropause", "libido"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Baby Showers in Perimenopause: Celebrating New Life While Grieving Your Own Fertility Window Closing"
 description: "A niece's godh bharai or a colleague's baby shower can bring up complicated grief during perimenopause, even for women who are genuinely happy for them. Here is why that happens, and how to get through the day."
 pubDate: 2026-10-21T10:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["identity", "fertility", "mental health", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

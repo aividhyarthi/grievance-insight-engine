@@ -2,7 +2,7 @@
 title: "Protein at Every Meal: Why It Matters More Once You Hit Perimenopause"
 description: "Your dal-chawal-and-toast diet may have worked fine in your 20s. In perimenopause, spreading protein across every meal, not just dinner, becomes genuinely important for muscle, mood, and blood sugar."
 pubDate: 2026-09-24T02:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "diet", "muscle aches", "weight"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

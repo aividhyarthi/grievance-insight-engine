@@ -2,7 +2,7 @@
 title: "Andropause Myths, Debunked: Separating Fact From Marketing"
 description: "From an informal but misleading nickname to the endless promises of testosterone-boosting supplements, here is what the evidence actually says about common andropause myths."
 pubDate: 2026-09-04T17:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["andropause", "myths", "testosterone", "supplements", "midlife health"]
 image: "https://images.unsplash.com/photo-gd5LLgE-4Ps?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A bottle of vitamin supplement pills against a plain background"

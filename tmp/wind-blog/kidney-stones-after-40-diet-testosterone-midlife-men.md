@@ -2,7 +2,7 @@
 title: "Kidney Stones After 40: Diet, Dehydration, and the Testosterone Question"
 description: "Kidney stones become more common in Indian men after 40, and the causes overlap more with midlife hormones than most men realise. What actually raises risk, and what the testosterone connection does and doesn't mean."
 pubDate: 2026-10-21T04:17:52Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["kidney stones", "andropause", "diet", "testosterone", "hydration"]
 readTime: "8 min read"
 featured: false

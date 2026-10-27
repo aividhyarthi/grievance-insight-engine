@@ -2,7 +2,7 @@
 title: "Loneliness and Solitude Are Not the Same Thing, and the Difference Matters for How Long You Live"
 description: "Living alone or spending time alone isn't automatically harmful, but chronic loneliness carries real health risks. Here's how to tell the two apart."
 pubDate: 2026-09-15T06:16:52Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["loneliness", "social connection", "mental health", "longevity", "healthy ageing"]
 readTime: "7 min read"
 featured: false

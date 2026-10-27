@@ -2,7 +2,7 @@
 title: "Job Interviews and Performance Reviews in Perimenopause: Managing Symptoms When It Counts Most"
 description: "A hot flash mid-interview or a word-finding stumble in your annual review can feel catastrophic in perimenopause. Here is how to prepare for and get through high-stakes work moments without symptoms derailing them."
 pubDate: 2026-09-23T04:17:38Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["life", "working women", "brain fog", "hot flashes"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"

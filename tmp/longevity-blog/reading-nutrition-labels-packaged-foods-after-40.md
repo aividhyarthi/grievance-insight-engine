@@ -2,7 +2,7 @@
 title: "Reading Nutrition Labels on Packaged Indian Foods After 40: Sugar, Salt, and Hidden Ingredients"
 description: "Packaged food labels in India are easy to glance past and easy to misread. Here is how to actually decode sugar, salt, and ultra-processed ingredients, and why it matters more after 40."
 pubDate: 2026-10-09T06:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["nutrition", "food", "blood sugar", "heart health", "healthy ageing"]
 readTime: "9 min read"
 featured: false

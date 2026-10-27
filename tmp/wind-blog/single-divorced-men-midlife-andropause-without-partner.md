@@ -2,7 +2,7 @@
 title: "Navigating Andropause Alone: Single and Divorced Men Without a Partner at Home"
 description: "Most advice about midlife hormonal change assumes a spouse who notices symptoms and shares the load. Here's what changes when a man is navigating andropause single or divorced."
 pubDate: 2026-09-17T08:16:51Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["single men", "divorce", "andropause", "testosterone", "loneliness", "midlife health"]
 readTime: "8 min read"
 featured: false

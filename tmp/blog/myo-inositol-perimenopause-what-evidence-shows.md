@@ -2,7 +2,7 @@
 title: "Myo-Inositol for Perimenopause: What the Evidence Actually Shows"
 description: "Myo-inositol has become a trending supplement for hormones and blood sugar, mostly on the strength of PCOS research. Here is what that evidence does and does not tell us about perimenopause specifically."
 pubDate: 2026-10-19T06:17:26Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "blood sugar", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Perimenopause and Your Sense of Humour: Why You Don't Laugh at the Same Things Anymore"
 description: "Jokes that used to make you laugh out loud now barely register, or things that were never funny suddenly are. Here's why perimenopause can genuinely narrow or shift your emotional range."
 pubDate: 2026-09-18T04:16:04Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["identity", "mental health", "mood", "emotional wellbeing", "hormones"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Karwa Chauth After 40: What Reciprocal Fasting Trends Mean for Older Couples"
 description: "More husbands are joining their wives in fasting on Karwa Chauth. Here is what a waterless day actually does to an older body, and how couples with health conditions can take part safely."
 pubDate: 2026-10-03T04:16:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["religious fasting", "relationships", "blood sugar", "healthy ageing", "longevity"]
 readTime: "9 min read"
 featured: false

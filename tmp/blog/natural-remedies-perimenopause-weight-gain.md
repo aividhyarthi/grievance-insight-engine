@@ -2,7 +2,7 @@
 title: "Natural Remedies for Perimenopause Weight Gain — What Is Happening and What Works"
 description: "Weight gain during perimenopause is caused by changes in metabolism, fat distribution, and hormonal signalling — not simply eating more. Here is what actually helps."
 pubDate: 2026-05-29
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Healthy Indian food spread with vegetables, legumes, and whole grains representing nutritional approaches to perimenopausal weight"
 tags: ["natural remedies", "weight gain", "metabolism", "diet", "exercise", "lifestyle", "symptoms", "India"]

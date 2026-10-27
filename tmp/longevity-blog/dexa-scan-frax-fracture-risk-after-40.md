@@ -2,7 +2,7 @@
 title: "Bone Fracture Risk After 40: What a DEXA Scan and FRAX Score Actually Tell You"
 description: "A DEXA scan measures bone density, and a FRAX score estimates your actual 10-year fracture risk. Here is what each test does, what the numbers mean, and whether you need one after 40."
 pubDate: 2026-10-20T10:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["bone health", "screening", "healthy ageing", "India"]
 readTime: "8 min read"
 featured: false

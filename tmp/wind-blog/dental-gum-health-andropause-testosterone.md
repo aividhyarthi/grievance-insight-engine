@@ -2,7 +2,7 @@
 title: "Gum Disease and Testosterone: The Midlife Dental Health Connection Nobody Told You About"
 description: "Bleeding gums, loose teeth, and bad breath after 40 are often written off as bad luck. Here's how declining testosterone and midlife inflammation actually connect to your dental health."
 pubDate: 2026-09-15T02:16:58Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["dental health", "gum disease", "testosterone", "andropause", "inflammation", "midlife health"]
 readTime: "7 min read"
 featured: false

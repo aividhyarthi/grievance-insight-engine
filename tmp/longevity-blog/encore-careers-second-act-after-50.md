@@ -2,7 +2,7 @@
 title: "Encore Careers: Why Starting Something New After 50 Might Add Years to Your Life"
 description: "A growing number of Indians are launching a second career, consultancy, or business well after 50, and the longevity case for it is stronger than the financial one alone. Here is why continued meaningful work matters, and how to plan an encore career sensibly."
 pubDate: 2026-09-13T10:18:07Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["purpose", "healthy ageing", "mental health", "longevity", "midlife health"]
 readTime: "8 min read"
 featured: false

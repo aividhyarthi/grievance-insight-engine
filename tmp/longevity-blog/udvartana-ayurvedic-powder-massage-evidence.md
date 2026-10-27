@@ -2,7 +2,7 @@
 title: "Udvartana: The Ayurvedic Herbal Powder Massage for Circulation and Weight, Examined"
 description: "What udvartana, the traditional dry herbal powder massage, actually involves, why Ayurveda uses it, and what current evidence says about its real benefits."
 pubDate: 2026-10-23T06:20:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["ayurveda", "massage therapy", "circulation"]
 readTime: "7 min read"
 featured: false

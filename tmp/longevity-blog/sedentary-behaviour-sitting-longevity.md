@@ -2,7 +2,7 @@
 title: "Sedentary Behaviour: Why Sitting All Day Undoes Your Workout"
 description: "A single hour at the gym does not cancel out ten hours of sitting. Here is why prolonged sitting is now studied as its own independent health risk, and what actually breaks the pattern."
 pubDate: 2026-09-09T11:30:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["sedentary behaviour", "movement", "longevity", "exercise", "metabolic health"]
 readTime: "6 min read"
 featured: false

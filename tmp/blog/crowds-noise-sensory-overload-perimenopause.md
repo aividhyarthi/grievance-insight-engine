@@ -2,7 +2,7 @@
 title: "Why Crowds and Noise Suddenly Feel Unbearable in Perimenopause"
 description: "If a crowded market, a loud wedding hall, or your own family gathering now leaves you overwhelmed within minutes, you are not imagining it. Here is why perimenopause changes your tolerance for sensory input."
 pubDate: 2026-09-22T04:17:29Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["symptoms", "sensory overload", "anxiety", "hormones"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

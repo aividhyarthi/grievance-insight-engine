@@ -2,7 +2,7 @@
 title: "Breast Tissue Changes in Midlife Men: What's Hormonal, and What to Do About Gynecomastia"
 description: "Noticing breast tissue changes after 40 can be alarming and embarrassing. Here is what gynecomastia actually is, why hormones are often involved, and when to see a doctor."
 pubDate: 2026-10-04T04:20:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["gynecomastia", "testosterone", "andropause", "body changes", "hormonal health", "midlife health"]
 readTime: "8 min read"
 featured: false

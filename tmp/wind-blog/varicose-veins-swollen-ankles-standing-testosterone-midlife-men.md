@@ -2,7 +2,7 @@
 title: "Varicose Veins and Swollen Ankles After 40: Standing, Circulation, and Testosterone"
 description: "Swollen ankles by evening and visible veins on the calves are common after 40. Here is what is actually going on with circulation, how testosterone fits in, and when to get it checked."
 pubDate: 2026-10-05T04:20:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["varicose veins", "circulation", "testosterone", "andropause", "weight gain", "midlife health"]
 readTime: "8 min read"
 featured: false

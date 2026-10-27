@@ -2,7 +2,7 @@
 title: "Ashwagandha, Tulsi, and Amla: What the Evidence Actually Says Beyond Turmeric"
 description: "India's kitchen cabinets and gardens hold herbs with genuine research behind them. Here is an honest look at what ashwagandha, tulsi, and amla can and cannot do."
 pubDate: 2026-09-18T06:16:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["Ayurveda", "traditional practices", "longevity", "nutrition", "healthy ageing"]
 readTime: "9 min read"
 featured: false

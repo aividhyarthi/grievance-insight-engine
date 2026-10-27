@@ -2,7 +2,7 @@
 title: "Your School Reunion in Perimenopause: Facing Old Classmates, Old Photos, and the Body You Have Now"
 description: "A school or college reunion invite can trigger a surprising amount of dread in perimenopause, mixing body image, old comparisons, and hormonal mood all at once. Here is why it hits differently now, and how to go in on your own terms."
 pubDate: 2026-10-20T10:17:38Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mood", "brain fog", "india", "community"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

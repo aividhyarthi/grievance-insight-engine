@@ -2,7 +2,7 @@
 title: "How to Talk to Your Doctor About a Testosterone Blood Test"
 description: "A practical guide to raising low testosterone with your doctor, what tests to ask for, and how to avoid being dismissed with a quick reassurance instead of an actual workup."
 pubDate: 2026-09-04T15:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["testosterone test", "doctor visit", "andropause", "health advocacy", "midlife health"]
 image: "https://images.unsplash.com/photo-GBcLdqOBbXE?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A doctor consulting with a male patient across a desk"

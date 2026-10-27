@@ -2,7 +2,7 @@
 title: "Why Do Smells Suddenly Overwhelm You? Hyperosmia in Perimenopause"
 description: "Your husband's cologne makes you nauseous, the kitchen after cooking feels unbearable, a colleague's perfume gives you a headache within minutes: heightened smell sensitivity is a real, lesser-known perimenopause symptom."
 pubDate: 2026-09-16T08:16:49Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["symptoms", "hormones", "nausea", "mental health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=675&fit=crop&q=80"

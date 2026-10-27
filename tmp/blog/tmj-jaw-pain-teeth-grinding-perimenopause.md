@@ -2,7 +2,7 @@
 title: "TMJ, Jaw Pain, and Teeth Grinding in Perimenopause"
 description: "A sore, clicking jaw, morning headaches, or a partner mentioning you grind your teeth at night can all be linked to perimenopause. Here is why hormones affect your jaw, and what genuinely helps."
 pubDate: 2026-07-14
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing jaw pain and TMJ symptoms during perimenopause"
 tags: ["symptoms", "TMJ", "jaw pain", "teeth grinding", "hormones"]

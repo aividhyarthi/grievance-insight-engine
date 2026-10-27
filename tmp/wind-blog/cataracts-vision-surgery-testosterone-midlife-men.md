@@ -2,7 +2,7 @@
 title: "Cataracts After 40: Why Your Vision Blurs Even With New Glasses, and What Cataract Surgery Involves"
 description: "A new glasses prescription that stops helping could be an early cataract, not just ageing eyes. Here's what causes cataracts, who's at higher risk, and what surgery and cost actually look like in India."
 pubDate: 2026-10-26T23:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["vision", "cataracts", "andropause", "testosterone", "ageing"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Moving to a New City or Home After 50: How to Build Social Ties When You Start Over"
 description: "Whether it is downsizing, moving closer to children, or retiring to a new town, relocating later in life comes with a genuine social cost. Here is why it matters for your health, and what actually helps you rebuild connection."
 pubDate: 2026-09-22T06:18:51Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["social connection", "healthy ageing", "longevity", "mental health", "midlife health"]
 readTime: "8 min read"
 featured: false

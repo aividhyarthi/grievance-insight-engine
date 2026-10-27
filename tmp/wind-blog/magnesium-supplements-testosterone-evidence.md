@@ -2,7 +2,7 @@
 title: "Magnesium Supplements and Testosterone: What the Evidence Shows"
 description: "Magnesium gets less attention than vitamin D or zinc, but it plays a real role in testosterone production, sleep, and muscle function. Here is what the research actually supports for midlife men."
 pubDate: 2026-09-19T10:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["magnesium", "supplements", "testosterone", "sleep", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

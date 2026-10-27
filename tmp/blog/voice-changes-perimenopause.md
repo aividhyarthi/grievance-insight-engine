@@ -2,7 +2,7 @@
 title: "Voice Changes in Perimenopause: Why You Sound Different Now"
 description: "A huskier tone, tiring out during long calls, a voice that cracks or drops pitch unexpectedly: perimenopause can genuinely change how your voice sounds and feels to use. Here is why, and what helps."
 pubDate: 2026-09-16T10:16:49Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["symptoms", "hormones", "working women"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1580281658223-9b93f18ae9ae?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Fear of Losing Your Job in Perimenopause: Performance, Confidence, and Your Rights at Work"
 description: "When brain fog and exhaustion hit right around appraisal season, the fear of losing your job can feel very real. Here is how to separate perceived from actual performance risk, and what protections you actually have."
 pubDate: 2026-09-15T04:18:02Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["working women", "workplace", "anxiety", "confidence", "mental health"]
 readTime: "9 min read"
 image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"

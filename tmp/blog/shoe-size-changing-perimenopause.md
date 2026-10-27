@@ -2,7 +2,7 @@
 title: "Why Your Shoe Size Keeps Changing in Perimenopause"
 description: "Your favourite pair of sandals suddenly feels tight by evening, or a whole size too small. Here's why perimenopause can change how your feet fit into shoes, and what actually helps."
 pubDate: 2026-10-06T10:18:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["water retention", "symptoms", "body"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=1200&h=675&fit=crop&q=80"

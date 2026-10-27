@@ -2,7 +2,7 @@
 title: "Brain Fog and Money: When Perimenopause Affects Your Financial Decisions"
 description: "Missed bill payments, impulsive purchases, forgotten transfers. Perimenopause brain fog can quietly affect financial decisions long before anyone names it. Here is how to protect yourself while it's happening."
 pubDate: 2026-09-14T08:18:09Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["brain fog", "symptoms", "cognitive", "money", "perimenopause"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&h=675&fit=crop&q=80"

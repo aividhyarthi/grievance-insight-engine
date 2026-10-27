@@ -2,7 +2,7 @@
 title: "Walking and Testosterone: Does Hitting 10,000 Steps a Day Actually Move the Needle"
 description: "Step-count goals are everywhere, from phone apps to smartwatches. Here's what the evidence actually shows about walking and testosterone for midlife Indian men, and where it falls short of strength training."
 pubDate: 2026-10-10T10:18:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["walking", "exercise", "fitness", "testosterone", "midlife health"]
 readTime: "9 min read"
 featured: false

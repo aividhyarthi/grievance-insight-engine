@@ -2,7 +2,7 @@
 title: "Why Your Relationships Might Matter as Much as Your Diet for a Long Life"
 description: "Some of the longest-running health studies in the world point to the same conclusion, strong relationships predict a longer, healthier life about as reliably as not smoking. Here is what the research shows and practical ways to build connection after 40."
 pubDate: 2026-09-05T13:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["social connection", "mental health", "longevity", "relationships", "wellbeing"]
 image: "https://images.unsplash.com/photo-ymFui5IQUPQ?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Three friends laughing together outdoors"

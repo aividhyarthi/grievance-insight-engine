@@ -2,7 +2,7 @@
 title: "What Are the Common Hormone Fluctuations During Perimenopause?"
 description: "A detailed look at how oestrogen, progesterone, FSH, and LH change during perimenopause — the patterns, the timeline, and why these fluctuations cause the symptoms you are experiencing."
 pubDate: 2026-05-31
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["understanding", "perimenopause", "hormones", "oestrogen", "progesterone"]
 image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Illustration of hormone level curves over time representing perimenopause fluctuations"

@@ -2,7 +2,7 @@
 title: "Hormones, Perimenopause, and Carrying a Pregnancy, What You Need to Know"
 description: "Getting pregnant in perimenopause is possible but carries specific hormonal challenges. Here is what happens to oestrogen and progesterone during a perimenopausal pregnancy and what medical support looks like."
 pubDate: 2026-06-04
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["understanding", "perimenopause", "pregnancy", "hormones", "fertility"]
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman holding a pregnancy test with a thoughtful expression, representing the complexity of pregnancy in perimenopause"

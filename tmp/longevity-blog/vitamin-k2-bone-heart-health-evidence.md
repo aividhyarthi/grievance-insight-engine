@@ -2,7 +2,7 @@
 title: "Vitamin K2 and Healthy Ageing: What the Evidence Shows for Bones and Heart"
 description: "Vitamin K2 is increasingly marketed in India alongside vitamin D as a bone and heart health supplement. Here is what the evidence actually supports, where it comes from in food, and who should talk to a doctor before taking it."
 pubDate: 2026-10-10T04:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "vitamin K2", "bone health", "heart health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

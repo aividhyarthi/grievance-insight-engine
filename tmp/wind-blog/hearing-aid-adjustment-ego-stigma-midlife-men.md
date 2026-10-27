@@ -2,7 +2,7 @@
 title: "Getting a Hearing Aid in Midlife: The Ego, the Stigma, and the Practical Adjustment"
 description: "A hearing test confirms what your family has been saying for months. Here's what actually changes once you wear a hearing aid, and why the ego hit is normal and usually temporary."
 pubDate: 2026-10-24T02:17:14Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["hearing health", "confidence", "ageing", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

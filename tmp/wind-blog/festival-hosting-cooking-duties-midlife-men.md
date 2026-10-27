@@ -2,7 +2,7 @@
 title: "Festival Hosting Duty: Why Cooking and Entertaining for the Family Hits Harder After 40"
 description: "As parents age and roles shift, many midlife men take on more festival hosting and cooking responsibility at home. Here's why that load feels heavier now, and how testosterone and fatigue play into it."
 pubDate: 2026-09-20T06:17:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["festival hosting", "family duties", "fatigue", "stress", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

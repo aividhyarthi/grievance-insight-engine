@@ -2,7 +2,7 @@
 title: "The Cost of Perimenopause Care in India: What to Budget For"
 description: "From doctor consultations to blood tests to HRT, understanding what perimenopause care typically costs in India helps you plan ahead, rather than being caught off guard. Here is a practical, honest breakdown."
 pubDate: 2026-07-16
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman planning the costs of perimenopause healthcare in India"
 tags: ["life", "healthcare costs", "understanding", "when to see doctor"]

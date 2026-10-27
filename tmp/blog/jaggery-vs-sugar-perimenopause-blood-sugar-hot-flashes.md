@@ -2,7 +2,7 @@
 title: "Jaggery Versus Sugar in Perimenopause: Does the Swap Actually Help Blood Sugar and Hot Flashes?"
 description: "Jaggery is often passed off as the 'healthy' sweetener in Indian kitchens, especially once perimenopause symptoms start. Here is what the actual nutrition and evidence say about swapping it in for sugar."
 pubDate: 2026-10-17T02:16:53Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "nutrition", "blood sugar", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1200&h=675&fit=crop&q=80"

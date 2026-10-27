@@ -2,7 +2,7 @@
 title: "Blood Sugar and Metabolic Health: Monitoring What Actually Matters"
 description: "With diabetes rates high across urban and rural India alike, knowing which blood sugar numbers to actually track, and how often, matters more than most people realise. Here is a practical guide."
 pubDate: 2026-09-09T15:30:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["blood sugar", "metabolic health", "longevity", "diabetes prevention", "nutrition"]
 readTime: "6 min read"
 featured: false

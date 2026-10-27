@@ -2,7 +2,7 @@
 title: "GLP-1 Weight-Loss Medications and Perimenopause: What to Know"
 description: "GLP-1 receptor agonist medications are increasingly used for perimenopausal weight gain in India. What they are, how they interact with hormonal weight changes, and what to discuss with your doctor before starting."
 pubDate: 2026-09-03
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["weight gain", "belly fat", "GLP-1", "treatment"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

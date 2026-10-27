@@ -2,7 +2,7 @@
 title: "Foods That May Worsen Belly Fat and Testosterone Decline Together"
 description: "Certain everyday foods can feed the same cycle that shifts weight to your belly and lowers testosterone. Here's what the evidence points to and what to eat less of."
 pubDate: 2026-09-25T06:16:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["belly fat", "nutrition", "insulin resistance", "diet", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Purple and Blue Foods You Should Eat During Perimenopause"
 description: "Brinjal, jamun, black grapes, purple cabbage — the deep purple and blue foods of an Indian kitchen carry anthocyanins, powerful antioxidants that genuinely support the brain, blood vessels, and inflammation levels in perimenopause."
 pubDate: 2026-07-16
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Purple and blue fruits and vegetables for perimenopause nutrition"
 tags: ["natural remedies", "diet", "purple foods", "antioxidants", "nutrition"]

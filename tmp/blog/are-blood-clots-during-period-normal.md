@@ -2,7 +2,7 @@
 title: "Are Blood Clots During Your Period Normal?"
 description: "Small period clots are usually normal. Large ones, especially in perimenopause, can be a sign of something worth checking. Here is how to tell the difference — and when blood clots mean you should see a doctor."
 pubDate: 2026-06-29
-author: "Journal Desk"
+author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman understanding whether her period blood clots are normal during perimenopause"
 tags: ["symptoms", "blood clots", "heavy periods", "cycles", "bleeding"]

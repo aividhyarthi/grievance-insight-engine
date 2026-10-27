@@ -2,7 +2,7 @@
 title: "Festival Season and Social Obligations When You Have No Energy: A Perimenopause Survival Guide"
 description: "Diwali cleaning, wedding season, back-to-back family functions: perimenopause fatigue doesn't pause for the calendar. Here is how to get through festival season without collapsing or feeling guilty about it."
 pubDate: 2026-09-15T10:18:02Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["life", "lifestyle", "fatigue", "community"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

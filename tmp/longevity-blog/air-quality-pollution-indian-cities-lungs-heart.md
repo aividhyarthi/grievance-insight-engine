@@ -2,7 +2,7 @@
 title: "Air Pollution and Ageing: Practical Steps to Protect Your Lungs and Heart in Indian Cities"
 description: "Air pollution in Indian cities affects far more than lung disease risk, it accelerates cardiovascular and cognitive ageing too. Here are practical, realistic steps you can take right now."
 pubDate: 2026-09-10T13:30:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["air pollution", "longevity", "heart health", "lung health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

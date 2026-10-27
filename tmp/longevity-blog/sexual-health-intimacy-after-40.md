@@ -2,7 +2,7 @@
 title: "Sex and Intimacy After 40: What Changes, and How Couples Keep the Connection Alive"
 description: "Physical and emotional intimacy often shifts after 40 for both men and women, but it rarely has to disappear. Here is what commonly changes, why, and when it is worth talking to a doctor."
 pubDate: 2026-10-17T04:15:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["intimacy", "relationships", "sexual health", "healthy ageing", "mood"]
 readTime: "9 min read"
 featured: false

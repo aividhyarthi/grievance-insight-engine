@@ -2,7 +2,7 @@
 title: "Red and Orange Foods You Should Eat During Perimenopause"
 description: "Tomato, carrot, papaya, watermelon, red bell pepper — the red and orange produce in an Indian kitchen carries vitamin C, beta-carotene, and lycopene that genuinely support skin, heart, and immunity in perimenopause. Here is why colour matters."
 pubDate: 2026-07-16
-author: "Journal Desk"
+author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Red and orange fruits and vegetables for perimenopause nutrition"
 tags: ["natural remedies", "diet", "red and orange foods", "heart health", "nutrition"]

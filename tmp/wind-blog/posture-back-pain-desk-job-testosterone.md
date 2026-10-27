@@ -2,7 +2,7 @@
 title: "Why Your Back Hurts More Than It Used To: Posture, Desk Jobs, and Testosterone in Midlife"
 description: "If years at a desk have left you stiff, slouched, and dealing with a lower back that never quite feels right, here's how posture, muscle loss, and declining testosterone connect, and what actually helps."
 pubDate: 2026-09-16T06:15:48Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["posture", "back pain", "desk job", "muscle loss", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

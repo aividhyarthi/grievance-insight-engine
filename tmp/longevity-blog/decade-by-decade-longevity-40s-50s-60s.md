@@ -2,7 +2,7 @@
 title: "Your 40s, 50s, and 60s: How Your Longevity Priorities Should Actually Change"
 description: "The habits that matter most for a long, healthy life are not identical at 42, 55, and 68. Here is a practical, decade-by-decade guide to where your attention should actually go."
 pubDate: 2026-09-11T17:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["healthy ageing", "longevity", "preventive health", "midlife health", "screening"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "How Is Perimenopausal Bleeding Evaluated, And What Tests Will Your Doctor Order?"
 description: "Irregular or heavy bleeding during perimenopause needs proper evaluation, not just reassurance. Here's exactly what tests are done, why they're done, and what to ask your gynaecologist in India."
 pubDate: 2025-05-19
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["bleeding", "perimenopause", "tests", "diagnosis", "gynaecologist"]
 readTime: "8 min read"
 featured: false

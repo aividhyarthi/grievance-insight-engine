@@ -2,7 +2,7 @@
 title: "Shilajit for Perimenopause: What It's Traditionally Used For, and What the Evidence Shows"
 description: "Shilajit has gone from a niche Himalayan Ayurvedic substance to a heavily marketed energy and vitality supplement, now increasingly pitched at women too. Here is an honest look at the tradition and the evidence."
 pubDate: 2026-10-19T02:17:26Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "fatigue", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

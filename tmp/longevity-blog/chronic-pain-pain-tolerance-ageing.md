@@ -2,7 +2,7 @@
 title: "Does Your Pain Tolerance Really Change With Age? What to Know About Chronic Pain After 40"
 description: "Pain perception and pain management both shift as we age, and chronic pain becomes far more common after 40. Here's what actually changes, and how to manage it well rather than simply endure it."
 pubDate: 2026-09-21T04:16:52Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["chronic pain", "pain management", "healthy ageing", "joint health", "mental health"]
 readTime: "7 min read"
 featured: false

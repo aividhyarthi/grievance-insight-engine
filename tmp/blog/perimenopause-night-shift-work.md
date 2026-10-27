@@ -2,7 +2,7 @@
 title: "Perimenopause and Night Shift Work: Managing Symptoms When You Work Against the Clock"
 description: "Hot flashes, brain fog, and disrupted sleep are hard enough on a normal schedule. Night shifts in nursing, BPOs, and manufacturing make perimenopause harder in specific ways. Here is what actually helps."
 pubDate: 2026-10-24T10:17:07Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["working women", "life", "fatigue", "sleep"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"

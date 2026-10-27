@@ -2,7 +2,7 @@
 title: "Dinacharya, the Ayurvedic Daily Routine, for Perimenopause: What It Is and Whether It Helps"
 description: "Dinacharya, the Ayurvedic practice of a fixed daily routine, is often recommended for hormonal balance. Here is what it actually involves, what overlaps with modern sleep science, and where its limits are."
 pubDate: 2026-09-21T02:17:37Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "lifestyle", "sleep"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=675&fit=crop&q=80"

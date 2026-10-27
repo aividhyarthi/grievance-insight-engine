@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Mood Swings and Anxiety: What Women Try, and What the Evidence Shows"
 description: "When mood swings and anxiety start feeling unpredictable, many Indian women turn to a homeopath before a psychiatrist. Here is what women commonly try, and what the evidence actually says."
 pubDate: 2026-10-12T08:17:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "mood swings", "anxiety", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

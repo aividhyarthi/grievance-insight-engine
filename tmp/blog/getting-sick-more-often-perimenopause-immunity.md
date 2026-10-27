@@ -2,7 +2,7 @@
 title: "Getting Sick More Often? Perimenopause and Your Immune System"
 description: "If you seem to catch every cold going around, or infections linger longer than they used to, falling oestrogen may be part of the reason. Here is how perimenopause affects immunity, and what genuinely helps."
 pubDate: 2026-07-10
-author: "Journal Desk"
+author: "Kavita Menon"
 image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing she catches more colds and infections during perimenopause"
 tags: ["symptoms", "immune system", "colds", "infections", "hormones"]

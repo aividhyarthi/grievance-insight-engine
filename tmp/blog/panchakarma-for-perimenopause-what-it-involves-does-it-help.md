@@ -2,7 +2,7 @@
 title: "Panchakarma for Perimenopause: What It Involves and Whether It Helps"
 description: "Panchakarma is often suggested as an Ayurvedic reset for perimenopause fatigue, stress, and sleep. Here's what the five-part process actually involves and what the evidence situation actually looks like."
 pubDate: 2026-10-04T04:17:23Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["ayurveda", "natural remedies", "stress", "sleep"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

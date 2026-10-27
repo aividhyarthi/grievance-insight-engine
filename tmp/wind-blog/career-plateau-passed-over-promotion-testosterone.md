@@ -2,7 +2,7 @@
 title: "Career Plateau and Being Passed Over for Promotion: The Hidden Hormonal and Emotional Toll"
 description: "Watching a younger colleague get the promotion you expected can hit harder than most men admit, and it can coincide with the same years testosterone begins to decline. Here's what's actually going on."
 pubDate: 2026-09-14T04:16:35Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["career", "workplace stress", "mood", "identity", "testosterone", "andropause"]
 readTime: "7 min read"
 featured: false

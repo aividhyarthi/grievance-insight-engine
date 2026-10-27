@@ -2,7 +2,7 @@
 title: "Planning Your Child's Wedding: A Father's Hidden Stress and Health Toll in Midlife"
 description: "Organising your child's wedding is supposed to be one of the proudest moments of midlife, but behind the venue bookings and guest lists, many fathers are quietly running on no sleep and a stretched budget. Here is what to watch for."
 pubDate: 2026-10-11T08:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["family", "financial stress", "sleep", "stress", "testosterone", "andropause"]
 readTime: "9 min read"
 featured: false

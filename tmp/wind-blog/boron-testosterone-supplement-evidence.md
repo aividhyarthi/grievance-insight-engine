@@ -2,7 +2,7 @@
 title: "Boron and Testosterone: What the Research Actually Shows"
 description: "Boron is marketed as a testosterone-boosting mineral supplement in India and abroad. Here is what the actual evidence shows, separate from the marketing claims."
 pubDate: 2026-10-06T10:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["boron", "supplements", "testosterone", "andropause", "evidence-based", "hormonal health"]
 readTime: "9 min read"
 featured: false

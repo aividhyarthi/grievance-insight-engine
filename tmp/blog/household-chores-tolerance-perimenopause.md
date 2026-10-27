@@ -2,7 +2,7 @@
 title: "Why Household Chores Suddenly Feel Unbearable in Perimenopause"
 description: "The same folding, the same dishes, the same grocery list you've managed for years now makes you want to walk out of the room. Here is why repetitive household tasks become so much harder to tolerate in perimenopause, and what actually helps."
 pubDate: 2026-09-30T06:17:33Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "stress", "brain fog", "mood"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"

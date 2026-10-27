@@ -2,7 +2,7 @@
 title: "Neck Pain and 'Tech Neck' After 40: Why It Happens, and What Actually Helps"
 description: "Stiff necks and dull shoulder aches become far more common after 40, often made worse by hours spent looking down at phones and laptops. Here is why, and what genuinely helps."
 pubDate: 2026-10-16T05:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["joint health", "posture", "screen time", "longevity", "stress"]
 readTime: "7 min read"
 featured: false

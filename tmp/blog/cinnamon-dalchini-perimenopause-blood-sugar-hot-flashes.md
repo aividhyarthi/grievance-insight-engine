@@ -2,7 +2,7 @@
 title: "Cinnamon (Dalchini) for Perimenopause: Blood Sugar, Hot Flashes, and What the Evidence Shows"
 description: "Cinnamon is already in most Indian kitchens, and it keeps coming up in perimenopause advice for blood sugar swings and hot flashes. Here is what the research actually supports and where the claims get ahead of the science."
 pubDate: 2026-10-24T04:17:07Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["foods", "natural remedies", "blood sugar", "hot flashes"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

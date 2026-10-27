@@ -2,7 +2,7 @@
 title: "Iron Supplements After 40: Who Actually Needs Them, and Who Doesn't"
 description: "Iron deficiency is common but so is unnecessary iron supplementation after 40. Here is how to tell which camp you are in, and why taking iron you don't need carries real risks."
 pubDate: 2026-10-09T02:00:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["supplements", "nutrition", "fatigue", "healthy ageing", "blood tests"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Acid Reflux and GERD After 40: Why It Gets Worse, and What Actually Helps"
 description: "That burning feeling after dinner seems to show up more often after 40. Here is why acid reflux and GERD become more common with age, and what genuinely helps beyond avoiding your favourite foods."
 pubDate: 2026-10-22T11:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["digestive health", "acid reflux", "gut health", "healthy ageing", "sleep"]
 readTime: "7 min read"
 featured: false

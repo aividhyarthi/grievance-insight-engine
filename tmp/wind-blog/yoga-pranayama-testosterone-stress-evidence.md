@@ -2,7 +2,7 @@
 title: "Yoga and Pranayama for Testosterone and Stress: What the Evidence Actually Shows"
 description: "Doctors increasingly suggest yoga and pranayama alongside treatment for andropause. Here's what the research actually supports, and what it doesn't."
 pubDate: 2026-10-09T02:17:26Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["ayurveda", "yoga", "stress", "cortisol", "testosterone"]
 readTime: "8 min read"
 featured: false

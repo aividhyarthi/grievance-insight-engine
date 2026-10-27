@@ -2,7 +2,7 @@
 title: "Manual Dexterity After 40: Why Fine Motor Skills Deserve Attention Too"
 description: "Grip strength gets a lot of attention in longevity research, but the precision to button a shirt, thread a needle, or tie a saree pleat is a separate skill that ages differently. Here is what actually protects it."
 pubDate: 2026-09-22T04:18:51Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["fine motor skills", "grip strength", "healthy ageing", "longevity", "brain health"]
 readTime: "8 min read"
 featured: false

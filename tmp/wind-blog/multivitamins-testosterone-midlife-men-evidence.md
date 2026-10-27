@@ -2,7 +2,7 @@
 title: "Multivitamins for Midlife Men: Do They Help With Low Testosterone, or Just Fill Gaps"
 description: "Many Indian men in their 40s and 50s start a daily multivitamin out of general caution. Here's what multivitamins can and can't reasonably be expected to do for testosterone and energy."
 pubDate: 2026-10-19T06:18:22Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "testosterone", "nutrition", "andropause", "midlife health", "fatigue"]
 readTime: "8 min read"
 featured: false

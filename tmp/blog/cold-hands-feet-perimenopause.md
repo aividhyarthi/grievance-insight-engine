@@ -2,7 +2,7 @@
 title: "Cold Hands and Feet in Perimenopause: Why Your Circulation Feels Different"
 description: "If your hands and feet feel persistently cold, or turn white or blue in cool weather, even when the rest of you feels fine, this is a distinct perimenopause symptom worth understanding, separate from hot and cold flashes."
 pubDate: 2026-07-14
-author: "Journal Desk"
+author: "Divya Krishnan"
 image: "https://images.unsplash.com/photo-1487956382158-bb926046304a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman with cold hands during perimenopause"
 tags: ["symptoms", "cold hands and feet", "circulation", "hormones"]

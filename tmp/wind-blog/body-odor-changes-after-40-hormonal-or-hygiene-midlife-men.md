@@ -2,7 +2,7 @@
 title: "Body Odor Changes After 40: What's Hormonal, What's Hygiene"
 description: "Some midlife men notice their body odor has changed, even with the same hygiene routine as before. Here is what's genuinely hormonal, what else can cause it, and practical steps that help."
 pubDate: 2026-10-07T08:20:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["body odor", "hygiene", "testosterone", "andropause", "self-image", "midlife health"]
 readTime: "9 min read"
 featured: false

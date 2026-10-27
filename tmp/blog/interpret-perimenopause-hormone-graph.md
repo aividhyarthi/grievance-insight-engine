@@ -2,7 +2,7 @@
 title: "How Can I Interpret a Perimenopause Hormone Graph?"
 description: "Blood test graphs for FSH, LH, and oestradiol can look confusing. This practical guide explains what each value means, what patterns to look for, and what to ask your doctor about your results."
 pubDate: 2026-05-31
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["understanding", "perimenopause", "hormones", "blood tests", "FSH"]
 image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A hormone test report with FSH, LH, and oestradiol values being reviewed"

@@ -2,7 +2,7 @@
 title: "Omega-3 Supplements and Longevity: What the Evidence Actually Shows"
 description: "Fish oil and other omega-3 supplements are among the most researched in the world. Here is an honest look at what they can and cannot do for heart, brain, and joint health after 40."
 pubDate: 2026-09-19T04:28:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["omega-3", "supplements", "heart health", "brain health", "longevity"]
 readTime: "9 min read"
 featured: false

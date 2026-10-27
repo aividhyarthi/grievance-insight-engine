@@ -2,7 +2,7 @@
 title: "Handwriting and Fine Motor Changes in Perimenopause: Shaky Hands and What's Behind Them"
 description: "Your signature looks different. Threading a needle takes three tries. Typing has more errors than it used to. Fine motor changes in perimenopause are real, rarely discussed, and usually explainable."
 pubDate: 2026-09-15T08:18:02Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["symptoms", "brain fog", "coordination", "hormones"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=1200&h=675&fit=crop&q=80"

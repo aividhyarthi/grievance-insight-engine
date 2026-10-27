@@ -2,7 +2,7 @@
 title: "Gymnema (Gudmar) for Perimenopause: Traditional Use for Blood Sugar, and What the Evidence Shows"
 description: "Gudmar, literally 'sugar destroyer' in Hindi, is an Ayurvedic herb long used for blood sugar support. Here is what it's traditionally used for, what modern research actually shows, and why it needs real caution if you're on diabetes medication."
 pubDate: 2026-10-25T02:17:42Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "blood sugar", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=675&fit=crop&q=80"

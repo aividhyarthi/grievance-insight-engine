@@ -2,7 +2,7 @@
 title: "Cold Plunges and Ice Baths: The Midlife Wellness Trend and What It Actually Does for Testosterone and Recovery"
 description: "Cold plunges have gone from elite athlete recovery tool to a mainstream wellness trend among Indian men in their 40s and 50s. Here is what the evidence actually supports, and who should be cautious."
 pubDate: 2026-10-07T04:20:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["cold exposure", "recovery", "testosterone", "wellness trends", "stress", "andropause"]
 readTime: "9 min read"
 featured: false

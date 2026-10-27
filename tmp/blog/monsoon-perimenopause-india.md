@@ -2,7 +2,7 @@
 title: "Perimenopause and the Monsoon: Managing Joint Pain, Humidity, and Mood Through India's Rainy Season"
 description: "Monsoon season can make perimenopause symptoms noticeably worse, achier joints, heavier mood, disrupted sleep. Here is why the rains hit differently in your 40s and what actually helps."
 pubDate: 2026-09-19T02:17:24Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["joint pain", "india", "mood", "lifestyle"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=675&fit=crop&q=80"

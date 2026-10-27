@@ -2,7 +2,7 @@
 title: "Why Multitasking Gets Harder After 40, and How to Manage Cognitive Load Better"
 description: "Juggling calls, messages, and tasks at once starts feeling more draining with age, and there is a real reason for it. Here is what changes in the brain, and practical ways to work with it rather than against it."
 pubDate: 2026-09-25T04:16:58Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["cognitive health", "brain health", "healthy ageing", "longevity", "mental health"]
 readTime: "8 min read"
 featured: false

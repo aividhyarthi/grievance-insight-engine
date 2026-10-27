@@ -2,7 +2,7 @@
 title: "Visiting Your Childhood Home or Ancestral Property in Later Life: Why It Matters, and How to Do It Well"
 description: "Returning to a childhood home or ancestral property in your 50s and beyond can be emotionally powerful and genuinely good for wellbeing, if you prepare for what the visit actually stirs up."
 pubDate: 2026-09-30T08:16:48Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "social connection", "healthy ageing", "longevity", "family health"]
 readTime: "7 min read"
 featured: false

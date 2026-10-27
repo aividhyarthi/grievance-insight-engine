@@ -2,7 +2,7 @@
 title: "Melatonin Supplements in Perimenopause: What to Know Before You Start"
 description: "Melatonin is one of the most commonly reached-for sleep aids when perimenopausal insomnia hits, but it is not a sedative and it does not suit everyone. Here is what the evidence actually shows and what to check before you take it."
 pubDate: 2026-10-07T06:18:50Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "sleep", "natural remedies", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

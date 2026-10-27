@@ -2,7 +2,7 @@
 title: "Why Food Tastes Different After 40: Taste Changes, Appetite, and Nutrition"
 description: "If your favourite dishes seem blander than they used to, or you find yourself reaching for extra salt and sugar, changing taste perception with age may be why. Here is what actually happens, and how to protect appetite and nutrition."
 pubDate: 2026-09-25T10:16:58Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["nutrition", "sensory health", "healthy ageing", "longevity", "preventive health"]
 readTime: "7 min read"
 featured: false

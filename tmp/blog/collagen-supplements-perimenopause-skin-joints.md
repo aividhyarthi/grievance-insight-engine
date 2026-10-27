@@ -2,7 +2,7 @@
 title: "Collagen Supplements and Perimenopause Skin and Joints: What the Evidence Actually Shows"
 description: "Collagen powders promise firmer skin and easier joints, right when perimenopause makes both feel worse. Here is what the research actually supports, and what it doesn't."
 pubDate: 2026-09-19T06:28:30Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "supplements", "skin", "joint pain", "collagen"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Chronic Stress Is a Longevity Problem, Not Just a Mood One"
 description: "Long-term unmanaged stress accelerates ageing at a biological level, not only an emotional one. Here are practical daily resilience practices that genuinely help, and how to know when it is time to seek more support."
 pubDate: 2026-09-04T15:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["stress management", "mental health", "resilience", "longevity"]
 image: "https://images.unsplash.com/photo-W41K5XbAmPU?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman sitting cross-legged in a calm meditation pose"

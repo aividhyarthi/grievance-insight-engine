@@ -2,7 +2,7 @@
 title: "Vitamin B12 Deficiency and Testosterone: Fatigue, Low Mood, and What Indian Men Should Know"
 description: "B12 deficiency is common in Indian men, especially vegetarians, and mimics many andropause symptoms. Here's how the two are connected, and how to tell them apart."
 pubDate: 2026-10-08T02:20:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["vitamin B12", "nutrition", "fatigue", "testosterone", "andropause", "supplements"]
 readTime: "9 min read"
 featured: false

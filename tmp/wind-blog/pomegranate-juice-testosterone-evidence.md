@@ -2,7 +2,7 @@
 title: "Pomegranate Juice and Testosterone: What the Research Actually Shows"
 description: "A single small study put pomegranate juice on the testosterone map years ago, and the claim has circulated ever since. Here is what the actual evidence supports, and what it doesn't."
 pubDate: 2026-10-17T02:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["foods", "testosterone", "andropause", "nutrition", "antioxidants"]
 readTime: "9 min read"
 featured: false

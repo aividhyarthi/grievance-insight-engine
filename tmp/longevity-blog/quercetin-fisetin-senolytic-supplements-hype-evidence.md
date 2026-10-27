@@ -2,7 +2,7 @@
 title: "Quercetin and Fisetin: The New 'Senolytic' Longevity Supplements, Hype Versus Evidence"
 description: "Quercetin and fisetin are being marketed as cellular senescence fighters that could slow ageing itself. Here is what the actual human evidence shows, and what to know before considering either."
 pubDate: 2026-10-18T04:17:48Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "quercetin", "fisetin", "senolytics", "evidence-based medicine"]
 readTime: "8 min read"
 featured: false

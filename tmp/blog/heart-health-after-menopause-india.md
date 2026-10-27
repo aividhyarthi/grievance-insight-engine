@@ -2,7 +2,7 @@
 title: "Heart Health After Menopause, What Indian Women Need to Know About Cardiovascular Risk"
 description: "Oestrogen protects the heart. After menopause, that protection goes. For Indian women (who already carry elevated cardiac risk) understanding what changes and what to do about it is not optional."
 pubDate: 2026-06-03
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["menopause", "heart health", "post-menopause", "understanding", "India"]
 image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman walking outdoors in sunlight, representing heart-healthy lifestyle choices after menopause"

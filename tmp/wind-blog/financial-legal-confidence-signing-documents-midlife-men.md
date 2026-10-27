@@ -2,7 +2,7 @@
 title: "Why You Second-Guess Yourself at the Bank Now: Financial and Legal Confidence After 40"
 description: "Signing loan papers, reading a legal document, or making a big financial call can start to feel harder in midlife, not because you're less capable, but for reasons worth understanding."
 pubDate: 2026-09-24T08:16:43Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["financial confidence", "legal documents", "decision-making", "confidence", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

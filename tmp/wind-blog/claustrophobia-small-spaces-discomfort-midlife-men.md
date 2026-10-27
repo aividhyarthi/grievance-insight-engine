@@ -2,7 +2,7 @@
 title: "Why Small, Enclosed Spaces Feel More Uncomfortable After 40: Claustrophobia and Testosterone"
 description: "Lifts, MRI scanners, and packed train compartments can start to feel genuinely harder to tolerate in midlife. Here is why that shift happens and what it does and doesn't have to do with testosterone."
 pubDate: 2026-09-24T06:16:43Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["claustrophobia", "anxiety", "small spaces", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

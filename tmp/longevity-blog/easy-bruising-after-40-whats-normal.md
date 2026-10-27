@@ -2,7 +2,7 @@
 title: "Easy Bruising After 40: What's Normal, and What's Worth Checking"
 description: "Bumping a table and finding a dark bruise days later becomes more common after 40. Here is why skin bruises more easily with age, which medicines make it worse, and when unusual bruising deserves a doctor's attention."
 pubDate: 2026-10-07T08:18:46Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["skin health", "bruising", "medication safety", "ageing skin", "healthy ageing"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "The Midlife Motorcycle: Impulse Purchases, Confidence, and What's Really Going On"
 description: "The stereotype of a midlife man suddenly buying a motorcycle or a flashy car isn't just a cliche. Here's what's actually behind the urge, and whether it's worth acting on."
 pubDate: 2026-10-21T08:17:52Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["midlife identity", "andropause", "confidence", "hobbies", "decision making"]
 readTime: "7 min read"
 featured: false

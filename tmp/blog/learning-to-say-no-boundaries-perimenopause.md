@@ -2,7 +2,7 @@
 title: "Learning to Say No: Boundaries and People-Pleasing in Perimenopause"
 description: "Many women notice they can no longer stretch themselves as thin as they used to in perimenopause, and feel guilty about it. Here is why boundaries get harder to ignore now, and how to set them without the guilt."
 pubDate: 2026-10-18T10:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "relationships", "identity", "stress"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&h=675&fit=crop&q=80"

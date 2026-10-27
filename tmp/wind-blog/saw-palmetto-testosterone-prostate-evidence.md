@@ -2,7 +2,7 @@
 title: "Saw Palmetto and Testosterone: What Men Taking It for Prostate Health Should Know"
 description: "Saw palmetto is widely sold for prostate symptoms and marketed to bodybuilders as a testosterone aid, but these two claims pull in opposite directions. Here is what the evidence actually shows."
 pubDate: 2026-10-11T04:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["saw palmetto", "supplements", "prostate health", "testosterone", "andropause"]
 readTime: "8 min read"
 featured: false

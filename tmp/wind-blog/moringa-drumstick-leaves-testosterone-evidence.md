@@ -2,7 +2,7 @@
 title: "Moringa (Drumstick Leaves) and Testosterone: What the Evidence Actually Shows"
 description: "Moringa, the drumstick tree leaf found in kitchens across India, is increasingly sold as a testosterone booster. Here is what the nutrition and hormone research actually supports."
 pubDate: 2026-10-15T02:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["ayurveda", "foods", "testosterone", "nutrition", "andropause"]
 readTime: "8 min read"
 featured: false

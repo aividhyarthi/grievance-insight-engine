@@ -2,7 +2,7 @@
 title: "Diwali Duty: Why Decorating, Deep Cleaning, and Hosting Hits Harder After 40"
 description: "The pre-Diwali deep clean, the diyas and lights, the guests arriving in waves: it's a specific kind of physical and logistical marathon. Here's why it feels heavier in your 40s and 50s, and how to plan around it."
 pubDate: 2026-09-30T06:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["Diwali", "festival hosting", "deep cleaning", "fatigue", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Meditation and Mindfulness Beyond Stress Relief: What They May Do for Brain and Cellular Ageing"
 description: "Meditation is usually sold as a stress-relief tool. Newer research looks at what regular practice may do to brain structure, attention, and markers of cellular ageing, and how strong that evidence actually is."
 pubDate: 2026-09-20T04:17:17Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["meditation", "mindfulness", "cognitive health", "brain fog", "longevity"]
 readTime: "7 min read"
 featured: false

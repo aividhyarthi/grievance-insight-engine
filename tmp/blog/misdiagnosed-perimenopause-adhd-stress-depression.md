@@ -2,7 +2,7 @@
 title: "Misdiagnosed: When Perimenopause Gets Called ADHD, Stress, or Depression"
 description: "Many women spend years collecting other diagnoses before anyone mentions perimenopause. Here is why the misdiagnosis pattern happens so often, and how to bring hormones back into the conversation."
 pubDate: 2026-09-09T15:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["mental health", "brain fog", "depression", "when to see doctor", "understanding"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&h=675&fit=crop&q=80"

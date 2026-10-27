@@ -2,7 +2,7 @@
 title: "How Long Do Hormonal Fluctuations Last in Perimenopause?"
 description: "The erratic hormonal swings of perimenopause don't last forever, but understanding how long they typically last, and what drives them, helps you know what to expect and when things stabilise."
 pubDate: 2026-06-04
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["understanding", "perimenopause", "hormones", "timeline", "oestrogen"]
 image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman looking out of a window in thought, representing the passage of time through perimenopause"

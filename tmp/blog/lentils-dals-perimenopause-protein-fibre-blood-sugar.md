@@ -2,7 +2,7 @@
 title: "Lentils and Dals for Perimenopause: Plant Protein, Fibre, and Blood Sugar"
 description: "Dal is already on most Indian plates daily, but does it do anything specific for perimenopause? Here's what the protein, fibre, and blood sugar evidence on lentils and other dals actually shows."
 pubDate: 2026-10-25T04:17:42Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "blood sugar", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1200&h=675&fit=crop&q=80"

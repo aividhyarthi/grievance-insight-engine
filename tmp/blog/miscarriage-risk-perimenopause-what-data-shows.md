@@ -2,7 +2,7 @@
 title: "Miscarriage Risk and Perimenopause: What the Data Actually Shows"
 description: "Miscarriage risk rises through perimenopause for reasons that go beyond simple age, and the experience of loss at this life stage carries its own particular weight. Here's what the numbers show and why it happens."
 pubDate: 2026-09-12T17:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["pregnancy", "fertility", "hormones", "when to see doctor", "understanding"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&h=675&fit=crop&q=80"

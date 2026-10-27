@@ -2,7 +2,7 @@
 title: "Perimenopause and Indian Summers: Managing Heat Waves, Hot Flashes, and Power Cuts"
 description: "An Indian summer already tests everyone's patience. Layer perimenopausal hot flashes and heat intolerance on top, and April to June can feel genuinely unmanageable. Here is what actually helps."
 pubDate: 2026-09-24T10:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["hot flashes", "vasomotor", "india", "lifestyle"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&h=675&fit=crop&q=80"

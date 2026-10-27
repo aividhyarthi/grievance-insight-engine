@@ -2,7 +2,7 @@
 title: "Why You Avoid the Camera Now: Photo Avoidance and Self-Image in Midlife Men"
 description: "Ducking out of family photos, keeping your phone camera off in video calls, untagging yourself online: a quiet self-consciousness shows up in many midlife men, and it's worth understanding why."
 pubDate: 2026-09-29T04:17:48Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["self-image", "body image", "social media", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

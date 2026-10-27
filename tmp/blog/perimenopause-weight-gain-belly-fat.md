@@ -2,7 +2,7 @@
 title: "Why You're Gaining Belly Fat During Perimenopause, And What Actually Helps"
 description: "You haven't changed what you eat. You're exercising. But the weight keeps coming, especially around your middle. This is what's happening, and what you can do."
 pubDate: 2025-05-15
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["weight gain", "belly fat", "metabolism", "diet", "exercise"]
 readTime: "8 min read"
 featured: false

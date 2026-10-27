@@ -2,7 +2,7 @@
 title: "Oestrogen vs Progesterone: What's the Difference and Why Both Matter in Perimenopause"
 description: "Oestrogen and progesterone do completely different jobs, and they fall at different times. Understanding both is the key to understanding your perimenopause symptoms."
 pubDate: 2025-05-23
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["oestrogen", "progesterone", "hormones", "perimenopause"]
 readTime: "8 min read"
 featured: false

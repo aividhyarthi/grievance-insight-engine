@@ -2,7 +2,7 @@
 title: "Why You Forget Everything You Wanted to Ask Your Doctor: Perimenopause and Appointment Brain Fog"
 description: "You rehearsed your questions in the car. Then the doctor says 'so what's going on,' and your mind goes blank. Here's why this happens in perimenopause, and a practical way to stop it costing you the appointment."
 pubDate: 2026-10-25T10:17:42Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["brain fog", "when to see doctor", "symptoms", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"

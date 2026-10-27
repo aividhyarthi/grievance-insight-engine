@@ -2,7 +2,7 @@
 title: "Why Crowds and Noise Feel More Tiring As You Age, and What Actually Helps"
 description: "A wedding hall, a crowded market, or a family function that once felt lively can start to feel draining after 40. Here is why sensory tolerance genuinely changes with age, and what helps you enjoy these settings without paying for it later."
 pubDate: 2026-09-22T02:18:51Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["sensory health", "healthy ageing", "longevity", "stress management", "fatigue"]
 readTime: "8 min read"
 featured: false

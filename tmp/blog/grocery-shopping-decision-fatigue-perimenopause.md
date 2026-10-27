@@ -2,7 +2,7 @@
 title: "Grocery Shopping Fatigue in Perimenopause: Why Every Aisle Feels Like Too Many Decisions"
 description: "If a routine grocery run now leaves you overwhelmed by simple choices and mentally drained afterward, decision fatigue linked to perimenopausal brain fog is a common, explainable cause."
 pubDate: 2026-09-26T06:18:08Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["brain fog", "fatigue", "mental health", "stress"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"

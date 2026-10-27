@@ -2,7 +2,7 @@
 title: "Chia Seeds for Perimenopause: Fibre, Omega-3s, and What the Evidence Shows"
 description: "Chia seeds have become a pantry staple for a reason. Here is what their fibre and omega-3 content can actually offer perimenopausal women, and where the claims outrun the research."
 pubDate: 2026-10-18T04:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "weight", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

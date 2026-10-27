@@ -2,7 +2,7 @@
 title: "Fungal Nail Infections After 40: Why They Become More Common, and What Actually Helps"
 description: "Thickened, yellowing, or crumbling toenails become noticeably more common after 40, especially in India's humid climate. Here is why fungal nail infections take hold more easily with age, and what genuinely helps treat and prevent them."
 pubDate: 2026-10-11T10:19:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["skin and nail health", "foot care", "healthy ageing", "diabetes"]
 readTime: "8 min read"
 featured: false

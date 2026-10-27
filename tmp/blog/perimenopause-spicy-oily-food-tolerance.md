@@ -2,7 +2,7 @@
 title: "Perimenopause and Spicy or Oily Food: Why Your Stomach Suddenly Disagrees"
 description: "Many women find their lifelong tolerance for chilli, fried food, and rich curries drops sharply in perimenopause. Here is why that happens and how to adjust without giving up flavour entirely."
 pubDate: 2026-09-23T02:17:38Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["symptoms", "diet", "hot flashes", "digestion"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "My Hormone Tests Are Normal, So Why Does My Brain Still Feel Broken?"
 description: "A normal FSH or oestrogen blood test does not rule out perimenopausal brain fog. Here is why hormone tests can look fine while cognitive symptoms are very real, and what to do next."
 pubDate: 2026-09-08T13:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["brain fog", "hormones", "when to see doctor", "understanding"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Why Small Talk Suddenly Feels Unbearable: Perimenopause and Your Changing Tolerance for Chit-Chat"
 description: "If casual conversation at kitty parties, family gatherings, or with colleagues now drains you faster than it used to, perimenopause-linked changes in social energy and sensory tolerance are a real, common reason."
 pubDate: 2026-10-01T08:17:34Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "stress", "relationships", "life", "mood"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=675&fit=crop&q=80"

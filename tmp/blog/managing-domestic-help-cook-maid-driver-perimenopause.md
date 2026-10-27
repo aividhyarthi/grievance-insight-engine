@@ -2,7 +2,7 @@
 title: "Managing the Cook, Maid, and Driver in Perimenopause: When You Have No Patience Left to Manage Anyone"
 description: "For many Indian households, managing domestic staff is its own daily job, one that perimenopausal irritability, brain fog, and exhaustion make noticeably harder. Here is why it feels different now, and what actually helps."
 pubDate: 2026-10-16T10:17:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "family", "mental health", "brain fog", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"

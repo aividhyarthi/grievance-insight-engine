@@ -2,7 +2,7 @@
 title: "Selenium After 40: What the Evidence Shows for Thyroid and Antioxidant Health"
 description: "Selenium is a trace mineral with real roles in thyroid function and antioxidant defence, but more is not automatically better. Here is what the evidence actually supports after 40."
 pubDate: 2026-10-20T04:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "thyroid health", "healthy ageing", "India"]
 readTime: "7 min read"
 featured: false

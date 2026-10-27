@@ -2,7 +2,7 @@
 title: "Joint Pain and Muscle Aches in Perimenopause, Why Your Body Hurts in Your 40s"
 description: "Waking up stiff, aching knees, sore wrists, these aren't just ageing. Oestrogen loss in perimenopause triggers real inflammatory changes in joints and muscles. Here's what's happening and what actually helps."
 pubDate: 2026-06-03
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["symptoms", "perimenopause", "joint pain", "inflammation", "lifestyle"]
 image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman holding her wrist in discomfort, representing joint pain common in perimenopause"

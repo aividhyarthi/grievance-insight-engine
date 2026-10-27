@@ -2,7 +2,7 @@
 title: "Getting Dentures or a Dental Bridge After 40: Tooth Loss, Confidence, and What's Actually Hormonal"
 description: "Losing a tooth in midlife can feel like a bigger blow than it should. Here is why tooth loss happens earlier for some men, what's hormonal versus habit, and how to handle the confidence hit."
 pubDate: 2026-10-22T10:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["dental health", "testosterone", "andropause", "confidence", "midlife health", "ageing"]
 readTime: "9 min read"
 featured: false

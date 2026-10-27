@@ -2,7 +2,7 @@
 title: "Why Does Everyone Wake Up at 3am in Perimenopause? The Science Behind It"
 description: "So many perimenopausal women report waking at almost exactly the same time each night that it can't be a coincidence. Here's what's actually happening in the body at that hour, and why it isn't just stress."
 pubDate: 2026-09-12T11:00:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["symptoms", "sleep", "hormones", "fatigue", "insomnia"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

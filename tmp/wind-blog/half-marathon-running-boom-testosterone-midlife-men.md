@@ -2,7 +2,7 @@
 title: "Training for a Half Marathon After 40: The Midlife Running Boom and What It Does to Your Testosterone"
 description: "More Indian men in their 40s and 50s are signing up for half marathons than ever. Here's what sensible training does for testosterone, and how overtraining can work against you."
 pubDate: 2026-10-26T21:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["exercise", "running", "testosterone", "andropause", "fatigue"]
 readTime: "9 min read"
 featured: false

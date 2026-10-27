@@ -2,7 +2,7 @@
 title: "Vitamin E Supplements in Perimenopause: What to Know Before You Start"
 description: "Vitamin E is often suggested for hot flashes, skin changes, and breast tenderness in perimenopause, but the evidence is modest and dosing matters. Here's what's actually known before you start one."
 pubDate: 2026-10-04T02:17:23Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "hot flashes", "skin"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

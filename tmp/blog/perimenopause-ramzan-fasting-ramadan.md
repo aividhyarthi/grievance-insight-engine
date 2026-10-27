@@ -2,7 +2,7 @@
 title: "Perimenopause and Ramzan: Fasting Through Ramadan in Your 40s"
 description: "Keeping roza during Ramzan changes when perimenopause enters the picture: blood sugar swings, worse hot flashes, and disrupted sleep from suhoor can all shift. Here is how to observe your fasts safely and comfortably."
 pubDate: 2026-09-16T06:16:49Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["lifestyle", "blood sugar", "india", "fatigue"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

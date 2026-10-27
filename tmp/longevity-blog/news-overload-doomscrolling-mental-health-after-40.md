@@ -2,7 +2,7 @@
 title: "News Overload After 40: What Constant Screen Time and Doomscrolling Are Doing to Your Mental Health"
 description: "A TV news channel running all day, a phone full of WhatsApp forwards, and a habit of scrolling before bed. Here is what constant news consumption actually does to mood, sleep, and anxiety after 40, and how to cut back without feeling out of touch."
 pubDate: 2026-10-03T06:16:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["mental health", "screen time", "anxiety", "stress management", "healthy ageing"]
 readTime: "8 min read"
 featured: false

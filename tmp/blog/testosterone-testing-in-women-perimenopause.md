@@ -2,7 +2,7 @@
 title: "Testosterone Testing in Women: What the Numbers Actually Mean, and When It's Worth Checking"
 description: "A testosterone blood test result rarely comes with a clear explanation. Here is what the number can and cannot tell you, when a doctor might actually order it, and why it is not a routine perimenopause test."
 pubDate: 2026-09-14T02:18:09Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["testosterone", "hormones", "testing", "understanding", "libido"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Navratri Vrat Foods and Testosterone: Eating Smart During the Nine-Day Fast"
 description: "A practical, food-first guide for men observing Navratri vrat, covering which traditional fasting foods actually support energy and testosterone, and which combinations make the fatigue worse."
 pubDate: 2026-10-01T04:17:35Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["fasting", "nutrition", "Navratri", "andropause", "testosterone", "midlife health"]
 readTime: "7 min read"
 featured: false

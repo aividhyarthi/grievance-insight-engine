@@ -2,7 +2,7 @@
 title: "Why Loud Music and Concerts Suddenly Feel Unbearable in Perimenopause"
 description: "The concerts and loud sangeets you used to love now leave you with a headache and a racing heart within twenty minutes. Here's the real link between perimenopause and a falling tolerance for loud music."
 pubDate: 2026-10-02T06:18:36Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["symptoms", "hormones", "sensory overload", "mood"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1580281658223-9b93f18ae9ae?w=1200&h=675&fit=crop&q=80"

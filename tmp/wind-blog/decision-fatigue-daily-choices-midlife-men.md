@@ -2,7 +2,7 @@
 title: "Decision Fatigue in Midlife: Why Daily Choices Feel Harder After 40"
 description: "Choosing what to wear, what to eat, or how to respond to an email can feel unreasonably draining in your 40s and 50s. Here's the hormonal and cognitive load behind it, and what actually helps."
 pubDate: 2026-09-26T06:17:35Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["decision fatigue", "brain fog", "cognitive load", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

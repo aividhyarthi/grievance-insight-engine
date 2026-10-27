@@ -2,7 +2,7 @@
 title: "Why Hangovers Hit Harder After 40: Alcohol Recovery, Sleep, and Testosterone"
 description: "The same night of drinking that barely registered at 25 can wreck an entire weekend after 40. Here is why hangovers get worse with age, and what role testosterone and sleep actually play."
 pubDate: 2026-10-18T06:16:49Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["alcohol", "testosterone", "andropause", "sleep", "recovery"]
 readTime: "8 min read"
 featured: false

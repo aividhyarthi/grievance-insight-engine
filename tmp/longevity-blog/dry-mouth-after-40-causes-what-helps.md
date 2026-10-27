@@ -2,7 +2,7 @@
 title: "Dry Mouth After 40: Why It Happens, and What Actually Helps"
 description: "Waking up with a parched mouth, or feeling thirsty all day despite drinking water, becomes more common after 40. Here is why dry mouth happens, which medicines and conditions are usually behind it, and what genuinely helps."
 pubDate: 2026-10-22T15:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["oral health", "dry mouth", "medication safety", "healthy ageing", "dental health"]
 readTime: "6 min read"
 featured: false

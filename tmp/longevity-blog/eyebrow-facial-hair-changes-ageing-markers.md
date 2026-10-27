@@ -2,7 +2,7 @@
 title: "What Your Eyebrows and Facial Hair Changes Might Be Telling You About Ageing"
 description: "Thinning eyebrows, new chin hairs, or a patchy beard are common but rarely discussed changes after 40. Here is what is actually driving them, and when they are worth mentioning to a doctor."
 pubDate: 2026-09-24T08:16:56Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["skin health", "hormonal health", "healthy ageing", "longevity", "preventive health"]
 readTime: "7 min read"
 featured: false

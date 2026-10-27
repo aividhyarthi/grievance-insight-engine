@@ -2,7 +2,7 @@
 title: "Ginkgo Biloba for Memory and Circulation After 40: What the Evidence Actually Shows"
 description: "Ginkgo biloba is one of the most widely sold memory and circulation supplements in India, but the clinical evidence behind it is more mixed than the packaging suggests. Here is an honest look at what it may and may not do."
 pubDate: 2026-10-13T06:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "cognitive health", "longevity", "preventive health"]
 readTime: "8 min read"
 featured: false

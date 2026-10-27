@@ -2,7 +2,7 @@
 title: "Post-Monsoon Detox Traditions: What the Evidence Actually Says"
 description: "As the monsoon ends, many Indian households turn to seasonal cleansing rituals and light-eating traditions. Here is what actually happens in the body, and what the word detox does and does not mean scientifically."
 pubDate: 2026-09-17T10:17:06Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["Ayurveda", "digestive health", "longevity", "nutrition", "seasonal health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Hand Tremors After 40: Essential Tremor, Parkinson's Disease, and When to See a Doctor"
 description: "A slight shake in the hands, especially while holding a cup or writing, becomes more noticeable after 40. Here is what usually causes it, how it differs from Parkinson's disease, and when it is worth getting checked."
 pubDate: 2026-10-26T16:45:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["nerve health", "healthy ageing", "neurological health", "chronic conditions"]
 readTime: "7 min read"
 featured: false

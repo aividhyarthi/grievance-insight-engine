@@ -2,7 +2,7 @@
 title: "Attending a Work Conference or Business Trip in Perimenopause: A Practical Survival Guide"
 description: "Unfamiliar hotel rooms, back-to-back sessions, no control over the thermostat, and a body that might pick that exact week to misbehave. Here's how to prepare for a work conference or business trip when you're navigating perimenopause."
 pubDate: 2026-09-29T04:17:08Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["working women", "hot flashes", "fatigue", "brain fog"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "What Actually Happens in a Homeopathy Consultation for Healthy Ageing? A Practical Guide"
 description: "Thinking about consulting a homeopathic doctor for an ageing-related concern? Here is what a typical consultation actually involves, and what to realistically expect from it."
 pubDate: 2026-10-05T17:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["homeopathy", "complementary medicine", "healthy ageing", "healthcare", "longevity"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Why Working From Home Suddenly Feels So Loud: Perimenopause and Background Noise Sensitivity"
 description: "The fridge hum, the cook in the kitchen, a family member's video call through the wall, all of it used to fade into the background. Here's why home noise suddenly derails your concentration in perimenopause, and what actually helps."
 pubDate: 2026-09-27T08:17:08Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["brain fog", "working women", "symptoms", "sensory overload", "stress"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

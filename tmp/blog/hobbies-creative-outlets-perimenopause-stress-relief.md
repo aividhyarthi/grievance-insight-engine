@@ -2,7 +2,7 @@
 title: "Hobbies and Creative Outlets as Stress Relief in Perimenopause"
 description: "Not every perimenopause symptom needs a medical fix. A regular creative or hands-on hobby can genuinely lower stress and steady mood. Here is why it works and how to actually make time for it."
 pubDate: 2026-09-15T06:18:02Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["lifestyle", "stress", "mental health", "self-care", "mood"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

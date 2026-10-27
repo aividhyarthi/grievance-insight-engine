@@ -2,7 +2,7 @@
 title: "Where to Find Honest Stories and Real Support for Perimenopause"
 description: "You are not the only Indian woman going through this, even if it feels that way. Here's where to find real stories, reliable information, and community that actually understands the Indian experience of perimenopause."
 pubDate: 2025-05-20
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["community", "support", "stories", "resources", "Indian women"]
 readTime: "6 min read"
 featured: false

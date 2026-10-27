@@ -2,7 +2,7 @@
 title: "Pilgrimage Travel in Perimenopause: Getting Through Vaishno Devi, Char Dham, and Religious Treks"
 description: "Pilgrimage travel in India often means steep climbs, high altitude, extreme weather, and long queues, all harder with perimenopausal hot flashes, joint pain, and fatigue. Here is how to plan for it realistically."
 pubDate: 2026-10-13T11:14:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["life", "travel", "india", "fatigue"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&h=675&fit=crop&q=80"

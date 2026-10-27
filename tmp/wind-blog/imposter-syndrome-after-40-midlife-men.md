@@ -2,7 +2,7 @@
 title: "Imposter Syndrome After 40: When Success Stops Feeling Earned"
 description: "Many midlife men reach senior positions only to feel like a fraud who could be exposed any day. Here is why imposter syndrome often intensifies after 40, and what actually helps."
 pubDate: 2026-10-15T06:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["psychology", "testosterone", "andropause", "workplace", "mood"]
 readTime: "9 min read"
 featured: false

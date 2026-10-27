@@ -2,7 +2,7 @@
 title: "Vitex (Chasteberry) for Perimenopause: What It's Used For and What the Evidence Shows"
 description: "Vitex, also called chasteberry or monk's pepper, is a common ingredient in 'hormone balance' supplements. Here is what it actually does in the body, what trials have found, and where its evidence is strongest and weakest."
 pubDate: 2026-10-11T04:19:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "hormones", "cycles"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

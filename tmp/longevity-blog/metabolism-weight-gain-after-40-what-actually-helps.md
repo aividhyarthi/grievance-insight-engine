@@ -2,7 +2,7 @@
 title: "Why Metabolism Slows After 40, and What Actually Still Helps With Weight"
 description: "Weight seems to creep on more easily after 40, even without eating more. Here is what genuinely changes in metabolism, what does not, and which habits actually make a measurable difference."
 pubDate: 2026-10-08T04:00:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["metabolism", "weight management", "body composition", "muscle health", "healthy ageing"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Perimenopause With Regular Periods: Is That Possible?"
 description: "Yes, you can be well into perimenopause while your periods still arrive on schedule. Here's why cycles can stay regular even as other symptoms start, and how doctors actually diagnose it."
 pubDate: 2026-09-11T13:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["perimenopause basics", "cycles", "signs", "understanding"]
 readTime: "6 min read"
 image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=675&fit=crop&q=80"

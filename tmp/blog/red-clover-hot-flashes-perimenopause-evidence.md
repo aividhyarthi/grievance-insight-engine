@@ -2,7 +2,7 @@
 title: "Red Clover for Hot Flashes: What the Evidence Actually Shows"
 description: "Red clover extract is one of the most commonly sold phytoestrogen supplements for hot flashes. Here is what it actually contains, what trials have found, and where it fits alongside other options."
 pubDate: 2026-10-10T08:17:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "hot flashes"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

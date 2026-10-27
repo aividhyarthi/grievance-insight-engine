@@ -2,7 +2,7 @@
 title: "Losing Your Sense of Humor: Emotional Flatness and Andropause"
 description: "Some midlife men notice they no longer laugh easily or find much funny, without feeling clinically depressed. Here's how testosterone decline can produce emotional flatness, and how to tell it apart from depression."
 pubDate: 2026-09-18T10:16:17Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["mood", "emotional flatness", "depression", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

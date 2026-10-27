@@ -2,7 +2,7 @@
 title: "Cooking Oil Choices and Heart Health: What the Evidence Actually Supports"
 description: "Ghee, mustard oil, groundnut oil, and olive oil all have their advocates in Indian kitchens. Here is what the actual evidence says about cooking oils and heart health, beyond what the bottle label claims."
 pubDate: 2026-09-14T04:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["cooking oil", "heart health", "longevity", "nutrition", "Indian diet"]
 readTime: "7 min read"
 featured: false

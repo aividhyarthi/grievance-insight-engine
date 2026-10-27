@@ -2,7 +2,7 @@
 title: "Resveratrol Supplements and Perimenopause: What the Evidence Actually Shows"
 description: "Resveratrol is heavily marketed as an anti-ageing and menopause-support supplement, often alongside red wine headlines. Here is what the actual human evidence shows, and why most of the marketing outpaces the research."
 pubDate: 2026-10-26T18:43:13Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "hot flashes", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

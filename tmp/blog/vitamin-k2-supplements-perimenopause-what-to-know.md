@@ -2,7 +2,7 @@
 title: "Vitamin K2 Supplements in Perimenopause: What to Know Before You Start"
 description: "Vitamin K2 is increasingly marketed alongside vitamin D and calcium for bone health in perimenopause. Here is what distinguishes it from the K1 you already get from leafy greens, and what the evidence actually supports."
 pubDate: 2026-10-16T06:17:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "bone health", "heart health", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

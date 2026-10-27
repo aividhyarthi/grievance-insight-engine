@@ -2,7 +2,7 @@
 title: "Maca Root and Testosterone: What the Research Actually Shows"
 description: "Maca root is sold across Indian pharmacies and online stores as a libido and energy booster for men. Here is what the actual research says about its effect on testosterone, and what it may genuinely help with instead."
 pubDate: 2026-10-07T02:20:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["maca root", "supplements", "testosterone", "andropause", "libido", "midlife health"]
 readTime: "9 min read"
 featured: false

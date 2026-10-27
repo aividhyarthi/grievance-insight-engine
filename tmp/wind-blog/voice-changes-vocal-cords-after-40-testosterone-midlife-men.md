@@ -2,7 +2,7 @@
 title: "Why Your Voice Sounds Different After 40: Vocal Changes and Testosterone"
 description: "A voice that sounds thinner, hoarser, or less steady after 40 is more common than most men realise. Here's what's actually changing in the vocal cords, and where testosterone fits in."
 pubDate: 2026-10-08T10:20:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["voice changes", "vocal health", "ageing", "testosterone", "andropause", "midlife men"]
 readTime: "8 min read"
 featured: false

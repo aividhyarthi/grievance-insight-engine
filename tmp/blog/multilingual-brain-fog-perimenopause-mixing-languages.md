@@ -2,7 +2,7 @@
 title: "Why You Keep Mixing Up Your Languages: Perimenopause and Multilingual Brain Fog"
 description: "Reaching for a Hindi word mid-English sentence, or losing a word in your mother tongue entirely. For multilingual Indian women, perimenopause brain fog has a specific, confusing extra layer."
 pubDate: 2026-10-09T10:18:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["brain fog", "symptoms", "cognitive", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=1200&h=675&fit=crop&q=80"

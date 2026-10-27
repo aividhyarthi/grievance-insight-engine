@@ -2,7 +2,7 @@
 title: "Being the Eldest Daughter-in-Law in Perimenopause: Running the Household When You Have Nothing Left to Give"
 description: "As the eldest bahu, the household often runs through you by default. Here's how to keep managing a joint family's needs while perimenopause quietly drains the energy that role assumes you have."
 pubDate: 2026-09-18T08:16:04Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "family", "relationships", "mental health", "community"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"

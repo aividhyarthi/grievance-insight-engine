@@ -2,7 +2,7 @@
 title: "Your Screening Checklist for Perimenopause: Mammograms, Pap Smears, and More"
 description: "Perimenopause is exactly the right time to get proactive about screening tests, mammograms, pap smears, bone density, and heart health checks. Here is a clear, practical checklist for Indian women in their 40s and 50s."
 pubDate: 2026-07-12
-author: "Journal Desk"
+author: "Kavita Menon"
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman reviewing her health screening checklist during perimenopause"
 tags: ["understanding", "screening", "mammogram", "pap smear", "when to see doctor"]

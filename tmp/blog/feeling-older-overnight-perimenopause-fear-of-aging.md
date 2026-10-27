@@ -2,7 +2,7 @@
 title: "Feeling Older Overnight: Perimenopause and the Fear of Aging"
 description: "One month you felt fine, the next you felt decades older. Why perimenopause can trigger a sudden, unsettling sense of aging, and how to work through it."
 pubDate: 2026-09-09T19:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["identity", "mental health", "mood", "emotional wellbeing"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

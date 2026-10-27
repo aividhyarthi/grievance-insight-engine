@@ -2,7 +2,7 @@
 title: "Hearing Changes in Midlife Men: What's Hormonal, What's Just Ageing"
 description: "Why you're asking 'what?' more often and turning up the TV volume after 40, and how testosterone, ageing, and other health factors each play a role."
 pubDate: 2026-09-23T10:16:51Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["hearing loss", "presbycusis", "ageing", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

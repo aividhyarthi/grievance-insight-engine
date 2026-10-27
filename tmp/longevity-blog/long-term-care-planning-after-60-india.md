@@ -2,7 +2,7 @@
 title: "Planning for Long-Term Care After 60: In-Home Care, Assisted Living, and What It Actually Costs in India"
 description: "Most Indian families think about elder care only in a crisis. Here is a practical look at the actual care options available after 60, what they cost in different Indian cities, and how to start planning before you need to."
 pubDate: 2026-10-13T08:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["financial health", "caregiving", "healthy ageing", "longevity"]
 readTime: "9 min read"
 featured: false

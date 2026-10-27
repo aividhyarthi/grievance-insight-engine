@@ -2,7 +2,7 @@
 title: "Why You Suddenly Need Reading Glasses After 40: Presbyopia Explained"
 description: "Struggling to read fine print or restaurant menus that used to be easy? Here is why near vision changes almost everyone after 40, and what actually helps."
 pubDate: 2026-10-06T04:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["eye health", "ageing", "vision", "daily life"]
 readTime: "8 min read"
 featured: false

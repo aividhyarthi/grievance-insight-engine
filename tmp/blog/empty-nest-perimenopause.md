@@ -2,7 +2,7 @@
 title: "Empty Nest and Perimenopause: When Two Big Changes Arrive Together"
 description: "Children leaving home for college or work often lands in the exact same years as perimenopause. Here is why this overlap hits so hard, and how to move through both changes with a little more ease."
 pubDate: 2026-07-16
-author: "Journal Desk"
+author: "Divya Krishnan"
 image: "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman navigating empty nest alongside perimenopause"
 tags: ["life", "empty nest", "mental health", "community"]

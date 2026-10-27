@@ -2,7 +2,7 @@
 title: "Hernias After 40: Why They Become More Common, and What Actually Helps"
 description: "Why hernias become more common with age, how to recognise the early signs, and what treatment and prevention actually look like for adults over 40."
 pubDate: 2026-10-21T10:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["abdominal health", "ageing", "longevity after 40", "men's health"]
 readTime: "8 min read"
 featured: false

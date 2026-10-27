@@ -2,7 +2,7 @@
 title: "Constipation and Piles After 40: Why They Become More Common, and What Actually Helps"
 description: "Irregular bowel movements and piles become noticeably more common after 40, yet remain something many Indians quietly tolerate rather than discuss. Here is why they happen more, and what genuinely helps."
 pubDate: 2026-10-11T08:19:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["digestive health", "gut health", "healthy ageing", "nutrition"]
 readTime: "9 min read"
 featured: false

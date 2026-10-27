@@ -2,7 +2,7 @@
 title: "Why Coffee Hits Differently After 40: Caffeine Sensitivity and Testosterone"
 description: "Many Indian men notice their morning coffee keeps them wired longer or leaves them jittery after 40. Here's what changes in caffeine metabolism, sleep, and testosterone have to do with it."
 pubDate: 2026-09-18T02:16:17Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["caffeine", "sleep", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

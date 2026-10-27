@@ -2,7 +2,7 @@
 title: "Home Renovation and DIY Projects After 40: The Physical Strain Nobody Warns You About"
 description: "A weekend of painting, assembling furniture, or overseeing renovation work can leave midlife men sore for days in a way it never used to. Here's why the recovery is slower, and how to plan projects around it."
 pubDate: 2026-09-27T04:17:25Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["home renovation", "DIY", "physical strain", "injury recovery", "muscle loss", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

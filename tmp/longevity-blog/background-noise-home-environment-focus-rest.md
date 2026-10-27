@@ -2,7 +2,7 @@
 title: "Quiet at Home After 40: Why Background Noise Affects Focus and Rest More Than You Think"
 description: "Why the everyday background noise of an Indian home, traffic, television, family chatter, appliances, becomes harder to tune out after 40, and what actually helps focus and rest."
 pubDate: 2026-09-27T08:16:25Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["sensory health", "sleep", "healthy ageing", "longevity", "stress management"]
 readTime: "7 min read"
 featured: false

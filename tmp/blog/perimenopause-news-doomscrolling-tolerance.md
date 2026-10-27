@@ -2,7 +2,7 @@
 title: "Why You Can't Watch the News Anymore: Perimenopause and Doomscrolling Tolerance"
 description: "If the evening news now leaves you anxious for hours, or you catch yourself doomscrolling at 1am unable to stop, perimenopause can genuinely lower your tolerance for distressing content. Here's why, and what helps."
 pubDate: 2026-10-03T06:15:45Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["anxiety", "mental health", "mood swings", "technology", "life"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

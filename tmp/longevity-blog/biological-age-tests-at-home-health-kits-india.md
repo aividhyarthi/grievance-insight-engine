@@ -2,7 +2,7 @@
 title: "Biological Age Tests and At-Home Health Kits: Are They Actually Worth It in India?"
 description: "Epigenetic clocks, biological age apps, and finger-prick home testing kits are a growing market in India. Here is what these tests can and cannot actually tell you."
 pubDate: 2026-10-18T10:17:48Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["biological age testing", "health screening", "longevity science", "evidence-based medicine", "healthy ageing"]
 readTime: "8 min read"
 featured: false

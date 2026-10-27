@@ -2,7 +2,7 @@
 title: "Why You Feel Cold More Easily After 40: Thermoregulation, Circulation, and When to Get It Checked"
 description: "Reaching for a shawl indoors while everyone else is comfortable is common after 40. Here's why the body's ability to regulate temperature genuinely changes with age, and when persistent cold sensitivity is worth mentioning to a doctor."
 pubDate: 2026-09-29T08:17:33Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["thermoregulation", "healthy ageing", "longevity", "circulation", "preventive health"]
 readTime: "8 min read"
 featured: false

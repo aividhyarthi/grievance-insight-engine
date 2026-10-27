@@ -2,7 +2,7 @@
 title: "Turmeric and Healthy Ageing: What the Research Actually Supports"
 description: "Turmeric is India's most talked-about spice for health, but the evidence behind it is more specific and more limited than the marketing suggests. Here is an honest look at what curcumin research actually shows."
 pubDate: 2026-09-28T04:17:46Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["turmeric", "Ayurveda", "nutrition", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

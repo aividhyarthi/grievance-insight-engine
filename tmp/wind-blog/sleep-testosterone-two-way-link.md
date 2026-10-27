@@ -2,7 +2,7 @@
 title: "The Two-Way Link Between Poor Sleep and Low Testosterone"
 description: "Poor sleep lowers testosterone, and low testosterone disrupts sleep. Understanding this loop is often the key to fixing both, rather than treating them as separate problems."
 pubDate: 2026-09-04T13:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["sleep", "testosterone", "andropause", "sleep apnoea", "midlife health"]
 image: "https://images.unsplash.com/photo-8bn3C9xTGBo?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A man sleeping peacefully in a bed in a softly lit bedroom"

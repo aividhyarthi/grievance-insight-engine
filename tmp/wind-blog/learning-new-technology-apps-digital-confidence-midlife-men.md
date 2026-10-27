@@ -2,7 +2,7 @@
 title: "Learning New Apps and Technology Feels Harder After 40: Digital Confidence and Testosterone"
 description: "A new UPI app redesign or an unfamiliar office tool can feel oddly frustrating after 40. Here is why that happens, how testosterone and brain fog play a role, and what actually helps."
 pubDate: 2026-10-05T06:20:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["brain fog", "digital confidence", "testosterone", "andropause", "cognitive health", "midlife health"]
 readTime: "8 min read"
 featured: false

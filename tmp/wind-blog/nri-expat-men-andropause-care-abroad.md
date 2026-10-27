@@ -2,7 +2,7 @@
 title: "Andropause Care for NRI and Expat Indian Men: Getting Diagnosed and Treated Abroad"
 description: "Indian men living in the Gulf, US, UK, or Australia face different healthcare systems, insurance rules, and doctor attitudes when symptoms of low testosterone show up. Here's how to navigate it."
 pubDate: 2026-09-13T02:16:46Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["NRI health", "expat health", "testosterone test", "andropause", "healthcare access"]
 readTime: "8 min read"
 featured: false

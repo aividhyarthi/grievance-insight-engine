@@ -2,7 +2,7 @@
 title: "Eating for a Longer Life: What Indian Food Traditions Already Get Right"
 description: "Protein, fibre, fermented foods, and home-cooked meals are longevity fundamentals that traditional Indian kitchens have relied on for generations. Here is how to build on that foundation, and where modern eating habits work against it."
 pubDate: 2026-09-04T09:00:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["nutrition", "longevity", "Indian diet", "gut health", "protein"]
 image: "https://images.unsplash.com/photo-adzbTddUg68?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian thali with rice, dal, and vegetables arranged on a plate"

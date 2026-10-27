@@ -2,7 +2,7 @@
 title: "Breaking Your Fast in Perimenopause: Why Navratri, Karva Chauth, and Ramzan Meals Hit Differently Now"
 description: "The fast itself isn't the only part that's changed. The meal you break it with can now trigger a blood sugar crash, bloating, or a wave of fatigue that never used to happen. Here's why, and how to break a fast more comfortably."
 pubDate: 2026-09-25T06:17:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["life", "fasting", "festivals", "blood sugar", "India"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

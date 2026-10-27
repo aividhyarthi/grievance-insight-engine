@@ -2,7 +2,7 @@
 title: "Natural Remedies for Perimenopause Heavy Bleeding — What Actually Helps"
 description: "Heavy periods during perimenopause have a hormonal cause. Several evidence-based natural approaches can reduce bleeding significantly — here is what works and how."
 pubDate: 2026-05-29
-author: "Journal Desk"
+author: "Ananya Rao"
 image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman resting with a warm compress, representing relief from heavy perimenopausal bleeding"
 tags: ["natural remedies", "heavy bleeding", "periods", "lifestyle", "symptoms", "India"]

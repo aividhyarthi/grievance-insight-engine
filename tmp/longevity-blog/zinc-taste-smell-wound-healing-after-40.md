@@ -2,7 +2,7 @@
 title: "Zinc After 40: What It Actually Does for Taste, Smell, and Wound Healing"
 description: "Zinc is usually mentioned only for bones and immunity, but it also plays a quiet role in taste, smell, and how quickly cuts and wounds heal. Here is what the evidence says about zinc after 40, and when a supplement might genuinely help."
 pubDate: 2026-10-12T02:18:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["zinc", "supplements", "immunity", "wound healing", "healthy ageing"]
 readTime: "8 min read"
 featured: false

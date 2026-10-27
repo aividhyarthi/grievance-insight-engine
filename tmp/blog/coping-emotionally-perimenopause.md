@@ -2,7 +2,7 @@
 title: "How Do Women Cope Emotionally During Perimenopause?"
 description: "Emotional changes in perimenopause are real and hormonal — not weakness. Here is a practical, compassionate guide to understanding and coping with the mood shifts, anxiety, and sadness that can arrive in your 40s."
 pubDate: 2026-05-31
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["mental-health", "perimenopause", "mood", "anxiety", "coping"]
 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman sitting peacefully by a window, reflecting — representing emotional coping during perimenopause"

@@ -2,7 +2,7 @@
 title: "Varicocele After 40: The Testicular Vein Issue Linked to Fertility and Testosterone"
 description: "A varicocele, enlarged veins in the scrotum, is common and often harmless, but it can affect fertility and, in some men, testosterone. Here's what it is, when to worry, and when to see a doctor."
 pubDate: 2026-10-23T08:18:19Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["testicular health", "fertility", "testosterone", "men's health"]
 readTime: "8 min read"
 featured: false

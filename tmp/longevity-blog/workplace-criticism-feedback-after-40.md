@@ -2,7 +2,7 @@
 title: "Taking Feedback and Criticism at Work Differently After 40: What Actually Changes, and Why It Can Work in Your Favour"
 description: "A younger manager's blunt feedback can sting differently once you have decades of experience behind you. Here is what genuinely changes in how people process workplace criticism with age, and how to use it as an advantage."
 pubDate: 2026-09-23T06:17:42Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["workplace health", "mental health", "resilience", "midlife health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Beyond Calcium: What Magnesium and Zinc Actually Do for Bone and Immune Health After 40"
 description: "Calcium gets nearly all the attention in bone health conversations, but magnesium and zinc play genuine, distinct roles in bone strength and immune function too. Here is what the evidence actually shows, and what to check before supplementing."
 pubDate: 2026-09-22T10:18:51Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["magnesium", "zinc", "supplements", "bone health", "longevity"]
 readTime: "9 min read"
 featured: false

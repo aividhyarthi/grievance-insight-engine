@@ -2,7 +2,7 @@
 title: "Jet Lag After 50: Why Travel Hits Harder as You Age, and How to Recover Faster"
 description: "Jet lag and travel fatigue tend to feel worse and last longer after 50, especially for the many Indian families travelling frequently to visit children abroad. Here is why that happens and what actually speeds up recovery."
 pubDate: 2026-09-13T06:18:07Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["sleep", "travel health", "circadian rhythm", "longevity", "healthy ageing"]
 readTime: "7 min read"
 featured: false

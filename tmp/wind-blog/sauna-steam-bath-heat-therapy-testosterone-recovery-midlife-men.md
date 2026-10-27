@@ -2,7 +2,7 @@
 title: "Sauna and Steam Baths: The Heat Therapy Trend and What It Actually Does for Testosterone and Recovery"
 description: "Saunas and steam rooms have become a popular midlife wellness habit, often marketed alongside bold hormone claims. Here is what the evidence actually supports, and who should be cautious."
 pubDate: 2026-10-17T08:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["wellness trends", "recovery", "testosterone", "stress", "andropause"]
 readTime: "9 min read"
 featured: false

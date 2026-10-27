@@ -2,7 +2,7 @@
 title: "Why Many People Start Avoiding Photographs After 40, and What It Says About Self-Image"
 description: "Ducking out of the family photo or deleting pictures before anyone sees them is common after 40. Here's why the shift happens, and how to build a healthier relationship with how you are seen."
 pubDate: 2026-09-29T06:17:33Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["self-image", "mental health", "healthy ageing", "longevity", "confidence"]
 readTime: "8 min read"
 featured: false

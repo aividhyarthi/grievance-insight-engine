@@ -2,7 +2,7 @@
 title: "Age Spots and Skin Pigmentation After 40: Why They Appear, and What Actually Helps"
 description: "Flat brown or dark patches on the face, hands, and arms are extremely common after 40. Here is why pigmentation changes happen, how to tell harmless spots from ones worth checking, and what genuinely helps."
 pubDate: 2026-10-19T10:17:51Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["skin health", "sun protection", "healthy ageing"]
 readTime: "7 min read"
 featured: false

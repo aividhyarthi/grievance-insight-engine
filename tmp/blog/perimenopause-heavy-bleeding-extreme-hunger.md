@@ -2,7 +2,7 @@
 title: "Heavy Bleeding and Extreme Hunger in Perimenopause: What's Going On"
 description: "Soaking through a pad in an hour and eating like you never ate — both are happening because of the same hormonal shift. Here is what is driving each one and what actually helps."
 pubDate: 2026-06-18
-author: "Journal Desk"
+author: "Divya Krishnan"
 image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing discomfort and fatigue from perimenopause symptoms"
 tags: ["bleeding", "hunger", "symptoms", "cycles", "blood sugar"]

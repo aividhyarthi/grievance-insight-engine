@@ -2,7 +2,7 @@
 title: "Vasectomy and Testosterone: Debunking the Myths Indian Men Worry About"
 description: "Many Indian men quietly avoid a vasectomy out of fear it will cut their testosterone or 'manhood.' Here is what the surgery actually does, and does not do, to your hormones."
 pubDate: 2026-10-22T02:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["vasectomy", "testosterone", "andropause", "fatherhood", "men's health", "myths"]
 readTime: "9 min read"
 featured: false

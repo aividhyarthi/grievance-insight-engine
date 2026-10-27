@@ -2,7 +2,7 @@
 title: "Coconut for Perimenopause: Water, Oil, and Flesh, What the Evidence Actually Shows"
 description: "Coconut shows up in Indian kitchens and beauty routines in a dozen forms, each with its own claims. Here is an honest, form-by-form look at what the evidence supports for perimenopause."
 pubDate: 2026-10-22T04:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "skin", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

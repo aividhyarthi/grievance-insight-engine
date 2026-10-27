@@ -2,7 +2,7 @@
 title: "Guggul for Cholesterol and Joint Health: Traditional Use Versus Current Evidence"
 description: "Guggul, a resin used in Ayurvedic medicine for centuries, is often mentioned for cholesterol and joint complaints. Here is what it actually is, and what current evidence supports."
 pubDate: 2026-10-16T07:00:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["Ayurveda", "cholesterol", "joint health", "longevity", "India"]
 readTime: "7 min read"
 featured: false

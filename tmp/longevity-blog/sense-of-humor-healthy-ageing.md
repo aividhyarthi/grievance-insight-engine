@@ -2,7 +2,7 @@
 title: "Keeping Your Sense of Humor After 40: Why Laughter Might Be a Genuine Healthy-Ageing Trait"
 description: "Humor isn't just a personality trait, it shows up repeatedly in healthy-ageing and resilience research. Here's what the evidence actually suggests, and how to keep a sense of humor active as life gets more serious."
 pubDate: 2026-10-02T08:18:45Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["mental health", "stress management", "social connection", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

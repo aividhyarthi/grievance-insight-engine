@@ -2,7 +2,7 @@
 title: "Renewing Your Driving License After 50 in India: Medical Tests, Rules, and What to Expect"
 description: "A practical guide to driving license renewal rules for older adults in India, what medical checks may be involved, and how to handle the process without last-minute stress."
 pubDate: 2026-10-21T08:30:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["independence after 50", "longevity after 40", "ageing", "everyday life"]
 readTime: "8 min read"
 featured: false

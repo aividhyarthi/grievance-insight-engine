@@ -2,7 +2,7 @@
 title: "Why Your Joints Crack and Pop After 40, and When It's Something to Worry About"
 description: "Knees that click on the stairs and knuckles that pop more than they used to are extremely common after 40. Here is what is actually causing the sound, and when it is worth getting checked."
 pubDate: 2026-10-08T08:00:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["joint health", "crepitus", "osteoarthritis", "exercise", "healthy ageing"]
 readTime: "8 min read"
 featured: false

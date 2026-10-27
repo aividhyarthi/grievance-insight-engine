@@ -2,7 +2,7 @@
 title: "Restless Legs at Night After 40: What It Is, and What Actually Helps"
 description: "That crawling, tugging urge to move your legs the moment you lie down and relax has a real name and real causes. Here is what restless legs syndrome actually is, why it often appears after 40, and what genuinely helps."
 pubDate: 2026-10-07T04:18:46Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["restless legs syndrome", "sleep", "iron deficiency", "sleep quality", "healthy ageing"]
 readTime: "8 min read"
 featured: false

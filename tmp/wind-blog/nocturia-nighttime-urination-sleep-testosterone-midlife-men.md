@@ -2,7 +2,7 @@
 title: "Needing the Bathroom at Night: Nocturia, Sleep, and Testosterone After 40"
 description: "Waking up once or twice a night to urinate becomes common for men after 40, and the resulting broken sleep has a real, often overlooked connection to testosterone and daytime energy."
 pubDate: 2026-10-02T10:18:34Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["nocturia", "urinary health", "sleep", "prostate health", "fatigue", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

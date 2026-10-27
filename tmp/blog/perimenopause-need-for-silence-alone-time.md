@@ -2,7 +2,7 @@
 title: "Perimenopause and Your Sudden Need for Silence: Why Alone Time Feels Different Now"
 description: "If you have started craving a locked bathroom door or a silent car more than actual company, this is a common and explainable perimenopause pattern, not a sign you have stopped loving the people around you."
 pubDate: 2026-09-21T08:17:37Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "mood", "stress", "relationships"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=675&fit=crop&q=80"

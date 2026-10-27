@@ -2,7 +2,7 @@
 title: "The Gut-Hormone Connection: How Your Digestion Affects Perimenopause"
 description: "Your gut does more than digest food, it actually helps regulate your oestrogen levels. Here is the fascinating, genuinely useful connection between gut health and hormones in perimenopause, and what it means for you."
 pubDate: 2026-07-13
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman learning about the connection between gut health and hormones in perimenopause"
 tags: ["natural remedies", "gut health", "hormones", "diet"]

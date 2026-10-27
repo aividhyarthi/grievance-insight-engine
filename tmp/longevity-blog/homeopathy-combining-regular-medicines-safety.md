@@ -2,7 +2,7 @@
 title: "Is It Safe to Combine Homeopathy With Your Regular Medicines?"
 description: "Many Indians use homeopathy alongside prescription medication without telling their doctor. Here is what to actually know about safety, disclosure, and interactions."
 pubDate: 2026-09-19T09:08:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "medication safety", "polypharmacy", "healthy ageing", "longevity"]
 readTime: "8 min read"
 featured: false

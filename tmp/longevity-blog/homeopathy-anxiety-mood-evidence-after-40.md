@@ -2,7 +2,7 @@
 title: "Homeopathy for Anxiety and Low Mood After 40: What People Try, and What the Evidence Shows"
 description: "Many Indians turn to homeopathy when anxiety or low mood sets in after 40. Here is what people commonly try, and what the evidence situation actually looks like."
 pubDate: 2026-10-15T02:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "anxiety", "mood", "mental health", "longevity", "healthy ageing"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "A Diwali Guide for Healthy Ageing: Cleaning, Sweets, and Diya Safety After 50"
 description: "Diwali brings deep cleaning, festive sweets, and open flames all at once. Here is a practical guide to enjoying the festival fully after 50 without straining your body or your health."
 pubDate: 2026-09-30T06:16:48Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["festival health", "healthy ageing", "longevity", "safety", "family health"]
 readTime: "8 min read"
 featured: false

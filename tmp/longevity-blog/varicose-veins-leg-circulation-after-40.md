@@ -2,7 +2,7 @@
 title: "Varicose Veins and Leg Circulation After 40: What Actually Helps"
 description: "Swollen ankles after a long day, visible leg veins, or a heavy feeling in your calves? Here is what changes in leg circulation after 40, and what genuinely helps."
 pubDate: 2026-10-06T08:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["ageing", "circulation", "joint and movement health", "daily life"]
 readTime: "9 min read"
 featured: false

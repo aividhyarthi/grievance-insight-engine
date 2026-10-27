@@ -2,7 +2,7 @@
 title: "Karwa Chauth: Why More Husbands Are Fasting Too, and What It Means for Your Own Symptoms"
 description: "A growing number of Indian husbands now fast alongside their wives on Karwa Chauth. Here's what reciprocal fasting means for a man managing andropause symptoms of his own."
 pubDate: 2026-10-03T04:16:24Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["Karwa Chauth", "fasting", "relationships", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

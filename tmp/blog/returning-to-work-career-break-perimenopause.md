@@ -2,7 +2,7 @@
 title: "Returning to Work After a Career Break in Perimenopause: Starting Over Professionally in Your 40s"
 description: "Re-entering the workforce after years away is hard enough. Doing it while managing brain fog, low confidence, and hot flashes adds a layer few return-to-work programmes account for. Here is how to navigate it."
 pubDate: 2026-09-17T06:17:48Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["working women", "life", "brain fog", "confidence"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

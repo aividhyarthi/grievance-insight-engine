@@ -2,7 +2,7 @@
 title: "Your Gut Microbiome Might Be Doing More for Your Lifespan Than You Think"
 description: "The trillions of bacteria in your gut influence inflammation, immunity, and metabolic health in ways longevity research keeps circling back to. Here is what fibre and fermented foods, an Indian kitchen staple, actually do for you."
 pubDate: 2026-09-05T09:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["gut health", "microbiome", "longevity", "fermented food", "fibre"]
 image: "https://images.unsplash.com/photo-NFHeBysjCTI?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Bowl of fresh curd with a spoon"

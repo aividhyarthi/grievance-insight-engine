@@ -2,7 +2,7 @@
 title: "Common HRT Myths, Debunked"
 description: "Hormone therapy carries a heavy load of outdated fear and misinformation, much of it traced back to one widely misread study decades ago. Here is what the current evidence actually says about the most persistent myths."
 pubDate: 2026-09-05T19:30:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["HRT", "hormones", "myths", "treatment", "understanding"]
 readTime: "9 min read"
 image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&h=675&fit=crop&q=80"

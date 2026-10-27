@@ -2,7 +2,7 @@
 title: "Dussehra and Durga Puja Pandal-Hopping: Why Late Nights Hit Harder After 40"
 description: "Pandal-hopping through Durga Puja and staying out for Dussehra's Ravana Dahan used to be effortless, so why does the same late night now cost a man two days of recovery in midlife?"
 pubDate: 2026-10-02T04:18:34Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["Durga Puja", "Dussehra", "festivals", "late nights", "sleep", "fatigue", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

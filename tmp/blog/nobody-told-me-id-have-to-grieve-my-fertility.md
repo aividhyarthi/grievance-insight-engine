@@ -2,7 +2,7 @@
 title: "Nobody Told Me I'd Have to Grieve My Fertility Before I Was Ready"
 description: "The end of your fertile years can bring real grief, even if you never wanted more children. Here is why that loss is rarely talked about, and how to sit with it without judging yourself."
 pubDate: 2026-09-14T04:18:09Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["identity", "fertility", "mental health", "grief", "perimenopause"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

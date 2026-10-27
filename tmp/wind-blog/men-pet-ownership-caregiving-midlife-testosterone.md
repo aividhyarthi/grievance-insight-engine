@@ -2,7 +2,7 @@
 title: "Men and Pets in Midlife: Caregiving for Animals, Companionship, and Testosterone"
 description: "More midlife Indian men are taking on daily pet care as children grow up and leave home. Here is how that role connects to stress, routine, and hormonal health."
 pubDate: 2026-09-21T10:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["pets", "companionship", "stress", "routine", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

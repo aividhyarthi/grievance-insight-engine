@@ -2,7 +2,7 @@
 title: "The Empty Nest After 50: Adjusting When Your Children Move Out, and Becoming a Long-Distance Grandparent"
 description: "When children move to another city or country, the quiet that follows is a real adjustment, not just an emotional inconvenience. Here is what actually helps, including staying meaningfully connected as a long-distance grandparent."
 pubDate: 2026-09-28T08:17:46Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["empty nest", "family health", "mental health", "social connection", "healthy ageing"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Soy, Tofu, and Testosterone: Does Eating Soy Really Lower Testosterone in Men?"
 description: "Soy chunks, tofu, and soy milk are increasingly common in Indian vegetarian diets, and gym folklore insists they lower testosterone. Here is what the actual research says."
 pubDate: 2026-10-13T03:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["foods", "soy", "testosterone", "andropause", "nutrition", "midlife health"]
 readTime: "9 min read"
 featured: false

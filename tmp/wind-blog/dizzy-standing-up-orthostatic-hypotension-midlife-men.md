@@ -2,7 +2,7 @@
 title: "Why You Feel Dizzy Standing Up Fast After 40: Orthostatic Hypotension Explained"
 description: "That brief head-rush when you stand up too quickly becomes more common after 40. Here is what's actually happening in your body, when it's harmless, and when to see a doctor."
 pubDate: 2026-10-15T10:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["andropause", "testosterone", "blood pressure", "heart health", "symptoms"]
 readTime: "8 min read"
 featured: false

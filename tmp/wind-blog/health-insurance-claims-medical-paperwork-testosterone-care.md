@@ -2,7 +2,7 @@
 title: "Filing an Insurance Claim for Testosterone Treatment: Navigating India's Medical Paperwork"
 description: "Having health insurance doesn't mean the paperwork for hormone-related tests and treatment is simple. Here's what actually gets covered, what gets rejected, and how to make the claims process less painful."
 pubDate: 2026-09-26T04:17:35Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["health insurance", "insurance claims", "healthcare access", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

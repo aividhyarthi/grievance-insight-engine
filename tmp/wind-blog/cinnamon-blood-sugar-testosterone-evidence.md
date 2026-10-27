@@ -2,7 +2,7 @@
 title: "Cinnamon and Blood Sugar: What It Can (and Can't) Do for Testosterone in Midlife Men"
 description: "Cinnamon shows up constantly in home remedies for blood sugar and hormones. Here's an honest look at what the research actually supports, and where the testosterone claim falls apart."
 pubDate: 2026-10-24T08:17:14Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["foods", "blood sugar", "testosterone", "diabetes", "midlife health"]
 readTime: "8 min read"
 featured: false

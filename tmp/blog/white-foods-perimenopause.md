@@ -2,7 +2,7 @@
 title: "White and Aromatic Foods You Should Eat During Perimenopause"
 description: "Garlic, onion, ginger, cauliflower, mushroom — the humble white and aromatic staples of an Indian kitchen carry real, specific benefits for perimenopause, from immunity to inflammation. Here is why they belong on your plate."
 pubDate: 2026-07-15
-author: "Journal Desk"
+author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=1200&h=675&fit=crop&q=80"
 imageAlt: "White and aromatic vegetables like garlic, onion, and ginger for perimenopause nutrition"
 tags: ["natural remedies", "diet", "white vegetables", "gut health", "nutrition"]

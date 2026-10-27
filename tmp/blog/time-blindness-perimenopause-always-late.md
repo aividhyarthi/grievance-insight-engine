@@ -2,7 +2,7 @@
 title: "Time Blindness in Perimenopause: Why You're Suddenly Always Late"
 description: "If you've gone from punctual to perpetually running behind, you're not imagining it. Here's why perimenopause can distort your sense of time, and what actually helps."
 pubDate: 2026-10-14T10:16:30Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["brain fog", "symptoms", "mental health", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=675&fit=crop&q=80"

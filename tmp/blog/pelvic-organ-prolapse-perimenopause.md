@@ -2,7 +2,7 @@
 title: "Pelvic Organ Prolapse in Perimenopause: A Heaviness You Shouldn't Ignore"
 description: "A dragging or heavy sensation in the pelvis, or a visible bulge, can be pelvic organ prolapse — more common in perimenopause than most women realise, and genuinely treatable. Here is what it is and what helps."
 pubDate: 2026-07-13
-author: "Journal Desk"
+author: "Divya Krishnan"
 image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman learning about pelvic organ prolapse during perimenopause"
 tags: ["symptoms", "pelvic organ prolapse", "pelvic floor", "urinary symptoms"]

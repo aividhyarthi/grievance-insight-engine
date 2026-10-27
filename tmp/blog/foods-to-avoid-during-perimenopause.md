@@ -2,7 +2,7 @@
 title: "Foods to Avoid During Perimenopause"
 description: "You do not need a restrictive diet in perimenopause, but a few common foods and drinks genuinely make symptoms worse — from hot flashes to broken sleep to mood swings. Here is what to cut back, and why, in an Indian context."
 pubDate: 2026-06-30
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian foods and drinks to cut back on during perimenopause"
 tags: ["natural remedies", "lifestyle", "diet", "nutrition"]

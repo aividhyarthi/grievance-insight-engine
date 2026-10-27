@@ -2,7 +2,7 @@
 title: "Moving In With Your Adult Children, or Having Them Move Back In: Changing Living Arrangements in Midlife"
 description: "Whether it's an adult child moving back home or a father moving in with a married son or daughter, shifting living arrangements in midlife carry a real identity and hormonal toll. Here's what to expect."
 pubDate: 2026-10-03T10:16:24Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["living arrangements", "adult children", "joint family", "identity", "family", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

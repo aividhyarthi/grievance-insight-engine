@@ -2,7 +2,7 @@
 title: "Personal Prayer and Daily Spiritual Practice After 40: What the Evidence on Ritual and Meaning Actually Shows"
 description: "A look at what research on personal prayer, puja, and daily ritual practice actually shows for stress, resilience, and healthy ageing, separate from the social side of religion."
 pubDate: 2026-09-27T04:16:25Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["spiritual practice", "mental health", "stress management", "longevity", "healthy ageing"]
 readTime: "7 min read"
 featured: false

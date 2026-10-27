@@ -2,7 +2,7 @@
 title: "Bad Breath After 40: Why It Happens More, and What Actually Helps"
 description: "Bad breath after 40 is rarely just about brushing. Here is why it becomes more common with age, what is actually behind it, and when it is worth more than a trip to the dentist."
 pubDate: 2026-10-25T02:18:43Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["dental health", "digestive health", "oral hygiene", "ageing"]
 readTime: "6 min read"
 featured: false

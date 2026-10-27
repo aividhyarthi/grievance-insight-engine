@@ -2,7 +2,7 @@
 title: "Numbness and Tingling in Hands and Feet After 40: Peripheral Neuropathy Explained"
 description: "Occasional pins and needles are harmless, but recurring numbness or tingling in your hands or feet after 40 can be an early sign worth checking. Here is what usually causes it and when to see a doctor."
 pubDate: 2026-10-19T06:17:51Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["nerve health", "diabetes", "healthy ageing", "chronic conditions"]
 readTime: "8 min read"
 featured: false

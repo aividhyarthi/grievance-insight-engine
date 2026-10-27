@@ -2,7 +2,7 @@
 title: "Starting a Second Career or Side Business in Midlife: Energy, Confidence, and Testosterone"
 description: "Thinking about a second career or side business after 40? Here's how declining testosterone affects the energy and risk appetite it takes, and how to pace the transition realistically."
 pubDate: 2026-09-25T02:16:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["career change", "side business", "identity", "confidence", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

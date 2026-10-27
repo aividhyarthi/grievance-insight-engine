@@ -2,7 +2,7 @@
 title: "Pomegranate (Anar) for Perimenopause: What the Evidence Actually Shows"
 description: "Pomegranate is a household fruit in Indian kitchens and a frequent subject of hormone-health claims online. Here is what the actual research says about its antioxidants, mild phytoestrogen content, and realistic role in perimenopause."
 pubDate: 2026-10-20T04:17:38Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "india", "hot flashes", "heart health"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

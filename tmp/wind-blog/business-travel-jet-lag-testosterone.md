@@ -2,7 +2,7 @@
 title: "Frequent Business Travel and Testosterone: Jet Lag, Time Zones, and Hormonal Health"
 description: "For Indian men who travel constantly for work, disrupted sleep and shifting time zones can quietly worsen testosterone decline. Here is what actually helps."
 pubDate: 2026-09-11T15:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["travel", "sleep", "testosterone", "andropause", "midlife health"]
 readTime: "6 min read"
 featured: false

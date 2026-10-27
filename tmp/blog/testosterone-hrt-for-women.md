@@ -2,7 +2,7 @@
 title: "Testosterone HRT for Women: Does It Help, and How Do You Get It?"
 description: "Testosterone is not just a male hormone. Here is what it does in women's bodies, when adding it to hormone therapy might help with low libido and energy, and how to actually access it in India."
 pubDate: 2026-09-08T17:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["HRT", "hormones", "libido", "testosterone"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"

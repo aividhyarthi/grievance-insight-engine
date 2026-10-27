@@ -2,7 +2,7 @@
 title: "Calcium and Vitamin D Rich Indian Foods for Perimenopause Bone Health"
 description: "Falling oestrogen speeds up bone loss in perimenopause, and most Indian diets fall short on both calcium and vitamin D. Here are the specific foods that help, and how much you actually need."
 pubDate: 2026-09-25T02:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "diet", "bone health", "nutrition", "vitamin D"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

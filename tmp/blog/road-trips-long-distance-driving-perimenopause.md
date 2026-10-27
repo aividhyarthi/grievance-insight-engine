@@ -2,7 +2,7 @@
 title: "Road Trips and Long-Distance Driving in Perimenopause: Planning Around Hot Flashes, Bladder, and Fatigue"
 description: "A highway drive that used to feel effortless can now mean sudden hot flashes, urgent bathroom stops, and fatigue that hits without warning. Here is how to plan a long drive around perimenopause symptoms."
 pubDate: 2026-09-23T06:17:38Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["life", "hot flashes", "fatigue", "bladder"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

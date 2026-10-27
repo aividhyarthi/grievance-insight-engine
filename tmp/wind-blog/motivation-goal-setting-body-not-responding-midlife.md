@@ -2,7 +2,7 @@
 title: "Motivation and Goal-Setting When Your Body Doesn't Respond Like It Used To"
 description: "Practical ways midlife men can set and stick to fitness and health goals when testosterone decline slows progress and old motivation tricks stop working."
 pubDate: 2026-09-22T04:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["motivation", "goal-setting", "exercise", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

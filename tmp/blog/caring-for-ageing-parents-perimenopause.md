@@ -2,7 +2,7 @@
 title: "Caring for Ageing Parents While You're in Perimenopause"
 description: "Many Indian women are managing their own hormonal transition at the exact same time they are caring for ageing parents or in-laws. Here is how to hold both, and why protecting your own capacity is not selfish."
 pubDate: 2026-07-16
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1509927083803-4bd519298ac4?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman balancing caregiving for ageing parents with her own perimenopause"
 tags: ["life", "caregiving", "community", "self-care"]

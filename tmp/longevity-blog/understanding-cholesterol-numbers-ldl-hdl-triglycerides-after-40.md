@@ -2,7 +2,7 @@
 title: "Understanding Your Cholesterol Numbers After 40: LDL, HDL, and Triglycerides Explained"
 description: "A lipid profile report full of abbreviations and reference ranges can feel harder to read than it should be. Here is what LDL, HDL, and triglycerides actually mean, and what the numbers suggest about your heart health after 40."
 pubDate: 2026-10-19T08:17:51Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["heart health", "metabolic health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Brain-Training Apps and Games After 40: Do They Actually Improve Memory?"
 description: "Brain-training apps promise sharper memory with a few minutes of daily puzzles. Here is what the research actually shows, and what has stronger evidence for protecting memory after 40."
 pubDate: 2026-10-24T08:17:50Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["brain fog", "cognitive health", "memory"]
 readTime: "7 min read"
 featured: false

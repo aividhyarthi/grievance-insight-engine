@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Bloating and Digestive Symptoms: What Women Try, and What the Evidence Shows"
 description: "Bloating, gas, and unpredictable digestion send many Indian women toward homeopathy for a gentler option. Here's an honest, evidence-aware look at what's tried and what the research actually supports."
 pubDate: 2026-10-18T08:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "bloating", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

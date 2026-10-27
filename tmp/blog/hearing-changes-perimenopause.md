@@ -2,7 +2,7 @@
 title: "Hearing Changes in Perimenopause: Why Sounds Feel Different"
 description: "Struggling to follow conversations in noisy rooms, finding sounds too loud, or noticing your hearing feels different, distinct from tinnitus, can be linked to falling oestrogen. Here is why, and what genuinely helps."
 pubDate: 2026-07-12
-author: "Journal Desk"
+author: "Divya Krishnan"
 image: "https://images.unsplash.com/photo-1580281658223-9b93f18ae9ae?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing changes in her hearing during perimenopause"
 tags: ["symptoms", "hearing changes", "hormones"]

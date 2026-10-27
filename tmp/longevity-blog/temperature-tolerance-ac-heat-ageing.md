@@ -2,7 +2,7 @@
 title: "Why Heat and AC Feel Harder to Handle After 40: Temperature Tolerance and Healthy Ageing"
 description: "Your body's ability to regulate temperature changes with age, which is why heat, cold, and even office air conditioning can feel more uncomfortable after 40. Here is what actually changes, and what helps."
 pubDate: 2026-09-25T02:16:58Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["thermoregulation", "healthy ageing", "longevity", "heat health", "preventive health"]
 readTime: "7 min read"
 featured: false

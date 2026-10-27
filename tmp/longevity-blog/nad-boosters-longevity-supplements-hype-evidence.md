@@ -2,7 +2,7 @@
 title: "NAD+ Boosters and 'Longevity Supplements': Hype Versus Evidence"
 description: "NAD+ boosters like NMN and NR are marketed as cutting-edge anti-ageing science. Here is an honest look at what the human evidence actually supports, and what remains unproven hype."
 pubDate: 2026-09-19T08:28:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["NAD+", "supplements", "anti-ageing", "cellular health", "longevity"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Moving House During Perimenopause: Coping With Relocation When Your Body Feels Unstable Too"
 description: "Packing, decision fatigue, and disrupted routines during a house move are hard for anyone, but perimenopause makes relocation harder in specific, predictable ways. Here's how to get through it."
 pubDate: 2026-09-18T06:16:04Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "stress", "brain fog", "sleep", "community"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

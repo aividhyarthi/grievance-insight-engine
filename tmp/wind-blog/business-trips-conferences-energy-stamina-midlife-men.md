@@ -2,7 +2,7 @@
 title: "Business Trips and Work Conferences: Keeping Up the Pace When Your Energy Isn't What It Was"
 description: "Multi-day conferences and client trips used to be routine. For many midlife men they now feel physically draining by day two, and declining testosterone is part of why."
 pubDate: 2026-09-29T02:17:48Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["work travel", "conferences", "energy", "fatigue", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

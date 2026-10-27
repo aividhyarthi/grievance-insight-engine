@@ -2,7 +2,7 @@
 title: "Intermittent Fasting and Longevity: What the Evidence Actually Shows"
 description: "Intermittent fasting is one of the most talked about longevity trends, but the research is more nuanced than the headlines suggest. Here is what actually holds up, and who should be cautious."
 pubDate: 2026-09-08T09:30:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["intermittent fasting", "longevity", "metabolic health", "nutrition", "weight"]
 readTime: "7 min read"
 featured: false

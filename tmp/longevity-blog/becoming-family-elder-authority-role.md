@@ -2,7 +2,7 @@
 title: "Becoming the Elder: What Changes When Family and Community Start Looking Up to You"
 description: "Somewhere in midlife, you stop being the one who asks for advice and start being the one who gives it. This shift into an elder role brings real benefits and real pressures, and it is worth understanding both."
 pubDate: 2026-09-25T08:16:58Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["purpose", "family health", "mental health", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

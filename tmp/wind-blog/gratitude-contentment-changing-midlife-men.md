@@ -2,7 +2,7 @@
 title: "Why Gratitude and Contentment Feel Different After 40: The Emotional Shift Nobody Warns You About"
 description: "Some midlife men notice an unexpected softening, feeling more grateful, less driven by comparison, more content with less. Here's what's behind that shift, and how to tell it apart from emotional flatness."
 pubDate: 2026-09-26T08:17:35Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["gratitude", "contentment", "mood", "emotional health", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

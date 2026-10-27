@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause: What Women Try, and What the Evidence Actually Says"
 description: "Homeopathy is widely used by Indian women for perimenopausal symptoms. Here is an honest, evidence-aware look at why women try it, what the research situation actually is, and what it cannot do."
 pubDate: 2026-09-19T11:08:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "india", "hot flashes"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

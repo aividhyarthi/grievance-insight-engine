@@ -2,7 +2,7 @@
 title: "Teeth Grinding and Jaw Clenching at Night After 40: Stress, Cortisol, and Testosterone"
 description: "Waking up with a sore jaw or a dull morning headache is common in midlife men and often gets dismissed. Here is how stress, cortisol, and falling testosterone connect to nighttime teeth grinding, and what actually helps."
 pubDate: 2026-10-07T06:20:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["bruxism", "stress", "cortisol", "sleep", "testosterone", "andropause"]
 readTime: "9 min read"
 featured: false

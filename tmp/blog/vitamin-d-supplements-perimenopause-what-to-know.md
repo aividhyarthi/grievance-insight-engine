@@ -2,7 +2,7 @@
 title: "Vitamin D Supplements in Perimenopause: What to Know Before You Start"
 description: "Vitamin D deficiency is extremely common among Indian women, and perimenopause raises the stakes for bone health. Here is what the evidence actually shows about vitamin D supplementation, dosing considerations, and what to check before buying one."
 pubDate: 2026-10-01T10:17:34Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "bone health", "natural remedies", "vitamin D", "India"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&h=675&fit=crop&q=80"

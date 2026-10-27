@@ -2,7 +2,7 @@
 title: "Navigating Perimenopause Without Health Insurance in India"
 description: "No health insurance does not mean no options during perimenopause. Here is how to get real care, testing, and treatment on a limited budget in India, and what to prioritise first."
 pubDate: 2026-09-19T06:17:24Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["healthcare costs", "india", "when to see doctor", "understanding"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Thyroid Problems and Testosterone: Why Midlife Men Confuse the Symptoms"
 description: "Fatigue, weight gain, low mood, and a sluggish feeling can point to either a thyroid problem or declining testosterone, and sometimes both. Here is how to tell the difference and what a proper workup should cover."
 pubDate: 2026-10-06T02:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["thyroid", "testosterone", "andropause", "fatigue", "weight gain", "hormonal health"]
 readTime: "9 min read"
 featured: false

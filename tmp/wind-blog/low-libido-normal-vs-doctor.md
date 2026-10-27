@@ -2,7 +2,7 @@
 title: "Low Libido in Midlife: What Is Normal and What Is Worth a Doctor's Evaluation"
 description: "A drop in sex drive is common as men age, but not every change is simply normal ageing. Here is how to tell the difference and why raising it with your doctor is worth doing without embarrassment."
 pubDate: 2026-09-05T11:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["libido", "sexual health", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

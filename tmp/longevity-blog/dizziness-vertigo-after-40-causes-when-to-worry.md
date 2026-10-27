@@ -2,7 +2,7 @@
 title: "Dizziness and Vertigo After 40: Why It Happens More, and When to Get It Checked"
 description: "Feeling lightheaded or like the room is spinning becomes more common after 40. Here is what usually causes it, how to tell a harmless episode from a warning sign, and when it genuinely needs urgent medical attention."
 pubDate: 2026-10-10T08:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["dizziness", "vertigo", "balance", "healthy ageing", "ear health"]
 readTime: "8 min read"
 featured: false

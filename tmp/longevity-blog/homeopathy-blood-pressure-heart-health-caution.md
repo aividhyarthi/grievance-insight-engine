@@ -2,7 +2,7 @@
 title: "Homeopathy for Blood Pressure and Heart Health Concerns: What People Try, and Why Doctors Urge Caution"
 description: "Many Indians managing high blood pressure or heart health worries also explore homeopathy alongside their regular treatment. Here is what people actually try, and why doctors say this is an area where caution matters more than most."
 pubDate: 2026-10-22T09:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["homeopathy", "blood pressure", "heart health", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

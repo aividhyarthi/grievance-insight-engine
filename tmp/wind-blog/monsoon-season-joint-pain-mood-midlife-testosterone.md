@@ -2,7 +2,7 @@
 title: "Why Monsoon Season Hits Harder After 40: Joint Pain, Mood, and Testosterone"
 description: "Falling barometric pressure, humidity, and grey skies make joint pain and low mood worse for many midlife men, and testosterone decline is often part of why the rains feel harder to get through."
 pubDate: 2026-09-19T02:16:45Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["monsoon", "joint pain", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "6 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Screen Time and Eye Health As You Age: What Actually Protects Your Vision"
 description: "Digital eye strain gets worse after 40 as near vision naturally changes, and screen time is only rising. Here is what actually helps, and which age-related eye conditions are worth watching for."
 pubDate: 2026-09-11T13:30:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["eye health", "vision", "screen time", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

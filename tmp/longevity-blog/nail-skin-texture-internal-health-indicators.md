@@ -2,7 +2,7 @@
 title: "What Your Nails and Skin Texture Might Be Telling You About Your Internal Health"
 description: "Ridges, spoon-shaped nails, and sudden changes in skin texture are not just cosmetic quirks. Here is what they can actually indicate, and when to see a doctor."
 pubDate: 2026-09-18T02:16:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["skin health", "nail health", "longevity", "preventive health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

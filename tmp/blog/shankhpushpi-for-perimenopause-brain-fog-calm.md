@@ -2,7 +2,7 @@
 title: "Shankhpushpi for Perimenopause: What It's Traditionally Used For, and What the Evidence Shows"
 description: "Shankhpushpi is one of Ayurveda's oldest brain tonics, often reached for during perimenopausal brain fog and anxiety. Here is what it is traditionally used for and what the research actually supports."
 pubDate: 2026-10-15T02:30:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "brain fog", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

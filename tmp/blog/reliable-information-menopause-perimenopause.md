@@ -2,7 +2,7 @@
 title: "Where to Find Reliable Information About Menopause and Perimenopause in India"
 description: "Misinformation about menopause is everywhere, especially online. Here's how to find trustworthy information, what to look for, and what to avoid when navigating perimenopause in India."
 pubDate: 2025-05-21
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["resources", "information", "menopause", "India"]
 readTime: "6 min read"
 featured: false

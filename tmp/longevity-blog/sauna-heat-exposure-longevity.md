@@ -2,7 +2,7 @@
 title: "Sauna and Heat Exposure: An Emerging Longevity Habit, Explained"
 description: "Regular sauna use is linked to lower cardiovascular risk in several long-term studies. Here is what the research actually shows, and how Indian readers without sauna access can get similar benefits."
 pubDate: 2026-09-08T13:30:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["heat exposure", "sauna", "longevity", "cardiovascular health", "recovery"]
 readTime: "6 min read"
 featured: false

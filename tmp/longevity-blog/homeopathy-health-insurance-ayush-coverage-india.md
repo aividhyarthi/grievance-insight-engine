@@ -2,7 +2,7 @@
 title: "Does Health Insurance Cover Homeopathy in India? AYUSH Policies and What to Check"
 description: "A practical guide to how Indian health insurance treats homeopathic treatment, what AYUSH coverage actually means, and what to verify before you assume you're covered."
 pubDate: 2026-10-23T04:20:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["homeopathy", "health insurance", "ayush"]
 readTime: "7 min read"
 featured: false

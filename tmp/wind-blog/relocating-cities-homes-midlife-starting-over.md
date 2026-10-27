@@ -2,7 +2,7 @@
 title: "Relocating in Midlife: The Hidden Toll of Starting Over in a New City or House"
 description: "A job transfer, a family move, or downsizing to a new house in your 40s or 50s is more than logistics. Here's how relocation stress interacts with testosterone and what actually helps."
 pubDate: 2026-09-18T04:16:17Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["relocation", "stress", "cortisol", "identity", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Digital Literacy After 50: Staying Connected With Family Without the Overwhelm"
 description: "Video calls, messaging apps, and online scams can all feel overwhelming to learn later in life, but staying digitally connected has real benefits for mood and loneliness. Here is a practical, low-pressure way to approach it."
 pubDate: 2026-09-14T10:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["digital literacy", "social connection", "mental health", "longevity", "healthy ageing"]
 readTime: "6 min read"
 featured: false

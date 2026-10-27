@@ -2,7 +2,7 @@
 title: "Marma Therapy: The Ayurvedic Pressure-Point Practice, Explained"
 description: "Marma therapy, the Ayurvedic practice of pressing specific points on the body, is increasingly offered alongside massage and yoga in India. Here is what it actually involves, and what current evidence does and does not support."
 pubDate: 2026-10-14T02:16:56Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["ayurveda", "marma therapy", "pain management", "stress", "traditional medicine"]
 readTime: "8 min read"
 featured: false

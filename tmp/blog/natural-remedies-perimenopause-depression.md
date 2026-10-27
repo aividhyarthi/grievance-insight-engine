@@ -2,7 +2,7 @@
 title: "Natural Remedies for Perimenopause Depression — What the Evidence Actually Says"
 description: "Low mood and depression during perimenopause have a hormonal basis. Several lifestyle and natural approaches are evidence-supported — here is what works and how."
 pubDate: 2026-05-29
-author: "Journal Desk"
+author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman sitting by a window in morning light, representing the emotional heaviness of perimenopausal depression"
 tags: ["natural remedies", "depression", "mood", "mental health", "lifestyle", "symptoms", "India"]

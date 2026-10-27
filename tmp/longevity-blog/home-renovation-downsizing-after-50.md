@@ -2,7 +2,7 @@
 title: "Renovating or Downsizing Your Home After 50: What Actually Matters Before You Start"
 description: "A practical, health-focused look at what to plan for before a home renovation or downsizing move after 50, from physical strain and dust exposure to the emotional side of letting go."
 pubDate: 2026-09-27T02:16:25Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["home safety", "downsizing", "healthy ageing", "longevity", "stress management"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Ginger for Perimenopause: Nausea, Inflammation, and What the Evidence Actually Shows"
 description: "Ginger tea and ginger in cooking are everyday remedies in most Indian homes, so it's natural to wonder whether it helps with perimenopausal nausea, joint aches, and inflammation too. Here is what the research actually supports."
 pubDate: 2026-10-12T02:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "nausea", "inflammation", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

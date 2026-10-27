@@ -2,7 +2,7 @@
 title: "Ultra-Processed Foods and Healthy Ageing: What the Evidence Actually Shows"
 description: "Packaged snacks, instant noodles, and branded ready-to-eat foods have quietly taken over a growing share of Indian plates. Here is what the research on ultra-processed food actually says about ageing and long-term health, without demanding you give up every packet in the kitchen."
 pubDate: 2026-10-12T06:18:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["nutrition", "ultra-processed food", "longevity", "healthy ageing", "metabolic health"]
 readTime: "9 min read"
 featured: false

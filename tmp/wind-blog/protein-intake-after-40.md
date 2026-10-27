@@ -2,7 +2,7 @@
 title: "Protein Intake After 40: How Much You Actually Need and Why It Changes"
 description: "The protein target that worked for you at 25 is not enough at 45. Here is why protein needs rise with age and declining testosterone, and how much Indian men should actually be eating."
 pubDate: 2026-09-08T13:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["protein", "nutrition", "testosterone", "muscle loss", "midlife health"]
 readTime: "7 min read"
 featured: false

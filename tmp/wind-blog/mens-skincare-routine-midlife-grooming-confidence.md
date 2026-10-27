@@ -2,7 +2,7 @@
 title: "Why More Indian Men Are Starting a Skincare Routine in Midlife, and What Actually Helps"
 description: "A growing number of Indian men in their 40s and 50s are quietly picking up a moisturiser and sunscreen for the first time. Here's why midlife is when skin changes become noticeable, and what a simple routine actually needs."
 pubDate: 2026-10-19T10:18:22Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["skin health", "grooming", "ageing", "andropause", "confidence", "midlife health"]
 readTime: "7 min read"
 featured: false

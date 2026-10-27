@@ -2,7 +2,7 @@
 title: "Evening Primrose Oil for Hot Flashes: What the Evidence Actually Shows"
 description: "Evening primrose oil is one of the most widely sold supplements for menopausal symptoms in India. Here's what controlled trials actually found for hot flashes, and what to know before buying a bottle."
 pubDate: 2026-10-09T06:18:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "supplements", "hot flashes", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

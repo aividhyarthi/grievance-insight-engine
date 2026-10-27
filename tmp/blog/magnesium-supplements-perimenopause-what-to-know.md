@@ -2,7 +2,7 @@
 title: "Magnesium Supplements in Perimenopause: What to Know Before You Start"
 description: "Magnesium keeps getting recommended for perimenopausal sleep, cramps, and anxiety. Here is what the supplement form specifically offers beyond food sources, which type to ask your doctor about, and what the evidence actually supports."
 pubDate: 2026-10-24T06:17:07Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "sleep", "fatigue"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

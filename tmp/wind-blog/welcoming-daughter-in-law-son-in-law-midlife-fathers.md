@@ -2,7 +2,7 @@
 title: "Welcoming a New Daughter-in-Law or Son-in-Law: The Hidden Toll on Midlife Fathers"
 description: "A child's wedding brings joy, but welcoming a new daughter-in-law or son-in-law into the household also quietly reshuffles a midlife father's role, routine, and sense of place in his own family."
 pubDate: 2026-10-02T08:18:34Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["family dynamics", "daughter-in-law", "son-in-law", "identity", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

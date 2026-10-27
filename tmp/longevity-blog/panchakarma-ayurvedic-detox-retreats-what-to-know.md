@@ -2,7 +2,7 @@
 title: "Panchakarma and Ayurvedic Detox Retreats: What to Know Before You Book One"
 description: "Panchakarma retreats have grown popular for healthy ageing and stress relief. Here is what the treatment actually involves, what evidence exists, and what to check before signing up."
 pubDate: 2026-10-05T15:00:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["Ayurveda", "wellness retreats", "detox", "longevity", "healthy ageing"]
 readTime: "9 min read"
 featured: false

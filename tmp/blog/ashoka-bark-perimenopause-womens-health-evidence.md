@@ -2,7 +2,7 @@
 title: "Ashoka Bark for Perimenopause: Traditional Women's Health Use and What the Evidence Shows"
 description: "Ashoka (Saraca asoca) has a centuries-long place in Ayurvedic women's health, mainly for menstrual complaints. Here is what it's traditionally used for, and what modern evidence actually supports for perimenopause."
 pubDate: 2026-10-09T04:18:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "india", "cycles", "bleeding"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Building a Morning Routine That Actually Supports Hormonal Health"
 description: "The first hour after waking has an outsized effect on cortisol and testosterone rhythms in midlife men. Here is what a genuinely useful morning routine looks like, and what to skip."
 pubDate: 2026-09-21T02:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["morning routine", "cortisol", "sleep", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

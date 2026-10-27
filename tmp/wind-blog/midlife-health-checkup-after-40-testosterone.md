@@ -2,7 +2,7 @@
 title: "The Midlife Health Checkup: What to Actually Test For After 40, and Where Testosterone Fits In"
 description: "Beyond sugar and blood pressure, here is what a full health screening schedule should include for men after 40, and how a testosterone test fits into that bigger picture."
 pubDate: 2026-09-12T17:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["health screening", "preventive care", "testosterone test", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

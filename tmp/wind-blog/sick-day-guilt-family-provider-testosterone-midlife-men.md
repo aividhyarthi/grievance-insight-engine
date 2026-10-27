@@ -2,7 +2,7 @@
 title: "Taking a Sick Day as the Family Provider: Guilt, Pressure, and Testosterone in Midlife Men"
 description: "Many midlife Indian men push through illness rather than rest, out of guilt about being the provider. Here is why that habit matters for recovery, stress, and testosterone."
 pubDate: 2026-10-13T11:00:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["career", "caregiving", "stress", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

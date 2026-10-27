@@ -2,7 +2,7 @@
 title: "Shilajit and Healthy Ageing: Traditional Use Versus Current Evidence"
 description: "Shilajit is one of Ayurveda's oldest rasayanas and a fast-growing supplement category in India. Here is what it actually is, what the evidence shows, and why purity matters more than any claimed benefit."
 pubDate: 2026-10-19T02:17:51Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["ayurveda", "supplements", "fatigue", "healthy ageing"]
 readTime: "7 min read"
 featured: false

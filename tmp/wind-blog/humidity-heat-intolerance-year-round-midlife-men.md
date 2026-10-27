@@ -2,7 +2,7 @@
 title: "Why You Can't Handle Humidity Like You Used To: Heat Tolerance After 40"
 description: "It's not just the monsoon. Many midlife Indian men find humid weather draining all year round, from summer heat to a muggy October, and testosterone decline is one real reason why."
 pubDate: 2026-09-28T06:17:43Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["heat intolerance", "humidity", "temperature regulation", "sweating", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

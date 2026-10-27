@@ -2,7 +2,7 @@
 title: "Oestrogen Dominance: What the Term Actually Means, and Does It Hold Up?"
 description: "\"Oestrogen dominance\" gets used constantly online to explain perimenopause symptoms. Here's what the term is actually describing, where the science is solid, and where it gets oversold."
 pubDate: 2026-09-12T15:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["understanding", "hormones", "oestrogen", "progesterone", "perimenopause basics"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&h=675&fit=crop&q=80"

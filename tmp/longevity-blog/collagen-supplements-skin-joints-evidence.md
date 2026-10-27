@@ -2,7 +2,7 @@
 title: "Collagen Supplements for Skin and Joints: What the Evidence Actually Shows"
 description: "Collagen powders and drinks are everywhere in the anti-ageing aisle. Here is what clinical research actually shows about collagen supplements for skin elasticity and joint health after 40."
 pubDate: 2026-09-19T06:28:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["collagen", "supplements", "skin health", "joint health", "longevity"]
 readTime: "9 min read"
 featured: false

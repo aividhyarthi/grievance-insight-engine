@@ -2,7 +2,7 @@
 title: "Why the Office AC Suddenly Feels Unbearable: Perimenopause and Temperature Control"
 description: "One minute you're flushed and sweating, the next you're reaching for a shawl in a 22-degree office. Here's why perimenopause makes air-conditioned rooms so hard to tolerate, and what actually helps."
 pubDate: 2026-09-25T04:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["symptoms", "hot flashes", "vasomotor", "working women", "temperature regulation"]
 readTime: "6 min read"
 image: "https://images.unsplash.com/photo-1487956382158-bb926046304a?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Flaxseed and Testosterone: Does This Seed Really Lower Your Hormones?"
 description: "Flaxseed has become a popular fibre and omega-3 add-in for Indian kitchens, but gym circles warn it crashes testosterone. Here is what the actual research shows."
 pubDate: 2026-10-22T08:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["foods", "flaxseed", "testosterone", "andropause", "nutrition", "midlife health"]
 readTime: "9 min read"
 featured: false

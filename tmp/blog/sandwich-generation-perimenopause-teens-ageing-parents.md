@@ -2,7 +2,7 @@
 title: "The Sandwich Generation: Perimenopause While Raising Teenagers and Caring for Ageing Parents"
 description: "Managing your own hormonal transition while your teenagers need you and your parents need you too, often on the same day: here is how the double caregiving squeeze affects perimenopause, and how to protect what capacity you have left."
 pubDate: 2026-09-16T04:16:49Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["working women", "community", "fatigue", "mental health"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1509927083803-4bd519298ac4?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Zinc and Perimenopause: What the Evidence Actually Shows"
 description: "Zinc gets marketed heavily for hair, skin, and immunity, and perimenopausal women often wonder if it belongs on their supplement list too. Here is what the evidence actually supports, and what's overstated."
 pubDate: 2026-10-12T06:17:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "hair loss", "immunity", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "CoQ10 and Testosterone: What the Evidence Shows for Midlife Men"
 description: "Coenzyme Q10 is widely sold for heart health and energy, and increasingly marketed toward testosterone too. Here is what the research actually supports, and what Indian men should check before buying it."
 pubDate: 2026-10-17T04:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "testosterone", "andropause", "heart health", "fatigue"]
 readTime: "9 min read"
 featured: false

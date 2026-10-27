@@ -2,7 +2,7 @@
 title: "Muscle Cramps and Restless Legs at Night: Is Testosterone Involved?"
 description: "Waking up to a calf cramp or restless, uncomfortable legs is a common midlife complaint. Here is what's actually behind it, where testosterone fits in, and what helps."
 pubDate: 2026-10-04T06:20:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["muscle cramps", "restless legs", "sleep", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

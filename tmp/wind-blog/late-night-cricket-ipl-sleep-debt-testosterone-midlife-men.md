@@ -2,7 +2,7 @@
 title: "Staying Up for Late-Night Cricket and IPL After 40: Sleep Debt and Testosterone"
 description: "A World Cup match or an IPL playoff that runs past midnight used to cost nothing the next day. After 40, it quietly adds up. Here is what late-night sports viewing does to sleep and testosterone."
 pubDate: 2026-10-18T10:16:49Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["sleep", "testosterone", "andropause", "lifestyle", "energy"]
 readTime: "8 min read"
 featured: false

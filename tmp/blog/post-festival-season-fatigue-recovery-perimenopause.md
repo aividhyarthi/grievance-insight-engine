@@ -2,7 +2,7 @@
 title: "The Post-Festival Crash: Why Recovering From Diwali and Navratri Season Takes So Much Longer Now"
 description: "The lights are down, the guests have gone home, and you still feel wrecked a week later. Here is why bouncing back from festival season takes noticeably longer in perimenopause, and how to recover without feeling like you're falling behind."
 pubDate: 2026-10-01T06:17:34Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["fatigue", "life", "stress", "sleep", "festivals"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

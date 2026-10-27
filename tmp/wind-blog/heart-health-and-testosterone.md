@@ -2,7 +2,7 @@
 title: "Heart Health and Testosterone: What the Connection Really Is"
 description: "Low testosterone and heart risk are linked, but the relationship is more nuanced than headlines suggest. Here is what the evidence actually shows and what it means for testing and treatment decisions."
 pubDate: 2026-09-08T17:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["heart health", "cardiovascular health", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Over-the-Counter Combination Homeopathic Remedies: What They Are, and What to Check Before You Buy"
 description: "Indian pharmacies stock many homeopathic combination remedies for joint pain, stress, and immunity sold without prescription. Here is what they actually are, and what the evidence says."
 pubDate: 2026-10-20T02:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "self-medication", "healthy ageing", "India"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "India Has No Shortage of Sun, So Why Is Vitamin D Deficiency So Common?"
 description: "India sits in one of the sunniest parts of the world, yet vitamin D deficiency affects a large share of the population. Here is why that happens and what actually helps, beyond simply stepping outside more often."
 pubDate: 2026-09-05T15:00:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["vitamin D", "sunlight", "longevity", "bone health", "healthy ageing"]
 image: "https://images.unsplash.com/photo-Zi6fXpitzcU?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Sunlight falling on a woman's face outdoors"

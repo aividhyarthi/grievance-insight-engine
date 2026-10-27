@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Heart Palpitations: What Women Try, and Why This Symptom Always Needs Medical Evaluation First"
 description: "A racing or fluttering heart during perimenopause can be frightening, and some women turn to homeopathy for reassurance. Here is an honest look at what's tried, what the evidence shows, and why palpitations deserve a medical workup first."
 pubDate: 2026-10-21T08:17:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "heart palpitations", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

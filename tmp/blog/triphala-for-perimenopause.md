@@ -2,7 +2,7 @@
 title: "Triphala for Perimenopause: What It's Traditionally Used For, and What the Evidence Shows"
 description: "Triphala is one of the most common Ayurvedic formulations in Indian households, often reached for when perimenopause brings new digestive trouble. Here is what it actually is, what it's traditionally used for, and what the research supports."
 pubDate: 2026-10-07T02:18:50Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "gut", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

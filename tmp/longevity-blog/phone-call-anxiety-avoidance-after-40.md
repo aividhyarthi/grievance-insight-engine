@@ -2,7 +2,7 @@
 title: "Why You Might Be Avoiding Phone Calls After 40: Understanding Phone Anxiety"
 description: "Letting calls go to voicemail, replying to everything by text, and a small dread when the phone actually rings. Here is why phone anxiety becomes more common after 40, and what genuinely helps."
 pubDate: 2026-10-03T08:16:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["mental health", "anxiety", "communication", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

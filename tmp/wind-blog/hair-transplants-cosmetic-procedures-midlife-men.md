@@ -2,7 +2,7 @@
 title: "Hair Transplants and Cosmetic Procedures: What's Behind the Midlife Grooming Trend in Indian Men"
 description: "More Indian men in their 40s and 50s are opting for hair transplants, skin treatments, and cosmetic procedures than ever before. Here's what's driving it, and what to actually know before booking one."
 pubDate: 2026-09-15T08:16:58Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["hair transplant", "cosmetic procedures", "hair loss", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

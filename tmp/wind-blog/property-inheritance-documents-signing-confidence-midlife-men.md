@@ -2,7 +2,7 @@
 title: "Property Papers and Inheritance Decisions: Why Signing Feels Heavier After 40"
 description: "Transferring a family property, finalising a will, or settling an inheritance brings a particular kind of legal weight in midlife, and for many Indian men that weight feels harder to carry than it used to."
 pubDate: 2026-10-02T02:18:34Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["property documents", "inheritance", "legal confidence", "decision-making", "family", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Yashtimadhu (Indian Liquorice) for Perimenopause: Traditional Use and What the Evidence Shows"
 description: "Yashtimadhu, the dried root of the liquorice plant, is a staple of Ayurvedic women's health formulations. Here is what it is traditionally used for, what modern evidence actually supports, and the one safety caution worth knowing."
 pubDate: 2026-10-11T02:19:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "india", "hot flashes", "symptoms"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

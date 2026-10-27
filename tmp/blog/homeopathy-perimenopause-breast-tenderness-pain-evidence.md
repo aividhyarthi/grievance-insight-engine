@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Breast Tenderness and Pain: What Women Try, and What the Evidence Shows"
 description: "Cyclical breast tenderness is one of the more uncomfortable, under-discussed perimenopause symptoms. Here is what women commonly try in homeopathy for it, what the evidence situation actually looks like, and the red flags that always need a doctor first."
 pubDate: 2026-10-23T08:18:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "breast pain", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

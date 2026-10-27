@@ -2,7 +2,7 @@
 title: "Feeling Out of Touch With Younger Generations? Why It Happens, and How to Stay Mentally Engaged"
 description: "It is common to feel a growing distance from the language, references, and pace of younger relatives and colleagues after 40. Here is why that gap opens up, and how staying curious protects your mind as much as your relationships."
 pubDate: 2026-09-25T06:16:58Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["cognitive health", "social connection", "mental health", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

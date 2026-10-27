@@ -2,7 +2,7 @@
 title: "How Do You Know You've Had Your Last Period?"
 description: "Menopause can only be confirmed looking backward, after 12 full months without a period. Here is how retrospective diagnosis actually works and why you can't know your last period was truly the last one until well after it happens."
 pubDate: 2026-09-10T19:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["understanding", "cycles", "menopause", "perimenopause basics"]
 readTime: "6 min read"
 image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=675&fit=crop&q=80"

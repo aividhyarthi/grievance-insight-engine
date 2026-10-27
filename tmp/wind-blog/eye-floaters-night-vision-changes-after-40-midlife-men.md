@@ -2,7 +2,7 @@
 title: "Eye Floaters and Night Vision Changes After 40: What's Normal Ageing and What Needs a Doctor"
 description: "Noticing more floaters, glare from oncoming headlights, or trouble seeing at dusk after 40? Here's what's normal eye ageing, what might be hormonal, and what's a genuine medical warning sign."
 pubDate: 2026-10-19T08:18:22Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["eye health", "vision changes", "ageing", "andropause", "midlife health", "driving safety"]
 readTime: "8 min read"
 featured: false

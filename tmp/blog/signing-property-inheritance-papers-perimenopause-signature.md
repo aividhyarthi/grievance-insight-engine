@@ -2,7 +2,7 @@
 title: "When Your Signature Doesn't Match: Perimenopause and Signing Property or Inheritance Papers"
 description: "A shakier signature is a known perimenopause symptom, but on a property sale deed or an inheritance document, a mismatch can trigger real bureaucratic friction. Here's what to actually do about it."
 pubDate: 2026-10-02T02:18:36Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["symptoms", "brain fog", "family", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=1200&h=675&fit=crop&q=80"

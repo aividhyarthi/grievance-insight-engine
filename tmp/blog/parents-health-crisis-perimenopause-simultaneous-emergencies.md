@@ -2,7 +2,7 @@
 title: "When Your Parent's Health Crisis and Your Own Collide: Perimenopause and Simultaneous Family Emergencies"
 description: "A parent's sudden hospitalisation while you're mid-perimenopause is its own particular kind of crisis: two medical situations, two sets of doctors, and no one asking how you're managing yours. Here is how to get through it."
 pubDate: 2026-09-28T06:18:04Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "caregiving", "family", "stress"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1509927083803-4bd519298ac4?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Social Drinking After 40: Why Hangovers Hit Harder, and How to Say No Without Feeling Left Out"
 description: "Alcohol tolerance and recovery change with age in ways most people notice but do not fully understand. Here is what actually shifts, and how to navigate weddings, parties, and reunions without the next-day cost."
 pubDate: 2026-09-26T02:16:34Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["alcohol", "social connection", "healthy ageing", "longevity", "sleep"]
 readTime: "6 min read"
 featured: false

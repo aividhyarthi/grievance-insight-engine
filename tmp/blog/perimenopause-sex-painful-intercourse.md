@@ -2,7 +2,7 @@
 title: "Sex During Perimenopause, Painful Intercourse, Low Libido, and What Actually Helps"
 description: "Pain during sex, vanished desire, and a body that feels unfamiliar, these changes are hormonal, common, and treatable. Here is a clear, clinical explanation of what is happening and what options exist."
 pubDate: 2026-06-03
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["symptoms", "perimenopause", "intimacy", "GSM", "relationships"]
 image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman sitting quietly by a window, representing the private and often unspoken experience of sexual changes during perimenopause"

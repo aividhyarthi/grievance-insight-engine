@@ -2,7 +2,7 @@
 title: "Long Stretches Away From Family for Work: Loneliness, Marriage Strain, and Testosterone"
 description: "Men who spend weeks or months away from home for work, on site postings, offshore rotations, or long project deployments, face a specific kind of hormonal and relational strain rarely discussed openly. Here's what's happening and what helps."
 pubDate: 2026-09-14T10:16:35Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["relationships", "loneliness", "occupational health", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Dental Health and Longevity: The Connection Most People Miss"
 description: "Gum disease is not just a dental problem, research links it to heart disease, diabetes, and even cognitive decline. Here is why oral health deserves a real place in your longevity routine."
 pubDate: 2026-09-11T09:30:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["dental health", "oral health", "longevity", "heart health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

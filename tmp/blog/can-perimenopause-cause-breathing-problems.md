@@ -2,7 +2,7 @@
 title: "Can Perimenopause Cause Breathing Problems?"
 description: "Shortness of breath, chest tightness, and disrupted breathing at night can all be connected to perimenopause. Here is what is driving it, and when to seek urgent help."
 pubDate: 2026-05-26
-author: "Journal Desk"
+author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman practising breathing and wellness exercises outdoors"
 tags: ["perimenopause", "symptoms", "breathing problems", "sleep apnoea", "anxiety", "hot flashes"]

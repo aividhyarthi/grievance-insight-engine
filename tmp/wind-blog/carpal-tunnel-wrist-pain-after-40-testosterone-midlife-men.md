@@ -2,7 +2,7 @@
 title: "Carpal Tunnel Syndrome and Wrist Pain After 40: Repetitive Strain, Not Hormones"
 description: "Numbness and tingling in the hand can feel like one more unexplained midlife symptom. Here's why carpal tunnel syndrome happens, why it rises after 40, and why testosterone isn't the cause."
 pubDate: 2026-10-26T19:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["joint pain", "carpal tunnel", "wrist pain", "testosterone", "andropause"]
 readTime: "8 min read"
 featured: false

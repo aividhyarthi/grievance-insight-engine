@@ -2,7 +2,7 @@
 title: "Supplements Worth Considering After 40, and the Ones You Can Probably Skip"
 description: "An honest, evidence-based look at which supplements have real research behind them for people over 40, and which ones are mostly marketing dressed up as science."
 pubDate: 2026-09-10T09:30:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["supplements", "longevity", "nutrition", "vitamin D", "healthy ageing"]
 readTime: "8 min read"
 featured: false

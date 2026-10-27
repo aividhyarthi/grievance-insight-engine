@@ -2,7 +2,7 @@
 title: "Switching Your Gynaecologist in Perimenopause: How to Leave a Doctor You've Outgrown"
 description: "Leaving a long-time gynaecologist for one who takes perimenopause seriously can feel disloyal, especially in India, but a practical, guilt-free process for switching exists and your care matters more than the awkwardness."
 pubDate: 2026-09-26T10:18:08Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["when to see doctor", "india", "hormones"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"

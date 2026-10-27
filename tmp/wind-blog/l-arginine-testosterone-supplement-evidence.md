@@ -2,7 +2,7 @@
 title: "L-Arginine and Testosterone: What the Research Actually Shows for Midlife Men"
 description: "L-arginine is sold online as a natural testosterone and performance booster. Here is what controlled research actually shows about this amino acid, and where its real benefit lies instead."
 pubDate: 2026-10-18T02:16:49Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "testosterone", "andropause", "erectile dysfunction", "heart health"]
 readTime: "8 min read"
 featured: false

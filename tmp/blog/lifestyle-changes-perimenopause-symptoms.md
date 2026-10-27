@@ -2,7 +2,7 @@
 title: "What Lifestyle Changes Actually Help With Perimenopausal Symptoms?"
 description: "Hormones are the root cause, but what you eat, how you move, how you sleep, and how you manage stress can make a significant difference to how perimenopause feels. Here's what the evidence actually supports."
 pubDate: 2025-05-20
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["lifestyle", "diet", "exercise", "sleep", "stress", "perimenopause"]
 readTime: "9 min read"
 featured: true

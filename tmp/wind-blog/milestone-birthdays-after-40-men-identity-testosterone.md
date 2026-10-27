@@ -2,7 +2,7 @@
 title: "Milestone Birthdays After 40: Why Turning 50 Hits Differently for Men"
 description: "A round-number birthday can trigger a disproportionate reaction in midlife men. Here's why milestone birthdays feel heavier than ordinary ones, and what's actually worth paying attention to."
 pubDate: 2026-10-24T10:17:14Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["identity", "ageing", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

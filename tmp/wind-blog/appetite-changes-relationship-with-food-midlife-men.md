@@ -2,7 +2,7 @@
 title: "Why Your Appetite Feels Different After 40: Andropause and Your Relationship With Food"
 description: "Some midlife men lose interest in food they used to love, others find themselves eating out of stress or boredom for the first time. Here's how testosterone and ageing shape appetite, and what to do about it."
 pubDate: 2026-09-18T06:16:17Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["appetite", "nutrition", "weight", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

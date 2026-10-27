@@ -2,7 +2,7 @@
 title: "Why Multitasking Feels Harder After 40: Focus, Task-Switching, and Testosterone"
 description: "Struggling to juggle emails, meetings, and deadlines the way you used to? Here's how declining testosterone and normal brain ageing affect multitasking in midlife, and what actually helps."
 pubDate: 2026-09-25T08:16:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["multitasking", "focus", "brain fog", "workplace performance", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

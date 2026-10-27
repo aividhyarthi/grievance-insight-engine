@@ -2,7 +2,7 @@
 title: "What Actually Works for the 3am Wake-Up in Perimenopause: A Practical Guide"
 description: "If you already know why you're waking at 3am, here's the practical part: what to do in the moment, what to change during the day, and which remedies are worth trying first."
 pubDate: 2026-09-12T13:00:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["sleep", "symptoms", "natural remedies", "lifestyle", "fatigue"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=675&fit=crop&q=80"

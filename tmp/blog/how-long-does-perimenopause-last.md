@@ -2,7 +2,7 @@
 title: "How Long Does Perimenopause Last, And When Does It End?"
 description: "Perimenopause can last anywhere from 2 to 12 years. Here's what determines how long your transition takes, what the stages look like, and how to know when you've reached menopause."
 pubDate: 2025-05-20
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["perimenopause", "timeline", "menopause", "stages", "duration"]
 readTime: "7 min read"
 featured: false

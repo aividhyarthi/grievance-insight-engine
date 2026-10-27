@@ -2,7 +2,7 @@
 title: "Muscle Loss and Body Composition Changes in Perimenopause"
 description: "The scale might say the same number, but your body feels different, softer, less strong, differently shaped. Here's what's actually happening to muscle and fat distribution in perimenopause, and what helps."
 pubDate: 2026-09-12T19:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["symptoms", "muscle aches", "lifestyle", "exercise", "weight"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Brittle, Ridged Nails in Perimenopause: Why They Change and What Helps"
 description: "Nails that suddenly split, peel, or grow ridges, or simply seem to grow more slowly, are a small but genuine sign of the hormonal shift of perimenopause. Here is why it happens and what actually helps."
 pubDate: 2026-07-12
-author: "Journal Desk"
+author: "Kavita Menon"
 image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman noticing changes to her nails during perimenopause"
 tags: ["symptoms", "nails", "hormones", "skin"]

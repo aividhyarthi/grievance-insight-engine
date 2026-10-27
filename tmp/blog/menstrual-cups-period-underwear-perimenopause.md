@@ -2,7 +2,7 @@
 title: "Menstrual Cups and Period Underwear in Perimenopause: Do They Still Make Sense?"
 description: "Unpredictable, sometimes heavier periods in perimenopause make many women reconsider pads for cups or period underwear. Here is how to think about switching, and what actually works for irregular flow."
 pubDate: 2026-09-19T10:17:24Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["heavy periods", "cycles", "bleeding", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"

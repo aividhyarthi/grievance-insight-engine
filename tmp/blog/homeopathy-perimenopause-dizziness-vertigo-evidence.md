@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Dizziness and Vertigo: What Women Try, and What the Evidence Shows"
 description: "Dizziness and vertigo are common, frightening perimenopausal symptoms that send many women looking for gentler alternatives. Here is what women commonly try in homeopathy, what the evidence situation actually looks like, and why this symptom needs medical evaluation first."
 pubDate: 2026-10-26T20:43:13Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "dizziness", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

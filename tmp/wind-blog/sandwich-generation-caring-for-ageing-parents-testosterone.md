@@ -2,7 +2,7 @@
 title: "Caring for Ageing Parents While Your Own Health Is Declining: The Sandwich Generation Squeeze"
 description: "Many midlife Indian men are managing a parent's failing health, their children's needs, and their own quiet testosterone decline at the same time. Here's why that combination is so draining and what actually helps."
 pubDate: 2026-09-14T02:16:35Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["caregiving", "family", "stress", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

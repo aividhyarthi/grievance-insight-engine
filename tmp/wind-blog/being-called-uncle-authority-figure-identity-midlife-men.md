@@ -2,7 +2,7 @@
 title: "Being Called 'Uncle': How Your Relationship With Authority and Age Changes in Midlife"
 description: "The shift from being the young guy to being called 'uncle' or treated as the senior authority is a real identity change for midlife men. Here's the emotional and hormonal side of it."
 pubDate: 2026-09-25T10:16:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["identity", "ageing", "social perception", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

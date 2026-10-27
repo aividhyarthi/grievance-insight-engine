@@ -2,7 +2,7 @@
 title: "Natural Remedies for Perimenopause Brain Fog — Why It Happens and What Helps"
 description: "Memory lapses and cognitive cloudiness during perimenopause are caused by hormonal changes in the brain. Several approaches can meaningfully improve clarity — here is the evidence."
 pubDate: 2026-05-29
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman at a desk with her hand at her temple, representing the difficulty concentrating during perimenopausal brain fog"
 tags: ["natural remedies", "brain fog", "memory", "concentration", "cognitive", "symptoms", "India"]

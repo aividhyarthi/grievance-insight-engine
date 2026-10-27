@@ -2,7 +2,7 @@
 title: "Home Safety Modifications for Ageing in Place: A Practical Room-by-Room Guide"
 description: "Most falls and home injuries among older adults happen in entirely predictable places. Here is a practical, room-by-room look at the home modifications that genuinely reduce risk."
 pubDate: 2026-09-14T06:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["fall prevention", "home safety", "healthy ageing", "longevity", "caregiving"]
 readTime: "7 min read"
 featured: false

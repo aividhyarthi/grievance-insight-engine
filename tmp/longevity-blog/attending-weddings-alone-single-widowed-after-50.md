@@ -2,7 +2,7 @@
 title: "Attending Weddings and Family Functions Alone After 50: A Guide for Single and Widowed Guests"
 description: "Practical, emotionally honest guidance for attending Indian weddings and family celebrations alone after 50, whether single, divorced, or widowed."
 pubDate: 2026-09-27T06:16:25Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["social connection", "mental health", "grief", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

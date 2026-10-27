@@ -2,7 +2,7 @@
 title: "Abhyanga, the Ayurvedic Self-Massage, for Midlife Men: What It Is and Whether It Helps Stress and Testosterone"
 description: "Abhyanga, the Ayurvedic practice of self-massage with warm oil, is often recommended for midlife stress and energy. Here's what it actually is, what the evidence says, and who should be careful with it."
 pubDate: 2026-10-23T04:18:19Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["Ayurveda", "stress", "testosterone", "sleep", "self-care"]
 readTime: "8 min read"
 featured: false

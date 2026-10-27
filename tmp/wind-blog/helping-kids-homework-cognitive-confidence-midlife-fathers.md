@@ -2,7 +2,7 @@
 title: "Helping Your Kids With Homework You No Longer Understand: Cognitive Confidence for Midlife Fathers"
 description: "When your child's maths or science homework stops making sense, it can feel like more than just an outdated syllabus. Here is why it happens and how to handle it without losing your confidence."
 pubDate: 2026-10-05T08:20:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["brain fog", "fatherhood", "testosterone", "andropause", "parenting", "midlife health"]
 readTime: "8 min read"
 featured: false

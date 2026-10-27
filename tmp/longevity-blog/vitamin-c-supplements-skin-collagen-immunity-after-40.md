@@ -2,7 +2,7 @@
 title: "Vitamin C After 40: Beyond Immunity, What It Actually Does for Skin and Collagen"
 description: "An honest look at vitamin C's real, evidence-backed roles in skin and collagen health after 40, separated from the hype around high-dose supplements and serums."
 pubDate: 2026-10-23T08:20:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "vitamin c", "skin health"]
 readTime: "8 min read"
 featured: false

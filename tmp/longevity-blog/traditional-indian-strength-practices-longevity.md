@@ -2,7 +2,7 @@
 title: "Kalaripayattu, Mallakhamb, and Gada: What India's Traditional Strength Practices Get Right"
 description: "Long before modern gyms, India had its own systems for building strength, balance, and mobility. Here is what kalaripayattu, mallakhamb, and gada swinging actually train, and whether the evidence backs them up as longevity practices."
 pubDate: 2026-09-13T04:18:07Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["strength training", "traditional practices", "longevity", "balance training", "movement"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Homeopathy for Healthy Ageing: What People Try, and What the Evidence Actually Says"
 description: "A factual look at why homeopathy is widely used across India for ageing-related complaints, and what the scientific evidence for it actually shows."
 pubDate: 2026-09-19T03:08:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "healthy ageing", "longevity", "preventive health", "complementary medicine"]
 readTime: "8 min read"
 featured: false

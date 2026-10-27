@@ -2,7 +2,7 @@
 title: "Kapikachhu (Mucuna Pruriens) for Perimenopause: Traditional Use and What the Evidence Shows"
 description: "Kapikachhu, the velvet bean used in Ayurveda as a nervine tonic and mood support, is increasingly marketed for perimenopause. Here is what it is traditionally used for, what research actually shows, and the safety checks to make first."
 pubDate: 2026-10-23T02:18:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "mood", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

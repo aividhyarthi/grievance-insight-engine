@@ -2,7 +2,7 @@
 title: "Natural Ways to Support Testosterone: What Has Real Evidence and What Doesn't"
 description: "A clear-eyed guide to which lifestyle changes are genuinely backed by evidence for supporting testosterone, and which popular supplements and shortcuts aren't."
 pubDate: 2026-09-09T13:00:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["natural testosterone support", "lifestyle", "andropause", "sleep", "midlife health"]
 readTime: "8 min read"
 featured: false

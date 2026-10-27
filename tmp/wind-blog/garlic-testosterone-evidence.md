@@ -2,7 +2,7 @@
 title: "Garlic and Testosterone: What the Evidence Actually Shows"
 description: "Garlic is a staple of Indian cooking and is often claimed to boost testosterone. Here is what the research actually supports, and what it does not, for men managing andropause."
 pubDate: 2026-10-12T04:17:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["foods", "testosterone", "andropause", "nutrition", "heart health"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Staying Mobile Without Driving After 60: A Guide to Public Transport in India"
 description: "Giving up driving does not have to mean giving up independence. Here is a practical look at buses, metros, autos, and ride apps for staying mobile and socially active after 60 in India."
 pubDate: 2026-10-24T06:17:50Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["mobility", "independence", "social connection"]
 readTime: "7 min read"
 featured: false

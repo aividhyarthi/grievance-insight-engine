@@ -2,7 +2,7 @@
 title: "Resveratrol and Testosterone: What the Research Actually Shows"
 description: "Resveratrol, the compound found in red grapes and sold as an anti-ageing supplement, is increasingly marketed for testosterone and vitality. Here is what the evidence actually supports."
 pubDate: 2026-10-20T06:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "testosterone", "andropause", "evidence", "heart health", "midlife health"]
 readTime: "8 min read"
 featured: false

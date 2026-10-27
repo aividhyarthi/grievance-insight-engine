@@ -2,7 +2,7 @@
 title: "Blood Pressure Medication and Libido: Is It the Medicine or Declining Testosterone"
 description: "Many midlife men on blood pressure tablets notice a drop in libido and assume it's andropause. Sometimes it's the medication itself. Here's how to tell the difference."
 pubDate: 2026-10-09T08:17:26Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["libido", "blood pressure", "medication", "testosterone", "andropause"]
 readTime: "9 min read"
 featured: false

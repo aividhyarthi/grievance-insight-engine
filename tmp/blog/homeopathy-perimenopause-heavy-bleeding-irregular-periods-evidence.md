@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Heavy Bleeding and Irregular Periods: What Women Try, and What the Evidence Shows"
 description: "Heavy, unpredictable bleeding is one of the most disruptive perimenopause symptoms, and many Indian women try homeopathy for it before seeing a gynaecologist. Here is what the evidence situation actually looks like, and why this symptom specifically needs a doctor's eyes on it."
 pubDate: 2026-10-16T08:17:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "heavy periods", "cycles", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

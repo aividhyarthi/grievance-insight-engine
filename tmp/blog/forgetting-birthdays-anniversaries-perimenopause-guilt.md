@@ -2,7 +2,7 @@
 title: "Forgetting Birthdays and Anniversaries in Perimenopause: Why It Happens, and the Guilt That Follows"
 description: "Missing your nephew's birthday or your in-laws' anniversary isn't a sign you've stopped caring. Here's why perimenopausal brain fog hits exactly this kind of memory first, and how to manage the guilt and the practical fallout."
 pubDate: 2026-10-05T04:20:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "brain fog", "relationships", "family"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

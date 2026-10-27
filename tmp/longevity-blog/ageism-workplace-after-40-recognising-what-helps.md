@@ -2,7 +2,7 @@
 title: "Ageism at Work After 40: Recognising It, and What Actually Helps"
 description: "Being passed over for a project, called 'set in your ways,' or quietly nudged toward the door are subtle but real signs of workplace ageism after 40. Here is how to recognise it and respond well."
 pubDate: 2026-10-26T22:45:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["workplace health", "mental health", "resilience", "healthy ageing"]
 readTime: "7 min read"
 featured: false

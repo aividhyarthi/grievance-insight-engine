@@ -2,7 +2,7 @@
 title: "Melatonin Supplements and Testosterone: What Indian Men Taking Them for Sleep Should Know"
 description: "More midlife men are reaching for melatonin to fix disrupted sleep. Here is what the evidence says about melatonin's effect on testosterone, and what to check before buying."
 pubDate: 2026-10-13T07:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "melatonin", "sleep", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

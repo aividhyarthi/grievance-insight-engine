@@ -2,7 +2,7 @@
 title: "Night Sweats After 40 That Aren't Menopause: Common Causes, and What Actually Helps"
 description: "Waking up drenched in sweat isn't only a menopause symptom. Here are the other common causes of night sweats after 40, for both men and women, and when they are worth checking with a doctor."
 pubDate: 2026-10-26T20:45:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["sleep", "healthy ageing", "chronic conditions", "men's health", "preventive health"]
 readTime: "7 min read"
 featured: false

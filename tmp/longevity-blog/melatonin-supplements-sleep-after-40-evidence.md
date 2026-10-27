@@ -2,7 +2,7 @@
 title: "Melatonin Supplements After 40: What They Actually Do for Sleep, and What They Don't"
 description: "Melatonin is sold freely in India as a sleep aid, often marketed as a natural fix for the lighter, more fragmented sleep many people notice after 40. Here is what the evidence actually shows about when it helps and when it doesn't."
 pubDate: 2026-10-11T04:19:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "sleep", "healthy ageing", "melatonin"]
 readTime: "9 min read"
 featured: false

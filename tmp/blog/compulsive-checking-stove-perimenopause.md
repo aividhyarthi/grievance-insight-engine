@@ -2,7 +2,7 @@
 title: "Why You Keep Going Back to Check the Stove: Perimenopause and Compulsive Checking Behaviours"
 description: "Walking back to check the gas, the door lock, or your bag, sometimes more than once, is a specific anxiety habit many women notice for the first time in perimenopause. Here is why it starts now, and when it's worth mentioning to your doctor."
 pubDate: 2026-10-07T10:18:50Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "anxiety", "brain fog", "life"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=675&fit=crop&q=80"

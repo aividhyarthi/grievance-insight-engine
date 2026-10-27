@@ -2,7 +2,7 @@
 title: "Your Annual Health Checkup in Perimenopause: Making the Year-End Package Actually Work for You"
 description: "Corporate and hospital annual health checkup packages rarely include the tests that matter most in perimenopause. Here is how to navigate a standard package, what to add, and how to actually get through it when brain fog makes even booking the appointment hard."
 pubDate: 2026-09-30T04:17:33Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["understanding", "screening", "when to see doctor", "brain fog"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&q=80"

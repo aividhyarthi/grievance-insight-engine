@@ -2,7 +2,7 @@
 title: "Why Video Calls Wipe You Out More Than They Used To: Zoom Fatigue and Self-Consciousness After 40"
 description: "Video calls have become a daily fixture of work life, and many midlife men find them more draining and more self-conscious than they expect. Here is what's actually going on."
 pubDate: 2026-09-24T04:16:43Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["zoom fatigue", "video calls", "self-consciousness", "workplace stress", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

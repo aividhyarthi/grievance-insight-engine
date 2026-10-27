@@ -2,7 +2,7 @@
 title: "Poha, Idli, or Paratha: What Your Traditional Indian Breakfast Is Doing to Your Blood Sugar"
 description: "Traditional Indian breakfasts range from steamed and fermented to deep-fried, and the metabolic impact varies a lot. Here's what the evidence actually shows about the most common choices."
 pubDate: 2026-09-16T08:16:39Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["Indian diet", "metabolic health", "blood sugar", "nutrition", "longevity"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "The Post-Festival Crash: Why Returning to Routine After Festival Season Hits Harder After 40"
 description: "The exhaustion many Indian men feel once Navratri, Diwali, and wedding season finally wind down is real, and it's more pronounced after 40. Here's why, and how to recover properly instead of pushing through it."
 pubDate: 2026-10-01T08:17:35Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["fatigue", "sleep", "routine", "andropause", "testosterone", "midlife health"]
 readTime: "6 min read"
 featured: false

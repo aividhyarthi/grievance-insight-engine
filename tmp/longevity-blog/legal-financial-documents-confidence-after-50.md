@@ -2,7 +2,7 @@
 title: "Signing Documents With Confidence After 50: Wills, Power of Attorney, and Financial Paperwork"
 description: "Wills, nominations, and power of attorney forms are easy to keep postponing, but getting them right protects both your independence now and your family's peace of mind later. Here is a practical starting point."
 pubDate: 2026-09-24T04:16:56Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["financial health", "legal planning", "healthy ageing", "longevity", "preventive health"]
 readTime: "8 min read"
 featured: false

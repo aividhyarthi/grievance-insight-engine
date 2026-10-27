@@ -2,7 +2,7 @@
 title: "Managing Perimenopause Through Navratri, Karva Chauth, and Other Fasting Festivals"
 description: "Religious and festival fasting is a meaningful part of life for many Indian women, but perimenopause changes how your body copes with it. Here is how to observe your fasts safely and comfortably during this transition."
 pubDate: 2026-07-13
-author: "Journal Desk"
+author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman managing perimenopause symptoms while observing a religious fast"
 tags: ["life", "fasting", "festivals", "lifestyle", "blood sugar"]

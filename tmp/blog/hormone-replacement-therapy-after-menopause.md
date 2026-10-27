@@ -2,7 +2,7 @@
 title: "How Does Hormone Replacement Therapy Impact Women After Menopause?"
 description: "An evidence-based overview of what hormone replacement therapy (also called menopausal hormone therapy) actually does in the body after menopause — covering bones, cardiovascular health, cognition, mood, and symptom relief."
 pubDate: 2026-05-31
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["understanding", "menopause", "hormones", "HRT", "treatment"]
 image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&h=675&fit=crop&q=80"
 imageAlt: "A calm, confident woman in her 50s representing post-menopausal health and informed decision-making"

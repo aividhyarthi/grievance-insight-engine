@@ -2,7 +2,7 @@
 title: "Perimenopause and Photographs: Why You Suddenly Avoid the Camera"
 description: "Ducking out of the family photo, untagging yourself, deleting pictures before anyone sees them. If perimenopause has made you camera-shy in a way you never used to be, here's why, and how to make peace with it."
 pubDate: 2026-09-29T06:17:08Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["mental health", "mood", "skin"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&h=675&fit=crop&q=80"

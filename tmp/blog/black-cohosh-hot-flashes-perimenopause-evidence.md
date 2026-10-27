@@ -2,7 +2,7 @@
 title: "Black Cohosh for Hot Flashes: What the Evidence Actually Shows"
 description: "Black cohosh comes up again and again in perimenopause forums and supplement aisles as a hot flash remedy. Here's what the research actually supports, and what to check before you try it."
 pubDate: 2026-10-06T02:18:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "hot flashes"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

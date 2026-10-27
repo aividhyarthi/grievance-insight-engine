@@ -2,7 +2,7 @@
 title: "Tinnitus After 40: Ringing in the Ears, Stress, and the Testosterone Question"
 description: "A persistent ringing or buzzing in the ears is unsettling, and many midlife men quietly wonder if it is connected to hormones or stress. Here is what actually causes tinnitus after 40, and when it needs medical attention."
 pubDate: 2026-10-16T06:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["andropause", "testosterone", "stress", "sleep", "fatigue"]
 readTime: "8 min read"
 featured: false

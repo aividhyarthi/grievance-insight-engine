@@ -2,7 +2,7 @@
 title: "Homeopathy Versus Ayurveda: How They Differ, and What Each Actually Has Evidence For"
 description: "Homeopathy and Ayurveda are often grouped together as alternative medicine, but they differ fundamentally in origin, method, and evidence. Here is a clear comparison."
 pubDate: 2026-09-19T05:08:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["homeopathy", "Ayurveda", "traditional practices", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "When You're Both Going Through It: Supporting Your Wife's Menopause While Managing Your Own Andropause"
 description: "Your wife is dealing with menopause while you're quietly managing your own hormonal changes. Here's how couples navigate two midlife transitions happening at the same time, without either person's experience getting sidelined."
 pubDate: 2026-09-16T10:15:48Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["relationships", "menopause", "andropause", "testosterone", "mood", "midlife health"]
 readTime: "8 min read"
 featured: false

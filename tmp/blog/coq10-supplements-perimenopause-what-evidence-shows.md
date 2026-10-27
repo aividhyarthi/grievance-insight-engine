@@ -2,7 +2,7 @@
 title: "CoQ10 and Perimenopause: What the Evidence Actually Shows"
 description: "CoQ10 is marketed heavily for energy, skin, and heart health in midlife. Here's an evidence-aware look at what it actually does for perimenopause symptoms, and what to check before buying it in India."
 pubDate: 2026-10-14T06:16:30Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "natural remedies", "fatigue", "heart health"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

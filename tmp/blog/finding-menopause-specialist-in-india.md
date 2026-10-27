@@ -2,7 +2,7 @@
 title: "Finding a Menopause Specialist in India: A Practical Guide"
 description: "Not every gynaecologist is comfortable managing perimenopause. Here is how to actually find a doctor in India who specialises in menopause care, what questions to ask, and what to expect from the first appointment."
 pubDate: 2026-09-08T15:00:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["when to see doctor", "india", "gynaecologist", "HRT"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&h=675&fit=crop&q=80"

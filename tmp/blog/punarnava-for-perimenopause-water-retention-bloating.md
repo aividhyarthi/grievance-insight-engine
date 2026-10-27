@@ -2,7 +2,7 @@
 title: "Punarnava for Perimenopause: Traditional Use for Water Retention and Bloating"
 description: "Punarnava is a traditional Ayurvedic herb often associated with water retention and bloating. Here is what it's traditionally used for in women's health, and what the evidence situation actually looks like for perimenopause."
 pubDate: 2026-10-12T04:17:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "india", "bloating", "water retention"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

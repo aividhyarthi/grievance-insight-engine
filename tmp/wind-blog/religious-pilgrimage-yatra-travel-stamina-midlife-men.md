@@ -2,7 +2,7 @@
 title: "Planning a Pilgrimage After 40: Stamina, Preparation, and Testosterone"
 description: "Char Dham, Kumbh Mela, and other yatras demand real physical stamina, often more than midlife men expect. Here is how to prepare your body realistically and travel safely."
 pubDate: 2026-10-06T08:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["pilgrimage", "travel", "testosterone", "andropause", "fatigue", "stamina"]
 readTime: "9 min read"
 featured: false

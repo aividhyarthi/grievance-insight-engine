@@ -2,7 +2,7 @@
 title: "When Antidepressants Aren't Working, Could It Be Hormonal?"
 description: "If an antidepressant that used to help suddenly stops working, or never quite worked at all, perimenopause could be part of the reason. Here is how to recognise the pattern and what to raise with your doctor."
 pubDate: 2026-09-09T13:00:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["mental health", "depression", "hormones", "when to see doctor"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=675&fit=crop&q=80"

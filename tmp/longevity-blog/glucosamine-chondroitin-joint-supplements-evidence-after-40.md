@@ -2,7 +2,7 @@
 title: "Glucosamine and Chondroitin for Joint Pain After 40: What the Evidence Actually Shows"
 description: "Glucosamine and chondroitin are among the most widely sold joint supplements in India. Here is what the research actually supports, who might benefit, and what to check before you buy them."
 pubDate: 2026-10-08T02:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "joint health", "osteoarthritis", "healthy ageing", "chronic pain"]
 readTime: "9 min read"
 featured: false

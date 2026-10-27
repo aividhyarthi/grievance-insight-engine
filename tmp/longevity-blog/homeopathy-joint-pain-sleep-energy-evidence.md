@@ -2,7 +2,7 @@
 title: "Homeopathy for Joint Pain, Sleep, and Low Energy: Looking at the Evidence Behind Common Uses"
 description: "Joint discomfort, poor sleep, and low energy are the top reasons midlife Indians try homeopathy. Here is what the research on each actually shows."
 pubDate: 2026-09-19T07:08:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["homeopathy", "joint health", "sleep", "fatigue", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

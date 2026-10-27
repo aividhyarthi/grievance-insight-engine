@@ -2,7 +2,7 @@
 title: "Abhyanga: The Ayurvedic Self-Massage Practice for Perimenopause"
 description: "Abhyanga is the Ayurvedic practice of warm oil self-massage, often recommended for stress, dry skin, and disturbed sleep in perimenopause. Here is what it involves and what the evidence actually supports."
 pubDate: 2026-10-24T02:17:07Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["ayurveda", "natural remedies", "stress", "sleep"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=675&fit=crop&q=80"

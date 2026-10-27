@@ -2,7 +2,7 @@
 title: "Brahmi for Perimenopause Brain Fog: What It's Traditionally Used For, and What the Evidence Shows"
 description: "Brahmi is one of the most commonly recommended Ayurvedic herbs for memory and mental clarity. Here's what it's traditionally used for, what modern research actually shows for brain fog, and what to know before trying it."
 pubDate: 2026-10-05T06:20:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "supplements", "brain fog", "ayurveda"]
 readTime: "9 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

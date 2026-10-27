@@ -2,7 +2,7 @@
 title: "Why You Can't Handle Spicy Food Like You Used To: Acidity, Digestion, and Testosterone in Midlife"
 description: "Many Indian men notice their tolerance for chillies and spice drops sharply after 40. Here's what's actually behind the change, and what's worth mentioning to a doctor."
 pubDate: 2026-09-20T08:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["spicy food", "digestion", "acidity", "gut health", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Perimenopause and Younger Colleagues: Navigating the Generation Gap at Work"
 description: "Reporting to someone half your age, or leading a team that talks a different language of work than you do, can feel especially disorienting when perimenopause is already shaking your confidence. Here's how to navigate it."
 pubDate: 2026-09-25T08:17:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["working women", "workplace", "confidence", "mental health", "life"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

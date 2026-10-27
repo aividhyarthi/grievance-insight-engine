@@ -2,7 +2,7 @@
 title: "Chronic Pain and Testosterone: The Two-Way Connection Most Men Never Get Told About"
 description: "Living with chronic back pain, migraines, or long-term pain medication use can quietly lower testosterone, while low testosterone itself may make pain feel worse. Here's how the two are connected."
 pubDate: 2026-09-13T10:16:46Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["chronic pain", "pain management", "testosterone", "andropause", "fatigue"]
 readTime: "8 min read"
 featured: false

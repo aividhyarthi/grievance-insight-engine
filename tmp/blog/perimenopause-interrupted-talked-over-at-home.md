@@ -2,7 +2,7 @@
 title: "Why You Snap When You're Interrupted: Perimenopause and Being Talked Over at Home"
 description: "Being cut off mid-sentence by a spouse, child, or in-law has probably always been mildly annoying. In perimenopause it can trigger a reaction that surprises even you. Here is why interruption specifically lands so hard now, and what to do about it."
 pubDate: 2026-09-28T10:18:04Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["mental health", "mood", "family", "confidence"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Navigating Festival Markets and Crowded Shopping After 40: A Practical Guide to Diwali Season Without Burning Out"
 description: "Diwali and wedding-season markets are exciting but physically demanding. Here's how to shop for festivals and celebrations after 40 without ending the day exhausted, sore, or overheated."
 pubDate: 2026-09-29T10:17:33Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["festival health", "healthy ageing", "longevity", "sensory health", "fatigue"]
 readTime: "8 min read"
 featured: false

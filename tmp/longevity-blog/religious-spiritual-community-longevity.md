@@ -2,7 +2,7 @@
 title: "Faith, Community, and Longevity: What Satsang and Temple Groups Do for Your Health"
 description: "Regular involvement in a religious or spiritual community is one of the more consistent predictors of a longer life in population research. Here is what the evidence actually shows, separate from belief itself."
 pubDate: 2026-09-17T04:17:06Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["social connection", "purpose", "mental health", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Hands-On Grandparenting After 50: Keeping Up With the Energy Without Burning Out"
 description: "Many Indian grandparents now do daily hands-on childcare for working parents, not just occasional visits. Here is how to keep up with a grandchild's energy without wearing down your own health, and when to say no."
 pubDate: 2026-10-07T10:18:46Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["grandparenting", "family life", "fatigue", "caregiving", "healthy ageing"]
 readTime: "8 min read"
 featured: false

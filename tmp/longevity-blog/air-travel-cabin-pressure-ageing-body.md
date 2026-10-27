@@ -2,7 +2,7 @@
 title: "Air Travel After 50: What Cabin Pressure and Altitude Actually Do to an Ageing Body"
 description: "Long flights get harder on the body with age, and it is not just jet lag. Here is what cabin pressure, low humidity, and prolonged sitting at altitude actually do, and how to protect yourself."
 pubDate: 2026-09-17T06:17:06Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["travel health", "cardiovascular health", "healthy ageing", "longevity", "joint health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Brain Fog and Driving in Perimenopause: The Safety Conversation Nobody Has"
 description: "Missed exits, slower reaction times, forgetting a familiar route: perimenopausal brain fog can affect driving safety in ways almost nobody talks about openly. Here is what is happening and what actually helps."
 pubDate: 2026-09-13T08:17:08Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["brain fog", "symptoms", "when to see doctor", "fatigue", "understanding"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

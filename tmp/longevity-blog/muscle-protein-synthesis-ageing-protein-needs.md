@@ -2,7 +2,7 @@
 title: "Why Your Protein Needs Change After 40: Muscle Protein Synthesis and Ageing"
 description: "After 40, your body becomes less efficient at using protein to build and maintain muscle, a shift called anabolic resistance. Here is what that means and how to eat around it."
 pubDate: 2026-09-10T15:30:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["protein", "muscle health", "longevity", "strength training", "nutrition"]
 readTime: "8 min read"
 featured: false

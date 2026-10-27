@@ -2,7 +2,7 @@
 title: "The Cost of Testosterone Testing and Treatment in India: What to Expect"
 description: "From a basic blood test at a diagnostic lab to ongoing testosterone replacement therapy, here is a realistic look at what testosterone testing and treatment actually costs in India."
 pubDate: 2026-09-10T11:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["cost of treatment", "testosterone test", "TRT", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

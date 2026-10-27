@@ -2,7 +2,7 @@
 title: "Feeling Dizzy When You Stand Up After 40: Orthostatic Hypotension Explained"
 description: "A brief head-rush or dizzy spell when standing up from sitting or lying down becomes more common after 40. Here is why it happens, what usually causes it, and when it is worth checking with a doctor."
 pubDate: 2026-10-26T18:45:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["blood pressure", "balance", "healthy ageing", "preventive health"]
 readTime: "7 min read"
 featured: false

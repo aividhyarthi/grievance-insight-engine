@@ -2,7 +2,7 @@
 title: "Gym Injuries and Recovery Time After 40: Training Smart When Your Body Doesn't Bounce Back"
 description: "A pulled muscle that used to heal in three days can take three weeks after 40. Here's why injuries hit harder in midlife, how testosterone plays a role, and how to keep training without breaking down."
 pubDate: 2026-09-14T06:16:35Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["exercise", "injury recovery", "fitness", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

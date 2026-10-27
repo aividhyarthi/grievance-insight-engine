@@ -2,7 +2,7 @@
 title: "Why Crowded, Noisy Places Feel More Draining After 40: Sensory Tolerance and Testosterone"
 description: "Many midlife men find weddings, malls, and traffic noise more exhausting than they used to. Here's what's behind the drop in crowd and noise tolerance."
 pubDate: 2026-09-22T06:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["sensory tolerance", "noise sensitivity", "stress", "cortisol", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

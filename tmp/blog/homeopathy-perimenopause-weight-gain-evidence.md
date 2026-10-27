@@ -2,7 +2,7 @@
 title: "Homeopathy for Perimenopause Weight Gain: What Women Try, and What the Evidence Actually Shows"
 description: "Weight gain is one of the most frustrating and talked-about perimenopause symptoms, and homeopathy is one of the things many Indian women try for it. Here is what the evidence situation actually looks like."
 pubDate: 2026-10-13T09:14:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "weight gain", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

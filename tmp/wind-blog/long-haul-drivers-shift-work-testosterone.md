@@ -2,7 +2,7 @@
 title: "Long-Haul Drivers, Shift Workers, and Testosterone: The Occupational Toll of Irregular Hours"
 description: "Truck drivers, factory shift workers, and night-shift IT staff face a distinct, under-discussed risk to testosterone levels from irregular schedules. Here is what happens and what can help."
 pubDate: 2026-09-12T09:00:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["shift work", "occupational health", "sleep", "testosterone", "andropause"]
 readTime: "7 min read"
 featured: false

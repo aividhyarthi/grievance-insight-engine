@@ -2,7 +2,7 @@
 title: "Vitamin E and Testosterone: What the Research Actually Shows"
 description: "Vitamin E is often grouped with testosterone-friendly supplements. Here's an honest look at the evidence, the sperm-quality research it's confused with, and what Indian men should check before taking it."
 pubDate: 2026-10-23T06:18:19Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "testosterone", "fertility", "antioxidants"]
 readTime: "8 min read"
 featured: false

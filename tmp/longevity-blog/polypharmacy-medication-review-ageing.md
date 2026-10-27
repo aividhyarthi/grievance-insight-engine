@@ -2,7 +2,7 @@
 title: "Polypharmacy After 50: Why Taking More Medicines Is Not Automatically Safer"
 description: "Many Indians over 50 take five or more regular medications, often prescribed by different doctors who never speak to each other. Here is why that carries real risk, and how a medication review actually works."
 pubDate: 2026-09-19T10:16:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["polypharmacy", "medication safety", "preventive health", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

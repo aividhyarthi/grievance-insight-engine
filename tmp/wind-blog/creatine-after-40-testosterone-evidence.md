@@ -2,7 +2,7 @@
 title: "Creatine After 40: What the Evidence Actually Shows Beyond Bodybuilding Marketing"
 description: "Creatine has a reputation as a young bodybuilder's supplement, but the research in midlife and older men tells a different, more useful story. Here is what it can and can't do for strength, muscle, and testosterone."
 pubDate: 2026-09-19T04:30:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["creatine", "supplements", "strength training", "muscle loss", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Why Does Everything Hurt More? Increased Pain Sensitivity in Perimenopause"
 description: "Old aches feeling sharper, new tenderness in places that never bothered you, a lower tolerance for pain generally, this is a real, hormone-linked shift in perimenopause, not you being dramatic. Here is why, and what helps."
 pubDate: 2026-07-12
-author: "Journal Desk"
+author: "Kavita Menon"
 image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman experiencing increased pain sensitivity during perimenopause"
 tags: ["symptoms", "pain sensitivity", "joint pain", "hormones"]

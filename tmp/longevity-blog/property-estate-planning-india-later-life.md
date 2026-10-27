@@ -2,7 +2,7 @@
 title: "Passing Down Property After 60: Title Documents, Gift Deeds, and Avoiding Family Disputes"
 description: "A will alone often isn't enough to transfer property smoothly in India. Here's what title documents, gift deeds, and succession certificates actually do, and how to keep property disputes out of your family."
 pubDate: 2026-10-02T04:18:45Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["legal planning", "property planning", "financial health", "family health", "healthy ageing"]
 readTime: "8 min read"
 featured: false

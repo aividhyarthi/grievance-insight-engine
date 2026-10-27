@@ -2,7 +2,7 @@
 title: "Should I Take Oestrogen If I Am Perimenopausal?"
 description: "Oestrogen therapy during perimenopause is more effective and safer than most women have been told. Here is the evidence-based answer, including what is available in India."
 pubDate: 2025-05-22
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["oestrogen", "HRT", "perimenopause", "treatment"]
 readTime: "9 min read"
 featured: false

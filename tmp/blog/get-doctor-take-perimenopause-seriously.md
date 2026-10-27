@@ -2,7 +2,7 @@
 title: "How to Get Your Doctor to Take Perimenopause Seriously"
 description: "Too many women are told it is just stress, anxiety, or ageing. If you have felt dismissed, here is a practical guide to preparing for your appointment, what to say, and how to be taken seriously."
 pubDate: 2026-07-07
-author: "Journal Desk"
+author: "Ananya Rao"
 image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman preparing for a confident conversation with her doctor about perimenopause"
 tags: ["life", "when to see doctor", "community", "perimenopause basics"]

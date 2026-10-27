@@ -2,7 +2,7 @@
 title: "Learning a New Skill After 40: Why Trying Something Completely Unfamiliar Is So Good for Your Brain"
 description: "Picking up a genuinely new skill, not just repeating a familiar hobby, appears to build cognitive reserve as you age. Here is what the research actually supports, and how to start without a huge time commitment."
 pubDate: 2026-10-17T02:15:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["cognitive health", "brain health", "lifelong learning", "healthy ageing", "memory"]
 readTime: "8 min read"
 featured: false

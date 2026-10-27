@@ -2,7 +2,7 @@
 title: "Air Pollution and Testosterone: What Living in India's Polluted Cities Might Be Doing to Men's Hormones"
 description: "Delhi, Mumbai, and other Indian cities regularly rank among the world's most polluted. Here's what emerging research suggests about air pollution's effect on men's testosterone and overall hormonal health."
 pubDate: 2026-10-10T06:18:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["air pollution", "environmental health", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

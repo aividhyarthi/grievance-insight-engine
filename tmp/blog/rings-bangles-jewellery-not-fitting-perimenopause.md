@@ -2,7 +2,7 @@
 title: "Why Your Rings and Bangles Suddenly Don't Fit: Perimenopause and Jewellery"
 description: "If your wedding ring is stuck at the knuckle and your bangles leave marks by evening, water retention from shifting hormones is a common, underdiscussed perimenopause change. Here's why it happens and what actually helps."
 pubDate: 2026-10-03T02:15:45Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["water retention", "symptoms", "body image", "india", "hormones"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1200&h=675&fit=crop&q=80"

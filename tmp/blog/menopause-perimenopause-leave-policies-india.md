@@ -2,7 +2,7 @@
 title: "Menopause and Perimenopause Leave Policies in India: What Exists, and How to Ask Your Workplace for One"
 description: "A handful of Indian states and companies have begun offering menopause-related leave, but most workplaces have no policy at all. Here's what currently exists, what to ask for even without a formal policy, and how to make the case."
 pubDate: 2026-10-05T08:20:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["life", "working women", "workplace", "when to see doctor"]
 readTime: "9 min read"
 image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?w=1200&h=675&fit=crop&q=80"

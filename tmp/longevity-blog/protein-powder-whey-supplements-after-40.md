@@ -2,7 +2,7 @@
 title: "Protein Powder and Whey After 40: Does It Add Anything Beyond Food?"
 description: "Protein powder has moved from gym shelves to kitchen counters. Here is what the evidence says about whether Indian adults over 40 actually need it, beyond eating more protein-rich food."
 pubDate: 2026-10-05T13:00:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "protein", "muscle health", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

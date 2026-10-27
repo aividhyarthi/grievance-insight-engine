@@ -2,7 +2,7 @@
 title: "Taking Criticism Differently After 40: Feedback, Ego, and Testosterone"
 description: "Why negative feedback can feel heavier and harder to shake off in midlife, and how hormonal, emotional, and identity shifts all play a part."
 pubDate: 2026-09-23T08:16:51Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["feedback", "workplace stress", "mood", "identity", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

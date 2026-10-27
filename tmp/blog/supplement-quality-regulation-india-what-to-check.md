@@ -2,7 +2,7 @@
 title: "Supplement Quality and Regulation in India: What to Check Before You Buy"
 description: "India's supplement market is loosely regulated compared to prescription medicine, which means quality and purity vary a lot between brands. Here is what to actually check before you buy."
 pubDate: 2026-09-19T04:28:30Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "supplements", "india", "when to see doctor"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Homeopathy for Digestive Issues After 40: Acidity, Bloating, and IBS-Like Symptoms, Examined"
 description: "Many Indians reach for homeopathic remedies when acidity, bloating, or IBS-like symptoms flare up after 40. Here is what people actually try, and what the evidence situation looks like."
 pubDate: 2026-10-18T02:17:48Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["homeopathy", "digestive health", "gut health", "evidence-based medicine", "healthy ageing"]
 readTime: "7 min read"
 featured: false

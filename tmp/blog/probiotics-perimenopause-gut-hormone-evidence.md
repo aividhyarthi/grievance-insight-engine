@@ -2,7 +2,7 @@
 title: "Probiotics and Perimenopause: What the Evidence Actually Shows for Gut and Hormone Health"
 description: "Probiotic supplements are everywhere in the perimenopause conversation, from gut health to mood to hot flashes. Here's what the evidence actually supports, what's still unproven, and how to think about quality in India's supplement market."
 pubDate: 2026-09-27T10:17:08Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "supplements", "gut health", "mood", "when to see doctor"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1550572017-edd951b55104?w=1200&h=675&fit=crop&q=80"

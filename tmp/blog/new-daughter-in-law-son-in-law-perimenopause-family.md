@@ -2,7 +2,7 @@
 title: "When a New Daughter-in-Law or Son-in-Law Joins the Family: Perimenopause and the Changing Household"
 description: "A new daughter-in-law or son-in-law joining the family is a major household shift at the best of times. Doing it while your own hormones, patience, and energy are in flux adds a layer nobody talks about."
 pubDate: 2026-10-02T08:18:36Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "relationships", "family", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Finding a Clean Bathroom During a Hot Flash: Perimenopause and Public Restroom Anxiety in India"
 description: "Heavier periods, sudden hot flashes, and more frequent urination collide with a very Indian problem: the scarcity of clean, accessible public toilets. Here is how to plan around it without it running your day."
 pubDate: 2026-10-10T10:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["life", "hot flashes", "india", "urinary symptoms"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

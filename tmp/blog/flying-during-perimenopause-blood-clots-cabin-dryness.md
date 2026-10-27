@@ -2,7 +2,7 @@
 title: "Flying During Perimenopause: Blood Clot Risk, Cabin Dryness, and Hot Flashes at 35,000 Feet"
 description: "A flight adds its own specific stressors on top of perimenopause: dry cabin air, long periods of sitting still, and a pressurised environment that can make hot flashes and swelling worse. Here is what actually matters and what to do about it."
 pubDate: 2026-10-08T06:17:14Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["life", "travel", "hot flashes", "fatigue"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

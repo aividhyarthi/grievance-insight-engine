@@ -2,7 +2,7 @@
 title: "Alcohol and Longevity: How Much Is Actually Too Much"
 description: "The idea that a little alcohol is good for your heart has largely been overturned by newer research. Here is what the current evidence actually says about alcohol and healthy ageing."
 pubDate: 2026-09-08T11:30:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["alcohol", "longevity", "liver health", "heart health", "sleep"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Bhringraj for Perimenopause Hair Thinning: What It's Traditionally Used For, and What the Evidence Shows"
 description: "Bhringraj oil shows up in almost every Indian household's hair-care routine, and perimenopausal hair thinning sends many women back to it. Here is what it is traditionally used for and what the research actually supports."
 pubDate: 2026-10-13T03:14:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["natural remedies", "ayurveda", "hair loss", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&h=675&fit=crop&q=80"

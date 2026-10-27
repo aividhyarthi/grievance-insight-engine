@@ -2,7 +2,7 @@
 title: "DHEA Supplements in Perimenopause: What the Evidence Actually Shows, and Why It's Different From Other Supplements"
 description: "DHEA is sold as a supplement in some countries but behaves more like a hormone than a vitamin. Here is what the evidence actually shows about DHEA in perimenopause, and why it needs far more caution than magnesium or vitamin D."
 pubDate: 2026-10-13T05:14:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "hormones", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

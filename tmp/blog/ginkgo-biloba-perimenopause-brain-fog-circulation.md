@@ -2,7 +2,7 @@
 title: "Ginkgo Biloba for Perimenopause Brain Fog and Circulation: What the Evidence Shows"
 description: "Ginkgo biloba is one of the most widely sold brain and circulation supplements worldwide, and increasingly marketed to perimenopausal women for memory and focus. Here is an honest look at what the research actually supports."
 pubDate: 2026-10-20T06:17:38Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "supplements", "brain fog", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

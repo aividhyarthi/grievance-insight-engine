@@ -2,7 +2,7 @@
 title: "Iron Supplements in Perimenopause: What to Know Before You Start"
 description: "Heavy or unpredictable bleeding can genuinely deplete iron in perimenopause, but supplementing without testing first can do more harm than good. Here's what the evidence says about iron supplementation, forms, side effects, and when it's actually warranted."
 pubDate: 2026-09-29T10:17:08Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "supplements", "fatigue", "when to see doctor"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

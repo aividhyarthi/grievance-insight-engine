@@ -2,7 +2,7 @@
 title: "Temple Visits and Unpredictable Bleeding: Navigating Purity Taboos in Perimenopause"
 description: "When periods become irregular and unpredictable, traditional rules about temple visits and religious participation during menstruation get complicated. Here is how women are navigating it."
 pubDate: 2026-09-17T08:17:48Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["bleeding", "india", "community", "life"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&h=675&fit=crop&q=80"

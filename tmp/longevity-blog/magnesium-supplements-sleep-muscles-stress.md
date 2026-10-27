@@ -2,7 +2,7 @@
 title: "Magnesium Supplements: What They Can and Cannot Do for Sleep, Muscles, and Stress"
 description: "Magnesium supplements are widely recommended for sleep, cramps, and stress. Here is what the evidence actually shows, who is most likely to benefit, and what to check before you buy."
 pubDate: 2026-09-19T10:28:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["magnesium", "supplements", "sleep", "stress management", "longevity"]
 readTime: "9 min read"
 featured: false

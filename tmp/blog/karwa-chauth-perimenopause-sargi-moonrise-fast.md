@@ -2,7 +2,7 @@
 title: "Karwa Chauth in Perimenopause: Getting Through the Sargi, the Fast, and the Wait for Moonrise"
 description: "A sunrise-to-moonrise fast is a different kind of challenge in perimenopause, from planning your sargi to surviving an unpredictable hot flash while dressed up and waiting for the moon. Here's how to get through the day more comfortably."
 pubDate: 2026-10-03T04:15:45Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["fasting", "blood sugar", "hot flashes", "india", "festivals"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=1200&h=675&fit=crop&q=80"

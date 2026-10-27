@@ -2,7 +2,7 @@
 title: "Building a Sustainable Exercise Routine After 40"
 description: "A young man's workout plan copy-pasted onto a 45-year-old body usually backfires. Here is how to build an exercise routine suited to changing recovery and hormones instead."
 pubDate: 2026-09-05T15:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["exercise", "fitness", "recovery", "testosterone", "midlife health"]
 readTime: "7 min read"
 featured: false

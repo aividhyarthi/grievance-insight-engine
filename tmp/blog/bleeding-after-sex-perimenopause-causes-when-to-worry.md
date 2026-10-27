@@ -2,7 +2,7 @@
 title: "Bleeding After Sex in Perimenopause: Causes and When to Worry"
 description: "Light bleeding or spotting after sex is common in perimenopause and usually has a simple hormonal explanation, but a few causes need a doctor's attention. Here's how to tell the difference."
 pubDate: 2026-09-11T11:00:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["bleeding", "perimenopause", "sexual health", "when to see doctor", "symptoms"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=675&fit=crop&q=80"

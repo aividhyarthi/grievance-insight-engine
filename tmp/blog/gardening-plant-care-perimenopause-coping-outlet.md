@@ -2,7 +2,7 @@
 title: "Perimenopause and Gardening: Why Growing Something Helps When Nothing Else Does"
 description: "Many women find themselves unexpectedly drawn to plants and gardening during perimenopause. Here is why tending soil and watching something grow can genuinely help with mood, anxiety, and the feeling of losing control."
 pubDate: 2026-09-22T06:17:29Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["lifestyle", "mental health", "stress", "self-care"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&h=675&fit=crop&q=80"

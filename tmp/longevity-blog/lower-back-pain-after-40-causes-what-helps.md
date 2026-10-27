@@ -2,7 +2,7 @@
 title: "Lower Back Pain After 40: Why It Becomes More Common, and What Actually Helps"
 description: "Lower back pain is one of the most common complaints after 40, yet it is rarely explained well. Here is why it happens more often with age, and what genuinely helps."
 pubDate: 2026-10-15T06:17:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["back pain", "joint health", "longevity", "healthy ageing", "fitness"]
 readTime: "8 min read"
 featured: false

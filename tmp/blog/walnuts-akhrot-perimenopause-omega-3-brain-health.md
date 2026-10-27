@@ -2,7 +2,7 @@
 title: "Walnuts (Akhrot) for Perimenopause: Omega-3s, Brain Health, and What the Evidence Shows"
 description: "Walnuts are an easy, widely available Indian pantry staple with a genuinely strong nutrition profile for perimenopause. Here is what the evidence actually shows for mood, brain fog, heart health, and where the hype outpaces the research."
 pubDate: 2026-10-26T16:43:13Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "omega-3", "brain fog", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=675&fit=crop&q=80"

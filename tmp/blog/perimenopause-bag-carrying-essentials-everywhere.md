@@ -2,7 +2,7 @@
 title: "The Perimenopause Bag: What Indian Women Start Carrying Everywhere, and Why"
 description: "Somewhere in your 40s your handbag quietly changes: a spare pad even when you're not due, a folding fan, a strip of medication, a change of top. Here's why perimenopause turns your bag into a survival kit, and how to pack it without the anxiety."
 pubDate: 2026-09-29T02:17:08Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["lifestyle", "hot flashes", "bleeding", "perimenopause basics"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=675&fit=crop&q=80"

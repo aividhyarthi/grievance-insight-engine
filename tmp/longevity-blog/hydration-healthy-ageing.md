@@ -2,7 +2,7 @@
 title: "Hydration and Healthy Ageing: How Much Water You Actually Need"
 description: "The 8 glasses a day rule is not based on strong evidence, and your real hydration needs change as you age and with India's climate. Here is what actually matters."
 pubDate: 2026-09-08T17:30:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["hydration", "longevity", "healthy ageing", "kidney health", "fatigue"]
 readTime: "6 min read"
 featured: false

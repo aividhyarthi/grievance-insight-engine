@@ -2,7 +2,7 @@
 title: "Beetroot (Chukandar) for Perimenopause: Iron, Nitrates, and What the Evidence Shows"
 description: "Beetroot is a staple in many Indian kitchens, praised for everything from iron levels to heart health. Here is what the actual evidence says about its relevance to perimenopause."
 pubDate: 2026-10-21T04:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["natural remedies", "nutrition", "heart health", "india"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

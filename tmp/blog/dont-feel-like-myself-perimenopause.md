@@ -2,7 +2,7 @@
 title: "I Don't Feel Like Myself Anymore: Identity in Perimenopause"
 description: "Beyond the physical symptoms, many women describe perimenopause as a quiet loss of self. Why this happens, why it's rarely talked about, and how to start feeling like you again."
 pubDate: 2026-09-03
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["identity", "mental health", "emotional wellbeing", "perimenopause"]
 readTime: "6 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

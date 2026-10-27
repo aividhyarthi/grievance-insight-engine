@@ -2,7 +2,7 @@
 title: "Grip Strength and Manual Work Confidence After 40: What's Changing and Why"
 description: "Why opening jars, lifting luggage, or twisting a stubborn bolt feels harder after 40, and what declining grip strength says about testosterone and muscle health."
 pubDate: 2026-09-22T10:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["grip strength", "muscle loss", "strength training", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Endocrine Disruptors in Everyday Plastics: What They Might Mean for Your Testosterone"
 description: "From food containers to water bottles, plastics are everywhere in Indian kitchens. Here's what the evidence shows about endocrine-disrupting chemicals and their possible link to declining testosterone."
 pubDate: 2026-10-10T08:18:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["endocrine disruptors", "plastics", "environmental health", "testosterone", "andropause"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "When Your Child Leaves for College: Empty Nest Syndrome in Midlife Fathers"
 description: "The house goes quiet when a child leaves for college or a hostel, and many Indian fathers are caught off guard by how much it affects them, right as testosterone decline is already reshaping mood and identity."
 pubDate: 2026-09-28T02:17:43Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["empty nest", "fatherhood", "identity", "mood", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

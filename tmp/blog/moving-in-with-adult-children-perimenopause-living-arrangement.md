@@ -2,7 +2,7 @@
 title: "When the Household Changes Shape: Perimenopause and Moving In With (or Out From) Adult Children"
 description: "Whether an adult child has moved back home, or you've moved in with them, or you've finally moved into a place of your own, a change in who you live with lands differently when your body is also changing. Here's how to navigate both at once."
 pubDate: 2026-10-03T10:15:45Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["family", "relationships", "life", "india", "community"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

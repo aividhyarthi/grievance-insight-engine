@@ -2,7 +2,7 @@
 title: "Night Sweats and Your Mattress: Practical Bedroom Fixes for Indian Homes"
 description: "Waking up drenched at 2am is more than a symptom to manage, it is a mattress, a mattress protector, and a set of bedsheets to deal with too. Here are practical, India-specific fixes for the physical mess night sweats leave behind."
 pubDate: 2026-10-08T08:17:14Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["symptoms", "sleep", "night sweats", "lifestyle"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

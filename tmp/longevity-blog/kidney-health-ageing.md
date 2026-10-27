@@ -2,7 +2,7 @@
 title: "Kidney Health and Ageing: Why This Organ Deserves More Attention After 40"
 description: "Kidney function declines quietly with age and rarely causes symptoms until real damage is done. Here is what actually protects your kidneys, which tests matter, and who should be checking more often."
 pubDate: 2026-09-14T02:17:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["kidney health", "longevity", "healthy ageing", "blood pressure", "diabetes prevention"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Why You Keep Forgetting Your Wallet and Keys After 40: Everyday Forgetfulness and Testosterone"
 description: "Misplacing your wallet, keys, or phone more often after 40 is common and usually not serious. Here's why it happens, how it connects to testosterone, and simple systems that actually fix it."
 pubDate: 2026-10-01T06:17:35Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["brain fog", "memory", "andropause", "testosterone", "midlife health", "focus"]
 readTime: "6 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Dry, Itchy Skin After 40: Why It Happens, and What Actually Helps"
 description: "If your skin suddenly feels drier, flakier, or itchier than it used to, especially in winter, here is why this happens after 40, and what genuinely helps versus what doesn't."
 pubDate: 2026-10-06T10:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["skin and hair", "ageing", "daily life", "winter health"]
 readTime: "8 min read"
 featured: false

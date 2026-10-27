@@ -2,7 +2,7 @@
 title: "Zinc Supplements and Testosterone: When Food Isn't Enough"
 description: "Zinc from food is the first-line approach for most men, but some genuinely need a supplement. Here is when that's true, what the evidence supports, and what to watch for."
 pubDate: 2026-09-24T02:16:43Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["zinc", "supplements", "testosterone", "supplement regulation", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

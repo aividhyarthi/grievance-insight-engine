@@ -2,7 +2,7 @@
 title: "Why India's Winter Transition Is Harder on an Ageing Body, and What Actually Helps"
 description: "As temperatures drop across India from November onward, ageing bodies face real physiological strain, from blood pressure swings to joint stiffness. Here's what actually changes and how to prepare."
 pubDate: 2026-09-21T02:16:52Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["winter health", "seasonal health", "heart health", "joint health", "healthy ageing"]
 readTime: "7 min read"
 featured: false

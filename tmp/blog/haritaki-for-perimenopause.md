@@ -2,7 +2,7 @@
 title: "Haritaki for Perimenopause: Traditional Use for Digestion and Detox, and What the Evidence Shows"
 description: "Haritaki is best known as one-third of triphala, but it has its own long history in Ayurveda. Here is what it is traditionally used for on its own, and what current research actually supports for perimenopause."
 pubDate: 2026-10-22T02:17:00Z
-author: "Journal Desk"
+author: "Kavita Menon"
 tags: ["natural remedies", "ayurveda", "bloating", "gut", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=675&fit=crop&q=80"

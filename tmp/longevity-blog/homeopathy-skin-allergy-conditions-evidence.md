@@ -2,7 +2,7 @@
 title: "Homeopathy for Skin Conditions and Allergies After 40: What People Try, and What the Evidence Shows"
 description: "Many Indians turn to homeopathy for eczema, hives, allergic rashes, and chronic itching. Here is what people commonly try, what the research actually shows, and when a skin or allergy symptom needs a doctor's attention instead."
 pubDate: 2026-10-13T04:00:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["homeopathy", "skin health", "evidence-based medicine", "healthy ageing"]
 readTime: "8 min read"
 featured: false

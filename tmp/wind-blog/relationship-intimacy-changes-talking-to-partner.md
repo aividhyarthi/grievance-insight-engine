@@ -2,7 +2,7 @@
 title: "Relationship and Intimacy Changes: Talking to Your Partner About What's Happening"
 description: "Reduced libido, less physical affection, and a partner who has noticed but not said anything. Here is how to actually start the conversation about andropause-related intimacy changes with your partner."
 pubDate: 2026-09-10T17:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["relationships", "intimacy", "libido", "testosterone", "andropause"]
 readTime: "7 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Piles and Hemorrhoids After 40: The Desk Job, Diet, and Straining Connection"
 description: "Piles are one of the most common, least discussed health complaints in midlife Indian men. What actually causes them, why desk jobs make it worse, and when symptoms need more than home remedies."
 pubDate: 2026-10-21T06:17:52Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["piles", "digestive health", "andropause", "diet", "desk job health"]
 readTime: "7 min read"
 featured: false

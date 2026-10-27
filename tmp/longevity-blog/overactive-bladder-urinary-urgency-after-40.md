@@ -2,7 +2,7 @@
 title: "Overactive Bladder After 40: Why Sudden Urinary Urgency Isn't Just a Nighttime Problem"
 description: "Needing to rush to the toilet during the day, not just at night, becomes more common after 40 for both men and women. Here is why it happens and what genuinely helps."
 pubDate: 2026-10-17T08:15:00Z
-author: "Journal Desk"
+author: "Sanjay Verma"
 tags: ["bladder health", "pelvic floor", "healthy ageing"]
 readTime: "8 min read"
 featured: false

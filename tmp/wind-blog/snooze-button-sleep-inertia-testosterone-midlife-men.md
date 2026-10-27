@@ -2,7 +2,7 @@
 title: "Hitting Snooze Every Morning After 40: Sleep Inertia, Motivation, and Testosterone"
 description: "If getting out of bed feels harder than it used to, and the snooze button has become a daily ritual, there may be more going on than simple laziness. Here is the sleep and hormone science behind it."
 pubDate: 2026-10-17T10:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["sleep", "testosterone", "andropause", "motivation", "fatigue"]
 readTime: "9 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Floor-Sitting or Chair-Sitting: Which Is Actually Better for Your Joints After 40"
 description: "Indian homes have long mixed floor-sitting and chair-sitting, but which is actually better for ageing hips and knees? Here is what the evidence on joint health, mobility, and sitting posture actually shows."
 pubDate: 2026-09-17T08:17:06Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["joint health", "mobility", "longevity", "healthy ageing", "movement"]
 readTime: "8 min read"
 featured: false

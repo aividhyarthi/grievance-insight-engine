@@ -2,7 +2,7 @@
 title: "Urinary Tract Infections After 40: Why They Become More Common, and What Actually Helps"
 description: "UTIs tend to show up more often, and sometimes with less obvious symptoms, after 40. Here is why that happens, who is at higher risk, and the practical steps that genuinely reduce recurrence."
 pubDate: 2026-10-25T06:18:43Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["urinary health", "hydration", "infection prevention", "ageing"]
 readTime: "6 min read"
 featured: false

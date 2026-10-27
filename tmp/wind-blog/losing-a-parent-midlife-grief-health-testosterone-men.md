@@ -2,7 +2,7 @@
 title: "Losing a Parent in Midlife: Grief, Health, and Your Own Testosterone"
 description: "Losing a parent in your 40s or 50s brings grief that can hit your body as hard as your mind. Here's how that grief can affect sleep, mood, and testosterone, and what actually helps."
 pubDate: 2026-10-08T06:20:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["grief", "mental health", "parents", "testosterone", "andropause", "midlife"]
 readTime: "9 min read"
 featured: false

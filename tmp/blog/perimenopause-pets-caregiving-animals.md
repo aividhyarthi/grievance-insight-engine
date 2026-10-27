@@ -2,7 +2,7 @@
 title: "Perimenopause and Your Pets: When You Have Less Patience and Energy for Animal Care"
 description: "Feeling shorter-tempered with your dog's barking or too exhausted for the evening walk is a real perimenopause pattern, not a character flaw. Here is why it happens and how to keep caring for a pet without running yourself into the ground."
 pubDate: 2026-09-21T04:17:37Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["life", "relationships", "stress", "lifestyle"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"

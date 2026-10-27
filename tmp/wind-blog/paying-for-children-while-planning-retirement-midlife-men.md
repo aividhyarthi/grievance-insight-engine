@@ -2,7 +2,7 @@
 title: "Still Paying for Your Children While Planning Your Own Retirement: The Midlife Financial Squeeze"
 description: "Many Indian men in their late 40s and 50s are funding adult children's weddings, rent, or business ventures at the exact age they should be focused on retirement savings. Here is why this squeeze is so common, and what it does to stress and health."
 pubDate: 2026-10-16T10:17:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["andropause", "testosterone", "stress", "financial stress", "fatigue"]
 readTime: "9 min read"
 featured: false

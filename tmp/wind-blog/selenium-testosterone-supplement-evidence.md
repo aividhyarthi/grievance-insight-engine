@@ -2,7 +2,7 @@
 title: "Selenium and Testosterone: What the Research Actually Shows"
 description: "Selenium is a trace mineral tied to thyroid function and sperm health, and it is increasingly sold as a testosterone aid. Here is what the actual evidence says, and why Indian men should be cautious about self-supplementing."
 pubDate: 2026-10-12T02:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "testosterone", "andropause", "nutrition", "fatigue"]
 readTime: "9 min read"
 featured: false

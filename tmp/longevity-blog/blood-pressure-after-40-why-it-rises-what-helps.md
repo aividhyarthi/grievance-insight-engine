@@ -2,7 +2,7 @@
 title: "Blood Pressure After 40: Why It Creeps Up, and What Actually Brings It Down"
 description: "Blood pressure tends to rise quietly after 40, often with no symptoms at all. Here is why it happens, how to read your numbers, and what genuinely helps bring them down."
 pubDate: 2026-10-16T03:00:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["blood pressure", "heart health", "longevity", "stress", "India"]
 readTime: "7 min read"
 featured: false

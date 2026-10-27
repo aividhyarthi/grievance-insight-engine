@@ -2,7 +2,7 @@
 title: "Zinc-Rich Indian Foods and Testosterone: What the Evidence Actually Shows"
 description: "Zinc plays a real, well-documented role in testosterone production, and many Indian diets fall short of it without anyone noticing. Here is what the evidence supports and which everyday foods actually help."
 pubDate: 2026-09-19T03:10:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["zinc", "nutrition", "testosterone", "Indian diet", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

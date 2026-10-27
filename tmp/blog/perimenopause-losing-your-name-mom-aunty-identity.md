@@ -2,7 +2,7 @@
 title: "Lost in 'Mom' and 'Aunty': Perimenopause and Reclaiming Your Own Name"
 description: "When everyone around you says 'Mumma', 'Aunty', or your husband's surname instead of your own name, perimenopause can be the moment you notice how long it's been since you heard it. Here's why that hits harder now, and what helps."
 pubDate: 2026-09-25T10:17:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["identity", "mental health", "emotional wellbeing", "relationships", "India"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&h=675&fit=crop&q=80"

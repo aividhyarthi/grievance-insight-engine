@@ -2,7 +2,7 @@
 title: "Sitting Cross-Legged on the Floor After 40: Why It's Harder, and What Your Joints Are Telling You"
 description: "From temple visits to floor-seated family meals, sitting cross-legged is woven into daily Indian life. Here is why it gets harder after 40, and what the discomfort does and doesn't mean."
 pubDate: 2026-10-18T08:16:49Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["joint health", "testosterone", "andropause", "flexibility", "ageing"]
 readTime: "7 min read"
 featured: false

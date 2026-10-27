@@ -2,7 +2,7 @@
 title: "L-Theanine for Perimenopause Anxiety and Sleep: What the Evidence Actually Shows"
 description: "L-theanine, the calming amino acid found in tea leaves, has become a popular supplement for anxiety and sleep. Here is an honest look at the evidence for perimenopausal women specifically."
 pubDate: 2026-10-21T06:17:00Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "anxiety", "sleep", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

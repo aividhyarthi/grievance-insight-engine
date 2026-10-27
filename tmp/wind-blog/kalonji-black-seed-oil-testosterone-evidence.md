@@ -2,7 +2,7 @@
 title: "Kalonji (Black Seed) and Testosterone: Traditional Use Versus Current Evidence"
 description: "Kalonji, or black seed (Nigella sativa), is a kitchen staple many Indian households trust for everything from immunity to joint pain. Here is what the research actually says about its effect on testosterone."
 pubDate: 2026-10-22T06:17:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["ayurveda", "kalonji", "testosterone", "andropause", "supplements", "nutrition"]
 readTime: "9 min read"
 featured: false

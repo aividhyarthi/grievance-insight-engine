@@ -2,7 +2,7 @@
 title: "Cold Exposure and Cold Showers: Hype Versus Evidence"
 description: "Cold plunges and cold showers are everywhere in wellness content right now. Here is an honest look at what the evidence actually supports and where the claims run ahead of the science."
 pubDate: 2026-09-08T15:30:00Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["cold exposure", "cold showers", "longevity", "recovery", "stress management"]
 readTime: "6 min read"
 featured: false

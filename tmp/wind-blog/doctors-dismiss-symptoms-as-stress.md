@@ -2,7 +2,7 @@
 title: "When Your Doctor Says It's Just Stress: What to Do Next"
 description: "Fatigue, low mood, and low libido keep getting written off as stress alone. Here's why that happens to midlife Indian men so often, and how to push for a proper evaluation without an argument."
 pubDate: 2026-09-16T08:15:48Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["health advocacy", "doctor visit", "stress", "andropause", "testosterone", "midlife health"]
 readTime: "7 min read"
 featured: false

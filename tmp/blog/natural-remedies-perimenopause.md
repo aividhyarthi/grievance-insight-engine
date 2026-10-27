@@ -2,7 +2,7 @@
 title: "Natural Remedies for Perimenopause — What Works, What Doesn't, and What to Watch Out For"
 description: "An honest, evidence-based look at natural remedies for perimenopause — including what has real evidence, what has modest evidence, what to skip, and what India's traditional remedies actually offer."
 pubDate: 2025-05-21
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["natural remedies", "lifestyle", "supplements", "perimenopause"]
 readTime: "8 min read"
 featured: false

@@ -2,7 +2,7 @@
 title: "Gout and Testosterone: Uric Acid, Diet, and What Midlife Men Should Know"
 description: "Gout attacks become far more common in men from their 40s onward. Here's why, what actually triggers a flare, and whether declining testosterone has anything to do with it."
 pubDate: 2026-10-26T15:00:00Z
-author: "Journal Desk"
+author: "Rajesh Kumar"
 tags: ["gout", "uric acid", "diet", "testosterone", "andropause"]
 readTime: "8 min read"
 featured: false

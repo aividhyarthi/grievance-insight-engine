@@ -2,7 +2,7 @@
 title: "Yoga Versus General Movement: What Does the Evidence Actually Say?"
 description: "Yoga is often treated as a category apart from exercise. Here is what research actually shows it does differently from walking, strength training, or a general movement habit, and where it falls short."
 pubDate: 2026-09-20T02:17:17Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["yoga", "movement", "exercise", "longevity", "flexibility"]
 readTime: "7 min read"
 featured: false

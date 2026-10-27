@@ -2,7 +2,7 @@
 title: "Nail Changes in Midlife Men: Ridges, Brittleness, and What's Hormonal"
 description: "Why nails develop ridges, become brittle, or grow more slowly after 40, and how to tell ordinary ageing apart from a sign worth mentioning to your doctor."
 pubDate: 2026-09-23T06:16:51Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["nail health", "grooming", "ageing", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

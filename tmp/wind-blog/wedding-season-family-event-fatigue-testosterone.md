@@ -2,7 +2,7 @@
 title: "Wedding Season Exhaustion: Why Back-to-Back Family Events Hit Harder After 40"
 description: "Multi-day weddings, late nights, and nonstop socialising take a real physical toll on midlife men. Here's why wedding season fatigue feels different after 40, and how to get through it without wrecking your health."
 pubDate: 2026-09-17T04:16:51Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["wedding season", "fatigue", "sleep", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

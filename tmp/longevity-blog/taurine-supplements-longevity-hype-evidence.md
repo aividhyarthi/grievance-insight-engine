@@ -2,7 +2,7 @@
 title: "Taurine Supplements and Longevity: Hype Versus Evidence"
 description: "A 2023 animal study linking falling taurine levels to ageing made headlines everywhere. Here is what taurine actually does in the body, what the science really shows, and whether supplementing makes sense."
 pubDate: 2026-10-19T04:17:51Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["supplements", "longevity research", "metabolic health", "healthy ageing"]
 readTime: "7 min read"
 featured: false

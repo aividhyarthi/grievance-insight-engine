@@ -2,7 +2,7 @@
 title: "Forgetting Your Keys, Glasses, or Phone: Normal Ageing or Something to Watch?"
 description: "Misplacing everyday items is extremely common after 40, and usually harmless. Here's how to tell ordinary absent-mindedness apart from the kind of forgetfulness worth mentioning to a doctor."
 pubDate: 2026-10-01T06:17:49Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["memory", "cognitive health", "brain fog", "healthy ageing", "longevity"]
 readTime: "7 min read"
 featured: false

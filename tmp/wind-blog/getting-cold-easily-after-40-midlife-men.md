@@ -2,7 +2,7 @@
 title: "Getting Cold More Easily After 40: The Flip Side of Hot Flashes in Men"
 description: "Reaching for a jacket in a room everyone else finds fine, dreading the office air conditioning, feeling chilled long after a winter walk: some midlife men run cold, not hot, and testosterone may be part of why."
 pubDate: 2026-09-29T06:17:48Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["temperature regulation", "cold sensitivity", "circulation", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

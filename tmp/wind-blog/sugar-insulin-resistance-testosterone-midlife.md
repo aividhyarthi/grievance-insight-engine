@@ -2,7 +2,7 @@
 title: "Sugar, Insulin Resistance, and Testosterone: What Changes in Midlife"
 description: "How rising blood sugar and insulin resistance after 40 quietly lower testosterone in men, and what the evidence says about turning it around."
 pubDate: 2026-09-22T02:17:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["sugar", "insulin resistance", "blood sugar", "nutrition", "testosterone", "andropause", "midlife health"]
 readTime: "9 min read"
 featured: false

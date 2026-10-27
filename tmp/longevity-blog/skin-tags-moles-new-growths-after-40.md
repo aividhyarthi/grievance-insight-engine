@@ -2,7 +2,7 @@
 title: "Skin Tags, Moles, and New Growths After 40: What's Normal, and When to See a Doctor"
 description: "New skin tags and moles tend to appear more often after 40, and most are completely harmless. Here is how to tell ordinary age-related skin changes apart from the warning signs genuinely worth getting checked."
 pubDate: 2026-10-12T10:18:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["skin health", "healthy ageing", "cancer screening", "preventive health"]
 readTime: "8 min read"
 featured: false

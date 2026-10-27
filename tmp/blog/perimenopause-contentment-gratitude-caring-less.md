@@ -2,7 +2,7 @@
 title: "Perimenopause and a Surprising Sense of Contentment: When Caring Less Feels Like Relief"
 description: "Alongside the harder symptoms, some women notice a genuine, unexpected rise in contentment and gratitude during perimenopause. Here is why that happens and why it is just as real as the difficult symptoms."
 pubDate: 2026-09-26T08:18:08Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["mood", "mental health", "identity"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&h=675&fit=crop&q=80"

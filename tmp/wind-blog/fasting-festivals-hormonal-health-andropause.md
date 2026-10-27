@@ -2,7 +2,7 @@
 title: "Fasting, Festivals, and Testosterone: What Men With Low Levels Should Know Before Navratri or Ramzan"
 description: "Extended religious fasting during Navratri, Ramzan, or Ekadashi can interact with testosterone and blood sugar in ways men with andropause symptoms should plan around."
 pubDate: 2026-09-12T11:00:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["fasting", "nutrition", "andropause", "testosterone", "midlife health"]
 readTime: "6 min read"
 featured: false

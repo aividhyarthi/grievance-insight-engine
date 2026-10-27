@@ -2,7 +2,7 @@
 title: "Teeth Grinding and Jaw Clenching After 40: Why It Happens, and What Actually Helps"
 description: "Waking up with a sore jaw, a dull headache, or worn-down teeth your dentist keeps mentioning can point to teeth grinding, a habit that often intensifies with midlife stress. Here is why it happens and what genuinely helps."
 pubDate: 2026-10-11T06:19:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["dental health", "stress", "sleep", "healthy ageing", "jaw pain"]
 readTime: "8 min read"
 featured: false

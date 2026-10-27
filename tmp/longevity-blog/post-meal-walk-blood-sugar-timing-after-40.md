@@ -2,7 +2,7 @@
 title: "The 10-Minute Post-Meal Walk: Why Timing Your Walk After Eating Matters After 40"
 description: "A short walk right after eating may do more for your blood sugar than the same walk done at another time of day. Here is what the research actually shows, and how to build the habit."
 pubDate: 2026-10-14T08:16:56Z
-author: "Journal Desk"
+author: "Lakshmi Subramaniam"
 tags: ["blood sugar", "exercise", "healthy ageing", "metabolic health"]
 readTime: "8 min read"
 featured: false

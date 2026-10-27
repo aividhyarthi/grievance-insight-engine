@@ -2,7 +2,7 @@
 title: "Eyebrow and Facial Hair Thinning in Midlife Men: What's Hormonal, What's Just Ageing"
 description: "Noticed your eyebrows or facial hair thinning in your 40s or 50s, separate from hair loss on your head? Here's what's actually going on hormonally and when it's worth a doctor's opinion."
 pubDate: 2026-09-25T04:16:00Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["eyebrow thinning", "facial hair", "grooming", "hair changes", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

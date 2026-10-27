@@ -2,7 +2,7 @@
 title: "Homeopathy for Hot Flashes: Separating Anecdote From Evidence"
 description: "Many Indian women reach for homeopathic drops the moment hot flashes start. Here is an honest look at what's actually been tried, what the trials show, and why hot flash research is unusually hard to interpret."
 pubDate: 2026-10-09T02:18:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["natural remedies", "homeopathy", "hot flashes", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1200&h=675&fit=crop&q=80"

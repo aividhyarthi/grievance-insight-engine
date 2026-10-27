@@ -2,7 +2,7 @@
 title: "Headaches and Migraines After 40: Why Patterns Change, and What Actually Helps"
 description: "Headache patterns often shift after 40, for better and for worse. Here is what commonly changes, what helps, and which headaches deserve a doctor's attention."
 pubDate: 2026-10-15T08:17:00Z
-author: "Journal Desk"
+author: "Divya Krishnan"
 tags: ["headaches", "migraine", "brain health", "longevity", "healthy ageing"]
 readTime: "8 min read"
 featured: false

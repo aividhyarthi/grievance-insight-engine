@@ -2,7 +2,7 @@
 title: "Can You Get a False Positive Pregnancy Test in Perimenopause?"
 description: "A positive pregnancy test in your 40s can be confusing when you're also experiencing perimenopause symptoms. Here's the science behind when tests can give misleading results — and what to do."
 pubDate: 2026-06-04
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["understanding", "perimenopause", "pregnancy", "hormones", "fertility"]
 image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman looking thoughtfully at a pregnancy test, representing the uncertainty of testing during perimenopause"

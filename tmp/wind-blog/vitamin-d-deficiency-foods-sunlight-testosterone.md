@@ -2,7 +2,7 @@
 title: "Vitamin D Deficiency and Low Testosterone: The Food and Sunlight Connection"
 description: "Vitamin D deficiency is extremely common among Indian men despite abundant sunshine, and it's linked to lower testosterone. Here's what causes the deficiency and which foods and habits actually help."
 pubDate: 2026-09-26T10:17:35Z
-author: "Journal Desk"
+author: "Arjun Mehta"
 tags: ["vitamin D", "nutrition", "sunlight", "Indian diet", "testosterone", "andropause", "midlife health"]
 readTime: "8 min read"
 featured: false

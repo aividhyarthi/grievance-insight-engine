@@ -2,7 +2,7 @@
 title: "Multivitamins After 50: Are They Actually Worth Taking?"
 description: "Multivitamins are one of the most common supplements bought after 50, but the evidence on whether they genuinely help a well-fed adult is more mixed than the marketing suggests. Here's an honest look."
 pubDate: 2026-09-21T10:16:52Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["multivitamins", "supplements", "nutrition", "healthy ageing", "preventive health"]
 readTime: "7 min read"
 featured: false

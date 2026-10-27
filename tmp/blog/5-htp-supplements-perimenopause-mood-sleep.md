@@ -2,7 +2,7 @@
 title: "5-HTP for Perimenopause Mood and Sleep: What the Evidence Shows, and Why It Needs Caution"
 description: "5-HTP is marketed as a natural fix for perimenopausal mood swings and sleep problems. Here is what the research actually supports, and the one safety issue that matters most before you consider it."
 pubDate: 2026-10-17T06:16:53Z
-author: "Journal Desk"
+author: "Ananya Rao"
 tags: ["supplements", "mood", "sleep", "india"]
 readTime: "8 min read"
 image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&h=675&fit=crop&q=80"

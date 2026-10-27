@@ -2,7 +2,7 @@
 title: "Snoring and Your Partner: Why Sleep Issues Affect More Than Just You"
 description: "Loud snoring in midlife often disrupts a partner's sleep, strains the relationship, and can signal a hormone-linked sleep problem worth taking seriously rather than joking about."
 pubDate: 2026-09-09T17:00:00Z
-author: "Journal Desk"
+author: "Rohan Kapoor"
 tags: ["snoring", "sleep", "relationships", "testosterone", "midlife health"]
 readTime: "7 min read"
 featured: false

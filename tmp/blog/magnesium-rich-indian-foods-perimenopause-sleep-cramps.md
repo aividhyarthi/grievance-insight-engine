@@ -2,7 +2,7 @@
 title: "Magnesium-Rich Indian Foods for Perimenopause Sleep and Cramps"
 description: "Magnesium has real evidence for easing perimenopausal sleep problems and muscle cramps. Here are the Indian foods that actually deliver it, and how much you realistically need."
 pubDate: 2026-09-19T05:08:00Z
-author: "Journal Desk"
+author: "Priya Nair"
 tags: ["natural remedies", "nutrition", "sleep", "cramps", "diet"]
 readTime: "7 min read"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"

@@ -2,7 +2,7 @@
 title: "Financial Stress and Testosterone: The Breadwinner Pressure Most Indian Men Never Discuss"
 description: "Sole-earner pressure, EMIs, children's education costs, and ageing parents' medical bills create a specific kind of chronic stress that can weigh on testosterone. Here is how to recognise it and what actually helps."
 pubDate: 2026-09-12T13:00:00Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["financial stress", "stress", "mood", "testosterone", "andropause"]
 readTime: "7 min read"
 featured: false

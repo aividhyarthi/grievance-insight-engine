@@ -2,7 +2,7 @@
 title: "Probiotics and Prebiotics After 40: What the Evidence Actually Shows"
 description: "Probiotic and prebiotic supplements are heavily marketed for gut and immune health. Here is an honest look at what the research actually supports, and where food already does the job."
 pubDate: 2026-10-04T08:17:00Z
-author: "Journal Desk"
+author: "Meera Pillai"
 tags: ["probiotics", "gut health", "supplements", "immunity", "nutrition"]
 readTime: "8 min read"
 featured: false

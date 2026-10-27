@@ -2,7 +2,7 @@
 title: "Andropause Without Health Insurance: Navigating Testosterone Care in India's Out-of-Pocket System"
 description: "Most Indian health insurance policies don't cover routine testosterone testing or long-term hormone therapy, which leaves many midlife men paying out of pocket. Here's what actually works when you don't have that cover."
 pubDate: 2026-09-19T04:16:45Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["health insurance", "healthcare access", "cost of treatment", "testosterone", "andropause", "midlife health"]
 readTime: "7 min read"
 featured: false

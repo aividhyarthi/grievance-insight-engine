@@ -2,7 +2,7 @@
 title: "Green Leafy Foods You Should Eat During Perimenopause"
 description: "Palak, methi, sarson, moringa — the green leafy vegetables in an Indian kitchen carry folate, calcium, and plant compounds that genuinely support a perimenopausal body. Here is why green matters, and how to eat more of it without effort."
 pubDate: 2026-07-15
-author: "Journal Desk"
+author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Fresh green leafy vegetables for perimenopause nutrition"
 tags: ["natural remedies", "diet", "green vegetables", "bone health", "nutrition"]

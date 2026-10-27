@@ -2,7 +2,7 @@
 title: "Shaky Signatures: Handwriting, Fine Motor Confidence, and Testosterone in Midlife"
 description: "A slightly shaky signature at the bank or a slower, messier hand at the notary's desk can rattle a midlife man's confidence more than he expects. Here's what's actually behind fine motor changes after 40."
 pubDate: 2026-09-19T08:16:45Z
-author: "Journal Desk"
+author: "Vikram Iyer"
 tags: ["fine motor skills", "handwriting", "confidence", "testosterone", "andropause", "midlife health"]
 readTime: "6 min read"
 featured: false

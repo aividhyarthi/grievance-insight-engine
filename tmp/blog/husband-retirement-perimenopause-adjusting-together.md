@@ -2,7 +2,7 @@
 title: "When Your Husband Retires While You're Still in Perimenopause: Adjusting to Two Changes at Once"
 description: "Your husband winding down his career can collide, almost comically badly, with your own hormonal transition. Here is how to navigate both changes happening in the same house at the same time."
 pubDate: 2026-10-22T10:17:00Z
-author: "Journal Desk"
+author: "Sunita Reddy"
 tags: ["relationships", "life", "india", "stress"]
 readTime: "9 min read"
 image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1200&h=675&fit=crop&q=80"
