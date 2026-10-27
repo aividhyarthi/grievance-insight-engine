@@ -2,6 +2,7 @@
 title: "How Is Perimenopausal Bleeding Evaluated, And What Tests Will Your Doctor Order?"
 description: "Irregular or heavy bleeding during perimenopause needs proper evaluation, not just reassurance. Here's exactly what tests are done, why they're done, and what to ask your gynaecologist in India."
 pubDate: 2025-05-19
+updatedDate: 2026-10-27
 author: "Lakshmi Subramaniam"
 tags: ["bleeding", "perimenopause", "tests", "diagnosis", "gynaecologist"]
 readTime: "8 min read"
@@ -147,5 +148,21 @@ You are entitled to clear answers to all of these. If your concerns are dismisse
 Perimenopausal bleeding evaluation is not just about ruling out the worst-case scenario, it is about understanding what is actually happening in your body so that the right treatment can be offered. A thorough evaluation includes a detailed history, a physical examination, targeted blood tests, and a transvaginal ultrasound at minimum. Anything less for significant or changed bleeding is incomplete care.
 
 You should leave your appointment with answers, not just reassurance.
+
+If your bleeding is heavy rather than just irregular, read about [treatment options for heavy periods in perimenopause](/blog/heavy-periods-perimenopause-treatment), or [take our free symptom check](/quiz) to understand what you're dealing with.
+
+## Frequently Asked Questions
+
+**What is the first test a doctor should order for abnormal perimenopausal bleeding?**
+A detailed history and physical exam should come first, followed by a full blood count and serum ferritin to check for anaemia, and a transvaginal ultrasound to look at the uterus and endometrial thickness. Ferritin specifically should be asked for, it isn't automatically included in a standard blood count.
+
+**Do I need an endometrial biopsy for perimenopausal bleeding?**
+Not always. It's usually recommended for women over 45 with prolonged heavy bleeding, those with risk factors like obesity, diabetes, or PCOS, or when the endometrium looks thick or irregular on ultrasound. If your doctor has concerns about your lining but hasn't mentioned a biopsy, it's reasonable to ask directly.
+
+**Is bleeding after menopause always serious?**
+Any bleeding after a full 12 months without a period needs prompt investigation, a pelvic ultrasound and often a biopsy, even if it's just light spotting. Most postmenopausal bleeding turns out to have a benign cause, but endometrial cancer must be ruled out, and catching it early matters.
+
+**Why does my doctor want a transvaginal ultrasound instead of a regular one?**
+A transvaginal ultrasound gives a much clearer view of the uterus, endometrial lining, and ovaries than an abdominal scan, which is why it's the standard first imaging test for abnormal bleeding rather than just an add-on.
 
 ---

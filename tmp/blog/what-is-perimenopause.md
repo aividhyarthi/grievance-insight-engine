@@ -2,6 +2,7 @@
 title: "What Is Perimenopause? Everything Indian Women Need to Know"
 description: "Perimenopause can start years before your last period, and most Indian women have never heard of it. Here's what's actually happening in your body."
 pubDate: 2025-05-01
+updatedDate: 2026-10-27
 author: "Meera Pillai"
 tags: ["perimenopause", "basics", "hormones", "Indian women"]
 readTime: "6 min read"
@@ -68,5 +69,21 @@ If you've been experiencing any of these and have been told everything is fine, 
 If your symptoms are affecting your sleep, your relationships, your work, or your sense of wellbeing, that is reason enough. You don't need to wait until things become unbearable.
 
 The women who fare best during this transition are those who seek information and support early, not those who push through alone.
+
+If any of this sounds familiar, you don't have to piece it together on your own. [Take our free symptom check](/quiz) to see how closely what you're experiencing matches perimenopause, or go deeper on specific symptoms: [anxiety and mood swings](/blog/perimenopause-anxiety-mood-swings), [belly fat and weight gain](/blog/perimenopause-weight-gain-belly-fat), or [heavy periods](/blog/heavy-periods-perimenopause-treatment).
+
+## Frequently Asked Questions
+
+**At what age does perimenopause usually start?**
+Most women start noticing perimenopause symptoms between 40 and 44, though it can begin as early as the mid-30s. The transition itself typically lasts 4 to 10 years before periods stop completely.
+
+**What is the difference between perimenopause and menopause?**
+Menopause is a single point in time, 12 consecutive months without a period. Perimenopause is everything leading up to that point, the years when oestrogen and progesterone are declining and fluctuating but periods haven't stopped yet.
+
+**Can perimenopause symptoms appear even if my periods are still regular?**
+Yes. Hormonal fluctuation often starts before your cycle changes noticeably, so symptoms like mood swings, sleep problems, or brain fog can appear while your periods still look normal on the surface.
+
+**Why do doctors sometimes miss perimenopause?**
+Hormone levels fluctuate so much during perimenopause that a single blood test can catch you on a relatively stable day and come back "normal." Diagnosis is based mainly on your symptoms and age, not one test result.
 
 ---

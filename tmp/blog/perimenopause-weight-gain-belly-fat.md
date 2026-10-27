@@ -2,6 +2,7 @@
 title: "Why You're Gaining Belly Fat During Perimenopause, And What Actually Helps"
 description: "You haven't changed what you eat. You're exercising. But the weight keeps coming, especially around your middle. This is what's happening, and what you can do."
 pubDate: 2025-05-15
+updatedDate: 2026-10-27
 author: "Meera Pillai"
 tags: ["weight gain", "belly fat", "metabolism", "diet", "exercise"]
 readTime: "8 min read"
@@ -65,5 +66,21 @@ The perimenopausal body is changing in ways that are not entirely within your co
 The goal most worth pursuing is not a number on a scale, it is metabolic health, energy, strength, and feeling well in your body. Those goals are achievable. Fitting into the clothes you wore at 32 may not be, and that is a reasonable, human outcome of a significant life transition.
 
 Be kind to your body. It is working very hard.
+
+For more on what's driving this transition, read [what perimenopause actually is](/blog/what-is-perimenopause), or visit our [weight guide](/guide/weight) for a deeper look at nutrition and movement strategies that actually fit this life stage.
+
+## Frequently Asked Questions
+
+**Why does perimenopause belly fat happen even without eating more?**
+Declining oestrogen shifts where your body stores fat, from hips and thighs toward the abdomen, regardless of diet. Falling muscle mass and increasing insulin resistance compound the effect, so habits that maintained your weight before may not work the same way now.
+
+**Does exercise stop working during perimenopause?**
+Long cardio sessions tend to become less effective, and can even raise cortisol if overdone. Strength training two to three times a week is generally more effective for perimenopausal weight management because it preserves muscle and metabolic rate.
+
+**Is perimenopause weight gain permanent?**
+Some redistribution of fat toward the abdomen is a normal part of this transition and partly hormonally protective. However, the underlying metabolic effects, insulin resistance, muscle loss, poor sleep, can be meaningfully improved with protein intake, strength training, and better sleep.
+
+**Can stress really cause belly fat in perimenopause?**
+Yes. Cortisol sensitivity increases during perimenopause, and elevated cortisol directly promotes fat storage around the abdomen. Managing chronic stress is a legitimate part of a weight strategy during this transition, not just a wellness suggestion.
 
 ---

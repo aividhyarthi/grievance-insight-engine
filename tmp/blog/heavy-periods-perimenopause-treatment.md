@@ -2,6 +2,7 @@
 title: "Heavy Periods During Perimenopause, Treatment Options and When to Seek Urgent Care"
 description: "Flooding, clots, soaking through clothes, heavy periods in perimenopause are common but not something you have to simply endure. Here's what works, what's available in India, and when it becomes an emergency."
 pubDate: 2025-05-19
+updatedDate: 2026-10-27
 author: "Sunita Reddy"
 tags: ["heavy periods", "menorrhagia", "perimenopause", "treatment", "urgent care"]
 readTime: "9 min read"
@@ -75,11 +76,11 @@ There is a range of effective options, from simple non-prescription approaches t
 
 ### Non-Hormonal Medical Options
 
-**Tranexamic acid (Cyklokapron, Trenaxa)**
+**Tranexamic acid**
 This is a tablet taken only during your period, it works by helping the blood clot more effectively in the uterus. It can reduce blood loss by 30–60% without affecting hormones. Available in India by prescription. It does not affect fertility.
 
-**NSAIDs (Mefenamic acid, Ibuprofen)**
-Anti-inflammatory painkillers like mefenamic acid (Ponstan, Meftal) reduce both bleeding and period pain by lowering prostaglandins in the uterine lining. They work best when started a day or two before bleeding begins. Available widely in India.
+**NSAIDs (mefenamic acid, ibuprofen)**
+Anti-inflammatory painkillers like mefenamic acid and ibuprofen reduce both bleeding and period pain by lowering prostaglandins in the uterine lining. They work best when started a day or two before bleeding begins. Available widely in India.
 
 These two can be used together and are a reasonable first option for women who prefer to avoid hormones or have contraindications.
 
@@ -88,15 +89,15 @@ These two can be used together and are a reasonable first option for women who p
 **Progesterone-only treatment**
 Since the underlying hormonal driver is often insufficient progesterone, supplementing it can significantly reduce bleeding. Options include:
 
-- **Micronised progesterone (body-identical, e.g. Susten, Gestofit):** protects the uterine lining and may also improve sleep and mood. **Dydrogesterone (Duphaston):** a synthetic progestogen that protects the uterine lining but does not share the neurological (sleep/anxiety) benefits of micronised progesterone. Both are taken for a set number of days each cycle to counterbalance oestrogen and regulate the lining.
+- **Micronised progesterone (body-identical):** protects the uterine lining and may also improve sleep and mood. **Dydrogesterone:** a synthetic progestogen that protects the uterine lining but does not share the neurological (sleep/anxiety) benefits of micronised progesterone. Both are taken for a set number of days each cycle to counterbalance oestrogen and regulate the lining.
 - **Norethisterone**, a synthetic progestogen often prescribed in India, taken for 21 days per cycle to stop heavy bleeding; can be effective short-term
 
-**Levonorgestrel IUD (Mirena)**
-This is widely considered one of the most effective long-term treatments for heavy periods. The Mirena is a small T-shaped device inserted into the uterus by a gynaecologist. It releases a low dose of progestogen locally, dramatically thinning the uterine lining. Most women experience significantly lighter periods or none at all within 3–6 months.
+**Levonorgestrel IUD (LNG-IUS)**
+This is widely considered one of the most effective long-term treatments for heavy periods. It is a small T-shaped device inserted into the uterus by a gynaecologist. It releases a low dose of progestogen locally, dramatically thinning the uterine lining. Most women experience significantly lighter periods or none at all within 3–6 months.
 
 It is a 5-year device, does not affect systemic hormones significantly, and is reversible. It also serves as highly effective contraception, relevant because pregnancy is still possible during perimenopause until 12 months after your last period.
 
-The Mirena is available in India (brands include Mirena (Bayer)) and is offered at many gynaecology practices and hospitals. Cost ranges from ₹8,000–₹15,000 for the device; procedure cost additional.
+The levonorgestrel IUD is available in India and is offered at many gynaecology practices and hospitals. Cost ranges from ₹8,000–₹15,000 for the device; procedure cost additional.
 
 **Combined hormonal contraceptives**
 Low-dose combined oral contraceptive pills (COCs) or the contraceptive patch can regulate cycles and significantly reduce bleeding. They are sometimes used in perimenopause for women without contraindications (smoking history, cardiovascular risk, migraine with aura).
@@ -119,7 +120,7 @@ The uterine lining is destroyed using heat or other energy. Periods significantl
 **Hysterectomy (removal of the uterus)**
 A definitive solution, and one that many Indian gynaecologists recommend too quickly. This is major surgery with a full recovery period (4–6 weeks) and should only be considered when other options have failed, when fibroids are very large, or when the woman herself has decided she does not want to manage this long-term. It ends periods permanently.
 
-**Important:** A recommendation of hysterectomy should always be questioned. Ask whether you have tried tranexamic acid, the Mirena IUS (intrauterine system), or ablation first. Hysterectomy is appropriate in some situations, but not as a first-line treatment.
+**Important:** A recommendation of hysterectomy should always be questioned. Ask whether you have tried tranexamic acid, the levonorgestrel IUD (LNG-IUS), or ablation first. Hysterectomy is appropriate in some situations, but not as a first-line treatment.
 
 ## Red Flags: When to Seek Urgent Medical Care
 
@@ -150,7 +151,7 @@ Many Indian women report being dismissed or told to "wait and see." Here is how 
 
 **Describe your bleeding in concrete terms.** "Heavy" means different things to different people. Say: "I am soaking through X pads in X hours on my heaviest days. I am passing clots of Y size." Numbers and specifics make dismissal harder.
 
-**Ask specifically about your options.** "What non-surgical options exist before we discuss surgery?" and "Is a Mirena IUS (intrauterine system) appropriate for me?"
+**Ask specifically about your options.** "What non-surgical options exist before we discuss surgery?" and "Is a levonorgestrel IUD (LNG-IUS) appropriate for me?"
 
 **Ask for a ferritin test**, not just haemoglobin.
 
@@ -163,5 +164,21 @@ If you feel your concerns are being brushed aside, you are entitled to a second 
 Heavy periods in perimenopause are common. They are not inevitable and permanent. There are effective treatments available in India, from a simple tablet to a five-minute prescription, to a day procedure that can dramatically change your quality of life.
 
 The first step is refusing to accept "it's just your age" as a complete answer.
+
+If you're unsure whether what you're experiencing needs evaluation, read [how perimenopausal bleeding is actually assessed](/blog/perimenopausal-bleeding-evaluation-tests), or [take our free symptom check](/quiz).
+
+## Frequently Asked Questions
+
+**Why are my periods getting heavier instead of lighter as I approach menopause?**
+Early perimenopause often brings oestrogen surges without enough progesterone to balance them, which thickens the uterine lining more than usual. When your period finally arrives, there's simply more lining to shed, which means heavier flow and more clots.
+
+**What counts as a heavy period that needs medical attention?**
+Soaking through a pad or tampon every hour for several hours, needing double protection, bleeding longer than 7 days, passing clots larger than a 10-rupee coin, or having symptoms of anaemia all count as heavy menstrual bleeding (menorrhagia) that deserves a proper evaluation, not just reassurance.
+
+**Do I have to have a hysterectomy for heavy perimenopausal bleeding?**
+No. Hysterectomy is one option among several, including tranexamic acid, hormonal treatments, the levonorgestrel IUD, and endometrial ablation. It's reasonable to ask whether these have been tried or at least discussed before agreeing to major surgery.
+
+**When is heavy bleeding a medical emergency?**
+Go to a hospital the same day if you're soaking a pad every 15-30 minutes for more than two hours, feel faint or dizzy, have a racing heart or chest pain, or are passing very large clots continuously. Call 112 if you or someone else loses consciousness from blood loss.
 
 ---

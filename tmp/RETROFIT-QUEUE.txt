@@ -1,8 +1,3 @@
-blog/what-is-perimenopause.md
-blog/perimenopause-anxiety-mood-swings.md
-blog/perimenopause-weight-gain-belly-fat.md
-blog/heavy-periods-perimenopause-treatment.md
-blog/perimenopausal-bleeding-evaluation-tests.md
 blog/what-is-oestrogen-perimenopause.md
 blog/how-long-does-perimenopause-last.md
 blog/lifestyle-changes-perimenopause-symptoms.md

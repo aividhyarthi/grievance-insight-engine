@@ -2,6 +2,7 @@
 title: "Why Perimenopause Causes Anxiety and Mood Swings, And What to Do"
 description: "Sudden anxiety, rage, crying for no reason, perimenopause can feel like a mental health crisis. It isn't. Here's what's driving the mood changes and how to cope."
 pubDate: 2025-05-08
+updatedDate: 2026-10-27
 author: "Lakshmi Subramaniam"
 tags: ["anxiety", "mood swings", "mental health", "hormones"]
 readTime: "7 min read"
@@ -71,5 +72,21 @@ Low progesterone (which also declines during perimenopause) removes a key calmin
 Some women do benefit from antidepressants during perimenopause, but they are often prescribed *instead of* hormonal evaluation, rather than alongside it. If you've been offered antidepressants for mood symptoms and no one has discussed your hormone levels or perimenopause, it's worth asking the question directly.
 
 You deserve a complete picture of what's happening in your body.
+
+If you're not sure whether what you're feeling is perimenopause or something else, [take our free symptom check](/quiz), read more on [what perimenopause actually is](/blog/what-is-perimenopause), or explore our [mood and memory guide](/guide/mood-memory) for more on managing this day to day.
+
+## Frequently Asked Questions
+
+**Is perimenopause anxiety a form of mental illness?**
+No. The anxiety and mood changes in perimenopause come from fluctuating oestrogen affecting serotonin, GABA, and other brain chemicals. It is a hormonal state, not a psychiatric diagnosis, though it can worsen an existing mental health condition.
+
+**Can perimenopause cause sudden anger or rage?**
+Yes, sudden, disproportionate anger is a common but rarely discussed perimenopause symptom. It happens because declining progesterone removes a key calming effect on the brain, making the nervous system more reactive to everyday stress.
+
+**Should I take antidepressants for perimenopause mood symptoms?**
+Antidepressants can help some women, but they're often prescribed without first checking hormone levels. If you haven't discussed perimenopause or hormonal evaluation with your doctor before starting one, it's worth asking about it directly.
+
+**Will perimenopause anxiety go away on its own?**
+For many women, mood symptoms ease once hormone levels stabilise after menopause, but that can take years. Treating sleep disruption, reducing alcohol, and speaking to a menopause-informed doctor can meaningfully reduce symptoms in the meantime.
 
 ---
