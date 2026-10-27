@@ -3,6 +3,7 @@ import Layout from '../../../layouts/LayoutLongevity.astro';
 import { getCollection } from 'astro:content';
 import { findRelated, VERTICAL_META } from '../../../lib/blog-related';
 import { LONGEVITY_TOPICS, pickPostGroups } from '../../../lib/interlink-topics';
+import { faqSchema, parseFaqFromBody } from '../../../lib/schema';
 
 const SITE_URL = 'https://www.thesecondspring.org';
 const now = new Date();
@@ -29,6 +30,8 @@ const related = findRelated(post, 'longevity', {
 }, 3);
 
 const interlinkGroups = pickPostGroups(LONGEVITY_TOPICS, post.data.tags);
+const faqs = parseFaqFromBody(post.body);
+const isNamedAuthor = post.data.author && post.data.author !== 'Journal Desk';
 
 const postUrl = `/longevity/blog/${post.slug}`;
 const structuredData = [
@@ -39,8 +42,10 @@ const structuredData = [
     description: post.data.description,
     ...(post.data.image ? { image: [post.data.image] } : {}),
     datePublished: post.data.pubDate.toISOString(),
-    dateModified: post.data.pubDate.toISOString(),
-    author: { '@type': 'Organization', name: post.data.author === 'Journal Desk' ? 'Life Begins After 40' : post.data.author, url: `${SITE_URL}/longevity` },
+    dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+    author: isNamedAuthor
+      ? { '@type': 'Person', name: post.data.author }
+      : { '@type': 'Organization', name: 'Life Begins After 40', url: `${SITE_URL}/longevity` },
     publisher: { '@id': `${SITE_URL}/longevity#organization` },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${postUrl}` },
     ...(post.data.tags?.length ? { keywords: post.data.tags.join(', ') } : {}),
@@ -55,6 +60,7 @@ const structuredData = [
       { '@type': 'ListItem', position: 3, name: post.data.title, item: `${SITE_URL}${postUrl}` },
     ],
   },
+  ...(faqs.length ? [faqSchema(faqs)] : []),
 ];
 ---
 
@@ -80,7 +86,8 @@ const structuredData = [
       <h1 class="post-title">{post.data.title}</h1>
       <p class="post-desc">{post.data.description}</p>
       <div class="post-byline">
-        <span class="author-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</span>
+        <span class="author-name">{post.data.author}</span>
+        <span class="author-meta">· {formatDate(post.data.pubDate)} · {post.data.readTime}</span>
       </div>
     </div>
   </section>
@@ -126,6 +133,7 @@ const structuredData = [
       </div>
 
       <div class="post-footer">
+        <p class="pf-byline">Written by <strong>{post.data.author}</strong></p>
         <div class="pf-disclaimer">
           <p>⚕️ <strong>Medical disclaimer:</strong> This article is for informational purposes only and does not constitute medical advice. Always consult a qualified doctor for personal medical guidance.</p>
         </div>
@@ -166,6 +174,7 @@ const structuredData = [
   .ptag { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: rgba(255,255,255,.9); background: rgba(255,255,255,.15); padding: .25rem .75rem; border-radius: 100px; border: 1px solid rgba(255,255,255,.2); }
   .post-title { font-family: 'Lora', serif; font-size: clamp(1.75rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -.01em; color: #fff; line-height: 1.25; margin-bottom: 1rem; }
   .post-desc { font-size: 1.02rem; color: rgba(255,255,255,.78); line-height: 1.7; margin-bottom: 1.25rem; }
+  .author-name { font-size: .88rem; font-weight: 700; color: #fff; margin-right: .3rem; }
   .author-meta { font-size: .82rem; color: rgba(255,255,255,.6); }
 
   .post-body-section { padding: 4rem 0 5rem; background: #fff; }
@@ -231,6 +240,8 @@ const structuredData = [
   .sct-link:hover svg { opacity: 1; transform: translateX(2px); }
 
   .post-footer { margin-top: 3rem; }
+  .pf-byline { font-size: .9rem; color: var(--ink-soft); margin-bottom: .85rem; }
+  .pf-byline strong { color: var(--dark); }
   .pf-disclaimer { background: var(--bg-mid); border-radius: var(--radius); padding: 1.25rem 1.5rem; font-size: .85rem; color: var(--ink-soft); line-height: 1.6; }
 
   .related-section { padding: 3rem 0 5rem; background: var(--bg-mid); }

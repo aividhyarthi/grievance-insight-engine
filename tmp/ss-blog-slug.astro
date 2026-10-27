@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+import { articleSchema, breadcrumbSchema, faqSchema, parseFaqFromBody } from '../../lib/schema';
 import { findRelated, VERTICAL_META } from '../../lib/blog-related';
 import { WOMEN_TOPICS, pickPostGroups } from '../../lib/interlink-topics';
 
@@ -29,6 +29,7 @@ const related = findRelated(post, 'women', {
 }, 3);
 
 const interlinkGroups = pickPostGroups(WOMEN_TOPICS, post.data.tags);
+const faqs = parseFaqFromBody(post.body);
 
 // ─── Structured data ───
 const postUrl = `/blog/${post.slug}`;
@@ -39,6 +40,7 @@ const structuredData = [
     url: postUrl,
     image: post.data.image,
     datePublished: post.data.pubDate.toISOString(),
+    dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
     authorName: post.data.author,
     section: post.data.tags?.[0],
     keywords: post.data.tags,
@@ -48,6 +50,7 @@ const structuredData = [
     { name: 'Journal', url: '/blog' },
     { name: post.data.title, url: postUrl },
   ]),
+  ...(faqs.length ? [faqSchema(faqs)] : []),
 ];
 ---
 
@@ -74,7 +77,7 @@ const structuredData = [
       <h1 class="post-title">{post.data.title}</h1>
       <p class="post-desc">{post.data.description}</p>
       <div class="post-byline">
-        <div class="author-avatar">J</div>
+        <div class="author-avatar">{post.data.author.charAt(0).toUpperCase()}</div>
         <div class="author-info">
           <span class="author-name">{post.data.author}</span>
           <span class="author-meta">{formatDate(post.data.pubDate)} · {post.data.readTime}</span>
@@ -148,7 +151,7 @@ const structuredData = [
       <!-- Article footer -->
       <div class="post-footer">
         <div class="pf-author">
-          <div class="pfa-avatar">J</div>
+          <div class="pfa-avatar">{post.data.author.charAt(0).toUpperCase()}</div>
           <div>
             <p class="pfa-name">{post.data.author}</p>
             <p class="pfa-bio">The Her Midlife Journal publishes evidence-based articles on perimenopause and women's midlife health, written for Indian women.</p>

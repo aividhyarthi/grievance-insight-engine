@@ -129,7 +129,7 @@ export const GET: APIRoute = async () => {
   // Journal / blog posts
   for (const post of posts) {
     xml += urlEntry(`${SITE}/blog/${post.slug}`, {
-      lastmod: formatDate(post.data.pubDate),
+      lastmod: formatDate(post.data.updatedDate ?? post.data.pubDate),
       changefreq: 'yearly',
       priority: '0.7',
     });
@@ -139,7 +139,7 @@ export const GET: APIRoute = async () => {
   const windPosts = (await getCollection('wind-blog')).filter(p => p.data.pubDate <= now);
   for (const post of windPosts) {
     xml += urlEntry(`${SITE}/wind/blog/${post.slug}`, {
-      lastmod: formatDate(post.data.pubDate),
+      lastmod: formatDate(post.data.updatedDate ?? post.data.pubDate),
       changefreq: 'yearly',
       priority: '0.7',
     });
@@ -149,7 +149,7 @@ export const GET: APIRoute = async () => {
   const longevityPosts = (await getCollection('longevity-blog')).filter(p => p.data.pubDate <= now);
   for (const post of longevityPosts) {
     xml += urlEntry(`${SITE}/longevity/blog/${post.slug}`, {
-      lastmod: formatDate(post.data.pubDate),
+      lastmod: formatDate(post.data.updatedDate ?? post.data.pubDate),
       changefreq: 'yearly',
       priority: '0.7',
     });

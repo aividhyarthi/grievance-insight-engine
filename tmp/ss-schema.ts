@@ -78,6 +78,7 @@ export interface ArticleInput {
 }
 
 export function articleSchema(a: ArticleInput) {
+  const isNamedAuthor = a.authorName && a.authorName !== SITE_NAME && a.authorName !== 'Journal Desk';
   return {
     '@type': 'BlogPosting',
     '@id': `${abs(a.url)}#article`,
@@ -86,7 +87,9 @@ export function articleSchema(a: ArticleInput) {
     ...(a.image ? { image: [abs(a.image)] } : {}),
     datePublished: a.datePublished,
     dateModified: a.dateModified || a.datePublished,
-    author: { '@type': 'Organization', name: a.authorName || SITE_NAME, url: SITE_URL },
+    author: isNamedAuthor
+      ? { '@type': 'Person', name: a.authorName }
+      : { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@id': ORG_ID },
     mainEntityOfPage: { '@type': 'WebPage', '@id': abs(a.url) },
     ...(a.section ? { articleSection: a.section } : {}),
@@ -110,6 +113,29 @@ export function faqSchema(faqs: QA[]) {
       acceptedAnswer: { '@type': 'Answer', text: plain(f.answer) },
     })),
   };
+}
+
+/**
+ * Extract Q&A pairs from a post's raw markdown body, for FAQPage structured
+ * data. House style is a consistent "## Frequently Asked Questions" heading
+ * followed by **Question?**\nAnswer paragraph. blocks (blank-line separated),
+ * usually followed by one closing, non-bold wrap-up paragraph before the
+ * --- disclaimer rule. Only blocks that actually start with a bold question
+ * are picked up, so that trailing wrap-up paragraph is skipped naturally.
+ */
+export function parseFaqFromBody(body: string): QA[] {
+  if (!body) return [];
+  const headingMatch = body.match(/##\s*Frequently Asked Questions\s*\n([\s\S]*?)(?:\n---|\n##\s|$)/i);
+  if (!headingMatch) return [];
+  const blocks = headingMatch[1].split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+  const faqs: QA[] = [];
+  for (const block of blocks) {
+    const qa = block.match(/^\*\*(.+?)\*\*\s*\n([\s\S]+)$/);
+    if (qa && qa[1].trim().endsWith('?')) {
+      faqs.push({ question: qa[1].trim(), answer: qa[2].trim() });
+    }
+  }
+  return faqs;
 }
 
 export interface ListItemInput {
