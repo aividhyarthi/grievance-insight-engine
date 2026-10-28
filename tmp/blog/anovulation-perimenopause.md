@@ -2,6 +2,7 @@
 title: "What Is Anovulation, And What Does It Have to Do With Perimenopause?"
 description: "Your period arrives, but no egg was released. Anovulation is one of the most misunderstood aspects of perimenopause, and it explains a lot about what's happening to your body."
 pubDate: 2025-05-21
+updatedDate: 2026-10-28
 author: "Divya Krishnan"
 tags: ["anovulation", "hormones", "perimenopause", "ovulation"]
 readTime: "7 min read"
@@ -63,8 +64,8 @@ If your periods are becoming heavier or longer and your gynaecologist hasn't dis
 
 If anovulation is causing significant symptoms (particularly heavy bleeding) there are effective options:
 
-- **Progesterone supplementation**: Micronised progesterone (sold in India as Susten, Lutein, or Gestofit) can be prescribed to oppose oestrogen's effects on the uterine lining. This may be given cyclically (to regulate bleeding) or continuously as part of HRT.
-- **The Mirena IUS**: A hormonal intrauterine system that releases a small amount of levonorgestrel locally into the uterus. It dramatically reduces heavy bleeding and is one of the most effective treatments available. It is available in India at many gynaecology clinics.
+- **Progesterone supplementation**: Micronised progesterone can be prescribed to oppose oestrogen's effects on the uterine lining. This may be given cyclically (to regulate bleeding) or continuously as part of HRT.
+- **The levonorgestrel IUD (LNG-IUS)**: A hormonal intrauterine system that releases a small amount of levonorgestrel locally into the uterus. It dramatically reduces heavy bleeding and is one of the most effective treatments available. It is available in India at many gynaecology clinics.
 - **Hormonal treatment for perimenopause**: Full HRT that includes both oestrogen and progesterone can address the underlying hormonal fluctuations.
 
 It is also worth having thyroid function checked, hypothyroidism is common in Indian women and can mimic or worsen anovulatory patterns.
@@ -77,6 +78,8 @@ It is also worth having thyroid function checked, hypothyroidism is common in In
 - Bleeding does not confirm ovulation, these are separate events.
 - Anovulation reduces fertility but does not eliminate pregnancy risk until full menopause is confirmed.
 - In India, this is rarely discussed with patients, ask your gynaecologist specifically about it if you have heavy or irregular periods.
+
+If heavy or unpredictable bleeding is the main thing you're dealing with, read more on [treatment options for heavy periods](/blog/heavy-periods-perimenopause-treatment) or [take our free symptom check](/quiz).
 
 ---
 

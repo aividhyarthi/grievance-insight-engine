@@ -2,6 +2,7 @@
 title: "What Is Oestrogen, And What Happens To It During Perimenopause?"
 description: "Oestrogen does far more than control your periods. When it starts to shift during perimenopause, it affects your brain, bones, heart, skin, and sleep. Here's what every Indian woman should understand."
 pubDate: 2025-05-19
+updatedDate: 2026-10-28
 author: "Lakshmi Subramaniam"
 tags: ["oestrogen", "hormones", "perimenopause", "science"]
 readTime: "8 min read"
@@ -112,5 +113,21 @@ If your body feels like it is suddenly working differently (if you feel like a d
 The symptoms are not in your head. The irritability, the memory lapses, the exhaustion that sleep does not fix, the weight that exercise does not shift, these have a hormonal basis. They are not a failure of willpower or character.
 
 Understanding oestrogen does not fix everything. But it changes the conversation you have with yourself, and the conversation you have with your doctor.
+
+For more on what else changes during this transition, read [what perimenopause actually is](/blog/what-is-perimenopause) and [how anovulation drives many of the symptoms](/blog/anovulation-perimenopause), or [take our free symptom check](/quiz).
+
+## Frequently Asked Questions
+
+**Is low oestrogen the same thing as perimenopause?**
+Not exactly. Early perimenopause is often marked by oestrogen swinging erratically, sometimes surging higher than usual, before it settles into an overall decline. It's the instability, not just low levels, that drives many of the most disruptive symptoms.
+
+**Which oestrogen test does my doctor actually check?**
+When a lab report says "serum oestradiol," that is oestrogen (E2), the most potent and clinically relevant form during your reproductive years and perimenopause. Oestrone (E1) becomes the dominant form only after menopause.
+
+**Why did my oestrogen test come back normal when I have symptoms?**
+Oestrogen levels can swing dramatically within days during perimenopause, so a single blood test only captures one moment. Doctors generally diagnose perimenopause from your symptoms, age, and cycle pattern rather than relying on one test result.
+
+**Should I ask for an oestrogen test if I think I'm in perimenopause?**
+Not always necessary. Testing is more useful if you're under 40, your doctor wants a baseline before discussing hormonal treatment, or your symptoms are unusual enough to need other causes ruled out, like thyroid issues or anaemia.
 
 ---

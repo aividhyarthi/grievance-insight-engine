@@ -2,6 +2,7 @@
 title: "How Long Does Perimenopause Last, And When Does It End?"
 description: "Perimenopause can last anywhere from 2 to 12 years. Here's what determines how long your transition takes, what the stages look like, and how to know when you've reached menopause."
 pubDate: 2025-05-20
+updatedDate: 2026-10-28
 author: "Ananya Rao"
 tags: ["perimenopause", "timeline", "menopause", "stages", "duration"]
 readTime: "7 min read"
@@ -119,5 +120,21 @@ Not knowing exactly how long this will last is genuinely difficult. But knowing 
 If your periods are still relatively regular but you are noticing early symptoms, you are likely in early perimenopause and still have time before the most intense phase. If your cycles are becoming irregular with 60+ day gaps, you are likely in late perimenopause and closer to the end of the transition.
 
 The most important thing to know: this transition ends. The hormonal storm of perimenopause does not go on indefinitely. Most women find that the postmenopause years (with stable (if lower) hormone levels) bring a return to steadiness.
+
+If you're trying to work out where you are in the process, read [what perimenopause actually is](/blog/what-is-perimenopause), or [take our free symptom check](/quiz) for a clearer picture.
+
+## Frequently Asked Questions
+
+**What is the average age perimenopause ends in India?**
+Indian women reach menopause (the end of perimenopause) around age 46-47 on average, a few years earlier than the 51-52 average in Western countries. Perimenopause itself typically lasts 4 to 8 years before that.
+
+**Can perimenopause last less than 2 years?**
+Yes, some women move through the transition in as few as 2 years, while others take 10 to 12. Both ends of that range are medically normal, duration doesn't predict how intense the symptoms will be.
+
+**How do I know if I'm in early or late perimenopause?**
+If your periods are still fairly regular but you're noticing symptoms like mood changes or disrupted sleep, you're likely in early perimenopause. Gaps of 60 days or more between periods usually signal late perimenopause, closer to the end of the transition.
+
+**Does a blood test tell me exactly when perimenopause will end?**
+No single test gives a countdown. A consistently high FSH and a very low AMH, tested at least three months apart, suggest you're in late perimenopause, but the only definitive confirmation of menopause is 12 consecutive months without a period.
 
 ---

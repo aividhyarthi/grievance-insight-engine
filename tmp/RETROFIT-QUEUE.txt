@@ -1,8 +1,3 @@
-blog/what-is-oestrogen-perimenopause.md
-blog/how-long-does-perimenopause-last.md
-blog/lifestyle-changes-perimenopause-symptoms.md
-blog/perimenopause-stories-support-community.md
-blog/anovulation-perimenopause.md
 blog/first-signs-of-perimenopause.md
 blog/hormonal-symptom-treatments-perimenopause.md
 blog/how-to-test-for-perimenopause.md

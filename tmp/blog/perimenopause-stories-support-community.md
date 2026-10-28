@@ -2,6 +2,7 @@
 title: "Where to Find Honest Stories and Real Support for Perimenopause"
 description: "You are not the only Indian woman going through this, even if it feels that way. Here's where to find real stories, reliable information, and community that actually understands the Indian experience of perimenopause."
 pubDate: 2025-05-20
+updatedDate: 2026-10-28
 author: "Divya Krishnan"
 tags: ["community", "support", "stories", "resources", "Indian women"]
 readTime: "6 min read"
@@ -82,5 +83,21 @@ If you are going through perimenopause in a household where this is not discusse
 Please know: you can talk to The Second Spring at any hour, from anywhere, in complete privacy. You do not have to explain yourself or justify your experience. You can say *"I just need someone to understand what I'm going through"* and start from there.
 
 That is what we are here for.
+
+If you're still piecing together whether what you're feeling is perimenopause, start with [what perimenopause actually is](/blog/what-is-perimenopause).
+
+## Frequently Asked Questions
+
+**Where can Indian women find reliable perimenopause support online?**
+Look for communities moderated for accuracy and run by or for Indian women specifically, since the age of onset, dietary context, and healthcare system differ from Western resources. Be cautious of unmoderated groups or accounts that primarily exist to sell supplements.
+
+**How do I start a conversation about perimenopause with friends or family?**
+You don't need to open with a diagnosis. Something as small as "Have you noticed your sleep changing?" or "Has your cycle been different lately?" is often enough to open the door, and many women find it unlocks others who were also staying quiet.
+
+**Can my mother's menopause experience tell me anything about mine?**
+Yes, to some extent. The age your mother and maternal aunts reached menopause is one of the strongest predictors of your own timeline, even if their symptoms weren't discussed the same way at the time.
+
+**Should I be worried about perimenopause content on social media?**
+Be selective. Favour accounts run by doctors who name their credentials and don't push a supplement in every post. Claims of "curing" or "reversing" perimenopause are a reliable warning sign, since it's a biological transition, not a disease to be fixed.
 
 ---
