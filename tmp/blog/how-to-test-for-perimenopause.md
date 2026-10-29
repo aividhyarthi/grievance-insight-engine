@@ -2,6 +2,7 @@
 title: "How Can I Test Myself for Perimenopause, And What Do the Results Mean?"
 description: "Perimenopause is mostly a clinical diagnosis, but blood tests can help. Here's what to ask for, what the numbers mean, why a single test can be misleading, and where to get tested affordably in India."
 pubDate: 2025-05-21
+updatedDate: 2026-10-29
 author: "Lakshmi Subramaniam"
 tags: ["testing", "diagnosis", "blood tests", "perimenopause"]
 readTime: "8 min read"
@@ -183,6 +184,8 @@ Perimenopause is a clinical diagnosis. Blood tests are a supporting tool. Your s
 Start with your own symptom picture. Get appropriate tests. Find a gynaecologist who takes the clinical picture seriously alongside the lab results.
 
 And remember: "normal tests" is not the same as "no perimenopause." If your symptoms are real and disrupting your life, they deserve a response, not dismissal.
+
+Once you have a clearer picture, read about the [treatments actually available for perimenopausal symptoms](/blog/hormonal-symptom-treatments-perimenopause).
 
 ---
 

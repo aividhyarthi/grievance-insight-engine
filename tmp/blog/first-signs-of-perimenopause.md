@@ -2,6 +2,7 @@
 title: "What Are the First Signs of Perimenopause, And How Early Can They Start?"
 description: "The earliest signs of perimenopause are often dismissed as stress, thyroid, or 'just getting older.' Here's what they actually are, why they happen, and why they can start in your mid-30s."
 pubDate: 2025-05-21
+updatedDate: 2026-10-29
 author: "Priya Nair"
 tags: ["symptoms", "early perimenopause", "signs", "periods"]
 readTime: "7 min read"
@@ -106,6 +107,8 @@ If several of the symptoms above are familiar to you, a reasonable first step is
 Blood tests (FSH, LH, oestradiol, thyroid panel, ferritin, vitamin D, B12) can help rule out other causes and may show early perimenopausal patterns, though a normal result does not rule out perimenopause, particularly in early stages.
 
 Most importantly: find a gynaecologist who is willing to take your symptom picture seriously. Come with notes. Ask specifically whether perimenopause could be a factor.
+
+If you want to understand what's actually driving these changes, read [what oestrogen does in your body during this transition](/blog/what-is-oestrogen-perimenopause).
 
 ---
 

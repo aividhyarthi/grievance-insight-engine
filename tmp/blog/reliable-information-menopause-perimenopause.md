@@ -2,6 +2,7 @@
 title: "Where to Find Reliable Information About Menopause and Perimenopause in India"
 description: "Misinformation about menopause is everywhere, especially online. Here's how to find trustworthy information, what to look for, and what to avoid when navigating perimenopause in India."
 pubDate: 2025-05-21
+updatedDate: 2026-10-29
 author: "Sunita Reddy"
 tags: ["resources", "information", "menopause", "India"]
 readTime: "6 min read"
@@ -97,6 +98,8 @@ Good information will hold up under these questions. Most supplement-driven cont
 ---
 
 You deserve information that was actually written for your life, your healthcare system, your food, your language, your context. That's what The Second Spring is for.
+
+Start with the basics: [what perimenopause actually is](/blog/what-is-perimenopause) and [the first signs most women miss](/blog/first-signs-of-perimenopause).
 
 ## Frequently Asked Questions
 
