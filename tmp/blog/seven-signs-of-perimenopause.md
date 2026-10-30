@@ -2,6 +2,7 @@
 title: "7 Signs of Perimenopause Every Indian Woman Should Know"
 description: "From period changes to brain fog to vaginal dryness, the 7 most important signs of perimenopause, explained with the hormonal reason behind each one, and why they're so often missed in India."
 pubDate: 2025-05-21
+updatedDate: 2026-10-30
 author: "Ananya Rao"
 tags: ["symptoms", "signs", "perimenopause", "Indian women"]
 readTime: "7 min read"
@@ -22,7 +23,7 @@ These are the 7 signs that every Indian woman should know. For each one, we expl
 
 **What it looks like**: Cycles becoming shorter or longer. Periods arriving earlier or later than expected. Flow becoming heavier, with clotting or flooding. Occasional skipped periods. Spotting between cycles.
 
-**Why it happens**: The first hormonal shift in perimenopause is a gradual decline in the ovarian response to FSH (follicle-stimulating hormone). As the ovaries become less consistent, two things happen: ovulation becomes erratic (sometimes skipped entirely), and progesterone production (which requires ovulation) decreases. Without adequate progesterone to regulate the uterine lining, periods become unpredictable. Heavy bleeding in particular is a hallmark of anovulatory cycles (cycles without ovulation) where oestrogen acts on the uterine lining unopposed.
+**Why it happens**: The first hormonal shift in perimenopause is a gradual decline in the ovarian response to FSH (follicle-stimulating hormone). As the ovaries become less consistent, two things happen: ovulation becomes erratic (sometimes skipped entirely), and progesterone production (which requires ovulation) decreases. Without adequate progesterone to regulate the uterine lining, periods become unpredictable. Heavy bleeding in particular is a hallmark of anovulatory cycles (cycles without ovulation) where oestrogen acts on the uterine lining unopposed. For more on why these two hormones fall at different times, see [oestrogen vs progesterone](/blog/oestrogen-vs-progesterone-perimenopause).
 
 **In the Indian context**: Period changes in the 40s are commonly attributed to stress, fibroids, or anaemia. All of these can coexist with perimenopause, but the hormonal driver is often not investigated.
 

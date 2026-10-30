@@ -2,6 +2,7 @@
 title: "What Does Progesterone Do During Perimenopause?"
 description: "Progesterone is the first hormone to fall in perimenopause, and its decline explains anxiety, poor sleep, heavy periods, and more. A clear guide to what it does and why it matters."
 pubDate: 2025-05-22
+updatedDate: 2026-10-30
 author: "Ananya Rao"
 tags: ["progesterone", "hormones", "perimenopause", "HRT"]
 readTime: "8 min read"
@@ -104,13 +105,7 @@ For women in perimenopause who are struggling primarily with sleep and anxiety (
 
 ## What progesterone options are available in India?
 
-Micronised progesterone is available by prescription in India. Ask your gynaecologist specifically for **micronised progesterone capsules**, not a synthetic progestin.
-
-**Indian brand names to ask about:**
-
-- **Susten 200mg** (Sun Pharma), widely available, oral capsule
-- **Gestofit 200mg** (Cipla), oral capsule, also available as vaginal
-- **Lutein 200mg** (Lupin), oral capsule
+Micronised progesterone is available by prescription in India, as a 200mg oral capsule (also available as vaginal capsules from some manufacturers). Ask your gynaecologist specifically for **micronised progesterone**, not a synthetic progestin.
 
 These are typically prescribed as a **200mg capsule taken orally at night**. Taking progesterone at night is intentional: the sedative effect of its conversion to allopregnanolone is used therapeutically to improve sleep.
 
@@ -159,9 +154,9 @@ Yes. Progesterone can be prescribed on its own, without oestrogen. This is somet
 
 Progesterone alone has a modest effect on hot flushes, but it is not as effective as oestrogen for vasomotor symptoms. Some research, including the Hitchcock and Prior studies, suggests that oral micronised progesterone can reduce hot flush frequency compared to placebo. For women who cannot take oestrogen, it may be worth discussing with a doctor. For most women, oestrogen remains the primary treatment for hot flushes, with progesterone added to protect the uterus.
 
-**Is the progesterone in the Mirena IUS (intrauterine system) the same as micronised progesterone?**
+**Is the progesterone in a hormonal IUD the same as micronised progesterone?**
 
-No. The Mirena IUS (intrauterine system) contains **levonorgestrel**, a synthetic progestin. It is highly effective at protecting the uterine lining locally (within the uterus), which is why some specialists use it alongside systemic oestrogen as a HRT regimen. However, levonorgestrel does not convert to allopregnanolone. It does not provide the calming, sleep-promoting, or systemic anti-anxiety benefits of oral micronised progesterone. The two serve different purposes and are not interchangeable in terms of their effects on mood and sleep.
+No. The levonorgestrel IUD (LNG-IUS) contains **levonorgestrel**, a synthetic progestin. It is highly effective at protecting the uterine lining locally (within the uterus), which is why some specialists use it alongside systemic oestrogen as a HRT regimen. However, levonorgestrel does not convert to allopregnanolone. It does not provide the calming, sleep-promoting, or systemic anti-anxiety benefits of oral micronised progesterone. The two serve different purposes and are not interchangeable in terms of their effects on mood and sleep.
 
 **How long does it take for progesterone to improve sleep?**
 

@@ -18,3 +18,10 @@ Format: `YYYY-MM-DD — vertical/filename.md — what changed (or "reviewed, no 
 2026-10-29 — blog/how-to-test-for-perimenopause.md — title/meta/tone/FAQ already strong, lab-chain names (Thyrocare/SRL/Apollo) are informational not promotional, left as-is; added one cross-link (had only /quiz CTAs)
 2026-10-29 — blog/natural-remedies-perimenopause.md — reviewed, no changes needed; title/meta/tone/FAQ already strong, supplement/herb names are all generic (not brands), and it already links out to 9 sibling symptom-specific posts, verified all 9 targets exist
 2026-10-29 — blog/reliable-information-menopause-perimenopause.md — title/meta/tone/FAQ already strong; added one cross-link (had only /quiz CTAs, book titles are not brand violations)
+2026-10-30 — blog/seven-signs-of-perimenopause.md — title/meta/tone/FAQ already strong; added one cross-link (had only /quiz CTAs, no links to other posts)
+2026-10-30 — blog/should-i-take-estrogen-perimenopause.md — removed brand names from 3 pricing-table rows (Estradot, Climara, Oestrogel, Progynova, Susten); stripped stray "Q:" prefixes from visible FAQ questions
+2026-10-30 — blog/what-does-progesterone-do-perimenopause.md — removed Indian brand-name list (Susten/Sun Pharma, Gestofit/Cipla, Lutein/Lupin) replaced with generic prose; FAQ changed Mirena IUS reference to generic levonorgestrel IUD (LNG-IUS)
+2026-10-30 — blog/oestrogen-vs-progesterone-perimenopause.md — removed two Susten/Gestofit brand mentions, replaced with generic "body-identical/micronised" language
+2026-10-30 — blog/can-i-get-pregnant-during-perimenopause.md — fixed pubDate typo (2026→2025); removed contraceptive brand names (Copper T, Multiload, Cerazette, Yasmin, Diane-35, Novelon, Mirena/Kyleena) replaced with generic names; added one cross-link to perimenopause-explained guide
+
+Infrastructure fix (not part of the 5/day content quota): rewrote parseFaqFromBody() in ss-schema.ts as a state machine to handle all 4 FAQ markdown formats in use site-wide (previously only recognised one), fixing FAQPage structured data for 14/832 affected posts across all three verticals. Shipped as standalone commit.

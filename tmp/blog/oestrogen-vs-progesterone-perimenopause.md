@@ -2,6 +2,7 @@
 title: "Oestrogen vs Progesterone: What's the Difference and Why Both Matter in Perimenopause"
 description: "Oestrogen and progesterone do completely different jobs, and they fall at different times. Understanding both is the key to understanding your perimenopause symptoms."
 pubDate: 2025-05-23
+updatedDate: 2026-10-30
 author: "Priya Nair"
 tags: ["oestrogen", "progesterone", "hormones", "perimenopause"]
 readTime: "8 min read"
@@ -105,7 +106,7 @@ Oestrogen alone causes the uterine lining to thicken (endometrial proliferation)
 
 But not all forms of progesterone are equal.
 
-**Body-identical micronised progesterone** is structurally identical to the progesterone your body produces. Because it crosses the blood-brain barrier effectively, it retains the sleep and anti-anxiety benefits (via the allopregnanolone pathway) that natural progesterone provides. In India, available brands include **Susten** and **Gestofit**, both micronised progesterone preparations.
+**Body-identical micronised progesterone** is structurally identical to the progesterone your body produces. Because it crosses the blood-brain barrier effectively, it retains the sleep and anti-anxiety benefits (via the allopregnanolone pathway) that natural progesterone provides. It is available by prescription in India.
 
 **Synthetic progestogens** (also called progestins) such as medroxyprogesterone acetate (MPA) and norethisterone protect the uterine lining but do not reliably reproduce the calming, sleep-promoting effects of natural progesterone. Some synthetic progestogens have also been associated with a modestly increased breast cancer risk, which is not seen to the same degree with body-identical micronised progesterone.
 
@@ -143,7 +144,7 @@ Progesterone-only therapy is sometimes used in perimenopause, particularly for w
 
 **What is the difference between progesterone and progestogen?**
 
-Progesterone refers specifically to the hormone your body produces naturally (or body-identical forms like micronised progesterone). Progestogen is the broader term for any compound (natural or synthetic) that acts on progesterone receptors. Synthetic progestogens (progestins) include norethisterone, medroxyprogesterone acetate, and levonorgestrel. They protect the uterine lining effectively but do not replicate the full neurological and mood benefits of body-identical progesterone because they behave differently in the brain. In India, body-identical micronised progesterone is available as Susten and Gestofit, and it is worth specifying these by name when discussing HRT options with your doctor.
+Progesterone refers specifically to the hormone your body produces naturally (or body-identical forms like micronised progesterone). Progestogen is the broader term for any compound (natural or synthetic) that acts on progesterone receptors. Synthetic progestogens (progestins) include norethisterone, medroxyprogesterone acetate, and levonorgestrel. They protect the uterine lining effectively but do not replicate the full neurological and mood benefits of body-identical progesterone because they behave differently in the brain. In India, body-identical micronised progesterone is widely available by prescription, and it is worth specifying "body-identical" or "micronised" by name when discussing HRT options with your doctor.
 
 **How do I know if my symptoms are from low oestrogen or low progesterone?**
 

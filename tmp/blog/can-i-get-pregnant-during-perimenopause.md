@@ -1,7 +1,8 @@
 ---
 title: "Can I Get Pregnant During Perimenopause?"
 description: "Yes, pregnancy is possible during perimenopause until 12 full months after your last period. Irregular periods do not mean infertility. Here is what you need to know about fertility, contraception, and your options."
-pubDate: 2026-05-26
+pubDate: 2025-05-26
+updatedDate: 2026-10-30
 author: "Sunita Reddy"
 image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman in a thoughtful pose considering her reproductive health"
@@ -15,7 +16,7 @@ Many Indian women assume that irregular periods mean the ovaries have stopped wo
 
 ## Can I Get Pregnant During Perimenopause?
 
-Perimenopause is the transitional phase leading up to menopause. In India, the average age of menopause is 46–47 years, which means perimenopause typically begins somewhere between the ages of 41 and 46, though it can start earlier or later.
+Perimenopause is the transitional phase leading up to menopause. In India, the average age of menopause is 46–47 years, which means perimenopause typically begins somewhere between the ages of 41 and 46, though it can start earlier or later. For the full hormonal picture of this transition, see our [perimenopause explained](/perimenopause-explained) guide.
 
 During this phase, your ovaries are producing less oestrogen and progesterone, but they have not stopped entirely. Ovulation still occurs, sometimes predictably, often not. An unpredictable ovulation cycle does not mean no ovulation. It means you may ovulate less frequently, but when you do, a viable egg can still be fertilised.
 
@@ -74,15 +75,15 @@ If pregnancy is not your goal, contraception remains necessary until menopause i
 
 There is no single "best" contraceptive for perimenopause. The right choice depends on your health history, symptoms, and preferences. Common options include:
 
-**Copper IUD (non-hormonal).** Highly effective with no hormonal effects. It can be inserted and left in place for 5–10 years. Because it is non-hormonal, it does not mask menopause symptoms or affect the 12-month countdown after your last period. Brands available in India include Copper T (various types) and Multiload.
+**Copper IUD (non-hormonal).** Highly effective with no hormonal effects. It can be inserted and left in place for 5–10 years. Because it is non-hormonal, it does not mask menopause symptoms or affect the 12-month countdown after your last period. Available in India in several types, through a gynaecologist.
 
-**Progestogen-only pill (mini-pill).** Suitable for women who cannot take oestrogen (for example, those with hypertension, migraines with aura, or cardiovascular risk factors). Brands available in India include Cerazette (desogestrel). Note: the mini-pill can cause irregular spotting.
+**Progestogen-only pill (mini-pill).** Suitable for women who cannot take oestrogen (for example, those with hypertension, migraines with aura, or cardiovascular risk factors). The desogestrel-based mini-pill is available in India by prescription. Note: the mini-pill can cause irregular spotting.
 
 **Condoms.** Non-hormonal, no systemic effects, and provide STI protection. Relevant for women in newer relationships.
 
-**Combined oral contraceptive pill (OCP).** Contains both oestrogen and progestogen. It can be used in healthy, non-smoking women under 50 without cardiovascular risk factors. An additional benefit: the combined OCP can help manage perimenopausal symptoms such as irregular bleeding, hot flushes (by stabilising hormone levels), and mood fluctuations. Brands commonly used in India include Yasmin, Diane-35, and Novelon. Always confirm suitability with your gynaecologist, the combined OCP is not appropriate for everyone.
+**Combined oral contraceptive pill (OCP).** Contains both oestrogen and progestogen. It can be used in healthy, non-smoking women under 50 without cardiovascular risk factors. An additional benefit: the combined OCP can help manage perimenopausal symptoms such as irregular bleeding, hot flushes (by stabilising hormone levels), and mood fluctuations. Several combined OCP formulations are available in India by prescription. Always confirm suitability with your gynaecologist, the combined OCP is not appropriate for everyone.
 
-**Hormonal IUD (Mirena/Kyleena).** Releases a small amount of progestogen locally. Highly effective, can reduce heavy perimenopausal bleeding, and the hormone release is largely local. Not widely available at all centres in India but accessible in major cities.
+**Hormonal IUD.** Releases a small amount of progestogen (levonorgestrel) locally. Highly effective, can reduce heavy perimenopausal bleeding, and the hormone release is largely local. Not widely available at all centres in India but accessible in major cities.
 
 What is **not** recommended: relying on the "natural family planning" or rhythm method during perimenopause. With irregular cycles, predicting ovulation is too unreliable for this method to be effective.
 

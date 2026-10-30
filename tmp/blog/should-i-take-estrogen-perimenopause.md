@@ -2,6 +2,7 @@
 title: "Should I Take Oestrogen If I Am Perimenopausal?"
 description: "Oestrogen therapy during perimenopause is more effective and safer than most women have been told. Here is the evidence-based answer, including what is available in India."
 pubDate: 2025-05-22
+updatedDate: 2026-10-30
 author: "Divya Krishnan"
 tags: ["oestrogen", "HRT", "perimenopause", "treatment"]
 readTime: "9 min read"
@@ -89,23 +90,22 @@ Yes. Several formulations are available at pharmacies across India, though acces
 
 ### Transdermal oestrogen
 
-| Product | Type | Approximate Cost |
+| Form | Type | Approximate Cost |
 |---|---|---|
-| **Estradot 50mcg** | Patch (twice weekly) | ₹600–1,200/month |
-| **Climara** | Patch (once weekly) | ₹600–1,200/month |
-| **Oestrogel** | Gel (daily application) | ₹600–1,000/month |
+| Oestrogen patch | Patch (once or twice weekly, depending on the product) | ₹600–1,200/month |
+| Oestrogen gel | Gel (daily application) | ₹600–1,000/month |
 
 ### Oral oestrogen
 
-| Product | Type | Approximate Cost |
+| Form | Type | Approximate Cost |
 |---|---|---|
-| **Progynova** | Oral tablet (estradiol valerate) | ₹300–600/month |
+| Oestrogen tablet | Oral tablet (estradiol valerate) | ₹300–600/month |
 
 ### Progesterone
 
-| Product | Type | Approximate Cost |
+| Form | Type | Approximate Cost |
 |---|---|---|
-| **Susten 200mg** | Micronised progesterone (oral or vaginal) | ₹800–1,200/month |
+| Micronised progesterone | Oral or vaginal capsule, 200mg | ₹800–1,200/month |
 
 Most women on a standard patch-plus-progesterone regimen spend approximately **₹1,400–2,400 per month** in total. This is within reach for many urban households, though cost remains a barrier in some contexts.
 
@@ -162,22 +162,22 @@ If you are unsure where you are in your hormonal journey, start with a [free sym
 
 ## Frequently Asked Questions
 
-**Q: Can I take oestrogen if I am still having periods?**
+**Can I take oestrogen if I am still having periods?**
 
 Yes. Perimenopause is characterised by irregular, often still-present periods alongside significant symptoms. HRT can be started during perimenopause while you are still menstruating. In fact, the perimenopausal years (when oestrogen is fluctuating most erratically) are often when symptoms are at their worst, and when treatment provides the greatest relief. Your gynaecologist will prescribe a regimen appropriate to your cycle stage, typically a cyclical or continuous combined regimen depending on your bleeding pattern.
 
-**Q: Will oestrogen therapy make me gain weight?**
+**Will oestrogen therapy make me gain weight?**
 
 No. Weight gain during perimenopause is driven by hormonal changes, particularly declining oestrogen, not by HRT itself. In fact, some women find that HRT helps with the redistribution of body fat that accompanies perimenopause (specifically the shift toward abdominal fat). Controlled trials do not show that HRT causes weight gain. What it may do is reduce the metabolic disruption and fatigue that makes weight management harder during this transition.
 
-**Q: I had a blood clot years ago. Can I still consider oestrogen?**
+**I had a blood clot years ago. Can I still consider oestrogen?**
 
 A history of blood clots (DVT or pulmonary embolism) is a reason for careful evaluation, not an automatic disqualification. The key question is whether you use **transdermal oestrogen**, which bypasses the liver and does not appear to increase clotting risk, even in women with a history of VTE. This is different from oral oestrogen. Women with a prior clot history may still be candidates for transdermal HRT, particularly if the clot had a clear precipitating cause (surgery, long-haul travel, pregnancy). This assessment must be done with a specialist, ideally in conjunction with a haematologist if you have a thrombophilia. In women with certain inherited clotting disorders (particularly antiphospholipid syndrome or severe thrombophilias) even transdermal oestrogen may carry elevated risk. Full haematological assessment is essential before any HRT decision in this group.
 
-**Q: My mother had breast cancer. Does that mean I cannot take HRT?**
+**My mother had breast cancer. Does that mean I cannot take HRT?**
 
 A family history of breast cancer is not a contraindication to HRT. What matters clinically is your own personal history. A family history increases your background breast cancer risk, which is a factor your doctor will discuss with you, but it does not automatically rule out HRT. Many women with a family history of breast cancer use HRT safely under specialist supervision. The decision involves weighing your personal risk level, the severity of your symptoms, the type of HRT under consideration, and your individual values around that risk.
 
-**Q: How do I know if my doctor is menopause-aware enough to prescribe HRT?**
+**How do I know if my doctor is menopause-aware enough to prescribe HRT?**
 
 This is a legitimate concern. Menopause medicine is a subspeciality, and not all gynaecologists are equally current on the evidence. Some indicators that your doctor is menopause-aware: they distinguish between transdermal and oral routes when discussing risk; they mention body-identical or micronised progesterone as an option; they do not cite the 2002 WHI study without contextualising it; they discuss the critical window and do not impose arbitrary time limits on treatment. If your doctor dismisses your symptoms without engaging with treatment options, seeks a second opinion from a gynaecologist affiliated with the Menopause Society of India or a dedicated women's health clinic.
