@@ -117,11 +117,14 @@ export function faqSchema(faqs: QA[]) {
 
 /**
  * Extract Q&A pairs from a post's raw markdown body, for FAQPage structured
- * data. House style is a consistent "## Frequently Asked Questions" heading
- * followed by **Question?**\nAnswer paragraph. blocks (blank-line separated),
- * usually followed by one closing, non-bold wrap-up paragraph before the
- * --- disclaimer rule. Only blocks that actually start with a bold question
- * are picked up, so that trailing wrap-up paragraph is skipped naturally.
+ * data. House style puts a "## Frequently Asked Questions" heading before
+ * the Q&A blocks, but the Q&A formatting itself has varied across the site's
+ * history: a bold question followed by its answer on the next line, a bold
+ * question followed by its answer after a blank line, a bold question with
+ * the answer inline on the same line, or a "###" heading used as the
+ * question. This parser accepts all four. A trailing, non-bold wrap-up
+ * paragraph (common after the last Q&A pair, before the --- disclaimer
+ * rule) is skipped naturally since it matches none of the question shapes.
  */
 export function parseFaqFromBody(body: string): QA[] {
   if (!body) return [];
@@ -129,10 +132,28 @@ export function parseFaqFromBody(body: string): QA[] {
   if (!headingMatch) return [];
   const blocks = headingMatch[1].split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
   const faqs: QA[] = [];
+  let pendingQuestion: string | null = null;
+  const clean = (q: string) => q.trim().replace(/^Q[:.]?\s*/i, '');
   for (const block of blocks) {
-    const qa = block.match(/^\*\*(.+?)\*\*\s*\n([\s\S]+)$/);
-    if (qa && qa[1].trim().endsWith('?')) {
-      faqs.push({ question: qa[1].trim(), answer: qa[2].trim() });
+    const inline = block.match(/^\*\*(.+?)\*\*\s*(\S[\s\S]*)$/);
+    if (inline && inline[1].trim().endsWith('?')) {
+      faqs.push({ question: clean(inline[1]), answer: inline[2].trim() });
+      pendingQuestion = null;
+      continue;
+    }
+    const boldOnly = block.match(/^\*\*(.+?)\*\*\s*$/);
+    if (boldOnly && boldOnly[1].trim().endsWith('?')) {
+      pendingQuestion = clean(boldOnly[1]);
+      continue;
+    }
+    const headingOnly = block.match(/^#{2,4}\s*(.+?)\s*$/);
+    if (headingOnly && headingOnly[1].trim().endsWith('?')) {
+      pendingQuestion = clean(headingOnly[1]);
+      continue;
+    }
+    if (pendingQuestion) {
+      faqs.push({ question: pendingQuestion, answer: block.trim() });
+      pendingQuestion = null;
     }
   }
   return faqs;
