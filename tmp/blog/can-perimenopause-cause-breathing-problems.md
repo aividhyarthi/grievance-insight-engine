@@ -1,7 +1,8 @@
 ---
 title: "Can Perimenopause Cause Breathing Problems?"
 description: "Shortness of breath, chest tightness, and disrupted breathing at night can all be connected to perimenopause. Here is what is driving it, and when to seek urgent help."
-pubDate: 2026-05-26
+pubDate: 2025-05-26
+updatedDate: 2026-10-31
 author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Woman practising breathing and wellness exercises outdoors"
@@ -19,7 +20,7 @@ There are several distinct pathways through which perimenopause can affect your 
 
 ### Anxiety and Panic
 
-Anxiety is one of the most common and most underdiagnosed symptoms of perimenopause. Fluctuating oestrogen disrupts serotonin, GABA, and the stress-response system, and the result can be chronic low-grade anxiety, sudden panic attacks, or a persistent feeling of unease.
+[Anxiety](/blog/perimenopause-anxiety-mood-swings) is one of the most common and most underdiagnosed symptoms of perimenopause. Fluctuating oestrogen disrupts serotonin, GABA, and the stress-response system, and the result can be chronic low-grade anxiety, sudden panic attacks, or a persistent feeling of unease.
 
 Anxiety directly affects how you breathe. When you are anxious, you tend to breathe faster and shallower, drawing air into the upper chest rather than the belly. This is called hyperventilation. It lowers carbon dioxide in the blood, which paradoxically makes you feel more breathless, light-headed, and tingly.
 

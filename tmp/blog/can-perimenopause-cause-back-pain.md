@@ -1,7 +1,8 @@
 ---
 title: "Can Perimenopause Cause Back Pain?"
 description: "Back pain that starts or worsens in your 40s may have a hormonal cause. Here is what oestrogen decline does to your spine, joints, and muscles, and what actually helps."
-pubDate: 2026-05-26
+pubDate: 2025-05-26
+updatedDate: 2026-10-31
 author: "Lakshmi Subramaniam"
 image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Person holding their lower back experiencing back pain discomfort"
@@ -45,7 +46,7 @@ This is one of the most actionable mechanisms. Strength training directly counte
 
 ### Sleep Deprivation and Pain Threshold
 
-Poor sleep is one of the most pervasive symptoms of perimenopause, driven by night sweats, anxiety, and hormonal disruption of sleep architecture. Chronic poor sleep lowers the pain threshold. Research consistently shows that people who sleep poorly experience existing pain more intensely.
+[Poor sleep](/blog/insomnia-sleep-problems-perimenopause) is one of the most pervasive symptoms of perimenopause, driven by night sweats, anxiety, and hormonal disruption of sleep architecture. Chronic poor sleep lowers the pain threshold. Research consistently shows that people who sleep poorly experience existing pain more intensely.
 
 If your back pain seems worse on days when you have slept badly, this is the likely mechanism. Improving sleep quality (in itself a significant challenge during perimenopause) can reduce subjective pain levels.
 

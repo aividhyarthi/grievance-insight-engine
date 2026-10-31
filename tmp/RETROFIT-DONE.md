@@ -25,3 +25,9 @@ Format: `YYYY-MM-DD — vertical/filename.md — what changed (or "reviewed, no 
 2026-10-30 — blog/can-i-get-pregnant-during-perimenopause.md — fixed pubDate typo (2026→2025); removed contraceptive brand names (Copper T, Multiload, Cerazette, Yasmin, Diane-35, Novelon, Mirena/Kyleena) replaced with generic names; added one cross-link to perimenopause-explained guide
 
 Infrastructure fix (not part of the 5/day content quota): rewrote parseFaqFromBody() in ss-schema.ts as a state machine to handle all 4 FAQ markdown formats in use site-wide (previously only recognised one), fixing FAQPage structured data for 14/832 affected posts across all three verticals. Shipped as standalone commit.
+
+2026-10-31 — blog/can-perimenopause-cause-acne.md — fixed pubDate typo (2026→2025); removed brand names (Adaferin, Deriva, Azclear, Minimalist, The Derma Co, Dot and Key, Cetaphil, Neutrogena, La Roche-Posay, Lakme, AcneStar, Utrogestan) replaced with generic descriptions; added one cross-link to perimenopause-anxiety-mood-swings
+2026-10-31 — blog/can-perimenopause-cause-back-pain.md — fixed pubDate typo (2026→2025); title/meta/tone/FAQ already strong; added one cross-link (had only /quiz CTAs, no links to other posts)
+2026-10-31 — blog/can-perimenopause-cause-bloating.md — fixed pubDate typo (2026→2025); worst em-dash violation found so far: 22 em dashes throughout body and FAQ, rewritten with commas/colons per house style; also fixed a duplicated-word typo ("prompt prompt"); added one cross-link
+2026-10-31 — blog/can-perimenopause-cause-breathing-problems.md — fixed pubDate typo (2026→2025); title/meta/tone/FAQ already strong; added one cross-link (had only /quiz and /community CTAs, no links to other posts)
+2026-10-31 — blog/can-perimenopause-cause-depression.md — fixed pubDate typo (2026→2025); title/meta/tone/FAQ already strong; added one cross-link to perimenopause-anxiety-mood-swings

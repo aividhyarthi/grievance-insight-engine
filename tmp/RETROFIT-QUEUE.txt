@@ -1,8 +1,3 @@
-blog/can-perimenopause-cause-acne.md
-blog/can-perimenopause-cause-back-pain.md
-blog/can-perimenopause-cause-bloating.md
-blog/can-perimenopause-cause-breathing-problems.md
-blog/can-perimenopause-cause-depression.md
 blog/can-perimenopause-cause-dizziness.md
 blog/can-perimenopause-cause-high-blood-pressure.md
 blog/can-perimenopause-cause-water-retention.md

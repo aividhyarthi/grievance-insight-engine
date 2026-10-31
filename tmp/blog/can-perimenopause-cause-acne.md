@@ -1,7 +1,8 @@
 ---
 title: "Can Perimenopause Cause Acne?"
 description: "Acne at 40 is not a skin type problem, it is hormonal. Here is why oestrogen decline causes breakouts during perimenopause and what treatments actually work."
-pubDate: 2026-05-26
+pubDate: 2025-05-26
+updatedDate: 2026-10-31
 author: "Divya Krishnan"
 image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=1200&h=675&fit=crop&q=80"
 imageAlt: "South Asian woman with a clear focus on skin health and natural beauty"
@@ -27,7 +28,7 @@ Progesterone also affects acne, though the picture is more nuanced. Natural prog
 
 ### Stress and Cortisol
 
-Cortisol (the stress hormone) increases androgen activity indirectly. Chronic stress, which is extremely common during perimenopause (for hormonal reasons as well as life-stage reasons), can worsen hormonal acne. Sleep deprivation, which is also highly prevalent in perimenopause, raises cortisol and compounds this.
+Cortisol (the stress hormone) increases androgen activity indirectly. [Chronic stress and anxiety](/blog/perimenopause-anxiety-mood-swings), which are extremely common during perimenopause (for hormonal reasons as well as life-stage reasons), can worsen hormonal acne. Sleep deprivation, which is also highly prevalent in perimenopause, raises cortisol and compounds this.
 
 Addressing sleep and stress is not a vague lifestyle suggestion in this context, it has a direct mechanistic effect on hormonal acne.
 
@@ -67,13 +68,13 @@ If your skin is affecting your confidence or quality of life, that is a legitima
 
 These are applied directly to the skin and are appropriate for mild to moderate hormonal acne:
 
-**Retinoids (adapalene, tretinoin):** Vitamin A derivatives that increase cell turnover, unclog pores, reduce inflammation, and (over time) reduce post-inflammatory pigmentation. Adapalene is available OTC in India (Adaferin, Deriva). Tretinoin requires a prescription and is more potent. Start low, use at night, and always use SPF in the morning. Retinoids take 8–12 weeks to show significant benefit.
+**Retinoids (adapalene, tretinoin):** Vitamin A derivatives that increase cell turnover, unclog pores, reduce inflammation, and (over time) reduce post-inflammatory pigmentation. Adapalene is available over the counter in India by its generic name. Tretinoin requires a prescription and is more potent. Start low, use at night, and always use SPF in the morning. Retinoids take 8–12 weeks to show significant benefit.
 
-**Azelaic acid:** Anti-inflammatory and mild anti-comedogenic. Well-tolerated on Indian skin tones and has the added benefit of fading post-inflammatory hyperpigmentation. Available in serums and gels (Azclear, various pharmacy own-brands). Can be used morning or night.
+**Azelaic acid:** Anti-inflammatory and mild anti-comedogenic. Well-tolerated on Indian skin tones and has the added benefit of fading post-inflammatory hyperpigmentation. Available in serums and gels at most Indian pharmacies. Can be used morning or night.
 
 **Benzoyl peroxide:** Effective against acne bacteria. Available in washes and gels. Useful for active inflamed spots. Note that it bleaches fabric, avoid contact with dark clothing or pillowcases.
 
-**Niacinamide:** Anti-inflammatory, pore-minimising, and helps with pigmentation. A gentle addition that works well alongside other actives. Found in many Indian skincare brands (Minimalist, The Derma Co, Dot and Key).
+**Niacinamide:** Anti-inflammatory, pore-minimising, and helps with pigmentation. A gentle addition that works well alongside other actives. Widely available in Indian skincare ranges.
 
 ### Oral Treatments
 
@@ -89,7 +90,7 @@ For moderate to severe hormonal acne, topical treatments alone are often insuffi
 
 Oestrogen-containing HRT can improve hormonal acne by restoring the oestrogen-androgen balance and reducing relative androgen excess at the skin. The effect on acne is an additional benefit that many women on HRT notice alongside improvements in hot flashes, sleep, and mood.
 
-The type of progestogen in your HRT matters significantly for skin. Micronised progesterone (Utrogestan) and dydrogesterone are neutral to mildly beneficial for skin. Norethisterone (still commonly prescribed in India as part of combined HRT) has androgenic activity and can worsen acne. If you are on HRT and your acne has worsened, this is worth discussing with your gynaecologist.
+The type of progestogen in your HRT matters significantly for skin. Micronised progesterone and dydrogesterone are neutral to mildly beneficial for skin. Norethisterone (still commonly prescribed in India as part of combined HRT) has androgenic activity and can worsen acne. If you are on HRT and your acne has worsened, this is worth discussing with your gynaecologist.
 
 HRT is not prescribed solely for acne, but if you are considering it for other symptoms, its potential skin benefits are a relevant part of the picture. [Use our quiz](/quiz) to see whether your full symptom pattern suggests HRT might be worth discussing.
 
@@ -98,8 +99,8 @@ HRT is not prescribed solely for acne, but if you are considering it for other s
 **Morning:**
 1. Gentle, low-pH cleanser (avoid harsh foaming cleansers that strip the skin barrier)
 2. Azelaic acid or niacinamide serum
-3. Non-comedogenic moisturiser (look for labels saying "non-comedogenic" or "oil-free", Cetaphil, Neutrogena, and La Roche-Posay are widely available in Indian pharmacies)
-4. SPF 30 or higher, this is non-negotiable in India. Look for non-comedogenic formulations if regular sunscreen feels heavy (Neutrogena Ultra Sheer, Lakme Sun Expert, AcneStar Sunscreen)
+3. Non-comedogenic moisturiser (look for labels saying "non-comedogenic" or "oil-free", widely available in Indian pharmacies)
+4. SPF 30 or higher, this is non-negotiable in India. Look for non-comedogenic, gel-based formulations if regular sunscreen feels heavy
 
 **Evening:**
 1. Gentle cleanser
