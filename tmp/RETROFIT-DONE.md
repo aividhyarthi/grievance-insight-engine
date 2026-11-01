@@ -31,3 +31,9 @@ Infrastructure fix (not part of the 5/day content quota): rewrote parseFaqFromBo
 2026-10-31 — blog/can-perimenopause-cause-bloating.md — fixed pubDate typo (2026→2025); worst em-dash violation found so far: 22 em dashes throughout body and FAQ, rewritten with commas/colons per house style; also fixed a duplicated-word typo ("prompt prompt"); added one cross-link
 2026-10-31 — blog/can-perimenopause-cause-breathing-problems.md — fixed pubDate typo (2026→2025); title/meta/tone/FAQ already strong; added one cross-link (had only /quiz and /community CTAs, no links to other posts)
 2026-10-31 — blog/can-perimenopause-cause-depression.md — fixed pubDate typo (2026→2025); title/meta/tone/FAQ already strong; added one cross-link to perimenopause-anxiety-mood-swings
+
+2026-11-01 — blog/can-perimenopause-cause-dizziness.md — fixed pubDate typo (2026→2025); removed iron-supplement brand names (Dexorange, Autrin) replaced with generic "ferrous sulphate and other oral iron formulations"; added one cross-link to anovulation-perimenopause-link
+2026-11-01 — blog/can-perimenopause-cause-high-blood-pressure.md — fixed pubDate typo (2026→2025); removed BP-monitor brand names (Omron, Dr. Morepen) mentioned twice, replaced with generic descriptions; added one cross-link
+2026-11-01 — blog/can-perimenopause-cause-water-retention.md — fixed pubDate typo (2026→2025); title/meta/tone/FAQ already strong, no brand names; added one cross-link to anovulation-perimenopause-link
+2026-11-01 — blog/anovulation-perimenopause-link.md — fixed pubDate typo (2026→2025); second-worst em-dash violation found so far: 27 em dashes throughout body, HTML block, and FAQ, rewritten with commas/colons/semicolons per house style; already excellently interlinked (9+ cross-links and community threads), left linking as-is
+2026-11-01 — blog/blood-clots-periods-perimenopause.md — fixed pubDate typo (2026→2025); reviewed, no changes needed; title/meta/tone/FAQ/linking already strong

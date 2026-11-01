@@ -1,7 +1,8 @@
 ---
 title: "Can Perimenopause Cause High Blood Pressure?"
 description: "Yes, blood pressure tends to rise during perimenopause and menopause as oestrogen levels decline. Oestrogen keeps blood vessels flexible and lowers vascular resistance; losing it accelerates cardiovascular risk. Here is what Indian women need to know about monitoring and managing blood pressure through this transition."
-pubDate: 2026-05-26
+pubDate: 2025-05-26
+updatedDate: 2026-11-01
 author: "Ananya Rao"
 image: "https://images.unsplash.com/photo-1576669801945-aa2e01d83e86?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Close-up of hands taking blood pressure measurement with a medical cuff"
@@ -39,7 +40,7 @@ Perimenopause tends to shift fat distribution toward the abdomen, even in women 
 
 ### Sleep disruption
 
-Night sweats and insomnia (near-universal during perimenopause) chronically elevate cortisol and activate the sympathetic nervous system. Both raise blood pressure. Women who are sleeping poorly for months on end are running a low-level physiological stress response that keeps their vascular system in a higher-tension state.
+[Night sweats and insomnia](/blog/insomnia-sleep-problems-perimenopause) (near-universal during perimenopause) chronically elevate cortisol and activate the sympathetic nervous system. Both raise blood pressure. Women who are sleeping poorly for months on end are running a low-level physiological stress response that keeps their vascular system in a higher-tension state.
 
 ### Psychological stress
 
@@ -84,7 +85,7 @@ At minimum, once a year from the age of 40. If you have any of the following, mo
 - High-salt diet
 - Chronic stress or sleep problems
 
-Home blood pressure monitors are widely available in India, brands such as Omron and Dr. Morepen offer reliable upper-arm monitors for under ₹2,000–3,000. Home monitoring gives a more accurate picture than occasional clinic readings and helps you and your doctor track trends over time. Take readings in the morning before food or medication, seated, after five minutes of rest.
+Home blood pressure monitors are widely available in India, reliable upper-arm monitors are available for under ₹2,000–3,000. Home monitoring gives a more accurate picture than occasional clinic readings and helps you and your doctor track trends over time. Take readings in the morning before food or medication, seated, after five minutes of rest.
 
 ---
 
@@ -175,4 +176,4 @@ The highest sodium contributors in a typical Indian diet are: pickles and achaar
 
 ### 5. How often should I check my blood pressure during perimenopause?
 
-At minimum, annually from age 40. If you have risk factors (family history of cardiovascular disease, previous pregnancy hypertension, obesity, diabetes, or consistently elevated readings) check every 3–6 months or as advised by your doctor. A home upper-arm blood pressure monitor (Omron, Dr. Morepen) provides the most reliable picture. Take readings at the same time each morning, after five minutes of rest, before food or medication.
+At minimum, annually from age 40. If you have risk factors (family history of cardiovascular disease, previous pregnancy hypertension, obesity, diabetes, or consistently elevated readings) check every 3–6 months or as advised by your doctor. A home upper-arm blood pressure monitor provides the most reliable picture. Take readings at the same time each morning, after five minutes of rest, before food or medication.

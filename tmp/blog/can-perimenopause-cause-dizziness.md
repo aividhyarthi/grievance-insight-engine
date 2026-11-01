@@ -1,7 +1,8 @@
 ---
 title: "Can Perimenopause Cause Dizziness?"
 description: "Yes, dizziness is a recognised but frequently overlooked perimenopause symptom. It can arise from vasomotor changes, blood pressure fluctuations, anxiety, inner ear effects, anaemia, and sleep deprivation, all of which are common during this transition. Here is what causes it and when to seek urgent care."
-pubDate: 2026-05-26
+pubDate: 2025-05-26
+updatedDate: 2026-11-01
 author: "Priya Nair"
 image: "https://images.unsplash.com/photo-1595956553066-fe24a8c33395?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman experiencing dizziness or lightheadedness"
@@ -53,7 +54,7 @@ Disrupted sleep (from night sweats, insomnia, or frequent waking) is nearly univ
 
 Perimenopause often brings heavier, more irregular periods before they stop. Heavy menstrual bleeding over months or years can deplete iron stores and cause iron-deficiency anaemia. A common and prominent symptom of anaemia is dizziness, particularly on exertion, or when standing. Other signs include fatigue, pallor, shortness of breath on effort, and cold hands and feet.
 
-If your periods have been heavier than usual for several cycles and you are experiencing dizziness, ask your doctor for a full blood count and ferritin level. Iron-deficiency anaemia is extremely common in Indian women in this age group and is frequently missed. Treating it can resolve dizziness entirely.
+If your periods have been heavier than usual for several cycles and you are experiencing dizziness, ask your doctor for a full blood count and ferritin level. Iron-deficiency anaemia is extremely common in Indian women in this age group and is frequently missed. Treating it can resolve dizziness entirely. Heavy periods during perimenopause are usually driven by anovulatory cycles, see our guide to [anovulation and perimenopause](/blog/anovulation-perimenopause-link) for why this happens.
 
 ---
 
@@ -65,7 +66,7 @@ The approach depends on the underlying mechanism, but several general measures h
 - **Rise slowly.** When getting up from bed or a chair, move gradually. Sit on the edge of the bed for a few seconds before standing. This gives your blood pressure time to adjust.
 - **Manage sleep.** Even imperfect sleep is better than none. Cooling your bedroom, avoiding screens for an hour before bed, and keeping consistent sleep and wake times all help.
 - **Manage anxiety.** If anxiety is part of your picture, techniques such as slow diaphragmatic breathing, regular exercise, and CBT (cognitive behavioural therapy) have good evidence. [Take our free symptom check](/quiz) for further guidance on your pattern.
-- **Check iron levels.** If your periods are heavy, ask your doctor to check your haemoglobin and ferritin. Iron supplementation (commonly available in India under brands such as Dexorange, Autrin, or simple ferrous sulphate) can make a significant difference.
+- **Check iron levels.** If your periods are heavy, ask your doctor to check your haemoglobin and ferritin. Iron supplementation (available in India as ferrous sulphate and other oral iron formulations) can make a significant difference.
 - **Limit alcohol and caffeine.** Both can worsen vasomotor instability and disrupt sleep.
 - **Salt and fluids for orthostatic hypotension.** Counterintuitively, if you have low blood pressure causing dizziness on standing, a slightly higher salt intake and generous hydration can help, discuss with your doctor before changing intake significantly if you have any cardiac or kidney history.
 

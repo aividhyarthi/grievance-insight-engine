@@ -1,8 +1,3 @@
-blog/can-perimenopause-cause-dizziness.md
-blog/can-perimenopause-cause-high-blood-pressure.md
-blog/can-perimenopause-cause-water-retention.md
-blog/anovulation-perimenopause-link.md
-blog/blood-clots-periods-perimenopause.md
 blog/how-long-heavy-periods-perimenopause.md
 blog/low-progesterone-symptoms-perimenopause.md
 blog/manage-perimenopause-naturally.md

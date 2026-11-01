@@ -1,7 +1,8 @@
 ---
 title: "Can Perimenopause Cause Water Retention?"
 description: "Yes, water retention is common during perimenopause. Oestrogen's effect on aldosterone, declining progesterone, and elevated cortisol all contribute to fluid accumulation. Here is what is happening and how to manage it."
-pubDate: 2026-05-26
+pubDate: 2025-05-26
+updatedDate: 2026-11-01
 author: "Meera Pillai"
 image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=1200&h=675&fit=crop&q=80"
 imageAlt: "Indian woman doctor in a medical consultation setting"
@@ -31,7 +32,7 @@ The important point is that this mechanism operates through the kidneys and is s
 
 Progesterone is a natural diuretic. It competes with aldosterone at the kidney receptor level, counteracting sodium retention and promoting gentle fluid excretion. In normal cycles, the rise of progesterone in the second half of the cycle helps clear excess fluid. Many women notice that pre-menstrual bloating and puffiness ease once progesterone peaks.
 
-During perimenopause, progesterone declines significantly, often more steeply and earlier than oestrogen. As this natural diuretic effect is lost, the kidneys' tendency to retain sodium and water goes unchecked. Oestrogen-driven fluid retention, once partly balanced by progesterone, now operates without its counterweight.
+During perimenopause, progesterone declines significantly, often more steeply and earlier than oestrogen, largely because of the anovulatory cycles that become more frequent through this transition (see our guide to [anovulation and perimenopause](/blog/anovulation-perimenopause-link)). As this natural diuretic effect is lost, the kidneys' tendency to retain sodium and water goes unchecked. Oestrogen-driven fluid retention, once partly balanced by progesterone, now operates without its counterweight.
 
 This is one reason why perimenopause-related water retention can feel worse than anything experienced during the menstrual cycle in younger years, the hormonal balance that once modulated fluid retention has shifted.
 
