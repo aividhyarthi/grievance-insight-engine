@@ -1,0 +1,50 @@
+name: Content distributor
+
+# Runs every day at 09:00 IST (03:30 UTC) and on demand.
+# Each site's own "mode" in content-distributor/config.json decides whether it
+# only writes drafts ("review") or also posts ("auto"). Everything starts in review.
+
+on:
+  schedule:
+    - cron: '30 3 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'config = use each site setting | review = drafts only | auto = draft and post | publish = post the saved drafts'
+        type: choice
+        default: config
+        options: [config, review, auto, publish]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: content-distributor
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: content-distributor
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - name: Run
+        env:
+          MODE: ${{ inputs.mode || 'config' }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Passes every repository secret so new accounts need no workflow edits.
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+        run: node src/run.mjs
+      - name: Save drafts and state
+        if: always()
+        run: |
+          git config user.name "content-distributor"
+          git config user.email "noreply@users.noreply.github.com"
+          git add drafts state.json
+          git diff --cached --quiet || (git commit -m "content-distributor: update drafts and state" && git pull --rebase && git push)

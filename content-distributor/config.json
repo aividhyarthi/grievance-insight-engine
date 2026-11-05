@@ -1,0 +1,59 @@
+{
+  "_readme": "This is the ONLY file you edit to add sites or accounts. See README.md.",
+  "model": "claude-sonnet-4-6",
+
+  "accounts": {
+    "rudra-x": {
+      "platform": "x",
+      "secret_prefix": "X_PERSONAL",
+      "_secrets": "X_PERSONAL_API_KEY, X_PERSONAL_API_SECRET, X_PERSONAL_ACCESS_TOKEN, X_PERSONAL_ACCESS_SECRET"
+    },
+    "rudra-linkedin": {
+      "platform": "linkedin",
+      "secret_prefix": "LINKEDIN_PERSONAL",
+      "link_placement": "comment",
+      "_secrets": "LINKEDIN_PERSONAL_ACCESS_TOKEN (and optionally LINKEDIN_PERSONAL_PERSON_ID)"
+    }
+  },
+
+  "sites": [
+    {
+      "id": "blog",
+      "name": "Rudra Kasturi's blog",
+      "enabled": true,
+      "mode": "review",
+      "sitemap": "https://blog.rudrakasturi.com/sitemap.xml",
+      "feed": null,
+      "only_paths": ["/blog/"],
+      "post_to": ["rudra-x", "rudra-linkedin"],
+      "max_per_run": 2,
+      "max_age_days": 30,
+      "voice": "First person, as Rudra Prasad Kasturi: founder of AI Vidhyarthi (India's student-led AI literacy initiative), ex-Google partner, ex-Times Internet and Cars24. Direct, confident, plain-spoken, like an operator who has built things. Short sentences. Concrete over abstract. Takes a clear position. Occasional dry wit."
+    },
+    {
+      "id": "apprankr",
+      "name": "Apprankr",
+      "enabled": true,
+      "mode": "review",
+      "sitemap": "https://apprankr.in/sitemap.xml",
+      "feed": null,
+      "only_paths": [],
+      "post_to": ["rudra-x", "rudra-linkedin"],
+      "max_per_run": 2,
+      "max_age_days": 30,
+      "voice": "First person, as Rudra, the founder who built Apprankr (app ranking and app store insights, built with Claude Code). Practical and builder-minded: share what was learned, a specific finding or tip, not marketing language."
+    }
+  ],
+
+  "rules": {
+    "banned_phrases": [
+      "game-changer", "dive into", "delve into", "leverage", "seamlessly",
+      "cutting-edge", "in today's fast-paced world", "the future of",
+      "it's important to note", "let that sink in", "this is huge",
+      "buckle up", "a thread", "unpopular opinion", "unlock"
+    ],
+    "x_max_chars": 280,
+    "x_max_hashtags": 2,
+    "linkedin_words": [110, 230]
+  }
+}
