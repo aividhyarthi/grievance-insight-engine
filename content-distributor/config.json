@@ -1,7 +1,6 @@
 {
   "_readme": "This is the ONLY file you edit to add sites or accounts. See README.md.",
   "model": "claude-sonnet-4-6",
-
   "accounts": {
     "rudra-x": {
       "platform": "x",
@@ -15,45 +14,91 @@
       "_secrets": "LINKEDIN_PERSONAL_ACCESS_TOKEN (and optionally LINKEDIN_PERSONAL_PERSON_ID)"
     }
   },
-
   "sites": [
     {
       "id": "blog",
       "name": "Rudra Kasturi's blog",
       "enabled": true,
       "mode": "review",
-      "sitemap": "https://blog.rudrakasturi.com/sitemap.xml",
+      "sitemap": "https://blog.rudrakasturi.com/sitemap-index.xml",
       "feed": null,
-      "only_paths": ["/blog/"],
-      "post_to": ["rudra-x", "rudra-linkedin"],
+      "only_paths": [],
+      "post_to": [
+        "rudra-x",
+        "rudra-linkedin"
+      ],
       "max_per_run": 2,
       "max_age_days": 30,
-      "voice": "First person, as Rudra Prasad Kasturi: founder of AI Vidhyarthi (India's student-led AI literacy initiative), ex-Google partner, ex-Times Internet and Cars24. Direct, confident, plain-spoken, like an operator who has built things. Short sentences. Concrete over abstract. Takes a clear position. Occasional dry wit."
+      "voice": "First person, as Rudra Prasad Kasturi: founder of AI Vidhyarthi (India's student-led AI literacy initiative), ex-Google partner, ex-Times Internet and Cars24. Direct, confident, plain-spoken, like an operator who has built things. Short sentences. Concrete over abstract. Takes a clear position. Occasional dry wit.",
+      "skip_paths": [
+        "/tag",
+        "/tags",
+        "/category",
+        "/categories",
+        "/author",
+        "/page/",
+        "/about",
+        "/contact",
+        "/privacy",
+        "/terms",
+        "/disclaimer",
+        "/search"
+      ]
     },
     {
       "id": "apprankr",
       "name": "Apprankr",
       "enabled": true,
       "mode": "review",
-      "sitemap": "https://apprankr.in/sitemap.xml",
+      "sitemap": "https://www.apprankr.in/sitemap.xml",
       "feed": null,
       "only_paths": [],
-      "post_to": ["rudra-x", "rudra-linkedin"],
+      "post_to": [
+        "rudra-x",
+        "rudra-linkedin"
+      ],
       "max_per_run": 2,
       "max_age_days": 30,
-      "voice": "First person, as Rudra, the founder who built Apprankr (app ranking and app store insights, built with Claude Code). Practical and builder-minded: share what was learned, a specific finding or tip, not marketing language."
+      "voice": "First person, as Rudra, the founder who built Apprankr (app ranking and app store insights, built with Claude Code). Practical and builder-minded: share what was learned, a specific finding or tip, not marketing language.",
+      "skip_paths": [
+        "/tag",
+        "/tags",
+        "/category",
+        "/categories",
+        "/author",
+        "/page/",
+        "/about",
+        "/contact",
+        "/privacy",
+        "/terms",
+        "/disclaimer",
+        "/search"
+      ]
     }
   ],
-
   "rules": {
     "banned_phrases": [
-      "game-changer", "dive into", "delve into", "leverage", "seamlessly",
-      "cutting-edge", "in today's fast-paced world", "the future of",
-      "it's important to note", "let that sink in", "this is huge",
-      "buckle up", "a thread", "unpopular opinion", "unlock"
+      "game-changer",
+      "dive into",
+      "delve into",
+      "leverage",
+      "seamlessly",
+      "cutting-edge",
+      "in today's fast-paced world",
+      "the future of",
+      "it's important to note",
+      "let that sink in",
+      "this is huge",
+      "buckle up",
+      "a thread",
+      "unpopular opinion",
+      "unlock"
     ],
     "x_max_chars": 280,
     "x_max_hashtags": 2,
-    "linkedin_words": [110, 230]
+    "linkedin_words": [
+      110,
+      230
+    ]
   }
 }

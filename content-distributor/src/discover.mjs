@@ -87,7 +87,10 @@ export async function listArticles(site) {
   }
 
   const paths = site.only_paths || [];
-  const siteHost = new URL(site.sitemap || site.feed).host;
+  const skip = site.skip_paths || [];
+  // "www.example.com" and "example.com" count as the same site.
+  const bare = (h) => h.replace(/^www\./, '');
+  const siteHost = bare(new URL(site.sitemap || site.feed).host);
   entries = entries.filter((e) => {
     let u;
     try {
@@ -95,8 +98,9 @@ export async function listArticles(site) {
     } catch {
       return false;
     }
-    if (u.host !== siteHost) return false;
+    if (bare(u.host) !== siteHost) return false;
     if (u.pathname === '/' || u.pathname === '') return false;
+    if (skip.some((p) => u.pathname.toLowerCase().startsWith(p))) return false;
     return paths.length === 0 || paths.some((p) => u.pathname.startsWith(p));
   });
 
