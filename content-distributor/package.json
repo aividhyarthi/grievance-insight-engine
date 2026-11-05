@@ -1,0 +1,16 @@
+{
+  "name": "content-distributor",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turns new articles from your websites into LinkedIn and X posts. Review mode or auto mode, any number of sites and accounts.",
+  "scripts": {
+    "review": "MODE=review node src/run.mjs",
+    "auto": "MODE=auto node src/run.mjs",
+    "publish": "MODE=publish node src/run.mjs",
+    "test": "node src/selftest.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0"
+  }
+}
