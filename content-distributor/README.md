@@ -48,8 +48,10 @@ Open `config.json`, copy one block inside `"sites"`, and change:
 - `post_to` (which accounts it posts to)
 - `voice` (how the posts should sound)
 
-## Adding another account (e.g. a company LinkedIn page)
+## Adding another account (e.g. a second personal profile or another X account)
 In `config.json` under `"accounts"`, add a new entry with a `secret_prefix` of your choice, then add secrets named `<PREFIX>_ACCESS_TOKEN` (and for X the four keys, as above). Add its name to a site's `post_to`. No other change is needed.
+
+Note: LinkedIn **company pages** are not supported yet. Posting to a page needs a different kind of author and extra LinkedIn permissions. Ask for it when you need it.
 
 ## What it does on the first run
 It does not flood your feed. For each site it picks only the **latest 2** articles (`max_per_run`) and ignores the rest. After that, only genuinely new articles are picked up.
